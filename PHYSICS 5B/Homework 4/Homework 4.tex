@@ -1,0 +1,341 @@
+\documentclass{article}
+\title{Physics 5B Homework}
+\author{Eric Du}
+\date{\today}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\usepackage{float}
+\lhead{Eric Du}
+\chead{Physics 5B Homework}
+\rhead{\today}
+\usepackage{circuitikz}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{148pt}
+\usepackage{color}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\usepackage[sexy]{evan}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\usepackage{caption}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    \noindent \textbf{[Note:]} To complete this homework I worked with \textbf{Andrew Binder} and partially with \textbf{Aren Martinian}.
+    \end{abstract}
+
+\section{Problem 1}
+
+\subsection{Part a}
+We have the relationship $\vec{J} = \rho \vec{v}$, and since we have $\vec{v} = \vec{r} \times \vec{\omega}$, we get the following:
+
+   \[ \vec{J} = \rho (\vec{r} \times \vec{\omega})\]
+
+Taking this cross product, we get:
+
+\[ \vec{J} = \rho r\sin \theta \omega \hat{\phi}\]
+
+Note that $\vec{J}$ points in the $\hat \phi$ direction due to the nature of the cross product.
+
+\subsection{Part b}
+
+To find the net current we have to integrate over the area of the half plane, since $\vec{J}$ is a function of $r$. This just ends up being a double integral, which we compute by splitting the hemisphere into concentric semicircles: 
+
+\begin{align*}
+    I &= \hat \phi \int_0^R\int_0^\pi \rho r \sin \theta \omega d\theta dr\\
+    &= \rho \omega \hat \phi \int_0^R 2r dr\\
+    &=  \rho \omega \hat \phi R^2
+\end{align*}
+
+\subsection{Part c}
+
+The continuity equation is as follows: 
+
+\[ \frac{\partial }{\partial t} \rho(\vec{r}, t) + \nabla \cdot \vec{J} = 0\]
+
+First of all, the first term is equal to zero since the charges are glued in place, and thus they cannot change with time. Secondly, since $\vec{J}$ is a only in the $\hat \phi$ direction, we get the following for its divergence:
+
+\[ \nabla \cdot \vec{J} = \frac{1}{r\sin \theta} \frac{\partial}{\partial \phi} J\]
+
+Note that while $\vec{J}$ \textit{points} in the $\hat \phi$ direction, it does not have any dependence in that direciton. As a result, we have $\dfrac{\partial J}{\partial \phi} = 0$. And now since both terms are equal to zero, the continuity equation is satisfied.
+
+
+\section{Problem 2}
+
+    To solve this problem, we can use a combination of Kirchoff's loop and branch rules. Using these rules, we get the following relationships. Let the currents $I_1, I_2, I_3, I_4, I_5$ denote the currents through each of the respective resistors:
+
+\[\begin{cases}
+    6I_2 + 6I_4 + 3I_5 = 9\\
+    3I_1 + 6I_3 = 9\\
+    6I_2 + 3I_4 = 9\\
+    3I_1 + 3I_4 - 3I_5 = 9\\
+\end{cases}\]
+
+For Kirchoff's branch rules, we get the following: 
+
+\[\begin{cases}
+    I_1 + I_2 = I\\
+    I_5 + I_4 = I_2\\
+    I_5 + I_1 = I_3\\
+    I_3 + I_4 = I\\
+\end{cases}\]
+
+From here, we can solve the system of equations via a matrix and row operations. The matrix ends up to be a 7x8 matrix, which is then row reduced to obtain the following solutions:
+
+\[\begin{cases}
+    I_1 = \frac{9}{3}\\
+    I_2 = \frac{6}{7}\\
+    I_3 = \frac{6}{7}\\
+    I_4 = \frac{9}{7}\\
+    I_5 = \frac{3}{7}\\
+    I = \frac{15}{7}
+\end{cases}\]
+
+This result makes sense, since we should expect that $I_1$ and $I_4$ to have the same current due to symmetry, and we should also expect 
+
+\section{Problem 3}
+
+Here's a diagram of the system:
+
+\subsection{Part a}
+$$\begin{circuitikz}
+    \ctikzset{resistors/scale=0.7, capacitors/scale=0.6, batteries/scale=0.7}
+    \draw
+    (0,2) to[battery, l=$\varepsilon_1$] (0,0);
+    \draw
+    (0,2)
+    to[R=$R_1$] (1.5,2)
+    to[R=$R_2$] (3,2)
+    to[battery, l=$\varepsilon_2$] (3,0)
+    to(0,0)
+    ;
+    \draw
+    (1.5,2) to[C=$C$] (1.5,0)
+    ;
+  \end{circuitikz}$$
+
+From Kirchoff's rules, we have the following two differential equations:
+\[\begin{cases}
+    \varepsilon_1 - R_1I_1 - \frac{q(t)}{C} = 0\\
+    \varepsilon_2 - R_2I_2 - \frac{q(t)}{C} = 0
+\end{cases}\]
+We take a derivative on both of these to get a differnetial equation in terms of current:
+\[ \begin{cases}
+    -R_1\frac{dI_1}{dt} - \frac{I_3(t)}{c} = 0\\
+    -R_2\frac{dI_2}{dt} - \frac{I_3(t)}{C} = 0
+\end{cases}\]
+
+
+
+Here, we denote $I_3$ to refer to the current going through middle branch.
+
+\subsection{Part b}
+
+After partially solving the system of differnetial equtaions, we realize we can subtract the two, so we get:
+
+\[ \frac{dI_1}{dt} R_1 = R_2 \frac{dI_2}{dt}\]
+
+Integrating, we get:
+
+\[ I_1(t) R_1 = I_2(t) R_2 \implies I_1(t) = \frac{R_2}{R_1}I_2(t)\]
+
+\subsection{Part c}
+
+Instantaneously, the capacitor acts like a short circuit, so we essentially just have two batteries connected together. As a result, we have the following loop rules:
+
+\[\begin{cases}
+    \varepsilon_1 - R_1 I_1 = 0\\
+    \varepsilon_2 - R_2 I_2 = 0
+\end{cases}\]
+
+So the currents $I_1$ and $I_2$ are simply equal to $\dfrac{R_1}{\varepsilon_1}$ and $\dfrac{R_2}{\varepsilon_2}$ respectively.
+
+\subsection{Part d}
+
+After a very long time, the capacitor acts like a broken wire, so we essentially only have one loop. For $I_1$, we have:
+
+\[ \varepsilon_1 - R_1 I_1 - R_2 I_1 - \varepsilon_2 = 0\]
+
+Similarly, for $I_2$:
+
+\[ \varepsilon_2 - R_2 I_2 - R_1 I_2 - \varepsilon_1 = 0\]
+
+Solving these two we get:
+\begin{align*}
+    I_1 &= \frac{\varepsilon_1 - \varepsilon_2}{R_1 + R_2}\\
+    I_2 &= \frac{\varepsilon_2 - \varepsilon_1}{R_1 + R_2}
+\end{align*}
+
+This solution makes perfect sense. Since we only have one singular loop, it makes sense that when try to loop in the other direction, we get the negative of the result we calculated earlier. 
+
+
+
+\section{Problem 4}
+One overall thing to note about this problem is that because the capacitors are not in equilibrium with each other we cannot simply merge them into a single capacitor. 
+\subsection{Part a}
+First, let $Q_1$ and $Q_2$ denote the charges on the left and right capacitors, respectively. After a very long time, we reuqire that the voltages across both capacitors must be the same, and that $Q_1 + Q_2 = Q$. Thus, we get the following two relationships:
+
+\[ \begin{cases}
+    Q_1 + Q_2 = Q \\
+    \dfrac{Q_1}{C_1} = \dfrac{Q_2}{C_2}
+\end{cases}
+\]
+
+Solving this system of equations, we get the following for $Q_1$ and $Q_2$: 
+
+\[ \begin{cases}
+    Q_1 = Q - \dfrac{Q_2}{C_1 + C_2}\\
+    Q_2 = \dfrac{QC_2}{C_1 + C_2}
+\end{cases}
+\]
+
+\subsection{Part b}
+
+We have the initial energy of the capacitor to be $E_i = \dfrac{Q^2}{2C_1}$, and we have the final energy to be:
+
+\[ E_f = \frac{\left(Q - \frac{QC_2}{C_1 + C_2}\right)^2}{2C_1} + \frac{\left(\frac{QC_2}{C_1 + C_2}\right)^2}{2C_2}\] 
+
+Now we compute $E_i - E_f$ to get the energy dissipated by the resistor. The rest of this is honestly a lot of algebra, so I will be skipping it here. However, the final solution ends up being:
+
+\[ E_i - E_f = \frac{1}{2}\frac{C_2Q^2}{C_1 + C_2}\left(\frac{1}{C_1} - \frac{1 + C_2}{C_1 + C_2}\right)\]
+
+
+\section{Problem 5}
+
+\subsection{Part a}
+
+We can find the equivalent resistance by building the following circuit:
+$$\begin{circuitikz}
+    \ctikzset{resistors/scale=0.7, capacitors/scale=0.6}
+    \draw
+    (1.5,1.5)
+    to[battery, l_=$V$, *-*] (1.5,0)
+    to (3,0)
+    to[R, l_=$R$,*-*] (3,1.5)
+    to[R, l_=$R'$, *-*] (1.5,1.5)
+    ;
+    \draw
+    (3,1.5) to[short, *-*] (4.5,1.5)
+    to[R=$R_{eq}$, *-*] (4.5,0)
+    to (3,0)
+    ;
+  \end{circuitikz}$$
+
+This circuit is equivalent to the previous one because it is infinitely long, and thus adding a resistor in parallel and series shouldn't affect it at all. We can find the equivalent resistance for $R$ and $R_{eq}$, and call it $r$ temporarily:
+
+\begin{align*}
+    r &= \left(\frac{1}{R} + \frac{1}{R_{eq}}\right)^{-1}\\
+    &= \frac{R_{eq}R}{R_{eq} + R}
+\end{align*}
+
+We also have $R_{eq} = r + R'$, and since $r$ is defined in terms of $R$ and $R_{eq}$ then we can write the following:
+
+\begin{align*}
+    R_{eq} &= R' + \frac{R_{eq}R}{R_{eq} + R}\\
+    0 &= R_{eq}^2 - R'R_{eq} - R'R \\
+\end{align*}
+
+This is a quadratic in $R_{eq}$, so we can solve this using the quadratic formula. doing this, we get:
+
+\[ R_{eq} = \frac{R' \pm \sqrt{R'^2 + 4R'R}}{2}\]
+
+Note that we are forced to take the positive case here since we require that our $R_{eq}$ to be positive. Now via Ohm's law, we get:
+
+\[ V = IR \implies I = \frac{V}{R_{eq}} = \frac{2V}{R' + \sqrt{R^2 + 4R'R}}\]
+
+
+This result makes sense, since in the easier case where $R = R'$ then we get the very clean solution that $R_{eq} = \varphi R$, where $\varphi$ represents the golden ratio. 
+
+Aside from this, we can also see that if any of the two resistances goes to infinity, then we have an infinite resistance, which makes sense since an infinite resistance acts the same way as a broken wire. On the other hand, if we set one of the resistances to be very small (say, set $R = 0$), then we get that $R_{eq} = 0$. This result also makes sense, since if $R = 0$ then the current would only need to go through one loop and ignores the rest of the latter that extends out to infinity, passing through one $R'$ resistor as expected.
+
+On the other hand, if we set $R' = 0$ then we get zero resistance, which also makes sense, since the resistance of parallel resistors decreases, with a limit that the equivalent resistance becomes zero at infinity.
+
+\subsection{Part b}
+
+Note that the overall shape of both ends of the infinite "ladder" is the same, so they actually have the same resistances. Thus, we can get a system that looks like this: 
+
+
+$$\begin{circuitikz}
+    \ctikzset{resistors/scale=0.7, capacitors/scale=0.6}
+    \draw
+    (0,0) to[R=$R{eq{1}}$, *-*] (0,1.5)
+    to (3,1.5)
+    to[R=$R{eq{2}}$, *-*] (3,0)
+    to (0,0)
+    ;
+    \draw
+    (1.5,1.5)
+    to[battery, l=$V$, *-*] (1.5,0)
+    ;
+  \end{circuitikz}$$
+  
+  
+  Using Kirchoff's loop rule, we get:
+
+\[ \varepsilon - R_{eq1}I_1 = 0\] 
+
+And since $R_{eq1} = R_{eq2}$ (this is due to the fact that the circuits are mirror images of each other), then by necessity we have that $I_1 = I_2$. Thus, we can find the current through both branches simply by looking at a single loop. Doing so, we get:
+
+\begin{align*}
+    V &= R_{eq}I_1\\
+    \therefore I_1 &= I_2 = \frac{V}{R_{eq}}\\
+    &= \frac{2V}{R' + \sqrt{R'^2 + 4R'R}}
+\end{align*}
+
+\section{Problem 6}
+
+\subsection{Part a}
+
+We can calculate the equivalent resistance between points on a diagonal by splitting up an abitrary current $I$ into $\dfrac{I}{3}$ and $\dfrac{I}{6}$, starting from one of the corners, and following Kirchoff's branch rules for current splitting. 
+
+By symmetry, any path that we choose to go from one corner of the cube to the other (provided we follow Kirchoff's laws of current flow), will be the same. As a result we can write:
+
+\[ V = \frac{I}{3} R + \frac{I}{3} R + \frac{I}{6}R = \frac{5}{6} IR\]
+
+From here, we can deduce that the equivalent resistance is then $\dfrac{5}{6}R$
+
+\subsection{Part b}
+
+To go from one face to the other, we have 6 paths which all have a voltage drop of $\dfrac{I}{3}R + \dfrac{I}{6}R = \dfrac{I}{2}R$, giving us an equivalent resistance across each path to be $\dfrac{R}{2}$. Since all these paths are in parallel with each other, we can find the equivalent resistance:
+
+\[ \frac{1}{R_{eq}} = \frac{1}{\frac{R}{2}} \implies R_{eq} = \frac{R}{2}\]
+
+\subsection {Part c}
+
+
+Again, by Kirchoff's laws the two paths should have the same potential drop across them, having a potential of $\frac{I}{6}R$ for each path. 
+
+\[ \frac{1}{R_{eq}} = \frac{1}{\frac{R}{6}} \implies R_{eq} = \frac{R}{6}\]
+
+
+\section{Problem 7}
+
+We can split up the battery into an ideal battery connected in series with a resistance $R_i$, then we have the equivalent resistance to be equal to $R_{eq} = R + R_i$. The power dissipated by the circuit is $I^2R$, which simplifies to:
+
+\[ P = I^2 R = \frac{\varepsilon^2 R}{(R + R_i)^2}\]
+
+Now we calculate $\dfrac{dP}{dR}$ = 0:
+
+\begin{align*}
+    \frac{dP}{dR} = 0 &= \varepsilon^2 \frac{(R + R_i)^2 - R \cdot 2(R + R_i)}{(R_i + R)^4}\\
+    &= R^2 + 2RR_i + R_i^2 - 2R^2 - 2RR_i\\
+    &= R_i^2 - R^2
+\end{align*}
+
+And as a result we have $R_i - R = 0$, or in other words maximum power when $R = R_i$. 
+
+
+\end{document}
