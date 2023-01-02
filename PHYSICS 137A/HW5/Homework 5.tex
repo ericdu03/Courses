@@ -1,0 +1,335 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+
+\newcommand{\classcode}{Physics 137A}
+\newcommand{\classname}{Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 05} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Problem 1}
+
+    In this problem we explore some of the more useful theorems (stated without proof) involving Hermite polynomials. 
+
+    \begin{enumerate}[(a)]
+    \item The \textbf{Rodrigues formula} says that 
+    \[ H_n(\xi) = (-1)^n e^{\xi^2}\left(\frac{d}{d\xi}\right)^n e^{-\xi^2}\]
+
+    Use it to derive $H_3$ and $H_4$. 
+
+    \begin{solution}
+        First, it's useful to calculate the derivatives first (these derviatves were first computed by hand, then verified via a computer): 
+
+        \begin{align*}
+            \frac{d}{d\xi} &= -2 \xi e^{-\xi^2}\\
+            \frac{d^2}{d\xi^2} &= e^{-\xi^2} (-2 + 4\xi)\\
+            \frac{d^3}{d\xi^3} &= e^{-\xi^2}(12 \xi - 8 \xi^3)\\
+            \frac{d^4}{d\xi^4} &= e^{-\xi^2}(16 \xi^4 - 48\xi^2 + 12)
+        \end{align*}
+
+        So now we can use the Rodrigues formula:
+
+        \begin{align*}
+            H_3(\xi) &= -e^{\xi^2} \cdot e^{-\xi^2}(12\xi - 8 \xi^3)\\
+            &= 8\xi^3 - 12\xi\\
+            H_4(\xi) &= e^{\xi^2} \cdot e^{-\xi^2}(16 \xi^4 - 48 \xi^2 + 12)\\
+            &= 16 \xi^4 - 48 \xi^2 + 12
+        \end{align*}
+
+
+    \end{solution}
+
+    \item The following relation gives you $H_{n+1}$ in terms of the two preceding Hermite polynomials:
+    \[ H_{n+1}(\xi) = 2\xi H_n(\xi) - 2nH_{n-1}(\xi)\]
+
+    Use it, together with your answer in (a), to obtain $H_5$ and $H_6$. 
+
+
+    \begin{solution}
+        Using the recursive relation:
+
+        \begin{align*}
+            H_5(\xi) &= 2\xi H_4(\xi) - 8 H_3(\xi)\\
+            &= 2\xi(16 \xi^4 - 48\xi^2 + 12) - 8(8\xi^3 - 12\xi)\\
+            &= 32 \xi^5 - 160 \xi^3 + 120\xi\\
+            H_6(\xi) &= 2\xi H_5(\xi) - 10H_4(\xi)\\
+            &= 2\xi (32 \xi^5 - 160 \xi^3 + 120\xi) - 10 (16\xi^4 - 48 \xi^2 + 12)\\
+            &= 64 \xi^6 - 480 \xi^4 + 720 \xi^2 - 120
+        \end{align*}
+    \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 2}
+
+    In this problem, we will consider a particle in the simple harmonic oscillator potential, which is the potential for a mass on a spring:
+
+    \[ V(x) = \frac{1}{2} m\omega^2x^2\]
+
+    Later, you will learn how to obtain the energy eigenfunctions and energy eigenvalues. But for now, we will give them to you. The (normalized) energy eigenfunctions are
+    \[ \psi_n(x) = \frac{1}{\sqrt{2^n n!}}\left(\frac{m\omega}{\pi \hbar}\right)^{1/4} H_n\left(\sqrt{\frac{m\omega}{\hbar}} x\right) \exp{-\frac{m\omega x^2}{2\hbar}},\  n = 0, 1, 2, \dots\]
+
+    where $H_n(z)$ are the Hermite polynomials, which are defined by 
+
+    \[ H_n(z) = (-1)^n e^{z^2} \frac{d^n}{dz^n}(e^{-z^2})\] 
+
+    where $z = \sqrt{\frac{m\omega}{\hbar}} x$ in our case. For your convenience, the first few Hermite polynomials are:
+
+    \begin{align*}
+        H_0(z) &= 1\\
+        H_1(z) &= 2z\\
+        H_2(z) &= 4z^2 - 2\\
+        H_3(z) &= 8z^3 - 12z\\
+        H_4(z) &= 16z^4 - 48z^2 + 12
+    \end{align*}
+
+    \begin{enumerate}[(a)]
+    \item Write down $\psi_0(x), \psi_1(x)$ and $\psi_2(x)$ and show that they are solutions to the time-independent \schrodinger equation with energies $E_0 = \frac{1}{2}\hbar \omega$, $E_1 = \frac{3}{2} \hbar \omega$ and $E_2 = \frac{5}{2}\hbar \omega$
+    
+    \begin{solution}
+        To write down these wavefunctions, we apply $n = 0, 1, 2$ onto the formula above: 
+
+        \begin{align*}
+            \psi_0(x) &= \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} \exp{\frac{-m\omega x^2}{2\hbar}}\\
+            \psi_1(x) &= \sqrt{2} \left(\frac{m^3\omega^3}{\pi \hbar^3}\right)^{1/4} x \exp{-\frac{m\omega x^2}{2\hbar}}\\
+            \psi_2(x) &= \frac{1}{\sqrt{2}} \left(\frac{m\omega}{\pi \hbar}\right)^{1/4}\left(\frac{2 m\omega x^2}{\hbar} - 1\right) \exp{-\frac{m\omega x^2}{2\hbar}}
+        \end{align*}
+
+        To verify the energies, we plug them into the \schrodinger equation. For all of these, I will show minimal algebra, because there's quite a lot of it. The general process is as follows: we substitute each of $\psi_1(x), \psi_2(x)$ and $\psi_3(x)$ into the \schrodinger equation, then evaluate the Hamiltonian then factor out the wavefunction again. The terms that remain should sum to the appropriate energy eigenvalues. 
+
+        \begin{align*}
+            \hat H \psi_0(x) &= \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \frac{1}{2} m\omega^2x^2\right] \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} \exp{-\frac{m\omega x^2}{2\hbar}}\\
+            &= -\frac{\hbar^2}{2m} \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} \cdot 2 \left(\frac{m \omega}{2\hbar}\right)\left(2 \left(\frac{m\omega}{2\hbar}\right)x^2 - 1\right) \exp{-\frac{m\omega x^2}{2\hbar}}\\
+            &= \psi_0(x) \left[-\frac{\hbar \omega}{2} \left(\frac{m\omega x^2}{\hbar} - 1\right) + \frac{1}{2} m \omega x^2\right]\\
+            &= \psi_0(x) \left[-\frac{m\omega^2x^2}{2} + \frac{\hbar \omega}{2} + \frac{1}{2} m \omega^2x^2\right]\\
+            &= \frac{\hbar \omega}{2} \psi_0(x) \implies E_0 = \frac{\hbar\omega}{2}
+        \end{align*}
+
+        Similarly for $\psi_1(x)$:
+
+        \begin{align*}
+            \hat H \psi_1(x) &= \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \frac{1}{2} m\omega^2x^2\right] \sqrt{2} \left(\frac{ m^3 \omega^3}{\pi \hbar^3}\right)^{1/4} x \exp{-\frac{m \omega x^2}{2\hbar}}\\
+            &= -\frac{\hbar^2}{2m} \left(\frac{m^3\omega^3}{\pi \hbar^3}\right)^{1/4} \cdot 2\left(\frac{m \omega}{\pi \hbar}\right) x\exp{-\frac{m \omega x^2}{2\hbar}} \left(2 \left(\frac{m \omega}{\pi \hbar}\right)x^2 - 3\right) + \frac{1}{2} m \omega^2x^2 \psi_1(x) \\
+            &= \psi_1(x) \left[ -\frac{\hbar \omega}{2} \left(\frac{m \omega x^2}{\hbar} - 3\right) + \frac{1}{2} m \omega^2x^2\right]\\
+            &= \psi_1(x) \left[-\frac{m \omega^2x^2}{2} + \frac{3 \hbar \omega}{2} + \frac{1}{2} m \omega^2x^2\right]\\
+            &= \frac{3 \hbar \omega}{2} \psi_1(x) \implies E_1 = \frac{3\hbar \omega}{2}
+        \end{align*}
+
+        And finally for $\psi_2(x)$:
+
+        \begin{align*}
+            \hat H \psi_2(x) &= \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \frac{1}{2} m\omega^2x^2\right] \cdot \frac{1}{\sqrt{2}} \left(\frac{m \omega}{\pi \hbar}\right)^{1/4} \left(\frac{2 m \omega x^2}{\hbar} - 1\right) \exp{-\frac{-m\omega x^2}{2\hbar}}\\
+            &= -\frac{\hbar^2}{2m} \cdot \frac{1}{\sqrt{2}} \left(\frac{m^5 \omega^5}{\pi \hbar^5}\right)^{1/4}\left(2 \left(\frac{m \omega^2}{2\hbar}\right) x^2 - 5\right)\left(\frac{2m \omega x^2}{\hbar} - 1\right) \exp{-\frac{m \omega x^2}{2\hbar}} + \frac{1}{2} m \omega^2x^2\psi_2(x)\\
+            &= \psi_2(x) \left[\frac{-\hbar\omega}{2} \left(\frac{m \omega x^2}{\hbar} - 5\right) + \frac{1}{2} m \omega^2x^2\right]\\
+            &= \psi_2(x) \left[-\frac{m \omega^2x^2}{2} + \frac{5\hbar \omega}{2} + \frac{1}{2} m \omega^2x^2\right]\\
+            &= \frac{5\hbar \omega}{2}\psi_2(x) \implies E_2 = \frac{5\hbar \omega}{2}
+        \end{align*}
+
+    \end{solution}
+    \item A particle begins at $t = 0$ with the (normalized) wavefunction
+    
+    \[ \Psi(x, t = 0) = \frac{2}{\sqrt{3}\pi^{1/4}} \left(\frac{m\omega}{\hbar}\right)^{5/4} x^2 \exp{-\frac{m\omega^2x^2}{2\hbar}}\]
+    Write this state in terms of the energy eigenfunctions $\psi_n(x)$. 
+
+
+    \begin{solution}
+        To do this, all we have to do is write $\Psi(x, 0)$ as a linear combination of $\psi_0(x)$ and $\psi_1(x)$. A lot of this is trial and error, but there are some things we can notice to make our lives a bit easier. First, let's write $\psi_2(x)$ in a more suggestive way: 
+
+        \[ \psi_2(x) = \left(\frac{2}{\sqrt2\pi^{\frac14}}\left(\frac{m\omega}{\hbar}\right)^{\frac54}x^2 - \frac{1}{\sqrt2}\left(\frac{m\omega}{\pi\hbar}\right)^{\frac14}\right)\exp{-\frac{m\omega x^2}{2\hbar}}\]
+
+        Notice that the first term is almost identical to $\Psi(x)$, and the latter term looks like $\psi_0(x)$, which we can subtract off by adding the appropriate factor of $\psi_0(x)$. So we subtract $\sqrt{\frac12} \psi_0(x)$ from $\psi_2(x)$:
+
+        \[ \psi_2 -\frac{1}{\sqrt{2}} \psi_0 =  \frac{2}{\sqrt2\pi^{\frac14}}\left(\frac{m\omega}{\hbar}\right)^{\frac54}x^2\exp{-\frac{m\omega x^2}{2\hbar}}\]
+
+        Now we notice that all we're missing is the constant factor out in front, where multiplying this expression by $\sqrt{\frac23}$ would solve this issue. In other words, 
+
+
+        \[ \sqrt{\frac23}\left(\psi_2 - \frac{1}{\sqrt2}\psi_0\right) = \frac{2}{\sqrt{3}\pi^{\frac14}}\left(\frac{m\omega}{\hbar}\right)^{\frac54}x^2\exp{-\frac{m\omega x^2}{2\hbar}} = \Psi(x,t=0)\]
+
+        So therefore our linear combination is: 
+
+        \[\Psi(x,0) = \sqrt{\frac23}\psi_2(x) - \sqrt{\frac13}\psi_0(x)\]
+    \end{solution}
+    \item What is the wavefunction of the particle at a later time $t$? Keep your answer in terms of the energy eigenfunctions $\psi_n(x)$. 
+    
+    \begin{solution}
+        Time dependence of $\Psi$ can be derived by multiplying each term by an $\exp{\frac{iE_nt}{\hbar}}$, so therefore:
+
+
+        \[ \Psi(x, t) = \sqrt{\frac23} \psi_2(x)\exp{-\frac{i\omega t}{5}} - \sqrt{\frac13}\psi_0(x)\exp{-\frac{i\omega t}{2}}\]
+
+
+    \end{solution}
+    \item What is the expectation value of energy of the state $\Psi(x, t)$ as a function of time? [Hint: How does the Hamiltonian operator appear in the time-independent \schrodinger equation? There is no need to write out the explicit form of $\psi_n(x)$]
+    
+    \begin{solution}
+        The expected value of energy is the same as the expectation value of the Hamiltonian operator:
+
+        \[ \mean{\hat H}_{\Psi} = \int \Psi^\star \hat H \Psi \dx\]
+
+        We know that $\Psi$ is written as a linear combination of energy eigenfunctions. For every eigenfunction, the Hamiltonian operator will return $E_n \psi_n(x)$, then we multiply by the appropriate constants given by the linear combination. Furthermore, since energy eigenfunctions are orthonromal to one another, all cross terms that result from the expansion evaluate to zero. Therefore we sum over the non-cross terms:
+
+        \[ \mean{\hat H}_{\Psi} = \sum_n |c_n|^2 E_n = \frac23 \frac{5\hbar \omega}{2} + \frac13 \frac{\hbar \omega}{2} = \frac{11\hbar \omega}{6} \]
+
+
+    \end{solution}
+    \end{enumerate}
+    
+
+    \pagebreak
+    \section*{Problem 3}
+
+    Find the allowed energies of the \textit{half} harmonic oscillator
+    \[ 
+        V(x) = \begin{cases}
+            (1/2) m \omega^2 x^2 & \text{for } x > 0\\
+            \infty & \text{for } x < 0
+        \end{cases}
+        \] 
+
+        (This represents, for example, a spring that can be stretched, but not compressed.) \textit{Hint:} This requires some careful thought, but very little actual computation. 
+
+
+        \begin{solution}
+            To solve this problem, we look at the form of the potenital at $x < 0$ ad $x > 0$. At $x < 0$, we know that the height of the potential is $\infty$, so this means that just like in the infinite square well case, $\psi(x) = 0$ for all $x < 0$ (a wavefunction simply cannot exist there). On the other hand, for $\psi > 0$ we have
+
+            \[ V(x) = \frac{1}{2} m\omega^2x^2\]
+
+            where the eigenfunctions to the Hamiltonian operator will be the same as the classical harmonic oscillator, and so our energy levels will be the same:
+
+            \[ E_n = \left(n + \frac{1}{2}\right)\hbar \omega\]
+
+            However, we have a slight dfference here. Since $\psi(0) = 0$ at $x < 0$, we need to satisfy this boundary condition, so not every value of $E_n$ will work here. More specifically, if we look at the expression for $\psi_n(x)$ from the previous problem: 
+
+            \[ \psi_n(x) = \frac{1}{\sqrt{2^n n!}}\left(\frac{m\omega}{\pi \hbar}\right)^{1/4} H_n\left(\sqrt{\frac{m\omega}{\hbar}} x\right) \exp{-\frac{m\omega x^2}{2\hbar}}, \ n = 0, 1, 2, \dots\]
+
+            Notice that in order to satisy $\psi_n(0) = 0$ then it is required that $H_n(0) = 0$. This can only happen for odd Hermite polynomials since they have no constant term, so therefore we can only have odd $n$, and so our final energy levels become:
+
+            \[ E_n = \left(n + \frac{1}{2}\right) \hbar \omega, \ n = 1, 3, 5, \dots\]
+
+            % And if we want to find energy levels, we want to find the energy eigenfunctions of this potential:
+
+            % \[ \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \frac{1}{2} m\omega^2x^2\right] \Psi(x) = E\Psi(x)\]
+
+            
+            % But notice that this looks like the exact same equation we solved for the full harmonic oscillator! Furthermore, since $\Psi$ can be taken to be either even or odd centered at $x = 0$, our solutiosn to this equation do not change, despite half the potential being infinity. Therefore, the energy eigenvalues are actually the same, 
+            
+            % \[ E_n = \left(n + \frac{1}{2}\right)\hbar \omega\]
+
+            
+            
+        \end{solution}
+
+    k
+
+    \section*{Problem 4}
+
+    Show that no noncommuting operators cannot have a complete set of common eigenfunctions. \textit{Hint:} Show that if $\hat P$ and $\hat Q$ have a complete set of common eigenfunctions, then $[\hat P, \hat Q] f = 0$ for any function in Hilbert space.
+
+
+    \begin{solution}
+        Suppose that $\hat P$ and $\hat Q$ have a complete set of eigenfunctions. That is, for any arbitrary function $f$, we can write
+
+        \[ f = \sum_n c_n f_n\] 
+
+        where $f_n$ are eigenfunctions of both $\hat P$ and $\hat Q$ (in other words we're writing $f$ as a linear combination of $f_n$). Therefore $\hat P f_n = p_n f_n$ and $\hat Q f_n = q_n f_n$. Now let's act the commutator of $\hat P$ and $\hat Q$ onto $f$: 
+
+
+        \begin{align*}
+            [\hat P, \hat Q]f &= (\hat P \hat Q - \hat Q \hat P) \sum_n c_n f_n\\
+            &= \hat P (\hat Q \sum_n c_n f_n) - \hat Q (\hat P\sum_n c_n f_n) \\
+            &= \hat P \sum_n q_n c_n f_n - \hat Q \sum_n c_n p_n f_n\\
+            &= \sum_n c_n p_n q_n f_n - \sum_n c_n p_n q_n f_n\\
+            &= 0
+        \end{align*}
+
+        Since $f$ is arbitrary then this means that $[\hat P, \hat Q] = 0$, but this cannot be true since $\hat P$ and $\hat Q$ don't commute, so therefore $\hat P$ and $\hat Q$ cannot have a complete set of eigenfunctions.
+    \end{solution}
+
+    \pagebreak
+    \section*{Problem 5}
+
+    Consider a three-dimensional vector space spanned by an orthonormal basis $\ket{1}$, $\ket 2$, $\ket 3$. Kets $\ket \alpha$ and $\ket \beta$ are given by 
+
+    \[ \ket \alpha = i \ket 1 - 2\ket 2 - i\ket 3, \phantom{aaa} \ket \beta = i\ket 1 + 2\ket 3\] 
+
+    \begin{enumerate}[(a)]
+    \item Construct $\bra \alpha$ and $\bra \beta$ (in terms of the dual basis $\bra 1$, $\bra 2$, $\bra 3$)
+    
+    \begin{solution}
+        $\bra \alpha$ is defined to be the adjoint of $\ket \alpha$, so this means that $\bra \alpha = -i \bra{1} - 2 \bra{2} + i \bra{3}$. Similarly, $\bra \beta = -i\bra{1} + 2 \bra{3}$.
+    \end{solution}
+    \item Find $\bra \alpha \ket{\beta}$ and $\bra \beta \ket{\alpha}$, and confirm that $\bra{\beta}\ket{\alpha} = \bra {\alpha} \ket {\beta} ^\star$
+    
+    \begin{solution}
+        $\bra{\alpha}\ket{\beta}$ is an inner product, so this means:
+
+
+        \[ \bra{\alpha}\ket{\beta} = (-i \bra 1 - 2 \bra 2 + i \bra 3) \cdot (i \ket 1 + 2 \ket 3) =  1 + 2i\] 
+
+        And similarly, we have 
+
+        \[ \braket{\beta}{\alpha} = (-i \bra 1 + 2 \bra 3) \cdot (i \ket 1 - 2\ket 2 - i\ket 3) = 1 - 2i \]
+
+        Looking at these two expressions, it's clear that $(1 - 2i)^\star = 1+2i$, so $\braket{\beta}{\alpha}^\star = \braket{\alpha}{\beta}$.
+    \end{solution}
+    \item Find all nine matrix elements of the operator $\hat A \equiv \ket{\alpha} \bra{\beta}$, in this basis, and construct the matrix $\mathbf{A}$. Is it hermitian?
+    
+    \begin{solution}
+        We have $\hat A = \ket \alpha \bra \beta$, and writing this out in matrix notation
+
+        \[\hat A =
+        \begin{bmatrix}
+           i\ket 1 \\
+            -2 \ket 2 \\
+            -i\ket 3 
+            \end{bmatrix} \begin{bmatrix}
+                -i\bra 1 & 0 & 2 \bra 3 
+                \end{bmatrix}  = \begin{bmatrix}
+                    1 & 0 & 2i \\
+                    2i & 0 & -4 \\
+                    -1 & 0 & -2i 
+                    \end{bmatrix} \]
+
+        And so to find the adjoint matrix $\hat A^\dagger$, we use the relation that $\hat A^\dagger = \left(\hat A^\star\right)^{\mathrm T}$:
+
+        \begin{align*}
+            (\hat A^\star)^\dagger &= \begin{bmatrix}
+                1 & 0 & -2i \\
+                -2i & 0 & -4 \\
+                -1 & 0 & 2i 
+                \end{bmatrix}^T\\
+                &= \begin{bmatrix}
+                    1 & -2i & -1 \\
+                    0 & 0 & 0 \\
+                    -2i & -4 & 2i 
+                    \end{bmatrix} \neq \hat A  
+        \end{align*}
+
+        So $\hat A$ is not hermitian, since it's not equal to its adjoint.
+    \end{solution}
+    \end{enumerate}
+\end{document}

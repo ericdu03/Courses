@@ -1,0 +1,275 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 137A}
+\newcommand{\classname}{Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 10} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Problem 1} 
+
+    A partilce of mass $m$ is placed in a \textit{finite} spherical well: 
+
+    \[ V(r)= \begin{cases}
+        -V_0 & \text{if } r \le a;\\
+        0 & \text{if } r > a
+    \end{cases}\] 
+
+    Find the ground state, by solving the radial equation with $l = 0$. Show that there is no bound state if $V_0a^2 < \pi^2 \hbar^2/8m$. 
+
+    \begin{solution}
+        The radial equation reads:
+
+
+        \[ -\frac{\hbar^2}{2m} \frac{d^2u}{dr^2} + \left[ V + \frac{\hbar^2}{2m} \frac{l(l+1)}{r^2}\right]u = Eu\] 
+
+        Inside the well, the potential is $-V_0$, and so therefore by solving the radial equation for $l = 0$, we get: 
+
+        \[ \frac{\hbar^2}{2m} \frac{d^2u}{dr^2} = -(E + V_0) u\] 
+
+        This differential equation gives us oscillatory solutions of the form $u(r) = A \sin(kr) + B \cos (kr)$, and just like the 1D finite well case, we can choose to only take the even or odd solution. For simplicity, I will take the odd solution (it makes the boundary conditions slightly nicer). Therefore, inside the well, we have 
+
+        \[ u(r) = A \sin (kr), \phantom{aa} k = \frac{\sqrt{2m(V_0 + E)}}{\hbar}\]
+
+        Outside the well, we have $V(r) = 0$, and so the radial equation reads: 
+
+        \[ -\frac{\hbar^2}{2m} + \frac{d^2u}{dr^2} + \frac{\hbar^2}{2m} \frac{l(l+1)}{r^2}u = Eu\] 
+
+        Rearranging and applying $l = 0$ gives us: 
+
+        \[ \frac{d^2u}{dr^2} = -\frac{2mE}{\hbar^2} u\]
+
+        And since the energy is negative for a ground state, we then have a positive prefactor on the right, so we get the solutions 
+
+        \[ u(r) = Ce^{\alpha r} + De^{-\alpha r}\] 
+
+        The $+\alpha$ term makes no sense here becuase it is not normalizable, so therefore we have $u(r) = De^{-\alpha r}$. Now we need to combine the two solutions by imposing boundary conditions. Applying continuity on $u$ and $u'$ gives us the relation (after some algebra): 
+
+        \[ \tan(ka) = -\frac{k}{\alpha}\] 
+
+        Notice that this is the same equation as what we got from the finite square well in the 1D case. This equation is solved in the same way, by introducing dimensionless constants $z$ and $z_0$, where $z_0 = \frac{a}{\hbar}\sqrt{2mV_0}$. And just like the 1D case, there are no solutions to this equation for $z_0 < \pi/2$, so therefore there are no solutions for $V_0 a^2 < \pi^2 \hbar^2/8m$. 
+    
+    \end{solution}
+
+    \pagebreak
+
+
+    \section*{Problem 2} 
+
+    Because the three-dimensional harmonic oscillator potential (Equation 4.188) is spherically symmetric, the \schrodinger equation can be handled by separation of variables in \textit{spherical} coordinates, as well as cartesian coordinates. Use the power series method to solve the radial equation. Find the recursion formula for the coefficients, and determine the allowed energies. Check your answer against Equation 4.189.
+
+    \begin{solution}
+        As before, we start with our radial equation:
+        \[-\frac{\hbar^2}{2m} \frac{d^2u}{dr^2} + \left[ V + \frac{\hbar^2}{2m} \frac{l(l+1)}{r^2}\right]u = Eu\]
+        Now, we are going to try to use the power series method, as requested. We first introduce the dimensionless quantity $\xi$, which will make this physical equation into a purely mathematical one. 
+        
+        In this case, it's convenient if we let $\xi = \sqrt{\frac{m\omega}{\hbar}}r$, and $\kappa = \frac{2E}{\omega \hbar}$. Then, the radial equation can be written as: 
+
+
+        \[\frac{d^2u}{d\xi^2} = \left[\xi^2 + \frac{l(l+1)}{\xi^2} - \kappa\right]u,\phantom{aaa}\text{where}\phantom{aa} \kappa \equiv \frac{2E}{\omega\hbar}\]
+
+        Therefore, for sufficiently large $\xi$, then we know that the latter two terms don't really matter, so our differental equation becomes 
+
+        \[ \frac{d^2u}{d\xi^2} = \xi^2 u\]
+
+        which has solutions of the form $e^{-\xi^2/2}$. Similarly, for small $\xi$, then the $\xi^2$ term becomes small ($\kappa$ is also negligible) and so our differential equation becomes: 
+
+        \[ \frac{d^u}{d\xi^2} = \frac{l(l+1)}{\xi^2}u\] 
+
+        which has solutions of the form $\xi^{l+1}$. Now, our goal is to figure out what happens when $\xi$ cannot be taken as eiter big or small. To do this, we effectively ``stitch'' the two solutions together, by combining the two then adding a term $v(\xi)$ in front, so therefore we have a solution of the form $u(\xi) = e^{-\xi^2/2}\xi^{l+1}v(\xi)$. 
+
+        The second derivative of this expression is incredibly long, as it is a product rule of three terms, then three terms for each term that comes out, so it is a 9-term long expression. Then, we equate this to the equation: 
+
+        \[\frac{d^2u}{d\xi^2} = \xi^{l+3}e^{-\xi^2/2}v(\xi) + l(l+1)\xi^{l-1}e^{-\xi^2/2}v(\xi) - \kappa \xi^{l+1}e^{-\xi^2/2} v(\xi)\] 
+
+        which is obtained from the radial equation above and substituting what we have for $u(\xi)$. In doing so, we find that the first two terms here cancel with two terms in the second derivative of $u(\xi)$. Therefore, we're left with the expression:
+
+        \[ -\kappa u(\xi) = 2(l+1)\xi^l e^{-\xi^2/2}v'(\xi) - (2l+3)\xi^{l+1}e^{-\xi^2/2}v(\xi) - 2 e^{-\xi^2/2}\xi^{l+2}v'(\xi) + e^{-\xi^2/2}v''(\xi)\]
+
+        Then, dividing by $e^{-\xi^2/2}\xi^{l+1}$, we get: 
+
+        \[ -\kappa v(\xi) = v''(\xi) + v'(\xi)\left( \frac{2(l+1)}{\xi} - \xi\right) - (2l+3)v(\xi)\]
+
+        From here we can do the same power series expansion $v(\xi) = \sum c_n \xi^n$ as we did with the 1d Harmonic oscillator, but I didn't have enough time to finish the computation.
+    \end{solution}
+
+    \begin{enumerate}[(a)]
+        \setcounter{enumi}{1}
+        \item The Cartesian and spherical decompositions give us two different energy eigenbases. Check that the degeneracies of each energy level are consistent between them. 
+        \item For the lowest three energy levels, write the Cartesian eigenstates $\ket{n_x, n_y, n_z}$ as linear combinations of the spherical eigenstates $\ket{n, l, m}$ and vice-versa (i.e. find the change-of-basis matrices for the first three energy levels)
+    \end{enumerate}
+
+
+    \pagebreak
+
+
+    \section*{Problem 3}
+
+    \begin{enumerate}[(a)]
+        \item Construct the spatial wave equation ($\psi$) for hydrogen in the state $n = 3$, $l = 2$ and $m = 1$. Express your answer as a function of $r, \theta, \phi$ and $a$ (the Bohr radius) \textit{only} - no other variables ($\rho, z$, etc.) or functions ($Y, v$, etc), or other constants ($A_0, c_0$, etc.), or derivatives, allowed ($\pi$ is okay, and $e$, and 2, etc.)
+        
+        \begin{solution}
+            We know that the eigenfunctions are of the form $\psi(r, \theta, \phi) = R(\theta) Y_{lm}(\theta, \phi)$. Therefore, for our given system, then we want $R_{32}(r)$ and $Y_{21}(\theta, \phi)$. Therefore: 
+
+            \[ \psi(r, \theta, \phi) = \frac{4}{81 \sqrt{30}}a^{-3/2} \left(\frac ra\right)^2 \exp{-r/3a} \left(\frac{15}{8\pi}\right)^{1/2} \sin \theta \cos \theta e^{i\phi}\]
+        \end{solution}
+        
+        \item Check that this wave equation is properly normalized, by carrying out the appropriate integrals over $r, \theta$, and $\phi$. 
+        
+        \begin{solution}
+            We take the integral over $r$ from $0$ to $\infty$, the integral of $\theta$ from $0$ to $\pi$. There is no integral for $\phi$ because $|e^{i \phi}|^2 = 1$, and so there is no $\phi$ dependence. Therefore, our integral becomes: 
+
+
+            \begin{align*}
+                \int |\psi(r)|^2 d^3r &= \left[\frac{4}{81\sqrt{30}}\left(\frac{15}{8\pi}\right)^{1/2}a^{7/2}\right]^2 \int_0^\infty r^2 \left(r^2 e^{-r/3a}\right)^2 dr \int_0^\pi (\sin \theta \cos \theta)^2 \sin \theta d\theta\\
+                &= \left[\frac{4}{81\sqrt{30}}\left(\frac{15}{8\pi}\right)^{1/2}a^{7/2}\right]^2 \int_0^\infty r^6 e^{-2r/3a} dr \int_0^\pi \sin^3 \theta \cos^2 \theta d \theta
+            \end{align*}
+
+            We can then basically just plug this integral into a computer, and thankfully all these integrals return relatively nice values, which give the following expression: 
+
+            \begin{align*}
+            \int |\psi(r)|^2 d^3r &= \left[\frac{4}{81\sqrt{30}}\left(\frac{15}{8\pi}\right)^{1/2}a^{7/2}\right]^2 \cdot 6! \left(\frac{3a}{2}\right)^7 \left(-\frac{\cos^3 \theta}{3} + \frac{\cos^5 \theta}{5}\right)\bigg|_0^\pi\\
+            &= \left[\frac{4}{81\sqrt{30}}\left(\frac{15}{8\pi}\right)^{1/2}a^{7/2}\right]^2 \cdot 6! \left(\frac{3a}{2}\right)^7\left( \frac 23 - \frac 25 \right)\\
+            &= 1
+            \end{align*}
+
+            Since this value ultimately simplifies to 1, therefore we have confirmed that this equation is properly normalized. 
+        \end{solution}
+        \item Find the expectation value of $r^s$ in this state. For what range of $s$ (positive and negative) is the result finite?
+        
+        \begin{solution}
+            The expectation value of $r^s$ is given only by the expected value of the radial portion, so therefore we can calculate this as:
+
+            \begin{align*}
+                \mean{r^s} &= \int_0^\infty R^2 r^2 \cdot r^s dr\\
+                &= \left(\frac{4}{81 \sqrt{30}} a^{-7/2}\right)^2 \int_0^\infty r^{s + 6} e^{-2r/3a} dr
+            \end{align*}
+
+            Again, this integral can be solved using a computer, which yields the result 
+
+            \[ \mean{r^s} = \left( \frac{2}{3}\right)^{-s-7} a^{-s-7}\Gamma(s + 7)\] 
+
+            where $\Gamma(s)$ refers to the gamma function. As a result, this result is real (and finite) when $s > -7$. 
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 4} 
+
+    \begin{enumerate}[(a)]
+        \item Use the recursion formula (Equation 4.76) to confirm that when $l = n-1$ the radial equation takes the form 
+        \[ R_{n(n-1)} = N_n r^{n-1} e^{-r/na}\] 
+
+        and determine the normalization constant $N_n$ by integration.
+
+
+        \begin{solution}
+            Using the recursion relation, we find that if $l = n-1$, then we get that $v(\rho)$ is a constant, so we can write $v(\rho) = A$. Since $\rho = r/na$, then the radial portion of the equation $R(r)$ simplifies to: 
+
+            \begin{align*}
+                R(r) &= \frac{1}{r} \left(\frac{r}{na}\right)^n e^{-r/na} A \\
+                &= \frac{A}{na} r^{n-1} e^{-r/na}\\
+                &= N_n r^{n-1}e^{-r/na}
+            \end{align*}
+
+            As desired. The normalization condition requires that $\int R^2 r^2 dr = 1$, so therefore we have: 
+
+            \[ 1 = \int_0^\infty r^2\left(r^{n-1} N_n e^{-r/na}\right)^2 dr \] 
+
+            Thsi integral can then be solved using our good friend Wolfram Alpha, which yields a result of 
+
+            \[ N_n = \left(\frac{2}{na}\right)^n \sqrt{\frac{2}{na(2n)!}}\]
+        \end{solution}
+        \item Calculate $\mean{r}$ and $\mean{r^2}$ for states of the form $\psi_{n(n-1), m}$
+        
+        \begin{solution}
+            Calculating $\mean{r}$ and $\mean{r^2}$ means calculating the expectation value for the radial portion only, since the spherical harmonic term $Y_{lm}$ has no $r$ dependence. Therefore, our integral becomes:
+
+            \begin{align*}
+                \mean r &= \int_0^\infty R^2 r \cdot r^2 dr \\
+                &= \int_0^\infty r^3 \left[N_n r^{n-1} e^{-r/na} \right]^2dr\\
+                &= \left(n + \frac 12\right) na
+            \end{align*}
+
+            Similarly, we have: 
+
+            \begin{align*}
+                \mean{r^2} &= \int r^5 N_n r^{n-1}e^{-r/na} dr \\
+                &= \left(n + \frac 12 \right) (n+1) na
+            \end{align*}
+
+            These integrals were done using a computer. 
+        \end{solution}
+        \item Show that the ``uncertainty'' in $r$ ($\sigma_r$) is $\mean{r}/\sqrt{2n+1}$ for such states. Note that the fractional speed in $r$ decreases, with increasing $n$ (in this sense the system ``begins to look classical,'' with identifiable circular ``orbits,'' for large $n$). Sketch the radial wave functions for several values of $n$, to illustrate this point. 
+        
+        \begin{solution}
+            The uncertainty in $r$ is given by $\sigma_r = \sqrt{\mean{r^2} - \mean{r}^2}$. Therefore, we can calculate: 
+
+            \begin{align*}
+                \sigma_r &= \sqrt{\left( n + \frac 12 \right) (n+1)(na)^2 - \left( n + \frac 12\right)^2 (na)^2}\\
+                &= \sqrt{(na)^2\left[ \left(n + \frac 12\right) \left( n + 1 - n - \frac 12 \right)\right]}\\
+                &= \sqrt{\frac 12 (na)^2 \left( n + \frac 12\right) }
+            \end{align*}
+
+            And since we know that $\mean{r}^2 = (n + \frac 12)^2(na)^2$, then we can equivalently write this as: 
+
+            \[ \sigma_r = \sqrt{\frac{\mean{r}^2}{2(n + 1/2)}} = \frac{\mean{r}}{\sqrt{2n + 1}}\]
+            
+            As desired. The sketches for $R_{10}$ and $R_{76}$ I drew on a chalkboard, shown below: 
+
+            \begin{center}
+                \includegraphics*[scale=0.5]{expval.png}
+            \end{center}
+
+            As we can see, the spread of $R$ decreases for $R_{76}$ when compared to $R_{10}$, as expected.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 5}
+
+    Consider an anisotropic harmonic oscillator described by the Hamiltonian 
+
+    \[ H = \frac{1}{2\mu} (p_x^2 + p_y^2 + p_z^2) + \frac 12 k_1(x^2 + y^2) + \frac 12 k_2z^2\] 
+
+    \begin{enumerate}[(a)]
+        \item Find the energy levels and the corresponding energy eigenfunctions using Cartesian coordinates. What are the degeneracies of the levels, assuming that $\omega_1 = (k_1/\mu)^{1/2}$ and $\omega_2 = (k_2/\mu)^{1/2}$ are incommensurable?
+        
+        \begin{solution}
+            The solutions to this hamiltonian are still separable, and the eigenfunctions for the $x$ and $y$ directions end up being the same except for $n_x$ and $n_y$. Specifically, they have energies $E_n = (n + \frac 12 ) \hbar \omega_1$, where $\omega_1$ is given by $k_1$. The only difference here is that in the $z$ direction, since we have a different value for $k_2$, we get that the energies here are $E_n = (n_z + \frac 12 ) \hbar \omega_2$, where $\omega_2$ is given by $k_2$. Summing over both of these energies, we get that 
+
+            \[ E_n = (n_x + n_y + 1)\hbar \omega_1 + \left(n_z + \frac 12\right)\hbar \omega_2\]
+
+            The degeneracies here are similar to the isotropic harmonic oscillator, except for the fact that because $\omega_1$ and $\omega_2$ are incommensurable, then we only get degeneracies in $x$ and $y$. This means that while $(1, 0, 0)$ and $(0, 1, 0)$ have the same energy, $(0, 0, 1)$ does not have the same energy as the former two. This is then true in general: for two states $(n_{x1}, n_{y1}, n_{z1})$ and $(n_{x2}, n_{y2}, n_{z2})$, as long as $n_{x1} + n_{y1} = n_{x2} + n_{y2}$ and $n_{z1} = n_{z2}$, then these two states have the same energy.
+        \end{solution}
+        \item Can the stationary states be eigenstates of $\mathbf{L}^2$? of $L_z$?
+        
+        \begin{solution}
+            The stationary states can still likely be eigenstates of $L^2$ and $L_z$, since this potential is still radially symmetric about the $z$ axis. 
+        \end{solution}
+    \end{enumerate}
+\end{document}

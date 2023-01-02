@@ -1,0 +1,300 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+
+\newcommand{\classcode}{Physics 137A}
+\newcommand{\classname}{Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 07} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+
+    \section*{Collaborators}
+
+    I worked with \textbf{Andrew Binder} to complete this assignment.
+    
+    \section*{Problem 1}
+
+    An operator $\hat A$, representing observable $A$, has two normalized eigenstates $\psi_1$ and $\psi_2$, with eigenvalues $a_1$ and $a_2$ respectively. Operator $\hat B$, representing observable $B$, has two normalized eigenstates $\phi_1$ and $\phi_2$, with eigenvalues $b_1$ and $b_2$. The eigenstates are related by 
+
+    \[ \psi_1 = (3\phi_1 + 4\phi_2)/5, \phantom{aaa} \psi_2 = (4\phi_1 - 3\phi_2)/5\]
+
+    \begin{enumerate}[(a)]
+        \item Observable $A$ is measured, and the value $a_1$ is obtained. What is the state of the system (immediately) after this measurement?
+        
+        \begin{solution}
+            If the value $a_1$ is obtained, then the wavefunction collapses to solely that of $\psi_1$. 
+        \end{solution}
+        \item If $B$ is now measured, what are the possible results, and what are their probabilities?
+        \begin{solution}
+            Since we know that the state has collapsed into a state of $\psi_1$, then the only possible values we could get for $b$ will be the eigenfunctions of $b$ related to $\psi_1$. Therefore, we could only measure $b_1$ and $b_2$ with probabilities $\frac{9}{25}$ and $\frac{16}{25}$, respectively. More explicitly, 
+
+            \begin{align*}
+                P(b_1) = \frac{9}{25}\\
+                P(b_2) = \frac{16}{25}
+            \end{align*}
+        \end{solution}
+        \item Right after the measurement of $B$, $A$ is measured again. What is the probability of getting $a_1$? (Note that the answer would be quite different if I had told you the outcome of the $B$ measurement)
+        
+        \begin{solution}
+            By measuring $B$ we've collapsed the wavefunction into either one of $\phi_1$ or $\phi_2$. Now in order to find the measurement of $A$, we need to rearrange each $\phi$ and express them in terms of $\psi$: 
+
+            \begin{align*}
+                \phi_1 &= \frac 35 \psi_1 + \frac 45 \psi_2\\
+                \phi_2 &= \frac 45 \psi_1 - \frac 35 \psi_2
+            \end{align*}
+
+            Therefore, to measure the value $a_1$, we basically just need to calculate the probability of the wavefunction collapsing into $\phi_1$ then measuring $\psi_1$, and add it to the probability of the wavefunction collapsing into $\phi_2$ then measuring $\psi_1$. Therefore, 
+
+            \[ P(a_1) = \frac{9}{25} \cdot \frac{9}{25} + \frac{16}{25} \cdot \frac{16}{25} = \frac{337}{625}\]
+        \end{solution}
+    \end{enumerate}
+    \pagebreak
+    \section*{Problem 2}
+
+    \begin{enumerate}[(a)]
+        \item Work out all of the \textbf{canonical commutation relations} for components of operators \textbf{r} and \textbf{p}: $[x, y]$, $[x, p_y]$, $[x, p_x]$, $[p_y, p_z]$, and so on. 
+        
+        \textit{Answer:}
+        
+        \[ [r_i, p_j] = -[p_i, r_j] = i\hbar \delta_{ij}, \phantom{aa} [r_i, r_j] = [p_i, p_j] = 0\]
+
+        where the indices stand for $x, y$, or $z$, and $r_x = x, r_y = y$, and $r_z = z$.
+
+        \begin{solution}
+            The idea is that since measuring the position along one axis does not affect our measurements along another orthogonal axis (becuase we've determined no information about that other axis by measuring one), then it makes sense that the commutator of $[r_x, r_y] = 0$, and in general $[r_i, r_j] = 0$. The same argument applies when we try to measure the momentum along two orthogonal axes, so $[p_i, p_j] = 0$ for any $i$ and $j$. 
+            
+            However, when we try to measure the position then the momentum, we do have the restriction that measuring momentum and position along the \textit{same} axis does not commute, but measuring along different axes does commute. Therefore $[r_x, p_x] = i\hbar$, and more generally $[r_i, p_j] = i\hbar \delta_{ij}$. Therefore, to summarize:
+
+            \[ [r_i, p_j] = i\hbar \delta_{ij},  [r_i, r_j] = [p_i, p_j] = 0\]
+        \end{solution}
+        \item Confirm Ehrenfest's theorem for 3-dimensions: 
+        \[ \frac{d}{dt} \mean{\mathbf{r}} = \frac{1}{m}\mean{\mathbf{p}}, \text{ and } \frac{d}{dt}\mean{\mathbf{p}} = \mean{-\nabla V}\]
+        (Each of these, of course, stands for \textit{three} equations - one for each component.) \textit{Hint:} First check that Equation 3.71 is valid in three dimensions.
+
+        \begin{solution}
+            Using the hint, we first verify that Equation 3.71 holds in three dimensions. This is relatively obvious to see, since the only thing that changes with the \schrodinger equation is the fact that our spatial derivative becomes a 3-dimensional spatial derivative, but it does not change the fact that:
+
+            \[ i\hbar \frac{\partial}{\partial t} \psi = \hat H \psi\]
+
+            which really is the only thing that we need to derive Equation 3.71 in the first place. Therefore, since it holds in one direction then it must hold in 3 dimensions. Now, we can use this to verify Ehrenfest's theorem. First, we know that 
+
+            \begin{align*}
+                \frac{d}{dt} \mean{r} &= \mean{\frac{dr}{dt}} + \frac{i}{\hbar}\mean{[\hat H, r]}\\
+                &= \mean{v}\\
+                &= \frac{\mean p}{m}
+            \end{align*}
+
+            This is true because position and the hamiltonian commute. Now for the time derivative of the momentum, we have 
+
+            \[ \frac{dp}{dt} = \frac{\partial}{\partial t} \left(i \hbar \frac{\partial}{\partial x}\right) = 0\] 
+
+            and so therefore we only need to calculate $\frac{i}{\hbar}\mean{[\hat H, \hat p]}$. However, since the $x$, $y$ and $z$ component of momentum are independent of each other (because they are orthogonal), then we know that from the original Ehrenfest's theorem, that 
+
+            \[ \frac{d\mean{p_x}}{dt} = \mean{-\frac{\partial V}{\partial x}}\] 
+
+            And so therefore we have 
+
+            \begin{align*}
+                \frac{d\mean{p}}{dt} &= \mean{-\frac{\partial V}{\partial x} - \frac{\partial V}{\partial y} - \frac{\partial V}{\partial z}}\\
+                &= \mean{-\nabla V}
+            \end{align*}
+
+            And so therefore Ehrenfest's theorem is verified.
+        \end{solution}
+        \item Formulate Heisenberg's uncertainty principle in three dimensions. \textit{Answer:}
+        \[ \sigma_x \sigma_{p_x} \ge \hbar/2, \phantom{aa} \sigma_y \sigma_{p_y} \ge \hbar/2, \phantom{aa} \sigma_z \sigma_{p_z} \ge \hbar/2\] 
+
+        But there is no restriction on, say, $\sigma_x \sigma_{p_y}$.
+
+        \begin{solution}
+            From the textbook, we also have the relation, given that both $x$ and $p$ don't depend on $t$: 
+
+            \[ \sigma_x\sigma_p \ge \frac{1}{2i}\mean{[x, p]}\]
+
+            Now note that from part (a), we know that $[r_i, p_j] = i\hbar \delta_{ij}$, so therefore we know that the only commutators that will give us nonzero values will be when we compute $[x, p_x], [y, p_y], [z, p_z]$ and so therefore we get the relations 
+
+            \[ \sigma_x \sigma_{p_x} \ge \hbar/2, \phantom{aa} \sigma_y \sigma_{p_y} \ge \hbar/2, \phantom{aa} \sigma_z \sigma_{p_z} \ge \hbar/2\] 
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+    \section*{Problem 3}
+
+    The raising and lowering operators change the value of $m$ by one unit:
+
+    \[ L_{\pm} f_l^m = (A_l^m)f_l^{m \pm 1}\] 
+
+    where $A_l^m$ is some constant. \textit{Question:} What is $A_l^m$, if the eigenfunctions are to be \textit{normalized}? \textit{Hint:} First show that $L_\mp$ is the Hermitian conjugate of $L_\pm$ (since $L_x$ and $L_y$ are \textit{observables}, you may assume they are Hermitian ... but \textit{prove} it if you like); then use Equation 4.112. \textit{Answer:}
+
+    \[ A_l^m = \hbar \sqrt{l(l+1) -m (m \pm 1)} = \hbar \sqrt{(l \mp m)(l \pm m  + 1)}\]
+
+    Note what happens at the top and bottom of the ladder (i.e., when you apply $L_+$ to $f_l^l$ or $L_-$ to $f_l^{-l}$)
+
+    \begin{solution}
+        The hint wants us to show that $L_{\pm}$ is the Hermitian conjugate of $L_{\mp}$. In lecture, we derived the following relation: 
+
+        \begin{align*}
+            \hat L_+ &= \hat L_x + i\hat L_y\\
+            \hat L_- &= \hat L_x - i \hat L_y
+        \end{align*}
+
+        And since $L_x$ and $L_y$ are observables, then they are Hermitian, so therefore $L_+$ is the Hermitian conjugate of $L_-$ and vice versa. Now, to normalize, we require that $\braket{f_l^m}{L_\pm L_\mp f_l^m} = 1$, so therefore
+
+        \begin{align*}
+            1 &= \braket{f_l^m}{L^2 - L_z^2 \pm \hbar L_z f_l^m}\\
+            &= \braket{f_l^m}{(l(l+1)\hbar^2 + m^2 \mp \hbar^2 m)f_l^m}
+        \end{align*}
+
+        And since we know that $\braket{f_l^m}{f_l^m} = 1$, the our normalization constant is just the constants that we just factored out. Therefore, 
+
+        \begin{align*}
+            (A_l^m)^2 &= l(l+1)\hbar^2 + m(m \mp 1)\hbar^2\\
+            A_l^m &= \hbar \sqrt{l(l+1) - m(m \pm 1)}
+        \end{align*}
+
+        as desired.
+    \end{solution}
+
+    \pagebreak
+    \section*{Problem 4}
+
+    \begin{enumerate}[(a)]
+        \item Starting with the canonical commutation relations for position and momentum (Equation 4.10), work out the following commutators: 
+        \begin{align*}
+            [L_z, x] = i\hbar y, \phantom{aaa} [L_z, y]  &= -i\hbar x, \phantom{aaa}[L_z, z] = 0\\
+            [L_z, p_x] = i\hbar p_y, \phantom{aaa} [L_z, p_y] &= -i\hbar p_x, \phantom{aaa} [L_z, p_z] = 0
+        \end{align*}
+
+        \begin{solution}
+            Using a bunch of relations we've derived from lecture, we obtain the following results:
+                \begin{align*}
+                    [L_z,x] &= [xp_y - yp_x, x] = [xp_y,x] - [yp_x,x] = -y[p_x, x] i\hbar y \\
+                    [L_z,y] &= [xp_y - yp_x,y] = [xp_y,y] - [yp_x,y] = x[p_y,y] = -i\hbar x \\
+                    [L_z,z] &= [xp_y - yp_x, z] = [xp_y,z] - [yp_x,z] = 0 \\
+                    [L_z,p_x] &= [xp_y - yp_x, p_x] = [xp_y,p_x] - [yp_x,p_x] = p_y [x,p_x] = i\hbar p_y \\
+                    [L_z,p_y] &= [xp_y - yp_x, p_y] = [xp_y,p_y] - [yp_x,p_y] =-p_x[x,p_y] =  -i\hbar p_x \\
+                    [L_z,p_z] &= [xp_y - yp_x,p_z] = [xp_y,p_z] - [yp_x,p_z] = 0
+                \end{align*}
+                And so we're done.
+        \end{solution}
+
+        \item Use these results to obtain $[L_z, L_x] = i\hbar L_y$ directly from Equation 4.96.
+
+        \begin{solution}
+            Now that we confirmed each of those commutator values, we can use Equation 4.96:
+            \begin{align*}
+                [L_z,L_x] &= [L_z, yp_z - zp_y] =  [L_z,y]p_z - [L_z,p_y]z\\
+                &= (-i\hbar x)p_z - (-i\hbar p_x)z\\
+                &= i\hbar (z p_x - xp_z)\\
+                &= i\hbar L_y
+            \end{align*}
+            As desired.
+        \end{solution}
+        \item Evaluate the commutators $[L_z, r^2]$ and $[L_z, p^2]$ (where, of course, $r^2 = x^2 + y^2 + z^2$ and $p^2 = p_x^2 + p_y^2 + p_z^2$).
+        
+        \begin{solution}
+            Using the fact that $r^2 = x^2 + y^2 + z^2$ and $p^2 = p_x^2 + p_y^2 + p_z^2$, we can just throw them into our commutators:
+                \begin{align*}
+                    [L_z,r^2] &= [L_z, x^2 + y^2 + z^2] \\
+                    &= [L_z,x^2] + [L_z,y^2] + [L_z,z^2] \\
+                    &= [L_z,x]x + x[L_z,x] + [L_z,y]y + y[L_z,y] + [L_z,z]z + z[L_z,z] \\
+                    &= i\hbar yx + xi\hbar y + (-i\hbar x)y + y(-i\hbar x) = 0\\
+                    [L_z,p^2] &= [L_z, p_x^2 + p_y^2 + p_z^2]\\
+                    &= [L_z,p_x^2] + [L_z,p_y^2] + [L_z,p_z^2]\\
+                    &= [L_z,p_x]p_x + p_x[L_z,p_x] + [L_z,p_y]p_y + p_y[L_z,p_y] + [L_z,p_z]p_z + p_z[L_z,p_z]\\
+                    &= i\hbar p_y p_z + p_x i\hbar p_y + (-i\hbar p_x)p_y + p_y(-i\hbar p_x) = 0
+                \end{align*}
+                And so we find that $L_z$ commutes with both $r^2$ and $p^2$.
+        \end{solution}
+        \item Show that the Hamiltonian $H = (p^2/2m) + V$ commutes with all three components of \textbf{L}, provided that $V$ depends only on $r$. (Thus, $H$, $L^2$, and $L_z$ are mutually compatible observables.)
+        
+        \begin{solution}
+            First notice that because in the previous part we've shown that $L_z$ commutes with $r^2$ and $p^2$, then so does $L_x$ and $L_y$ (this is analogous to tilting your or just rotating your coordinate axes). Therefore, all components of $L$ commute with $p^2$. This takes care of the first term in the Hamiltonian (i.e. $\frac{p^2}{2m}$)
+
+            Now for the potential. Notice that we can write the potential in the form: $V(r) = v(\sqrt{r^2})$, which explicitly makes $V$ a function of $r^2$, which we know all components of $L$ commutes with, by the same argument we used to show that $L$ commutes with $p$. Therefore, we know that all the components of $L$ also commute with $V$. Therefore, since $L$ commutes with both terms that make up $H$, then $L$ commutes with $H$, as desired.
+        
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak 
+
+    \section*{Problem 5}
+    Let $\hat{\mathbf n}$ be a unit vector in a direction specified by the polar angles $(\theta,\phi)$. Show that the component of the angular momentum in the direction $\hat{\mathbf n}$ is 
+
+    \begin{align*}
+        L_n &= \sin \theta \cos \phi L_x + \sin \theta \sin \phi L_y+ \cos \theta L_z\\
+        &= \frac 12 \sin \theta (e^{-i\phi} L_+ + e^{i \phi} L_-) + \cos \theta L_z 
+    \end{align*}
+
+    \begin{solution}
+        Suppose we have a vector $L$ which is expressed in cartesian coordinates. Then, the component along the $\hat n$ direction will be $L \cdot \hat n$. In order to do this dot product, we need to first convert $\hat n$ to cartesian coordinates. Since $n$ is a unit vector, then we know that $|\hat n | = 1$, so therefore 
+
+        \[ \hat n = \sin \theta \cos \phi \hat x + \sin \theta \sin \phi \hat y+ \cos \theta\hat z\]
+
+        And so therefore taking the dot product: 
+
+        \begin{align*}
+            L_n = L \cdot \hat n &= (L_x, L_y, L_z) \cdot (\sin \theta \cos \phi, \sin \theta \sin \phi, \cos \theta)\\
+            &= L_x \sin \theta \cos \phi + L_y \sin \theta \sin \phi + L_z \cos \theta
+        \end{align*}
+
+        which is exactly the equation we were asked to show.
+        % To transfer from cartesian to polar coordinates, we have the following substitution: 
+
+        % \begin{align*}
+        %     x &= r \sin \theta \cos \phi\\
+        %     y &= r \sin \theta \sin \phi\\
+        %     z &= r\cos \theta 
+        % \end{align*}
+
+        
+    \end{solution}
+
+    If the system is in simultaneous eigenstates of $\mathbf{L}^2$ and $L_z$ belonging to the eigenvalues $l(l+1)\hbar^2$ and $m\hbar$, 
+
+    \begin{enumerate}[(a)]
+        \item what are the possible results of a measurement of $L_n$?
+        
+        \begin{solution}
+            Since $L_n$ can be expressed as a linear combination of $L_x$, $L_y$, and $L_z$, then we expect that the possible results of a measurement would be the possible results of a measurement given these operators. Because we can just tilt our axis to have $L_z$ be the represented by $L_x$ or $L_y$, then the only possible result for measurement is $m\hbar$.
+            % Since we have an expression for $L_n$ in terms of $L_+, L_-$ and $L_z$, then we can write 
+
+            % \[ L_n \psi_n = \left(\frac{1}{2} \sin \theta (e^{-i\phi} L_+ + e^{i\phi} L_-) + cos \theta L_z\right) \psi_n\]
+        \end{solution}
+        \item what are the expectation values of $L_n$ and $L_n^2$?
+
+        \begin{solution}
+            The expectation values for $L_n$ and $L_n^2$ are calculated using: 
+
+            \begin{align*}
+                \mean{L_n} &= \braket{\psi}{L_n \psi}\\
+                &= \sin \theta \cos \phi \braket{\psi}{L_x \psi} +\sin \theta \sin \phi \braket{\psi}{L_y\psi} + \cos \theta \braket{\psi}{L_z\psi}\\
+                &= 0
+            \end{align*}
+
+            I didn't have time to compute $\mean{L_n^2}$ but the process is very similar. First, we square $L_n$ in terms of $L_x$, $L_y$ and $L_z$, then derive the expectation value for each of them. Once this is done, we can derive the expectation value.
+        \end{solution}
+    \end{enumerate}
+\end{document}

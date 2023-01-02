@@ -1,0 +1,168 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in, top=0.5in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{local}
+
+
+\newcommand{\classcode}{Physics 137A}
+\newcommand{\classname}{Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Bonus HW} \Large{\hfill\classname\hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Problem 1}
+
+    Let's define the Dirac delta ``function'' $\delta(x)$ by the property 
+
+    \[ \int f(x) \delta(x) = f(0)\]
+
+    for ``well-behaved'' functions $f$. 
+
+
+    \begin{enumerate}[(a)]
+        \item Consider the family of box functions 
+        
+        \[ B_a(x) = \begin{cases}
+            \frac{1}{2a} & -a < x < a\\
+            0 & \text{else}
+        \end{cases}\] 
+
+        Show that in the $a \to 0$ limit, $B_a$ goes to the delta function. (Hint: Taylor expand $f$ around 0)
+
+        \begin{solution}
+            Consider the integral
+
+            \[ \int_{-a}^a f(x) B_a(x) \\dx\]
+            
+            We're allowed to consider a bounded integral between $-a$ and $a$ becuase over the rest of $x$, $B_a(x) = 0$. Now taking the limit as $a \to 0$, we get: 
+            
+            \[\lim_{a \to 0} \int_{-a}^a f(x) \frac{1}{2a} \dx\]
+
+            Now we use the hint, which asks us to Taylor expand $f(x)$ around $x = 0$. If we do so, we get 
+
+            \[ f(0) \approx f(0) + f'(0)x + O(x^2)\] 
+
+            We can omit higher order terms since they vanish around $x = 0$. Now our integral becomes 
+
+            \[ \lim_{a \to 0} \frac{1}{2a} \int_{-a}^a f(0) + f'(0)x \dx\]
+
+            $f(0)$ is a constant, so we can it. $\int_{-a}^a f'(0)x = 0$ since $x$ is an odd function, so therefore we get 
+            
+            \[ \lim_{a \to 0} \frac{1}{2a} f(0) \cdot 2a = f(0)\] 
+
+            Which is exactly what we wanted to show.
+        \end{solution}
+
+        \item Show that the Gaussian $\mu = 0$ goes to the delta function as $\sigma \to 0$. (Hint: use a change of variables to show that $\mean{x^n} = C_n\sigma^n$, for some constant $C_n$ which you need to evaluate only for $n = 0$)
+        
+        \begin{solution}
+            A gaussian with $\mu = 0$ is described by the equation $f(x) = A\exp{-x^2/2\sigma^2}$. We aim to show that $ \mean{x^n} = A \infint \exp{-x^2/2\sigma^2} x^n = 0$ in the limit of $\sigma \to 0$. This is relatively simple to show, since
+
+            \begin{align*}
+                \mean{x^n} &= A \lim_{\sigma \to 0} \infint e^{-\frac{\mu^2}{2\sigma^2}} x^n \dx\\
+                &= A \infint \lim_{\sigma \to 0} e^{-\frac{\mu^2}{2\sigma^2}} x^n \dx 
+            \end{align*}
+
+            Notice that since
+             \[ \lim_{\sigma \to 0} e^{-\frac{\mu^2}{2\sigma^2}} = e^{-\infty} = 0\]
+             
+            then our integral is zero for all $x$, so therefore 
+
+            \[ A \infint \lim_{\sigma \to 0} e^{-\frac{\mu^2}{2\sigma^2}} x^n \dx = 0\] 
+
+            And since $f(x) = x^n$ and $f(0) = 0$, then we are done.
+        \end{solution}
+        \item What are the values of $\delta(x)$ for $x \neq 0$, $x = 0$? Is it a well-behaved function?
+        
+
+        \begin{solution}
+            By definition, we know that 
+
+            \[ \int_{\text{all}} f(x) \delta(x) \dx = f(0)\]
+
+            We can think of $\delta(x)$ loosely as some sort of ``weighting function''. If we think about it this way, then integrating over all $x$ means taing the value of $f(x_0)$ at $x = x_0$ then weighting it by an appropriate factor of $\delta(x_0)$. 
+
+            Since this sum must be equal to $f(0)$ by definition, then this means that $\int \delta(x_0) = 0$ for all $x \neq x_0$, and consequently $\delta(x_0) = 0$ if $x_0 \neq 0$. Now if we consider $f(0)$, we then have 
+
+            \[ \int_{\text{all}} f(0) \delta(x) \dx = f(0) \implies \int_{\text{all}} \delta(x) \dx = 1\] 
+
+            So the integral over all space must be 1, but simultaneously we must have that $\delta(x) = 0$ everywhere when $x \neq 0$. Therefore, this forces $\delta(0)$ to be larger than any finite number, and thus equal to infinity. Therefore, we obtain the result: 
+
+            \[ \delta(x) = \begin{cases}
+                0 & x \neq 0\\
+                \infty & x = 0
+            \end{cases}\]
+
+            Clearly, the delta function is discontinuous at 0 since it jumps from 0 to $\infty$ over an interval of zero width. Therefore, it is not a well-behavved function. 
+            
+        \end{solution}
+        \item Consider the family of functions 
+        \[ \delta_L (x) = \frac{1}{2\pi} \int_{-L}^L e^{ikx} \dd k\] 
+
+        Do the integral to find a closed form for $\delta_L(x)$. Show that in the limit $L \to \infty$, $\delta_L$ goes to the delta function
+        \item Show that the Fourier transform of a Gaussian is a Gaussian, and hence show that 
+        \[ \infint e^{ikx} \dd k = 2\pi \delta(x)\]
+        \item The Heaaviside step function is 
+        \[ \Theta(x) = \begin{cases}
+            1 & x > 0\\
+            0 & x < 0
+        \end{cases}\]
+
+        Show that $\Delta(x) = \frac{\dd \Theta(x)}{\dx}$. (Hint: Integrate by parts, assuming that ``well-behaved'' $f$ go to zero at $\pm \infty$)
+        \item Show that 
+
+        \[ \int f(x) \frac{d^n \delta(x)}{\dd x^n} \dx = {(-1)}^{n} \frac{d^n f}{\dd x^n}(0)\]
+        \item Show that 
+        \[ \delta(f(x)) = \sum_{x_0 \text{s.t.} f(x_0) = 0} \frac{\delta(x - x_0)}{|f'(x_0)|}\] 
+        Where ' denotes (spatial) derivative, i.e. $f'(x) = \frac{df(x)}{\dx}$. (Hint: change variables inside the integral)
+    \end{enumerate}
+    \pagebreak
+    \section*{Problem 2}
+    Given a discrete orthonormal basis $\{\ket{e_i}$, we can write any vector $\ket v$ aa linear combination of basis vectors $\ket v = \sum_i v_i\ket{e_i}$, where $v_i$ are the components of $\ket v$ in this basis. Similarly, we can write any operaotr in a ``matrix'' representation, $\hat A = \sum_{i, j} A_{ij}\ket{e_j}\bra{e_j}$, where $A_{ij}$ are the components or matrix elements of $\hat A$ in this basis and $\ket{v}\bra{w}$ is the outer product of $\ket v$ and $\ket w$, the operator that maps $\ket u \mapsto \braket{w}{u} \ket v$. For a continuous orthonormal basis, e.g. $\{\ket x | x \in \mathbb R\}$, the analogous representations are $\ket \psi = \int \psi(x) \ket x \dx$ and $\hat A = \int \dx dy A(x, y) \ket x \bra y$, where the integration kernel $A(x, y)$ plays the role of the matrix elements, so $[\hat A \psi](x) = \int dy A(x, y) \psi(y)$. 
+
+    \begin{enumerate}[(a)]
+        \item Orthonormality in the discrete case means $\braket{e_i}{e_j} = \delta_{ij}$. Check that this allows us to finthe components of a vector using the inner product, $v_i = \braket{e_i}{v}$. What is the orthonormality condition for continuous bases, and how do we find the components $\psi(x)$ from $\ket \psi$ and $\ket x$?
+        \item Given an operator $\hat A$ and a basis, how woul dyou find the components of $A_{ij}$ or $A(x, y)$? Show that the $i^{\text{th}}$ component of $\hat A \ket v$ is $\sum_j A_{ij}v_j$ and similarly the $x$-component of $\hat A \ket\psi$ is $\int dy A(x, y) \psi(y)$.
+        \item Show that the matrix of $\hat A^\dagger$ is the conjugate transpose of the matrix of $\hat A$, $(A^\dagger)_{ij} = A^\star_{ji}$. Fidn the kernel of $\hat A^\dagger$, $[A^\dagger](x, y)$ in terms of $A(x, y)$.
+        \item Show that the matrix elements of the identity operator are $\delta_{ij}$. Find its kernel.
+        \item An operator $\hat A$ is diagonalisable iff it has a complete eigenbasis, i.e.there is a basis in which every basis vector is an eigenvector, e.g. $\hat A \ket{e_i} = A_i \ket{e_i}$ for a discrete basis. Show that the matrxi of such an operator has elements $A_{ij} = A_i\delta_{ij}$. What does its kernel look like? 
+        \item The continuous Fourier transform $\hat F$ maps $f$ to $[\hat F f](k) = \frac{1}{\sqrt{2\pi}} \int \dx e^{-ikx} f(x)$. What is the kernel of $\hat F$? Show that it is unitary. (Recall that an operator $\hat U$ is unitary iff it is invertivble and preserves the inner product, or, equivalently, $\hat U \hat U^\dagger = \hat U^\dagger \hat U = 1$)
+        \item Show that $\{\ket x\}$ is an orthonormal basis and $\hat U$ is unitary, $\{\hat U^\dagger \ket x\}$ is also an orthonormal basis. Hence define the Fourier basis $\{\ket k = \hat F^\dagger \ket x\} = \frac{1}{\sqrt{2\pi}} \int e^{ikx \ket x}$. What is the Fourier-space kernel $A(k', k)$ of an opertor in terms of its real-space kernel $A(x, y)$?
+        \item When $\ket x$ represent position eigenstates, $\ket k$ represent momentum eigenstates. Find the kernels of the position and momentum operators $\hat x$, $\hat p$ in teh position basis $\{ \ket x\}$ and in the momentum basis $\{\ket k\}$. (If you wanted to define $\ket p$ so that $\hat p \ket p = p \ket p$ instead of $\hat p \ket k = \hbar k \ket k$, how would you do it to ensure normalisation?)
+        \item Find the kernel of the translation operator $[\hat T_a \Psi](x) = \Psi(x - a)$ in position space and momentukm space. Hence show that to shift a wavefunction to the right in position space by $x_0$ we simply multiply the momentum space wavefunction by $e^{-ikx_0}$, and deduce that to shift momentum by $p_0 = \hbar k_0$ we simply multiply the real space wavefunction by $e^{ik_0x}$. 
+        \item If an operator $\hat A$ is translation invariant, that means it looks the same no matter how we translate it, i.e. $\hat T^\dagger \hat A \hat T = \hat A$, for any translation operator $\hat T$. What does this mn in terms of its matrix elements and/or kernel? Show that if an opertaor is trnaslation invariant, it is diagonal in momentum space.
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 3}
+
+    \begin{enumerate}[(a)]
+        \item If you're unfamiliar with numerical computing, or with Python, please see \href{https://github.com/berkeley-physics/Python-Tutorials}{this tutorial} made by the Physics department. If you're on the fence about whether or not to learn numerical compouting, see \href{https://github.com/berkeley-physics/intro_python}{this quick tour} of some of the cool ways we can solve physics problems using computers. To open the Jupyter notebooks, either download them and install Jupyter, or use an online environmetn such as Berkeley DataHub (instructions on GitHub pages linked above) or on Google Colab (change the URL domain from \texttt{github.com} to \texttt{githubtcolab.com})
+        \item Carefully read the ``discretizing continuous systems'' section of this notebook. Play around with the code and try different potentials if you'd like. 
+        \item Suppose we're in a finite periodic interval (e.g. a circle) of length $L$. Let's approximate the continuous interval by a grid/lattice of $N$ evenly spaced points with positions $x_i = i\frac{L}{N} = ia$ for $i = 0, 1, \dots, N-1$, where $a$ is the grid spacing. Write down the $N \times N$ matrix representing teh position operator in the $\ket{x_i}$ basis. Write down the matrix representing $V(\hat x)$ for any given potential $V(x)$. 
+        \item Approximating the second derivative by finite differences, $\frac{\partial^2 f}{\partial x^2}(x_i) \approx \frac{f(x_{i+1}) + f(x_{i-1}) - 2f(x_i)}{a^2}$ (with $x_N = x_0$ and $x_{-1} = x_{N-1}$ because of the periodicity), write down the matrix representing the kinetic energy operator $\frac{\hat p^2}{2m}$ in the position basis. 
+        \item The position space wavefunction of a Gaussian wavepacket with mean position $x_0$, mean momentum $p_0$ and position standard deviation $\sigma$ is $G(x) \propto e^{-(x - x_0)^2/4\sigma^2 + ip_0x/\hbar}$. In our finite circular grid, approximate it as $\ket G = A \sum_i G(x_i) \ket{x_i}$. For a circular grid with $N = 200$, set up a Gaussian wavefunction with $x_0 = \frac{3L}{10}$, $p_0 = \frac{10h}{L}$, $\sigma = \frac{L}{40}$, computing the normalisation constant $A$ numerically. Plot the wavefunction (you could plot all three of $\Re(\psi)$, $\Im(\psi)$, $|\psi|$ on the same plot, or plot $|\psi|^2$ using colour to denote phase)
+        \item Set up the free particle Hamiltonian and diagonalise it. What are the energy eigenvalues? Plot the probability of measuring each possible value of energy. (Measure energy in units of $\frac{h^2}{mL^2}$.) Compute the expected energy $\mean{E}$ and compare with the classical value. 
+        \item Apply the time evolution matrix $\hat T(t) = e^{-i\hat H t/\hbar}$ to plot the Gaussian wavefunction at later times. You can also make an animation (see ``likelihood fitting'' section of this notebook for an example). Does it behave as you expect? Does energy distribution change with time? (Measure time in units of $\frac{mL^2}{h}$.)
+        \item Now let's add two potential barriers of height $V_0$ and width $\frac{L}{10}$ to create two equal intervals separated by finite potential wells, set $V(x) = V_0$ for $0 < x < \frac{L}{10}$ and $\frac{L}{2} < x < \frac{3L}{5}$ and $V(x) = 0$ everywhere else. Choose $V_0 = \frac{p_0^2}{2m}$, about double the energy of the Gaussian wavepacket. Repeat the above and compare with a classical particle. Plot the probability of finding the particle in the other region as a function of time. 
+        \item Repeat for larger values of $N$. We expect to recover the continuous case as $N \to \infty$. Do your plots change much as you increase $N$? Does $N = 200$ approximate the continuum well? 
+    \end{enumerate}
+
+    If you're stuck and would like some hints, or if you'd like to play around with the code without writing it all yourself, you can look at my solution in this notebook. To submit your work, compile it as a PDF (in Jupyter, this can be done from File; Download as; PDF via HTML) and merge it with the rest of your submission (there are several website that do this).
+\end{document}

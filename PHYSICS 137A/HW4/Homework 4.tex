@@ -1,0 +1,297 @@
+\documentclass{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{dirtytalk}
+\usepackage{../local}
+
+
+\newcommand{\code}{Physics 137A}
+\newcommand{\class}{Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \code}\\
+\large{HW 04} \Large{\hfill \class \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+
+
+
+\begin{document}
+    \maketitle 
+
+    \section*{Collaborators}
+
+    I worked with \textbf{Andrew Binder} to complete this homework.
+
+    \section*{Problem 1}
+    Calculate $\mean{x}, \mean{x^2}, \mean{p}, \mean{p^2}, \sigma_x$ and $\sigma_p$ for the $n$-th stationary state of the infinite square well. Check that the uncertianty principle is satisfied. Which state comes closest to the uncertianty limit?
+
+
+    \begin{solution}
+        To calculate these values, we use the formula for the expectation value. For simplicity, we use the formula:
+        
+        \[ \psi_n(x) = \sqrt{\frac{2}{a}} \sin \left(\frac{n \pi x}{a}\right)\]
+
+        as the equation for the $n$-th stationary state. To calculate the expectation values, we use the standard definition for the expectation:
+
+        \begin{align*}
+            \mean{x} &= \int \psi_n^\star(x) x \psi_n(x)\\
+            &= \frac{2}{a} \int_0^a x \sin^2\left(\frac{n \pi x}{a}\right) \dx\\
+            &= \frac{2}{a}\int_0^a x \left[\frac{1}{2}\left(1 - \cos \left(\frac{n \pi x}{a}\right)\right)\right] \dx
+        \end{align*}
+
+        From here we can perform integration by parts, and after all the algebra we get
+
+        \[ \mean{x} = \frac{a}{2} - \frac{a^2}{4n^2\pi^2} (\cos (2 n \pi) - 1)\]
+
+        Now notice that for any $n$, we have $\cos(2n \pi)  = 1$, so therefore te second term in this equqation is zero. Thus, 
+
+        \[ \mean{x} = \frac{a}{2}\]
+
+        Similarly for $\mean{x^2}$
+
+        \begin{align*}
+            \mean{x^2} &= \int_0^a \sqrt{\frac{2}{a}} \sin \left(\frac{n \pi x}{a}\right) x^2 \sqrt{\frac{2}{a}} \sin \left(\frac{n \pi x}{a}\right) \dx\\
+            &= \frac{2}{a}\int_0^a x^2 \sin^2\left(\frac{n \pi x}{a}\right) \dx
+        \end{align*}
+
+        From here we first write $\sin^2(x) = \frac{1}{2} (1 - \cos (2x))$ and then do integration by parts twice (or just throw it into a computer). Throughout the process, any the terms $\sin (n\pi) = 0$ since $n$ is an integer, and $\cos (n\pi) = 1$ for that same reason. The algebra is quite much so I won't write out all of it but in the end we get:
+
+        \[ \mean{x^2} = \frac{a^2}{3} - \frac{a^2}{2n^2\pi^2}\]
+
+        For $\mean{p}$, since we know that the $n$-th stationary state is \textit{stationary}, this means that this state is not moving, and thus $\mean p = 0$. Computing $\mean{p^2}$:
+
+        \begin{align*}
+            \mean{p^2} &= \int_0^a \left(\sqrt{\frac{2}{a}}\sin\left(\frac{n \pi x}{a}\right)\right) \frac{\partial^2}{\partial x^2} \left(\sqrt{\frac{2}{a}} \sin \left(\frac{n \pi x}{a}\right)\right)\dx \\
+            &= -\frac{2\hbar^2}{a} \cdot \frac{-n^2\pi^2}{a^2} \int_0^a  \sin^2\left(\frac{n \pi x}{a}\right) \dx\\
+            &= \frac{2\hbar^2n^2 \pi^2}{a^3} \left( \frac{a}{2} - \frac{a}{4n \pi} \sin (2 \pi n)\right)
+        \end{align*}
+
+        Note now that $\sin (2\pi n) = 0$ since $n$ is an integer, so
+
+        \[ \mean{p^2} = \frac{\hbar^2n^2\pi^2}{a^2}\]
+
+        So now we can calculate $\sigma_x$ and $\sigma_p$:
+
+        \begin{align*}
+            \sigma_x &= \sqrt{\frac{a^2}{3} - \frac{a^2}{2n^2\pi^2} - \frac{a^2}{2}}\\
+            &= \frac{a}{2} \sqrt{\frac{1}{3} - \frac{2}{\pi^2 n^2}}\\
+            \sigma_p &= \sqrt{\frac{\hbar^2 n^2 \pi^2}{a^2}} = \frac{\hbar n \pi}{a}
+        \end{align*}
+
+        To verify that this satisfies the uncertainty relation, we can take the product of the two, and show:
+
+        \begin{align*}
+            \sigma_x\sigma_p &= \frac{\hbar n \pi}{2} \sqrt{\frac{1}{3} - \frac{2}{\pi^2n^2}}\\
+            &= \frac{\hbar}{2} \left( n\pi \sqrt{\frac{1}{3} - \frac{2}{\pi^2n^2}}\right) \ge \frac{\hbar}{2}
+        \end{align*}
+
+        Which is equivalent to showing:
+
+        \begin{align*}
+            n\pi \sqrt{\frac{1}{3} - \frac{2}{\pi^2n^2}} &> 1\\
+            n^2\pi^2 \left(\frac{1}{3} - \frac{2}{n^2\pi^2} \right)&> 1\\
+            \frac{1}{3} & > \frac{1}{\pi^2n^2}\\
+            1 &> \frac{1}{\pi^2n^2}
+        \end{align*}
+
+        Which is clearly true, so we've satisfied the uncertainty limit. Furthermore, this relation means that the closest we can get to the uncertainty relation is $n = 1$, since this is the value of $n$ which makes $1/(\pi n)^2$ closest to 1.
+
+    \end{solution}
+
+    \pagebreak
+    \section*{Problem 2}
+    \begin{enumerate}[(a)]
+    \item Suppose you have a particle ``at rest'', equally likely to be found anywhere in the well, at $t = 0$. What should its momentum be? Is its wavefunction uniquely determined by the given information? What is the simplest wavefunction that describes the particle?
+    
+    \begin{solution}
+        Becase the probability of finding the particle is equally likely anywhere in the well, then this means that $|\psi(x)|^2 = \frac{1}{2a}$ throughout the well. As a result, we get 
+
+        \[ \psi(x) = \frac{1}{\sqrt{2a}}\] 
+
+        For values inside the well. (in other words, this wavefunction does not depend on position!) Becuase this particle is also inside the well, this means that 
+
+        \[ \psi(x) = \sum c_n \psi_E(x)\]
+
+        for some set of coefficents $c_n$. Since we have freedom to choose in $n$ as well as freedom in $c_n$, this means that there are multiple ways of choosing both $c_n$ and $n$ to match our criterion. Therefore, the wavefunction is not uniquely determined by this information.
+    \end{solution}
+    \item If the particle is indeed in the state that you found in part a, and you measured the energy of the particle, what possible values could you obtain and with what probabilities?
+    
+    \begin{solution}
+
+        Let's shift our well so that it is infinite at $x = 0$ and $x = a$.
+
+        Now, the mean value for the momentum $\mean{p} = \frac{\partial \mean{x}}{\partial t}$, but since the particle is equally likely to be found anywhere in the well, the mean position is $\frac{a}{2}$, but since this is a constant this means that $\mean{p} = 0$, and thus the energy turns out to be zero as well, since it's defined via $\mean{p}$.
+
+        As a result, we'd measure that the particle has zero energy with a probability of 1. This result bothers me becuase in lecture we mentioned that this wasn't possible.
+    \end{solution}
+    \item What is the expected value of the energy?
+    
+    \begin{solution}
+        Since the particle has zero energy, then we know that the expected value for the energy is also zero as well. Just like the previous part, this result bothers me primarily because we discussed that zero energy is not an admissible state.
+    \end{solution}
+
+    \item Write down the wavefunction at some later time $t$ (Leave it as an infinite sum.)
+    
+    \begin{solution}
+        We have $\psi(x, 0) = \frac{1}{\sqrt{2a}}$, and since this appears to be a stationary state (i.e. the particle is at rest, as given in the problem), then we can not only write $\psi(x, t)$ being multiplied by a phase, but that it can be multiplied by an infinite sum of different phases:
+
+        \[ \psi(x, t) = \frac{1}{\sqrt{2a}} e^{iE_{tot}t/\hbar} \implies \psi(x, t) = \frac{1}{\sqrt{2a}} \sum_{n = 1}^\infty e^{i E_nt/\hbar}\]
+    \end{solution}
+    \item Show that at time $t = 4ma^2/\pi\hbar$, the wavefunction returns to its initial state.
+    
+    \begin{solution}
+        We substitute $t = 4ma^2/\pi \hbar$ into the wavefunction:
+
+        \[ \psi\left(x, \frac{4ma^2}{\pi \hbar}\right) = \frac{1}{\sqrt{2a}} \exp{\frac{4ma^2i}{\pi \hbar^2} E}\]
+
+        But since we've established earlier that $E = 0$, then this means that 
+
+        \[ \psi\left(x, \frac{4ma^2}{\pi \hbar}\right) = \frac{1}{\sqrt{2a}}\]
+
+        And thus we've returned to our roiginal wavefunction.
+    \end{solution}
+    \item Suppose the well was somehow expanded to double the length, keeping the centre unchanged, without perturbing the wavefunction of the particle. Now, if you measured the energy, what possible values could you obtain and with what possibilities?
+    
+    \begin{solution}
+        If the form of the wavefunction does not change, then the possible values of the energy do not change, since we still get that the particle is stationary, and the energy is zero.
+    \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+    \section*{Problem 3}
+
+
+    The Dirac delta function can be thought of as the limiting case of a rectangle of area 1, as the height goes to infinity and the width goes to zero. Show that the delta function well (Equation 2.114) is a ``weak'' potential (even though it is infinitely deep), in the sense that $z_0 \to 0$. Determine the bound state energy for the delta-function potential, by treating it as the limit of a finite square well. Check that your answer is consistent with Equation 2.129. Also show that Equation 2.169 reduces to Equation 2.141 in the appropriate limit.
+
+    \begin{solution}
+
+        We have 
+        \[z_0 = \frac{a}{\hbar} \sqrt{2mv_0}\] 
+
+        By definition so we can square this to get $z_0^2 = \frac{2a^2}{\hbar}mV_0$. Then, we want to hold $2aV_0 = 1 \implies aV_0 = \frac{1}{2}$ so combining these two equations:
+
+        \begin{align*}
+            z_0^2 &= aV_0 \cdot \frac{2ma}{\hbar}\\
+            &= \frac{1}{2} \frac{2ma}{\hbar}\\
+            &= \frac{am}{\hbar}
+        \end{align*}
+
+        So clearly, as $a \to 0$, then $z_0^2 \to 0$ so $z_0 \to 0$ as well.
+
+        The energy bound states of this system is given by the solutions to :
+
+        \[ \tan z = \sqrt{(z_0/z)^2 - 1}\]
+
+        To find the bound state energies, we take solutions to the finite square well, then apply our appropriate limits $2aV_0 = 1$ while letting $a \to 0$. However, I'm not entirely sure how to explicitly find an equation that gives us the bound state energies, but hopefully the approach is correct.
+    \end{solution}
+
+    \pagebreak
+    \section*{Problem 4}
+
+    Instead of sending a particle from infinity with well-defined momentum $p$, suppose we had a Gaussian wavepacket, with some small momentum uncertainty $\sigma_p$ (i.e. large position uncertainty $\sigma_x$), with mean momentum $p$ and mean position $-d$ (with $d \gg \sigma_x$, so it's on the left of the well).
+
+
+    \begin{enumerate}[(a)]
+        \item Waht is the probability that after a very long time, the particle remains near $x = 0$? (You may leave your answer in terms of an integral) (Hint: which energy eigenstates are localised?)
+        
+        \begin{solution}
+            The momentum of the particle is nonzero and well defined, so it will begin moving away from $x = -d$, since we assume that the wavepacket has energy higher than the height of the well. Therefore, we should expect the resulting probability to equal to zero.
+
+            % Essentially the wavepacket is defined as having a Gaussian distribution. Thus, we can express the wavefunction of the particle as the product of the gaussian distribution with the energy eigenstates. 
+
+            This makes sense, since the wavefunction is supposed to propagate through time, and as a result because it has defined momentum it will not remain in one location. 
+        \end{solution}
+        \item If this probability is not zero, comment on the apparent contradiction between $R + T = 1$ in your result. (Hint: what happens to this probaiblity as we take $d \to \infty$ or $\sigma_p \to 0$?)
+        
+        \begin{solution}
+            The probability to find it at $x = 0$ is zero, so there is no contradiction.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+    \section*{Problem 5}
+
+    Suppose we have a potential which is periodic with period $L$, i.e. $V(x + L) = V(x)$
+
+    \begin{enumerate}[(a)]
+        \item Show that if $\psi(x)$ is a stationary state, then $\psi(x + nL)$ is also a stationary state with the same energy, for any integer $n$.
+        
+        \begin{solution}
+            To show that $\psi(x + nL)$ is a stationary state, then we show that it satisfies the \schrodinger equation:
+
+            \[ \left[\frac{\hat p^2}{2m} + V(x + nL) \right] \psi(x+nL) = E \psi(x + nL)\]
+
+
+            But since $V(x + nL) = V(x)$, then this means our hamiltonian becomes:
+
+            \[ \hat H = \left[\frac{\hat p^2}{2m} + V(x) \right]\]
+
+            Since this is the same Hamiltonian that satisfies $\hat H \psi(x) = E\psi(x)$, then shifting $\psi(x) \to \psi(x + nL)$ does not change anything about the function intself, so the Hamiltonian operator acts in the same way. Thus,
+
+            \[  \psi(x + nL) = \psi(x)\] 
+
+            And so $\psi(x + nL)$ is also a stationary state with the same energy. Furthermore, since they're a stationary state with the same energy and these wavefunctions form a basis, then they must be unique. Therefore, $\psi(x + nL) = \psi(x)$.
+        \end{solution}
+
+
+        \item Given any stationary state $\psi(x)$, construct a set of stationary states with the same energy, with the property that $\phi(x + L) = e^{ikL}\phi_k(x)$. Check that you can recover $\psi$ from the $\phi_k$s. (Hint: Use a linear combination $\phi(k) = \sum_{-\infty}^\infty c_n \psi(x + nL)$ with appropriately chosen coefficients $c_n$.)
+        
+        \begin{solution}
+            From the hint, let 
+
+            \[ \phi_k(x) = \infsum{n} c_n \psi(x + nL)\]
+
+            Now using the relationship given in the problem, we have $\phi_k(x + nL) = e^{ikL}\phi_k(x)$, so we have: 
+            
+            \[ \infsum{n} c_n \psi(x + (n + 1)L) = e^{ikL}\infsum{n} c_n' \psi(x + nL)\]
+
+            And since we've shown in the earlier part that $\psi(x + nL) = \psi(x)$, then the two summation terms actually cancel. Therefore, we're left with 
+
+            \[ \infsum{n} c_n = e^{ikL} \infsum{n} c_n'\] 
+
+            One way to do this is to let $c_n = e^{ikL} c_n'$ for some constants $c_n$. So in other words, we write 
+
+            \[ \phi_k(x) = e^{ikL} \infsum{n} c_n' \psi(x + nL)\] 
+
+            as the general equation for $\phi_k(x)$.
+        \end{solution}
+        \item Define $u_k(x) = e^{-ikx}\phi_k(x)$ and show that $u_k$ is periodic, i.e. $u_k(x + L) = u_k(x)$. Hence we may choose an energy eigenbasis in which stationary states are $\phi_k(x) = e^{ikx}u_k(x)$. This is known as \textit{Bloch's theorem.}
+        
+        \begin{solution}
+            Suppose $u_k(x) = e^{-ikx} \phi_k(x)$. Then this means:
+
+            \begin{align*}
+                u_k(x) &= e^{-ikx}e^{ikL} \infsum{n} c_n' \psi(x + nL)\\
+                &= e^{ik(L - x)} \infsum{n} c_n'\psi(x + nL)
+            \end{align*}
+
+            Similarly, 
+
+            \begin{align*}
+                u_k(x + L) &= e^{ik(L - (x + L))}\infsum{n} c_n' \psi((x + L) + nL)\\
+                &= e^{-ikx} \infsum{n} c_n' \psi(x + (n + 1)L)\\
+                &= e^{-ikx} \infsum{n} c_n' \psi(x + nL) && \text{due to $\psi$ being periodic}\\
+                &= e^{-ikx} \cdot \frac{\phi_k(x)}{e^{ikL}}\\
+                &= e^{-ik(x - L)} \phi_k(x)\\
+                &= e^{ik(L - x)} \phi_k(x) = u_k(x)
+            \end{align*}
+
+            Therefore $u_k(x)$ is periodic. $\blacksquare$
+
+
+        \end{solution}
+    \end{enumerate}
+\end{document}

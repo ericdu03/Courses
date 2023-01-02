@@ -1,0 +1,280 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 137A}
+\newcommand{\classname}{Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 11} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Problem 1} 
+
+    Consider the Earth-sun system as a gravitational analog of the hdyrogen atom
+
+    \begin{enumerate}[(a)]
+        \item What is the potential energy function (replacing Equation 4.52?) (Let $m$ be the mass of the earth, and $M$ be the mass of the sun)
+        
+        \begin{solution}
+            The potential energy function will just be the gravitational potential, expressed as: 
+
+            \[ V(r) = -\frac{GMm}{r}\] 
+        \end{solution}
+        \item What is the ``Bohr radius'', $a_g$ for this system? Work out the actual number.
+        
+        \begin{solution}
+            Note that the two equations we have for the potential (electrostatic and gravitational) are only different in their constant factors, since both of them have $1/r$ dependence. Therefore, the bohr radius should also only differ by constants. Specifically, since the equation for the gravitational potential replaces $e^2/4\pi \epsilon_0$ with $GMm$, we can do the same to the Bohr radius, giving us:
+
+            \[ a_g = \frac{\hbar^2}{GMm^2}\] 
+        \end{solution}
+        \item Write down the gravitational ``Bohr formula'', and, by equating $E_n$ to the classical energy of a planet in a circular orbit of radius $r_0$, show that $n = \sqrt{r_0/a_g}$. From this, estimate the quantum number $n$ of the earth. 
+        
+        \begin{solution}
+            Again, we do the same trick of basically replacing every $e^2/4\pi \epsilon_0 = GMm$, so therefore we get: 
+
+            \[ E_n = -\left[ \frac{m}{2\hbar^2}(GMm)^2\right] \frac{1}{n^2} = -\left[\frac{G^2M^2m^3}{2\hbar^2}\right] \frac{1}{n^2}\]  
+
+            We know from classical mechanics that the energy of a planetin a circular orbit of radius $r_0$ is: 
+
+            \[ E = \frac{1}{2} mv^2 - \frac{GMm}{r_0} = -\frac{-GMm}{2r_0}\] 
+
+            Now equating this to the analogue of the Bohr formula, we get: 
+
+            \begin{align*}
+                \frac{-GMm}{2r_0} &= -\left[ \frac{m}{2\hbar^2}(GMm)^2\right] \frac{1}{n^2} = -\left[\frac{G^2M^2m^3}{2\hbar^2}\right] \frac{1}{n^2}\\
+                \frac{1}{r_0} &= \frac{GMm^2}{\hbar n^2} \\
+                n^2 &= \frac{GMm^2r_0}{\hbar^2}\\
+                \therefore n &= \sqrt{\frac{r_0}{a_g}}
+            \end{align*}
+
+            as desired. The quanutm number of the Earth can then be calculated using known values: 
+
+            \[ n_{earth} = \sqrt{\frac{r_{earth}}{a_{g_earth}}} \approx 2.5 \times 10^{74}\] 
+        \end{solution}
+        \item Suppose the earth made a transition to the next lower level ($n-1$). How much energy (in Joules) would be released? What would be the wavelength of the emitted photon (or, more likely, graviton) be? (Express your answer in light-years - is the remarkable answer a coincidence?)
+        
+        \begin{solution}
+            The difference in energy from each energy level is: 
+
+            \[ \Delta E = -\left[\frac{G^2m^3M^2}{2\hbar^2}\right]\left(\frac{1}{n^2} - \frac{1}{(n-1)^2}\right)\] 
+            
+            and using $n$ calculated in the previous problem, we obtain that the energy difference is approximately $2 \times 10^{-41}$ joules. This gives a wavelength of 
+
+            \[ \lambda = \frac{hc}{E} = 9.93 \times 10^{15} \text{ m}\] 
+
+            This translates to 1.05 light years. This result actually does make quite a bit of sense. From Kepler's laws, we know that 
+
+            \[ T = 2\pi \sqrt{\frac{r_0^3}{GM}}\] 
+
+            further, we can derive an alternate expression for $\Delta E$ using the expression for $n$ we obtained in the previous part, which ultimately simplifies to give us that $\lambda \approx cT$, and since the orbital period of the Earth is approximately one year, then this result actually makes a lot of sense.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 2}
+    What is the probability that an electron in the ground state of hydrogen will be found \textit{inside the nucleus}?
+
+    \begin{enumerate}[(a)]
+        \item First calculate the exact answer, assuming the wave function (Equation 4.80) is correct all the way down to $r = 0$. Let $b$ be the radius of the nucleus. 
+        
+        \begin{solution}
+            Here, we evaluate the integral via brute force: 
+
+            \begin{align*}
+                P = \int |\psi|^2 d^3r &= \frac{4\pi}{\pi a^3} \int_0^b e^{-2r/a} r^2 dr\\
+                &= 1 - \left(1 + \frac{2b}{a} + \frac{2b^2}{a^2}\right)e^{-2b/a}
+            \end{align*}
+
+            this integral was done via a computer.
+        \end{solution}
+        \item Expand your result as a power series in the small number $\epsilon = 2b/a$, and show that the lowest order term is the cubic $P \approx (4/3)(b/a)^3$. This should be a suitable approximation, provided that $b \ll a$ (which it \textit{is}). 
+        
+        \begin{solution}
+        First, we let $\epsilon = \frac{2b}{a}$ following the problem statement. The expansion of $e^{-\epsilon}$ then is: 
+
+
+            \begin{align*}
+                P &= 1 - \left(1 + \epsilon + \frac{\epsilon^2}{2}\right)e^{-\epsilon} \\
+                &\approx 1 - \left(1 + \epsilon + \frac{\epsilon^2}{2}\right)\left(1 - \epsilon + \frac{\epsilon^2}{2} - \frac{\epsilon^3}{6}\right)\\
+                &= 1 - 1 + \epsilon - \frac{\epsilon^2}{2} + \frac{\epsilon^3}{6} - \epsilon + \epsilon^2 - \frac{\epsilon^3}{2} - \frac{\epsilon^2}{2} + \frac{\epsilon^3}{2}\\
+                &= \frac{\epsilon^3}{6} - \frac{\epsilon^3}{2} + \frac{\epsilon^3}{2}\\
+                &= \frac{\epsilon^3}{6}
+            \end{align*}
+
+            Now plugging back our substitution for $\epsilon$, we get: 
+
+            \[ P \approx \frac{8b^3}{6a^3} = \frac{4}{3} \left(\frac{b}{a}\right)^3\] 
+
+            as desired.
+        \end{solution}
+    
+        \item Alternatively, we might assume that $\psi(r)$ is essentially constant over the (tiny) volume of the nuclues, so that $P \approx (4/3)\pi b^2 |\psi(0)|^2$. Check that you get the same answer this way.
+        
+        \begin{solution}
+            We know that $|\psi(0)|^2 = \frac{1}{\pi a^3}$ since we are using the ground state equations, so therefore: 
+
+            \[ P = \frac{4}{3} \pi b^3 |\psi(0)|^2 = \frac{4}{3} \left( \frac ba\right)^3\]
+
+            which is the same expression that we get in the previous part. 
+        \end{solution}
+        \item Use $b \approx 10^{-15}$ and $a \approx 0.5 \times 10^{-10}$ m to get a numerical estimate for $P$. Roughly speaking, this represents the ``fraction of its time that the electron spends inside the nucleus.''
+        
+        \begin{solution}
+            Substituting in these values into our approximation, we get: 
+
+            \[ P \approx 1.07 \times 10^{-14}\] 
+
+            This very small, which makes sense, since the nucleus is incredibly small, so the probability that the electron occupies that space should also be small. 
+        \end{solution}
+    \end{enumerate}
+
+
+    \pagebreak
+
+    \section*{Problem 3}
+
+    You may find the following integral useful in this problem 
+
+    \[ \int_0^\infty x^n e^{-x/\alpha} dx = n! \alpha^{n+1}\] 
+
+    \begin{enumerate}[(a)]
+        \item States of a hydrogen atom are typically expressed in terms of the basis states $\ket{n, l, m}$. Write down three operators and the corresponding eigenvalue equations that define the quantum numbers $n, l$ and $m$. What values can $n$ take? For each $n$, what values can $l$ take? For each $l$, what values can $m$ take? [Hint: By eigenvalue equation, we mean something like $\hat O\ket{nlm} = \lambda \ket{nlm}$, where $\lambda$ is a number that depends on $n, l$ and $m$.]
+        
+        \begin{solution}
+            In terms of $n$, it can take on any arbitrary value, since it denotes the energy level of the electron (mathematically speaking, there's nothing really stopping the electron from having as much energy as it wants). For each value of $n$, $l$ can take on $n$ values, ranging from $0$ to $n-1$. Then, for each $l$, there are $2l+1$ values that $m$ can take, since $m$ ranges from $-l$ to $l$.
+
+            Since $n$ refers to the energy level of the system, then we know that the operator which gives us the energy $\hat H$ is the corresponding operator. $l$ and $m$ refer to the angular momentum, so the corresponding operators there are $L^2$ and $L_z$, respectively.
+        \end{solution}
+        \item For the state $\ket{2, 0, 0}$ write down its wavefunction $\psi_{2, 0, 0} (r, \theta, \phi) \equiv \braket{r, \theta, \phi}{2, 0, 0}$. Compute the expectation values $\mean{x}$, $\mean{r^2}$ and $\mean{x^2}$ for this state [Hint: Use symmetry arguments wherever possible. For $\mean{x^2}$, note that $r^2 = x^2 + y^2 + z^2$, and then use symmetry]
+        
+        \begin{solution}
+            We know the general form of the equation is of the form: 
+
+            \[ \psi_{nlm}(r, \theta, \phi) = \sqrt{\left(\frac{2}{na}\right)^3 \frac{(n - l - 1)!}{2n[(n+l)!]^3}} e^{-r/na}\left( \frac{2r}{na}\right)^l L^{2l+1}_{n - l - 1}\left(\frac{2r}{na}\right) Y_{lm} (\theta, \phi)\]
+
+            where $L$ refers to the associated Laguerre polynomial and $Y_{lm}$ refers to the spherical harmonics. Therefore, plugging $n = 2, l = 0, m = 0$ into this equation, we get: 
+
+            \[ \psi_{200} = \frac{1}{\sqrt{32\pi a^3}} e^{-r/2a}(2-r)\]
+
+            First, we compute the expectation value of $x$, by noting that $x = r \sin \theta \cos \phi$: 
+
+            \[ \mean{x} = \int_0^\infty \int_0^\pi \int_0^{2\pi} \frac{r \sin \theta \cos \theta}{32 \pi a^3} e^{-r/a}(2-r)^2 \cdot r^2 \sin \theta d\phi d \theta dr\] 
+
+            Now note that since $\int_0^{2\pi} \cos \phi d\phi = 0$, then we have that $\mean{x} = 0$. Now calculating $\mean{r^2}$: 
+
+            \begin{align*}
+                \mean{r^2} &= \int_0^\infty \frac{r^2}{32\pi a^3} e^{-r/a}(2-r)^2\\
+                &= \frac{1}{32 \pi a^3} \left[ 4\int_0^\infty r^2e^{-r/a} dr - 4\int_0^\infty r^3e^{-r/a} dr + \int_0^\infty r^4 e^{-r/a} dr \right]\\
+                &= \frac{1}{32 \pi a^3} \left[8a^3 - 24 a^4 + 24 a^5\right]
+            \end{align*}
+
+            In the last step, we've used the integral relation given in the problem statement. Then, to find $\mean{x^2}$, we realize that due to symmetry, that $\mean{x^2} = \mean{y^2} = \mean{z^2}$, and so therefore we get that $\mean{x^2} = \frac{\mean{r^2}}{3}$, and so therefore:
+
+            \[ \mean{x^2} = \frac13 \left[ \frac{1}{32 \pi a^3} \left(8a^3 - 24 a^4 + 24 a^5\right) \right]\] 
+
+
+        \end{solution}
+        \item Consider the state
+        \[ \ket \alpha = \frac{1}{\sqrt{2}} \left( \ket{2, 1, 1} + \ket{2, 1, -1}\right)\] 
+
+        First write down its wavefunction $\psi_\alpha(r, \theta, \phi) = \braket{r, \theta, \phi}{\alpha}$ using $R_{nl}(r)$ and $Y_{lm}(\theta, \phi)$. Then, write down the full wavefunction [For example, if the state is $\ket{1, 0, 0}$, we are looking for $R_{10}(r)Y_{00}(\theta, \phi)$ for the first part and $\frac{1}{\sqrt{\pi \alpha^3}}e^{-r/a}$ for the second part]
+
+
+        \begin{solution}
+            The state $\alpha$ can then be expressed as: 
+
+            \[ \ket{\alpha} = \frac{1}{\sqrt{2}} \left( R_{21}(r) Y_{11}(\theta, \phi) + R_{21}(r) Y_{1, -1}(\theta, \phi)\right) = \frac{1}{\sqrt{2}}R_{21}(r) \left( Y_{11}(\theta, \phi) + Y_{1,1}(\theta, \phi)\right) \] 
+
+            Now writing the full wavefunction, we just need to plug in what we have for $R$ and $Y$. We know that 
+
+            \begin{align*}
+                R_{21}(r) &= \frac{1}{\sqrt{24}} a^{-3/2} \frac{r}{a} e^{-r/2a}\\
+                Y_{1, \pm 1}(\theta, \phi) &= \mp \left( \frac{3}{8\pi}\right)^{1/3} \sin \theta e^{\pm i\phi}
+            \end{align*}
+
+            And so therefore 
+
+            \begin{align*}
+                \ket{\alpha} &= \frac{1}{\sqrt{2}} \left( \frac{1}{\sqrt{24}} a^{-3/2} \frac{r}{a} e^{-r/2a}\right) \left[ \left( \frac{3}{8\pi}\right)^{1/2} \sin \theta \underbrace{(e^{-i\phi} - e^{i\phi})}_{= 2i \sin \phi}\right]\\
+                &= \frac{2i \sin \phi}{\sqrt{48}} \cdot \frac ra \left(\frac{3}{8\pi}\right)^{1/2} a^{-3/2} e^{-r/2a}
+            \end{align*}
+
+
+
+        \end{solution}
+        \item Find $\mean{y}$ for the state $\ket \alpha$ [Hint: Recall $y = r \sin \theta \sin \phi$]
+        
+        \begin{solution}
+            Again just like part (b), we plug this equation in for the expectation value: 
+
+            \begin{align*}
+                \mean{y} &= \int_0^\infty \int_0^\pi \int_0^{2\pi} r \sin \theta \sin \phi \frac{4 \sin^2 \phi}{48} \cdot \frac{r^2}{a^2} \left( \frac{3}{8\pi}\right) a^{-3} e^{-r/a} d\phi d\theta dr\\
+                &= \frac{1}{32 \pi a^3} \int_0^\infty r^3 e^{-r/a} dr \int_0^\pi \sin \theta d\theta \int_0^{2\pi} \sin^3\phi d\phi\\
+                &= 0
+            \end{align*}
+
+            This equals zero since $\int_0^{2\pi} \sin^3 \phi d\phi = 0$. This also makes sense intuitively, since we shouldn't expect the electron to preferentially select the positive or negative $y$ axis to ``spend more time'' in. 
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 4}
+
+    The state of an electron in a hydrogen atom at time $t = 0$ is given by 
+
+    \[ \ket{\psi(0)} = \frac{1}{\sqrt{6}} \left( \ket{2, 0, 0} + C\ket{2, 1, 1} - \ket{3, 1, 0}\right)\] 
+
+    where the states $\ket{n, l, m}$ are the simultaneous energy, angular momentum and $z$ component of angular momentum eigenstates for the electron in the hydrogen atom. 
+
+    \begin{enumerate}[(a)]
+        \item Find the real and positive $C$ that normalizes the state
+
+        \begin{solution}
+            The value of $C$ that normalizes this eigenstate will be the one which satisfies the relation: 
+
+            \[ \frac{1}{6} + \frac{C^2}{6} + \frac{1}{6} = 1\] 
+
+            yielding a value of $C = 2$.
+        \end{solution}
+        \item What are $\mean{E}$, $\mean{L^2}$ and $\mean{L_z}$ for this state?
+        
+        \begin{solution}
+            The expected value for these quantities will be the probaiblity that the particle occupies each state, then multiply that by the value for $E$, $L^2$ and $L_z$ of that state. I didn't have time to calculate this explicitly, but this is what I would do if I had the time.
+        \end{solution}
+        \item Which of these change as a function of time? 
+        
+        \begin{solution}
+            If the state of the particle is left alone, none of these three values should change in time, since they share a common set of (energy) basis vectors, all of which are time independent. 
+        \end{solution}
+        \item At time $t = 0$, the magnitude of the angular momentum $|\mathbf L| = \sqrt{L^2}$ is measured. What results are possible, with what probaiblity do you get each result, and what are the states immediately after measurement is made? 
+        
+        \begin{solution}
+            The eigenvalues of $L^2$ are $l(l+1)$, determined by the number $l$. Since our state has $l = 0$ and $l = 1$ then the possible results that could be measured are $|L| = 0$ and $|L| = 2$, since measuring $L^2$ returns an eigenvalue of $l(l+1)$.
+
+            The probability of obtaining each result is the probaiblity associated with these states, so having $l = 0$ has probability $\frac 16$ since only the first state $\ket{2, 0, 0}$ has $l = 0$, and $l = 2$ has probability $\frac 56$ since the other two states $\ket{2, 1, 1}$ and $\ket{3, 1, 0}$ both have $l = 2$.
+        \end{solution}
+        \item If 2000 hydrogen atoms are in the state $\ket{\psi(0)}$, and the $z$ component of angular momentum is measured, how many do you expect to have each possible value? 
+        
+        \begin{solution}
+            The $z$ component of the angular momentum is given by $m$, so therefore we expect that the first and third term returns $m = 0$ (states $\ket {2, 0, 0}$ and $\ket{3, 1, 0}$) and the second term returns $m = 1$ (state $\ket{2, 1, 1}$). The probability of finding the particle in states 1 and 3 combined is $1/6 + 1/6 = 1/3$, and so therefore we expect $L_z = 0$ about a third of the time, and likewise $L_z = 1$ about two thirds of the time. 
+
+            Therefore, translating this to 2000 particles we expect that approximately 667 particles should occupy $L_z = 0$ and the remaining 1333 to occupy $L_z = 1$. 
+        \end{solution}
+        \item If the energy is measured, which energy value(s) can the experimenter measure that would tell then what they would get if they measured $L$, afterwards, and which energy value(s) would leave them uncertain of the result if they were to measure $L_z$ afterwards? 
+        
+        \begin{solution}
+            The energy is dependent on the number $n$. Since the third state $\ket{3, 1, 0}$ is the only state with $n = 3$, then if we measure the particle to have an energy $E_3$, then we know that $L_z$ must be 0, since it's the only possible state. 
+
+            If the experimenter measured $n = 2$ instead, then this would still leave the experimenter uncertain, since there are two states with $n = 2$ but one of them has $L_z = 0$ and the other has $L_z = 1$.
+        \end{solution}
+    \end{enumerate}
+\end{document}
