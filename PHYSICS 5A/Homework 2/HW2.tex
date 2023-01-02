@@ -1,0 +1,287 @@
+\documentclass{article}
+\title{Physics 5A Homework}
+\author{Eric Du}
+\date{\today}
+\usepackage[cm]{sfmath}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\usepackage{float}
+\lhead{Eric Du}
+\chead{Physics 5A Homework}
+\rhead{\today}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{148pt}
+\usepackage{color}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[sexy]{evan}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\usepackage{caption}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\section{Problem 1}
+	\subsection{Part a}
+	We have $\vec{a}(t) = bt^3 + c \cos(\omega t)\hat \i$ given to us so we just have to integrate twice and incorporate the initial conditions:
+	
+	\begin{align*}
+		\vec v(t) = \int \vec a(t) dt &= \hat \i \int bt^2 dt + c\hat \j \int \cos(\omega t) dt \\
+		&= \hat \i \frac{bt^3}{3} + \frac{c\hat \j}{\omega} \sin(\omega t) + c_1
+		\end{align*}
+	
+	We now substitute the initial condition $v(0) = d \hat \i$, meaning that all the terms other than $c_1$ drop out:
+	
+	\[ v(0) = d\hat \i \implies c_1 = d\hat \i \]
+	
+	Thus $\vec v(t) = \hat \i \left(\dfrac{bt^3}{3}+d\right) + \dfrac{c\hat \j}{\omega}\sin (\omega t)$. 
+	
+	
+	\subsection{Part b}
+	
+	We now integrate $\vec v(t)$ a time to get $\vec x(t)$:
+	
+	\begin{align*}
+		\vec x(t) &= \int \vec v(t) dt = \hat \i \int \frac{bt^3}{3} + d \ dt + \frac{c\hat \j}{\omega}\int\sin(\omega t) dt\\
+		&= \hat \i\left(\frac{bt^4}{12} + dt\right) - \frac{c \hat \j}{\omega^2} \cos(\omega t) + c_2\\
+		\end{align*}
+	
+	We again substitute the initial condition $x(0) = e\hat \j$ and notice that all terms with the $\hat \i$ component drop out:
+	
+	\[ e \hat \j = \frac{e\hat \j}{\omega^2} + c_2 \implies c_2 = \hat \j \left(e - \frac{c}{\omega^2}\right)\]
+	
+	So therefore: 
+	
+	\[ \vec x(t) = \hat \i \left(\frac{bt^4}{12} + dt\right) - \hat \j \left(\frac{c}{\omega^2} \cos(\omega t) + e - \frac{c}{\omega^2}\right)\]
+	
+	
+	\section{Problem 2}
+	
+
+	
+	
+	\subsection{Part a}
+	
+		We have the average velocities and accelerations by the following two formulas:
+	
+	\[ v_{avg} = \frac{d_2-d_1}{t_2-t_1} \phantom{abc} a_{avg} = \frac{v_2 - v_1}{t_2-t_1}\]
+	
+	We can plug these in to find the average velocity:
+	
+	\[ v_{avg} = \frac{385-25}{17} = 21.18 m/s \]
+	
+	\subsection{Part b}
+	Doing the same thing here except with average acceleration instead:
+	
+	\[ a_{avg} = \frac{45-11}{17} = 2 m/s^2\]
+	
+	\section{Problem 3}
+	
+	We have the kinematic formula $v_2^2 = v_1^2 - 2a\Delta d$ with $v_2 = 0$ since the car comes to a stop. So we can solve for $v_1$:
+	
+	
+	\[	v_1^2 = 2a \Delta d \implies v_1 = \sqrt{2a\Delta d} = 26.08 m/s\]
+	
+	\section{Problem 4}
+	\subsection{Part a}
+	
+	We have the DE: $\dfrac{dv}{dt} = g - kv$. We solve the DE by splitting the variables: 
+	
+	\[ \int \frac{dv}{g - kv} = \int dt\]
+	
+	Let $u = g-kv$ so we have $\dfrac{du}{dv} = -k$:
+	
+	\begin{align*}
+	 -\frac{1}{k} \int \frac {1}{u} du &= t + C\\
+	 -\frac{1}{k} \ln|g - kv| &= t + C\\
+	 g - kv &= e^{-k(t+C)}\\
+	 \end{align*}
+ 
+ 	Notice here that we have $e^{-kC}$ being equal to a constant, so we'll combine all those terms and call it $A$. Doing this while simultaneously solving for $v$: 
+ 	
+ 	\[ v = \frac{g -Ae^{-kt}}{k}\]
+ 	
+ 	We now substitute in the initial condition $v(0) = 0$:
+ 	
+ 	\begin{align*}
+ 		0 &= \frac{g - Ae^{-k(0)}}{k}\\
+ 			&= \frac{g-A}{k} \implies A = g
+ 	\end{align*}
+ 
+ Therefore our final equation of $v(t)$ is:
+ 
+ \[ v(t) = \frac{g(1-e^{-kt})}{k}\]
+ 		
+ 		\subsection{Part b}
+	
+	At terminal velocity the net forces should be zero. In other words, $\frac{dv}{dt} = 0$. So we can set the hand side of our equation to be zero, and solving for $v_t$:
+	
+	\begin{align*}
+		0 &= g - kv_t \\
+		v_t &= \frac{g}{k}
+	\end{align*}	
+
+	\section{Problem 5}
+	
+	We can write down the kinematic equations for projectile motions in the $x$ and $y$ directions:
+	
+	\[ x(t) = v_0\cos\theta t \phantom{abc} y(t) = v_0\sin\theta t - \frac{1}{2}gt^2\]
+	
+	One neat thing we can do in this problem is that we can express the ``drop" in height caused by the ramp angled down at $\phi$ in terms of $x(t)$. Namely, we can establish that $\Delta y(t) = mx(t)$, where $m$ is the slope of the ramp. I've included a diagram below: 
+	
+	%INSERT DIAGRAM HERE
+	
+	From the diagram, it's not hard to see that $m = \frac{\Delta y}{\Delta x} = \tan \phi$, meaning that our equation can be rewritten as $\Delta y(t) = \tan \phi \cdot v_0\cos\theta t$. Now we solve for the intersection. We let $y(t) = -\Delta y$:
+	
+	\[-\tan \phi \cdot v_0\cos \theta t = v_0\sin \theta t - \frac{1}{2} gt^2\]
+	
+	We cancel the trivial case of $t = 0$ and we're left with:
+	
+	\[ v_0 \sin\theta - \frac{1}{2} gt + \tan \phi \cdot v_0\cos\theta = 0\]
+	
+	After this point, it's just a bunch of algebra, so you'll have trust that the we eventually get the following value for $t$:
+	
+	\[ t = \frac{2v_0(\sin \theta + \tan \phi \cos\theta)}{g}\]
+	
+	Now we can plug this time into $x(t)$ which will give us the range: 
+	
+	\[ x(t = t_{landing}) = v_0\cos\theta \left(\frac{2v_0(\sin \theta + \tan \phi \cos \theta)}{g}\right)\]
+	
+	We want $\frac{dx}{d\theta} = 0$, represending the maximum distance:
+	
+	\begin{align*}
+		\frac{dx}{d\theta} = 0 &= \frac{2v_0^2}{g} \frac{d}{d\theta}(\cos \theta \sin \theta + \tan \phi \cos^2 \theta)\\
+		0 &= -\sin \theta \sin \theta + \cos \theta \cos \theta + \tan \phi \cdot 2 \cos \theta (-\sin \theta)\\
+		0 &= \cos^2 \theta - \sin^2\theta - \tan \phi \sin (2\theta)\\
+		\cos (2\theta) &=	\tan \phi \sin(2\theta) \\
+		&\therefore \boxed{\tan \phi = \cot(2\theta)}
+		\end{align*}
+	
+	Which is the relationship between $\theta$ and $\phi$.
+	
+	\section{Problem 6}
+	
+	We have the height of the elevator when the ball drops to be $\Delta H = v_eT_1$, where $v_e$ denotes the velocity of the elevator. Since the ball is dropped at time $T_1$, then we have the vertical distance the ball must travel to be $-\Delta H$ as well. Thus, we have the following system of two equations:
+	
+	\begin{align}
+		\Delta H &= v_e T_1\\
+		-\Delta H &= v_e(T_2-T_1) - \frac{1}{2}g(T_2 - T_1)^2
+	\end{align}
+
+We can substitute the first equation into the second, yielding:
+
+\begin{align*}
+	-v_eT_1 &= v_e(T_2 - T_1) - \frac{1}{2}g(T_2-T_1)^2\\
+	-v_eT_1 &= v_eT_2 - v_eT_1 - \frac{1}{2}g(T_2 - T_1)^2\\
+	v_eT_2 &= \frac{1}{2}g(T_2 - T_1)^2\\
+	&\therefore v_e = \frac{g(T_2- T_1)^2}{2T_2}
+\end{align*}
+
+We now plug this value of $v_e$ back into the first equation to return $\Delta H$:
+\[ \boxed{\Delta H = \frac{g(T_2-T_1)^2}{2T_2} \cdot T_1}\]
+
+Which is the final answer.
+
+\section{Problem 7}
+
+We can represent the displacement using the kinematic formula:
+
+\[ \Delta H = v_0t - \frac{1}{2}gt^2\]
+
+We use $\Delta H = 0$ in this case because we want to find the time at which the initial burst of water fired directly upwards lands on the ground again, and use that knowledge to solve for $v_0$. We can do this and also cancel out the trivial case where $t=0$, so we get:
+
+\[ 0 = v_0 - \frac{1}{2}gt\]
+
+This means that $v_0 = \frac{gt}{2}$ and since $t = 4$ seconds then we have $v_0 = 2g$. 
+
+\medskip
+
+We also know that the range of a given projectile launched with speed $v_0$ and angle $\theta$ obeys the equation:
+
+\[ R = \frac{v_0^2 \sin(2\theta)}{g}\]
+
+Clearly, this formula is maximized when $\sin(2\theta) = 1$ for a fixed $v_0$. In other words $\theta = 45^\circ$. And since this is true than we have:
+
+\[R_{max} = \frac{v_0^2}{g} \implies R_{max} = \frac{(2g)^2}{g} = 4g\]
+
+This would evaluate to a distance of 39.24 meters. (I used $g = 9.81 m/s^2$ in this case instead of 9.8)
+
+
+\section{Problem 8}
+\subsection{Part a}
+We have $\alpha  = \ddot \theta =  \beta t$ so integrating we get $\dot \theta = \frac{\beta t^2}{2}$ and $\theta = \frac{\beta t^3}{6}$. Since initial conditions are zero for $\dot \theta(0)$ and $\theta(0)$, then we don't have any constants we need to worry about. From the lecture, we also have the following: 
+
+\begin{align*}
+	\vec v(t) &= \frac{dr}{dt} \hat r + r(t) \hat \theta \frac{d\theta}{dt}\\
+	\vec a(t) &= (\ddot r - r\theta^2)\hat r + (2\dot r \dot \theta + r \ddot \theta)\hat \theta
+\end{align*}
+
+Note that for uniform circular motion, we have $\dot r = 0$ and $\ddot r = 0$, so any term with those coefficients immediately drop out of the calculation. With that in mind, we have the following: 
+
+\begin{align*}
+	\vec v(t) &= r(t) \hat \theta \dot \theta \\
+	&= \boxed{\hat r \cdot \frac{\beta t^2}{2}\hat \theta}\\
+	\vec a(t) &= -r\dot\theta^2 \hat r + r\beta t \hat \theta\\
+	&= -r\left(\frac{\beta t^2}{2}\right)^2 \hat r + r\beta t\hat \theta\\
+	&= \boxed{\frac{-r\beta^2t^4}{4}\hat r + r\beta t \hat \theta}
+\end{align*}
+
+
+\subsection{Part b}
+Since we have the equations already in polar coordinates, the only thing we need to do is to use the expressions for $\hat r$ and $\hat \theta$ in cartesian coordinates to convert. Thankfully, this isn't too difficult because we hae $\hat r = \cos \theta \hat \i + \sin\theta \hat \j$ and $\hat \theta = -\sin \theta \hat \i + \cos \theta \hat \j$, so we just take those equations we had before and substitute our cartesian conversion for $\hat r$ and $\hat \theta$
+
+\begin{align*}
+	\vec r(t) &= b\hat r = \boxed{b(\cos \theta \hat \i + \sin\theta \hat \j)}\\
+	\vec v(t) &=  \frac{r\beta t^2}{2}\hat \theta = \boxed{\frac{r\beta t^2}{2}(-\sin\theta \hat \i + \cos \theta \hat \j)}\\
+	\vec a(t) &= \frac{-r\beta^2t^4}{4}(\cos \theta \hat \i + \sin \theta \hat \j) + r\beta t (-\sin \theta \hat \i + \cos \theta \hat \j)\\
+	&= \frac{-r\beta^2t^4}{4}\cos\theta \hat \i - r\beta t \sin \theta \hat \i - \frac{r \beta^2t^4}{4} \sin \theta \hat \j + r \beta t \sin \theta \hat \j \\
+	&= \boxed{\hat \i \left(\frac{-r\beta^2t^4}{4}\cos \theta - r\beta t \sin \theta\right) - \hat \j \left(\frac{r\beta^2t^4}{4}\sin\theta + r\beta t \sin\theta \right)}
+	\end{align*}
+
+\subsection{Part c}
+
+I think it's clear just from the math that the polar coodinates are significnatly easier to write down than its cartesian coiunterpart.
+
+\section{Problem 9}
+\subsection{Part a}
+We have $\vec r(t) = x(t) \hat \i + y(t) \hat \j + z(t) \hat k$, so we can compute their derivatives:
+
+\begin{align*}
+	\dot {\vec r} (t) &= \dot x(t) \hat \i + \dot y(t) \hat \j + \dot z(t) \hat k\\
+	\ddot {\vec r}(t) &=  \ddot x(t) \hat \i + \ddot y(t) \hat \j + \ddot z(t) \hat k\\
+	\dddot{\vec r}(t) &= \dddot x(t) \hat \i + \ddot y(t) \hat \j + \ddot z(t) \hat k
+\end{align*}
+
+\subsection{Part b}
+In polar coordinates we have:
+\[ \vec a(t) = (\ddot r - r\theta^2)\hat r + (2\dot r \dot \theta + r \ddot \theta)\hat \theta)\]
+
+So we can take the derivative:
+
+\[ \dot {\vec a}(t) = \dddot r \hat r + \ddot \dot \theta \hat \theta - (\dot r \dot \theta ^2 \hat r + 2r \dot \theta \ddot \theta \hat r + r \dot \theta^2 \dot \theta \hat \theta) + 2(\ddot r \dot \theta \hat \theta + \dot r \ddot \theta \hat \theta + \dot r \dot \theta (-\dot \theta \hat r)) + \dot r \ddot \theta \hat \theta + r \dddot \theta \hat \theta + r \ddot \theta (-\dot \theta \hat r)\]
+
+We can combine like terms under $\hat r$ and $\hat \theta$:
+
+\[ \dddot {\vec r}(t) = \hat r (\dddot r - \dot r \dot \theta^2 - 2r \dot \theta \ddot \theta - 2 \dot r \dot \theta^2 - r\ddot \theta \dot \theta) + \hat \theta(\ddot r \dot \theta - r\dot \theta ^3 + 2 \ddot r \dot \theta + 2 \dot r \ddot \theta + \dot r \ddot \theta + r \dddot \theta)\]
+
+\subsection{Part c} 
+
+For uniform circular motion with radius $R$ and angular velociyt $\dot \theta = \omega$, then we know that $\ddot \theta = 0$, $\dddot \theta = 0$ and any $\dot r, \ddot r, \dddot r$ terms are also zero. This means that our long expression from part b simplifies to:
+
+\[ \dddot{\vec r}(t) = \hat \theta (-r\omega^3) = \boxed{-r\omega^3\hat \theta }\]
+
+
+	\end{document}

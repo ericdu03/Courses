@@ -1,0 +1,328 @@
+\documentclass{article}
+\title{Physics 5A Homework}
+\author{Eric Du}
+\date{\today}
+\usepackage[cm]{sfmath}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\usepackage{float}
+\lhead{Eric Du}
+\chead{Physics 5A Homework}
+\rhead{\today}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{148pt}
+\usepackage{color}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[sexy]{evan}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\usepackage{caption}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+
+
+\begin{document}
+	\maketitle
+	
+	
+
+\section{Chain Rule 1}
+
+\subsection*{Part a}
+Using chain rule:
+
+\[ \frac{d}{dt} h(x(t)) = h'(x(t)) \cdot x'(t)\]
+
+\subsection*{Part b}
+
+We have $h(x) = \log(x)$ and $x(t) = \sin(\beta t)$, so $h'(x) = \frac{1}{x}$ (I'm assuming that the log function is already in base $e$), and $x'(t) = \beta \cos(\beta t)$ so putting it all together:
+
+\[ \frac{d}{dt} h(x(t)) = \frac{1}{\sin(\beta t)} \cdot \beta \cos(\beta t) = \frac{\beta}{\tan(\beta t)}\]
+
+\subsection{Part c}
+
+We take the derivative of the result from part b:
+
+\[ \frac{d^2}{dt^2} h(x(t)) = \frac{d}{dt} \frac{\beta}{\tan(\beta t)} = -\frac{\beta^2 \sec^2(\beta t)}{\tan^2 (\beta t)} = -\beta^2 \csc^2(\beta t)\]
+
+	
+\section{Chain Rule 2}
+
+\subsection{Part a}
+We take the derivative of the $x,y$ and $z$ components separately:
+
+\[ \frac{dz}{dt} = \frac{\partial z}{\partial f(t)} \frac{df(t)}{dt} + \frac{\partial z}{\partial g(t)} \frac{dg(t)}{dt} + \frac{\partial z}{\partial t}\]
+
+
+\subsection{Part b}
+
+We have $f(t) = e^{\gamma t}, g(t) = e^{\delta t}$, $z(f(t), g(t), t) = \frac{f(t)}{g(t)} e^{\beta t}$. We apply the formula above using $z(f(t), g(t), t)$ to evaluate the partial derivatives. Side note, I will be using the prime notation ($f'(t)$) to denote the derivatives due to the chain rule:
+
+\[ \frac{dz}{dt} = \frac{e^{\beta t}}{g(t)} \cdot f'(t) - \frac{e^{\beta t}}{g(t)^2} f(t)  g'(t) + \frac{f(t)}{g(t)} \beta e^{\beta t}\]
+
+After evaluating the derivatives we get:
+
+\[ \gamma \frac{e^{\beta t}}{e^{\delta t}} \cdot e^{\gamma t} - \frac{e^{\gamma t} e^{\beta t}}{e^{2\delta t}} \cdot \delta e^{\delta t} + \frac{e^{\gamma t}}{e^{\delta t}} \cdot e^{\beta t}\]
+
+The rest is all simplification work using laws with exponents:
+
+\begin{align*}
+	\frac{dz}{dt} &= \gamma \left(e^{\beta - \delta + \gamma} \right)^t - \delta \left(e^{\gamma + \beta  + \delta - 2\delta}\right)^t + \beta \left(e^{\beta - \delta + \gamma}\right)^t  \\
+	&= \boxed{(\gamma - \delta + \gamma)e^{(\gamma - \delta + \gamma)t}}
+\end{align*}
+
+Which is our derivative. 
+
+\subsection{Part c} 
+We have the function $z(f(t), g(t), t) = \frac{f}{g} e^{\beta t}$ which is equal to $e^{(\gamma - \delta + \beta)t}$ via exponentiation laws. Since $\gamma$, $\delta$ and $\beta$ are all constants, we can rewrite the expressoin into $e^{At}$, where $A = \gamma - \delta + \beta$. Taking the derivative:
+
+\[ \frac{dz}{dt} = A e^{At}\]
+
+And now returning the variables: 
+
+\[ \frac{dz}{dt} = (\gamma - \delta + \beta) e^{(\gamma - \delta + \beta)t}\]
+
+Comparing this result with what we have in part b, we can see that both match perfectly.
+
+
+\subsection{Part c} 
+
+LITERALLY PLUG IT IN 
+
+
+%	\subsection{Part a}
+%	
+%	We can think of the components of $z(f(t), g(t), t)$ in 3d space as a combination of $z(f(t))$, $z(g(t))$ and $z(t)$ in the three spatial dimensions. Thus, we can use pythagorean theorem:
+%	
+%	\[ \frac{dz}{dt} = \frac{d}{dt}f(t) \hat{\i} + \frac{d}{dt} g(t) \hat{\j}+ \frac{d}{dt} t \hat{k}\]
+%	
+%	
+%	\subsection{Part b}
+%	
+%	Taking the derivative of $f(t)$ and $g(t)$:
+%	
+%	\begin{align*}
+%	\frac{d}{dt} &e^{\gamma t} = \gamma e^{\gamma t}\\
+%	\frac{d}{dt} &e^{\delta t} = \delta e^{\delta t}\\
+%	\frac{d}{dt} &t = 1
+%	\end{align*}
+%	
+%	So the final result for $\frac{dz}{dt}$ is: $\gamma e^{\gamma t} \hat{\i} + \delta e^{\delta t} \hat{\j} + \hat{k}$
+%	
+%	\subsection{Part c}
+%	
+%	From part b, we can get the net $\frac{dz}{dt}$ by applying the pythagorean theorem:
+%	
+%	\[ \frac{dz}{dt} = \sqrt{(\gamma e^{\gamma t})^2 + (\delta e^{\delta t})^2 + 1}\]
+
+
+\section{Complex Numbers, Taylor Expressions, Euler's formula}
+
+\subsection{Part a}
+
+Using the standard Taylor expansion method about $x = 0$:
+
+\[ \sin(x) = \sin(0) + \frac{cos(0) x}{1!} + \frac{-\sin(0) x^2}{2!} + \frac{-\cos(0) x^3}{3} + \frac{\sin(0)x^4}{4!} = x - \frac{x^3}{3!}\]
+
+\subsection{Part b}
+
+Repeating the same process as part a) but with a different function:
+
+\[ \cos(x) = \cos(0) + \frac{-\sin(0) x}{1!} + \frac{-\cos(0)x^2}{2!} + \frac{\sin(0)x^3}{3!} + \frac{\cos(0)x^4}{4!} = 1-\frac{x^2}{2!} + \frac{x^4}{4!}\]
+
+\subsection{Part c}
+
+Same process...:
+
+\[ e^x = e^0 + \frac{e^0 x}{1!} + \frac{e^0x^2}{2!} + \frac{e^0x^3}{3!} + \frac{e^0 x^4}{4!} + \dots = 1 + x + \frac{x^2}{2!} + \dots + \frac{x^n}{n}\]
+
+\subsection{Part d}
+
+We expand the taylor series for $e^{ix}$ and compare terms:
+
+\[e^{ix} = e^0 + ix + \frac{(ix)^2}{2!} + \frac{(ix)^3}{3!} + \frac{(ix)^4}{4!}\]
+
+We can simplify this using the fact that $i^2 = -1$:
+
+\[e^{ix} = 1 + ix - \frac{x^2}{2!} - \frac{ix^3}{3!} + \frac{x^4}{4!} = 1-\frac{x^2}{2!} + \frac{x^4}{4!} + i\left(x - \frac{x^3}{3!}\right)\]
+
+We now see from parts a) and b) that $1 - \frac{x^2}{2!} + \frac{x^4}{4!}$ is the $\cos(x)$ term, and likewise the $x - \frac{x^3}{3!}$ is the $\sin(x)$ term. It then follows from this that $e^{ix} = \cos(x) + i\sin(x)$, as required.
+
+\subsection{Part e}
+
+From part d we've established that $e^{ix} = 1-\frac{x^2}{2!} + \frac{x^4}{4!} + i\left(x - \frac{x^3}{3!}\right)$. Likewise, we also have $e^{-ix} = 1-\frac{x^2}{2!} + \frac{x^4}{4!} - i\left(x - \frac{x^3}{3!}\right)$. We can get rid of the $i\sin(x)$ term by adding the two:
+
+\begin{align*}
+	e^{ix} + e^{-ix} &= 2\left(1 - \frac{x^2}{2!} + \frac{x^4}{4!}\right) = 2\cos(x)\\
+	&\therefore \cos(x) = \frac{e^{ix} + e^{-ix}}{2}
+\end{align*}
+
+
+\section{Trig Identities}
+
+We express $\cos^2(x)$ in terms of the formula we derived above:
+
+
+\[	\cos^2(x) = \left(\frac{e^{ix} + e^{-ix}}{2}\right)^2 = \frac{e^{2ix} + 2 e^{ix}e^{-ix} + e^{-2ix}}{4}\]
+
+Note that $e^{ix} e^{-ix} = 1$, so this equation simplifies into:
+
+\[ \cos^2(x) = \frac{1}{2} + \frac{1}{2} \cdot \frac{e^{2ix} + e^{-2ix}}{2}\]
+
+We recognize that $\dfrac{e^{2ix} + e^{-2ix}}{2} = \cos(2x)$, so we have the result:
+
+\[ \cos^2{x} = \frac{1 + \cos(2x)}{2}\]
+
+$\blacksquare$
+
+
+\section{Integrals and DE's}
+
+We have the differential equation $\frac{dy}{dx} = a + by(x)$. We let a funciton $u(x) = a + by(x)$, giving us 
+
+\[\frac{du}{dx} = by(x) \cdot \frac{dy}{dx} \implies \frac{dy}{dx} = \frac{1}{b} \frac{du}{dx}\]
+
+Now we subsittue $\frac{du}{dx}$ and $u(x)$ into the original differential equation:
+
+\begin{align*}
+\frac{1}{b} \frac{du}{dx} &= u(x)\\
+\frac{du}{dx} &= b\cdot u(x)\\
+\int\frac{du}{u(x)} &= \int b \ dx\\
+\log(u(x)) &= bx + C\\
+\therefore u(x) &= Ae^{bx}
+\end{align*}
+
+Note that we use $A = e^C$ for conveinience, since $C$ is an arbitrary constant. We then substitute back $u(x) = a+ by(x)$ to get:
+
+\[ a + by(x) = Ae^{bx} \implies y(x) = \frac{Ae^{bx} + a}{b}\]
+
+
+\section{Vectors and Basic Kinematics}
+
+\subsection{KK 1.3}
+
+We have $\mathbf{A} = (3, 1, 1)$ and $\mathbf{B} = (-2, 1, 1)$, so taking the dot product:
+
+\[\mathbf{A} \cdot \mathbf{B} = (3)(-2) + (1)(1) + (1)(1) = -4\]
+
+Alternatively we can also calculate dot product using $\mathbf{A} \cdot \mathbf{B} = |\mathbf{A}||\mathbf{B}| \cos(\theta)$, so applying this rule: $|\mathbf{A}| = \sqrt{11}$ and $\mathbf{B}| = \sqrt{6}$. We can now combine both equations and solve for $\cos(\theta)$:
+
+\[ \cos{\theta} = \frac{\mathbf A \cdot \mathbf B}{|\mathbf A| |\mathbf B|} = \frac{-4}{\sqrt{66}}\]
+
+Which yields a value of $\theta = 119.50^\circ$
+
+\medskip
+
+We have the angle between the two vectors so taking the sine we get: $\sin(119.50^\circ) = 0.87$. 
+
+
+%DO THE SINE PART
+
+\subsection{KK 1.6}
+
+Consider this equilateral parallelogram having vertices labelled $ABCD$ in a clockwise fashion. We can express the diagonals as $\mathbf{DA} + \mathbf{DC}$ and $\mathbf{DA} - \mathbf{DC}$. To show that they are perpendicular, we aim to show that the dot product between these two vectors are zero. Thankfully, all we need to do is to compute the dot product:
+
+\[ (\mathbf{DA} + \mathbf{DC})\cdot (\mathbf{DA} - \mathbf{DC}) =DA^2 - DC^2\]
+
+But since we know that in an equilateral paralellogram the sides have equal lengths then $DA^2  - DC^2 = 0$, completing the proof. $\blacksquare$
+
+\subsection{KK 1.7}
+%use the fact that area of triangle = 1/2 area of parallelogram *clever!
+
+Consider a triangle defined by vectors $\vec{a}$, $\vec{b}$ and $\vec{c}$ with interior angles $\alpha$, $\beta$ and $\gamma$. If we compute the magnitude of the cross product $|\vec{a} \times \vec{b}|$, we are evaluating the area of the parallelogram, which is twice the area of the triangle, so dividing that by 2 will give us the area of the triangle. 
+
+\medskip
+
+We can do this with the other vectors as well: $|\vec{b} \times \vec{c}|$ and $|\vec{c} \times \vec{a}|$, where half of those values will also give us the area of the triangle. Thus, making them equal to each other:
+
+\[\frac{1}{2} |\vec{a} \times \vec{b}| = \frac{1}{2}|\vec{b} \times \vec{c}| = \frac{1}{2}	|\vec{c} \times \vec{a}|\]
+
+Thus: 
+
+	\[ab \sin(\alpha) = bc \sin(\beta) = ac \sin(\gamma) \implies \frac{a}{\sin(\beta)} = \frac{c}{\sin(\alpha)} = \frac{b}{\sin(\gamma)}\]
+
+
+Which is the sine law.
+\subsection{KK 1.10}
+
+\subsubsection{Part a}
+We have the vector $\mathbf{A} = 3 \hat \i + 4 \hat \j - 4 \hat k$ meaning that $\mathbf{A} = (3, 4, -4)$. Since $\mathbf{B}$ is in the $xy$-plane, it means that its magnitude in the $z$-direction is 0. Hence, we can write $\mathbf{B} = (a, b, 0)$. Computing dot product and setting that equal to zero:
+
+\[ \mathbf{A} \cdot \mathbf{B} = (3, 4, -4) \cdot (a, b, 0) = 0 \implies 3a =\frac{-4b}{3}\]
+
+Since $\mathbf{B}$ is a unit vector, then we also have $a^2 + b^2 = 1$. Combining the two conditions:
+
+\begin{align*}
+		\left(\frac{-4b}{3}\right)^2 + b^2 &= 1\\
+		\frac{12}{9} b^2 + b^2 &= 1\\ 
+		\frac{25}{9}b^2 = 1 \implies b &= \frac{3}{5}
+\end{align*} 
+
+Now we can put this back to solve for $a$: 
+
+\[ a = \frac{-4}{3} \cdot \frac{3}{5} = \frac{-4}{5}\]
+
+So therefore we have $\mathbf{B} = (\frac{-4}{5}, \frac{3}{5}, 0)$. 
+
+\subsubsection{Part b}
+
+Finding the cross product is the same as finding the determinant of the following matrix:
+
+ \begin{align*}
+\mathbf{C} = 	\mathbf{A} \times \mathbf{B} &= \begin{vmatrix}
+	\hat \i & \hat \j & \hat k \\
+	3 & 4 & -4 \\
+	\frac{-4}{5} & \frac{3}{5} & 0 
+\end{vmatrix}\\
+&= \hat \i\left(4\cdot 0 + 4\cdot \frac{3}{5}\right)+ \hat \j \left(4 \cdot \frac{4}{5}\right) + \hat k \left(3 \cdot \frac{3}{5} + 4 \cdot \frac{4}{5}\right)\\
+&= \frac{12}{5} \hat \i + \frac{16}{5} \j + 5 \hat k\\
+&= \left(\frac{12}{5}, \frac{16}{5}, 5 \right)
+\end{align*}
+
+To find $\hat{\mathbf{C}}$, we need to find the magnitude using pythagorean theorem: 
+
+\[ |\mathbf{C}| = \sqrt{\left(\frac{12}{5}\right)^2  + \left(\frac{16}{5}\right)^2 + 5^2} = \sqrt{41}\]
+
+
+Now we divide $\mathbf{C}$ by $|\mathbf{C}|$ to get $\hat{\mathbf{C}}$:
+
+\[ \hat{\mathbf{C}} = \left( \frac{12}{5\sqrt{41}}, \frac{16}{5\sqrt{41}}, \frac{5}{\sqrt{41}} \right)\]
+
+
+
+\subsubsection{Part c}
+
+It suffices to say that since we constructed all vectors to be perpendicular to each other, their planes must also be perpendicular to each other. Thus, vector $\mathbf{A}$ is definitely perpendicular to the plane defined by $\mathbf{B}$ and $\mathbf{C}$ since $\mathbf{A}$ is perpendicular to both vectors $\mathbf{B}$ and $\mathbf{C}$
+
+
+\subsection{KK 1.14}
+
+The general vector equation for $\mathbf{A}(t)$ can be written as $\vec{r_1} - k \cdot(\vec{r_2}-\vec{r_1})$ where $k$ is some constant. 
+
+\medskip
+
+There are constraints given within the problem that allow us to determine the exact value of $k$. First, $\mathbf{A}(t)$ is defined to be equal to $\vec{r_1}$ at $t = t_1$, meaning that at $t_1$, $k \cdot (\vec{r_2} - \vec{r_1}) = 0$ or simply $k=0$. In other words, $k$ has some $t-t_1$ term, since that's the only way that we can guarantee that $k=0$ at $t_1$. 
+
+\medskip
+
+There's also the condition that $\mathbf{A}(t_2) = \vec{r_2}$, meaning that at $t = t_2$, $k \cdot (\vec{r_2} - \vec{r_1}) = \vec{r_2}-\vec{r_1}$, implying that $k=1$ at this time. And since $t_2 = t_1+T$, $t-t_1 = T$, the condition that $k=1$ at time $t_2$ is only possible if $k$ has a $\frac{1}{T}$ term. 
+
+\medskip
+
+So combining the two conditions, we get that $k = \frac{t - t_1}{T}$. Thus, our final equation is:
+
+\[ \mathbf{A}(t) = \vec{r_1} + \frac{t-t_1}{T} (\vec{r_2} - \vec{r_1})\]
+
+\end{document}

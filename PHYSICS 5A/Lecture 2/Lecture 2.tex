@@ -1,0 +1,173 @@
+\documentclass{article}
+\title{Physics 5A: Lecture 2}
+\author{Eric Du}
+\date{\today}
+\usepackage[cm]{sfmath}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\usepackage{float}
+\lhead{Eric Du}
+\chead{Physics 5A: Lecture 2}
+\rhead{\today}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{148pt}
+\usepackage{color}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[sexy]{evan}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\usepackage{caption}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+\begin{document}
+	\maketitle 
+	
+	\section{Brief Review - 1D Motion}
+	
+	You can graph the position of an object over time as a graph of $y(t)$ (for instance) over a time $t$. Some general things that you should keep at the back of your head:
+	
+	\begin{itemize}
+		\item \textbf{Average velocity:} $<v> = \frac{y(t_2) - y(t_1)}{t_2-t_1}$. It has the same quantity as the slope of the line connecting $(t_1, y(t_1)$ and $(t_2, y(t_2)$
+		\item \textbf{Instantaneous Velocity:} also known as $\dfrac{dy}{dt}$ or $\dot{y}$, is the instantaneous case of the average velocity. It's also defined as the tangent slope. 
+		\begin{itemize}
+			\item Formula: \[\lim_{\delta \to 0} \dfrac{y(t+\delta) - y(t)}{\delta}\]
+			\item Velocity curve is essentially a graph of the tangent slope at all given $t$
+			\end{itemize}
+		\item \textbf{Average acceleration:} $\bar{a} = \frac{v(t_2)- v(t_1)}{t_2 - t_1}$
+		\item \textbf{Instantaneous Acceleration:} \[\frac{dv}{dt} = \ddot{x} = \dot{v} = \lim_{\delta \to 0} \frac{v(t_\delta) - v(t)}{\delta}\] 
+	\end{itemize}
+	Average and instantaneous velocity have units of $m/s$, and average and instantaneous acceleration have units of $m/s^2$
+	
+	\begin{example}
+		If $y = y_0 \sim(\omega t)$, compute $\dot{y}$ and $\ddot{y}$
+		
+		\end{example}
+	
+	\begin{solution}
+		Taking the derivative twice we get:
+		\begin{align*}
+			\dot{y}(t) &= y_0\omega \cos (\omega t) \\
+			\ddot{y}(t) &= -y_0 \omega^2 \sin(\omega t) 
+		\end{align*}
+	
+	\begin{example}
+		If $y = ct^2 + dt + e$, find $\frac{dy}{dt}$ and $\frac{d^2y}{dt^2}$.
+		\end{example}
+	
+	\begin{solution}
+		We have:
+		
+		\begin{align*}
+			\frac{dy}{dt}&= 2ct + d\\
+			\frac{d^2y}{dt^2} &= 2c
+		\end{align*}
+	\end{solution}
+	\end{solution}
+
+\section{Vector Calculus}
+
+Same terms but defined in vector form:
+
+\subsection*{Average Velocity}
+	We can write the average velocity as: 
+	
+	\begin{align*}
+		<\vec{v}> &= \frac{\vec{r}(t_2) - \vec{r}(t_1)}{t_2-t_1} \\
+		&= \frac{\left[x(t_2)\hat{\i} - y(t_2) \hat{\j}\right] - \left[x(t_1)\hat{\i} - y(t_1) \hat{\j}\right]}{t_2-t_1}
+	\end{align*}
+
+With some clever grouping we can rearrange this into:
+
+\[ <\vec{\bar{v}}> = v_x \hat{\i} + v_y \hat{\j}\]
+
+\subsection*{Instantaneous Velocity}
+
+You can do the limit definition, but in the end you get the same thing:
+
+\[ \vec{v} = \dot{x} \hat{\i} + \dot{y} \hat \j + \dot z \hat k\]
+
+
+\subsection*{Instantaneous Acceleration}
+
+Again, the same limit definition:
+
+\[ \vec{a} = \ddot x \hat \i + \ddot y \hat \j + \ddot z \hat k\]
+
+
+\subsection*{General Path}
+
+Assume you have three vectors $\vec{r}$, $\vec{v}$ and $\vec{a}$, which are the radial, velocity and acceleration vectors respectively. (meaning that they are derviatives of each other) We can establish a relationship between the vectors using differentiation and integration:
+
+\[ \int \vec a(t) dt = \int \frac{d\vec v}{dt} \]
+
+If you split into te components:
+
+\begin{align*}
+	\int \vec a(t) dt = \int \frac{d\vec v}{dt} &=	\int a_x(t)\hat{\i} \  dt + \int a_y(t) \hat \j  \ dt+ \int a_z(t) \hat k  \ dt\\
+	&= \hat \i \int \frac{dx}{dt} \  dt + \hat \j \int \frac{dy}{dt} \ dt + \hat k \int \frac{dz}{dt}\  dt \\
+	&= \hat \i [v_x(t) + c_x] + \hat \j [v_y(t) + c_y] + \hat k [v_z(t) + c_z]
+\end{align*}
+
+Notice that $v_x(t)$, $v_y(t)$ and $v_z(t)$ are just the velocity vectors in their respective directions, which all add up to $\vec{v}(t)$. So we conclude:
+
+\[ \int \vec a(t) dt = \vec{v}(t) + \vec{c}\]
+
+\begin{remark} [constant acceleration $\vec{a}$] 
+	If you integrate from $0$ to a constant $t$:
+	
+	\begin{align*}
+		 \int_0^t \vec a dt' &= \int_0^t \frac{d \vec v}{dt} (t') dt'\\
+		 \vec a \int dt  &= \vec v(t) - \vec v(0)\\ 
+		 \vec a(t) &= \vec v(t) - \vec v(0) \implies \vec v(t) = \vec v(0) + at
+		 \end{align*}
+	 
+	 Where we arrive at one of the kinematic formulas. You can dot each of these solutions by $\hat \i, \hat \j$, or $\hat k$ to derive the $a_x(t), a_y(t)$ and $a_z(t)$ formulas.
+	
+	
+	We can do the same process for velocity to position:
+	
+	\begin{align*}
+		\int_0^t  \vec v(t) \ dt' &= \int_0^t \frac{d \vec v}{dt} \ dt \\
+		\int_0^t \vec a t' + \vec v(0) \ dt' &= \vec x(t) - \vec x(0)
+	\end{align*}
+
+	If we have $\vec a(t)$ constant, we get: 
+	
+	\[ \vec a \int_0^t t' \ dt + \vec v(0) \int_0^t \ dt' = \vec x(t) - \vec x(0) \implies x(t) = \frac{1}{2}\vec at^2 + \vec v(0)t + \vec x(0)\]
+	\end{remark}
+
+\subsection{That one monkey problem}
+
+Considering the $y$-position of the monkey through time: 
+
+\begin{align*}
+	\vec x_m(t) &= -g \frac{1}{2} t^2 \hat \j + x_m(0) \hat \i + v_x(0) \hat \i\\
+	\vec x_b(t) &= -g \frac{1}{2} t^2 \hat \j + [v_{0x} \hat \i + v_{0y} \hat \j] t
+\end{align*}
+
+
+\subsection{Optimal projectile motion}
+
+We have the general equation $x(t) = \vec a_0 \frac{1}{2} t^2  + \vec v_0(t) + x_0$, and we have $\vec a_0 = -g\hat \j$ and $\vec v_0 = v_0 \cos(\theta) \hat \i + v_0 \sin(\theta) \hat \j$. 
+
+We can multiply the first equation by $\hat \i$ to get the $x$ component, and then $\hat \j$ for the $y$ component:
+
+\begin{align*}
+	x(t) = 0 + v_0\cos(\theta) t \\
+\end{align*}
+
+
+	
+\end{document}
