@@ -1,0 +1,115 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{local}
+
+
+\newcommand{\classcode}{Physics 5C}
+\newcommand{\classname}{Midterm Review}
+
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{\phantom{i} \hfill \classcode}
+\newline
+\large{Eric Du} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+
+\begin{document}
+\maketitle
+
+    \section*{Chapters 3: Statistical Mechanics}
+
+    \begin{itemize}
+        \item Stirling's approximation: $\ln n! = n \ln n - n$
+        \item Discrete probability distribution $\mean{x} = \sum_i x_iP_i$, where $P_i$ denotes the probability of finding $x_i$.
+        \item Continuous Probability Distribution $\mean{x} = \int xP(x) dx$
+        \item For independent variables, $P(u, v) \Delta u \Delta v = P(u) du \cdot P(v) dv$, and $\mean{uv} = \mean{u}\mean{v}$
+        \item Random Walk: defined as a situation where it is equally likely for a particle to walk a distance $+a$ and $-a$. The resulting mean is $\mean{x} = 0$, but $\sigma_x^2 = na^2$.
+    \end{itemize}
+
+    \subsection*{Linear Transforms}
+
+    \begin{itemize}
+        \item $y = mx + b$ gives us $\mean{y} = m\mean{x} + b$, and $\sigma_y^2 = m^2\sigma_x^2$
+    \end{itemize}
+
+    \section*{Ideal Gas Law}
+
+    States that $PV = nRT$, or that $PV = nk_BT$, where $R = N_A k_B$ and $n = \frac{N}{N_A}$. 
+
+    \section*{Chapter 5: Maxwell Boltzmann Distribution}
+
+    An incredibly general statement about the distirbution of variables which follow from a statistical distribution. That is, for a function like $\Omega(E)$ which is defined as the number of microstates, and the number of microstates is defined via a combinatorial argument, then we get this distribution shape. 
+
+    Mathematically, we have the equation 
+
+    \[ \frac{d \ln \Omega(E)}{dT} = \frac{1}{k_BT}\]
+
+    \section*{Chapter 6: Pressure} 
+
+
+    \section*{Ideal Gas Law}
+
+    States that $PV = nRT$, or that $PV = nk_BT$, where $R = N_A k_B$ and $n = \frac{N}{N_A}$. It is a combination of multiple laws coming together. 
+
+
+    \section*{Chapter 11: Energy}
+
+    \subsection*{Functions of State}
+
+    They are defined when a state is at equilibrium. The idea is that a variable is a function of state if we can \textit{generate} a system which, at equilibrium, has a value as that function of state. 
+
+
+    \subsection*{Heat Capacity} 
+
+    $c = \frac{dU}{dT}$ always when temperature is changing. Otherwise, $c = \frac{dQ}{T}$ if temperature is constant.
+
+    \begin{itemize}
+        \item If there's no work, then $dU = dQ$, so therefore $c = \frac{dQ}{dT}$ is also a valid formula. 
+    \end{itemize}
+
+    Note that heat capacity is actually a very poor term for this, we should really be thinking of this as energy capacity instead. 
+
+    \subsection*{Laws of Thermodynamics}
+    
+    \begin{itemize}
+        \item \textbf{Zeroth Law:} If two systems $A$ and $B$ are in thermal equilibrium with another system $C$, then $A$ and $B$ are also in thermal equilibrium with each other.
+        \item \textbf{First Law:} The total energy in a system is given by the total heat transferred to the system and the work done on the system. Conversely, the total change in energy of a system is given by the sum total of the change in heat as well as the work done (or done by) the system. Essentilaly, think of it as a reframing of the conservation of energy
+        
+        \[ dU = dQ + dW\] 
+
+        For a thermodynamic process, we often have $dW = - pdV$ as the system does work on the outside, so we often write 
+
+        \[ dU = dQ - pdV\]
+
+        \item \textbf{Second Law:} The total change in entropy of a reversible system is zero, wheras the change in entropy of an irreversible system is always positive. The change in entropy cannot be a net negative number. In other words,
+        \[ \Delta S \ge 0\] 
+
+        for any thermodynamic system. 
+    \end{itemize}
+
+
+    \section*{Office Hours Questions}
+
+    \begin{itemize}
+        \item Since $dQ$ is labelled as an \textit{inexact differential}, what form does it take on that makes it an inexact one?
+        \item Why is the Boltzmann Distribution the way it is?
+        \item Why is it that a system can be described exactly usingn three variables, and not more? What gives?
+        \item How did we derive the relation $S = k_B \ln \Omega$?
+        \item Particle mixing problem: why is it that having two identical particles in both chambers give us no changing entropy? 
+    \end{itemize}
+\end{document}

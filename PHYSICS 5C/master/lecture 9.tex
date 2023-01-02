@@ -1,0 +1,130 @@
+The ninth lecture of Physics 5C was held on  \textbf{Thursday, September 13}. It continued our discussion of entropy and also introduced the equipartition theorem. 
+
+\section{Last time: Entropy} 
+
+Last lecture we defined entropy as $S = k_B \ln \Omega$. However, this equation was only true for a microcanonical ensemble (recall that this is a system where the total energy is fixed, see definition \ref{def:Ensemble}), so in this lecture we want to derive a more general definition of entropy.
+
+\section{A more useful definition of entropy}
+
+Earlier in the course we defined $\mean{E} = \sum P_i E_i$. This works well for gases of all types, so is it possible for us to find a formulation for entropy that works the same way? If we naively try to define entropy as 
+
+\[ \mean{S} = \sum P_i S_i\] 
+
+then this approach would fail for systems with a small number of particles, since this would imply that $\mean{S} = \sum P_i k_B \ln 1 = 0$. More formally, this approach does not work because $S = k_B \ln \Omega$ is a statistical definition for entropy, so by definition it requires a large number of particles in order for it to work.
+
+Let's try another approach. Consider two systems, one microscopic and one reservoir. 
+
+[INSERT TIKZ HERE]
+
+Since the reservoir has a large number of particles, its entropy is well defined. Further, the combination of systems 1 and 2 is also well defined since it, too, contains a large number of particles. We will use the fact that system 2, and the combination of 1, 2 are well defined to derive an expression for the entropy of 1. 
+
+We can write the total entropy of the system as
+
+\[ \mean{S_{\text{total}}} = \mean{S_1} + \mean{S_2} \implies \mean{S_1} = \mean{S_{\text{total}}} - \mean{S_2}\]
+
+Now assume that system 1 has $m$ microstates, labelled $1, 2, \dots, m$. Now suppose that for the $i$-th microstate in system 1, there are $n_i$ microstates in system 1. Therefore, the total number of microstates can be written as 
+
+\[ N = \sum_{i = 1}^m n_i\]
+
+So the probability of finding system 1 in any $i$-th microstate is
+
+\[ P_i = \frac{n_i}{N}\] 
+
+\begin{insight*}{}
+    Note that this expression for $P_i$ inherently carries in the assumption that \textbf{all microstates are equally likely}, which while we've assumed this thorughout our study of thermodynamics, is still important to remark here.
+\end{insight*}
+
+The total entropy is then $S_{\text{total}} = k_B \ln N$, and the entropy for system 2
+
+\[ \mean{S_2} = \sum_i P_i k_B \ln n_i = \sum \frac{n_i}{N} k_B \ln n_i\] 
+
+Therefore, 
+
+\begin{align*}
+    \mean{S_1} &= \mean{S_{\text{total}}} - \mean{S_2}\\
+    &= k_B \ln N \left(\sum_i \frac{n_i}{N}\right) - k_B \sum_i \frac{n_i}{N} \ln n_i\\
+    &= \sum_i k_B \frac{n_i}{N} \ln \left(\frac{N}{n_i}\right)\\
+    &= -k_B \sum_i \frac{n_i}{N} \ln \left(\frac{n_i}{N}\right)\\
+    &= -k_B \sum P_i \ln P_i
+\end{align*}
+
+Note that this definition, unlike our prevoius attempt, also works for microscopic systems, and is consistent with $S = k_B \ln \Omega$. Just to illustrate this point: 
+
+\[ P_i = \frac{1}{\Omega} = -k_B \sum_i \frac{1}{\Omega} \ln \frac{1}{\Omega} = -k_B \ln \frac{1}{\Omega} = k_B \ln \Omega\] 
+
+Then, we will use this to derive the Boltzmann distribution. 
+
+\section{Boltzmann Distribution} 
+
+Recall that a system is in equilibrium if its entropy is maximized. Therefore, we want to maximize $S = -k_B \sum P_i \ln P_i$, while still holing $\sum_i P_i = 1$ and $\sum_i P_i E_i = U$, the total energy. To do this we use the method of \textit{Lagrange multipliers}. We won't go too in depth about how Lagrange multipliers works, but in essence, it means that we can derive an equation of the form
+
+\[\frac{S}{k_B} - \alpha \left(\text{constraint 1}\right) - \beta \left(\text{constraint 2}\right) = f(P_i)\] 
+
+where $\alpha$ and $\beta$ are constants. In our case, the first constraint is that $\sum_i P_i = 1$, and our second constraint is $\sum_i P_i E_i = U$, so if we substitute these two in and take the partial derivative
+
+\begin{align*}
+    0 &= \frac{\partial f(P_j)}{\partial P_j} = -\ln P_j - 1 - \alpha - \beta E_j\\
+    \therefore \ln P_j &= -1 - \alpha - \beta E_j\\
+    P_j &= e^{-1 - \alpha} e^{-\beta E_j}\\
+    &= \frac{e^{-\beta E_j}}{e^{1 + \alpha}}\\
+    &= \frac{e^{-\beta E_j}}{Z}
+\end{align*}
+
+where we let $Z = e^{1 + \alpha}$. Now, we can use the fact that $\sum P_j = 1$, so therefore 
+
+\[ \sum_j \frac{e^{-\beta E_j}}{Z} = 1 \implies Z = \sum_j e^{-\beta E_j}\]
+
+Similarly, since we have $\sum_i P_i E_i = U$, this defines $\beta = \frac{1}{k_BT}$ after algebra. Thus, our final expression is of the form 
+
+\[ P_i \propto e^{-\frac{E_i}{k_BT}}\] 
+
+which is exactly the Boltzmann distribution! 
+
+\section{Classical energy distribution of molecules} 
+
+Up until this point, we've been inherently asusming that our gases are uniform and also, more importantly, monoatomic. However, we know that diatomic and more complex molecules exist, so how exactly are they modelled? 
+
+To answer this question, let's consider a diatomic gas, say \ch{O2}: how many linear degrees of freedom does it have? Well, it can move in all three $x, y, z$ directions, and in each direction it has kinetic energy
+
+\[ E_k = \frac12 \mu \dot x^2\] 
+
+Now let's ask ourselves: what is the average kinetic energy of such a system in thermoequilibrium: 
+    
+\[ \mean{E_k} = \infint E_k(v) P(v) \dd v = \frac{\infint \frac 12 \mu_v^2 e^{-\beta \cdot \frac 12 \mu v^2} \dd v}{\infint e^{-\beta \cdot \frac 12 \mu v^2} \dd v}\]
+
+Now we introduce new variables
+
+\[ x^2 = \frac 12 \mu v^2 \beta; \phantom{aaa} x = \sqrt{ \frac 12 \mu v^2 \beta}\] 
+
+Plugging these back in:
+
+\begin{align*}
+    \mean{E_k} &= \frac{\infint \frac{x^2}{\beta}e^{-x^2} \cdot \frac{1}{\sqrt{1/2 \mu \beta}} \dd x}{\infint e^{-x^2} \cdot \frac{1}{\sqrt{1/2 \mu \beta}}}\\
+    &= k_BT \frac{\infint x^2 e^{-x^2} \dd x}{\infint e^{-x^2} \dd x}
+\end{align*}
+
+At this point, there are a couple things we can do: we could either suffer thorugh the computation for these two integrals (which is doable, if you're so inclined), or we could just look at an integral table for the solutions to these integrals. Doing the latter, we get the remarkable result: 
+
+\[ \mean{E_k} = \frac{k_BT}{2}\] 
+
+This implies that the average kinetic energy depends only on temperature only. Furthermore, notice that this process can be applied to any variable which has quadratic dependence on a variable. Therefore, quantities such as potential energy: $\frac 12 kx^2$ also follow in the same fashion, so therefore
+
+\[ \mean{E_p} = \frac{k_BT}{2}\] 
+
+as well! Since $\mean{E_k} = \mean{E_p}$, we call this the equal partition theorem, since the energy is partitioned perfectly between potential and kinetic energy.
+
+\subsection{Extending this to general gases} 
+
+Now let's extend what we've just derived to a diatomic gas. In a diatomic gas, we have 7 degrees of freedom: 
+
+\begin{enumerate}
+    \item Three translational components $v_x, v_y, v_z$
+    \item Two rotational components $\omega_x, \omega_y$. There is no $\omega_z$ component here becuase it makes no sense to think about a particle rotating along its axis
+    \item Two vibrational energies $E_k, E_p$. This refers to the idea that we can think of diatomic molecules as springs, which share kinetic and potential energy between them. 
+\end{enumerate}
+
+Now note that all of these quantities have quadratic dependence on some parameter, so each one of these will give us a factor of $\frac 12 k_BT$, so therefore 
+
+\[ U = (3 + 2 + 2) \frac{k_BT}{2} = \frac{7k_BT}{2}\] 
+
+Therefore, we can calculate $C_V = \frac{\partial U}{\partial T} = \frac{7k_B}{2} N$. However, note one thing: the vibrational components of the energy (even at room temperature) have so low energy that they don't really contribute, and so the observed energy is closer to $\frac{5}{2} k_BT$ rather than the full $\frac{7}{2} k_BT$. The lack of contribution is due to the fact that vibrational energies are quantized.

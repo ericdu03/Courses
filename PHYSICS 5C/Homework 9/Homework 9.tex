@@ -1,0 +1,241 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 5C}
+\newcommand{\classname}{Introductory Thermodynamics and Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 09} \large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Problem 1} 
+
+    A particle is initially in the lowest eigenstate of a one-dimensional infinite square well extending from $x = 0$ to $x = L/2$. Its space wave function, correctly normalized, is given by 
+
+    \[ \psi(x) = \frac{2}{\sqrt L} \sin \frac{2\pi x}{L}\] 
+
+    (Check this.) Suddenly the right-hand wall of the well is moved to $x = L$. 
+
+
+    \begin{enumerate}[(a)]
+        \item Using Eq. 8-9, calculate the probability that the particle is in the \textit{second} state of the widened well. (Note that t wavelength within the well, and hence the energy, for this state is the same as for the initial state of the narrower well.)
+        
+        \begin{solution}
+            We know that any wavefunction $\psi(x)$ can be written as a superposition of eignestates, in other words $\psi(x) = \sum_{n = 1}^\infty c_n \psi_n(x)$. And using Equation 8-9, we have:
+
+            \[ c_n = \int_0^{L/2} \frac{2}{\sqrt{L}} \sin \frac{2\pi x}{L} \sqrt{\frac 2L} \sin \frac{n \pi x}{L} dx\]
+
+            Therefore: 
+
+            \begin{align*}
+                c_2 &= \int_0^{L/2} \frac{2}{\sqrt{L}} \sin \frac{2\pi x}{L} \sqrt{\frac 2L} \sin \frac{2 \pi x}{L} dx\\
+                &= \frac{2\sqrt{2}}{L} \cdot \frac{L}{2}\\
+                &= \frac{1}{\sqrt{2}}
+            \end{align*}
+
+            Therefore, the probability is $|c_2|^2 = \frac{1}{2}$. 
+        \end{solution}
+
+        \item What is the probability that the particle would be found in the \textit{ground} state of the widened well?
+        
+        \begin{solution}
+            Using the same process, we calculate $c_1$: 
+
+
+            \begin{align*}
+                c_1 &= \int_0^{L/2} \frac{2}{\sqrt{L}} \sin \frac{2\pi x}{L} \sqrt{\frac 2L} \sin \frac{\pi x}{L} dx\\
+                &= \frac{2\sqrt 2}{L} \cdot \frac{2L}{3\pi}\\
+                &= \frac{4 \sqrt 2}{3\pi}
+            \end{align*}
+
+            And so therefore the probability is $|c_1|^2 = \frac{32}{9\pi^2}$.
+        \end{solution}
+
+        \item Would you expect energy to be conserved in the expansion? Discuss. 
+        
+        \begin{solution}
+            Here, we do expect energy to be conserved. Because this is an infinite square well, there is nowhere else the energy could go.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 2}
+
+    Consider a particle of mass $m$ in a vee-shaped potential whose analytic form is 
+
+    \[ V(x) = \begin{cases}
+        -bx & (x \le 0)\\
+        bx & (x \ge 0)
+    \end{cases}\]
+
+    This provides a far better illustration of the use of the uncertainty principle th the square well discussed in the text (Sectiom 8-6) because in that case an exact analytical solution of the \schrodinger equation was readily available, whereas here it is not. Show that the energy of the lowest state is of the order $(\hbar^2 b^2/m)^{1/3}$. (Check that this somewhat strange-looking result is correct dimensionally.)
+
+    \begin{solution}
+        From the uncertainty principle, we know that $\Delta x \Delta p \ge \hbar$. Since the total energy can be expressed as: 
+
+        \[ E = \frac{p^2}{2m} + V(x)\] 
+
+        Then therefore, based on the uncertainty principle, we have 
+
+        \[ E \ge \frac{\hbar^2}{2m \Delta x^2} + b \sqrt{x^2}\] 
+
+        First, we substitute $\Delta x = x$, since they are of the same order on small scales. We then want to minimize this function, so therefore we take the derivative: 
+
+        \[ \frac{dE}{dx} = 0 = \frac{-2\hbar^2}{2mx^2} + b \implies x = \left(\frac{\hbar^2}{mb}\right)^{1/3}\] 
+
+        We then plug this back into $E$: 
+
+        \[ E = \frac{\hbar^2}{2mx^2} + bx\] 
+
+        The first term ends up being really small, since $\hbar^2 \ll \hbar^2/3$, so therefore we make the approximation that $E \approx bx$. Therefore, finally: 
+
+        \[ E_{\text{ground}} \approx b\left(\frac{\hbar^2}{mb}\right)^{1/3} = \left(\frac{\hbar^2b^2}{m}\right)^{1/3}\] 
+    \end{solution}
+
+    \pagebreak
+
+    \section*{Problem 3}
+
+    \begin{enumerate}[(a)]
+        \item A plant spore has a diameter of 1 micron ($=10^{-4}$ cm) and a density of 1 $\text{g/cm}^3$. What is its mass? (How many amu is this?) 
+
+        \begin{solution}
+            This means that its radius is $0.5 \times 10^{-4}$ cm. Then, we know that $m = \rho V$, so therefore: 
+
+            \[ m = 1 \cdot \frac 43 \pi (0.5 \times 10^{-4})^3 = 5.24 \times 10^{-13} g\] 
+        \end{solution}
+
+        \item Suppose that the spore is viewed thorugh a microscope with which its horiziontal position can be located to within about one wavelength of light ($5 \times 10^{-5}$ cm). An experimenter palns to meausre its horizontal speed by timing its transit between markers 1mm apart. What is the fractional error in the computed speed (assumed constant) due to the 0.5-micron uncertainties in the initial and final positions? (Treat the spore as a classical particle. Asume that the distance between markers is known to much better than 0.5 micron and that the errors in the timing mechanism itsf can be neglected.)
+        \begin{solution}
+            We know that $\Delta x = 5 \times 10^{-5}$ cm, and so therefore, since $v = \Delta d/t$, then we know that 
+
+            \[ \frac{\Delta v}{v} = \frac{\Delta x}{L} = 5 \times 10^{-4}\]
+        \end{solution}
+
+        \item If the spore is traveling with a speed of about $10^{-4}$ cm/sec, what is the \textit{experimental} value of $\Delta p \Delta x$? What is thsi value in units of $h$? Does your result confirm that this experiment can be analyzed classically? 
+        
+        \begin{solution}
+            We can write $\Delta p \Delta x = m \Delta v \Delta x$. We know the mass from part (a) and $\Delta v$, $\Delta x$ were calculated in part (b), so therefore multiplying all three together gives us 
+
+            \[ \Delta p \cdot \Delta x = 1.31 \times 10^{-28} \approx 10^6 h\]
+
+            Since this uncertainty is significantly larger than $h$, this system can be analyzed classsically.
+        \end{solution}
+
+        \item If you have not already done so, generalize your result: for a particle of mass $m$ traveling with speed $v$ through a region of length $L$ and localized with uncertainty $\Delta x$, what is the \textit{experimental} value of $\Delta p \cdot \Delta x$? Introduce the de Broglie wavelength $\lambda = h/mv$ and write your result as a dimensionless quantity times $h$. 
+        
+        \begin{solution}
+            In general, since we know that $\Delta v/v = \Delta x/L$ then we can write $\Delta v = v \Delta x/L$. Therefore, our general formula $\Delta p \Delta x = m \Delta v \Delta x$ becomes: 
+
+            \[ \Delta p \Delta x = mv \frac{\Delta x}{L}\Delta x = \frac{mv\Delta x^2}{L}\] 
+
+            Using the de Broglie wavelength equation, we know that $mv = h/\lambda$, and so therefore: 
+
+            \[ \Delta p \Delta x = \frac{h}{\lambda} \frac{\Delta x}{L} \Delta x = \frac{h}{\lambda L} \Delta x^2\]
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 4}
+
+    We know that a packet of mean wavenumber $k_0$ has group velocity $v_g$ equal to $\hbar k_0/m$. However, as pointed out in the text (Section 8-8) the finite spread $\Delta k$ of wavenumbers in the packet means that there is a corresponding spread of group velocty, given in fact by $\hbar \Delta k/m$. It is this spread $\Delta v_g$ of group velocity that leads to the progressive broadening of the spatial extent of the wave packet. After some time the spreading $t\Delta v_g$ is comparable to the initial width $\Delta x$ of the packet. 
+
+    \begin{enumerate}[(a)]
+        \item Show that significant spreading, defined by the above criterion, occurs after the packet has moved a distance $x$ given, in order of magnitude, by the condition
+        \[ x \approx \frac{k_0}{\Delta k}\Delta x \approx \left( \frac{\Delta x}{\lambda_0}\right) \Delta x\]
+
+        where $\lambda_0$ is the de Broglie wavelength corresponding to $k_0$. This means that the spreading distance can be expressed as the original width of the packet times the number of de Broglie wavelengths contained within that width. 
+
+        \begin{solution}
+            Since we know that significant spreading occurs when $t\Delta v_g = \Delta x$, then we have $t = \Delta x/\Delta v_g$. Therefore, the distance the packet has traveled in this time is: 
+
+            \begin{align*}
+                x = v_g t &= v_g \frac{\Delta x}{\Delta v_g}\\
+                &= \frac{\hbar k_0}{m} \cdot \frac{\Delta x}{\frac{\hbar \Delta k}{m}}\\
+                &= \left( \frac{k_0}{\Delta k}\right) \Delta x
+            \end{align*}
+
+            The second relation can be obtained by using the relation $\Delta x = \frac{2\pi}{\Delta k}$ (from the book) and combining this with the de Broglie relation that $\lambda_0 = 2\pi/k_0$ and so therefore 
+
+            \[ \frac{k_0}{\Delta k} = \frac{2\pi/\lambda_0}{2\pi/\Delta x} = \frac{\Delta x}{\lambda_0}\] 
+
+            Then combining this with the rest of the expression we get that 
+
+            \[ \frac{k_0}{\Delta k}\Delta x = \left( \frac{\Delta x}{\lambda_0}\right) \Delta x\]
+        \end{solution}
+
+        \item Verify that the mathematical expression for $|\Psi|^2$ for a Gaussian wave packet (Section 8-9) enmbodies a spreading factor that is consistent with this criterion. 
+        
+        \begin{solution}
+            For a Gaussian wavepacket, we know that its width is $\Delta x = 2\alpha^{1/2} = \frac{\sqrt{2}}{\Delta k}$. Again, we use $t \Delta v_g = \Delta x$ so we get $t = \frac{\Delta x}{\Delta v_g}$ so therefore
+
+            \[ t = \frac{\frac{\sqrt 2}{\Delta k}}{\frac{\hbar \Delta k}{m}} = \frac{m}{\hbar} \frac{\sqrt{2}}{\Delta k^2}\] 
+
+            And so therefore, plugging this into $x = v_gt$: 
+
+            \begin{align*}
+                x &= \frac{\hbar k_0}{m} \frac{m}{\hbar} \frac{\sqrt{2}}{\Delta k^2} \\
+                &= \frac{k_0}{\Delta k} \cdot \underbrace{\frac{\sqrt{2}}{\Delta k}}_{\Delta x}\\
+                &= \left(\frac{k_0}{\Delta k}\right) \Delta x
+            \end{align*}
+
+            The exact same approach as part (a) follows to show that this is equal to the second expression: use the de Broglie relation along with the fact that $\Delta x = \frac{2\pi}{\Delta k}$ to get
+
+            \[ \frac{k_0}{\Delta k}\Delta x = \left( \frac{\Delta x}{\lambda_0}\right) \Delta x\]
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 5}
+
+    Relativity theory predicts that the quantum energy of photons emitted from a massive object will be progressively reduced as they move outward, because (crudely speaking) some of their kinetic energy must be transformed into gravitational potential energy. This manifests itself as \textit{gravitational redshift} of spectral lines from stars, compared to the same lines as observed from a laboratory source. In a famous experiment to measure the gravitational redshift, R. V. Pound and G. A. Rebka [Phys. Rev. Letters, 4.337 (1960)] determined the energy shift of 14-keV $\gamma$-ray photons ascending or descending through a distance $l$ of only about 20 m in the gravitational field of the earth. The theoretical fractional change of frequency is given by $\Delta E/E_0 = gl/c^2$. (See if you can justify this formula by means of a simple argument.)
+
+    \begin{enumerate}[(a)]
+        \item Pound and Rebka were able to claim a precition of about one part in $10^{16}$ for their energy measurement. How does this compare with the theoretical value of $\Delta E/E_0$?
+        
+        \begin{solution}
+            If we use the formula given in the problem statement
+
+            \[ \Delta E = \frac{gl}{c^2} E_0 \approx 10^{-15}\] 
+
+            which comes out to be around 1 part in $10^{15}$, so the theoretical precision that they obtained is smaller than this value. 
+        \end{solution}
+        \item The lifetime of the excited nuclear state that radiates the $E = 14$-keV $\gamma$ rays is about $10^{-7}$ sec. What is the natural width of this nuclear $\gamma$-ray line? 
+        
+        \begin{solution}
+            Using the Energy-time uncertainty principle $\Delta E \Delta t \approx \hbar$, we get: 
+
+            \[ \Delta E = \frac{h}{\Delta t} =4.14 \times 10^{-11} \text{keV}\] 
+        \end{solution}
+
+        \item Can you suggest how the experimental precision obtained by Pound and Rebka can be compatible with your answer to (b)? 
+        
+        \begin{solution}
+            By taking many measurements, the fractional uncertainty will become smaller and smaller (as discussed earlier in the semester), and so therefore they can eventually reduce the uncertianty to the values they report in their paper, despite starting out with uncertainty values which are about ten thousand times larger. 
+        \end{solution}
+    \end{enumerate}
+
+\end{document}

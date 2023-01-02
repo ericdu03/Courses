@@ -1,0 +1,258 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+\usepackage{chemformula}
+
+
+\newcommand{\code}{Physics 5C}
+\newcommand{\class}{Introductory Thermodynamics and Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \code}\\
+\large{HW 04} \large{\hfill \class \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+
+\begin{document}
+\maketitle
+
+\section*{Collaborators}
+
+I worked with \textbf{Aren Martinian}, \textbf{Andrew Binder}, \textbf{Nikhil Maserang}, \textbf{Teja Navarthi}, \textbf{Christine Zhang} and \textbf{Nathan Song} to complete this homework.
+\section*{Problem 1}
+
+A $10\Omega$ resistor is held at a temperature of 300K. A current of 5A is passed through the resistor for 2 minutes. Ignoring changes in the source of the current, what is the change of entropy in (a) the resistor and (b) the Universe?
+
+\begin{solution}
+    The resistor does not change temperature, so $\dd Q = 0$ for the resistor. As a result, since $\Delta s = \frac{\Delta Q}{T}$ and $\Delta Q = 0$, then $\Delta S = 0$ for the resistor. 
+
+    On the other hand, from the perspective of the universe, the work done by the resistor has dissipated heat to the resistor. The exact amount of work done by the resistor is: 
+
+    \[ W = I^2 Rt = 5^2 \cdot 10 \cdot 120 = 30,000 \text{ J}\] 
+
+    And so using this as $\Delta Q$: 
+
+    \[ \Delta S_{\text{universe}} = \frac{\Delta Q}{T} = 100 \text{ J/K}\]
+\end{solution}
+
+\pagebreak
+
+\section*{Problem 2}
+
+Calculate the change of entropy
+
+\begin{enumerate}[(a)]
+\item of a bath containing water, initially at $20^\circ$C, whne it is placed in thermal contact with a very large heat reservoir at $80^\circ$. 
+
+\begin{solution}
+    We have $C = \frac{\dd Q}{\dd T}$ so $\dd Q = C \dd T$, so in order to find the entroopy, we just evaluate the integral:
+
+    \begin{align*}
+        \Delta S &= \int_{T_1}^{T_2} \frac{\dd Q}{T}\\
+        &= \int_{T_1}^{T_2} \frac{C \dd T}{T} \\
+        &= C(\ln T_2 - \ln T_1)\\
+        &= C \ln \left(\frac{T_2}{T_1}\right)
+    \end{align*}
+
+    Since we have $T_2 = 80^\circ$C and $T_1 = 20^\circ$C and $C = 10^4$, we get:
+
+    \[ \Delta S = C \ln \left(\frac{T_2}{T_1}\right) \approx 1863 \text{ J/K}\]
+
+
+\end{solution}
+\item of the reservoir when process (a) occurs. 
+
+\begin{solution}
+    The reservoir does not change temperautre throughout, so $\Delta S = \frac{\Delta Q}{T} = \frac{C \Delta T}{T}$. Furthermore, we should account for the fact that heat is leaving the system, so $\Delta Q$ is negative in this situation. Thus, 
+
+    \[ \Delta S = -\frac{C \Delta T}{T} \approx 1700 \text{ J/K}\]
+
+
+\end{solution}
+\item of the bath and of the reservoir if the bath is brought to $80^\circ$ through the operation of Carnot engine between them.
+
+\begin{solution}
+    Because of the fact that a Carnot engine is a reversible cycle, this means that heat can be converted into work, and work can also be converted into heat. Because this is true at all points in time, this means that the system is also in equilibrium at all points in time. Thus, since the change in entropy of any equilbrium system is 0 (by definition), then this means that $\Delta S = 0$ for this system as well.
+\end{solution}
+\end{enumerate}
+
+The bath and its contents have total heat capacity $10^4 \mathrm{J}\mathrm K^{-1}$.
+
+Hint for (c): which of the heat transfers considered in parts (a) and (b) change when you use a Carnot engine, and by how much? Where does the difference in heat energy go?
+\pagebreak 
+\section*{Problem 3}
+
+Consider $n$ moles of gas, initially confined within a volume $V$ and held at temperature $T$. The gas is expanded to a total volume $\alpha V$ where $\alpha$ is a constant, by (a) a reversible isothermal expansion and (b) removing a partition and allowing a free expansion into the vaccuum. Assuming the gas is ideal, derive an expression for the change of entropy of the gas in each case.
+
+Repeat this calculation for case (a), assuming that, the gas obeys the van der Waals equation of state
+
+\[ \left(p + \frac{n^2a}{V^2}\right)(V - nb) = nRT\]
+
+Show further that for case (b) the temperature of the van der Waals gas falls by an amount proportional to $(\alpha - 1)/\alpha$.
+
+
+\begin{solution}
+    First, the gas expands via an isothermal process, where $\Delta T = 0$. Thus, we can write:
+
+    \begin{align*}
+         \Delta S &= \int \dd S\\
+         &= \int_{V}^{\alpha V} \frac{p}{T} \dd V \\
+         &= \frac{p}{T} \dd V\\
+         &= \frac{nRT}{VT} \dd V\\
+         &= nRT \ln \left(\frac{\alpha V}{V}\right)\\
+         &= nRT \ln \alpha
+    \end{align*}
+
+    The free expansion of a gas is also an isothermal process, and since the initial and final states of the gas are the same as in the previous part, this means that $\Delta S$ is also the same here:
+
+    \[ \Delta S = nRT \ln \alpha\]
+
+    For the repeat calculations using Van der Waals equation of state, we select $V$ and $T$ as our state variables. Thus, we have
+
+    \[ \dd S = \left(\frac{\partial S}{\partial T}\right)_V \dd T + \left(\frac{\partial S}{\partial V}\right)_T \dd V\]
+
+    And since the temperature change is zero, then we can rewrite this as:
+
+    \begin{equation}\label{entropy}
+        \dd S = \left(\frac{\partial S}{\partial T}\right)_T \dd V
+    \end{equation}
+
+    Now we use the equation for free energy $F = U - TS$ and so $\dd F = \dd U - S \mathrm{d} T - T \mathrm{d} S = -p \mathrm{d} V - S \mathrm{d}T$. Now notice further that we can obtain:
+
+    \begin{align*}
+        -p &= \left(\frac{\partial F}{\partial V}\right)_T \\
+        -s &= \left(\frac{\partial F}{\partial T}\right)_V
+    \end{align*}
+
+    Now notice that if we take $\frac{\partial}{\partial T}$ while holding $V$ constant gives, after rearranging the differentials, 
+
+    \[ \left(\frac{\partial p}{\partial T}\right)_V = \left(\frac{\partial S}{\partial V}\right)_T\]
+
+    So now with that out of the way, we can now rewrite entropy (equation \ref{entropy}) as:
+
+    \[ \dd S  = \left(\frac{\partial p}{\partial T}\right)_V \dd V\] 
+
+    And we know that $p = \frac{nRT}{V - nb} - \frac{n^2a}{V^2}$ so therefore $\left(\frac{\partial p}{\partial T}\right)_V = \frac{nR}{V - nb}$. Now we can calculate $\Delta S$: 
+
+    \begin{align*}
+        \Delta S &= \int \left(\frac{\partial p}{\partial T}\right)_V \dd V = \int_{V}^{\alpha V} \frac{nR}{V - nb} \dd V\\
+        &= nR \ln\left(\frac{\alpha V - nb}{V - nb}\right)
+    \end{align*}
+
+    Now finally, for the last part of the problem, Gibbs' equation gives us $\dd U = T \mathrm{d}S - p\mathrm{d}V$, and also that $\dd U = C_V \dd T$, so we get:
+    
+    
+    \begin{align*}
+        C_V \dd T &= T \dd S - p \dd V\\
+        \dd T &= \frac{1}{C_V} \left(T \dd S - p \dd V\right)\\
+        &= \frac{1}{C_V} T \left(\frac{\partial p}{\partial T}\right)_V \dd V - p \dd V\\
+        &= \frac{1}{C_V}\left(T \left(\frac{\partial p}{\partial T}\right)_V - p\right) \dd V
+    \end{align*}
+
+    So therefore we can now integrate both sides:
+
+        \begin{align*}
+            \int \dd T = \Delta T &= \frac{1}{C_V} \int_{V}^{\alpha V} T \left(\frac{\partial p}{\partial T}\right)_V -p \dd V\\
+            &= \frac{1}{C_V}\left[ nRT \int_V^{\alpha V} \frac{1}{V - nb} \dd V - \int p \dd V\right]
+        \end{align*}   
+        
+        From here I couldn't actually simplify this equation any further.
+    % This simplifies to the following after we impose the condition of the gas obeying the Van der Waals equation:
+    
+    % \[ \Delta T = \frac{an^2}{C_V V}\left(\frac{\alpha - 1}{\alpha}\right)\]
+\end{solution}
+
+\pagebreak
+
+\section*{Problem 4}
+
+The probability of a system bieng in the $i$th microstate is 
+
+\[ P_i = \frac{e^{-\beta E_i}}{Z_i}\]
+
+Where $E_i$ is the energy of the $i$th microstate and $\beta$ and $Z$ are constants. Show that the entropy is given by 
+
+\[ S/k_B = \ln Z + \beta U\] 
+
+where $U = \sum_i P_iE_i$ is the internal energy. 
+
+
+\begin{solution}
+    From lecture, we have the relation that $S = - k_B \sum P_i \ln P_i$, where $P_i$ represents the probability of a system being in the $i$-th microstate. Therefore, 
+
+    \begin{align*}
+        \frac{S}{k_B} &= - \sum \frac{e^{-\beta E_i}}{Z_i}\ln \left(\frac{e^{-\beta E_i}}{Z_i}\right)\\
+        &= -\sum \frac{e^{-\beta E_i}}{Z} \left( \ln e^{-\beta E_i} - \ln Z\right)\\
+        &= -\sum \frac{e^{-\beta E_i}}{Z}( -\beta E_i - \ln Z)\\
+        &= - \left(\sum \frac{-\beta E_i e^{-\beta E_i}}{Z} - \underbrace{\sum \frac{e^{-\beta E_i}}{Z}}_{ \sum P_i = 1} \ln Z\right)\\
+        &= \frac{\beta}{Z} \sum E_i e^{-\beta E_i} + \ln Z\\
+        &= \beta U + \ln Z
+    \end{align*}
+\end{solution}
+
+\pagebreak
+
+\section*{Problem 5}
+
+Comment on the following values of molar heat capacity in $\mathrm{JK}^-1 \mathrm{mol}^{-1}$, all measured at constant pressure at 298K. 
+
+
+[Hint: Express them in terms of $R$; which of the substances is a solid and which is gaseous?]
+
+\begin{solution}
+
+    Equation 19.23 gives
+
+    \[ C_p = \left( \frac{f}{2} + 1\right) R\] 
+
+    where $f$ denotes the number of degrees of freedom in the system. Let's first think about why this makes sense to begin with.
+
+    The heat capacity refers to the amount of energy it is required to raise the temperature of a substance by a unit amount. By the equipartition theorem, we know that the total energy of a system is given by the number of quadratic degrees of freedom. This means that when we add energy to these substances, energy is partitioned \textit{evenly} across all forms of energy, and thus less of it goes into kinetic energy, which is directly correlated with temperature. 
+
+    Therefore, we should expect that substances with higher degrees of freedom should have the highest heat capacity. Qualitatively, that's exactly what we see: diatomic molecules like $\ch{H2}, \ch{N2}, \ch{O2}$ have 5 degrees of freedom (3 translational, 2 rotational) and have the highest heat capacities, solids have 3 degrees of freedom (all three of which are translational), and have the second highest energies, and monoatomic molecules have the least degrees of freedom at 3, and they are the lowest.
+
+    Numerically, we have $C_p = \left(\frac{3}{2} + 1\right)R = \frac{5}{2}R \approx 20.8$ for monoatomic ideal gases, which is what the table reflects for elements like $\ch{Xe}, \ch{Zn}, \ch{He}$. For diatomic gases, we have $C_p = \left(\frac{5}{2} + 1\right) R = \frac{7}{2} R \approx 29.1$ which is what we see for elements like $\ch{H2}, \ch{N2}, \ch{O2}$. The reason why we only have 5 degrees of freeodm here is because the temperature of the gas is not high enough for vibrational degrees of freedom to really take effect. For solids, we have $C_p = 3R \approx 24.9$ (as given on equation 19.25), which matches solids such as $\ch{Fe}, \ch{Cu}, \ch{Xe}$ (and other similar elements).
+
+
+\end{solution}
+
+\pagebreak
+\section*{Problem 6}
+
+If the energy $E$ of a system behaves like $E = \alpha|x|^n$ where $n = 1, 2, 3, \dots$ and $\alpha > 0$, show that the average energy is $\mean{E} = \xi k_BT$, where $\xi$ is a numerical constant.
+
+
+\begin{solution}
+    We have $E = \alpha |x|^n$, so differentiating with respect to $x$ we get $\dd E = n\alpha |x|^{n - 1} = \frac{nE}{\alpha} \dd x$, so we can rewrite this into $\dx = AE^{1/n - 1}$ for some constant $A$. Thus, we can compute the average energy:
+
+    \[ \mean{E} = \frac{\int_0^\infty Ee^{-\beta E} \dd x}{\int_0^\infty e^{-\beta E} \dd x} = \frac{\int_0^\infty E^{1/n} e^{-\beta E} \dd E}{\int_0^\infty e^{1/n - 1} e^{-\beta E} \dd E}\]
+
+    We can compute the numerator using integration by parts: 
+
+    \[ \int_0^\infty E^{1/n} e^{-\beta E} \dd E = (-\frac{1}{\beta} E^{1/n} e^{-\beta E})\bigg|_0^\infty + \frac{1}{\beta n} \int_0^\infty E^{1/n - 1} e^{-\beta E} \dd E\] 
+
+    At the limit towards infinity, then we get $E^{1/n} e^{-\beta E}$ tends towards 0, since $e^{-\beta E}$ decays faster than $E^{1/n}$ grows. Therefore, this entire first term is equal to zero. Thus, 
+
+    \begin{align*}
+        \mean{E} &= \frac{\frac{1}{\beta n} \int_0^\infty E^{1/n - 1} e^{-\beta E} \dd E}{\int_0^\infty E^{1/n - 1} e^{-\beta E} \dd E}\\
+        &= \frac{1}{\beta n}\\
+        &= \frac{1}{n} k_BT
+    \end{align*}
+
+    And so we can label $\frac{1}{n} = \xi$ in the problem statement. $\blacksquare$
+\end{solution}
+\end{document}

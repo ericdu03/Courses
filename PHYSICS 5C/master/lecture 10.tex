@@ -1,0 +1,71 @@
+The ninth lecture of Physics 5C was held on  \textbf{Tuesday, September 18}. 
+
+\section{Last Lecture: The Equipartition Theorem}
+
+Last time, we dicsussed the equal partition theorem - namely, the fact that the energy of a particular gas is spread eqully across all degrees of freedom that have quadratic dependence on some variable. More specifically, we found that each degree of freedom gives us a factor of $k_BT/2$. Now, we will develop a framework which allows us to calculate any state variable given any starting point. 
+
+In order to accomplish this, the first thing we need is to choose two variables that will uniquely define our system. Here, we will use the temperature represented by $T$, and what we will call the \textit{partition function}, denoted by $Z$. The partition function is defined as follows: 
+
+\[ Z = \sum_{\alpha} e^{-\beta E_\alpha}\] 
+
+Where $E_{\alpha}$ refers to all the energy levels, and $\beta = \frac{1}{k_BT}$. Effectively, this defines a system with parameters $(T, Z)$, from which we will calculate all other state variables. 
+
+\begin{example}{Partition Function Practice}{}
+    Suppose we have a system where there are an infinite number of allowed energy levels, each separated by an energy difference $\Delta$. (In the case of a quantum harmonic oscillator, we hvae $\Delta = \hbar \omega$.) Our partition function sums over all possible energies, so therefore: 
+
+    %[INSERT TIKZ HERE]
+
+    \begin{align*}
+        Z = \sum_i e^{-\beta E_i} &= 1 + e^{-\beta \Delta} + e^{-2\beta \Delta} + \cdots\\
+        &= e^{-\beta} + e^{-\beta \Delta} + \left( e^{-\beta \Delta}\right)^2 + \cdots \\
+    \end{align*}
+
+    But now notice that this is an infinite geometric series! This series converges since $e^{-n\beta \Delta} < 1$, and working out the geometric series gives:
+
+    \[ Z = \frac{1}{1-e^{-\beta \Delta}}\]
+\end{example}
+
+\subsection{Calculating Functions of State}
+
+\subsubsection*{Internal Energy $U$}
+
+Now we move on to calculating the functions of state, starting with the internal energy. We know that the internal energy of a system is given by 
+
+\[ U = \frac{\sum_i E_i e^{-\beta E_i}}{\sum_i e^{-\beta E_i}}\] 
+
+Note the denominator here is exactly equal to our partition function $Z$. However, how do we cleanly express the numerator in terms of $Z$? Here, we use a clever bit of mathematics: notice that: 
+
+\[ E_i e^{-\beta E_i} = - \frac{\partial}{\partial \beta} e^{-\beta E_i}\] 
+
+and since partial derivatives are linear, then we get that 
+
+\[ \sum_i E_i e^{-\beta E_i} = -\frac{\partial}{\partial \beta} Z\] 
+
+And so therefore, we can express $U$ as:
+
+\[ U = \frac{-\frac{\partial}{\partial \beta} Z}{Z}\] 
+
+\subsubsection*{Entropy $S$}
+
+Here, we will use the definition of $S = -k_B \sum_i P_i \ln P_i$ instead of our other expression $k_B \ln \Omega$, mainly becuase $\Omega$ is difficult to define for a general system. Recall that $P_i$ is defined as
+
+\[ P_i = \frac{e^{-E_i/k_BT}}{\sum_i e^{-E_i/k_BT}} = \frac{e^{-\beta E_i}}{Z}\] 
+
+Adn so therefore, we have the relation $\ln P_i = -\beta E_i - \ln Z$ using the relations with logarithms. Thus, we can write: 
+
+\begin{align*}
+    S = -k_B \sum_i P_i (-\beta E_i - \ln Z) &= -k_B \left[-\beta \underbrace{\sum_i E_i P_i}_{\mean E = U} - \underbrace{\sum_i P_i}_{= 1} \ln Z\right]\\
+    &= -k_B \left( -\frac{1}{k_BT} U\right) + k_B \ln Z\\
+    &= \frac{U}{T} + k_B \ln Z
+\end{align*}
+
+which is, all things considered, a relatively simple expression for such an abstract concept like entropy. 
+
+\subsubsection*{Combination of 1st and 2nd law}
+
+We know that the firat law can be expressed as $dU = T dS - pdV$, but these variables aren't exactly the easiest thing to calculate because we don't really know how to quantify $dS$. Instead, we define the \textit{Helmholtz function} $F$, defined as $F = U - TS$
+
+\begin{insight*}{}
+    Because $U$, $T$ and $S$ are all well defined functions of state, then this makes $F$ also an equally well defined function of state! This is important to know because it means that for any thermodynamic system, we will be able to define an $F$. 
+\end{insight*}
+

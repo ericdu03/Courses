@@ -1,0 +1,132 @@
+The sixth lecture of Physics 5C was held on  \textbf{Tuesday, September 13}. It introduced thermodynamic processes and relationships between state variables in these proceses. 
+
+
+\section{Last Time: First Law of Thermodynamics}
+
+Last time, we discussed the First law of Thermodynamics, and there we established that heat and work are forms of energy. Furthermore, we also introduced two reversible processes: the \textbf{isothermal} and \textbf{adiabatic} processes. In this lecture, we will discuss these proceses in greater detail. 
+
+\section{The Isothermal Process}
+
+An isothermal process, as discussed in definition \ref{def:Isothermal Process} is one where the overall temperature of a gas does not change. There is only one way in which this can be accomplished: when the volume increases, the pressure must decrease in order to account for the unchanging temperature. We can see this in the following $P$-$V$ diagram:
+
+[INSERT TIKZ GRAPH OF DIAGRAM + GRAPHS]
+
+Note that we have $U = \frac{3}{2}nRT = k_BT$, so if temperature remains constant, we come to a very important conclusion about isothermal processes: 
+
+\begin{theorem}{constant isothermal energy}{constant isothermal energy}
+  In a thermodynamic system, the energy is defined as $U = \frac{3}{2}nRT$. So if $T$ is to remain constant, as is in isothermal processes, then 
+
+  \[ \Delta U = 0\]
+\end{theorem}
+
+Now if we look at the First law of Thermodynamics: 
+
+\begin{align*}
+  \dd U &= \db Q + \db W \\
+  \therefore \db Q &= -\db W
+\end{align*}
+
+In other words, there is a \textit{direct} conversion of work into heat in an isothermal process! Note the negative sign in $-\db W$, which denotes that the system does work \textit{to} the outside. And since we know from theorem \ref{th:work done by gas} that $\db W = -P \dd V$, then we know that 
+
+\[ \db Q = P \dd V \implies \Delta Q = \int_{V_1}^{V_2} P \dd V\]
+
+And if we want to take this one step further, we know from the ideal gas law (definition \ref{th:ideal gas law}) that $P = \frac{nRT}{V}$, then 
+
+\[ \Delta Q = \int_{V_1}^{V_2} \frac{nRT}{V} \dd V  = nRT \ln\left(\frac{V_2}{V_1}\right)\]
+
+From here, we conclude that the amount of work done by a gas on the outside is proportional to $\ln \left(\frac{V_2}{V_1}\right)$.
+
+\section{The Adiabatic Process}
+
+Following from definition \ref{def:Adiabatic Process}, we know that an adiabatic process has the property that $\Delta Q = 0$. That is, there is no heat exchange between the system and the outside. Generally, this is described in problems as an \textbf{isolated system.} 
+
+Now let's to back to first law. Since $\Delta Q = 0$, then our law becomes $\dd U = \db W$. Furthermore $\dd U = \frac{3}{2} nR \dd T$, so we can write:
+
+\begin{align*}
+\frac{3}{2} nR \dd T &= -\frac{nRT}{V} \dd V\\
+\therefore \frac{\dd T }{T} &= -(\gamma - 1) \frac{\dd V}{V}
+\end{align*}
+
+So now we can integrate: 
+
+\begin{align*}
+\int_{T_1}^{T_2} \frac{1}{T} \dd T &= -\int_{V_1}^{V_2} (\gamma -1) \frac{\dd V}{V}\\
+\ln \left(\frac{T_2}{T_1}\right) &= -(\gamma -1) \ln\left(\frac{V_2}{V_1}\right)
+\end{align*}
+
+Rearranging, 
+
+\begin{align*}
+\ln\left(\frac{T_2}{T_1}\right) + \ln\left(\frac{V_2}{V_1}\right)^{\gamma -1} &= 0\\
+\ln\left(\frac{T_2V_2^{\gamma -1}}{T_1V_1^{\gamma -1}}\right) &= 0\\
+\therefore T_2V_2^{\gamma -1} &= T_1V_1^{\gamma -1}
+\end{align*}
+
+Here, we can see that $TV^{\gamma - 1}$ is a constant, which is an important result for adiabatic processes: 
+
+\begin{theorem}{Constant in an Adiabatic Process}{TV constant for adiabat}
+In an adiabatic process, the quantity $TV^{\gamma -1}$ remains constant throughout all time:
+
+\[ T_1V_1^{\gamma -1} = T_2V_2^{\gamma - 1}\]
+\end{theorem}
+
+Now you might be wondering: what is the point of defining different processes if we can just reverse one to the other? If this were true, then certainly be no use in choosing a specific way to achieve a result, since all results should be the same. However, as we will discover, \textit{different forms of energy are not equal}. And with that, let's take a look at the second law of thermodynamics. 
+
+\section{Second Law of Thermodynamics}
+
+In essence, the Second law of Thermodynamics shows us that not all forms of energy are equal. In other words, there are some forms of energy loss which cannot be recovered. There are two formulations for the second law of thermodynamics, which we will show later to be equivalent: 
+
+\begin{theorem}{Second Law of Thermodynamics}{Second Law of Thermodynamics}
+The two formulations for the second law of thermodynamics are as follows: 
+
+\begin{itemize}
+  \item \textbf{Clausius:} No process is possible whose \underline{sole result} is the transfer of heat from cold to hot.
+  \item \textbf{Lord Kelvin:} No process is possible whose \underline{sole result} is heat conversion from heat to work.
+\end{itemize}
+\end{theorem}
+
+Well we've just said a minute ago that an isothermal system directly converts heat to work! How is that possible? The answer lies in the fact that the state of the gas must change in order to do work, so the second law is not in fact violated. However, this isn't really something that we need to worry about too much going forward. Furthermore, we will show in the next lecture that these two statements, despite their differences, are in fact equivalent.
+
+\section{Processes} 
+
+In this section, we will study cyclic systems - that is, systems where the initial and final states are the same. These are also called \textit{engines}, which is the term we will use moving forward. To start, we will study the simplest engine: the Carnot cycle. 
+
+The carnot cycle is one which is formed by two adiabatic processes and two isothermal processes. On a PV diagram, it looks like the diagram below, with points $A$, $B$, $C$ and $D$ denoting the points where the type of process changes:
+
+[INSERT TIKZ HERE]
+
+We know how adiabatic and isothermal processes work, so we can write out the following set of equations:
+
+\begin{align*}
+A &\to B: \ \Delta Q = nRT \ln \left(\frac{V_B}{V_A}\right)\\
+B &\to C: \ \Delta Q = 0 \implies T_hV_B^{\gamma -1} = T_LV_C^{\gamma -1} \\
+C &\to D: \ \Delta Q = -nRT\ln\left(\frac{V_D}{V_C}\right) = nRT \ln \left(\frac{V_C}{V_D}\right)\\
+D &\to A: \ \Delta Q = 0 \implies T_LV_D^{\gamma -1} = T_hV_A^{\gamma -1}
+\end{align*}
+
+Here, a positive $\Delta Q$ denotes absorbing heat. If we combine the equations $B \to C$ and $D \to A$, then we get:
+
+\[ \left(\frac{V_C}{V_B}\right)^{\gamma -1} = \left(\frac{V_D}{V_A}\right)^{\gamma -1}\]
+
+Which implies $V_AV_C = V_DV_B$ and consequently $\frac{V_C}{V_D} = \frac{V_B}{V_A}$. This relation is important, becuase by combining the equations $A \to B$ and $C \to D$, we get:
+
+\begin{align*}
+\frac{Q_h}{Q_L} &= \frac{nRT_h \ln \left(\frac{V_B}{V_A}\right)}{nRT_L \ln \left(\frac{V_C}{V_D}\right)}\\
+&= \frac{T_h}{T_L}
+\end{align*}
+
+This is a surprisingly simple relationship for such a complicated system! As a reuslt, this is also a very powerful result.
+
+%Possibly insert stuff about schematic diagrams here
+
+\section{General cyclic processes}
+
+For any general cyclic process, we have $\Delta U = 0$ by definition of being cyclic, since the initial and final states must be identical. Thus, this means that $\db Q + \db W = 0$, so 
+
+\[ \Delta Q = \frac{Q_h}{Q_L} = \frac{T_h}{T_L} = W\]
+
+Further, the efficiency $\eta$ is defined as 
+
+\[ \eta \equiv \frac{W}{Q_h} = \frac{Q_h - Q_L}{Q_h} = 1 - \frac{T_L}{T_h}\]
+
+Just to give a sense of real engines, they normally operate at around $T_h \approx 800$K and $T_L \approx 300$K, so thier efficiency $\eta_{max} \approx 60\%$.

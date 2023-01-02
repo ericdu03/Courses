@@ -1,0 +1,753 @@
+%%PACKAGE INCLUSIONS%%
+\documentclass{book}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, pgfplots, wrapfig, amssymb, array, mathtools, enumitem, circuitikz, physics, parskip, hyperref, chemformula}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{dirtytalk}
+\usepackage{shortcuts}
+
+\theoremstyle{plain}
+\usetikzlibrary{calc,patterns,angles,quotes}
+\setlength{\parskip}{0pt}
+\usetikzlibrary{calc,patterns,angles,quotes}
+\makeatletter
+\pagestyle{fancy}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\pgfplotsset{compat=1.17}
+\setcounter{tocdepth}{1}
+% \linespread{1.3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%SECTIONING EDITS%%
+%
+%DEFINITION FOR CHAPTER HEADERS%
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{
+  {\parindent \z@ \centering \reset@font
+        \thickhrulefill\quad
+        \scshape Lecture \thechapter
+        \quad \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{10\p@}%
+        \huge \bfseries #1\par\nobreak
+        \par
+        \vspace*{10\p@}%
+        \hrule
+    \vskip 20\p@
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%PART STYLING%
+\titleclass{\part}{top} % make part like a chapter
+\titleformat{\part}
+[display]
+{\centering\normalfont\huge\bfseries}
+{\vspace{200pt}\titlerule[5pt]\vspace{3pt}\titlerule[2pt]\vspace{3pt}\MakeUppercase{Part} \thepart}
+{0pt}
+{\titlerule[2pt]\vspace{20pt}\huge\MakeUppercase}
+
+\titlespacing*{\part}{0pt}{0pt}{20pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%SECTION STYLING%
+\def\section{\@ifstar\unnumberedsection\numberedsection}
+\def\numberedsection{\@ifnextchar[%]
+    \numberedsectionwithtwoarguments\numberedsectionwithoneargument}
+\def\numberedsectionwithoneargument#1{\numberedsectionwithtwoarguments[#1]{#1}}
+\def\numberedsectionwithtwoarguments[#1]#2{%
+    \ifhmode\par\fi
+    \removelastskip
+    \vskip 5ex\goodbreak
+    \refstepcounter{section}%
+    \hbox to \hsize{\hss\vbox{\advance\hsize by 0cm
+        \noindent
+        \leavevmode\Large\bfseries\raggedright
+        \thesection\space$\bigg\vert$\hskip -1ex $\bigg\vert$\space   \
+        #2\par
+        \vskip -2ex
+        \noindent\hrulefill
+        \vskip -3ex
+        \noindent\hrulefill
+        }}\nobreak
+    \vskip 2ex\nobreak
+    \addcontentsline{toc}{section}{%
+    \protect\numberline{\thesection}%
+    #1}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%SUBSECTION STYLING%
+\def\subsection{\@ifstar\unnumberedsubection\numberedsubsection}
+\def\numberedsubsection{\@ifnextchar[%]
+    \numberedsubsectionwithtwoarguments\numberedsubsectionwithoneargument}
+\def\numberedsubsectionwithoneargument#1{\numberedsubsectionwithtwoarguments[#1]{#1}}
+\def\numberedsubsectionwithtwoarguments[#1]#2{%
+    \ifhmode\par\fi
+    \removelastskip
+    \vskip 5ex\goodbreak
+    \refstepcounter{subsection}%
+    \hbox to \hsize{\hss\vbox{\advance\hsize by 0cm
+        \noindent
+        \leavevmode\large\bfseries\raggedright
+        \thesubsection\space$\bigg\vert$\space\
+        #2\par
+        \vskip -2ex
+        \noindent\hrulefill
+        }}\nobreak
+    \vskip 2ex\nobreak
+    \addcontentsline{toc}{subsection}{%
+        \protect\numberline{\thesubsection}%
+        #1}%
+    }
+
+    \makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    %TITLE PAGE%
+    \begin{titlepage}
+        \centering
+        \vspace*{\baselineskip}\vspace{200pt}
+        \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+        \rule{\textwidth}{0.4pt}\\[\baselineskip]
+        {\Huge \bfseries PHYSICS 5C NOTES}\\[0.2\baselineskip]
+        \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+        \rule{\textwidth}{1.6pt}\\[\baselineskip]
+        \scshape
+        Typeset notes for Physics 5C: Introductory Thermodynamics and Quantum Mechanics \\
+        \par
+        \vspace*{2pt}
+        {\Large Andrew Binder and Eric Du}\\
+        {\large University of California, Berkeley\par}
+        {\scshape Fall 2022} \\
+        \normalsize
+    \end{titlepage}
+
+    \tableofcontents
+    \newpage
+    \setcounter{chapter}{-1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%INTRODUCTION%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Introduction}
+      This course is titled \textbf{Introductory Thermodynamics and Quantum Mechanics}. Eric and Andrew both took this course in Fall 2022.
+
+      \section{Basic Syllabus Info}
+
+      Some basic information regarding the syllabus for this course as it was taught in Fall 2022.
+
+      \subsection{Professor and GSI Info}
+
+      \begin{itemize}
+          \item \textbf{Professor:} Feng Wang (fengwang76@berkeley.edu) OH: Tuesdays 11-12pm, 361 Birge
+          \item \textbf{GSI 1:} Sami Kaya (samikaya@berkeley.edu) (TBD)
+          \item \textbf{GSI 2:} Neel Modi (neel\_modi@berkeley.edu) (TBD)
+      \end{itemize}
+
+      \subsection{Discussion Info}
+      \begin{itemize}
+          \item \textbf{Lectures:} Tu/Th 9:30-11:00, Physics Building 2
+          \item \textbf{Discussions:} W 10:00-12:00 in Evans 2 or Tu 17:00-19:00 in Etcheverry 3119
+      \end{itemize}
+
+
+      \subsection{Grading Breakdown}
+
+      \begin{itemize}
+          \item \textbf{Homework:} One assignment per week, due Friday at 17:00, lowest score is dropped, total 30\%
+          \item \textbf{Midterm:} Taken on Thursday, Oct. 13, in class. Total 25\%
+          \item \textbf{Final:} Taken on Tuesday, Dec. 13 from 15:00-18:00
+      \end{itemize}
+
+      \subsection{Course Materials}
+
+      Two textbooks are recommended for this course: \textit{Concepts in Thermal Physics} by Blundel \& Blundel, and \textit{Introduction to Quantum Physics} by French \& Taylor. Other possible resources include \textit{Introduction to Quantum Mechanics} by Griffiths and the online Feynman lectures.
+
+      \subsection{Lecture Topics}
+
+      This course covers the principles of thermodynamics as well as introductory quantum mechanics. The Thermodynamics portion will deal primarily with gases and their properties, and overall is the study of how we model systems with many particles. This portion is taught over the span of approximately 6 weeks. The Quantum Mechanics portion of this course deals primarily with the strange behavior of microscopic particles, and has an approximate length of 8 weeks.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%THERMODYNAMICS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \part{Thermodynamics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 1 (8/25)}
+        The first lecture of Physics 5C was held on  \textbf{Thursday, August 25}. It covered the basics of the course syllabus and an introduction of large numbers.
+        \section{Introduction of Large Number Systems}
+          The biggest issue regarding dealing with thermodynamics and quantum mechanics will be reconciling the scale of the very big and the scale of the very small. Atomic scales are, as intuition suggests, tiny  compared to our normal human scale. So how can we jump between them in a way that makes sense? To connect the different size scales, we are going to need some tools, which we will be exploring in depth here.
+
+          \subsection{Avogardo's Number $N_A$}
+            Firstly, we need to introduce an important number that will be the jumping-off point for the rest of our exploration.
+            \begin{definition}{Avogadro's Number}{}
+               Denoted $N_A$; The number of carbon atoms in 12 grams of carbon material.
+            \end{definition}
+            Why 12? This is a number chosen fairly arbitrarily, but it is a nice number, since we are dealing mostly with Carbon-12 (6 protons and 6 neutrons), the most common form of carbon. This number is defined as roughly \fbox{$6.023*10^{23}$}, but we will forego writing out this number in favor of the much simpler $N_A$. From Avogadro's number, we get a few more definitions that will help count quantities on the atomic scale:
+            \begin{definition}{Mole}{}
+              The quantity of matter that contains $N_A$ objects. Denoted mol.
+            \end{definition}
+            For example, 1 mol of water contains $N_A$ $H_2O$ molecules.
+            \begin{definition}{Molar Mass}{}
+              The mass of 1 mol of objects (or $N_A*m_{atom}$, where $m_{atom}$ refers to the mass of the atom in question).
+            \end{definition}
+            These concepts and definitions now will help us jump between the two scales (human and atomic) much more easily. But, since individual atoms are so small, we really can't track the individual behavior of these atoms, so what do we do? Do we give up? As a matter of fact, no. So how do we proceed?
+          \subsection{Thermodynamic Limit (Large Number Limit)}
+            For this, it's effective to completely disregard individual behavior of atoms in favor of considering \underline{average behavior}, as this will help us describe the \underline{general behavior}. One key concept with the Thermodynamic Limit (or essentially in layman's terms the large number limit) is the following:
+            \begin{insight*}{}{}
+              Fluctuations decrease with large numbers.
+            \end{insight*}
+            This means that the average value for a quantity in a system with very many objects is extremely accurate in describing the system's individual components. In other words, we need not worry that the exact behavior may not match our approximations: those differences are, for all our intents and purposes, negligible. Consider the following example as a motivation:
+            \begin{example}{Container of Gas Atoms}{}
+              To illustrate the idea of fluctuations decreasing with large numbers, consider a container with a single gas molecule in it, and we have a device which allows us to measure the force on one of the sides of the wall. In this case, we'd observe that on occasion (let's say, 1\% of the time), when the particle collides with the wall, a force is observed, but otherwise the force vs. time graph remains zero. Here, we see the fluctuations in the force are rather large (one might even say, infintely large!), and this is simply due to the fact that there is only a single particle.
+
+
+                % Insert TikZ diagram here w/ graph
+
+              Now, suppose that instead of 1 molecule, we now have $10^4$ molecules instead. What would our force vs. time diagram look like? Well, certainly it would be very rare if ever got a reading of zero, since statistically speaking we should always expect at least one particle colliding with each side of the box. In this case, the force should average at about $10^4 \cdot 1\%$ or roughly 100 units of force. If we say that the force fluctuates by approximately 10 units above or under the average, it's easy to see how these fluctuations are much smaller compared to the earlier case.
+
+
+              The underlying principle here is, as the number of molecules we are concerned in increases, it's natural that the relative fluctuations decrease in size. If we took $10^8$ atoms, then the fluctuations would be even smaller. Now remember that generally in thermodynamics we're talking about amounts of gas on the order of $10^{23}$ molecules, so hopefully this argument can convince you that at those scales, the fluctuations are effectively zero.
+            \end{example}
+            In order to make our arguments concrete, let's define $\mean{F}$ to be the average force, and $\delta F$ be the absolute magnitude of the fluctuations. From statistical mechanics, we know that the former is proportional to $N$, and the latter is proprotional to $\sqrt{N}$. Now we define the following:
+            \begin{definition}{Relative Fluctuation}{}
+                Defined as
+
+                \[ \frac{\delta F}{\mean F} \propto \frac{\sqrt{N}}{N}  = \frac{1}{\sqrt N}\]
+
+            \end{definition}
+            From this definition, it's then also easy to see why the relative fluctuation decreases as $N$ increases, since the expression becomes smaller as $N$ increases. In thermodynamics, we also sometimes like to define the pressure $P$ as $\frac{F}{A}$, which is known as a state variable.
+
+            \section{State Variables}
+              State variables are, as their name suggests, variables that describe the state that a particular gas is in. For instance, the pressure of the gas is a state variable, so is the average velocity $\mean {\vec v}$, $\mean {\vec p}$, $\mean {\vec{r}}$. However, it turns out that the last three all equal to zero, since we assume some sort of isotropic environment for gases. Nevertheless, we have other state variables that are useful:
+              \begin{itemize}
+                \item Average total energy $U$
+                \item Average pressure $P$
+                \item Average temperature $T$
+                \item Average volume $V$
+              \end{itemize}
+              Note that in these definitions of the average, we've dropped the $\langle$ and $\rangle$ symbols, but we are still referring to averages in this case. In fact, since we will \textit{always} be talking about these quantities in terms of average values, these symbols will be continuously dropped throughout the rest of the course material. We also split these state variables into two kinds, based on how they change. Take a box full of gas, and split it down the middle. Now in each half of the box, we have
+
+              \begin{align*}
+                U^\star &= \frac{U}{2}\\
+                V^\star &= \frac{V}{2}\\
+                P^\star &= P\\
+                T^\star &= T
+              \end{align*}
+
+              Because the first two change when we split it in half, we call these quantities \textit{extensive variables} and the other two \textit{intensive variables}:
+              \begin{definition}{Extensive and Intensive Variables}{}
+                Two different types of variables:
+                \begin{itemize}
+                  \item{\textbf{Extensive} variables are \underline{dependent on the size of the system}}
+                  \item{\textbf{Intensive} variables are \underline{independent of the size of the system}}
+                \end{itemize}
+
+            \end{definition}
+
+      \section{The Ideal Gas}
+        To understand the relationship between the state parameters we defined in the previous section, we need to first consider the simplest of cases: the \textit{ideal gas}. An ideal gas is one where we \textit{ignore the interactions of individual atoms}. This is a model system (and a simple one at that), so it will help us understand the very fundamental relationships between these state parameters. This model was used by scientists in the past to conclude one important fact: pressure, volume, and temperature are closely related. Three separate scientists came up with three separate laws to describe the relationship between two of these:
+        \begin{theorem}{Boyle's Law}{boyle's law}
+          Fixing the Temperature, it turns out that \underline{Pressure is inversely proportional to the Volume}.
+        \end{theorem}
+        \begin{theorem}{Charles's Law}{charles's law}
+          Fixing Pressure, it turns out that \underline{Volume is directly proportional to Temperature}.
+        \end{theorem}
+        \begin{theorem}{Gay-Lussac's Law}{gay-lussac's law}
+          Fixing Volume, it turns out that \underline{Pressure is directly proportional to Temperature}.
+        \end{theorem}
+        These observations are all nice and important, but can we combine these three laws into a single, general description? As it turns out, we can.
+        \begin{theorem}{Ideal Gas Law}{ideal gas law}
+          Pressure and Volume are directly proportional to Temperature and the number of atoms with this relation: $$PV = k_{B}NT$$
+          Here, $k_B$ is the famous, later-discussed \textit{Boltzmann constant}.
+        \end{theorem}
+        This is a really crucial observation that helps us relate all of these important state parameters. However, $k_B$ is very small and $N$ is very big, so it might get difficult at times to keep track. So, some scientists scale to this version of the law:
+        \begin{theorem}{Scaled Ideal Gas Law}{scaled ideal gas law}
+          An alternate statement of this law becomes
+          $$PV = nRT$$
+          Here, $n$ is the number of moles of material ($\frac{N}{N_A}$), and $R = k_BN_A$
+        \end{theorem}
+        These two laws are equivalent, and, as of now, empirical. It is important to remember, however, that this is \underline{idealized}: it's a good approximation for most cases, but not perfect. It'll need to be modified for very low temperatures or very high pressures, etc.
+
+      \section{Even Larger Numbers: Combinatorial Problems}
+        Consider a system containing $n$ atoms, with each atom having either energy 0 or 1. Suppose that the total energy is $r$. How many microscopic arrangements of this gas are possible?
+
+        This question is a very familiar one for those who have had experience with combinatorics. The idea is that out of $n$ molecules to choose from, we require that $r$ of them have energy 1 and the rest of them have energy $r$. The question is, then, how many of these arrangements are possible? Since this problem can be effectively thought of as choosing which atoms to assign energy 1 to, then it makes sense that we use the choose function here. Specifically, there are $n \choose r$ possible configurations.
+
+        To just illustrate how quickly this choose function grows, if we had $n = 100$ and $r = 40$, then ${n \choose r} \approx 10^{28}$, and if $n = 1000$ and $r = 400$, then ${n \choose r} \approx 10^{209}$. From here, you can see that with $10^{23}$ particles in a typical gas, there are significantly more combinations possible. To further illustrate how large these numbers can be, we can use Stirling's formula in order to derive an approximation for $n!$:
+        \begin{theorem}{Stirling's formula}{stirling}
+          Given $n$, we have that
+
+          \[ \ln n! \approx n \ln n - n\]
+
+          For sufficiently large $n$.
+        \end{theorem}
+        If we apply Stirling's formula on $10^{23}!$, we get that $\ln 10^{23}! \approx 52 \times 10^{23}$, and this means that $10^{23}! \approx 10^{22 \times 10^{23}}$, which is monstrously large! Hopefully, this gives a better idea as to why we cannot ever track every individual particle in thermodynamics.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 2 (8/30)}
+      The second lecture of Physics 5C was held on  \textbf{Tuesday, August 30}. It covered the remaining basics of statistics needed to understand thermodynamics.
+
+      \section{Last Time: Statistics Review}
+        Last lecture we showed that in a typical gas, there are too many particles to track individually, and thus we must resort to using state variables to describe them as a whole instead. In this process, we defined the state variables as the mean values (e.g. mean velocity, etc.). Now, we're going to see what other statistical information we are able to obtain.
+
+      \section{Discrete and Continuous Probability}
+
+        \subsection{Discrete Probability Distribution}
+          Discrete probability distributions refers to cases where only discrete outcomes are allowed. In other words, if we throw a die, we can get $\{1, 2, 3, 4, 5, 6\}$ as possible outcomes, but we cannot get $3.5$ as an outcome. If the dice were fair, it would also not shock you that the probability that each number appears should be $\frac{1}{6}$.
+
+          We also have some properties of discrete probability:
+
+          \begin{enumerate}
+            \item $\sum_i P(x_i) = 1$. This is quite self-explanatory. The probability of \textit{something} happening is 1, and thus the total probability should sum to 1.
+            \item The mean, or also known as the average or expected value, is defined as follows:
+            \begin{definition}{Mean/Expected Value}{mean expected value}{}
+              Denoted $\mean{x}$: $\mean{x} = \sum_{i} x_iP_i$.
+            \end{definition}
+            Note that we will use $P(x_i)$ and $P_i$ interchangeably when we come to continuous probability distribution. A useful special case involves taking the average of $x^2$ (something that'll come up a lot in the future):
+            $$\mean{x^2} = \sum x_i^2P_i$$
+
+            More generally, we have:
+
+            \[ \mean{f(x)} = \sum f(x_i) P_i\]
+
+            One small note about this is that the mean value need not be obtainable in our set of discrete values; it is simply a representation of the \textit{average} value of the system.
+          \end{enumerate}
+
+      \section{Continuous Probability Distribution}
+        Continuous probability distributions are used when our variable $x$ can take on a continuous range of values. Here, the notion of asking \say{what is the probability that $x = 1$?} doesn't really mean much, since $x$ is a continuous variable.\footnote{There is an answer to this, $P(x = 1) = 0$ since there are an infinite number of values $x$ could take.} Instead, we look at the probability of $x$ taking on a range of values, say on the interval $(x, x + \Delta x)$. In this case, the probability that such an event occurs is equal to the probability multiplied by the length of the interval:
+
+        \[ P(x + \Delta x) = P(x) \cdot \Delta x\]
+
+        In the limit that $\Delta x \to 0$, then we substitute $\Delta x$ for $dx$.
+
+        Just like discrete probability, continuous distributions also have properties, which are similar to their discrete counterpart:
+
+        \begin{enumerate}
+          \item The total probability of something occurring is 1. Just like Discrete probabilities, this property holds, and is written as:
+            \[ \int_{All} P(x) dx = 1\]
+          \item The mean is defined as follows:
+            \begin{definition}{Mean/Average value for continuous variables}{}
+              Denoted with $\mean{x}$, we write it as:
+              \[ \int_{All} x P(x) dx\]
+            \end{definition}
+            Again, more generally, if we have an arbitrary function $f(x)$, then
+              \[ \mean{f(x)} = \int_{All} f(x)P(x) dx \]
+        \end{enumerate}
+
+      \section{Linear Transformations}
+        Now that we've seen how to compute the average value given a probability distribution, let's look at how probability distributions work under a linear transformation. That is, if we have the average for a variable $x$, let's see how we compute the average for $y = mx + b$. Given that $y = mx + b$ we have:
+        \begin{align*}
+          \mean y = \mean{ax + b} &= \int (ax + b) P(x) dx\\
+          &= \int axP(x) dx + \int bP(x) dx\\
+          &= a\underbrace{\int xP(x) dx}_{= \mean x \text{ by definition}}+ b \underbrace{\int P(x) dx}_{= 1 \text{ by definition}}\\
+          &= a \mean x + b
+        \end{align*}
+        This gives us  a nice result and confirms that the mean is linear:
+        \begin{theorem}{Linearity in the Mean}{linearity in the mean}
+          Given that $y = mx + b$ we have:
+          $$\mean{y} = \mean{ax + b} = a\mean{x} + b$$
+        \end{theorem}
+
+      \section{Fluctuation (or Spread) Over the Average Value}
+        Now that we've defined our important expressions, we can start analyzing the statistics around these expressions. Specifically, we'll start with our \textit{fluctuation over the average}, which is simply defined as the deviation $x - \mean{x}$.
+
+        \subsection{Variance and Standard Deviation}
+          Firstly, let's consider the average value of $x - \mean{x}$:
+          $$\mean{x - \mean{x}} = \mean{x} - \mean{x} = \fbox{$0$}$$
+          This obviously makes sense, since we expect the average deviation from the mean to come out to be $0$. However, this does make the average of $x - \mean{x}$ a relatively meaningless quantity: we want something that won't always be $0$. So, let's consider the absolute value $|x - \mean{x}|$. This is a well-defined, positive-definite function, but it's not analytical. In other words, we can't really work with it in any elegant manner. What we need is a positive-definite analytical function that behaves roughly like this absolute value. What better candidate than $(x - \mean{x})^2$? This expression has its own name:
+          \begin{definition}{Variance}{}
+            Denoted $\sigma_x^2$: $\sigma_x^2 = \mean{(x - \mean{x})^2}$
+          \end{definition}
+          This is also sometimes called the \textit{mean square deviation}. From here, we also define another expression everyone has most likely seen before:
+          \begin{definition}{Standard Deviation}{}
+            Denoted $\sigma_x$: $\sigma_x = \sqrt{\mean{(x - \mean{x})^2}}$
+          \end{definition}
+          These are nice new expressions of meaningful values. Let's compute (or rather simplify) the variance:
+          \begin{align*}
+            \sigma_x^2 &= \mean{(x - \mean{x})^2} = \mean{x^2 - 2x\mean{x} + \mean{x}^2} = \mean{x^2} - \mean{2x\mean{x}} + \mean{x}^2 = \mean{x^2} - 2\mean{x}^2 + \mean{x}^2 = \fbox{$\mean{x^2} - \mean{x}^2$}
+          \end{align*}
+          From this, we see then that the standard deviation becomes \fbox{$\sigma_x = \sqrt{\mean{x^2} - \mean{x}^2}$}.
+
+      \section{Linear Transformation of Variance}
+        With the newly-defined variance and standard deviation, let's subject them to a linear transformation and see what we can glean from them:
+        \begin{align*}
+          y = ax + b &\implies \mean{y} = a\mean{x} + b &&\text{(from before)}\\
+          \therefore \sigma_y^2 &= \mean{y^2} - \mean{y}^2 = \mean{(ax+b)^2} - (a\mean{x} + b)^2 = \\
+          &= \mean{a^2x^2 + 2abx + b^2} - a^2\mean{x}^2 + 2a\mean{x}b - b^2 = \\
+          &= a^2\mean{x^2} + 2ab\mean{x} + b^2 - a^2\mean{x}^2 + 2ab\mean{x} - b^2 = \\
+          &= a^2\mean{x^2} - a^2\mean{x}^2 = a^2(\mean{x^2} - \mean{x}^2) = \fbox{$a^2\sigma_x^2$}
+        \end{align*}
+        As we can see, $\sigma_y^2$ only depends on $a$ and not on $b$!
+
+      \section{Independent Variables}
+        Suppose we have two properties $u$ and $v$, which are continuous and independent variables. That is, the outcome of $u$ does not affect the outcome of $v$. If we wanted to calculate the probability that a particle exhibits both properties $u$ and $v$ atthe same time, we simply need to multiply the probability that $u$ occurs with the probability that $v$ occurs:
+        \[ \mean{uv} = \iint uv P_u(u) du \ P_v(v) dv\]
+        And since $u$ and $v$ are independently determined, we can split the integral here:
+        \[ \mean{uv} = \int uP_u(u) du \cdot \int vP_v(v) dv\]
+        Leading us to the property of separation of variables:
+        \begin{theorem}{Separation of Independent Variables}{separation of independent variables}
+          If $u$ and $v$ are independent variables, then:
+          \[ \mean{uv} = \mean{u} \mean{v}\]
+        \end{theorem}
+
+      \section{Generalization to \textit{n} variables}
+        Now let's suppose that we have $n$ variables $\{x_1, x_2, \dots, x_n\}$, each having mean $\mean x$ and same variance $\sigma_x^2$. Now let
+        \[ Y = \sum x_i\]
+        What is the mean and variance of $Y$? Well to start, we know that since $Y$ is defined as the summation of $x_i$, then by the rules of linear transformation, the mean of $Y$ would be the summation of the mean of each $x_i$. And since they are defined to be the same, we have:
+        \begin{align*}
+          \mean Y &= \mean {x_1} + \mean {x_2} + \dots + \mean {x_n} \\
+          &= n\mean x
+        \end{align*}
+        To calculate the variance, we use the property that $\sigma_Y^2 = \mean{Y^2} - \mean{Y}^2$. First, we calculate $\mean{Y}^2$:
+        \[ \mean{Y}^2 = \left[ \mean {x_1} + \mean {x_2} + \dots + \mean {x_n}\right]^2 = \mean{x_1}^2 + \mean {x_2}^2 + \dots + \mean{x_1}\mean{x_2} + \dots + \text{(very many cross terms)}\]
+        Similarly, calculating $\mean{Y^2}$:
+
+        \begin{align*}
+          \mean{Y^2} &= \mean{(x_1 + x_2 + \dots + x_n)^2} = \mean{x_1^2 + x_2^2 + \dots + x_1x_2 + x_2 x_3 + \dots}\\
+          &= \mean{x_1^2} + \mean{x_2^2} + \dots + \mean{x_1}\mean{x_2} + \dots + \text{(very many cross terms)}
+        \end{align*}
+        Note that we can change $\mean{x_1x_2} = \mean{x_1}\mean{x_2}$ because $x_1$ and $x_2$ are independent variables. Now subtracting the two, we see that the cross terms $\mean{x_1}\mean{x_2}$ disappear, and we're left with:
+
+        \begin{align*}
+          \sigma_Y^2 &= \underbrace{\mean{x_1}^2 - \mean{x_1^2}}_{\sigma_{x}^2} + \underbrace{\mean{x_2}^2 - \mean{x_2}^2}_{\sigma_x^2} + \dots \\
+          &= n \sigma_x^2
+        \end{align*}
+        Note that this simplification is only possible due to our initial assumption that all our independent variables have the same $\mean{x}$ and $\sigma_x$.
+
+      \section{Random Walks}
+        Now, let's pivot focus to an important example in statistics: random walks. In fact, let's consider a special case: Brownian motion. Brownian motion describes the seemingly random motion of pollen when floating on a liquid. As we came to understand, this motion is not the pollen particle simply vibrating for no apparent reason, but it's actually due to many water molecules randomly bouncing off of the pollen, propelling it in random directions. So, let's consider a simple case of Brownian motion with discrete movements.
+
+        Suppose that, at each step, a particle will either have $+a$ or $-a$ movement. After very many steps (say on the order of a million), what will our final position look like?
+
+        \subsection{Scaling Standard Deviation}
+          Considering one step, our scenario is simple to understand: $\mean{x} = 0$ since the values cancel, and $\sigma_x^2 = \mean{x^2} - \mean{x}^2 = a^2$. But what about $n$ steps, for a large $n$? Consider $Y = x_1 + x_2 + \dots + x_n$. In this case, $\mean{Y} = 0$ from before, and then $\mean{Y^2} = na^2$. As we can see, this mean \textit{scales with $n$}. In other words, we have the following insight:
+          \begin{insight*}{}{}
+            Standard deviation scales with $\sqrt{n}$: $\sigma_y = a\sqrt{n}$
+          \end{insight*}
+          Our particles are all independent, so adding more particles will scale the fluctuation and the force proportionally, the former with $\sqrt{n}$ and the latter with $n$.
+
+      \section{Transitioning to Physics}
+        We've spent a lot of time these past two lectures talking about mathematical introductions, so it's about time for us to start talking about physics. We will do this in the next lecture, where we will need to understand \textbf{heat and temperature}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 3%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 3 (9/1)}
+      The third lecture of Physics 5C was held on  \textbf{Thursday, September 1}. It covered the quantitative definition of heat and temperature.
+
+      \section{Defining Heat}
+        To start, people have observed that doing work on objects generates heat, and this set the foundation for the idea that heat is some form of energy transfer. Specifically, heat can be measured in units of energy, or $[J]$. It was also observed that some objects seemed to heat up faster than others - that is, given the same energy $E$, some items would heat to a higher temperature $T$ than others. This led to the definition of heat capacity, or essentially the proportionality constant between how much energy is absorbed into an object relative to how much energy was put in:
+        \begin{definition}{Heat Capacity}{Heat Capacity}
+          Defined as:
+          \[ C = \frac{\Delta Q}{\Delta T} = \frac{dQ}{dT}\]
+        \end{definition}
+        This is an \underline{extensive variable}, as it depends on the volume and mass of the object we are trying to heat. In order to remove this dependence on mass, we also define the \textit{specific heat capacity}, which is the heat capacity per unit mass:
+        \begin{definition}{Specific Heat Capacity}{}
+          Heat capacity per \textbf{volume}:
+          \[ c = \frac{C}{m} = \frac{1}{m} \cdot \frac{dQ}{dT}\]
+        \end{definition}
+        We also define the molar heat capacity as the heat capacity per mole:
+        \begin{definition}{Molar Heat Capacity}{}
+          Heat capacity per \textbf{mole}:
+          \[ c = \frac{C}{n} = \frac{1}{n} \cdot \frac{dQ}{dT}\]
+        \end{definition}
+        These definitions for specific and non-specific heat capacity only hold true for solids and liquids, but they do not hold for gases. This is because with a gas, there are more parameters which are affected when we heat up a gas. For instance, the pressure of the gas could change, but so could the volume. Because of this, we need to be more careful about our definition for heat capacity. To resolve this, we instead define two different types of specific heat capacity, one measured at constant volume, and the other measured at constant pressure:
+        \begin{definition}{Heat Capacity for Gases}{}
+          \[ C_v = \left(\frac{\partial Q}{\partial T}\right)_V, \ C_p = \left(\frac{\partial Q}{\partial T}\right)_p\]
+          $C_v$ refers to heat capacity when gas is held at \textbf{constant volume}, $C_p$ defined as heat capacity when gas is held at \textbf{constant pressure}.
+        \end{definition}
+        In future lectures we will show that $C_p > C_v$ holds true for any gas.
+
+      \section{Thermalization}
+        Alongside specific heat capacity, people have also noticed that when a hot object is placed next to a cold one, then the cold one warms up, while the hotter one decreases in temperature. After a long time, the two objects reach some final temperature $T_f$, and no more heat transfer occurs. This process is called \textit{thermalization}, and it is a core principle of thermodynamics.
+        \begin{insight*}{}{}
+          As we can see from the example, thermalization is an irreversible process! Once two objects have reached equilibrium, we can no longer reverse this flow of energy and restore the original temperatures of the two objects. While this is obvious with heat, this fact also holds for energy transfer, but this is not so obvious as it may seem.
+        \end{insight*}
+        This principle of thermalization is so important that we have a law named after it:
+        \begin{theorem}{Zeroth Law of Thermodynamics}{}
+          Two systems, each in thermal equilibrium with a third, must be in thermal equilibrium with each other.
+        \end{theorem}
+        Again, while this may seem obvious with day-to-day life occurrences, this is not a trivial result in thermodynamics. However, this does point to the fact that temperature is a well-defined concept, and that it is very closely tied with thermal equilibrium.
+
+      \section{Defining Temperature}
+        In our everyday life, we define temperature on a Celsius scale, where $0^\circ$ represents the freezing point of water and $100^\circ$ represents the boiling point of water. Then, we define every tick in between as a unit increase in the volume of water. So by definition,
+
+        \[ 1^\circ = \frac{\Delta V}{100}\]
+
+        This definition for temperature is actually quite problematic $-$ the expansion rates for different materials is different, and so we don't have a consistent scale. Therefore, we need a new definition for temperature.
+
+      \section{Microstates and Macrostates}
+        Let's go back to the \say{flipping a coin} example. Say instead of one coin, we flip 100 coins simultaneously, then count the distribution. A microstate, in this context, would be the specific result of each coin (either heads or tails). A macrostate, however, refers to \textit{how many heads} there are. We can easily show that there are significantly more microstates than macrostates.
+
+        Since each coin has 2 outcomes, then by a combinatorial argument we can see that there are $2^{100}$ possible microstates, but there are only 101 possible macrostates. This should also give you a sense as to why we always talk in terms of state variables as opposed to specific configurations. We can also calculate the number of microstates in a specific macrostate of $X$ $-$ this is the same problem as we've done earlier with the particles of energy 1 or 0, and we showed that there are $n \choose x$ possible microstates. So a macrosatate of 0 has only 1 corresponding microstate, but a macrostate of 50 corresponds to $4 \times 10^{27}$ possible microstates. As a result, even though each microstate has equal probability, each macrostate does not!
+
+        \subsection{States with Temperature}
+          Now we apply the concepts of a macro and microstate to temperature. Here, our microstates are defined as the specific position, velocity, energy of each particle, and the macrostates refer to the state variables $-$ pressure, volume, energy, etc.. To simplify things, we only look at energy for now, and call $\Omega(E)$ the number of microstates with energy $E$.
+
+          Boltzmann had the following insight: suppose we have two boxes, with energies $E_1$ and $E_2$. We call $E$ the total energy, so $E = E_1 + E_2$, and we set it to be a fixed value. In each box, since they have energies $E_i$, then we have $\Omega_1(E_1)$ microstates in the first box and $\Omega_2(E_2)$ states in the second box. 
+          
+          %[INSERT TIKZ HERE] 
+          
+          Since these boxes are independent of each other then we have that $\Omega_1(E_1) \Omega_2(E_2) = \Omega$. Now notice that the number of microstates is the highest when $E_1 = E_2$, from our combinatorial argument. Thus, it is reasonable to conclude that thermal equilibrium occurs when $\Omega_1(E_1)\Omega_2(E_2)$ is maximized.
+
+          Doing so is quite easy, we take $\frac{d\Omega}{dE} = 0$, and this is simply product rule. What we eventually get is the following:
+
+          \[ \frac{\partial \ln \Omega_1}{\partial E_1} = \frac{\partial \ln \Omega_2}{\partial E_2}\]
+
+          Since these terms have something to do with temperature, they must be proportional to some power of $T$. It turns out that the correct proportionality is $T^{-1}$, so we arrive at the following:
+
+          \begin{theorem}{Quantitative Definition of Temperature}{Quantitative Definition of Temperature}
+            \[\frac{\partial \ln(\Omega)}{\partial E} = \frac{1}{k_B T}\]
+            Where $k_B$ represents the Boltzmann constant.
+          \end{theorem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 4%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 4 (9/6)}
+      The fourth lecture of Physics 5C was held on  \textbf{Tuesday, September 6}. It covered a review of the derivations from the previous lecture, as well as ensembles and physical examples.
+
+      \section{Last Time: Microstates, Macrostates, and Temperature}
+        Last lecture, we defined and discussed \textbf{microstates} and \textbf{macrostates}, and formulated a statistical definition of temperature. Recall that we have very many microstates for a given system, but we can group them into more manageable macrostates which are far easier to count.
+        \subsection{Notation and Boltzmann}
+          For a given macrostate $E$, we defined the number of microstates associated with it as $\Omega(E)$. Then, Boltzmann made a key insight: assuming each microstate is equally likely, then the probability must be proportional to the number of microstates for a given macrostate:
+          $$P \propto \Omega(E)$$
+          Then, Boltzmann considered two connected systems, one with $\Omega(E_1)$ microstates and the other with $\Omega(E_2)$ macrostates. The total energy in the system was then fixed at $E = E_1 + E_2$. This gives freedom for $E_1$ and $E_2$ to fluctuate, but fixes the total energy. 
+          
+          %[INSERT TIKZ HERE]
+
+          
+          Then, at thermal equilibrium, we want to maximize $\Omega(E_1)*\Omega(E_2)$, keeping in mind that $\frac{d\ln\Omega}{dE}$ must be constant given our thermal equilibrium condition. So, we find that:
+          $$k_B\frac{d\ln\Omega}{dE} = \frac{1}{T}$$
+          Now, we need to get some examples of how to calculate the macroscopic configurations to get a better understanding of this expression, and see if we can simplify it to something that looks a bit nicer.
+
+        \section{Ensembles}
+          Now that we went over what happened, let's dive into some examples to further motivate these results. To do this, we need to introduce something important.
+          \subsection{Gibbs Ensembles}
+            Physicist Gibbs has an idea: why not try to do some \say{mental} experiments. In other words, let's repeat an experiment to measure a property again and again. To do this, let's define a new important concept:
+            \begin{definition}{Ensemble}{Ensemble}
+              Defined as a large number of \say{mental photocopies} of a system, where each represents a possible state.
+            \end{definition}
+
+
+             There are also different types of ensembles. 
+              \begin{itemize}
+                \item An ensemble of a total system with \underline{fixed energy} is called a \textbf{microcanonical ensemble}
+                \item An ensemble that \underline{can exchange energy} but \underline{cannot exchange particles} is called a \textbf{canonical ensemble}
+                \item An ensemble that \underline{can exchange energy as well as particles} is called a \textbf{grand canonical ensemble}
+            \end{itemize}
+            These definitions will be useful later on when we want to refer to a collection of molecules and its properties.
+
+            
+
+        \section{Deriving Probability Distribution}
+
+        Imagine two systems, one with a single particle with energy $\epsilon$, and another system at energy $T$, comprised of a large number of particles. These systems are connected in the same fashion that the two systems in the previous lecture were connected, and have a total energy $E$. Just like in the previous lecture, the number of total states is equal to the product:
+
+        \[ \Omega(E) = \Omega(\epsilon) \Omega(E - \epsilon)\]
+
+        Since the container with energy $\epsilon$ is a single particle, then $\Omega(\epsilon) = 1$. Thus $\Omega(E) = \Omega(E - \epsilon)$. Then, from Boltzmann's insight, we know that $P(E) \propto \Omega(E) = \Omega(E - \epsilon)$. And since $\epsilon \ll E$, then we can Taylor-expand:
+
+        \begin{insight*}{}{}
+            Whenever we have one quantity significantly smaller than the other, a Taylor expansion will almost always simplify our lives by allowing us to ignore higher-order terms. For a function $F(a + \epsilon)$, we have:
+
+            \[ F(a + \epsilon) = F(a) + \epsilon\frac{dF}{dx}\Biggr|_{a} + \frac{\epsilon^2}{2} \frac{dF}{dx}\Biggr|_{a} + \dots \]
+
+            Generally, since $\epsilon \ll a$, we only need to keep the first two terms. 
+        \end{insight*}
+
+        We Taylor-expand on $\ln \Omega$, so we can use our quantitative definition of temperature (theorem \ref{th:Quantitative Definition of Temperature}):
+
+        \begin{align*}
+            \ln \Omega(E - \epsilon) &= \ln \Omega(E) + \frac{\partial \ln \Omega(E)}{\partial x}\bigg|_E (-\epsilon)\\
+            &= \ln \Omega(E) - \frac{1}{k_BT} \epsilon
+        \end{align*}
+
+        Combining this with our previous relation:
+
+        \[ P(\epsilon) \propto \Omega(E) \cdot \exp{-\frac{\epsilon}{k_BT}} \implies P(\epsilon) \propto \exp{-\frac{\epsilon}{k_BT}}\]
+
+        Now we need to normalize this such that $\int P(\epsilon) d\epsilon = 1$:
+
+        \[ A = \frac{1}{\int \exp{-\frac{\epsilon}{k_BT}} d\epsilon }\]
+
+        And this leads to the famous Boltzmann distribution:
+
+        \begin{theorem}{Boltzmann Distribution}{Boltzmann Distribution}
+            The probability that a particle has energy $\epsilon_i$:
+
+            \[ P(\epsilon_i) = \frac{\exp{-\frac{\epsilon_i}{k_BT}}}{\int \exp{-\frac{\epsilon}{k_BT}} d \epsilon}\]
+
+            There's also the discrete case, where we sum over all $i$ to get our normalization constant. This also works for any particle system, since $\Omega(E)$ had no constraints.
+        \end{theorem}
+
+
+        \begin{example}{Two-Energy System}{}
+            To illustrate this distribution, consider a two-energy system. That is, a system with two allowed energies, 0 and $\epsilon$. Using the Boltzmann distribution, we can calculate the probability that a particle inhabits each energy:
+
+            \begin{align*}
+                P(0) &= \frac{1}{e^{-\frac{\epsilon}{k_BT}} + 1}\\
+                P(\epsilon) &= \frac{e^{-\frac{\epsilon}{k_BT}}}{1 + e^{-\frac{\epsilon}{k_BT}}}
+            \end{align*}
+
+            Thus, we can calculate the expected value for the energy:
+
+            \begin{align*}
+                \mean{E} &= \sum P_iE_i = 0 \cdot P(0) + \epsilon P(\epsilon)\\
+                &= \frac{\epsilon e^{-\frac{\epsilon}{k_BT}}}{1 + e^{-\frac{\epsilon}{k_BT}}}
+            \end{align*}
+
+            To see if our answer makes sense, we check the limits. As $T \to 0$, we can see that $\mean{E}$ goes to zero, meaning that only the lowest energy is populated. This makes sense, since as temperature gets lower, the probability that a particle has energy $\epsilon$ should decrease. As $T \to \infty$, $\mean{E} = \frac{1}{2} \epsilon$, meaning that both energies are equally populated. This also makes sense, since we expect that as temperature increases the population of energy levels becomes more uniform.
+        \end{example}
+
+        \section{Gas Velocity Distributions}
+
+        Now let's take a look at the gas velocity distribution for 1D gases, then we extend this into three dimensions later. So, to find the gas velocity distribution of a gas, we have:
+
+        \[ \mean{v_x} = \infint v_x g(v_x) dv_x\]
+
+        Where $g(v_x)$ represents the probaiblity distribution of $v_x$ in our gas. From the previous section, we know that $g(v_x) \propto \exp{-\frac{mv_x^2}{2k_BT}}$, so:
+
+        \[ 1 = \infint Ae^{-\frac{mv_x^2}{k_BT}} dv_x\]
+
+        Now you could do this integral by hand, but we're physicists so you're allowed to consult an integral table for this. After integrating, we get that our normalization constant:
+
+        \[ A = \sqrt{\frac{m}{2\pi k_BT}} \implies g(v_x) = \sqrt{\frac{m}{2\pi k_BT}}\exp{-\frac{mv_x^2}{2k_BT}}\]
+
+        Since this probability is a Gaussian, then we know that $\mean{v_x} = 0$, which also intuitively makes sense since we should expect that our gas is an isotropic environment. What's more useful, is if we calculate $\mean{v_x^2}$:
+
+        \[ \mean{v_x^2} = \infint v_x^2 g(v_x) dv_x = \frac{k_BT}{m}\]
+
+        Again, we use an integral table here to get this result. Now, we are ready to extend to three dimensions. Specifically, let's find the energy of a gas system, by combining our classical definition for kinetic energy and using our previous result:
+
+        \begin{align*}
+            \mean{E_k} &= \mean{\frac{1}{2}mv^2}\\
+            &= \frac{1}{2} m\mean{v_x^2 + v_y^2 + v_z^2}\\
+            &= \frac{1}{2} m\left(\frac{3k_BT}{m}\right)\\
+            &= \frac{3}{2} k_BT
+        \end{align*}
+
+        This is an interesting, if not surprising result of thermodynamics: the energy of a system only depends on its temperature!
+
+        \section{Pressure}
+
+        Now that we've looked at the energy of a gas, let's also define pressure. We can model pressure was the collisions of particles on a wall, exchanging their momentum:
+
+        \[ F = \frac{\Delta p}{\Delta t} = \frac{\sum 2mv_x}{\Delta t}\]
+
+        Note that we have $v_x$ instead of a general $v$ term since a collision on a wall only affects the particle's momentum in one direction. Now we look at a single wall with area $A$ with particles $v_t$ a width $\Delta t$ away from the wall. 
+        
+        
+        %[INSERT TIKZ HERE]
+        
+        We can see that after a time $\Delta T$, all particles within that volume of gas would have collided with the wall, so thus: 
+
+        \[ \Delta p = \int g(v_x) dv_x v_x \Delta t A \cdot 2mv_x \]
+
+        And since pressure is defined as $P = \frac{\Delta p}{\Delta t A}$, we have:
+
+        \begin{align*}
+            P &= \int g(v_x) (2mv_x^2) dv_x\\
+            &= n_0 k_BT
+        \end{align*}
+
+        Where $n_0$ represents the density of the gas. 
+
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 5%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 5 (9/8)}
+    \input{lecture 5.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 6%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 6 (9/13)}
+    \input{lecture 6.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 7%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 7 (9/15)}
+    \input{lecture 7.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 8%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 8 (9/20)}
+
+    \input{lecture 8.tex}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 9%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 9 (9/22)}
+
+    \input{lecture 9.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 10%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 10 (9/27)}
+
+    \input{lecture 10.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 11%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 11 (9/29)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 12%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 12 (10/4)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 13%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 13 (10/6)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 14%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 14 (10/11)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%QUANTUM MECHANICS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \part{Quantum Mechanics}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 15%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 15 (10/18)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 16%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 16 (10/20)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 17%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 17 (10/25)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 18%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 18 (10/27)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 19%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 19 (11/1)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 20%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 20 (11/3)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 21%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 21 (11/8)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 22%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 22 (11/10)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 23%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 23 (11/15)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 24%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 24 (11/17)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 25%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 25 (11/22)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 26%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 26 (11/24)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 27%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 27 (11/29)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 28%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 28 (12/1)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 29%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 29 (12/6)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 30%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 30 (12/8)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \part{Miscellaneous}
+    \chapter{Closing Remarks}
+
+
+  \end{document}
