@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, enumitem, circuitikz, physics, parskip, hyperref}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../../local}
+
+
+\title{Physics 5CL Prelab}
+\author{Yutong Du}
+
+
+\begin{document}
+\maketitle 
+
+\section*{Collaborators}
+
+I worked wth \textbf{Andrew Binder} and \textbf{Aren Martinian} to complete this prelab.i
+
+\section*{Problem 1}
+
+In Experiment 1, you will be asked to produce an image with magnification of (roughly) $M = -1$. 
+
+\begin{enumerate}[label=\alph*)]
+\item Given a lens with focal length $f$, what must $d_o$ and $d_i$ be to accomplish this?
+
+\begin{solution}
+    The magnification is $M = -1$, so using equation 2b:
+
+    \[ M = -1 = -\frac{d_i}{d_o} \implies d_i = d_o\]
+\end{solution}
+
+The following three parts are a brief derivation of the angular magnification formula Eq. 4. Consider an eyepiece with a focal length $f_{EP}$. If an object is placed slightly less than one focal length away from the eyepiece then the image is a virtual image formed far in front of the lens. You may assume that the angular width made by this virtual image is the same as its angular size as perceived by the eye because the eyepiece is meant to placed very close to the eye.
+
+\item Find the angular width $\theta_{NP}$ of an object of height $h$ as seen by the eye when the object is placed in front of the eye at the person's near point distance $d_{NP}$. You may use the small-angle approximation.
+
+\begin{solution}
+    By the small angle approximation we have $\theta_{NP} \approx \tan \theta_{NP} = \frac{h}{d_{NP}}$.
+\end{solution}
+\item Find the angular width of the object $\theta_{EP}$ as seen by teh eye when placed one focal length in front of the eyepiece lens. Assume the eye is placed near the lens. You may use the small-angle approximation. \\ \textit{Hint: Use one of the principal rays for lenses to relate the angular width of the object to the angular width of the image.}
+
+\begin{solution}
+
+    The image is virtual, and forms behind the object. However, since this is true, $\theta_{EP}$ is a part of two different triangles: that of the image as well as that of the object. Thus:
+
+    \[ \theta_{EP} \approx \tan \theta_{EP} = \frac{h}{f_{EP}}\]
+\end{solution}
+\item Use the previous two results to recover Eq. 4
+
+\begin{solution}
+    The magnification is defined as $m = \frac{\theta_{EP}}{\theta_{NP}}$. Thus:
+
+    \[ m = \frac{\frac{h}{f_{EP}}}{\frac{h}{d_{NP}}} = \frac{d_{NP}}{f_{EP}}\]
+\end{solution}
+\end{enumerate}
+
+\pagebreak 
+\section*{Problem 2}
+
+Consider a microscope with a converging objective lens of focal length $f_{OB}$ and a converging lens of focal length $f_{EP}$. The two lenses are separated by a distance $f_{OB} + s + f_{EP}$. 
+
+\begin{enumerate}[label=\alph*)]
+    \item At what object distance (for the objective lens) will the image from the objective lens form a distance $f_{EP}$ before the \textit{eyepiece} lens?
+    
+    \begin{solution}
+        The image forms at a distance $f_{OB} + s$ from the objeectie lens: 
+
+        \begin{align*}
+            \frac{1}{f_{OB}} &= \frac{1}{d_o} + \frac{1}{f_{OB} + s} \\
+            \frac{1}{d_o} &= \frac{1}{f_{OB}} - \frac{1}{f_{OB} + s}\\
+            &= \frac{s}{f_{OB}(f_{OB} + s)}\\
+            \therefore d_o &= \frac{f_{OB}(f_{OB} + s)}{s}
+        \end{align*}
+    \end{solution}
+    \item What is the linear magnification of the original object by the objective lens?
+    
+    \begin{solution}
+        We use the magnification equation:
+
+        \begin{align*}
+            m &= -\frac{d_i}{d_o} = \frac{f_{OB} + s}{\frac{f_{OB}(f_{OB} + s)}{s}}\\
+            &= -\frac{s}{f_{OB}}
+        \end{align*}
+    \end{solution}
+    \item \phantom{}[\textit{Optional}] Show that the angular magnification by this microscope is given by Eq.5
+    \begin{solution}
+        We know that $M \equiv m_{EP}m_{OB}$, and we have $m_{EP}$ from the previous question:
+
+        \[ M = -\frac{s}{f_{OB}} \cdot \frac{d_{NP}}{f_{EP}} = -\frac{sd_{NP}}{f_{OB}f_{EP}}\]
+    \end{solution}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumitem}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 5CL}
+\newcommand{\classname}{Introduction to Experimental Physics II}
+\begin{document}
+    \maketitle
+    \section*{Problem 1}
+
+    In our calorimetry experiments we will have a thermally isolated system (a Styrofoam cup) so no net heat can flow into or out of hte system. Therefore, the total heat transfer from the system to the environment must be zero. If we mix two objects, conservation of energy implies $Q_1 + Q_2 = 0$. 
+
+    A mass $m_1$ of water at temperature $T_1$ is mixed with a mass $m_2$ of water at temperature $T_2$ and allowed to come to equilibrium. 
+
+    \begin{enumerate}[start, label=\alph*)]
+        \item Determine the final equilibrium temperature of the water
+        
+        \begin{solution}
+            We can write down the equation $Q_1 = m_1c_W(T_f - T_1)$ and $Q_2 = m_2c_W(T_f - T_2)$, and impose the condition that $Q_1 + Q_2 = 0$: 
+
+            \[ m_1c_W(T_f - T_1) + m_2c_W(T_f - T_2) = 0\]
+
+            Rearranging this and solving for $T_f$ then gives us 
+
+            \[ T_f = \frac{m_1T_1 + m_2T_2}{m_1 + m_2}\]
+        \end{solution}
+    \end{enumerate}
+
+    A mass $m_W$ of water at temperature $T_W$ is mixed with a mass of $m_{ice}$ at the freezing point and allowed to come to equilibrium. 
+
+    \begin{enumerate}[resume, label=\alph*)]
+        \item Determine the final equilibrium temperature of the mixture. 
+        
+        \begin{solution}
+            The equation is very similar to part (a), except for the fact that we need to account for the ice melting, so we need to factor in the latent heat of fusion. Therefore, $Q_W = m_Wc_W(T_f - T_W)$ but the second part will now be $Q_{ice} = m_{ice}c_W(T_f - T_{ice}) + m_{ice}L_f$. Therefore, using the same condition that $Q_W + Q_{ice} = 0$: 
+
+            \[m_Wc_W(T_f - T_W) + m_{ice}L_f + m_{ice}c_W(T_f - T_{ice}) = 0\] 
+
+            Again, solving for $T_f$ gives: 
+
+            \[ T_f = \frac{c_W(m_WT_W + m_{ice}T_{ice}) - m_{ice}L_f}{m_Wc_W + m_{ice}c_W}\]
+
+            Note that $T_{ice} = 0^\circ$C is a known value. 
+        \end{solution}
+    \end{enumerate}
+
+    Suppose we ran a ``mixing-water-and-ice'' experiment with two different masses of water and ice. We measure all the temperatures and masses in this experiment, so we have two equations (one heat balance equation for each experiment) with two unknowns (the specific heat of water $c_W$ and the latent heat of fusion of ice $L_f$).
+
+    \begin{enumerate}[resume, label=\alph*)]
+        \item Find an expression for $L_f$ in terms of $c_W$.
+        
+        \begin{solution}
+            We can just rearrange the equation we got part (b) of this problem, which allows us to determine $L_f$ in terms of $c_W$, assuming taht we measure al other values $m_{ice}, T_W$ and $m_W$: 
+
+            \[ L_f = \frac{c_W(m_WT_W + m_{ice}T_{ice}) - T_fc_W(m_W + m_{ice})}{m_{ice}}\]
+        \end{solution}
+    \end{enumerate}
+
+    \begin{enumerate}[resume, label=\alph*)]
+        \item What would be the error in a predicted value of $L_f$ from part (c) if our ice started at $2^\circ$C below the freezing point rather than \textit{at} the freezing point? [\textit{You may take the specific heat of ice to be 0.490 cal/g $ \cdot ^\circ$C}] 
+        
+        \begin{solution}
+            We can then describe this process as follows: the ice heats up to $0^\circ$C, then we can proceed with our calculation in part (c). Therefore, we have 
+
+            \begin{align*}
+                Q_1 &= m_1c_W(T_f - T_1)\\
+                Q_2 &= 2m_{ice}c_{ice} + m_{ice}L_f + m_{ice}c_W(T_f - T_{freeze})
+            \end{align*}
+
+            Where all values are as defined previously, and $T_{freeze} = 0^\circ$C. We again have $Q_1 + Q_2 = 0$, so therefore 
+
+            \begin{align*}
+                L_f' &= \frac{c_W(m_WT_W + m_{ice}T_{ice}) - T_fc_W(m_W + m_{ice}) - 2m_{ice}c_{ice}}{m_{ice}}\\
+                &= L_f - \frac{2m_{ice}c_{ice}}{m_{ice}}\\
+                &= L_f - 2c_{ice}
+            \end{align*}
+
+            Therefore, the latent heat of fusion term we obtain will be off by a factor of $2c_{ice}$. In general, this factor of 2 just represents the temperature difference, which was given to be 2 degrees. Therefore, we can derive an even more general expression for the error: 
+
+            \[ L_f' = L_f - \Delta Tc_{ice}\] 
+
+            where $\Delta T$ denotes the difference between the temperature of the ice and the freezing point of ice.
+
+
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+    \section*{Problem 2}
+
+    Consider a cylindrical chamber of radius $r$ and wall-thickness $\ell$. The chamber is made of a material with thermal conductivity $K$. The chamber is filled to height $h$ with a mass $m$ of water at temperature $T_{in}$ and is immersed up to at least height $h$ in a heat bat of temperature $T_{out}$. You may take the following simplifying assumptions: the heat flow out the top of the chamber is negligible for this problem; the thickness of the chamber is much less than the radius of the chamber (so the ``cross-sectional area'' is roughly constant); the system is always roughly in a \underline{steady state}, so you can use Eq. 8 for the heat flow. 
+
+    \begin{enumerate}[start, label= \alph*)]
+        \item Determine the rate of heat flow through the chamber [\textit{Note: The bottom of the chamber is in thermal contact with the heat bath, too, so it should be included in your calculations}]
+        
+        \begin{solution}
+            The total cross sectional area we have to work with is the side of the container up to the water height and the area of the bottom. Therefore, $A = 2\pi r h + \pi r^2$ so therefore, using Eq. 8: 
+
+            \[ H = \frac{K(2\pi rh + \pi r^2)}{\ell}(T_{out} -T_{in})\]
+        \end{solution}
+    \end{enumerate}
+
+    Suppose we didn't know the thermal conductivity of the chamber but observed that, in the setup described, the temperature of the water inside the chamber changes at a rate of $dT_{in}/dt$. You may still assume that the chamber itself is always in a steady state, so Eq. 8 still applies. 
+
+    \begin{enumerate}[resume, label=\alph*)]
+        \item Determine the rate of heat flow through the chamber when the temperature of the water inside the chamber is $T_{in}$ and from this determine an expression for the thermal conductivity $K$ of this chamber.
+        
+        \begin{solution}
+            $H$ is defined as the rate of heat flow, or in other words $H = \frac{dQ}{dt}$. Since we know that $Q = mc_W\Delta T$ (in the case of water we use $c_W$), then $\frac{dQ}{dT} = mc_W \frac{dT}{dt}$. Therefore, 
+
+            \begin{align*}
+                m_Wc_W \cdot \frac{dT}{dt} &= \frac{K(2\pi r h + \pi r^2)}{\ell }(T_{out} - T_{in})\\
+                \therefore K &= \frac{m_Wc_W \frac{dT}{dt} \ell}{(2 \pi r h + \pi r^2)(T_{out} - T_{in})}
+            \end{align*}
+        \end{solution}
+    \end{enumerate}
+\end{document}
