@@ -1,0 +1,48 @@
+The first lecture of Physics 137A was held on  \textbf{Wednesday, August 24}. It covered the basics of the course syllabus and an introduction of blackbody radiation.
+
+      \section{Why Quantum Mechanics?}
+        Quantum mechanics was developed as a way to better describe physical observations. By the eighteenth century, we effectively mastered principles of Newtonian mecahnics, but we could not describe what was happening when objects glow when heated. So before we begin studying quantum mechanics, let's take a look at how we got here.
+
+      \section{Blackbody Radiation}
+        Blackbody radiation refers to the phenomenon that when a solid object, such as a cube of matter, is heated to a temperature $T$, it begins to glow.
+
+        \begin{itemize}
+          \item \textbf{1742:} It was observed that different objects (made from different materials) at the same temperature glow the same colour.
+          \item \textbf{1800s:} The methods of spectroscopy get better, and we are now able to analyze light to a much higher degree of precision.
+          \item \textbf{1854:} Kirchoff develops the modern theory of blackbody radiation. He imagined that there is a function $R(\lambda, T)$ which represents the emissive power per unit area of a blackbody. He also developed a the modern model of a blackbody $-$ an object that allows light and bounces many times, and it generates a temperature $T$ due to the bouncing. Here's an example of $R(\lambda, T)$ vs. $\lambda$:
+
+          \begin{center}
+            \begin{tikzpicture}
+              \begin{axis}
+                \addplot[color=red]{1e8* x/(e^x - 1)};
+              \end{axis}
+            \end{tikzpicture}
+          \end{center}
+        \end{itemize}
+
+        There are a few characteristics of this curve that make intuitive sense. At $\lambda = 0$, there is no wave, so the blackbody radiation intensity should be 0. At large wavelengths, the light carries very low energy, and thus the radiation intensity is also very low.
+
+        As this curve represents emissive power per unit area, the area (the integral) under the curve is finite, and describes the total emissive power. Stefan's law then states that the total radiation is proportional to $T^4$. Mathematically speaking, this means that
+
+        \[ R(T) = \int_0^\infty R(T, \lambda) d\lambda = \sigma T^4\]
+
+        Wein's law describes a relationship between the maximum wavelength of a blackbody curve to its temperature. Specifically, he found that $\lambda_{max}T = 2.898 \times 10^{-3}$, or in other words $\lambda_1 T_1 = \lambda_2T_2$.
+
+        Then, Rayleigh and James calculated, numerically, that at high wavelengths this curve is approximated by
+
+        \begin{equation}\label{classical blackbody equation}
+        R(T) = \frac{8\pi k_B T}{\lambda^4}
+        \end{equation}
+
+        Notice that we have $\lambda^4$ in the denominator of this equation, meaning that our function should, in theory asymptote very quickly at low $\lambda$ values, However, this is not what we see in experiments! This discrepancy between the classical theory and observed is most commonly referred to as the \textbf{ultraviolet catastrophe.}
+
+      \section{Derivation from First Principles}
+
+      Let's now go back to first principles and try to build up a black body and see how it behaves. For simplicity, consider a cube of side length $L$ [INSERT TIKZ HERE]. Now, recall standing waves on a line: [INSERT TIKZ HERE] To figure out the eigennodes for such a setup, all we do is solve the wave equation we learned in E\&M:
+      $$\nabla^2\psi(\vec{r},t) = \frac{1}{c^2}\frac{\partial^2}{\partial t^2}\psi(\vec{r},t)$$
+      The quantum version of this equation will look similar, so it's good to remind ourselves of it. This is a second-order differential equation, which means that we need to specify the boundary conditions. In this case, our boundary condition is that $\psi$ must vanish at the cavity walls:
+
+      $$\psi(x=0,y,z,t) = \psi(x=L,y,z,t) = 0$$
+      From this, we get our standard solution of a sine wave:
+      $$\psi(\vec{r},t) = A(t)\sin(k_xx)\sin(k_yy)\sin(k_zz)$$
+      Here, $k_i = \frac{n_i\pi}{L}$. In other words, our equation is of the form $A(t)B(x,y,z)$. Essentially, we've separated the time parts and the space parts into different pieces, which is exactly what we would expect in the standing wave case. Mixing them together gives us traveling waves. If we now consider an electron in our box, we get an oscillating EM field, which will be important when we continue this next lecture.

@@ -1,0 +1,133 @@
+\babel@toc {english}{}
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {0}Introduction}{7}{chapter.0}%
+\contentsline {section}{\numberline {0.1}Basic Syllabus Info}{7}{section.0.1}%
+\contentsline {subsubsection}{Professor and GSI Info}{7}{section.0.1}%
+\contentsline {subsection}{\numberline {0.1.1}Lecture and Discussion Info}{7}{subsection.0.1.1}%
+\contentsline {subsection}{\numberline {0.1.2}Course Materials}{7}{subsection.0.1.2}%
+\contentsline {subsection}{\numberline {0.1.3}Grading Breakdown}{7}{subsection.0.1.3}%
+\contentsline {part}{I\hspace {1em}Pre-Midterm}{9}{part.1}%
+\contentsline {chapter}{\numberline {1}Lecture 1 (8/24)}{11}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Why Quantum Mechanics?}{11}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Blackbody Radiation}{11}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Derivation from First Principles}{12}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Lecture 2 (8/26)}{13}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Last Time: Modeling the Black Body}{13}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Energy Density}{13}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Solving for the Dispersion Relation}{13}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Many Nodes}{14}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Density of States}{14}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Quantum Mechanics is Needed}{15}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Classical Calculation}{15}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Quantum Calculation}{15}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}The Bohr Atom}{16}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}The Electron Dies}{16}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Matter is a Wave}{16}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}How Do we Gain Intuition?}{16}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Lecture 3 (8/29)}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Last Time: Everything is a Wave (in Quantum Mechanics)}{19}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Wave Description of Matter}{20}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Probability Density}{20}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.3}Wave Superposition}{20}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Introducing Operators}{21}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}de Broglie Relations}{21}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Enter the Operator}{21}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Operators in 3 Dimensions}{22}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Probability Density and Normalization}{22}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Plane Waves are Problematic}{22}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Wave Packets and Fourier Transforms}{22}{subsection.3.5.2}%
+\contentsline {chapter}{\numberline {4}Lecture 4 (8/31)}{23}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Last Time: Wave Description of Nature}{23}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Wave Packets}{23}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}1D Wave Packet}{23}{subsection.4.2.1}%
+\contentsline {section}{\numberline {4.3}Review of Fourier Transforms}{24}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Discrete Fourier Transform}{24}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Discrete Case: Exponential Form}{25}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Kronecker Delta}{25}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Continuous Fourier Transform}{25}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Dirac Delta}{26}{subsection.4.3.5}%
+\contentsline {section}{\numberline {4.4}Back to Wave Packets}{27}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Stationary Phase Condition}{27}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Group Velocity}{27}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Phase Velocity}{28}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Next Time: Dispersion}{28}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Lecture 5 (9/2)}{29}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Last Time: Wave Description of Matter for Free Particle}{29}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Modeling $\mathbf {\phi }$}{29}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Uncertainties Everywhere}{29}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Playing Around with our Function}{30}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Energy for Plane Wave}{30}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Energy for Wave Packet}{30}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Adding $\mathbf {1}$ or Multiplying by $\mathbf {0}$}{31}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Gaussian Wave Packets}{32}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Computing $\mathbf {\Psi }$}{32}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Arriving at the Heisenberg Uncertainty Principle}{33}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Heisenberg Uncertainty Principle: What does it Mean?}{33}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Proving the Heisenberg Uncertainty Principle}{34}{subsection.5.4.1}%
+\contentsline {chapter}{\numberline {6}Lecture 6 (9/7)}{35}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Last Time: Waves and Wave Packets}{35}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Localization in Energy and Time}{35}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Another Uncertainty Relation}{35}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Model of the Atom}{36}{subsection.6.2.2}%
+\contentsline {section}{\numberline {6.3}The Schrodinger Equation}{37}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}How do We Find Wave Functions?}{37}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Equations for Wave-Equation for Quantum Mechanics}{37}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Schr\"{o}dinger Equation: the 1D Free Particle Case}{37}{subsection.6.3.3}%
+\contentsline {subsection}{\numberline {6.3.4}Correcting the Equation}{38}{subsection.6.3.4}%
+\contentsline {section}{\numberline {6.4}Properties of $\Psi $, $\hat {H}$}{39}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Lecture 7 (9/9)}{41}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Last Time: Schr\"{o}dinger Equation Describes Conservation of Energy}{41}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Substituting in Schr\"{o}dinger }{41}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Expectation Value}{42}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Classical Mechanics Version}{43}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Quantum Version}{43}{subsection.7.3.2}%
+\contentsline {section}{\numberline {7.4}How to Work with Hermitian Operators}{43}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Enter the Commutator}{44}{subsection.7.4.1}%
+\contentsline {subsection}{\numberline {7.4.2}Significance of These Operators}{44}{subsection.7.4.2}%
+\contentsline {chapter}{\numberline {8}Lecture 8 (9/12)}{45}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Last Time: Waves are Complex and The Commutator}{45}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}This Week: Eigenfunctions and Solving Schr\"{o}dinger }{45}{subsection.8.1.1}%
+\contentsline {section}{\numberline {8.2}Solving Schr\"{o}dinger }{45}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Stationary States}{45}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Time-Independent Schr\"{o}dinger Equation}{46}{subsection.8.2.2}%
+\contentsline {subsection}{\numberline {8.2.3}Eigenfunctions and Eigenstates}{46}{subsection.8.2.3}%
+\contentsline {subsection}{\numberline {8.2.4}Solving Time-Independent Schr\"{o}dinger Equation}{47}{subsection.8.2.4}%
+\contentsline {section}{\numberline {8.3}Solving Quantum Problems}{48}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Math Time}{48}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Final Trick: Expectation Value Calculation}{49}{subsection.8.3.2}%
+\contentsline {section}{\numberline {8.4}That's All We Need (Mostly)!}{50}{section.8.4}%
+\contentsline {chapter}{\numberline {9}Lecture 9 (9/14)}{51}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Last time: Solutions to the Schrodinger Equation}{51}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Different Types of Energies}{51}{section.9.2}%
+\contentsline {chapter}{\numberline {10}Lecture 10 (9/16)}{53}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Lecture 11 (9/19)}{55}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Lecture 12 (9/21)}{57}{chapter.12}%
+\contentsline {chapter}{\numberline {13}Lecture 13 (9/23)}{59}{chapter.13}%
+\contentsline {chapter}{\numberline {14}Lecture 14 (9/26)}{61}{chapter.14}%
+\contentsline {chapter}{\numberline {15}Lecture 15 (9/28)}{63}{chapter.15}%
+\contentsline {chapter}{\numberline {16}Lecture 16 - Guest Lecture (9/30)}{65}{chapter.16}%
+\contentsline {chapter}{\numberline {17}Lecture 17 (10/3)}{67}{chapter.17}%
+\contentsline {chapter}{\numberline {18}Lecture 18 (10/5)}{69}{chapter.18}%
+\contentsline {chapter}{\numberline {19}Lecture 19 (10/7)}{71}{chapter.19}%
+\contentsline {chapter}{\numberline {20}Lecture 20 (10/10)}{73}{chapter.20}%
+\contentsline {chapter}{\numberline {21}Lecture 21 (10/12)}{75}{chapter.21}%
+\contentsline {chapter}{\numberline {22}Lecture 22 (10/14)}{77}{chapter.22}%
+\contentsline {part}{II\hspace {1em}Post-Midterm}{79}{part.2}%
+\contentsline {chapter}{\numberline {23}Lecture 23 (10/21)}{81}{chapter.23}%
+\contentsline {chapter}{\numberline {24}Lecture 24 (10/24)}{83}{chapter.24}%
+\contentsline {chapter}{\numberline {25}Lecture 25 (10/26)}{85}{chapter.25}%
+\contentsline {chapter}{\numberline {26}Lecture 26 (10/28)}{87}{chapter.26}%
+\contentsline {chapter}{\numberline {27}Lecture 27 (10/31)}{89}{chapter.27}%
+\contentsline {chapter}{\numberline {28}Lecture 28 - Guest Lecture (11/2)}{91}{chapter.28}%
+\contentsline {chapter}{\numberline {29}Lecture 29 (11/4)}{93}{chapter.29}%
+\contentsline {chapter}{\numberline {30}Lecture 30 (11/7)}{95}{chapter.30}%
+\contentsline {chapter}{\numberline {31}Lecture 31 (11/9)}{97}{chapter.31}%
+\contentsline {chapter}{\numberline {32}Lecture 32 (11/14)}{99}{chapter.32}%
+\contentsline {chapter}{\numberline {33}Lecture 33 (11/16)}{101}{chapter.33}%
+\contentsline {chapter}{\numberline {34}Lecture 34 (11/18)}{103}{chapter.34}%
+\contentsline {chapter}{\numberline {35}Lecture 35 (11/21)}{105}{chapter.35}%
+\contentsline {chapter}{\numberline {36}Lecture 36 - Guest Lecture (11/28)}{107}{chapter.36}%
+\contentsline {chapter}{\numberline {37}Lecture 37 - Guest Lecture (11/30)}{109}{chapter.37}%
+\contentsline {chapter}{\numberline {38}Lecture 38 (12/2)}{111}{chapter.38}%
+\contentsline {part}{III\hspace {1em}Miscellaneous}{113}{part.3}%
+\contentsline {chapter}{\numberline {39}Closing Remarks}{115}{chapter.39}%

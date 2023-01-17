@@ -1,9 +1,9 @@
-PWD /Users/eric/Documents/Courses/CS 70/HW3
+PWD /Users/eric/Documents/Courses/CS 70/HW8
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.tex
-OUTPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.log
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.tex
+OUTPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -21,17 +21,17 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size11.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size11.clo
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/header.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/algorithms/algorithm.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/algorithms/algorithm.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/algorithms/algorithm.sty
@@ -927,33 +927,6 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryarr
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/tikzlibrarycalligraphy.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/tikzlibrarycalligraphy.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/spath3/spath3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -1239,10 +1212,83 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
-OUTPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/sourcesanspro.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/ly1/ly1enc.def
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/ly1/ly1enc.def
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/ly1/ly1enc.def
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/ly1/ly1enc.def
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ly1enc.dfu
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ly1enc.dfu
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ly1enc.dfu
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ly1enc.dfu
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/mweights/mweights.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.aux
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.aux
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.aux
+OUTPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.aux
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/ly1/ly1ptm.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/ly1/ly1ptm.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/ly1/ly1ptm.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/ly1/ly1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1301,21 +1347,19 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-OUTPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.pdf
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-OUTPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+OUTPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.pdf
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+OUTPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
@@ -1367,55 +1411,76 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri7t.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7t.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmb8t.vf
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7y.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7m.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/psyro.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7m.vf
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/psyro.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7y.vf
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7t.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7t.vf
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7m.vf
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/psyro.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7v.vf
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7y.vf
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1pcr.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1pcr.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1pcr.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1pcr.fd
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/courier/pcrr8t.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/courier/pcrr8t.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/T1SourceSansPro-TLF.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/T1SourceSansPro-TLF.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/T1SourceSansPro-TLF.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/sourcesanspro/T1SourceSansPro-TLF.fd
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/sourcesanspro/SourceSansPro-Regular-tlf-t1.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8c.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/sourcesanspro/SourceSansPro-Regular-tlf-t1.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/sourcesanspro/SourceSansPro-Regular-tlf-t1--base.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr8c.vf
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7y.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/zptmcm7v.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.aux
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /Users/eric/Documents/Courses/CS 70/HW8/hw08-student.out
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/sourcesanspro/a_emkxm5.enc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmdunh10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/urw/symbol/usyr.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/urw/symbol/usyr.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmr8a.pfb

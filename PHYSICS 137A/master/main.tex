@@ -1,0 +1,849 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PHYSICS 137A NOTES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%PACKAGE INCLUSIONS%%
+\documentclass{book}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, pgfplots, wrapfig, amssymb, array, mathtools, enumitem, circuitikz, physics, parskip, hyperref}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{dirtytalk}
+\usepackage{shortcuts}
+
+\theoremstyle{plain}
+\usetikzlibrary{calc,patterns,angles,quotes}
+\setlength{\parskip}{0pt}
+\usetikzlibrary{calc,patterns,angles,quotes}
+\makeatletter
+\pagestyle{fancy}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\pgfplotsset{compat=1.17}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%SECTIONING EDITS%%
+%
+%DEFINITION FOR CHAPTER HEADERS%
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{
+  {\parindent \z@ \centering \reset@font
+        \thickhrulefill\quad
+        \scshape Lecture \thechapter
+        \quad \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{10\p@}%
+        \huge \bfseries #1\par\nobreak
+        \par
+        \vspace*{10\p@}%
+        \hrule
+    \vskip 20\p@
+  }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%PART STYLING%
+\titleclass{\part}{top} % make part like a chapter
+\titleformat{\part}
+[display]
+{\centering\normalfont\huge\bfseries}
+{\vspace{200pt}\titlerule[5pt]\vspace{3pt}\titlerule[2pt]\vspace{3pt}\MakeUppercase{Part} \thepart}
+{0pt}
+{\titlerule[2pt]\vspace{20pt}\huge\MakeUppercase}
+
+\titlespacing*{\part}{0pt}{0pt}{20pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%SECTION STYLING%
+\def\section{\@ifstar\unnumberedsection\numberedsection}
+\def\numberedsection{\@ifnextchar[%]
+    \numberedsectionwithtwoarguments\numberedsectionwithoneargument}
+\def\numberedsectionwithoneargument#1{\numberedsectionwithtwoarguments[#1]{#1}}
+\def\numberedsectionwithtwoarguments[#1]#2{%
+    \ifhmode\par\fi
+    \removelastskip
+    \vskip 5ex\goodbreak
+    \refstepcounter{section}%
+    \hbox to \hsize{\hss\vbox{\advance\hsize by 0cm
+        \noindent
+        \leavevmode\Large\bfseries\raggedright
+        \thesection\space$\bigg\vert$\hskip -1ex $\bigg\vert$\space   \
+        #2\par
+        \vskip -2ex
+        \noindent\hrulefill
+        \vskip -3ex
+        \noindent\hrulefill
+        }}\nobreak
+    \vskip 2ex\nobreak
+    \addcontentsline{toc}{section}{%
+    \protect\numberline{\thesection}%
+    #1}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%SUBSECTION STYLING%
+\def\subsection{\@ifstar\unnumberedsubection\numberedsubsection}
+\def\numberedsubsection{\@ifnextchar[%]
+    \numberedsubsectionwithtwoarguments\numberedsubsectionwithoneargument}
+\def\numberedsubsectionwithoneargument#1{\numberedsubsectionwithtwoarguments[#1]{#1}}
+\def\numberedsubsectionwithtwoarguments[#1]#2{%
+    \ifhmode\par\fi
+    \removelastskip
+    \vskip 5ex\goodbreak
+    \refstepcounter{subsection}%
+    \hbox to \hsize{\hss\vbox{\advance\hsize by 0cm
+        \noindent
+        \leavevmode\large\bfseries\raggedright
+        \thesubsection\space$\bigg\vert$\space\
+        #2\par
+        \vskip -2ex
+        \noindent\hrulefill
+        }}\nobreak
+    \vskip 2ex\nobreak
+    \addcontentsline{toc}{subsection}{%
+        \protect\numberline{\thesubsection}%
+        #1}%
+    }
+
+    \makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+  %TITLE PAGE%
+  \begin{titlepage}
+      \centering
+      \vspace*{\baselineskip}\vspace{200pt}
+      \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+      \rule{\textwidth}{0.4pt}\\[\baselineskip]
+      {\Huge \bfseries PHYSICS 137A NOTES}\\[0.2\baselineskip]
+      \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+      \rule{\textwidth}{1.6pt}\\[\baselineskip]
+      \scshape
+      Typeset notes for Physics 137A: Quantum Mechanics I\\
+      \par
+      \vspace*{2pt}
+      {\Large Andrew Binder and Eric Du}\\
+      {\large University of California, Berkeley\par}
+      {\scshape Fall 2022} \\
+  \end{titlepage}
+
+  \tableofcontents
+  \newpage
+  \setcounter{chapter}{-1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%INTRODUCTION%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Introduction}
+      This course is titled \textbf{Quantum Mechanics I}. Eric and Andrew both took this course in Fall 2022.
+      \section{Basic Syllabus Info}
+          Here, there is some basic information regarding the syllabus for this course as it was taught in Fall 2022.
+          \subsubsection{Professor and GSI Info}
+              A little bit about the professor and the GSIs:
+              \begin{itemize}
+                  \item{\textbf{Professor}: Irfan Siddiqi (irfan\_siddiqi@berkeley.edu)}
+                  \item{\textbf{GSI 1}: Avirukt Mittal (avirukt@berkeley.edu)}
+                  \item{\textbf{GSI 2}: Serah Moldovsky (serah\_moldovsky@berkeley.edu)}
+              \end{itemize}
+              Office hours were different for each professor and GSI and were available by appointment as well.
+          \subsection{Lecture and Discussion Info}
+              Now, a bit about the lectures and discussions.
+              \begin{itemize}
+                  \item{\textbf{Lectures}: M/W/F, 09:00 - 10:00, Physics Building 4}
+                  \item{\textbf{Discussions}: M, 18:00 - 19:00, Evans 60 \textbf{or} T, 17:00 - 18:00, GSPP}
+              \end{itemize}
+              Lectures and discussions both start on Berkeley time (10 minutes after posted start time), and lectures end one minute before the hour.
+          \subsection{Course Materials}
+              For this course, there are two required textbooks: Griffiths Intro to Quantum Mechanics and Shankhar Principles of Quantum Mechanics. It is recommended, though, that you consult other resources to get a better and more thorough grasp on the material.
+          \subsection{Grading Breakdown}
+              Here is everything factored into the grade:
+              \begin{itemize}
+                  \item{\textbf{Homework}: One assignment per week, due Friday at 17:00. Lowest dropped. Total 30\%}
+                  \item{\textbf{Midterm}: Split over two days, 10/17 and 10/19, in class. Total 30\%.}
+                  \item{\textbf{Final}: Will cover everything. On 12/16 from 19:00 - 22:00. Total 40\%}
+              \end{itemize}
+              There is no curve in this class, so just do the best that you can! To succeed in this course, it's important to \underline{come to lectures, do the homework, and read the materials in advance}. With all of this, success is guaranteed!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%PRE-MIDTERM%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \part{Pre-Midterm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 1 (8/24)}
+    \input{lecture 1.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 2 (8/26)}
+    \input{lecture 2.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 3%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 3 (8/29)}
+    \input{lecture 3.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 4%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Lecture 4 (8/31)}
+    \input{lecture 4.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 5%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            \chapter{Lecture 5 (9/2)}
+              The fifth lecture of Physics 137A was held on \textbf{Friday, September 2}. It covered more on wave packets and built up to the Heisenberg uncertainty principle.
+
+              \section{Last Time: Wave Description of Matter for Free Particle}
+                From the previous lectures, we want a wavelike description of matter. To accomplish this, we've been playing around with the free particle [INSERT TIKZ] Modeled as a wave, this becomes a wave packet described by the wave function $\Psi(x)$, where $|\Psi(x)|^2$ is the probability density to find the \say{particle} at $x$. [INSERT TIKZ] Note that this \underline{isn't a plane wave}: plane waves go on forever and we want to localize our wave function just where the \say{particle} is. Despite this, plane waves are just fine for some approximations in the right regions:
+                \begin{example}{Wave Between two Walls}{}
+                    Here, we have two different functions between two walls. As we can see, for this small approximation, the wave packet and the plane wave are basically the same, so a plane wave (which is much simpler to model) suffices as a decent approximation.
+                \end{example}
+                With all of this, we constructed a formula for our wave function:
+                $$\Psi(x) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\exp{i\frac{p_xX - E(p_x)t}{\hbar}}\phi(p_x)dp_x$$
+                As we found, writing out this equation is easy, but the hard part is figuring out the weight $\phi$, which we can do with the Fourier transform, a trick which we learned last time.
+
+                \subsection{Modeling $\mathbf{\phi}$}
+                  As we found, for a single plane wave, $\phi(p_x)$ is a delta function at $p_0$ [INSERT TIKZ] Adding more plane waves gives us a delta function that spreads out. This is our \textbf{first level of approximation}.
+
+                \subsection{Uncertainties Everywhere}
+                  From that model, we can see the following key insight which will become important later on:
+                  \begin{insight*}{}{}
+                    Having no uncertainty in momentum gives no information for position, and having no uncertainty in position gives no information for momentum
+                  \end{insight*}
+                  This will come up later when we develop the Heisenberg uncertainty principle. Similarly, we had another insight when calculating the phase velocities $v_p$ and group velocity $v_g$ of our wave packet:
+                  \begin{insight*}{}{}
+                    Because each plane wave in the wave packet has a different momentum (and by extension phase velocity, the wave packet will eventually \underline{disperse.}
+                  \end{insight*}
+                  With all of these tools, let's continue playing around with the free particle.
+
+            \section{Playing Around with our Function}
+              Consider some distribution for $\phi$ which is not quite a delta function: [INSERT TIKZ]
+              Recalling our equations for group velocity, we have $$v_g = \frac{\partial \omega}{\partial k} = \frac{\partial E}{\partial p}$$
+              Since we're modeling a particle here, the classical velocity $v$ exactly corresponds to the group velocity $v_g$: $$v = v_g = \frac{p_x}{m}$$
+              So, $\frac{\partial E(p_x)}{\partial p_x} = \frac{p_x}{m}$, which means that $$E(p_x) = \frac{p_x^2}{2m}$$
+              This is the exact formula for kinetic energy that we expect in classical mechanics!
+
+              \subsection{Energy for Plane Wave}
+                In the case of a single plane wave, that means that $$E(p_x) = \frac{p_0^2}{2m}$$
+                How can we add more terms to this to get an expression for an actual wave packet that isn't just a delta function? \textit{Taylor expand}!
+
+              \subsection{Energy for Wave Packet}
+                Taylor expanding our equation gives us:
+                $$E(p_x) = \frac{p_0^2}{2m} + \frac{p_0}{m}(p_x-p_0) + \frac{(p_x - p_0)^2}{2m}$$
+                Note that these are the only three terms in the Taylor expansion since the derivative is with respect to $p_0$. Now, plugging this into our wave function:
+                $$\Psi(x,t) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\exp{i\frac{p_xx - (E(p_0)t + v_gt(p_x-p_0 + \frac{(p_x-p_0)^2}{2m}t}{\hbar}}\phi(p_x)dp_x$$
+                Note that $v_g$ is simply $\frac{p_0}{m}$. Now, there are a lot of term corrections here, so how can we drop that ugly second-order correction? Well, we can drop it when $\frac{(p_x-p_0)^2t}{2m\hbar} \ll 1$. This actually gives us something important:
+                \begin{insight*}{}{}
+                  The second-order correction term gives you information about the dispersion time for the wave packet: for small $t$, the packet won't disperse, but for a sufficiently large $t$, the packet will spread out.
+                \end{insight*}
+                Coming back to our wave function:
+                $$\Psi(x,t) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\exp{i\frac{p_xx - E(p_0)t - v_gt(p_x-p_0)}{\hbar}}\phi(p_x)dp_x$$
+                This is quite a clunky expression. How do we make progress on solving this?
+
+              \subsection{Adding $\mathbf{1}$ or Multiplying by $\mathbf{0}$}
+                One very useful trick that came up a lot in algebra and will make a stunning reappearance here in physics is the trick of \textbf{multiplying by $1$ or adding $0$}. In other words, if we add a nice-looking expression that neatly fixes our equation while not actually changing the result, we can have a much easier time. So, let's try adding (and subtracting) $p_0x$:
+                $$\Psi(x,t) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}\exp{i\frac{p_xx - p_0x + p_0x - E(p_0)t - v_gtp_x + v_gtp_0}{\hbar}}\phi(p_x)dp_x$$
+                Now pull out all of the constant terms with respect to $dp_x$:
+                $$\Psi(x,t) = \frac{1}{\sqrt{2\pi\hbar}}e^{i\frac{p_0x - E(p_0)t}{\hbar}}\int_{-\infty}^{\infty}\exp{i\frac{(p_x-p_0)(x-v_gt)}{\hbar}}\phi(p_x)dp_x$$
+                Notice that we ended up with a plane wave as one of the factors in the front! Similarly, we have thrown all information about our envelope in the exponential! Let's call the new expression in our integral $$\exp{i\frac{(p_x-p_0)(x-v_gt)}{\hbar}}\phi(p_x) = \fbox{$F(x,t)$}$$
+                Notice what this is:
+                %could either be theorem or definition as well
+                \begin{insight*}{}{}
+                  The function
+                  $$\Psi(x,t) = \frac{1}{\sqrt{2\pi\hbar}}\exp{i\frac{p_0x_0 E(p_0)t}{\hbar}}\int_{-\infty}^{\infty}F(x,t)dp_x$$
+                  is a \textbf{plane wave modulated by envelope $F$, moving at speed $v_g$}.
+                \end{insight*}
+                Calculating the probability density gives us:
+                $$|\Psi(x,t)|^2 = |F(x,t)|^2$$
+                The rest has modulus $1$, so it disappears.\\\\
+                Now, let's model our distribution. As we can clearly see with the previous graphs for the distribution of $\phi$, the distribution of $\Psi$ will look like a \underline{Gaussian}!
+
+          \section{Gaussian Wave Packets}
+            As we've discussed before, approximations are key in physics. So, looking at our distribution for $\phi$, we see that the best model for it would be that of a Gaussian:[INSERT TIKZ]
+            A Gaussian distribution is then defined as such:
+            \begin{definition}{Gaussian Distribution}{}
+              A distribution of the form $$f(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp{-\frac12\left[\frac{x - \mu}{\sigma}\right]^2}$$
+            \end{definition}
+            In our case, our $\phi$ then looks like this:
+            $$\phi(p_x) = C\exp{-\frac{(p_x-p_0)^2}{2(\Delta p_x)^2}}$$
+            So, $|\phi|^2$ falls to $\frac{1}{e}$ for $p_x = p_0 \pm \Delta p_x$.
+
+            \subsection{Computing $\mathbf{\Psi}$}
+              To proceed, we're going to introduce an important identity from mathematics that we will assume to be given:
+              \begin{theorem}{Integral Identity}{}
+                $$\int_{-\infty}^{\infty}e^{-\alpha u^2}e^{-\beta u}du = \left(\frac{\pi}{\alpha}\right)^{\frac12}e^{\frac{\beta^2}{4\alpha}}$$
+              \end{theorem}
+              We could prove this with complex analysis, but we'll just take it to be true. Now, let's go back to $\Phi(x,t)$, but take a snapshot at $t=0$. Essentially, we are eliminating time dependence here (though on the homework we will re-introduce time dependence to get a full picture of our wave function). With $t=0$, we can eliminate everything that has a factor of $t$ in it from our expression. This then gives us:
+              $$\Psi(x) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{i\frac{p_xx}{\hbar}}\phi(p_x)dp_x$$
+              As we can see, in the time-independent case, this is a true Fourier transform of $\phi(p_x)$. As stated before, on the homework, we will put back $t$ to find the full expression for $\Psi$.\\\\
+              How do we solve this? Just plug it into our identity! Plugging in, we get:
+              $$\Psi(x) = \frac{1}{\sqrt{2\pi\hbar}}C\int \exp{i\frac{p_xx}{\hbar}}\exp{-\frac{(p_x-p_0)^2}{2(\Delta p_x)^2}}dp_x = \frac{\pi^{-\frac14}}{\sqrt{\alpha}}(\Delta p_x)^{\frac12}\exp{i\frac{p_0x}{\hbar}}\exp{-\frac{(\Delta p_x)^2x^2}{2\hbar^2}}$$
+              As we can see, this last term is yet another Gaussian! This confirms an important fact:
+              \begin{insight*}{}{}
+                The Fourier transform of a Gaussian is also a Gaussian.
+              \end{insight*}
+
+            \subsection{Arriving at the Heisenberg Uncertainty Principle}
+              In other words, this means that \fbox{$\Psi(x)$ looks like a Gaussian}: [INSERT TIKZ] This time, $\Psi$ falls to $\frac{1}{e}$ of the maximum at $x = \pm \Delta x$. Rewriting this, we have another crucial identity:
+              \begin{theorem}{Heisenberg Uncertainty Principle: Equivalence Case}{}
+                $$\Delta x = \frac{\hbar}{\Delta p_x}$$
+              \end{theorem}
+                This is the famed Heisenberg Uncertainty Principle that we were searching for! Notice that for a Gaussian wave packet, it's an equality. This is the \textit{minimum amount of uncertainty}. Every other wave packet will have a bigger uncertainty. We may prove this later, but it's hard. And so, we have that the Gaussian wave packet is the \underline{minimum uncertainty state}:
+                \begin{definition}{Minimum Uncertainty State}{}
+                  The state where uncertainty is minimized (as name suggests).
+                \end{definition}
+                So, for a non-Gaussian wave function, we can rewrite this principle into a form we all know and love:
+                \begin{theorem}{True Heisenberg Uncertainty Principle}{}
+                  $$\Delta p_x\Delta x \geq \hbar$$
+                \end{theorem}
+
+          \section{Heisenberg Uncertainty Principle: What does it Mean?}
+            And so, we have calculated the space part of our wave function, and we will calculate the time part on the homework. Now, before we can move on with the rest of quantum mechanics, it is important for us to answer this question completely and correctly: \textit{what does the Heisenberg uncertainty principle mean?} Trying to unpack the inequality gives us this insight into the meaning of this simple expression:
+            \begin{insight*}{}{}
+                If you measure $\Psi(x)$ and measure it to an accuracy of $\Delta x = a$, then that means that immediately measuring $p$ will have some uncertainty $\Delta p$ which must be larger than equal to $\frac{\hbar}{\Delta x}$.
+            \end{insight*}
+            Notice the simultaneity condition for these measurements: the wave function will change with time, so this doesn't necessarily have to hold if one were to wait some amount of time before taking the measurement for $p$. But, in our case, where we are still dealing with instantaneous measurements, then this will hold.
+            \newpage
+            \subsection{Proving the Heisenberg Uncertainty Principle}
+              How did Heisenberg prove his principle? With the help of a special tool: the \textit{Heisenberg microscope}:
+              %could take this out of example environment if you so desire
+              \begin{example}{Heisenberg Microscope}{}
+                The following is a model for the microscope: [INSERT TIKZ] As we can see, we have an emitter passing electrons one at a time through a double slit. As we know from wave mechanics, this will produce an interference pattern on the back panel. However, we want to see inside of this, so we must illuminate the box with some gamma rays of wavelength $\lambda_{\gamma}$. This will then deflect the path of some of the electrons by some error $\Delta p_{e^{-1}}$ and some angle $\Delta \theta$. Now, if we want to resolve which slit a given electron came from, we must have that $$\lambda_{\gamma} < d$$
+                Now, from our de Broglie relations, $p_{\gamma} = \frac{h}{\lambda_{\gamma}}$. Plugging this in, we have the following:
+                \begin{align*}
+                  \Delta p_{e^{-1}} \approx \frac{h}{\lambda_{\gamma}} &\geq \frac{h}{d}\\
+                  \therefore d\Delta p_{e^{-1}} &\geq h\\
+                  \therefore \Delta \theta \approx \frac{\Delta p_{e^{-1}}}{p_{e^{-1}}} &= \frac{h}{pd} = \frac{\lambda_e}{d}\\
+                  \therefore L\Delta \theta = \lambda_{e^{-1}}\frac{L}{d}
+                \end{align*}
+              \end{example}
+              The takeaway here is that \underline{trying to measure the momentum loses the interference pattern}. And so, this uncertainty principle must hold.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 6%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 6 (9/7)}
+        The sixth lecture of Physics 137A was held on \textbf{Wednesday, September 7}. It covered a final review on wave packets and introduced the Schrodinger equation and Hermiticity.
+
+        \section{Last Time: Waves and Wave Packets}
+          What have we learned so far? So far, we have learned that everything is a wave. Why do we say this? We say it, because a wave description of matter is a more accurate and all-encompassing description than our previous particle model. Case in point: the double slit experiment. That experiment seems to definitively confirm that waves are the best description. Now, we had two different types of waves that we could use: plane waves and wave packets.\\\\
+          Plane waves are everywhere, meaning that they are merely an approximation. While they're bad over large intervals, they are pretty decent over certain intervals.\\\\
+          Secondly, wave packets are localized collections of many plane waves. Specifically, we have been considering wave packets that are localized in \textbf{space} and \textbf{momentum}. Then, the Heisenberg uncertainty principle gave us that
+          $$\Delta p_x\Delta x \geq \hbar$$
+          Heisenberg illustrated this principle with the \textit{Heisenberg microscope} thought experiment, explored last time.
+
+        \section{Localization in Energy and Time}
+          We explored localization in space and momentum, but we could also think about a wave packet being localized in \textbf{frequency} and \textbf{time}. In other words, we can think of it as a snapshot in time.
+          \subsection{Another Uncertainty Relation}
+            Now, with what we discovered, we see that, should our wave packet be localized in time and frequency, this means that we need another uncertainty relation for these two quantities. And so, we have the following:
+            \begin{theorem}{Uncertainty Relationship for Time}{}
+              $$\Delta E \Delta t \geq \hbar$$
+              We write it this way, because $E = \hbar\omega$
+            \end{theorem}
+            Now, this relationship does look nice, but how can we confirm that it's actually accurate? Well, let's see why this works.
+          \subsection{Model of the Atom}
+            Now, we're going to illustrate why our uncertainty principle works:
+            \begin{example}{Bohr Atom}{}
+              Consider a simplified model of the standard Bohr atom:
+              [INSERT TIKZ]
+              Here, the electron has two possible states: a \textbf{ground state} and an \textbf{excited state}. The electron can reside in the ground state for as long as it desires, because there is no lower energy state for it to drop down to. However, when it's in the excited state, it will have some decay half-life. What do we mean by this? Well, at any given moment, the electron has some chance of dropping down to the ground state, and averaging out over a long time gives us a general curve which can help us predict after what time we can expect there to be a roughly 50\% chance that the electron has decayed into the lower state.\\\\
+              Can we predict when this decay will happen? No, quantum mechanics won't let us. But we can average to get some half-lifetime $\tau$.\\\\
+              Now, if we consider the uncertainty in the energy, we see that the higher energy level will actually have some width to it (since we don't actually know the exact energy), and this uncertainty will be equal to $\Delta E = \frac{\hbar}{\tau}$. \\\\
+              In the ground state, the decay time is essentially infinite, so the uncertainty in the energy is practically negligible. However, in the excited state, we will have some decay time $\tau_{e}$, with a corresponding uncertainty in the excited energy $\Delta E_e = \frac{\hbar}{\tau_e}$. In other words, the emission will have some width:
+              [INSERT TIKZ]
+            \end{example}
+            Now, let's take it a bit further and examine some more details about this uncertainty, specifically with what happens when an electron does jump down to a lower energy state:
+            \begin{example}{Fluorescent Lights}{}
+              Consider some fluorescent tube: [INSERT TIKZ]
+              How does it work? Well, the edges are blasted with some electricity, and the gas inside heats up and glows a specific light frequency as a plasma. But why does the whole tube light up when just the edges are excited?\\\\
+              Well, when electrons jump to lower states, they release photons. So, when the atom releases a photon, Newton tells us that the atom must have some recoil in the opposite direction: [INSERT TIKZ] But still, how can the next atom in the chain absorb emitted light coming from a different atom if it ends up recoiling? Because the recoil is small compared to the line width! This means that we get \textit{resonant absorption}.\\\\
+              Notice that this doesn't apply for nuclei or gamma rays, since the line width then becomes small compared to the recoil. There is actually one case when the nuclei can absorb: \underline{when the entire lattice recoils.} [INSERT TIKZ]
+              When the lattice recoils, the recoil will then be distributed over many particles in the lattice, and so the recoil will once again fall into the limit of being shorter than the line width, hence resonant absorption.\\\\
+              This is actually the famous \textbf{M\"{o}ssbauer Effect}!
+            \end{example}
+            With that, we're done with waves and wave packets. Now it's time to move on to the \schrodinger equation.
+
+          \section{The Schrodinger Equation}
+            Now, we can move on to understanding one of the most important equations in not just quantum mechanics, but in physics as a whole.
+
+            \subsection{How do We Find Wave Functions?}
+              We have good expressions for the wave function, but our biggest problem right now is actually finding this wave function. We've been told what it is and what it looks like, but we can't actually find it for some given parameters. We need something akin to Newton's Second Law of Motion, but just for waves.
+
+            \subsection{Equations for Wave-Equation for Quantum Mechanics}
+              This wave equation must satisfy a few important conditions:
+              \begin{itemize}
+                \item{Linear (permits superposition): waves can be added}
+                \item{Should reproduce (\say{agree} with) classical physics}
+                \item{Boundary conditions}
+              \end{itemize}
+              To review what these mean, we firstly want to be able to add waves with our equation, which means it must be linear. Secondly, we don't want any previously-established laws of physics to break with this new equation, so the other laws must still be satisfied. Finally, our equation must satisfy some important boundary conditions. Let's look at those a bit more in-depth here.\\\\
+              The classical wave equation has two derivatives in space and two derivatives in time. This means that we must impose two boundary conditions for us to get some kind of expression. However, this is bad news for us, because classically, we only need one boundary condition in order to invoke Newton's Second Law. So, our new wave equation should only have \textit{one time derivative to satisfy causality}.\\\\
+              Let's now construct this wave equation!
+
+            \subsection{\schrodinger Equation: the 1D Free Particle Case}
+              Firstly, let's consider the system we've been trying to understand for a while: a free particle in one dimension. [INSERT TIKZ] So, this system is then described by a wave function $$\Psi(x,t) = Ae^{i\frac{p_xx - Et}{\hbar}}$$
+              Now, recall ten that we can write energy as
+              $$E = \frac{p_x^2}{2m}$$
+              Substituting some expressions into the terms gives us our dispersion relation:
+              $$\fbox{$\omega = \frac{\hbar k^2}{2m}$}$$
+              Now, remember operators? We had the following note before:
+              $$\frac{\partial \Psi(x,t)}{\partial t} = A(-i\omega)e^{i(kx-\omega t)} = -i\omega\Psi = -\frac{i}{\hbar}E\Psi$$
+              Taking two derivatives in space, we similarly get:
+              $$\frac{\partial^2}{\partial x^2}\Psi(x,t) = -k^2Ae^{i(kx-\omega t)} = -\frac{p_x^2}{\hbar}\Psi = -\frac{2Em}{\hbar^2}\Psi$$
+              We have two $E$s, so let's group the equations together and solve to get this very crucial equation:
+              \begin{theorem}{\schrodinger Equation for Free Particle in 1 Dimension}{}
+                $$\fbox{$i\hbar\frac{\partial}{\partial t}\Psi(x,t) = \frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}\Psi(x,t)$}$$
+              \end{theorem}
+              Now, if we think of those original terms in front of the $\Psi$s as operators, we have our momentum and energy operators as before:
+              $$\hat{E} = i\hbar\frac{\partial}{\partial t}, \hat{p}_x = -i\hbar\frac{\partial}{\partial x}$$
+              But, this is only for a free particle in one dimension, so we have to add in potential energy and the other dimensions. More correctly, we need to take into account a force that can be derived from a potential.
+
+            \subsection{Correcting the Equation}
+              What types of forces can be derived from a potential? \textbf{Conservative forces}! They then are described as the gradient of some potential:
+              \begin{definition}{Conservative Force}{}
+                Recalling from mechanics, this refers to a force that can be derived from a potential, which makes work done independent of a path.
+              \end{definition}
+              So, consider some conservative force:
+              $$\vec{F}(\vec{r},t) = -\vec{\nabla}V(\vec{r},t)$$
+              Here, $V$ is our potential. Writing this out in terms of operators, we have:
+              \begin{definition}{Potential Operator}{}
+                $$\hat{V}(\vec{r},t)\Psi(\vec{r},t) = V(\vec{r},t)\Psi(\vec{r},t)$$
+                Here, $\hat{V}$ is our \textbf{potential operator}.
+              \end{definition}
+              Throwing this all together, we get:
+              \begin{theorem}{\schrodinger Equation}{}
+                $$\fbox{$i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t) = \left[-\frac{\hbar^2}{2m}\nabla^2 + \hat{V}(\vec{r},t)\right]\Psi(\vec{r},t)$}$$
+              \end{theorem}
+              This is exactly the equation that Erwin \schrodinger wrote down in 1926. This equation is super important, and you should remember it for the rest of your life.
+              \begin{insight*}{}{}
+                Notice that the first term in the brackets of the equation corresponds exactly to the \textbf{kinetic energy} component, whilst the second term in the bracket sum is the \textbf{potential}. Finally, the entire expression in the bracket is exactly the \textbf{Hamiltonian Operator} $\hat{H}$.
+              \end{insight*}
+              \begin{definition}{Hamiltonian Operator}{}
+                Denoted $\hat{H}$: $\hat{H} = -\frac{\hbar^2}{2m}\nabla^2 + \hat{V}(\vec{r},t)$
+              \end{definition}
+              In other words, at its most basic, the \schrodinger equation is simply an equation of \underline{energy conservation}. Let's now talk about some properties of these operators.
+
+          \section{Properties of $\Psi$, $\hat{H}$}
+            Firstly, we have our most important property: probability conservation:
+            $$\int_{\text{All Space}}|\Psi(\vec{r},t)|^2d\vec{r} = 1$$
+            Now, let's derive \textit{hermiticity}. Taking the derivative here gives:
+            $$\frac{\partial}{\partial t}\int_{\text{All Space}}|\Psi(\vec{r},t)|^2d\vec{r} = 0$$
+            An important thing to remember here:
+            \begin{insight*}{}{}
+              Never listen to mathematicians! You can move derivatives anywhere! Everything is smooth. If it weren't, life would be discontinuous.
+            \end{insight*}
+            Notice that $|\Psi|^2$ is actually a different way of writing $\Psi^{*}\Psi$. So, throwing that in gives:
+            $$\frac{\partial}{\partial t}\int_{\text{All Space}}|\Psi|^2d\vec{r} = \int_{\text{All Space}}\Psi^{*}\left(\frac{\partial \Psi}{\partial t}\right) + \int_{\text{All Space}}\left(\frac{\partial \Psi^{*}}{\partial t}\right)\Psi d\vec{r}$$
+            Now, let's substitute in our operators:
+            \begin{align*}
+              i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t) &= \hat{H}\Psi(\vec{r},t)\\
+              -i\hbar\frac{\partial}{\partial t}\Psi^{*}(\vec{r},t) &=\left[\hat{H}\Psi(\vec{r},t)\right]^{*}
+            \end{align*}
+            So, throwing this all in gives:
+            \begin{align*}
+              \int_{\text{All Space}}\Psi^{*}\left(\frac{\partial \Psi}{\partial t}\right) + \int_{\text{All Space}}\left(\frac{\partial \Psi^{*}}{\partial t}\right)\Psi d\vec{r} &= \frac{1}{i\hbar}\int_{\text{All Space}}\left[\Psi^{*}(\hat{H}\Psi) - (\hat{H}\Psi)^{*}\Psi\right]d\vec{r} = 0\\
+              \therefore \int_{\text{All Space}}\Psi^{*}(\hat{H}\Psi)d\vec{r} &= \int_{\text{All Space}}(\hat{H}\Psi)^{*}\Psi d\vec{r} = \int_{\text{All Space}}\Psi^{*}\hat{H}^{*}\Psi d\vec{r}
+            \end{align*}
+            Since this integral we've been calculating is arbitrary for any surface, we have then:
+            \begin{theorem}{Hermiticity}{}
+              $$\hat{H} = \hat{H}^{*}$$
+              Here, $\hat{H}$ has a special name:
+              \begin{definition}{Hermitian Operator}{}
+                Denoted $\hat{H}$.
+              \end{definition}
+            \end{theorem}
+            And so, we have derived Hermiticity. This gives us this important fact:
+            \begin{insight*}{}{}
+              $E$ must be real number always.
+            \end{insight*}
+            We will continue with this and with expectation values next time.
+        
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 7%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 7 (9/9)}
+        The seventh lecture of Physics 137A was held on \textbf{Friday, September 9}. It covered more on the \textbf{\schrodinger equation} and introduced \textbf{Hermiticity and the commutator}.
+
+        \section{Last Time: \schrodinger Equation Describes Conservation of Energy}
+            Last lecture, we tried to better understand the \schrodinger equation by modeling it as an equation that, like Newton's Second law with conservation of momentum, basically describes the conservation of energy for a wave function. We noted that total energy can be written as the sum of some kinetic energy $KE$ and some potential energy $PE$. These energy components were then defined by their separate operators, where total energy was described by the \textit{Hamiltonian operator} $\hat{H}\Psi = i\hbar\frac{\partial \Psi}{\partial t}$, kinetic energy was described by the \textit{momentum operator} $\frac{\hat{p}^2}{2m}\Psi = \left(-i\hbar\frac{\partial}{\partial x}\right)^2\Psi$, and finally the potential energy was described by a \textit{potential operator} $\hat{V}\Psi$. So, in the end, the equation became:
+            $$i\hbar\frac{\partial \Psi}{\partial t} = \left[-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + \hat{V}(x)\right]\Psi = E\Psi$$
+            Notice that the Hamiltonian and momentum operators are unique and will remain the same for all cases of the wave function $\Psi$. However, the potential operator $\hat{V}$ is not unique, so we will spend roughly a third of the course figuring out different cases for this operator.\\\\
+            We also started on Hermiticity:
+            \begin{align*}
+                \int|\Psi(\vec{r},t)|^2d\vec{r} &= 1\\
+                \therefore \frac{\partial}{\partial t}\int|\Psi(\vec{r},t)|^2d\vec{r} &= 0 = \int\Psi^{*}\left(\frac{\partial \Psi}{\partial t}\right) + \left(\frac{\partial \Psi^{*}}{\partial t}\right)\Psi d\vec{r}
+            \end{align*}
+            We need to generalize the $^{*}$ here, since it won't always be just the complex conjugate. But we need something new if we want to substitute \schrodinger into this. So, our generalization (from linear algebra) becomes the \underline{\textbf{adjoint}}. For scalars, it will remain the complex conjugate, but for matrices, it will be the conjugate transpose. We will, typically, use $^{\dagger}$ to denote the adjoing (a \say{dagger}).
+
+        \section{Substituting in \schrodinger}
+            Now, substituting in the \schrodinger equation:
+            \begin{align}
+                \frac{1}{i\hbar}\int\left[\Psi^{*}(\hat{H}\Psi) - (\hat{H}\Psi)^{*}\Psi\right]d\vec{r} \to \fbox{$\hat{H} = \hat{H}^{*}$} \label{eq1}
+            \end{align}
+            This gives us the Hermitian operator (the adjoing is equal to the normal).
+            \begin{theorem}{Hermitian Operator Properties}{}
+                The Hermitian operator is associated with two things:
+                \begin{itemize}
+                    \item{Real eigenvalues}
+                    \item{Observables (needs to be a measurable quantity)}
+                \end{itemize}
+            \end{theorem}
+            Now, let's do something with equation \ref{eq1}. Substitute the spatial part of the \schrodinger equation into equation \ref{eq1} (assume a real-valued $\hat{V}$):
+            $$\dots = \frac{i\hbar}{2m}\int\left[\Psi^{*}(\nabla^2\Psi) - (\nabla^2\Psi^{*})\Psi\right]d\vec{r} = \dots$$
+            Now, use the vector identity for the Laplacian: $\nabla^2 x = \vec{\nabla}\cdot\vec{\nabla}(x)$:
+            $$\dots = \frac{i\hbar}{2m}\int\vec{\nabla}\cdot\left[\Psi^{*}(\vec{\nabla}\Psi) - (\vec{nabla}\Psi)^{*}\Psi\right]d\vec{r} = \dots$$
+            Now, call the integrand $\vec{j}$:
+            $$\dots = -\int\vec{\nabla}\cdot\vec{j}d\vec{r}$$
+            Use Stokes' Theorem:
+            $$\frac{\partial}{\partial t}\int|\Psi(\vec{r},t)|^2d\vec{r} = -\int \vec{j}\cdot d\vec{s}$$
+            Here, $s$ refers to our surface over which we're integrating. Now, if integrals are equal, the integrands should be equal. So, we can invoke an important identity from E\&M:
+            $$\fbox{$\frac{\partial}{\partial t}p(\vec{r},t) + \vec{\nabla}\cdot\vec{j}(\vec{r},t) = 0$}$$
+            \begin{insight*}{}{}
+                If we examine this qualitatively, $\vec{\nabla}\cdot\vec{j}$ tells you what the \say{flow} of $\Psi^{*}\Psi$ is at any given point.
+            \end{insight*}
+            And so, we can give $\vec{j}$ a new definition:
+            \begin{definition}{Probability Current}{}
+                Denoted $\vec{j}$; describes flowing probability for a wave function.
+            \end{definition}
+            Notice that if $\Psi$ were real-valued, then the flow $\vec{\nabla}\cdot\vec{j}$ would always be $0$. That would be quite boring.\\\\
+            This completes the introduction to the \schrodinger equation. Now, how do we get rid of $\Psi$ to calculate things? For this, we need to introduce the \underline{expectation value}.
+
+        \section{Expectation Value}
+            Firstly, let's consider classical mechanics.
+            \subsection{Classical Mechanics Version}
+                In classical mechanics, the \underline{mean value} is equal to
+                $$\mean{r} = \int rP(\vec{r},t)d\vec{r}$$
+                Here, $P(\vec{r},t)$ refers to probability. This is the classical version, so let's now translate this into the quantum version.
+
+            \subsection{Quantum Version}
+                In quantum mechanics, we have $P = |\Psi|^2$. So\dots
+                \begin{definition}{Expectation Value}{}
+                    For some wave function $\Psi$, we define the \textbf{expectation value} of an operator $\hat{r}$ as
+                    $$\mean{\hat{r}} = \int\Psi^{*}\hat{r}\Psi d\hat{r}$$
+                \end{definition}
+                Here, we substitute the operator $\hat{r}$, since $\hat{r}\Psi = \vec{r}\Psi$. So, in disguise, before, we were really calculating the expectation value of the \textit{identity operator}:
+                $$\Psi^{*}\Psi = \Psi^{*}\mathbb{1}\Psi$$
+                Now, let's calculate some expectation values for our operators:
+                \begin{theorem}{Expectation Values for Energy and Momentum Operators}{}
+                    \begin{align*}
+                        \mean{\hat{V}(\vec{r},t)} &= \int \Psi^{*}\hat{V}\Psi d\vec{r}\\
+                        \fbox{$\mean{\hat{p}}$} &= \int\Psi^{*}\hat{p}\Psi d\vec{r} = \fbox{$-i\hbar\int\Psi^{*}(\vec{r},t)\vec{\nabla}\Psi(\vec{r},t)d\vec{r}$}
+                    \end{align*}
+                \end{theorem}
+                A quick aside for homework assignment and exams:
+                \begin{insight*}{}{}
+                    Always write your thoughts down first; you get partial credit points just for that, and it's usually not too difficult to figure out the rest of the solution from there!
+                \end{insight*}
+
+        \section{How to Work with Hermitian Operators}
+            Is the momentum operator hermitian? Yes. But\dots
+            \begin{insight*}{}{}
+                $\hat{p}$ is Hermitian, but $\hat{p} = -i\hbar\vec{\nabla}$; it's important to remember that we need to multiply by $\Psi$ to see this hermiticity.
+            \end{insight*}
+            What about the product of Hermitian operators? Is that Hermitian? \textbf{No}. These operator can't be interchanged, since operators usually \textit{do not commute}. For example, $\hat{x}\hat{p}_x$ is not Hermitian (check other lecture notes for full derivation). For another example, let's consider something from classical physics: translation and rotation. This clearly isn't Hermitian, since first rotating and then moving will send you to a different place than first moving and then rotating: \underline{these don't commute}.
+
+            \subsection{Enter the Commutator}
+                How do we figure out if they commute? For this, we simply need to calculate the \underline{commutator}:
+                \begin{definition}{Commutator}{}
+                    Denoted $[\vec{A},\vec{B}]$: $[\vec{A},\vec{B}] = \hat{A}\hat{B} - \hat{B}\hat{A}$
+                \end{definition}
+                We literally just compute these two separate operator combinations and subtract them. If the commutator evaluates to $0$, then $\hat{A},\hat{B}$ \underline{commute}. If the commutator evaluates to anything else, then $\hat{A},\hat{B}$ \underline{don't commute}.
+                \begin{insight*}{}{}
+                    What does it mean to commute? It means that the properties we're measuring \textit{don't correlate}.
+                \end{insight*}
+                In other words, things that commute can be measured simultaneously, since measuring one thing will not affect the result of the other measurement. By contrast, things that don't commute can't be measured simultaneously, since our measurements will affect each other.\\\\
+                Going back to our above case, $[\hat{x},\hat{p}_x] \neq 0$, which we can confirm by calculating:
+                $$[\hat{x},\hat{p})_x] = \hat{x}\hat{p}_x - \hat{p}_x\hat{x}$$
+                Both sides of the equation are operators, so let's throw in $\Psi$ on both sides:
+                \begin{align*}
+                    [x,p_x]\Psi &= \left[x\left(-i\hbar\frac{\partial}{\partial x}\right) + i\hbar\left(\frac{\partial}{\partial x}\right)x\right]\Psi = &&\text{(critical to get the signs right)}\\
+                    &= -i\hbar x\frac{\partial \Psi}{\partial x} +  i\hbar\left[\Psi + \frac{\partial \Psi}{\partial x}\right] = i\hbar\Psi &&\text{(distribute)}
+                \end{align*}
+                That last equation can trip a lot of people up: don't forget the product rule!\\\\
+                So, \fbox{$[\hat{x},\hat{p}_x] = i\hbar \neq 0$}. Hence, this product is not Hermitian.
+                \begin{insight*}{}{}
+                    $i\hbar$ is a super important quantity that will pop up a lot!
+                \end{insight*}
+
+            \subsection{Significance of These Operators}
+                Confirming this fact is great, but what is the significance of these non-commutative operators? Well, consider the \textit{harmonic oscillator}. SHO has kinetic energy $KE$ and potential energy $PE$, so you can always write a system in terms of some harmonic oscillator. So, these operators will be used to describe \underline{everything} going forward, since we can define everything in terms of the commutator.
+                \begin{insight*}{}{}
+                    So, given a pair of operators, always start by calculating their commutator.
+                \end{insight*}
+                More on this next week!
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 8%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 8 (9/12)}
+        The eighth lecture of Physics 137A was held on \textbf{Monday, September 12}. It covered \textbf{solving the \schrodinger equation and eigenfunctions}, as well as reviewing the expectation value.
+
+        \section{Last Time: Waves are Complex and The Commutator}
+            Last week, we established that waves must be inherently complex (otherwise the gradient of the probability current would simply always be $0$, which would make for a boring universe). We also introduced the \textit{commutator} to determine whether or not operators commute and, by extension, if their product is Hermitian. This essentially, qualitatively, boils down to understanding what operations are independent of each other and hence can be measured simultaneously.
+
+          \subsection{This Week: Eigenfunctions and Solving \schrodinger}
+            With this in mind, we want to now generalize the concept of Hermitian operators through \textit{eigenfunctions}.
+
+        \section{Solving \schrodinger}
+          Now, we can proceed with solving the \schrodinger equation. Recalling from last time, we have the following equation that we want to solve:
+          \begin{definition}{Time-Dependent \schrodinger Equation}{}
+            Time-dependent case of the \schrodinger equation: $$i\hbar\frac{\partial}{\partial t}\Psi(\vec{r},t) = \left[\underbrace{-\frac{\hbar^2}{2m}\nabla^2}_{KE} + \underbrace{\hat{V}(\vec{r})}_{PE}\right]\Psi(\vec{r},t)$$
+          \end{definition}
+          We now want the general solution to this equation, so let's do it!
+
+          \subsection{Stationary States}
+            To solve for specific states, we're essentially just looking for \textit{separate/stable/eigen solutions} (all different ways of saying the same thing). We will refer to these as \textbf{stationary states}:
+            \begin{definition}{Stationary State}{}
+              State solution of the form:
+              $$\Psi(\vec{r},t) = f(t)\Psi(\vec{r})$$
+              Essentially, one that looks like a standing wave.
+            \end{definition}
+            So, we have the ansatz solution and the equation. What do we do? As always, \underline{substitute}!
+            $$i\hbar\Psi(\vec{r})\frac{d}{dt}f(t) = \left[-\frac{\hbar^2}{2m}\nabla^2\Psi(\vec{r}) + \hat{V}(\hat{r})\Psi(\vec{r})\right]*f(t)$$
+            Notice here that we have the full derivative, so we will not use the partial derivative notation. Now, we need to \underline{separate the variables}. Divide by $f(t)\Psi(\vec{r})$ to compartmentalize:
+            $$i\hbar\frac{1}{f(t)}\frac{df(t)}{dt} = \frac{1}{\Psi(\vec{r})}\left[-\frac{\hbar^2}{2m}\nabla^2\Psi(\vec{r}) + \hat{V}(\vec{r})\Psi(\vec{r})\right]$$
+            In the separable case, these need to be independent, which means that \fbox{$\hat{V}$ has to be independent}. Time-dependent potential operators exist, but they are much harder to deal with, so we'll largely avoid them for now.
+
+          \subsection{Time-Independent \schrodinger Equation}
+            Now that we have this, \textit{set both sides equal to $E$}, and solve piece-by-piece. Starting with the time piece first:
+            $$i\hbar\frac{d}{dt}f(t) = Ef(t) \implies f(t) = \fbox{$Ce^{-i\frac{Et}{\hbar}}$}$$
+            This solution looks like a plane wave! Notice that $f(t)$ will then never change for our wave functions, since this is a simple derivative independent of everything else. Now, the space part:
+            $$\left[-\frac{\hbar^2}{2m}\nabla^2 + \hat{V}(\vec{r})\right]\Psi(\vec{r}) = E\Psi(\vec{r})$$
+            This expression is completely time-independent, and we actually give it its own name:
+            \begin{definition}{Time-Independent \schrodinger Equation}{}
+              Time-independent case of the \schrodinger equation:
+              $$\left[-\frac{\hbar^2}{2m}\nabla^2 + \hat{V}(\vec{r})\right]\Psi(\vec{r}) = E\Psi(\vec{r})$$
+            \end{definition}
+            Notice one big problem: \underline{we can't solve this}. Why not? \underline{We don't know $\hat{V}$}! If $\hat{V}$ were $0$, then we have our \textit{free particle} case (which we have already solved), but we want the general case now.
+
+          \subsection{Eigenfunctions and Eigenstates}
+            Now, we need to quickly define what we mean by eigenfunction, since this term has been coming up a lot recently:
+            \begin{definition}{Eigenfunction}{}
+              Similar to eigenvectors, an \textbf{eigenfunction} is one that is preserved under a corresponding \textbf{eigenvalue} like so:
+              $$\hat{H}\Psi_{E} = E\Psi_{E}$$
+              Here, $\Psi_{E}$ deotes the \underline{eigenfunction with eigenvalue $E$}.
+            \end{definition}
+            In the definition, we wrote down the eigenfunctions of the Hamiltonian operator, but it applies in general for eigenfunctions. Moving on, the eigen functions of the Hamiltonian operator $\hat{H}$ are essentially the \textbf{stationary states with time dependence $e^{-i\frac{Et}{\hbar}}$}.\\\\
+            But how do we solve for the eigenfunction $\Psi_{E}$? We solve the Time-Independent \schrodinger Equation!
+            \begin{insight*}{}{}
+              As a note, this is where quantization will come in, since we need speific pairs $\Psi,E$, meaning that only certain energy states will be allowed, hence energy is quantized.
+            \end{insight*}
+
+          \subsection{Solving Time-Independent \schrodinger Equation}
+            We want $\mean{\hat{H}}$, which we began to do last week. Essentially, this means that we need to weigh with the probability over all space. To calculate mean value of something, we weight it with the probability of finding it at a particular point, and then integrate over all space. Places with smaller probabilities have little-to-no impact, while places with higher probabilities comprise most of the average value calculation.
+            \begin{insight*}{}{}
+              Also, remember the following: the \underline{time derivative} gives \textbf{energy}, the \underline{space derivative} gives \textbf{momentum}, and $\Psi^{*}\Psi$ gives \textbf{probability}.
+            \end{insight*}
+            With this, we have:
+            $$\mean{\hat{H}} = \int\Psi^{*}(\hat{H})\Psi d\vec{r}$$
+            Bu, there's a problem with this: we need to specify $\Psi$, since our wave function will change for different cases. Let's try $\Psi$ for a stationary state:
+            $$\mean{\hat{H}}_{\Psi_{E}} = \int \Psi^{*}_EE\Psi_{E}d\vec{r} = E\int\Psi^{*}_E\Psi_E d\vec{r} = \fbox{$E$} \text{ } \checkmark$$
+            We will denote which $\Psi$ we are interested in for the mean calculation with the subscript shown above. Notice what this has just told us:
+            \begin{insight*}{}{}
+              For an eigenfunction, the average value is just the energy!
+            \end{insight*}
+            So, to find all possible values of (stable) energies in a system, we simply need to \underline{calculate all possible eigenfunctions $\Psi$}.\\\\
+            So, let's quickly calculate this probability density:
+            $$P(\vec{r},t) = |\Psi_{E}(\vec{r},t)|^2 = |f(t)\Psi_{E}(\vec{r})|^2 = |\Psi_{E}(\vec{r})|^2$$
+            Why can we write this? Well, $f(t)$ will cancel out with its conjugate. So, we're left with the following extremely important insight:
+            \begin{insight*}{}{}
+              Probability density is independent of time!
+            \end{insight*}
+            This is extremely important and something we will use a lot going forward.
+
+        \section{Solving Quantum Problems}
+          Now, let's write a prescription for describing a quantum system.
+          \begin{enumerate}
+            \item{
+              \textbf{Specify $\hat{V}(\vec{r})$}.\\\\
+              This happens in two ways:
+              \begin{enumerate}[label=\alph*)]
+                \item{It's given to us in the problem, or}
+                \item{You have to model the system and then write the corresponding $\hat{V}$.}
+              \end{enumerate}
+              We will spend a bunch of time figuring out different cases for the latter option.
+            }
+            \item{
+              \textbf{Solve Time-Independent \schrodinger Equation}\\\\
+                This gives us $\Psi_{E}(\vec{r})$, and the corresponding $E$ (in other words, eigenfunctions and their corresponding eigenvalues).
+            }
+            \item{
+              \textbf{Throw in Time Dependence:} $\Psi_{E}(\vec{r},t) = \Psi_{E}(\vec{r})e^{-i\frac{Et}{\hbar}}$.\\\\
+              But, this is the stationary solution; a general solution will be a \textbf{combination of all possible ones}. In other words, we're finding the \textit{basis vectors} through these eigenfunctions, meaning that the general solution will be a linear combination of all of these basis vectors.
+            }
+            \item{
+              \textbf{General Solutions Are a Combination of $\Psi_{E}(\vec{r},t)$} (eigenfunctions).
+              \begin{insight*}{}{}
+                Notice: if we consider eigenfunctions as our basis vectors, they have to be \underline{orthonormal}
+              \end{insight*}
+            }
+          \end{enumerate}
+          And so, we postulate the following:
+          \begin{insight*}{}{}
+            $E$, $\Psi_{E}$ found by solving the \schrodinger Equation gives us all possible energies $E$.
+          \end{insight*}
+          Let's confirm this with some math.
+
+          \subsection{Math Time}
+            Considering this, we then write this expression:
+            $$\Psi(\vec{r},t) = \sum_{E}C_{E}(t)\Psi_{E}(\vec{r})$$
+            \begin{insight*}{}{}
+              This will be pretty much all of the rest of 137A: finding all eigenfunctions and corresponding energies $E$, then summing over all $E$ for varying potentials $\hat{V}$!
+            \end{insight*}
+            Now, how do we find the coefficients? From last week, we saw that we use the \textit{inner product}.
+            \begin{definition}{Inner Product}{}
+              Generalization of the dot product. \textbf{Inner products} are operations satisfying the following properties:
+              \begin{itemize}
+                \item{\textbf{Positivity}: $\mean{x,y} \geq 0$}
+                \item{\textbf{Definiteness}: $\mean{x,y} = 0 \implies x = y$}
+                \item{\textbf{Additivity in First Slot}: $\mean{x+y,z} = \mean{x,z} + \mean{y,z}$}
+                \item{\textbf{Homogenaity in First Slot}: $\mean{\alpha x,y} = \alpha\mean{x,y}$}
+                \item{\textbf{Conjugate Symmetry}:$\mean{x,y} = \overline{\mean{y,x}}$}
+              \end{itemize}
+              Most will remember this from linear algebra. In normal Euclidean space, vectors have the traditional \textit{dot product}.
+            \end{definition}
+            So, in our case, taking the inner product means multiplying by some $\Psi_{E'}$ (important to use a different index!) and integrating:
+            $$\int\Psi^{*}_{E'}(\vec{r})\Psi(\vec{r},t)d\vec{r} = \sum_{E}C_E\int\Psi^{*}_{E}\vec{r}\Psi_{E}(\vec{r})d\vec{r}$$
+            Notice that the integrand on the right is simply the Kronecker Delta, since thse are orthonormal. This, then, will only not vanish when $E' = E$, in which case the integral evaluates to $1$. Hence, we get:
+            $$\sum_{E}C_E\int\Psi^{*}E(\vec{r})\Psi_{E}(\vec{r})d\vec{r} = C_{E'}(t)$$
+            And so, we have our general solution:
+            \begin{align*}
+              \Psi(\vec{r},t) &= \sum_{E}\underbrace{C_E(t=0)}_{\text{Orientation of vector @ }t=0}\Psi_{E}(\vec{r})e^{-i\frac{Et}{\hbar}}\\
+              C_E &= \int\Psi^{*}_{E}(\vec{r})\Psi(\vec{r},t=0)d\vec{r}
+            \end{align*}
+            Notice that this implies that $$\fbox{$\sum_{E}|C_E|^2 = 1$}$$
+            This makes perfect intuitive sense, since it has to be somewhere at some energy.
+
+          \subsection{Final Trick: Expectation Value Calculation}
+            For our final trick, we will do the expectation value calculation for the general state:
+            $$\mean{\hat{H}}_{\Psi} = \int\Psi^{*}(\vec{r},t)\hat{H}\Psi(\vec{r},t)d\vec{r}$$
+            Always remember to specify the wave function for which you are calculating the average value. Notice, now, that we don't know $\Psi$, but remember that we can act $\hat{H}$ on some specific $\Psi_{E}$. Since we can write $\Psi$ as a linear combination of a bunch of $\Psi_{E}$'s, let's consider $\Psi$ as a sum of such $\Psi_{E}$'s:
+            $$\mean{\hat{H}}_{\Psi} = \int\Psi^{*}(\vec{r},t)\hat{H}\underbrace{\Psi(\vec{r},t)}_{\sum_{E}C_Ee^{-i\frac{Et}{\hbar}}\Psi_{E}(\vec{r})}$$
+            Now, see how we've rewritten the second part of our integral. Notice that we can do the same for the conjugate, but these are \underline{independent}, so we can't use the same index!
+            $$\therefore \mean{\hat{H}}_{\Psi} = \int\underbrace{\Psi^{*}(\vec{r},t)}_{\sum_{E'}C^{*}_{E'}e^{i\frac{E't}{\hbar}}}\hat{H}\underbrace{\Psi(\vec{r},t)}_{\sum_{E}C_Ee^{-i\frac{Et}{\hbar}}\Psi_{E}(\vec{r})}$$
+            And so, putting these together, we have:
+            $$\mean{\hat{H}}_{\Psi} = \sum_{E}\sum_{E'}C^{*}_{E'}C_{E}e^{-i\frac{\left(E - E'\right)t}{\hbar}}E\underbrace{\int\Psi^{*}_{E'}(\vec{r})\Psi_{E}(\vec{r})d\vec{r}}_{\text{Kronecker Delta again!}}$$
+            Once again, this doesn't vanish only when $E = E'$, so we have:
+            \begin{theorem}{Expectation Value of Hamiltonian Operator}{}
+              $$\fbox{$\mean{\hat{H}}_{\Psi} = \sum_{E}|C_{E}|^2E$}$$
+            \end{theorem}
+            This is super important, so we've enclosed it in a theorem.
+
+        \section{That's All We Need (Mostly)!}
+            With this, we have learned basically all of the quantum mechanics we need for the next month. We will spend that next month calculating these expectation values, figuring out eigenfunctions, summing over these eigenfunctions, and solving the time-independent and time-dependent \schrodinger Equations for varying $\hat{V}$s. We will start on these generalized solutions for $\hat{V}$ on Wednesday.
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 9%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 9 (9/14)}
+        \input{lecture 9.tex}
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 10%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 10 (9/16)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, September 16}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 11%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 11 (9/19)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, September 19}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 12%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 12 (9/21)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, September 21}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 13%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 13 (9/23)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, September 23}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 14%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 14 (9/26)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, September 26}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 15%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 15 (9/28)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, September 28}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 16%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 16 - Guest Lecture (9/30)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, September 30}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 17%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 17 (10/3)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, October 3}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 18%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 18 (10/5)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, October 5}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 19%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 19 (10/7)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, October 7}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 20%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 20 (10/10)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, October 10}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 21 (10/12)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, October 12}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 22%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 22 (10/14)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, October 14}. It covered
+        
+      
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%POST-MIDTERM%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \part{Post-Midterm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 23%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 23 (10/21)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, October 21}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 24%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 24 (10/24)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, October 24}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 25%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 25 (10/26)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, October 26}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 26%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 26 (10/28)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, October 28}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 27%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 27 (10/31)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, October 31}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 28%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 28 - Guest Lecture (11/2)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, November 2}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 29%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 29 (11/4)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, November 4}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 30%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 30 (11/7)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, November 7}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 31%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 31 (11/9)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, November 9}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 32%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 32 (11/14)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, November 14}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 33%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 33 (11/16)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, November 16}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 34%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 34 (11/18)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, November 18}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 35%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 35 (11/21)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, November 21}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 36%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 36 - Guest Lecture (11/28)}
+        The fifth lecture of Physics 137A was held on \textbf{Monday, November 28}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 37%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 37 - Guest Lecture (11/30)}
+        The fifth lecture of Physics 137A was held on \textbf{Wednesday, November 30}. It covered
+        
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%LECTURE 38%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \chapter{Lecture 38 (12/2)}
+        The fifth lecture of Physics 137A was held on \textbf{Friday, December 2}. It covered
+        
+      
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \part{Miscellaneous}
+      \chapter{Closing Remarks}
+
+
+  \end{document}
