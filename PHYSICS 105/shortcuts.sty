@@ -1,0 +1,60 @@
+%%%CUSTOM SHORTCUTS STYLE FILE - ERIC DU AND ANDREW BINDER%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{shortcuts}
+%%INCLUDED PACKAGES%%
+% All packages needed are included here, with proper presets
+\usepackage[pdftex]{graphicx}
+\usepackage[margin=1in]{geometry}                       % Can edit margins if need be
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, enumitem, parskip, mathrsfs, matlab-prettifier, physics, pgfplots, stmaryrd}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{cancel}
+\usepackage{dirtytalk, textcomp}
+\usepackage[siunitx]{circuitikz}
+\usepackage{breqn}
+\pgfplotsset{compat=1.17}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%SHORTCUTS%%
+% All shortcuts for commands listed here, sectioned off by purpose
+% Some are subject to change
+%Names/Words%
+\newcommand{\schrodinger}{Schr\"{o}dinger }             % Schrodinger's name
+\newcommand{\lhopital}{L'H\^{o}pital}                   % L'Hospital's name
+\renewcommand{\tikz}{Ti\textit{k}Z }                    % TikZ word
+%Mathematical Operations%
+\newcommand{\infint}{\int_{-\infty}^{\infty}}           % Improper integral
+\newcommand{\infsum}[1]{\sum_{n = -\infty}^\infty}      % Infinite sum
+\renewcommand{\exp}[1]{\mathrm{exp}\left( #1 \right)}   % Exponential
+\def\db{{\mathchar'26\mkern-12mu \text{d}}}             % Derivative d
+\newcommand{\mean}[1]{\left\langle #1 \right\rangle}    % Mean <x>
+%Vector Operations%
+\renewcommand{\grad}{\vec{\nabla}}                      % Gradient
+\renewcommand{\div}{\vec{\nabla}\cdot}                  % Divergence
+\renewcommand{\curl}{\vec{\nabla}\times}                % Curl
+\newcommand{\laplace}{\nabla^2}                         % Laplacian
+%Operators (from Quantum Mechanics)%
+\newcommand{\ap}{a_{+}}                                 % Raising operator
+\newcommand{\am}{a_{-}}                                 % Lowering operator
+%Arrows (for Spin)%
+\newcommand{\da}{\downarrow}                            % Down arrow
+\newcommand{\ua}{\uparrow}                              % Up arrow
+\newcommand{\la}{\leftarrow}                            % Left arrow
+\newcommand{\ra}{\rightarrow}                           % Right arrow
+\newcommand{\ud}{\ua\da}                                % Up/Down arrows
+\newcommand{\du}{\da\ua}                                % Down/Up arrows
+\newcommand{\uu}{\ua\ua}                                % Two Up arrows
+\renewcommand{\dd}{\da\da}                              % Two Down arrows
+%Name References (Subject to Change)%
+\newcommand{\eric}{\textbf{Eric Du}}                    % Eric Du name reference
+\newcommand{\nikhil}{\textbf{Nikhil Maserang}}          % Nikhil Maserang name reference
+\newcommand{\nathan}{\textbf{Nathan Song}}              % Nathan Song name reference
+\newcommand{\teja}{\textbf{Teja Nivarthi}}              % Teja Nivarthi name reference
+\newcommand{\christine}{\textbf{Christine Zhang}}       % Christine Zhang name reference
+%Miscellaneous%
+\newcommand{\hl}{\\\\rule{\linewidth}{0.01cm}\\}        % Horizontal line
+\newcommand{\s}{\text{ }}                               % Space
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

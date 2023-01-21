@@ -1,0 +1,191 @@
+\chapter{Lecture 1 (01/17)}
+
+This lecture was held on \textbf{January 17, 2023}. It covered equations for simple harmonic motion in one and two dimensions.
+
+\section{Why Do We Study Oscillations?}
+
+We study oscillations because they are very common in physics $-$ they happen any time we have a system with a stable equilibrium point. When we nudge our system away from this point, a restoring force $F_x(x)$ tries to bring our system back to equilibrium. 
+
+Although $F_x(x)$ could potentially be functions of more variables, we can let it be $x$ for now. We will also assume that $F_x(x)$ has continuous derivtaives everywhere so that we can expand it as a Taylor series. Thus: 
+
+\[ F_x(x) = F_0 + x\left(\frac{dF_x}{dx}\right)_{0} + \frac12 x^2 \left(\frac{d^2F_x}{dx^2}\right)_{0} + \dots\]
+
+Then, since the origin is also an equilibrium point, then $F_0$ must equal 0 at the equilibrium point. Then, neglecting higher order terms, we get the approximate relation that: 
+
+\[ F_x(x) = -kx\] 
+
+where $k \equiv -\left( \frac{dF_x}{dx}\right)$. Since the restoring force always points toward the equilibrium positio, then $dF/dx$ is alwaysnegative, so $k$ is a positive constant.
+
+Alternatively, we can also write the force in terms of the potential: 
+
+\[ U(x) = \frac 12 kx^2\]
+
+where $U(x) = U(0) + U'(0) + \frac 12 U''(0)x^2 + \dots$, with $U'(0) = 0$ using the same logic as before. These oscillations can be damped or driven, which we will revisit later.
+
+\section{Simple Harmonic Oscillator}
+
+Here we will look at different ways to represent the oscillatory equations of motion for simple harmonic oscillators. To start, let's use Newton's second law to get the differential equation:
+
+\[ -kx = m\ddot x\]
+
+Then, we can define $\omega^2 \equiv \frac{k}{m}$, then we get the equation 
+
+\[ \ddot x + \omega^2 x = 0\]
+
+which is the standard differential equation for simple harmonic motion. This differential equation has the solutions: 
+
+\begin{align*}
+    x(t) &= A \sin (\omega t - \varphi)\\
+    x(t) &= A \cos(\omega t - \delta)
+\end{align*}
+
+where $|\delta - \phi| = \pi/2$. The kinetic energy can also be calculated: 
+
+\begin{align*}
+    T = \frac 12 m\dot x^2 &= \frac 12 m \left[ A\omega \cos(\omega t - \phi)\right]^2\\
+    &= \frac 12 mA^2 \frac{k}{m} \cos^2 (\omega t - \varphi)\\
+    &= \frac 12 kA^2 \cos^2 (\omega t - \varphi)
+\end{align*}
+
+Since $U(x) = \frac 12 kx^2$, then we get: 
+
+\[ U(x) = \frac 12 kA^2 \sin^2(\omega t - \varphi)\]
+
+Adding the two, we get: 
+
+\[ T + U = \frac 12 kA^2 (\sin^2 (\omega t - \varphi) + \cos^2 (\omega t - \varphi)) = \frac 12 kA^2\]
+
+which is a constant for all $\theta$. We expect this result, since we know that the total energy of an isolated oscillatory system doesn't change. The period $\tau$ can also be expressed as: 
+
+\[ \tau = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac mk}\] 
+
+And we also have the relation that $\nu = 2\pi \omega$. 
+
+\subsection{Method 2: Summation of sines and cosines}
+
+Looking at the second solution more closely, we note that 
+
+\begin{align*}
+    A \cos (\omega t - \delta) &= A \left[ \cos(\delta) \cos (\omega t) + \sin (\delta) \sin(\omega t)\right]\\
+    &= A \left[ \frac{B_1}{A} \cos (\omega t) + \frac{B_2}{A}\sin (\omega t)\right]\\
+    &= B_1 \cos (\omega t) + B_2 \sin (\omega t)
+\end{align*}
+
+with $A = \sqrt{B_1^2 + B_2^2}$. This form of the solution is particularly nice since it allows us to deal with initial conditions very easily. For instance, if the oscillation started at the peak, then we know that $B_2 = 0$ and so we're left with a pure sine wave which is really easy to deal with. 
+
+\subsection{Method 3: Exponentials}
+
+We can also formulate the solution as 
+
+\[ x(t) = C_1e^{i\omega t} + C_2e^{-i\omega t}\]
+
+This form is useful since integrals and derivatives are especially easy. You can also check that this solution satisfies the differential equation by plugging in $x(t)$ into our differential equation. To show that it's consistent with our previous form, we use Euler's identity $e^{i\theta} = \cos (\theta) + i\sin (\theta)$: 
+
+\begin{align*}
+    x(t) &= C_1e^{i\omega t} + C_2e^{-i\omega t}\\
+    &= (C_1 + C_2)\cos(\omega t) + i(C_1 - C_2) \sin (\omega t)\\
+    &= B_1 \cos (\omega t) + B_2 \sin (\omega t)
+\end{align*}
+
+And so naturally in this form we assume $B_1 = C_1 + C_2$ and $B_2 = i(C_1 - C_2)$. 
+
+\subsection{Real Part of Expoonentials}
+
+Since $x(t)$ is a real quantity, then we can actually make a couple simplifications to our solution in the previous section. Firstly, we note that since $x(t)$ is real, then $B_1, B_2$ must also be real. Therefore, this enforces $C_1 = C_2^*$, so we now have
+
+\[ x(t) = C_1 e^{i\omega t} + C_1^*e^{-i\omega t}\] 
+
+And since we know that $z + z^\ast = 2\Re(z)$, then letting $z = C_1e^{i \omega t}$, we get:
+
+\[ x(t) = 2\Re\left(C_1e^{i\omega t}\right)\] 
+
+Then as one final simplification, if we let $C = 2C_1$, then $C = B_1 - iB_2 = Ae^{i\delta}$ so we can write: 
+
+\[ x(t) = \Re (Ce^{i\omega t}) = A\cos(\omega t - \delta)\]
+
+As an illustration of this expresion, we can imagine moving around a unit circle: 
+
+[INSERT TIKZ HERE]
+
+\subsection{Summary}
+
+To summarize, we have the following equivalent ways of writing solutions to these oscillations: 
+
+\begin{align*}
+    x(t) &= A\cos (\omega t - \delta) \\
+    &= B_1\cos(\omega t) + B_2 \sin (\omega t)\\
+    &= C_1e^{i\omega t} + C_2e^{i\omega t}\\
+    &= C_1e^{i\omega t} + C_1^\ast e^{i\omega t}\\
+    &= \Re(Ce^{i\omega t})\\
+    &= \Re(Ae^{i \omega t - \delta})
+\end{align*}
+
+These solutions are all equivalent, each having its own benefits when it comes to solving problems. It's our job to figure out which form is the most convenient for our problem at hand. 
+
+\section{Oscillations in 2 Dimensions}
+
+How do our equations for oscillations generalize in 2 dimensions? Well, now our restoring force is slightly more complicated to account for a new dimension: 
+
+\[ \vec F = -k\vec r\] 
+
+And we can split this up into component form:
+
+\begin{align*}
+    F_x &= -kr \cos \theta = -kx\\
+    F_y &= -kr \sin \theta = -ky
+\end{align*}
+
+This then generates the same set of differential equations as before, and they are independent so we can solve them separately. Therefore, we generate the equations: 
+
+\begin{align*}
+    x(t) &= A_x \cos (\omega t - \delta_x)\\
+    y(t) &= A_y \cos (\omega t - \delta_y)
+\end{align*}
+
+
+Here, we can ``zero out'' one of these phases (by simply starting at one of the phases), so this changes our equations to: 
+
+\begin{align*}
+    x(t) &= A_x \cos (\omega t)\\
+    y(t) &= A_y \cos (\omega t - \delta) 
+\end{align*}
+
+
+where $\delta$ now refers to some \textit{relative phase} between the two oscillations. Now we ask ourselves, what is the path of this particle? To do this we eliminate $t$. First, we can expand out $y(t)$ without introducing the relative phase: 
+
+\begin{align*}
+    y(t) &= A_y \cos (\omega t - \delta_x + (\delta_x - \delta_y))\\
+    &= A_y \cos (\omega t - \delta_x)\cos(\delta_x - \delta_y) - A_y \sin (\omega t - \delta x)\sin (\delta_x - \delta_y)\\
+    &= A_y \cos (\omega t - \delta_x) \cos (\delta_x - \delta_y) + A_y \sin (\omega t - \delta x) \sin (\delta_y - \delta_x)
+\end{align*}
+
+In the last line we've used the identity that $\sin (-x) = -\sin(x)$. Now, we can use the relative phase $\delta \equiv \delta_y - \delta_x$ and $\cos(\omega t - \delta_x) = \frac{x}{A_x}$ to get: 
+
+\[ y = \frac{A_y}{A_x} x \cos \delta + A_y  \sqrt{1 - \left( \frac{x^2}{A_x^2}\right)}\]
+
+We can alternatively write this as
+
+\[ A_xy - A_yx \cos \delta = A_y \sin \delta \sqrt{A_x^2 - x^2}\] 
+
+So squaring this, and simplifying, we get: 
+
+\[ A_y^2x^2 - 2A_xA_y xy \cos (\delta) + A_x^2y^2 = A_x^2A_y^2 \sin^2 \delta\]
+
+Then, if $\delta = \pm \frac{\pi}{2}$, then we get an ellipse: 
+
+\[ \frac{x^2}{A_x^2} + \frac{y^2}{A_y^2} = 1\] 
+
+If $\delta = 0$ (i.e. no phase), then we get $(A_yx - A_xy)^2 = 0 \implies y = \frac{A_y}{A_x}x$, which is a straight line! Visually, it looks like this: 
+
+[INSERT TIKZ HERE]
+
+\subsection{Lissajous Curves}
+
+Note that in the previous derivation we used the same $k$ in both the $x$ and $y$ directions. However, in the most general case this isn't actually required! Therefore, the general set of equations are: 
+
+\begin{align*}
+    x(t) &= A_x \cos (\omega_x t)\\
+    y(t) &= A_y \cos(\omega_y t - \delta)
+\end{align*}
+
+If $\frac{\omega_x}{\omega_y}$ is rational, then the motion is periodic, called a Lissajous figure (or a Lissajous curve). If it is irrational, then the curve will eventually fill out a rectangle over time.

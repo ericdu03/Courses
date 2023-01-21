@@ -1,0 +1,167 @@
+\chapter{Lecture 2 (01/19)}
+
+This lecture was held on \textbf{January 19th, 2023}. It covered 
+
+\section{Rational Root Theorem (continued)}
+
+Last time we looked at the rational root theorem. As a reminder, it says: 
+
+\begin{theorem}{}{}
+    Consider the polynomial equation $(n \ge 1)$
+
+    \[ x^n + c_{n-1}x^{n-1} + \cdots + c_0 = 0\] 
+
+    where $c_{n-1}, c_{n-2}, \dots \in \mathbb Z$, $c_0 \neq 0$. Then, every \underline{rational solution} to this equation must be an \underline{integer} that divides $c_0$. 
+\end{theorem}
+
+\begin{proof}
+    Assume that $x = \frac pq, p, q \in \mathbb Z$ with $p, q$ are relatiely prime. Therefore, we can write: 
+
+   \[ 
+        \left( \frac pq\right)^n + c_{n-1} \left( \frac pq\right)^{n-1} + \cdots + c_0 = 0\]
+
+    Multiplying both sides by $q^n$ we now get
+
+
+    \begin{equation}
+        \label{lec2eq1}
+        p^n + c_{n-1}p^{n-1}q + \cdots + c_0q^n = 0
+    \end{equation}
+    
+    And so therefore
+
+    \begin{align*}
+        p^n &= -(c_{n-1}p^{n-1}q + \cdots + c_1pq^{n-1}) - c_0q^n\\
+        &= -p (c_{n-1} p^{n-2}q + \cdots + c_1q^{n-1}) - c_0q^n\\
+        \therefore p^{n-1} &= -(c_{n-1} p^{n-2} + \cdots + c_1q^{n-1}) - \frac{c_1q^{n}}{p}
+    \end{align*}
+
+    Since $p^{n-1}$ is an integer, then it directly follows that $c_0q^n/p$ is also an integer. Then since we've assumed before that $p, q$ are relatively prime, then we know that $p$ must divide $c_0$. 
+
+    \begin{remark}{}{}
+        To do this formally, we use the idea that if $p, q$ are relatively prime, then $p^n$ and $q^m$ are also relatively prime for any positive $n, m$. If you have time, you should attempt to prove this yourself.
+    \end{remark}
+
+    Now we need to show that $q = 1$. To do that, we go back to \cref{lec2eq1} and rearrange it to become: 
+
+    \begin{align*}
+        c_0q^n &= -(p^n + c_{n-1}p^{n-1}q + \cdots + c_1pq^{n-1})\\
+        &= -p^n - q(c_{n-1}p^{n-1} + \cdots + c_1pq^{n-2})\\
+        \therefore c_0q^{n-1} &= -\frac{p^n}{q} - (c_{n-1}p^{n-1} + \cdots +c_1pq^{n-2})
+    \end{align*}
+
+    Since $p, q$ are relatively prime, then the only value of $q$ which would satisfy this equation is $q = 1$, which completes the proof.
+
+\end{proof}
+
+\section{The Real Numbers}
+
+In high school we've covered real numbers before, but we haven't really explored how they are formally generated. Here, we will explore that.
+
+Given a number line, we can define the number 0 to be somewhere on this line. Then, we need to define 1 to be some distance from 0. Then, we can generate the rest of the integers by repeating the same length over the rest of the number line. 
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[>= stealth', <->, thin] (-2, 0.5) -- (2, 0.5);
+    \draw(0, 0.75) -- (0, 0.25);
+    \draw(1, 0.75) -- (1, 0.25);
+    \draw(-1, 0.75) -- (-1, 0.25);
+\end{tikzpicture}
+\end{center}
+
+Similarly, we can define rationals by dividing our existing number line into equal parts. For instane, we can generate $\frac 13$ by dividing the segment between 0 and 1 into three equal parts. But what happens when we try to define irrational numbers? We can't really keep dividing to generate numbers like $\pi$ or $\sqrt 2$ becuase they cannot be expressed as any fraction.
+
+Generating the reals ends up being a very difficult process, so we will skip it for now. Instead, we will devote our time to exploring the properties of the reals. Namely, we will look at:
+
+\begin{enumerate}[(a)]
+    \item Algebraic property: you can add, subtract, multiply and divide two real numbers
+    \begin{itemize}
+        \item Metric Property
+    \end{itemize}
+    \item Order property: we can compare two reals using the symbols $<$, $>$, $\le$, $\ge$, etc.
+    \begin{itemize}
+        \item Supremum, Infimum
+        \item Completeness Axiom
+    \end{itemize}
+\end{enumerate}
+
+
+\subsection{Algebraic Property of the Reals} 
+
+The algebraic property is an \textit{axiom} - we cannot prove such a statement but we take it to be factually true.
+
+\begin{definition}{Addition and Multiplication}{}
+    There exists binary operations 
+
+    \[ a, m: \mathbb R \times \mathbb R \to \mathbb R\] 
+
+    call them $a(x, y) = x+y$ and $m(x, y) = xy$ 
+\end{definition}
+
+Further, there exists two elements $0, 1 \in \mathbb R$ such that 
+
+\begin{enumerate}[(a)]
+    \item $x + 0 = x$ (or formally, $a(x, 0) = x$ )
+    \item For any $x \in \mathbb R$, we can find $y \in \mathbb R$ such that $x + y = 0$. In this formulation, $y$ is also called $-x$.
+    \item $x + (y + z) = (x + y) + z$ (associativity)
+    \item $x + y = y + x$ (commutativity)
+    \item $x \cdot 1 = x$
+    \item The inverse of $x$ exists: for any $x \in \mathbb R \setminus \{0\}$, then we can find $y \in \mathbb R$ such that $xy = 1$. In this formulation, $y$ is also called $\frac 1x$. 
+    \item $x(yz) = (xy)z$
+    \item $xy = yx$
+\end{enumerate}
+
+We can then use these properties to generate the division operation, by defining 
+
+\begin{definition}{Division}{}
+    For any $x, y \in \mathbb R$, we define 
+
+    \[ \frac xy = x \cdot \frac 1y\]
+\end{definition}
+
+\subsection{Order Property of the Reals}
+
+It's commonly stated as: 
+
+\begin{definition}{Order Property}{}
+    There exists three relations on $\mathbb R$ such that $\forall x, y \in \mathbb R$: 
+
+
+    either $x > y$, $x < y$ or $x = y$.
+\end{definition}
+
+This order property then has a couple consequences. If $x < y$, then the following consequences hold: 
+
+\begin{enumerate}[(a)]
+    \item $x + z < y + z$ for all $z \in \mathbb R \setminus 0$
+    \item $xz < yz$ for all $z> 0, z \in \mathbb R$
+    \item $-x > -y$
+\end{enumerate}
+
+There are many more here, see book for details. Now we move on to the metric property. To do this, we first define the \textit{absolute value} $A: \mathbb R \to \mathbb R$ as:
+    \[ A(x) = |x| = \begin{cases}
+        x & x \ge 0\\
+        -x & x < 0
+    \end{cases}\] 
+
+Then from here, we can define the distance: 
+
+\begin{definition}{}{}
+    The distance between two numbers $x, y \in \mathbb R$, denoted as $d(x, y)$ is written as
+
+    \[ d(x, y) = A(x - y) = |x - y|\]
+\end{definition}
+
+With this definition established, we can look at some of the consequences: 
+
+\begin{enumerate}[(a)]
+    \item $|x| \ge 0$
+    \item $|xy| = |x||y|$
+    \item $|x + y| \le |x| + |y|$ (Triangle Inequality)
+\end{enumerate}
+
+Here, we present a proof for the triangle inequality:
+
+\begin{proof}
+    Notice that for any real $x$, we have $\le |x|$ and $-x \le |x|$. Then, this gives us that $ \pm x \le |x|$ and $ \pm y \le |y|$ so therefore the theorem holds.
+\end{proof}

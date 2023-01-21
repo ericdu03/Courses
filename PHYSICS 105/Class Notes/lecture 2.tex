@@ -1,0 +1,71 @@
+\chapter{Lecture 2 (01/)}
+
+This lecture was held on \textbf{January 19th, 2023}. It covered damped and driven oscillators.
+
+\section{Last time: The Free Oscillator}
+
+On Tuesday we explored oscillatory mechanics where there were no other forces besides the restoring force. However, in most systems, we will always have some kind of \textit{daming force} which impedes motion. This doesn't always have to be the case, but we will first explore a damping force which is proportional to the velocity: 
+
+\[ \vec f = b \vec v\]
+
+Under this, we now have the restoring force and the damping force, so Newton's second law now reads: 
+
+\[ m \ddot x + b \dot x + kx = 0\] 
+
+And so if we let $\beta = \frac{b}{2m}$ (we'll see later why this substitution is useful), then we can write
+
+\[ \ddot x + 2\beta x + \omega_0^2 x = 0\]
+
+The nature of these differential equations is that due to their linearity, if we find two independent solutions $x_1(t)$ and $x_2(t)$, then in general their solution will be a linear combination of the two: 
+
+\[ x(t) = C_1x_1(t) + C_2x_2(t)\] 
+
+We saw that exponentials worked before, let's have that as our main guess. Let 
+
+\[ x(t) = e^{rt} \implies \dot x(t) = re^{rt}, \ddot x(t) = r^2e^{rt}\] 
+
+Plugging this in, we get: 
+
+\begin{align*}
+    r^2e^{rt} + 2\beta r e^{rt} + \omega_0^2e^{rt} &= 0\\
+    \therefore r^2 + 2\beta r + \omega_0^2 &= 0
+\end{align*}
+
+This is quadratic in $r$, so therefore we have solutions $r = -\beta \pm \sqrt{\beta^2 - \omega_0^2}$. Now, we can then write
+
+\begin{align*}
+    r_1 &= -\beta + \sqrt{\beta^2 - \omega_0^2}\\
+    r_2 &= -\beta - \sqrt{\beta^2 - \omega_0^2}
+\end{align*}
+
+so the general solution now becomes: 
+
+\[ x(t) = C_1e^{r_1t} + C_2e^{r_2t} = e^{-\beta t} \left( C_1e^{\sqrt{\beta^2 - \omega_0^2} t } + C_2e^{-\sqrt{\beta^2 - \omega_0^2}t}\right)\]
+
+This equation makes sense intuitively, since a large value of $\beta$ generates a faster decay, which makes sense since $\beta$ refers to the damping constant. 
+
+Now we have 3 cases that we want to analyze: 
+
+\begin{enumerate}[label = (\alph*)]
+    \item Underdamped: $\omega_0^2 > \beta^2$ 
+    \item Critical damping: $\omega_0^2 = \beta^2$
+    \item Overdamped: $\omega_0^2 < \beta^2$
+\end{enumerate}
+
+As it will turn out, only the overdamping will give us oscillatory motion.
+
+\subsection{Case 1: Underdamped Oscillation} 
+
+Here we look at the case where $\omega_0^2 > \beta^2$. If this is the case, then we can write $\sqrt{\beta^2 - \omega_0^2} = i\sqrt{\omega_0^2 - \beta^2} = i\omega_1$, with $\omega_1 = \sqrt{\omega_0^2 - \beta^2}$
+
+\begin{insight*}{}{}
+    if $\beta = 0$, then we exactly recover the solution that we got last time: 
+
+    \[ x(t) = C_1e^{\sqrt{-\omega_0^2}t} + C_2e^{-\sqrt{-\omega_0^2}t} = C_1e^{i\omega_0t} + C_2e^{-i\omega_0t}\]
+
+    This is a good way to check that what we're doing still makes sense.
+\end{insight*}
+
+
+
+

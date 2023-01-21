@@ -68,8 +68,8 @@ def largest_factor(n):
     a = 0
     number = 0
     for a in range(1, n):
-            if (n%a == 0):
-                number = a
+        if (n%a == 0):
+            number = a
     return number
 
 

@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1673893414 "/Users/eric/Documents/Courses/CS 70/CSM App/problem.tex" "/Users/eric/Documents/Courses/CS 70/CSM App/problem.pdf" "problem" 1673893415
-  "/Users/eric/Documents/Courses/CS 70/CSM App/problem.aux" 1673893415 788 d64d1921202721a4c4abde49240b2ce3 ""
+["pdflatex"] 1674341211 "/Users/eric/Documents/Courses/CS 70/CSM App/problem.tex" "/Users/eric/Documents/Courses/CS 70/CSM App/problem.pdf" "problem" 1674341229
+  "/Users/eric/Documents/Courses/CS 70/CSM App/problem.aux" 1674341212 788 d64d1921202721a4c4abde49240b2ce3 ""
   "/Users/eric/Documents/Courses/CS 70/CSM App/problem.tex" 1673893413 10760 b83a8faaf7c273a45595c398fa6e9b80 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -284,13 +284,13 @@
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
   "local.sty" 1673210882 4448 587873491e85d09cd22b72b7dc6d31be ""
-  "problem.aux" 1673893415 788 d64d1921202721a4c4abde49240b2ce3 "pdflatex"
-  "problem.out" 1673893415 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "problem.aux" 1674341212 788 d64d1921202721a4c4abde49240b2ce3 "pdflatex"
+  "problem.out" 1674341212 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "problem.tex" 1673893413 10760 b83a8faaf7c273a45595c398fa6e9b80 ""
   (generated)
-  "/Users/eric/Documents/Courses/CS 70/CSM App/problem.log"
+  "problem.pdf"
   "/Users/eric/Documents/Courses/CS 70/CSM App/problem.pdf"
   "problem.out"
+  "/Users/eric/Documents/Courses/CS 70/CSM App/problem.log"
   "problem.aux"
   "problem.log"
-  "problem.pdf"

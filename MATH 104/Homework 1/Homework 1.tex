@@ -1,0 +1,90 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Real Analysis}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 01} \large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+
+    \section*{Problem 1}
+
+    Using proof by induction to prove that: For every $n \in \mathbb N$, $\sum_{k = 1}^n k = \frac 12 n(n+1)$.
+
+    \begin{solution}
+        Let $A \subset N$ be the set of naturals which satisfies the above proposition. First, we show that $m = 1 \in A$ 
+    \end{solution}
+
+    \pagebreak
+
+    \section*{Problem 2}
+
+    \begin{enumerate}[(a)]
+        \item Prove $1^3 + 2^3 + \cdots + n^3 = (1+2 + \cdots + n)^2$ for all positive integers $n$.
+        \item The princpile of mathematical induction can be extended as follows. A list $P_m, P_{m+1}, \dots$ of propositions is true provided (i) $P_m$ is true, $P_{n+1}$ is true whenever $P_n$ is true and $n \ge m$.
+        \begin{enumerate}[(i)]
+            \item Prove $n^2 > n+1$ for all integers $n \ge 2$. 
+            \item Prove $n! > n^2$ for all integers $n \ge 4$. [Recall $n! = n(n-1) \cdots 2 \cdot 1$; for example, $5! = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120$.]
+        \end{enumerate}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 3}
+
+    Prove: $\sqrt 3$ is not a rational number
+
+    \pagebreak
+
+    \section*{Problem 4}
+
+    Prove: $\sqrt 2 + \sqrt 3$ is not a rational number.
+
+    \pagebreak 
+    \section*{Problem 5}
+    \begin{enumerate}[(a)]
+        \item Show $|b| \le a$ if and only if $-a \le b \le a$. 
+        \item Prove $||a| - |b|| \le |a - b|$ for all $a, b \in \mathbb R$.
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 6}
+
+    Given a nonempty set $A \subset \mathbb R$. Using the definition of supremum/infimum, show that 
+
+    \begin{itemize}
+        \item $\sup A \ge \inf A$
+        \item If $\max A$ ($\min A$) exists, then $\sup A = \max A$ ($\inf A = \min A$)
+        \item $\inf A = -(\sup (-A))$, where $-A = \{ -a \vert a \in A\}$
+    \end{itemize}
+
+    \pagebreak
+
+    \section*{Problem 7}
+
+    Using the completeness axiom theorem to prove the theorem for strong induction:
+
+    \begin{theorem}
+        Assume $A$ is a subset of $\mathbb N$, if $A$ satisfies the following two properties: 
+
+        \begin{enumerate}[(1)]
+            \item $1 \in A$
+            \item If $\{1, 2, 3, \dots, n\} = \{ x \vert x \le n, x \in N\} \subset A$, then $n+1 \in A$
+        \end{enumerate}
+
+        Then $A = \mathbb N$
+    \end{theorem}
+
+    Hint: Use proof by contradiction.
+    
+    
+\end{document}
