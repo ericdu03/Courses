@@ -1,9 +1,9 @@
-PWD /Users/eric/Documents/Courses/CS 70/CSM App
+PWD /Users/eric/Documents/Courses/PHYSICS 105/Homework 1
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.tex
-OUTPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.log
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.tex
+OUTPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -19,17 +19,15 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/../local.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
@@ -933,7 +931,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
-OUTPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.pdf
+OUTPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.pdf
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
@@ -1308,23 +1306,6 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tcolorbox/tcbtheorems.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/pdfcol.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
@@ -1349,10 +1330,95 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.aux
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.aux
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.aux
-OUTPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.aux
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.aux
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.aux
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.aux
+OUTPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.aux
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1410,18 +1476,19 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-OUTPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+OUTPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
@@ -1440,23 +1507,16 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.aux
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/problem.out
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.aux
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
+INPUT /Users/eric/Documents/Courses/PHYSICS 105/Homework 1/Homework 1.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb

@@ -16,8 +16,7 @@ def falling(n, k):
         factorial = factorial * n
         n -=1
         k -=1
-
-    print(factorial)    
+    print(factorial)
 
 
 def sum_digits(y):

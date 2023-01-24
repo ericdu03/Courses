@@ -1,0 +1,42 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 105}
+\newcommand{\classname}{Analytic Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 01} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Problem 1}
+
+    A mas $m$ is attached to a spring with spring constant $k$ and set oscillating in a dissipative medium. The mass' position $x(t)$ satisfies the differential equation
+
+    \[ m \ddot x + b\dot x + kx = 0\] 
+
+    where $b$ is the damping coefficient. Define the total energy as $E = T + V = \frac 12 m\dot x^2 + \frac 12 k x^2$. Calculate $\frac{dE}{dt}$ ad show it is equal to the rate at which work is done by friction
+
+    \pagebreak
+
+    \section*{Problem 2}
+
+    A mass $m$ sits in the one-dimensional potential
+
+    \[ V(r) = -\frac Ar + \frac{B}{r^2}\] 
+
+    where $r > 0$, and $A$ and $B$ are positive constants. This kind of potential arises in studying gravitaitonal orbits, with the first term is due to gravitational potential, and the second is due to angular momentum conservation. 
+
+    \begin{enumerate}[(a)]
+        \item Sketch the potential for $r > 0$. Indicate on your graph the behavior of the potential for small and large $r$
+        \item Your graph should indicate that there is a stable equilibrium. Find this equilibrium position $r_0$ and show that it is indeed stable. 
+        \item What is the period of small oscillations about this equilibrium $\omega$?
+        \item For a planet orbiting the sun, $A = GmM$ and $B = L^2/2m$, where $M$ is the mass of the sun. Show that $\omega$ is also the angular velocity of the planet about the sun. (\textit{This is remarkable - even if perturbed from a circular orbit (i.e. sitting at constant $r(t) = r_0$), planets will execute closed orbits since tehy oscillate once about their equilibrium radius once an orbit. Of course, even for significant deviations from equilibrium, their orbits are closed, since planets' trajectories are ellipses, as we will study later in this course.})
+    \end{enumerate}
+\end{document}
