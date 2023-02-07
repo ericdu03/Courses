@@ -1,0 +1,58 @@
+% NECESSARY PACKAGES 
+% \usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumitem}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage[margin=1in]{geometry}
+\linespread{1.1}
+
+
+% LOCAL SHORTCUTS FOR MATH ENVIRONMENT
+
+\newcommand{\mean}[1]{\langle #1 \rangle}     % Mean <x>
+\newcommand{\infint}{\int_{-\infty}^{\infty}} % Indefinite integral
+\newcommand{\schrodinger}{Schr\"{o}dinger }   % Schrodinger's name
+\newcommand{\lhopitals}{L'H\^{o}pital's}      % L'Hopital's rule
+\newcommand{\dx}{\ \mathrm d x}
+\renewcommand{\curl}{\nabla \times}           % vector curl
+\renewcommand{\div}{\nabla \cdot}             % vector divergence
+\renewcommand{\dd}{\ \mathrm d}
+\renewcommand{\exp}[1]{ \mathrm{exp}\left( #1 \right)} %exponential
+\renewcommand{\Re}{\mathrm{Re}}               % Real part
+\renewcommand{\Im}{\mathrm{Im}}               % Imaginary part
+
+% NAMES OF COLLABORATORS 
+
+\newcommand{\names}{
+    \textbf{Nikhil Maserang}, \textbf{Christine Zhang}, \textbf{Andrew Binder}, \textbf{Teja Nivarthi}, \textbf{Nathan Song} and \textbf{Aren Martinian}
+}
+
+% \newcommand{\nikhil}{\textbf{Nikhil Maserang}}
+% \newcommand{\christine}{\textbf{Christine Zhang}}
+% \newcommand{\andrew}{\textbf{Andrew Binder}}
+% \newcommand{\teja}{\textbf{Teja Nivarthi}}
+% \newcommand{\nathan}{\textbf{Nathan Song}}
+% \newcommand{\aren}{\textbf{Aren Martinian}}
+
+% COLORS
+\definecolor{lightblue}{rgb}{0.25, 0.41, 0.88}
+\definecolor{deepcarminepink}{rgb}{0.94, 0.19, 0.22}
+\definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+
+% SOLUTION ENVIRONMENT
+\newenvironment{solution}{\medskip \textit{Solution:}}{\hfill \qedsymbol \medskip \hrule height1pt \medskip}
+
+% GRIFFITHS EM SCRIPT R
+\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../ScriptR}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../BoldR}}$}}}
+\def\hrcurs{{\mbox{$\hat \brcurs$}}}
+
+

@@ -13,27 +13,115 @@
 \normalsize
 }
 \linespread{1.1}
+
 \begin{document}
     \maketitle
+
+    \section*{Collaborators}
+
+    I worked with \textbf{Andrew Binder} to complete this assignment.
+
     \section*{Problem 1}
 
     \begin{enumerate}[(a)]
-        \item Write down the Hamiltonian for two identical noninteracting particles in the infinite square well. Verify that the fermion ground state given in the example is an eigenfunction of $H$, with the appropriate eigenvalue.
-        \item Find the next two excited states (beyond the ones given in the example) $-$ wave functions and energies $-$ for each of the three cases (distinguishable, identical bosons, identical fermions)
+        \item If $\psi_a$ and $\psi_b$ are orhogonal, and both are normalized, what is the constant $A$ in equation 5.17?
+        
+        \begin{solution}
+            Equation 5.17 is: 
+
+            \[ \psi_{\pm} = A \left[ \psi_a(r_1)\psi_b(r_2) + \psi_b(r_1)\psi_a(r_2)\right]\] 
+
+            So therefore if $\psi_a$ and $\psi_b$ are orthogonal, therefore:
+
+            \begin{align*}
+                |\psi_\pm(r_1, r_2)|^2 = 1 &= A^2 \iint |\psi_a(r_1)\psi_b(r_2)|^2 + |\psi_b(r_1)\psi_a(r_2)|^2 dr_1 dr_2\\
+                &= A^2 \left[ \int |\psi_a(r_1)|^2 dr_1 \int |\psi_b(r_2)|^2 dr_2 + \int |\psi_b(r_1)|^2 dr_1 \int |\psi_b(r_2)|^2 dr_2\right]\\
+                &= A^2 [1 \cdot 1 + 1 \cdot 1]\\
+                \therefore A &= \frac{1}{\sqrt 2}
+            \end{align*}
+        \end{solution}
+
+        \item If $\psi_a = \psi_b$ (and it is normalized), what is $A$? (This case, of course, occurs only with bosons)
+        
+        \begin{solution}
+            Here, since $\psi_a = \psi_b$, then our equation simplifies to:
+
+            \[ \psi_{\pm} = 2\psi_a(r_1) \psi_b(r_2) = 2\psi_a(r_1)\psi_a(r_2)\] 
+
+            And so therefore if we normalize this:
+
+            \begin{align*}
+                1 &= 4A^2 \iint |\psi_a(r_1)\psi_a(r_2)|^2 \ dr_1 dr_2\\
+                &= 4A^2 \int |\psi_a(r_1)|^2 \ dr_1 \int |\psi_a(r_2)|^2 dr_2\\
+                &= 4A^2 (1 \cdot 1)\\
+                \therefore A &= \frac 12
+            \end{align*}
+        \end{solution}
     \end{enumerate}
 
-    \pagebreak
 
     \section*{Problem 2}
+    Find the next two excited states (beyond the ones given in the example) $-$ wave functions and energies $-$ for each of the three cases (distinguishable, identical bosons, identical fermions)
+        
+    \begin{solution}
+        Since the energies scale with $n^2$, then we know that the next two states are going to be $(n_1, n_2) = (2, 2), (1, 3)$. This is the case except for fermions, as two fermions cannot exist in the same state. Therefore, we are forced to choose $(n_1, n_2) = (1, 3), (2, 3)$ instead. So our wavefunctions look like:
 
-    Imagine two noninterating particles, each of mass $m$, in the infinite square well. If one is in the state $\psi_n$ (Equation 2.24) and the other state $\psi_m$ is orthogonal to $\psi_n$, calculate $\mean{(x_1-x_2)^2}$, assuming that they are identical bosons.
+        \[  \text{Distinguishable:} \ 
+        \begin{cases}
+                \psi_{22} = \frac 2a \sin \left( \frac{2 \pi x_1}{a}\right) \sin \left( \frac{2\pi x_2}{2}\right), \ E_{22} = \frac{8 \pi^2\hbar^2}{2ma^2}\\
+            \psi_{13} = \frac 2a \sin \left( \frac{\pi x}{a}\right) \sin \left( \frac{3\pi x_2}{a}\right), \ E_{13} = \frac{10\pi^2\hbar^2}{2ma^2}
+        \end{cases}\]
+
+        And now for the indistinguishable cases:
+        \[ \text{Fermions:} \ 
+        \begin{cases}
+            \psi_{13} = \frac{\sqrt 2}{a} \left( \sin\left(\frac{\pi x_1}{a}\right)\sin \left( \frac{3\pi x_1}{a}\right) - \sin \left( \frac{\pi x_2}{a}\right)\sin \left( \frac{3\pi x_1}{2}\right)\right), \ E_{13} = \frac{10\pi^2 \hbar^2}{2ma^2}\\
+            \psi_{23} = \frac{\sqrt 2}{a} \left( \sin\left(\frac{2\pi x_1}{a}\right)\sin \left( \frac{3\pi x_1}{a}\right) - \sin \left( \frac{2\pi x_2}{a}\right)\sin \left( \frac{3\pi x_1}{2}\right)\right), \ E_{23} = \frac{13\pi^2 \hbar^2}{2ma^2}
+        \end{cases}\] 
+
+        \[ \text{Bosons:} \ 
+        \begin{cases}
+            \psi_{13} = \frac{\sqrt 2}{a} \left( \sin\left(\frac{\pi x_1}{a}\right)\sin \left( \frac{3\pi x_1}{a}\right) + \sin \left( \frac{\pi x_2}{a}\right)\sin \left( \frac{3\pi x_1}{2}\right)\right), \ E_{13} = \frac{10\pi^2 \hbar^2}{2ma^2}\\
+            \psi_{22}  = \frac{\sqrt 2}{a} \left( \sin\left(\frac{2\pi x_1}{a}\right)\sin \left( \frac{2\pi x_1}{a}\right) + \sin \left( \frac{2\pi x_2}{a}\right)\sin \left( \frac{2\pi x_1}{2}\right)\right), \ E_{13} = \frac{4\pi^2 \hbar^2}{2ma^2}
+        \end{cases}\] 
+        
+    \end{solution}
 
     \pagebreak
 
     \section*{Problem 3}
 
-    \begin{enumerate}[(a)]
-        \item Suppose you put both electrons in a helium atom into the $n=2$ state; what would the energy of the emitted electron be?
-        \item Describe (quantitatively) the spectrum of the helium ion, \ch{He+}
-    \end{enumerate}
+    Suppose you had \textit{three} particles, one in state $\psi_a(x)$, one in state $\psi_b(x)$, and one in state $\psi_c(x)$. Assuming $\psi_a$, $\psi_b$ and $\psi_c$ are orthonormal, construct the three-particle states (analogous to Equations 5.19, 5.20, 5.21) representing: (a) distinguishable particles, (b) identical bosons, and (c) identical fermions. Keep in mind that (b) must be completely symmetric, under exchange of \textit{any} pair of particles, and (c) must be completely \textit{anti}-symmetric, in the same sense. \textit{Comment:} There's a cute trick for constructing completely antisymmetric wave functions: Form the \textbf{Slater determinant}, whose first row is $\psi_a(x_1), \psi_b(x_1), \psi_c(x_1)$ etc., whose second row is $\psi_a(x_2), \psi_b(x_2), \psi_c(x_2)$, etc., and so on (this device works for any number of particles).
+
+
+    \begin{solution}
+        For part (a) with distinguishable particles, then the simplest one is the product state: 
+
+        \[ \psi_{MB} = \psi_a(x_1)\psi_b(x_2)\psi_c(x_3)\]
+
+        For part (b) with indistinuishable bosons, we can form the 3x3 slater determinant, and use the rule for bosons: 
+
+        \begin{align*}
+            \psi_{MB} &= \frac{1}{\sqrt{6}}\begin{vmatrix}
+                \psi_a(x_1) & \psi_a(x_2) & \psi_a(x_3) \\
+                \psi_b(x_1) & \psi_b(x_2) & \psi_c(x_3) \\
+                \psi_c(x_1) & \psi_c(x_2) & \psi_c(x_3) 
+                \end{vmatrix}\\
+                &= \frac{1}{\sqrt{6}}\bigg \{ \psi_a(r_1)\left[ \psi_b(r_2)\psi_c(r_3) + \psi_b(r_3)\psi_c(r_2)\right] + \psi_a(r_2)\left[ \psi_b(r_1)\psi_b(r_3) + \psi_b(r_3)\psi_b(r_1)\right]\\
+                & \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} + \psi_a(r_3)\left[ \psi_b(r_1)\psi_c(r_2) + \psi_b(r_2)\psi_c(r_1)\right] \bigg \}
+        \end{align*}
+
+        And for part (c) with indistinguishable fermions, we now take the determinant normally: 
+
+        \begin{align*}
+            \psi_{MB} &= \frac{1}{\sqrt{6}}\begin{vmatrix}
+                \psi_a(x_1) & \psi_a(x_2) & \psi_a(x_3) \\
+                \psi_b(x_1) & \psi_b(x_2) & \psi_c(x_3) \\
+                \psi_c(x_1) & \psi_c(x_2) & \psi_c(x_3) 
+                \end{vmatrix}\\
+                &= \frac{1}{\sqrt{6}}\bigg \{ \psi_a(r_1)\left[ \psi_b(r_2)\psi_c(r_3) - \psi_b(r_3)\psi_c(r_2)\right] - \psi_a(r_2)\left[ \psi_b(r_1)\psi_b(r_3) - \psi_b(r_3)\psi_b(r_1)\right] && \\
+                & \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa} + \psi_a(r_3)\left[ \psi_b(r_1)\psi_c(r_2) - \psi_b(r_2)\psi_c(r_1)\right] \bigg \}
+        \end{align*}
+        
+    \end{solution}
 \end{document}

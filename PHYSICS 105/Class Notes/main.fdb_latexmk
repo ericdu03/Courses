@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1674590515 "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.tex" "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.pdf" "main" 1674590517
+["pdflatex"] 1674606620 "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.tex" "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.pdf" "main" 1674606622
   "../notes.sty" 1674552110 15135 e86c87efdd8aed3685baad4b7d03953b ""
-  "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.aux" 1674590517 3724 ae4e33f6b9b504d4ca0a1651e4f54d1d ""
+  "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.aux" 1674606621 3726 8c2b53705743d045615cc10e31589e12 ""
   "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.tex" 1674473211 1314 6c2b829ccaaa5eff995556de7e36d7d1 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -343,14 +343,14 @@
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
   "lecture 1.tex" 1674182972 8525 0886e7b81282401ed1d8784bca2d15ca ""
-  "lecture 2.tex" 1674590515 12533 cbf3b34d44fb727d51b881a506fbc00d ""
-  "main.aux" 1674590517 3724 ae4e33f6b9b504d4ca0a1651e4f54d1d "pdflatex"
-  "main.out" 1674590517 1590 baf760e0f44335221054c7df28b7eee9 "pdflatex"
+  "lecture 2.tex" 1674601621 12535 12d6e7f1e7e87f2d232d08103998d4c5 ""
+  "main.aux" 1674606621 3726 8c2b53705743d045615cc10e31589e12 "pdflatex"
+  "main.out" 1674606621 1600 f7f1aec6908eb0cb19d729e5468f9d9e "pdflatex"
   "main.tex" 1674473211 1314 6c2b829ccaaa5eff995556de7e36d7d1 ""
   (generated)
-  "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.pdf"
-  "main.pdf"
   "main.out"
+  "main.pdf"
+  "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.pdf"
   "/Users/eric/Documents/Courses/PHYSICS 105/Class Notes/main.log"
-  "main.log"
   "main.aux"
+  "main.log"

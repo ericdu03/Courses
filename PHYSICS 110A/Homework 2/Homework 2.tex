@@ -1,0 +1,72 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electromagnetism and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 02} \large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    
+    \section*{Collaborators}
+
+    I worked with \textbf{Andrew Binder, Christine Zhang, Teja Nivarthi} on this assignment. 
+
+    \section*{Problem 1}
+
+    The electric field of a solid sphere with radius $R$ and uniform charge density $\rho$ is given by 
+    \begin{equation}
+        E = \begin{cases}
+        \dfrac{\rho r}{3\epsilon_0} & (r < R)\\\\
+        \dfrac{kQ}{r^2} \hat r & (r > R)
+    \end{cases}
+    \end{equation}
+    where $Q$ is the total charge of the sphere. The magnetic field of an infinitely long thick table with radius $a$ is given by 
+    \[ B = \begin{cases}
+        \dfrac{\mu_0 Js}{2} \hat \phi & (s < a)\\\\
+        \dfrac{\mu_0I}{2\pi s} \hat \phi & (s > a)
+    \end{cases}\]
+    where the net current $I$ flows in the $+z$-direction. Note that the $E$-field and $B$-field are expressed in spherical and cylindrical coordinates respectively. 
+    \begin{enumerate}[label=(\alph*), start]
+        \item Calculate the divergence and curl of $E$ wiht spherical coordinates
+        \item Calculate the divergence and curl of $B$ in cylindrical coordinates.
+    \end{enumerate}
+
+    Independent of the previous part, consider a vector field $V = s(2 + \cos^2 \phi)\hat s + s \sin \phi \cos \phi \hat \phi + 3z \hat z$.
+
+    \begin{enumerate}[label= (\alph*), resume]
+        \item Calculate the divergence and curl of the vector $V$. 
+        \item Verify the divergence theorem holds true using the quarter-cylinder of radius 1 and height 2. shown in the figure below.
+        \item Verify that Stoke's theorem holds true using the surface $S$ shown in the figure below.
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 2}
+    The vector field 
+
+    \[ E = \frac{p}{4\pi \epsilon_0 r^3}\left( 2 \cos \theta \hat r + \sin \theta \hat \theta\right) - \frac{p}{3\epsilon_0} \delta^3(r)\] 
+    where $p$ is a constant in the $z$-direction, can be written as a gradient of some scalar function $V(r)$. Find the scalar functi $V(r)$ for $r \neq 0$. 
+    \textit{Note:} The second term including the delta function is added for completeness, but you do not need to worry aboutit here. I do NOT recommend you using the Helmholtz theorem where 
+    \[ V(r) = \frac{1}{4\pi} \int_{\mathbb R^3} \frac{\div E}{\rcurs} d\tau'\]
+    because the divergence at the origin is very tricky to deal with as it's not mathematically well-defined. Instead, thikn of this problme as solving the differential equation $E = -\nabla V$ for $r \neq 0$
+
+    \pagebreak
+
+    \section*{Problem 3}
+    Show the following integral theorems: 
+    \begin{enumerate}[label=(\alph*)]
+        \item $\int_{\mathcal V} (\nabla T) d\tau = \oint_S T da$
+        \item $\int_{\mathcal V} (\curl V) d\tau = -\oint_{\mathcal S} V \times da$
+        \item $\int_{\mathcal V} (T \nabla^2 U - U \nabla^2 T) d\tau = \oint_S (T \nabla U - U \nabla T) \cdot da$
+    \end{enumerate}
+    Here $\mathcal V$ is a three-dimensional region in 3D flat space and $\mathcal S$ is its boundary. $T, U$ are scalar fields, while $V$ is a vector field. For (a), you can use the divergence theorem but with the vector field to be $cT$ where $c$ is a constant vector field. For (b), you can again consider divergence theorem but with the vector field to be $V \times c$ where again $c$ is a constant vector field.
+\end{document}

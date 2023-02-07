@@ -20,7 +20,15 @@
     Using proof by induction to prove that: For every $n \in \mathbb N$, $\sum_{k = 1}^n k = \frac 12 n(n+1)$.
 
     \begin{solution}
-        Let $A \subset N$ be the set of naturals which satisfies the above proposition. First, we show that $m = 1 \in A$ 
+        Let $A \subset N$ be the set of naturals which satisfies the above proposition. First, we show that $m = 1 \in A$: 
+        \[ 1 = \frac{1(2)}{2} \ \ \checkmark\]
+        Now, suppose that an arbitrary $m \in A$. We show that $m+1 \in A$: 
+        \begin{align*}
+           \sum_{k = 1}^{m+1} k &= \sum_{k = 1}^{m} k + (k+1)\\
+           &= \frac{k(k+1)}{2} + \frac{2(k+1)}{2}\\
+           &= \frac{(k+1)(k+2)}{2}
+        \end{align*}
+        as desired.
     \end{solution}
 
     \pagebreak
@@ -29,10 +37,46 @@
 
     \begin{enumerate}[(a)]
         \item Prove $1^3 + 2^3 + \cdots + n^3 = (1+2 + \cdots + n)^2$ for all positive integers $n$.
+
+        \begin{solution}
+            Just like the previous problem, let $A \subset \mathbb N$ which satisfies the proposition. We show that $m = 1 \in A$:
+            \[ 1^3 = \left(\frac{1(2)}{2}\right)^2\] 
+            Now assume that for some $m-1$, we have $\sum_{n = 1}^{m-1} n = (1 + 2 + \cdots + m-1)^2$. Now we show that $P(m-1) \implies P(m)$: 
+            \begin{align*}
+                \sum_{n = 1}^{m} n^3 &= \sum_{n = 1}^{m-1} n^3 + m^3\\
+                &= \left( \frac{m(m-1)}{2}\right)^2 + m^3\\
+                &= \frac{m^4 - 2m^3 + m^2}{4} + \frac{4m^3}{4}\\
+                &= \frac{m^4 + 2m^3 + m^2}{4}\\
+                &= \left(\frac{m(m+1)}{2}\right)^2
+            \end{align*}
+            as desired.
+        \end{solution}
         \item The princpile of mathematical induction can be extended as follows. A list $P_m, P_{m+1}, \dots$ of propositions is true provided (i) $P_m$ is true, $P_{n+1}$ is true whenever $P_n$ is true and $n \ge m$.
         \begin{enumerate}[(i)]
             \item Prove $n^2 > n+1$ for all integers $n \ge 2$. 
+            
+            \begin{solution}
+                Following the steps of induction, let $A \subset \mathbb N$ be the set which satisfies the proposition. we show that $m = 2 \in A$
+                \[ 2^2 > 2+1 \ \ \checkmark\] 
+                Now assume that for some $m$ the proposition holds. Now we show $P_{m+1}$ also holds: 
+                \begin{align*}
+                    (m+1)^2 &> (m+1)+1\\
+                    m^2 + 2m + 1 &> m+2\\
+                    m^2 + m - 1 &> 0
+                \end{align*} 
+                This statement is clearly true for $m > 2$, since $m^2 +m > 1$. Therefore, $P_{m+1}$ is true, and so we're done.
+            \end{solution}
             \item Prove $n! > n^2$ for all integers $n \ge 4$. [Recall $n! = n(n-1) \cdots 2 \cdot 1$; for example, $5! = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120$.]
+            
+            \begin{solution}
+                Just like the previous problem, let $A \subset \mathbb N$ be the set which satisfies the propositn. We prove that $m = 4$ satisfies: 
+                \[ 4! = 120 > 16 \ \ \checkmark\] 
+                Now assume for some $m$ that the proposition holds. Thus from the inductive hypothesis, we get: 
+                \[ (m+1)! = (m+1)m! > (m+1)m^2\] 
+                Then from part (a) we know that $m^2 > m+1$ so we now write:
+                \[ (m+1)m^2 > (m+1)(m+1) = (m+1)^2\]
+                as desired.
+            \end{solution}
         \end{enumerate}
     \end{enumerate}
 
@@ -42,17 +86,49 @@
 
     Prove: $\sqrt 3$ is not a rational number
 
+    \begin{solution}
+        Let $\sqrt{3}$ be defined as the solution to the polynomial $x^2 - 3 = 0$. Then, by the rational root theorem we know that rational solutions to this polynomial must divide 3, which are going to be $\pm 1, \pm 3$. Since none of these solve the equation, then $\sqrt{3}$ is not a rational number.
+    \end{solution}
+
     \pagebreak
 
     \section*{Problem 4}
 
     Prove: $\sqrt 2 + \sqrt 3$ is not a rational number.
 
+    \begin{solution}
+        Here, we construct a polynomial where $\sqrt{2} + \sqrt{3}$ is the root. One that comes to mind is: 
+        \[ x^2 - (\sqrt{2} + \sqrt{3})^2 = 0\] 
+        However, this gives:
+        \[ x^2 - 5 - 2\sqrt{6} = 0\] 
+        which is not a polynomial with integer coefficients. However, we can remedy this by moving $2\sqrt{6}$ to the right hand side and squaring both sides again:
+        \begin{align*}
+            (x^2 - 5)^2 &= 24\\
+            x^2 - 10x + 1 &= 0
+        \end{align*}
+        Now the rational root theorem holds. Any rational solution to this polynomial must divide 1, so therefore our candidates are only $x = \pm 1$, but none of these solve the equation. Therefore, $\sqrt{2} + \sqrt{3}$ is not rational.
+    \end{solution}
+
     \pagebreak 
     \section*{Problem 5}
     \begin{enumerate}[(a)]
         \item Show $|b| \le a$ if and only if $-a \le b \le a$. 
+        
+        \begin{solution}
+            First we prove that if $|b| \le a$, then $-a \le b \le a$. In this case, we look at the definition of the absolute value: 
+            \[ |x| = \begin{cases}
+                x & x > 0\\
+                -x & x < 0
+            \end{cases}\] 
+            Therefore, if $|b| \le a$, then we know that if $b > 0$, then $b \le a$. Otherwise, if $b < 0$, then $-b \le a \implies b \ge -a$, and so we're done. 
+
+            Now for the reverse case. If $-a \le b \le a$, then we need to prove that $|b| \le a$. Since $-a \le b$, then this implies that the distance between 0 and $-a$ is longer than that from $0$ and $b$. Likewise, the same conclusion can be drawn about the statement $b \le a$ - the distance between 0 and $b$ is less than the distance between 0 and $a$. Therefore, if we think about this as a distance, then it makes sense that the distance of $b$ (denoted as $|b|$) will be less than the distance from 0 to $a$, denoted as $|a|$. It's implied $a > 0$ here (otherwise we can choose $-a$), so therefore we can remove the absolute value. Thus, $|b| \le a$ follows.
+        \end{solution}
         \item Prove $||a| - |b|| \le |a - b|$ for all $a, b \in \mathbb R$.
+        
+        \begin{solution}
+            I couldn't solve this problem.
+        \end{solution}
     \end{enumerate}
 
     \pagebreak
@@ -63,8 +139,24 @@
 
     \begin{itemize}
         \item $\sup A \ge \inf A$
+        
+        \begin{solution}
+            Suppose for the sake of contradiction that $\inf A > \sup A$. For the inf statement, it means that there exists an $x$ such that for all $a \in A$, $x \le a$. However, the $\sup A$ implies an existence of $X$ such that for all $a \in A$, $X \ge a$. Since $x > X$, the elements in $a$ must be both less than $X$ and greater than $x$, but this is impossible since $x > X$. This is a contradiction. Therefore, $\sup A \ge \inf A$.
+        \end{solution}
         \item If $\max A$ ($\min A$) exists, then $\sup A = \max A$ ($\inf A = \min A$)
+        
+        \begin{solution}
+            We know that $\max A$ is defined as the value of $a_M \in A$ such that for all other $a \in A$, $a \le a_M$. Notice that this is the exact definition for the supremum: the smallest value $X$ such that for all $a \in A$, $X \ge a$. Therefore, if $\max A$ exists, then $\sup A = \max A$. 
+
+            The same logic exists for the infimum. $\min A$ is defined as the value $a_m \in A$ such that for all other $a \in A$, $a_m \le a$. This is the exact definition for the infimum, and so $\inf A = \min A$.
+        \end{solution}
         \item $\inf A = -(\sup (-A))$, where $-A = \{ -a \vert a \in A\}$
+        
+        \begin{solution}
+            Given a nonempty set $A$, we know via the completeness axiom (and its corollary) that $\sup A$ and $\inf A$ exist. We know that here, the $\inf A$ is defined as the value $a_m$ such that $a_m \le a$ for all $a \in A$. 
+
+            Now if we take the negative of both sides, we get $-a_m \ge a$. In other words, $-\inf A$ bounds the set from above! Therefore, we have the relation that $-\inf A = \sup (-A)$, which we can then rearrange this to become $\inf A = -\sup(-A)$, as desired.
+        \end{solution}
     \end{itemize}
 
     \pagebreak
@@ -85,6 +177,13 @@
     \end{theorem}
 
     Hint: Use proof by contradiction.
+
+
+    \begin{solution}
+        We prove that property (2) is always true given proposition (1). Firstly, we know that $1 \in A$ so $2 \in A$ as well. Now suppose that we now have a set $\{1, 2, \dots, n \}$. 
+        
+        To prove that all the numbers from 1 to $n$ exist within this set, we can take increasing set sizes: $\{1\}, \{1, 2\}$ and in every one of these sets, the completeness axiom says that the $\sup(A)$ exists, in other words using these sets we can show that the numbers $1, 2$ and eventually $n$ also exists, implying the existence of $n+1$. Thus, this process can repeated ad infinitum, implying that $A = \mathbb N$.
+    \end{solution}
     
     
 \end{document}

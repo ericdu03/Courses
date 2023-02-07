@@ -1,0 +1,185 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mecahnics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 02} \large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+
+\newcommand{\ud}{\uparrow \downarrow}
+\newcommand{\du}{\downarrow \uparrow}
+\newcommand{\uu}{\uparrow \uparrow}
+\renewcommand{\dd}{\downarrow \downarrow}
+\newcommand{\ua}{\uparrow}
+\newcommand{\da}{\downarrow}
+\begin{document}
+    \maketitle
+    \section*{Collaborators}
+
+    I worked with \textbf{Andrew Binder} to complete this assignment. 
+
+    \section*{Problem 1}
+    \begin{enumerate}[(a)]
+        \item Apply $S_-$ to $\ket{1 \ 0}$ (Equation 4.175), and confirm that you get $\sqrt 2\hbar \ket{1 \ -1}$
+        
+        \begin{solution}
+            We use the definition of $\ket{1 \ 0}$ and apply $S_-$ to it:
+                \begin{align*}
+                    S_{-}\ket{1 \ 0} &= S_{-}\left(\frac{1}{\sqrt2}(\ud + \du)\right) = \frac{1}{\sqrt2}(S_{-}^{(1)} + S_{-}^{(2)})(\ud + \du)\\
+                    &= \frac{1}{\sqrt2}\left[(S_{-}\ua)\da + (S_{-}\da)\ua + \ua(S_{-}\da) + \da(S_{-}\ua)\right]\\
+                    &= \frac{1}{\sqrt2}2\hbar\dd && S_- \da = 0 \text{ by definition}\\
+                    &= \sqrt{2}\hbar\dd = \sqrt2\hbar\ket{1 -1}
+                \end{align*}
+                as desired.
+        \end{solution}
+        \item Spplay $S_\pm$ to $\ket{0 \ 0}$ (Equation 4.176) and confirm you get zero. 
+        \begin{solution}
+            We do the same thing as part (a):
+                \begin{align*}
+                    S_{-}\ket{0 0} &= S_{-}\left(\frac{1}{\sqrt2}(\ud - \du)\right) = \frac{1}{\sqrt2}(S_{-}^{(1)} + S_{-}^{(2)})(\ud - \du)\\
+                    &= \frac{1}{\sqrt2}\left[(S_{-}\ua)\da + (S_{-}\da)\ua - \ua(S_{-}\da) - \da(S_{-}\ua)\right]\\
+                    &= 0
+                \end{align*}
+                also as desired.
+        \end{solution}
+        \item Show that $\ket{1 \ 1}$ and $\ket{1 \ -1}$ (Equation 4.175) are eigenstates of $S^2$, with the appropriate eigenvalue
+        \begin{solution}
+            Using the definition of $S^2$ and $\ket{1 \ 1} = \uu$ and $\ket{1 \ -1} = \dd$, we can do the algebra by brute force:
+                \begin{align*}
+                    S^2\ket{1 \ 1} &= S^2(\uu) = \left((S^{(1)})^2 + (S^{2})^2 + 2S^{(1)}\cdot S^{(2)}\right)\uu \\ 
+                    &= (S^2\ua)\ua + \ua(S^2\ua) + 2\left[(S_x\ua)(S_x\ua) + (S_y\ua)(S_y\ua) +(S_z\ua)(S_z\ua)\right] \\
+                    &= \frac34\hbar^2\uu + \frac34\hbar^2\uu + 2\left(\frac{\hbar}{2}\da\frac{\hbar}{2}\da + \frac{i\hbar}{2}\da\frac{i\hbar}{2}\da + \frac{\hbar}{2}\ua\frac{\hbar}{2}\ua\right) \\
+                    &= \frac32\hbar^2\uu + 2\left(\frac{\hbar^2 - \hbar^2}{4}\dd + \frac{\hbar^2}{4}\uu\right)\\
+                    & = \frac32\hbar^2\uu + \frac{\hbar^2}{2}\uu\\
+                    &=  2\hbar^2\uu = 2\hbar^2\ket{1 1}
+                \end{align*}
+                We do the same for $\ket{1 \ -1}$:
+                \begin{align*}
+                    S^2\ket{1 \ -1} &= S^2(\dd) = \left((S^{(1)})^2 + (S^{2})^2 + 2S^{(1)}\cdot S^{(2)}\right)\dd \\
+                    &= (S^2\da)\da + \ua(S^2\da) + 2\left[(S_x\da)(S_x\da) + (S_y\da)(S_y\da) +(S_z\da)(S_z\da)\right] \\ 
+                    &= \frac34\hbar^2\dd + \frac34\hbar^2\dd + 2\left(\frac{\hbar}{2}\ua\frac{\hbar}{2}\ua + \left(-\frac{i\hbar}{2}\ua\right)\left(-\frac{i\hbar}{2}\ua\right) + \left(-\frac{\hbar}{2}\da\right)\left(-\frac{\hbar}{2}\da\right)\right) \\
+                    &= \frac32\hbar^2\uu + 2\left(\frac{\hbar^2 - \hbar^2}{4}\dd + \frac{\hbar^2}{4}\uu\right)\\
+                    &= \frac32\hbar^2\uu + \frac{\hbar^2}{2}\dd\\
+                    &= 2\hbar^2\dd = 2\hbar^2\ket{1 -1}
+                \end{align*}
+                And so we're done.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 2}
+
+    \textbf{Quarks} carry spin 1/2. Three quarks bind together to make a \textbf{baryon} (such as the proton or neutron); two quarks (or more precisely a quark and antiquark) bind together to make a \textbf{meson} (such as the pion or kaon). Assume the quarks are in the ground state (so the \textit{orbital} angular momentum is zero).
+
+    \begin{enumerate}[(a)]
+        \item What spins are possible for baryons? 
+        
+        \begin{solution}
+            For 3 particles, we can just consider the state $\ket{\uparrow \uparrow \uparrow}$ and $\ket{\uparrow \uparrow \downarrow}$ to be all the states that can possibly form, since any other combination of up and down arrows will simply be either a reflection or rearrangement of these two. Therefore, the only possible spins here will be $\frac 32$ and $\frac 12$. 
+        \end{solution}
+        \item What spins are possible for mesons?
+        
+        \begin{solution}
+            For two particles, these quarks are either in the $\ket{\uparrow \uparrow}$ or $\ket{\uparrow \downarrow}$ states ($\ket{\downarrow \downarrow}$ is the same as $\ket{\uparrow \uparrow}$ in this case), and so these particles have total spin either $s = 1$ or $s = 0$. 
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 3} 
+    
+    Discuss (qualitatively) the energy level scheme for helium if (a) electrons were identical bosons, and (b) if electrons were distinguishable particles (but with the same mass and charge). Pretend these ``electrons'' still have spin 1/2, so the spin configurations are the singlet and triplet. 
+
+    \begin{solution}
+        If the electrons were identical bosons, then we know that the wavefunction is symmetric under particle exchange, meaning that the spin component is the symmetric triplet. The excited states could be either the singlet or triplet, since we have freedom to choose whether we want the spin component to be symmetric or asymmetric.
+
+        If the electrons were distinguishable particles, then both the singlet and triplet are both allowed, since there are no restrictions on the symmetry of the wavefunction.
+    \end{solution}
+
+    \pagebreak
+
+    \section*{Problem 4}
+
+    For two angular momenta of quantum numbers $j_1$ and $j_2$, there are $(2j_1 + 1) \times (2j_2+1)$ possible products $\ket{j_1, m_{j_1}} \ket{j_2, m_{j_2}}$ of eigenstates of the individual angular momenta. Count all the possible eigenstates of $\ket{j, m_j}$ of the total angular momentum, and show that there are exactly $(2j_1 + 1) \times (2j_2 + 1)$ such eigenstates. 
+
+    \begin{solution}
+        For the first state $\ket{j_1, m_1}$, there are $2j_1 + 1$ possible values for $m_1$. Then, for $\ket{j_2, m_2}$, there are another $2j_2 + 1$ possible values for $m_2$. Since $m_1$ and $m_2$ are chosen independently of each other, then there must be a total of $(2j_1 + 1)(2j_2 + 1)$ eigenstates. 
+    \end{solution}
+
+    \pagebreak
+
+    \section*{Problem 5}
+
+    Conisider two free electrons, with single-particle wavefunctions $e^{ip_1\cdot r_1/\hbar}$ and $e^{ip
+    _2\cdot r_2/ \hbar}$.
+    
+    \begin{enumerate}[(a)]
+        \item Construct the antisymmetric two-electron wavefunction of net spin zero. 
+        
+        \begin{solution}
+            The wavefunction with net spin zero is going to be the antisymmetric spin part: 
+            \[ \psi_{spin} = \frac{1}{\sqrt{2}}\left( \ket{\ud} - \ket{\du}\right)\] 
+            And so therefore the spatial part must be symmetric. Therefore: 
+            \[ \psi = \frac{1}{\sqrt{2}}\left( e^{ip_1\cdot r_1/\hbar} e^{ip_2 \cdot r_2/\hbar} + e^{ip_1 \cdot r_2/\hbar} e^{ip_2 \cdot r_1/\hbar}\right) \left( \ket{\ud} - \ket{\du}\right)\]
+        \end{solution}
+        \item Construct the antisymmetric two-electron wavefnction of net spin one. Assume that both spins are up. 
+        
+        \begin{solution}
+            The spin part in this case is then symmetric, so if we want an antisymmetric wavefunction then we require that the spatial part is antisymmetric. Therefore: 
+            
+            \[ \psi = \left( e^{ip_1\cdot r_1/\hbar} e^{ip_2 \cdot r_2/\hbar} - e^{ip_1 \cdot r_2/\hbar} e^{ip_2 \cdot r_1/\hbar}\right)\ket{\uu}\]
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 6}
+
+    Consider the following state constructed out of products of eigenstates of two individual angular momenta with $j_1 = \frac 32$ and $j_2 = 1$: 
+
+    \[ \sqrt{\frac 35} \ket{\frac 32, -\frac 12} \ket{1, -1} + \sqrt{\frac 25} \ket{\frac 32, -\frac 12}\ket{1, 0}\]
+
+    \begin{enumerate}[(a)]
+        \item Show that this is an eigenstate of the total angular momentum. What are the values of $j$ and $m_j$ for this state?
+        
+        \begin{solution}
+            We can do so by showing that it is an eigenstate of the $S_T^2$ operator. To do so, we just act $S_T^2 = S_1^2 + S_2^2$ onto both states, using the relation that $S^2\ket{l, m} = l(l+1)\hbar^2 \ket{l, m}$:
+            \[ S_T^2 \psi = \sqrt{\frac 35} (S_1^2 + 2S_1S_2 + S_2^2) \ket{\frac 32, -\frac 12} \ket{1, -1} + (S_1^2 + 2S_1S_2 + S_2^2) \sqrt{\frac 25} \ket{\frac 32, -\frac 12}\ket{1, 0}\]
+            From here, I would express $S_1$ and $S_2$ using the relations:
+            \[ S_1 = S_{1x} + S_{1x} + S_{1x} \phantom{aaaa} S_2 = S_{2x} + S_{2y} + S_{2z}\] 
+            where we then have the relations
+            \[ S_x = \frac 12\left( S_{1+} + S_{1-}\right) \phantom{aaa} S_y = \frac 12 \left( S_{1+} - S_{1-}\right)\] 
+            Then, we can just crunch through the algebra to show that it is an eigenstate.
+        \end{solution}
+        \item Construct a (normalized) state of the same $j$, but a value of $m_j$ larger by 1
+        
+        \begin{solution}
+            Here, we would set up the states so that they all have a value of $m_j$ larger by 1, then normalize by computing the inner product with itself then setting that equal to 1. Unfortunately I ran out of time before I could actually complete these two computations, but this is what I would have done given the time.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+
+    \section*{Problem 7}
+
+    Suppose that five electrons are placed in a one-dimensional infinite potential well of length $L$. What is the energy of the ground state of this system of five electrons? What is $\mean{S_z}$ of the ground state? Take the exclusion principle into account, and ignore the Coulomb interaction of the electrons with each other.
+
+    \begin{solution}
+        There can be two electrons per state due to Pauli Exclusion Principle, so therefore the total energy is 
+        \[ E = 2E_1 + 2E_2 + E_3 = \frac{19 \pi^2 \hbar^2}{2mL^2}\]
+        The value of $\mean{S_z}$ in the first two energy levels must be zero, since we know that one electron must occupy spin up and the other spin down, giving a net $S_z = 0$. Therefore, the lone electron in the 3rd energy level is actually the only one that contributes to $\mean{S_z}$, and so therefore: 
+        \[ \mean{S_z} = \frac \hbar 2\] 
+    \end{solution}
+
+
+\end{document}
