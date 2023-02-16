@@ -1,0 +1,118 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electromagnetism and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 03} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Collaborators}
+    I worked with \textbf{Andrew Binder, Christine Zhang, Teja Nivarthi} and \textbf{Nathan Song} on this assignment.
+
+    \section*{Problem 1}
+
+    For a region $\mathcal V$ enclosing the origin, evaluate the integral 
+    \[ J = \int_{\mathcal V} \frac{\mathbf {\hat r}}{r^2} \cdot \nabla f d\tau\]
+
+    \begin{solution}
+        First, we use the relation that 
+        \[ \div \left( \frac{\mathbf{\hat r}}{r^2} f\right) = \left(\div \frac{\mathbf{\hat r}}{r^2}\right) f + \frac{\mathbf{\hat r}}{r^2} \nabla f\]
+        so we use this relation: 
+        \begin{align*}
+            \int_{\mathcal V} \frac{\mathbf {\hat r}}{r^2} \cdot \nabla f d\tau &= \int_{\mathcal V}  \div \left( \frac{\mathbf{\hat r}}{r^2} f\right) \ d\tau - \int_{\mathcal V}  \left(\div \frac{\mathbf{\hat r}}{r^2}\right) f \ d\tau\\
+            &= 4\pi \left[ \int_{\mathcal V}  \div \left( \frac{1}{4\pi} \frac{\mathbf{\hat r}}{r^2} f\right) \ d\tau - \int_{\mathcal V}  \underbrace{\frac{1}{4\pi} \left(\div \frac{\mathbf{\hat r}}{r^2}\right)}_{\delta^3(r)} f d\tau\right]\\
+            &= 4\pi \left[ \frac{1}{4\pi} \oint_{\partial V} f \frac{\mathbf{\hat r}}{r^2} \ d\tau - \int_{\mathcal V}  \delta^3(r) f \ d\tau\right]
+        \end{align*}
+        And since $f$ vanishes around the boundary of $\mathcal V$, then the first term disappears. Further, we can evaluate the second term to be $f(0)$ by using the relation that: 
+        \[ \int f(x) \delta(x) dx = f(0)\]
+        So we finally get: 
+        \[ J = \int_{\mathcal V} \frac{\mathbf {\hat r}}{r^2} \cdot \nabla f d\tau = -4\pi f(0)\]
+    \end{solution}
+
+    \pagebreak
+    \section*{Problem 2} 
+    A right angle consists of two planes, as shown in the right ifgure. Both planes are infinite in the direction perpendicular to the paper. The entire horizontal plane is at potential 0, and the entire vertical plane is at potential $V_0$. In addition, the electric potential is finite when we approach the orig, and the electric potential at infinity is set to be $V(\phi) = \frac{2V_0}{\pi} \phi$ for $0 \le \phi \le \pi/2$ and $V(\phi) = -\frac{2V_0}{3\pi} \phi + \frac{4V_0}{3}$ for $\pi/2 \le \phi \le 2\pi$. ($\phi = 0$ at the horizontal plane.) There are no charges in the region except on those planes. 
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Using symmetry arguments, show that the electric field lines are the arcs shown and the electric field is constant along each arc, but is not the same on different arcs. In other words, the electric fields are a function of $r$, the distance away from the origin. (It will be easier to think about the spatial dependence of the electric potential and take $\vec E = -\nabla V$. Anotehr hint is: is there a characteristic length scale for the electric potential of the system?)
+        
+        \begin{solution}
+            We can argue this in two ways. Firstly, notice that if we rotate the system then the physics shouldn't work any differently, but the angles that we'd be working with would change. Therefore, if $E$ had a $\hat \phi$ component, then it would mean that our system would change as well. Since this is not the case, then we know that $E$ has no $\hat \phi$ component, and varies on $r$ alone. 
+
+            The second way (and a more convincing way) to argue this relies on the fact that there aren't any length scales in this problem. As a result, we can actually just use the functions $V(\phi)$ given in the problem statement despite them being defined at infinity. We can do this because we can claim that ``infinity'' exists at an arbitrary length scale: if we set infinity to be at 1cm for instance, we can just zoom in really really hard into the corner to a length scale of 0.0000000001cm, which wouldn't actually change our system. But, from this zoomed in perspective, it makes sense to choose infinity to be defined at 1cm. 
+
+            Finally, if we do now use the fact that $E = - \nabla V$ then we see: 
+
+            \[ E = \begin{cases}
+                \dfrac{2V_0}{3\pi r} \hat \phi & 0 \le \phi \le \pi/2\\
+                \\
+                -\dfrac{2V_0}{\pi r} \hat \phi & \pi/2 \le \phi \le 2\pi
+            \end{cases}\]
+            which we can see only depends on $r$ and no other variable.
+        \end{solution}
+        \item What is the electric field on the counterclockwise field as a function of $r$?
+        
+        \begin{solution}
+            There is no characteristic length scale of this system, so we can ignore the notion that the potentials are defined at infinity, and use them normally. Therefore, this means: 
+            \[ V(\phi) = \begin{cases}
+                \dfrac{2V_0}{\pi}\phi & 0 \le \phi \le \pi/2\\
+                \\
+                -\dfrac{2V_0}{3\pi} \phi & \pi/2 \le \phi \le 2\pi
+            \end{cases}\]
+            So for the counterclockwise direction, then we are looking at the region $\pi/2 \le \phi \le 2\pi$. Then, we use $E = -\nabla V$ to get: 
+            \[ E = - \frac{1}{r} \pdv{V}{\phi} = -\frac{1}{r} \pdv{\phi}\left( -\frac{2V_0}{3\pi}\phi\right)\hat \phi = \frac{2V_0}{3\pi r} \hat \phi\]
+        \end{solution}
+        \item What is the electric field on the clockwise field lines as a function of $r$?
+        
+        \begin{solution}
+            Here we are talking about the region $0 \le \phi \le \pi/2$, so therefore 
+            \[ E = -\frac{1}{r} \pdv{\phi} \left( \frac{2V_0}{\pi} \phi \right) \hat \phi = -\frac{2V_0}{\pi r} \hat \phi\]
+        \end{solution}
+        \item Using the tiny Gaussian pillbox drawn by the dashed lines, find $\sigma(r)$.
+        
+        \begin{solution}
+            We use Gauss' Law here, which states:
+            \[ \oint \mathbf E  \ d\mathbf a = \frac{Q_{enc}}{\epsilon_0}\]
+            We split this integral into two parts, since the flux through the side of the pillbox is zero. Therefore: 
+            \begin{align*}
+                \oint \mathbf E \cdot \mathbf{\hat n}\  da &= E_{above}\cdot A - E_{below}\cdot A = \frac{\sigma(r) A}{\epsilon_0}\\
+                \frac{2V_0}{3\pi r} - \left( -\frac{2V_0}{\pi r}\right) &= \frac{\sigma(r)}{\epsilon_0}\\
+                \therefore \sigma(r) &= \frac{8V_0\epsilon_0}{3\pi r}
+            \end{align*}
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 3} 
+    Find the charge density corresponding to the electric field $\mathbf = ay \mathbf{\hat y}$ (in Cartesian coordinates), and the charge density corresponding to the electric field $\mathbf E = (1/3) ar \mathbf{\hat r}$ (in spherical coordinates). Compare your answers. Why does the same charge density give two different fields?
+
+    \begin{solution}
+        Here, we use Poisson's equation: 
+        \[ \div E = \frac{\rho}{\epsilon_0}\]
+        So for the vector field in cartesian coordinates: 
+        \begin{align*}
+            \div \mathbf E &= \pdv{\mathbf E}{y} = a = \frac{\rho}{\epsilon_0}\\
+            \therefore \rho &= \epsilon_0 a
+        \end{align*}
+        Now for the one in spherical coordinates: 
+        \begin{align*}
+            \div \mathbf E &= \frac{1}{r^2} \pdv{\mathbf E}{r} \left( r^2 \frac{1}{3} ar\right)\\
+            &= \frac{1}{r^2} ar^2 = a
+        \end{align*}
+        And so therefore: 
+        \[ a = \frac{\rho}{\epsilon_0} \implies \rho = \epsilon_0 a\]
+        So we end up with the result that these two fields are the same! This could be one of two reasons: firstly, becuase we are dealing with different coordinate systems, the same field is represented differently, so therefore it would \textit{appear} to be a different field, but one can easily convert from one system to the other. However, while this is an acceptable explanation for some problems, I don't believe it actually works here. 
+
+        The alternative explanation (and one that I find more convincing) is the fact that even though the fields are the same, this doesn't mean that the charge \textit{distributions} must be the same. Since the density is only computed as the total charge over volume, it tells us nothing about the exact distributions of these charges, so we can still get very different field lines without changing the total charge of the system.
+    \end{solution}
+\end{document}
