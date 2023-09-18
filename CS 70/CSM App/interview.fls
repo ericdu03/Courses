@@ -2,8 +2,8 @@ PWD /Users/eric/Documents/Courses/CS 70/CSM App
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.tex
-OUTPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.log
+INPUT interview.tex
+OUTPUT interview.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -19,17 +19,17 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/local.sty
+INPUT ./local.sty
+INPUT ./local.sty
+INPUT local.sty
+INPUT ./local.sty
+INPUT ./local.sty
+INPUT ./local.sty
+INPUT ./local.sty
+INPUT ./local.sty
+INPUT local.sty
+INPUT ./local.sty
+INPUT local.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
@@ -934,7 +934,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
-OUTPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.pdf
+OUTPUT interview.pdf
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
@@ -1350,10 +1350,10 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.aux
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.aux
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.aux
-OUTPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.aux
+INPUT ./interview.aux
+INPUT interview.aux
+INPUT interview.aux
+OUTPUT interview.aux
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1411,17 +1411,17 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-OUTPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
+INPUT ./interview.out
+INPUT interview.out
+INPUT ./interview.out
+INPUT interview.out
+INPUT ./interview.out
+INPUT interview.out
+INPUT ./interview.out
+INPUT interview.out
+INPUT ./interview.out
+INPUT ./interview.out
+OUTPUT interview.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -1443,9 +1443,9 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.aux
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
-INPUT /Users/eric/Documents/Courses/CS 70/CSM App/interview.out
+INPUT interview.aux
+INPUT ./interview.out
+INPUT ./interview.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb

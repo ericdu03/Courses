@@ -1,0 +1,308 @@
+%%%CUSTOM NOTES STYLE FILE - ERIC DU AND ANDREW BINDER%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{../notes}
+%%INCLUDED PACKAGES%%
+% All packages needed are included here, with proper presets
+% Some packages edited from shortcuts.sty
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, enumitem, circuitikz, physics, parskip, hyperref, breqn}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{dirtytalk}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+% Unique to notes.sty
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\tcbuselibrary{theorems}
+% Theorem presets
+\theoremstyle{plain}
+\usetikzlibrary{calc,patterns,angles,quotes}
+\setlength{\parskip}{0pt}
+\usetikzlibrary{calc,patterns,angles,quotes}
+\makeatletter
+\pagestyle{fancy}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%ENVIRONMENT COLORS%%
+% All colors for different environments defined here
+% Some colors are repeated
+%%
+% Theorem, Lemma, and Corollary colors
+\definecolor{thmblue}{rgb}{0.25, 0.41, 0.88}               % For everything
+% Definition and Notation colors
+\definecolor{defgreen-frame}{rgb}{0.31, 0.78, 0.47}        % Frame
+\definecolor{defgreen-title}{rgb}{0.13, 0.55, 0.13}        % Title
+% Example and Exercise colors
+\definecolor{exgrey-back}{rgb}{0.57, 0.64, 0.69}           % Background
+\definecolor{exgrey-frame}{rgb}{0.55, 0.57, 0.67}          % Frame
+\definecolor{exgrey-title}{rgb}{0.33, 0.41, 0.47}          % Title
+% Insight and Remark colors
+\definecolor{inyellow-back}{rgb}{1.0, 0.86, 0.35}          % Background
+\definecolor{inyellow-frame}{rgb}{0.98, 0.93, 0.37}        % Frame
+\definecolor{inyellow-title}{rgb}{1.0, 0.75, 0.0}          % Title
+% Miscellaneous colors (red) - Can be used for warnings
+%     \definecolor{exred-back}{rgb}{1.0, 0.55, 0.41}       % Background
+%     \definecolor{exred-frame}{rgb}{1.0, 0.25, 0.25}      % Frame
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%ENVIRONMENT STYLING%%
+% Stylings for all boxes that environments use
+% Some environments used for physics notes, some for math notes, some for both
+% Environments common to both:        Theorem, Definition, Example
+% Environments unique to Physics:     Insight
+% Environments unique to Mathematics: Notation, Lemma, Corollary, Remark, Exercise
+%%
+% Theorem Styling
+\newtcbtheorem[number within=chapter]{theorem}{Theorem}
+    {
+        colback   = thmblue!10,                      % Background color
+        colframe  = thmblue!40,                      % Frame color
+        fonttitle = {\color{thmblue!130}\bfseries},  % Title color
+        arc       = 0.5mm                            % Rounded corners
+    }
+    {th}                                             % For referencing
+%%%%
+% Definition Styling
+\newtcbtheorem[number within=chapter]{definition}{Definition}
+    {
+        theorem style = plain,                                 % Removes top frame
+        colback       = green!10,                              % Background color
+        colframe      = defgreen-frame,                        % Frame color
+        leftrule      = 2mm,                                   % Vertical left bar
+        left          = 3mm,                                   % Custom left indent
+        fonttitle     = {\color{defgreen-title!80}\bfseries},  % Title color
+        arc           = 0mm                                    % Rounded corners
+    }
+    {def}                                                      % For referencing
+%%%%
+% Notation Styling - Identical to Definition
+\newtcbtheorem[number within=chapter]{notation}{Notation}
+    {
+        breakable,                                                   % Make box breakable
+        bottomrule at break = 0mm,                                   % No border at bottom break
+        toprule at break    = 0mm,                                   % No border at top break
+        theorem style       = plain,                                 % Removes top frame
+        colback             = green!10,                              % Background color
+        colframe            = defgreen-frame,                        % Frame color
+        leftrule            = 2mm,                                   % Vertical left bar
+        left                = 3mm,                                   % Custom left indent
+        fonttitle           = {\color{defgreen-title!80}\bfseries},  % Title color
+        arc                 = 0mm                                    % Rounded corners
+    }
+    {nt}                                                             % For referencing
+%%%%
+% Example Styling
+\newtcbtheorem[number within=chapter]{example}{Example}
+    {
+        colback   = exgrey-back!15,                       % Background color
+        colframe  = exgrey-frame!70,                      % Frame color
+        fonttitle = {\color{exgrey-title!130}\bfseries},  % Title color
+        arc       = 0.5mm                                 % Rounded corners
+    }
+    {ex}                                                  % For referencing
+%%%%
+% Exercise Styling - Identical to Example
+\newtcbtheorem[number within=chapter]{exercise}{Exercise}
+    {
+        breakable,                                                  % Make box breakable
+        bottomrule at break = 0mm,                                  % No border at bottom break
+        toprule at break    = 0mm,                                  % No border at top break
+        colback             = exgrey-back!15,                       % Background color
+        colframe            = exgrey-frame!70,                      % Frame color
+        fonttitle           = {\color{exgrey-title!130}\bfseries},  % Title color
+        arc                 = 0.5mm                                 % Rounded corners
+    }
+    {exa}                                                           % For referencing
+%%%%
+% Insight Styling
+\newtcbtheorem[no counter]{insight}{Insight}
+    {
+        theorem style = plain,                              % Removes top frame
+        colback       = inyellow-back!10,                   % Background color
+        colframe      = inyellow-frame,                     % Frame color
+        leftrule      = 2mm,                                % Vertical left bar
+        left          = 3mm,                                % Custom left indent
+        fonttitle     = {\color{inyellow-title}\bfseries},  % Title color
+        arc           = 0mm                                 % Rounded corners
+    }
+    {in}                                                    % For referencing
+%%%%
+% Remark Styling - Identical to Insight
+\newtcbtheorem[no counter]{remark}{Remark}
+    {
+        breakable,                                                % Make box breakable
+        bottomrule at break = 0mm,                                % No border at bottom break
+        toprule at break    = 0mm,                                % No border at top break
+        theorem style       = plain,                              % Removes top frame
+        colback             = inyellow-back!10,                   % Background color
+        colframe            = inyellow-frame,                     % Frame color
+        leftrule            = 2mm,                                % Vertical left bar
+        left                = 3mm,                                % Custom left indent
+        fonttitle           = {\color{inyellow-title}\bfseries},  % Title color
+        arc                 = 0mm                                 % Rounded corners
+    }
+    {rem}                                                         % For referencing
+%%%%
+% Corollary Styling
+\newtcbtheorem[number within=chapter]{corollary}{Corollary}
+    {
+        breakable,                                             % Make box breakable
+        bottomrule at break = 0mm,                             % No border at bottom break
+        toprule at break    = 0mm,                             % No border at top break
+        theorem style       = plain,                           % Removes top frame
+        colback             = thmblue!10,                      % Background color
+        colframe            = thmblue!40,                      % Frame color
+        leftrule            = 2mm,                             % Vertical left bar
+        left                = 3mm,                             % Custom left indent
+        fonttitle           = {\color{thmblue!130}\bfseries},  % Title color
+        arc                 = 0mm                              % Rounded corners
+    }
+    {cor}                                                      % For referencing
+%%%%
+% Lemma Styling
+\newtcbtheorem[number within=chapter]{lemma}{Lemma}
+    {
+        breakable,                                             % Make box breakable
+        bottomrule at break = 0mm,                             % No border at bottom break
+        toprule at break    = 0mm,                             % No border at top break
+        colback             = thmblue!10,                      % Background color
+        colframe            = thmblue!40,                      % Frame color
+        fonttitle           = {\color{thmblue!130}\bfseries},  % Title color
+        arc                 = 0.5mm                            % Rounded corners
+    }
+    {lem}                                                      % For referencing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%SHORTCUTS%%
+% All shortcuts for commands listed here, sectioned off by purpose
+% Some are subject to change
+%Names/Words%
+\newcommand{\schrodinger}{Schr\"{o}dinger }             % Schrodinger's name
+\newcommand{\lhopital}{L'H\^{o}pital}                   % L'Hospital's name
+\renewcommand{\tikz}{Ti\textit{k}Z }                    % TikZ word
+%Mathematical Operations%
+\newcommand{\infint}{\int_{-\infty}^{\infty}}           % Improper integral
+\newcommand{\infsum}[1]{\sum_{n = -\infty}^\infty}      % Infinite sum
+\renewcommand{\exp}[1]{\mathrm{exp}\left( #1 \right)}   % Exponential
+\def\db{{\mathchar'26\mkern-12mu \text{d}}}             % Derivative d
+\newcommand{\mean}[1]{\left\langle #1 \right\rangle}    % Mean <x>
+%Vector Operations%
+\renewcommand{\grad}{\vec{\nabla}}                      % Gradient
+\renewcommand{\div}{\vec{\nabla}\cdot}                  % Divergence
+\renewcommand{\curl}{\vec{\nabla}\times}                % Curl
+\newcommand{\laplace}{\nabla^2}                         % Laplacian
+%Operators (from Quantum Mechanics)%
+\newcommand{\ap}{a_{+}}                                 % Raising operator
+\newcommand{\am}{a_{-}}                                 % Lowering operator
+%Arrows (for Spin)%
+\newcommand{\da}{\downarrow}                            % Down arrow
+\newcommand{\ua}{\uparrow}                              % Up arrow
+\newcommand{\la}{\leftarrow}                            % Left arrow
+\newcommand{\ra}{\rightarrow}                           % Right arrow
+\newcommand{\ud}{\ua\da}                                % Up/Down arrows
+\newcommand{\du}{\da\ua}                                % Down/Up arrows
+\newcommand{\uu}{\ua\ua}                                % Two Up arrows
+\renewcommand{\dd}{\da\da}                              % Two Down arrows
+%Griffiths EM script r
+\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../ScriptR}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../BoldR}}$}}}
+\def\hrcurs{{\mbox{$\hat \brcurs$}}}
+%Name References (Subject to Change)%
+\newcommand{\eric}{\textbf{Eric Du}}                    % Eric Du name reference
+\newcommand{\nikhil}{\textbf{Nikhil Maserang}}          % Nikhil Maserang name reference
+\newcommand{\nathan}{\textbf{Nathan Song}}              % Nathan Song name reference
+\newcommand{\teja}{\textbf{Teja Nivarthi}}              % Teja Nivarthi name reference
+\newcommand{\christine}{\textbf{Christine Zhang}}       % Christine Zhang name reference
+%Miscellaneous%
+\newcommand{\hl}{\\\\rule{\linewidth}{0.01cm}\\}        % Horizontal line
+\newcommand{\s}{\text{ }}                               % Space
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%HEADER STYLINGS%
+% Various presents for headers of chapters, sections, parts, etc
+%Chapter Head%
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+\def\@makechapterhead#1{
+  {\parindent \z@ \centering \reset@font
+        \thickhrulefill\quad
+        \scshape Lecture \thechapter
+        \quad \thickhrulefill
+        \par\nobreak
+        \vspace*{10\p@}%
+        \interlinepenalty\@M
+        \hrule
+        \vspace*{10\p@}%
+        \huge \bfseries #1\par\nobreak
+        \par
+        \vspace*{10\p@}%
+        \hrule
+    \vskip 20\p@
+  }
+}
+%Part Presets%
+\titleclass{\part}{top} % make part like a chapter
+\titleformat{\part}
+[display]
+{\centering\normalfont\huge\bfseries}
+{\vspace{200pt}\titlerule[5pt]\vspace{3pt}\titlerule[2pt]\vspace{3pt}\MakeUppercase{Part} \thepart}
+{0pt}
+{\titlerule[2pt]\vspace{20pt}\huge\MakeUppercase}
+\titlespacing*{\part}{0pt}{0pt}{20pt}
+%Sections%
+\def\section{\@ifstar\unnumberedsection\numberedsection}
+\def\numberedsection{\@ifnextchar[%]
+    \numberedsectionwithtwoarguments\numberedsectionwithoneargument}
+\def\numberedsectionwithoneargument#1{\numberedsectionwithtwoarguments[#1]{#1}}
+\def\numberedsectionwithtwoarguments[#1]#2{%
+    \ifhmode\par\fi
+    \removelastskip
+    \vskip 5ex\goodbreak
+    \refstepcounter{section}%
+    \hbox to \hsize{\hss\vbox{\advance\hsize by 0cm
+        \noindent
+        \leavevmode\Large\bfseries\raggedright
+        \thesection\space$\bigg\vert$\hskip -1ex $\bigg\vert$\space   \
+        #2\par
+        \vskip -2ex
+        \noindent\hrulefill
+        \vskip -3ex
+        \noindent\hrulefill
+        }}\nobreak
+    \vskip 2ex\nobreak
+    \addcontentsline{toc}{section}{%
+    \protect\numberline{\thesection}%
+    #1}%
+}
+%Subsections%
+\def\subsection{\@ifstar\unnumberedsubection\numberedsubsection}
+\def\numberedsubsection{\@ifnextchar[
+    \numberedsubsectionwithtwoarguments\numberedsubsectionwithoneargument}
+\def\numberedsubsectionwithoneargument#1{\numberedsubsectionwithtwoarguments[#1]{#1}}
+\def\numberedsubsectionwithtwoarguments[#1]#2{
+    \ifhmode\par\fi
+    \removelastskip
+    \vskip 5ex\goodbreak
+    \refstepcounter{subsection}%
+    \hbox to \hsize{\hss\vbox{\advance\hsize by 0cm
+        \noindent
+        \leavevmode\large\bfseries\raggedright
+        \thesubsection\space$\bigg\vert$\space\
+        #2\par
+        \vskip -2ex
+        \noindent\hrulefill
+        }}\nobreak
+    \vskip 2ex\nobreak
+    \addcontentsline{toc}{subsection}
+    {
+        \protect\numberline{\thesubsection}
+        #1
+    }
+}
+\makeatother
+\setcounter{tocdepth}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,79 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 112}
+\newcommand{\classname}{Introduction to Statistical Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 03} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1 (25 pts)}
+	In this class (and in pretty much all of physics) it is key to be proficient at computing Gaussian integrals.
+	Consider
+	\[
+		\iinf dx e^{-\frac{1}{2}x^2}
+	\] 
+	\begin{enumerate}[label=\alph*)]
+		\item Show that
+			\[
+				I^2 = \int_{\mathbb R} dx dy e^{-\frac{1}{2}(x^2 + y^2)}
+			\] 
+		\item Compute $I^2$ by expressing this integral in polar coordinates. Conclude that
+			\[
+				I = \iinf dx e^{-\frac{1}{2}x^2} = \sqrt{2\pi} 
+			\] 
+		\item Show that 
+			\[
+				I = \iinf dx e^{-\frac{a}{2}x^2} = \sqrt{\frac{2\pi}{a}} 
+			\] 
+		\item Show that
+			\[
+				I = \iinf dx e^{-\frac{a}{2}x^2 + bx}  = e^{\frac{1}{2a}b^2}\sqrt{\frac{2\pi}{a}} 
+			\] 
+		\item Show that
+			\[
+				I = \iinf dx e^{-\frac{a}{2}x^2} x^2 = \frac{1}{a}\sqrt{\frac{2\pi}{a}} 
+			\] 
+			Hint: Compute
+			\[
+				\left[\pdv[2]{b} \iinf dx e^{-\frac{a}{2}x^2 + bx}\right]_{b = 0}
+			\] 
+			by both differentiating under the integral sign and explicitly computing its derivatives using 
+			the result in d).
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 2 (20 pts)}
+	Consider a system of $N$ particles with spin. Label the particles using an index $i = 1, \dots, N$ so 
+	that the $i$-th particle has spin $s_i$. Unlike the systems we have encountered so far, in this system
+	the possible values for each spin are $s_i = -1, 0, 1$. The energy of this system 
+	is given by 
+	\[
+		E = D \sum_{i = 1}^N s_i^2
+	\] 
+	In other words, when the spin is $\pm 1$, this costs the system an energy $D$, while whenever 
+	the spin is 0, this spin does not contribute to the energy of the system.
+	\begin{enumerate}[label=\alph*)]
+		\item Explain why the number of accessible states that the system when it has an energy $E$ is 
+			\[
+				\Omega(N, E) = {N \choose E/D} 2^{E / D}
+			\] 
+		\item Compute the entropy of the system $S(N, E)$ in the limit of many particles and high energies 
+			$E \gg D$.
+		\item Compute the temperature of this system as a function of the energy and the number of particles. 
+			Can the temperature of this system be negative?
+		\item Obtain the energy for the system as a function of temperature. Discuss the low and high temperature
+			limits. What happens to the entropy i these limits? What is the physical meaning of this?
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 3 (20 pts)}
+	Consider an ideal gas undergoing a process described by the fact that $pV^2$ is a constant. 
+	What is the molar heat capacity of this process?
+\end{document}

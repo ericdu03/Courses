@@ -1,0 +1,238 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\usepackage{mathrsfs}
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mechanics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 12} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder} to complete this homework.
+
+	\section*{Problem 1} 
+
+	Use the WKB approximation to find the allowed energies $(E_n)$ of an infinite square well with a ``shelf,''
+	of height $V_0$, extending half-way across (Figure 7.3):
+	\[
+	V(x) = \begin{cases}
+		V_0, & (0 < x < a/2),\\
+		0, & (a/2 < x < a),\\
+		\infty, & (\text{otherwise})
+	\end{cases}
+	\] 
+	Express your answer in terms of $V_0$ and $E_n^0 \equiv (n \pi \hbar)^2/2ma^2$ (the $n$th allowed energy 
+	for the infinite square well with \textit{no} shelf). Assume that $E_1^0 > V_0$, but do \textit{not} assume
+	that $E_n \gg V_0$. Compare your result with what we got in Section 7.1.2, using first-order perturbation
+	theory. Note that they are in agreement if either $V_0$ is very small (the perturbation theory regime) or 
+	$n$ is very large (the WKB--semi-classical--regime).
+
+	\begin{solution}
+		Here we use the WKB approach, which tells us that for an infinite well, we have
+		\[
+			\int_0^a \sqrt{2m(E - V_0)} dx = n \pi \hbar
+		\] 
+		The integral on the left needs to be broken up into two integrals, from $0$ to $a/2$ and then from 
+		$a/2$ to $a$:
+		\begin{align*}
+			\int_0^a p(x) dx &= \int_0^{a/2} \sqrt{2m(E - V_0)} dx + \int_{a/2}^a \sqrt{2mE} dx \\
+				n \pi \hbar&= \frac{a}{2}\left[ \sqrt{2m(E_n - V_0)} + \sqrt{2mE_n}\right]
+		\end{align*}
+		Solving this equation for $E_n$ (I got lazy and threw this into mathematica), we get:
+		\[
+		E_n = \frac{(2 \hbar^2 n^2 \pi^2 + a mV_0)^2}{8a^2 \hbar^2 mn^2 \pi^2} = E_n^0 + \frac{V_0}{2} +
+		\frac{V_0^2}{16E_n^0}
+		\] 
+		From Section 7.1.2, we find that we got the energy levels to be 
+		\[
+		E_n = E_n^0 + \frac{V_0}{2}
+		\] 
+		This makes sense since for small perturbations (i.e. $V_0$ small), then the third term in the WKB 
+		equation $V_0^2/16 E_n^0$ would be very small, so it makes sense that this term is neglected
+		when considering perturbation theory. When $n$ becomes large, we see that $E_n$ grows large, so 
+		therefore this last term also goes to zero under large $n$. Therefore, we've confirmed that these
+		two results agree for the two regimes we were asked to check.
+	\end{solution}
+	\pagebreak
+
+	\section*{Problem 2}
+	use Equation 9.23 to calculate the approximate transmission probability for a particle of energy $E$ that 
+	encounters a finite square barrier of height $V_0 > E$ and width $2a$. Compare your answer with the exact 
+	result (Problem 2.33), to which it should reduce in the WKB regime $T \ll 1$. 
+
+
+	\begin{solution}
+		Let the left side of the barrier be at $x = 0$ and the right side be at $x = 2a$, for simplicity's
+		sake with the integral. We know that for tunnelling, we have that 
+		\[
+			T \approx e^{-2\gamma}
+		\] 
+		where $\gamma$ is defined as
+		\[
+		\gamma = \int_{x_1}^{x_2} \sqrt{\frac{2m}{\hbar^2}(V(x) - E)} dx
+		\] 
+		So in our particular case, we can get:
+		\[
+			\gamma = \int_0^{2a} \sqrt{\frac{2m}{\hbar^2}(V_0 - E)} dx = 2a \sqrt{\frac{2m}{\hbar^2}(V_0 - E)} = 
+			\frac{2a}{\hbar}\sqrt{2m(V_0 - E)} 
+		\] 
+		Therefore, our transmission coefficient is:
+		\[
+			T \approx \exp{-\frac{4a}{\hbar}\sqrt{2m (V_0 - E)} }
+		\] 
+		From Problem 2.33, we get the exact transmission as:
+		\[
+		 T = \frac{1}{1 + \frac{V_0^2}{4E(V_0 - E)}\sinh^2 \gamma}
+		\] 
+		In the case where $T$ is small, then from our WKB approximation we can see that $\gamma$ must be large
+		in order for $T$ to be small. Thus, we can use an approximation for the $\sinh$ function:
+		\[
+			\sinh^2 \gamma \approx \left( \frac{e^\gamma}{2}\right)^2 = \frac{e^{2\gamma}}{4}
+		\] 
+		which now reduces our expression for the exact transmission to:
+		\[
+			T \approx \frac{1}{1 + \frac{V_0^2}{4E(V_0 - E)} \frac{e^{2\gamma}}{4}} \approx \frac{1}{\frac{V_0^2e^{2\gamma}}{16E(V_0 - E)}} = \frac{16 E(V_0 - E)}{V_0^2 e^{2\gamma}}
+		\] 
+		In the case where $\gamma$ is very large, then we can effectively neglect the constants in front, 
+		meaning that our transmission now becomes
+		\[
+			T \approx \frac{1}{e^{2\gamma}} = e^{-2\gamma} 
+		\] 
+		which matches the WKB solution.
+	\end{solution}
+	\pagebreak
+
+	\section*{Problem 3}
+
+	Use the WKB approximation to find the allowed energies of the harmonic oscillator. 
+
+	\begin{solution}
+		Here, let $E$ represent the energy of the particle. Then, since we know that $V(x) = \frac{1}{2}m
+		\omega^2 x^2$, then we can easily solve for the turning points, which end up becoming:
+
+			\[
+		a = \pm \sqrt{\frac{2E}{m\omega^2}} 
+		\] 
+		Further, we have $p(x) = \sqrt{2m(E - \frac{1}{2}m \omega^2x^2)}$, so now we can solve the integral:
+		\[
+			\int_{-a}^a \sqrt{2m(E - \frac{1}{2}m \omega^2x^2)} \ dx  = 2\int_0^a \sqrt{2m(E - \frac{1}{2}m \omega^2 x^2)} 
+		\] 
+		This integral can be simplified by hand a little:
+		\begin{align*}
+			\int_{-a}^a \sqrt{2m(E - \frac{1}{2}m \omega^2 x^2)} \ dx &= \int_{-a}^a \sqrt{m^2 \omega^2\left( \frac{2E}{m \omega^2} - x^2 \right) } \ dx\\
+			&=  m \omega \int_{-a}^a \sqrt{a^2 - x^2}  \ dx 
+		\end{align*}
+		then, we can throw this into Mathematica:
+		\[
+			m\omega \int_{-a}^a \sqrt{a^2 - x^2}  dx = m \omega\frac{\pi a^2}{2}
+		\] 
+		Now, substituting back $a$:
+		\[
+		m \omega \frac{\pi a^2}{2} = \frac{m \omega \pi}{2} \frac{2E}{m \omega^2} = \pi \frac{E}{\omega}
+		\] 
+		Now, since WKB requires that for a finite barrier, that we set $\int p dx = (n + 1/2) \pi \hbar$, then 
+		we have: 
+		\[
+			\frac{\pi E}{\omega} = \left( n + \frac{1}{2} \right) \pi \hbar
+		\] 
+		which implies that 
+		\[
+		E_n = \left( n + \frac{1}{2} \right) \hbar \omega
+		\] 
+		which is the exact solution for the harmonic oscillator problem.
+	\end{solution}
+	\pagebreak
+	\section*{Problem 4}
+	In the phenomenon of \textit{cold emission}, electrons are drawn from a metal (at room temperature) by an 
+	externally supported electric field. The potential well that the metal presents to the 
+	free electrons before the electric field is turned on is depicted in Fig. 2.5. After application of the 
+	constant electric field $\mathcal E$, the potential at the surface slopes down as shown in Fig. 7.38, 
+	thereby allowing electrons in the Fermi sea to ``tunnel'' through the potential barrier. If the surface of 
+	the metal is taken as the $x = 0$ plane, the new potential outside the surface is 
+	\[
+	V = \Phi + E_F - e\mathcal E x
+	\] 
+	where $E_F$ is the Fermi level and $\Phi$ is the work function of the metal.
+	\begin{enumerate}[label=\alph*)]
+		\item  Use the WKB approximation to calculate the transmission coefficient for cold emission.
+
+			\begin{solution}
+				The WKB approximation says that for tunnelling, we have $T \approx e^{-2 \gamma}$, and we 
+				define $\gamma$ to be:
+				\[
+					\gamma = \int_{x_1}^{x_2} \sqrt{\frac{2m}{\hbar^2}\left(V(x) - E\right)}\  dx
+				\] 
+				Applying this to our situation, we can see that the bounds of integration are from $x_1 = 0$ to
+				$x_2 = \Phi/e \mathcal E$, and $V(x) = \Phi + E_F - e \mathcal E x$. Further, we only consider
+				electrons at the top of the Fermi level, so therefore $E = E_F$ in our case. This means that the
+				integral reduces to: 
+				\[
+					\gamma = \sqrt{\frac{2m}{\hbar^2}} \int_{0}^{\Phi/e\mathcal E} \sqrt{\Phi + E_F
+					- e \mathcal E x - E_F} \ dx = \sqrt{\frac{2m}{\hbar^2}} \int_{0}^{\Phi/e\mathcal E}
+					\sqrt{\Phi - e\mathcal E x} \  dx = \sqrt{\frac{2m}{\hbar^2}} 
+					\frac{2 \Phi^{3/2}}{3e\mathcal E}
+				\] 
+				Rewriting this a bit, we get: 
+				\[
+					T = \exp{-\frac{4\sqrt{2m \Phi}}{3 \hbar e \mathcal E}}
+				\] 
+
+			\end{solution}
+		\item Estimate the field strength $\mathcal E$, in volt/cm, necessary to draw current density of the 
+			order mA/$\text{cm}^2$ from a potassium surface. For $J_{inc}$ (see Eq. 7.108:
+			$T \equiv \left|\frac{J_{\text{trans}}}{J_{\text{inc}}}\right|$) use the expression 
+			$J_{inc} =
+			env$, where $n$ is the electron density and $v$ is the speed of electrons at the top of the Fermi
+			sea. The relevant expression for $E_F$ may be found in Problem 2.42. Data for potassium is given 
+			in Section 2.3.
+			\[
+				E_F = \frac{\hbar^2}{2m}\left( \frac{3n}{8\pi} \right)^{\frac{2}{3}}
+			\] 
+
+
+			\begin{solution}
+				First, note that because we want $J_{\text{trans}}$ on the order of mA/$\text{cm}^2$, then this 
+				is equivalent to wanting 10 A/$\text{m}^2$. This will be useful later on so that we don't have
+				to worry too much about unit conversions. By the definition of the problem statement, we first
+				write $J_{\text{inc}} \cdot T
+				= J_{\text{trans}}$, and substituting in our equation for $T$, we get:
+				\[
+					J_{\text{trans}} = J_{\text{inc}} \exp{-\frac{4\sqrt{2m\Phi}}{3\hbar e \mathcal E}}
+				\] 
+				Here, the only unknown quantity is $J_{\text{inc}}$, but we can solve for it in terms of 
+				other variables. Firstly, we know that we need to use $J_{\text{inc}} = env$, and solving 
+				for $v$ by using the energy of particles at the top of the Fermi level:
+				\[
+					v = \sqrt{\frac{2E_F}{m}} 
+				\] 
+				We can also solve for $n$ in terms of $E_F$ using the expression in Problem 2.42:
+				\begin{align*}
+					E_F &= \frac{\hbar^2}{2m}\left( \frac{3m}{8\pi} \right) ^{\frac{2}{3}}\\
+					\therefore n &= \frac{16 \sqrt{2} \pi }{3}\left( \frac{E_F m}{\hbar^2} \right)^{\frac{3}{2}}
+				\end{align*}
+				therefore, now we can calculate $J_{\text{inc}}$:
+				\[
+					J_{\text{inc}} = env = e\left( \frac{16 \sqrt{2} \pi}{3}\left( \frac{m E_F}{\hbar^2} \right)^{\frac{3}{2}} \right) \sqrt{\frac{2E_F}{m}} = \frac{32e\pi}{3}\sqrt{\frac{E_F}{m}}\left( \frac{E_F m}{\hbar^2} \right)^{\frac{3}{2}} = \frac{32 e\pi}{3} \frac{E_F^2 m}{\hbar^3} 
+				\] 
+				Now we can finally just plug in values:
+				\[
+				J_{\text{trans}} = 10 \frac{\mathrm A}{\mathrm m^2}= J_{\text{inc}} T = \left( \frac{32 e\pi m E_F^2}{3\hbar^3} \right) \exp{-\frac{4\sqrt{2m \Phi}}{2 \hbar e \mathcal E}} 
+				\] 
+				So again, now we can solve for $\mathcal E$ by throwing this into Mathematica once again:
+				\[
+					\mathcal E = \frac{4\sqrt{2m \Phi^3}}{3e \hbar \ln \left( \frac{32 em \pi}{3 \hbar^2 J_{\text{inc}}} E_F^2 \right) }  = \frac{4\sqrt{2m \Phi^3}}{3e \hbar \ln \left( \frac{32 em \pi}{30 \hbar^2} E_F^2 \right) } 
+				\] 
+				Plugging this value into WolframAlpha, we get approximately $-7.1 \times 10^{-6}$ for $\mathcal 
+				E$, which is a very strong electric field.   
+			\end{solution}
+	\end{enumerate}
+\end{document}

@@ -1,8 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1676496554 "/Users/eric/Documents/Courses/PHYSICS 110A/Homework 3/Homework 3.tex" "/Users/eric/Documents/Courses/PHYSICS 110A/Homework 3/Homework 3.pdf" "Homework 3" 1676496556
-  "../local.sty" 1675798405 2118 f212f45c968c4fc1721f5111d67cfd5e ""
-  "/Users/eric/Documents/Courses/PHYSICS 110A/Homework 3/Homework 3.aux" 1676496555 788 d64d1921202721a4c4abde49240b2ce3 ""
-  "/Users/eric/Documents/Courses/PHYSICS 110A/Homework 3/Homework 3.tex" 1676496554 8621 96a34f900f3d70ce4d4a57bda624991d ""
+["pdflatex"] 1676611818 "Homework 3.tex" "Homework 3.pdf" "Homework 3" 1676611819
+  "../../local.sty" 1676591807 2139 56973a331977e4411873b032bfb3fc6c ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -235,6 +233,7 @@
   "/usr/local/texlive/2021/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575674187 9715 b051d5b493d9fe5f4bc251462d039e5f ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty" 1602274907 87902 ee89fc2f39c9b113b38f3050b23a3c2e ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/titlesec/titlesec.sty" 1571259403 48596 2b6a95da931c07a430b1a61904aaa42d ""
+  "/usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty" 1252107870 7358 95ac619994bd30d405a74f3eca431c84 ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/tkz-base/tkz-base.cfg" 1586644929 8045 a512662ec6f3779837dc237bb7332f64 ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/tkz-base/tkz-base.sty" 1586644929 4139 4a330f7100fe8a27eaf9dec0b518aeef ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/tkz-base/tkz-lib-marks.tex" 1586644929 4376 9a9e03b16ca03fe6e7a6b0da7cd69ef3 ""
@@ -284,13 +283,11 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "Homework 3.aux" 1676496555 788 d64d1921202721a4c4abde49240b2ce3 "pdflatex"
-  "Homework 3.out" 1676496555 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "Homework 3.tex" 1676496554 8621 96a34f900f3d70ce4d4a57bda624991d ""
+  "Homework 3.aux" 1676611819 788 d64d1921202721a4c4abde49240b2ce3 "pdflatex"
+  "Homework 3.out" 1676611819 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "Homework 3.tex" 1676611816 8685 c96f25f1032219afccc0cab3a2de595a ""
   (generated)
-  "Homework 3.log"
-  "Homework 3.pdf"
   "Homework 3.aux"
-  "/Users/eric/Documents/Courses/PHYSICS 110A/Homework 3/Homework 3.pdf"
+  "Homework 3.log"
   "Homework 3.out"
-  "/Users/eric/Documents/Courses/PHYSICS 110A/Homework 3/Homework 3.log"
+  "Homework 3.pdf"

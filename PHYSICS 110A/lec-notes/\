@@ -1,0 +1,32 @@
+\chapter{Lecture 15}
+
+\section{Last time: Solution to electrostatic potential}
+
+Last time, we saw that the solution to the electrostatic potential $V(r, \theta)$ assuming azimuthal symmetry
+is of the form: 
+\[
+	V(r, \theta) = \sum_{l = 0}^\infty \left(A_lr^l + B_l \frac{1}{r^{l + 1}}\right) P_l(\cos \theta)
+\] 
+Let's see how this works with an example.
+
+\begin{example*}{}{}
+	Suppose we have a conductor placed in a uniform field $\vec E = E_0 \hat{z}$. We want to find the
+	electrostatic
+	potential everywhere in this system. 
+
+	To start, we must first identify the boundary conditions:
+	
+	\begin{itemize}
+		\item We expect the electric field $\vec E \to \vec E_0$ as $r \to \infty$. So, if we set $V = 0$ at $z =0$, then we get that $V \to 
+	E_0 z = E_0 r \cos \theta$ as $r \to \infty$. This can be shown explicitly by considering a line integral $V = \int 
+	\vec E \cdot dl$, starting from $z = 0$ going to $z = z_0$ for some $z$. 
+	\item We require $V = 0$ at $r \le R$, due to the properties of a conductor.  
+	\end{itemize}
+	Now, we are ready to impose the boundary conditions onto our general solution. Due to the fact that inside 
+	the sphere, we don't expect $V$ to be infinity at $r = 0$, then we cannot have any $B_l$ terms. Further, 
+	since we know that $V \to E_0 r \cos \theta$, then there is no $\frac{1}{r}$ dependence anywhere here 
+	so we also conclude that outside the sphere we expect $B_l = 0$ in the limit that $r \to \infty$. Now, 
+	since $P_l(\cos \theta) = \cos \theta$, and all other $P_l$ have higher orders of $\cos \theta$ that aren't
+	present in our expected solution, then we conclude that $A_1$ (the coefficient associated with 
+	$P_1(\cos \theta)$ is the only nonzero term. Finally, then, we get that $A_1 = -E_0$. 
+\end{example*}

@@ -1,7 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1672695695 "/Users/eric/Documents/Courses/CS 70/HW3/hw03-student.tex" "/Users/eric/Documents/Courses/CS 70/HW3/hw03-student.pdf" "hw03-student" 1672695696
-  "/Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux" 1672695696 1482 128203aef3cacb7e21783982d0ddfc76 ""
-  "/Users/eric/Documents/Courses/CS 70/HW3/hw03-student.tex" 1663462297 29166 f933216bd3caaffcd5c8f50efb4ed23d ""
+["pdflatex"] 1694033517 "hw03-student.tex" "hw03-student.pdf" "hw03-student" 1694033518
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -267,13 +265,11 @@
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
   "header.sty" 1663452058 10146 a89fe49f7f614f625138c1a6ee46d276 ""
-  "hw03-student.aux" 1672695696 1482 128203aef3cacb7e21783982d0ddfc76 "pdflatex"
-  "hw03-student.out" 1672695696 900 de341855c8b6886a8b18d1234fc617aa "pdflatex"
+  "hw03-student.aux" 1694033518 1482 128203aef3cacb7e21783982d0ddfc76 "pdflatex"
+  "hw03-student.out" 1694033518 900 de341855c8b6886a8b18d1234fc617aa "pdflatex"
   "hw03-student.tex" 1663462297 29166 f933216bd3caaffcd5c8f50efb4ed23d ""
   (generated)
-  "/Users/eric/Documents/Courses/CS 70/HW3/hw03-student.pdf"
   "hw03-student.pdf"
+  "hw03-student.log"
   "hw03-student.aux"
   "hw03-student.out"
-  "hw03-student.log"
-  "/Users/eric/Documents/Courses/CS 70/HW3/hw03-student.log"

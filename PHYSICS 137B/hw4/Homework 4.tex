@@ -1,0 +1,298 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mechanics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 04} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Collaborators}
+    I worked with \textbf{Andrew Binder} to complete this assignment.
+    \section*{Problem 1}
+
+	Consider a particle of mass $m$ that is free to move in a one-dimensional region of length $L$ that 
+	closes on itself (for instance, a bead that slides frictionlessly on a circular wire of circumference
+	$L$, as in problem 2.46).
+	\begin{enumerate}[label=\alph*)]
+			\item Show that the stationary states can be written in the form
+				\[ \psi_n(x) = \frac{1}{\sqrt{L} }e^{2\pi i n x /L}, \ \ 
+					\left(-\frac{L}{2} < x < \frac{L}{2}\right)\]
+				where $n = 0, \pm 1, \pm 2, \dots$ and the allowed energies are 
+				\[ E_n = \frac{2}{m}\left( \frac{n \pi \hbar}{L}\right)^2\]
+				Notice that -- with the exception of the ground state $(n =0)$ -- these are all doubly 
+				degenerate.
+
+				\begin{solution}
+					This problem is solved in the exact same way 2.46 is solved. Solving the \schrodinger equation, we obtain the solution set: 
+					\[ \psi_n(x) = Ae^{ikx} + Be^{-ikx}\] 
+					from the fact that our solutions should be oscillatory, then we now impose the condition that $\psi(x + L) = \psi(x)$, since the bead is circular. Therefore we have:
+					\[ Ae^{ikx}e^{ikL} + Be^{-ikx}e^{-ikL} = Ae^{ikx} + Be^{-ikx}\] 
+					And specifically at $x = 0$, we have: 
+					\[ Ae^{ikL} + Be^{-ikL} = A + B\]
+					And for $x = \pi/2k$, we have: 
+					\[ Ae^{ik \pi/2}e^{ikL} + Be^{-ik \pi/2}e^{-ikL} = Ae^{i\pi/2} + Be^{-i\pi/2} \implies Ae^{ikL} - Be^{-ikL} = A - B\] 
+					Adding these two equations at $x = 0$ and $x = \pi/2k$, we get:
+					\[Ae^{ikL} = A\]
+					This implies solutions $A = 0$ or $e^{ikL} = 1$. If $A = 0$, then we have: 
+					\[ Be^{-ikL} = B \implies kL = 2\pi n\]
+					and so therefore 
+					\[ k = \frac{2\pi n}{L}\]
+					which works for all $n$. On the other hand, if $e^{ikL} = 1$, then we get that: 
+					\[ kL = 2\pi n \implies k = \frac{2\pi n}{L}\]
+					which is the same conclusion that we arrived at before. Subtracting the two equations would give us 
+					\[ Be^{ikL} = B\]
+					which we can then solve for a similar relation in terms of $A$. In either case, the key is that we can set one of them to equal zero, and so our overall wavefunction looks like: 
+					\[\psi_n(x) = \begin{cases}Ae^{\frac{2\pi i n x}{L}} & n \geq 0\\ Be^{\frac{2\pi i n x}{L}} & n < 0\end{cases}\]
+					after having solved for $k$. Normalizing this, we get:
+					\begin{align*}
+						\int_{0}^{L}|\psi_n|^2dx &= A^2L = B^2L = 1\\
+						\therefore  A = B &= \frac{1}{\sqrt{L}}
+					\end{align*}
+					Then, since we can take $x$ to be symmetric about the origin, then we have:
+					\[\psi_n(x) = \frac{1}{\sqrt{L}}e^{\frac{2\pi i n x}{L}}, \ \ \ -\frac{L}{2} < x < \frac{L}{2}\]
+					which is exactly what we wanted. Furthermore, we can now substitute our expression for $\psi$ into the \schrodinger equation, which would give us:
+					\[E_n = \frac{2n^2\pi^2\hbar^2}{mL^2} = \frac{2}{m}\left(\frac{n\pi\hbar}{L}\right)^2\]
+					As desired.
+				\end{solution}
+		\item Now suppose we introduce the perturbation 
+				\[ H' = -V_0 e^{-\frac{x^2}{a^2}}\]
+				where $a \ll L$ (This puts a little ``dimple'' in the potential at $x = 0$, as though we bent 
+				the wire slightly to make a ``trap''.) Find the first-order correction to $E_n$, using 
+				Equation 7.33. \textit{Hint:} To evaluate the integrals, exploit the fact that $a \ll L$
+				to extend the limits from $\pm L/2$ to $\pm \infty$; after all, $H'$ is essentially zero outside
+				$-a < x < a$.
+
+				\begin{solution}
+					To solve this, we calculate the matrix elements for the degenerate subspace, noticing that for each energy level there is a twofold degeneracy. For the diagonal terms, we have: 
+					\[ \expval{H'}{\psi_n} = \frac 1L \int_{-L/2}^{L/2} -V_0 e^{-x^2/a^2} \ dx = -\frac{V_0}{L} \int_{-\infty}^\infty e^{-x^2/a^2} \ dx =  -\frac{V_0}{L} a\sqrt{\pi}\]
+					For the off-diagonal terms, we have: 
+					\[ \mel{\psi_n}{H'}{\psi_{-n}} = \frac 1L \int_{-L/2}^{L/2} e^{-2\pi in x/L} (-V_0 e^{-x^2/a^2}) e^{-2\pi inx/L} \ dx = -\frac{V_0}{L} \int_{-\infty}^\infty e^{-4\pi in x/L} e^{-x^2/a^2} \ dx\]
+					Plugging this result into an integral calculator, we get: 
+					\[ \mel{\psi_n}{H'}{\psi_{-n}} = -\frac{V_0}{L} a \sqrt{\pi} e^{-(2 \pi n a/L)^2}\]
+					From here, we have all the matrix elements, all we have to do now is to calculate the eigenvalues of this matrix. Using Equation 7.33, we find that:
+					\[ E_{\pm} = \frac 12 \left[ -\frac{V_0}{L} a\sqrt{\pi} - \frac{V_0}{L} a \sqrt{\pi} \pm \frac{V_0}{L} a\sqrt{\pi} e^{-(2n\pi a/L)^2}\right]\]
+					Therefore, we get: 
+					\begin{align*}
+						E_{n+} &= -\frac{V_0}{L} a\sqrt{\pi} \left[1 - e^{-(2 n \pi a/L)^2}\right]\\
+						E_{n-} &= -\frac{V_0}{L} a\sqrt{\pi} \left[1 + e^{-(2 n \pi a/L)^2}\right]
+					\end{align*}
+				\end{solution}
+		\item What are the ``good'' linear combinations of $\psi_n$ and $\psi_{-n}$ for this problem?
+				(\textit{Hint:} use Eq. 7.27). Show that with these states you get the first-order correction 
+				using Equation 7.9
+
+				\begin{solution}
+					To do this, we just look for the eigenvectors of our perturbed Hamiltonian. Solving Equation 7.27, we obtain: 
+					\[ \beta = \alpha \cdot \frac{\frac{-V_0}{L} a \sqrt{\pi} e^{-(2na\pi/L)^2}}{\mp \frac{V_0}{L} a\sqrt{\pi}e^{-(2na\pi/L)^2}} = \mp \alpha \]
+					And so therefore we get the linear combinations: 
+					\[ \overline \psi_\pm = \alpha \psi_n \mp \alpha \psi_{-n} = \alpha \frac{1}{\sqrt{L}} \left( e^{2\pi i n x/L} \mp e^{-2\pi in x/L}\right)\]
+					So normalizing this state, we get that $\alpha = \frac{1}{\sqrt{2}}$:
+					\[ \overline \psi_+ = \alpha \psi_n - \alpha \psi_{-n} = \frac {1}{\sqrt{2L}} \left( e^{2\pi i n x/L} - e^{-2\pi in x/L}\right) = \frac{2i}{\sqrt{2L}}\sin\left( \frac{2\pi nx}{L}\right) = i\sqrt{\frac 2L} \sin \left( \frac{2 \pi n x}{L}\right) \]
+					Likewise for the other state, we get: 
+					\[ \overline \psi_- = \alpha \psi_n + \alpha \psi_{-n} = \frac{1}{\sqrt{2L}}\left( e^{2\pi inx/L} + e^{2\pi inx/L} \right) = \frac{2}{\sqrt{2L}} \cos\left( \frac{2\pi n x}{L}\right) = \sqrt{\frac 2L} \cos\left( \frac{2\pi nx}{L}\right)\]
+					To verify that these give the correct perturbation, we calculate: 
+					\begin{align*}
+						E_{n+}^1 &= \expval{H'}{\overline \psi_+}\\
+						&= -\frac{2V_0}{L} \int_{-L/2}^{L/2} \sin^2\left( \frac{2\pi nx}{L}\right) e^{-x^2/a^2}\ dx \\
+						&\approx -\frac{2V_0}{L} \int_{-\infty}^\infty \sin^2\left( \frac{2\pi nx}{L}\right) e^{-x^2/a^2} \ dx
+					\end{align*}
+					Plugging this into an integral calculator gives us: 
+					\[ E_{n+} = -\frac{2V_0}{L} \cdot \frac{\sqrt \pi a \left( 1 - e^{-(2 \pi n a/L)^2}\right)}{2} = -\frac{V_0}{L} a\sqrt{\pi}\left( 1 - e^{-(2 \pi n a/L)^2}\right)\]
+					And similarly with the other solution: 
+					\begin{align*}
+						E_{n-} &= -\frac{2V_0}{L} \int_{-\infty}^\infty \cos^2 \left( \frac{2\ pi nx}{L}\right) e^{-x^2/a^2} \ dx\\
+						&= -\frac{2V_0}{L} \frac{\sqrt{\pi} a \left(e^{-(2\pi n a/L)^2} + 1\right)}{2}\\
+						&= -\frac{V_0}{L}a \sqrt{\pi} \left(1 + e^{-(2 \pi n a/L)^2}\right)
+					\end{align*}
+					which are the same expressions we got in part (b).
+				\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 2}
+	
+	Suppose we perturb the infinite cubical well (Problem 4.2) by putting a delta function ``bump'' at the point
+	$(a/4, a / 2, 3a/4)$: 
+	\[ H' = a^3 V_0 \delta(x - a / 4)\delta(y - a / 2) \delta (z - 3a / 4)\]
+	Find the first-order corrections to the energy ground state and the (triply degenerate) first excited states.
+	
+	\begin{solution}
+			The ground state is nondegenerate, so therefore the energy correction is: 
+			\[ E_0^1 = \expval{H'}{111}\]
+			And so this equals
+			\begin{align*}
+					E_0^1 = a^3V_0 \cdot \left( \frac{2}{a} \right)^3 \sin^2 \left(\frac{\pi}{4} \right) \sin^2\left( \frac{\pi}{2} \right) 
+					\sin^2\left( \frac{3\pi}{4} \right) = 2V_0
+			\end{align*}
+			after evaluating the integral while using the property that $\int f(x) \delta(x) \ dx = f(0)$. Now
+			we have to calculate the first excited states. First, notice that the states are: $\ket{2, 1, 1}$
+			$\ket{1, 2, 1}, \ket{1, 1, 2}$. Now we need to calculate the matrix of the degenerate subspace,
+			and find its eigenvalues. First, we can calculate the diagonal terms: 
+			\begin{align*}
+				\expval{H'}{112} &= 8V_0 \sin^2\left( \frac{\pi}{4} \right) \sin^2\left( \frac{\pi}{2} \right) 
+				\sin^2\left( \frac{3\pi}{4} \right) = 4V_0 \\
+				\expval{H'}{121} &= 8V_0 \sin^2\left( \frac{\pi}{4} \right) \sin^2(\pi) 
+				\sin^2\left( \frac{3\pi}{4} \right) = 0\\
+				\expval{H'}{211} &= 8V_0 \sin^2\left( \frac{\pi}{2} \right) \sin^2\left( \frac{\pi}{2} \right)
+				\sin^2\left( \frac{3\pi}{4} \right) = 4V_0 
+			\end{align*}
+			Now for the off diagonal terms. These aren't too much more tedious, but I will only show one for the
+			sake of brevity:
+			\begin{align*}
+					\mel{211}{H'}{121} &= \left( \frac{2}{a} \right) ^3 a^3 V_0 
+					\left[\mel{2}{\delta\left( x - \frac{a}{4} \right)} {1} 
+					\mel{1}{\delta\left( y - \frac{a}{2} \right) }{2} 
+					\mel{1}{\delta\left( z - \frac{3a}{4} \right) }{1}\right]\\
+									   &= 8V_0 \left[\sin\left( \frac{\pi}{2} \right) 
+						\sin\left( \frac{\pi}{4} \right) \sin\left( \frac{\pi}{2} \right) \sin\pi 
+				\sin^2\left( \frac{3\pi}{4} \right) \right]\\
+									   &= 0
+			\end{align*}
+			A very similar process is employed to calculate the other two matrix elements, giving us 
+			\begin{align*}
+					\mel{211}{H'}{112} &= -4V_0\\
+					\mel{121}{H'}{112} &= 0
+			\end{align*}
+			So now we have a matrix:
+			\[ H' = 4V_0 \begin{pmatrix}1 & 0 &-1\\ 0 & 0 & 0 \\ -1 & 0 & 1   \end{pmatrix}\]
+			This gives the eigenvalues $E^1 = 0, 2$ with two solutions for $E = 0$, so therefore the energy 
+			correction is $\Delta E = 0, 0, 8V_0$.
+
+			
+	\end{solution}
+	\pagebreak
+	\section*{Problem 3}
+	Use the virial theorem (Problem 4.48) to prove Equation 7.56
+	
+	\begin{solution}
+			The virial theorem writes:
+			\[ \mean{V} = 2E_n\]
+			And since $V = -\frac{e^2}{4\pi \epsilon_0 r}$ and 
+			\[ E_n = -\left( \frac{m}{2\hbar^2}
+			\left( \frac{e^2}{4\pi \epsilon_0} \right) ^2 \right) \]
+			we can then plug these in:
+			\begin{align*}
+					\mean{V} &= -\frac{e^2}{4\pi \epsilon_0} \mean{\frac{1}{r}}\\
+					-2 \cdot \frac{m}{2\hbar^2}\left( \frac{e^2}{4\pi\epsilon_0} \right) ^2 \frac{1}{n^2} 
+							 &= -\frac{e^2}{4\pi\epsilon_0}\mean{\frac{1}{r}}\\
+					\therefore \mean{\frac{1}{r}} &= \frac{me^2}{4\pi \epsilon_0 \hbar^2}\frac{1}{n^2}\\
+												  &= \frac{1}{a_0n^2}
+			\end{align*}
+			which is equation 7.56, as desired.
+		\end{solution}
+	\pagebreak
+
+	\section*{Problem 4} 
+	Evaluate the following commutators: 
+	\begin{enumerate}[label=\alph*)]
+			\item $[\mathbf L \cdot S, \mathbf L]$
+
+			\begin{solution}
+					To do this we just write out the commutator:
+				\begin{align*}
+					[\mathbf{L}\cdot\mathbf{S},L_x] &= [L_xS_x + L_yS_y + L_zS_z, L_x] \\
+					&= S_x[L_x,L_x] + S_y[L_y,L_x] + S_z[L_z,L_x]\\
+					&= S_y(-i\hbar L_z) + S_z(i\hbar L_y) \\
+					&= i\hbar(L_yS_z - L_zS_y) \\
+					&= i\hbar(\mathbf{L}\times\mathbf{S})_x
+				\end{align*}
+                The other two components will behave the same way, so combining them gives us all the components summed up altogether:
+                \[[\mathbf{L}\cdot\mathbf{S}, \mathbf{L}] = i\hbar(\mathbf{L}\times\mathbf{S})\]			
+			\end{solution}
+			\item $[\mathbf {L \cdot S}, \mathbf S]$
+			
+			\begin{solution}
+				Doing this is much of the same process:
+                \begin{align*}
+                    [\mathbf{L}\cdot\mathbf{S},S_x] &= [L_xS_x + L_yS_y + L_zS_z, S_x] \\
+					&= L_x[S_x,S_x] + L_y[S_y,S_x] + L_z[S_z,S_x]\\
+					&= -L_y(i\hbar S_z) + L_z(i\hbar S_y) \\
+					&= i\hbar(S_yL_z - S_zL_y) \\
+					&= \fbox{$i\hbar(\mathbf{S}\times\mathbf{L})_x$}
+                \end{align*}
+				And so just like before, combining all three components together we get:
+                $$\fbox{$[\mathbf{L}\cdot\mathbf{S}, \mathbf{S}] = i\hbar(\mathbf{S}\times\mathbf{L})$}$$
+			\end{solution}
+			\item $[\mathbf{L \cdot S}, \mathbf J]$
+			
+			\begin{solution}
+				Since we have that $\mathbf J = \mathbf{L + S}$, then we have: 
+				\begin{align*}
+					[\mathbf{L \cdot S}, \mathbf J] &= [\mathbf{L \cdot S}, \mathbf{L + S}]\\
+					&= i\hbar (L \times S + S \times L)\\
+					&= 0
+				\end{align*}
+			\end{solution}
+			\item $[\mathbf{L \cdot S}, L^2]$
+			
+			\begin{solution}
+				Now we can use our previous reuslts. Since we know that $L^2 = L_x^2 + L_y^2 + L_z^2$, and that each of these commutes with $L$ and $S$, we then have
+				\[ [\mathbf{L \cdot S}, L^2]  =0\]
+			\end{solution}
+			\item $[\mathbf {L \cdot S}, S^2]$
+			
+			\begin{solution}
+				Using a similar reasoning as the previous problem, we know that $S^2 = S_x^2 + S_y^2 + S_z^2$ and that each of these also commutes with $L$ and $S$, so: 
+				\[ [\mathbf{L \cdot S}, S^2] = 0\]
+			\end{solution}
+			\item $[\mathbf{L \cdot S}, J^2]$
+			
+			\begin{solution}
+				Since $\mathbf J = J_x^2 + J_y^2 + J_z^2 = (L_x + S_x)^2 + (L_y + S_y)^2 + (L_z + S_z)^2$ and $\mathbf{L \cdot S}$ commutes with both from the previous two parts, then we know that:
+				\[ [\mathbf{L \cdot S}, J^2] = 0\]
+			\end{solution}
+	\end{enumerate}
+
+		\pagebreak
+
+	\section*{Problem 5}
+	How does the threefold degenerate energy 
+	\[ E = 3\hbar \omega_0\]
+	of the two-dimensional harmonic oscillator separate due to the perturbation 
+	\[ H' = K'xy?\]
+
+	\begin{solution}
+		We know that the energy of a 2D harmonic oscillator can be written as:
+		\[ E = \left( n_x + \frac{1}{2} \right) \hbar \omega + \left( n_y + \frac{1}{2} \right) \hbar \omega 
+		= \left( n_x + n_y + 1 \right) \hbar \omega\]
+		And since we know that the total energy is $E = 3\hbar \omega_0$, then we know that the degenerate
+		states are: $\ket{n_x, n_y} = \ket{0, 2}, \ket{1, 1}, \ket{2, 0}$. So now our goal is to see whether
+		the matrix elements in the degenerate subspace are zero. To do this, we look at whether:
+		\[ K' \mel{\psi_n}{xy}{\psi_n} = 0 \]
+		For all states in the degenerate subspace. Expanding out $x$ and $y$ in terms of raising and lowering 
+		operators, we get: 
+		\begin{align*}
+				K'\mel{\psi_n}{xy}{\psi_n} &= K'\frac{\hbar}{2m\omega_0} \mel{n_xn_y}{(x_+ + x_-)(y_++y_-)}
+				{n_x'n_y'}\\
+					 &= K' \frac{\hbar}{2m\omega_0}\mel{n_xn_y}{x_+y_+ + x_+y_- + x_-y_+ 
+										   x_-y_-}{n_x'n_y'}\\
+					 &= K' \frac{\hbar}{2m\omega_0} \left(\braket{n_xn_y}{n_{x+1}'n_{y+1}'}	
+							 + \braket{n_xn_y}{n_{x+1}'n_{y-1}'} + \braket{n_xn_y}{n_{x-1} ' n_{y-1}'} 
+							 + \braket{n_xn_y}{n_{x-1}'n_{y-1}'}\right)
+		\end{align*}	
+		Note here that the only states which will produce a nonzero expectation value are if $\ket{n_x, n_y} 
+		= \ket{2, 0}$ or $\ket{0, 2}$, since if our state is $\ket{1, 1}$ then the raising and lowering 
+		operators would alter the states so that they are orthogonal to our original one. For the state 
+		$\ket{2, 0}$ the only term that survives is $\braket{n_xn_y}{n_{x+1}'n_{y-1}}$ where $\ket{n_x'n_y'} =
+		\ket{1, 1}$. Therefore, the matrix element is: 
+		\[ \mel{2, 0}{x_+ y_-}{1, 1} = \mel{2, 0}{\sqrt{2}}{2, 0} = \sqrt{2} \]  
+		Similarly, we have: 
+		\[ \mel{0, 2}{x_- y_+}{1, 1} = \mel{0, 2}{\sqrt{2}}{0, 2} = \sqrt{2}\]
+		So we can build our matrix:
+		\[ H' = K' \frac{\hbar}{2m\omega_0}
+				\begin{pmatrix} 0 & \sqrt{2} & 0\\ \sqrt{2} & 0 & \sqrt{2} \\ 0 & \sqrt{2} &0  \end{pmatrix} \]
+		which gives us the eigenvalues $\lambda = 0, \pm 2$. So therefore, our threefold degeneracy splits up
+		into three states with $E_0 + 2\Delta E, E_0, E_0 - 2\Delta E$ where 
+		\[ \Delta E = K'\frac{\hbar}{2m\omega_0}\]
+		In other words, our threefold degeneracy splits into three states: one goes up in energy by $2\Delta E$,
+		one stays the same, and the final one goes down in energy by $2\Delta E$.
+	\end{solution}
+\end{document}

@@ -1,8 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1670288184 "/Users/eric/Documents/Berkeley/PHYSICS-137A/HW11/Homework 11.tex" "/Users/eric/Documents/Berkeley/PHYSICS-137A/HW11/Homework 11.pdf" "Homework 11" 1670288185
-  "../local.sty" 1670275139 1757 23b32108aa310cb22b5a4fa08f473f9e ""
-  "/Users/eric/Documents/Berkeley/PHYSICS-137A/HW11/Homework 11.aux" 1670288185 788 7f8adeb6ba79d814a2943d23cb66f8b3 ""
-  "/Users/eric/Documents/Berkeley/PHYSICS-137A/HW11/Homework 11.tex" 1670288184 17526 87420a26468a1c9bfec504dfd920f8ba ""
+["pdflatex"] 1683265078 "Homework 11.tex" "Homework 11.pdf" "Homework 11" 1683265080
+  "../local.sty" 1671833612 1774 6252d18e115880bf9aab92986076d27a ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -286,13 +284,11 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "Homework 11.aux" 1670288185 788 7f8adeb6ba79d814a2943d23cb66f8b3 "pdflatex"
-  "Homework 11.out" 1670288185 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "Homework 11.aux" 1683265080 788 7f8adeb6ba79d814a2943d23cb66f8b3 "pdflatex"
+  "Homework 11.out" 1683265079 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "Homework 11.tex" 1670288184 17526 87420a26468a1c9bfec504dfd920f8ba ""
   (generated)
   "Homework 11.out"
   "Homework 11.aux"
-  "Homework 11.log"
   "Homework 11.pdf"
-  "/Users/eric/Documents/Berkeley/PHYSICS-137A/HW11/Homework 11.pdf"
-  "/Users/eric/Documents/Berkeley/PHYSICS-137A/HW11/Homework 11.log"
+  "Homework 11.log"

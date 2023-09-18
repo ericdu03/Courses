@@ -1,8 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1676205717 "/Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.tex" "/Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.pdf" "Homework 3" 1676205899
-  "../local.sty" 1676113763 1734 373f8dc2f7389b41404d8be5b3207354 ""
-  "/Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.aux" 1676205718 789 75a5f8eef43158520f7e5290b546901f ""
-  "/Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.tex" 1676205898 19038 79cbaba2812b12ccb8226953d6bf1a8c ""
+["pdflatex"] 1694634281 "Homework 3.tex" "Homework 3.pdf" "Homework 3" 1694634282
+  "../local.sty" 1676818569 1747 b2b98122764698c91e228c2962a94010 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -289,13 +287,11 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "Homework 3.aux" 1676205718 789 75a5f8eef43158520f7e5290b546901f "pdflatex"
-  "Homework 3.out" 1676205718 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "Homework 3.aux" 1694634282 789 75a5f8eef43158520f7e5290b546901f "pdflatex"
+  "Homework 3.out" 1694634282 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "Homework 3.tex" 1676205898 19038 79cbaba2812b12ccb8226953d6bf1a8c ""
   (generated)
-  "/Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.pdf"
-  "Homework 3.aux"
   "Homework 3.out"
-  "/Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.log"
+  "Homework 3.aux"
   "Homework 3.log"
   "Homework 3.pdf"

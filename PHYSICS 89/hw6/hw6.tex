@@ -1,0 +1,610 @@
+\documentclass{article}
+
+\usepackage{../../austin137}
+\usepackage{../../local}
+\usehyperstuff
+\def\OCO{$\textrm{CO}_{2}$}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addcopyright
+\begin{center}
+{\bf \large Physics W89 - Introduction to Mathematical Physics - Summer 2023}\\\medskip
+{\bf \large Problem Set - Module 06 - Diagonalization} \\\medskip
+{\emph{Last Update: \today}\\}
+{ Student: Yutong Du} 
+\end{center}
+
+
+\dphline
+\bigskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Problem 6.1 - \OCO\ Continued}
+\relevid{Changes of Basis - Transforming Basis Vectors;
+Transforming Vectors;
+Transforming Matrices}
+
+\paragraph{}
+In Problem 5.2 we started to explore the vibrational modes of carbon dioxide, which we modeled as three masses ($m_{o}, m_{c}, m_{o}$ for the left oxygen, central
+carbon, and right oxygen, respectively) attached to two springs, each of spring constant $k$.\bigskip
+
+The \heavydef{mass eigenbasis} $\{\hat{e}_{i}\}$ is based on the individual displacements of the atoms, with the three basis vectors $\{\vec{e}_{1},\vec{e}_{2},\vec{e}_{3}\}$ 
+representing unit displacements from the equilibrium position for the left oxygen, the central carbon, and the right oxygen, respectively.
+Let $\ell$ be the equilibrium lengths of the system so that when the displacement vector is $\vec{x}$ the left-most oxygen is at position $-\ell+x_{1}$, the carbon is at 
+position $x_{2}$, and the right-most oxygen is at position $+\ell+x_{3}$ relative to the origin. 
+In the mass eigenbasis, the mass matrix is diagonal $\mathsf{M}_{[e]} = \begin{smpmatrix}{0.7} m_{o} & 0 & 0 \\ 0 & m_{c} & 0 \\ 0 & 0 & m_{o}\end{smpmatrix}$.\bigskip
+
+The potential energy $U = \fracsm{1}{2}\vec{x}\cdot \mathsf{K}\vec{x}$ is determined by the real symmetric matrix $\mathsf{K}$ which we found in the mass eigenbasis 
+to be $\mathsf{K}_{[e]} \equiv \smmatrix{0.7}{k & -k & 0\\ -k & 2k & -k \\ 0 & -k & k}$. The eigenvalues and normalized eigenvectors (expressed in the $\{\hat{e}_{i}\}$-basis) for 
+$\mathsf{K}$ are:
+	\begin{equation*}
+		\lambda_{1} = 0,	\ \ \hat{s}_{1,[e]} = \sqrtfinv{3}\smthreevect{1}{1}{1};	\qquad
+		\lambda_{2} = k,	\ \ \hat{s}_{2,[e]} = \sqrtfinv{2}\smthreevect{1}{0}{-1};	\qquad
+		\lambda_{3} = 3k,	\ \ \hat{s}_{3,[e]} = \sqrtfinv{6}\smthreevect{1}{-2}{1}.
+	\end{equation*}
+We call this orthonormal basis $\{\hat{s}_{1},\hat{s}_{2},\hat{s}_{3}\}$ the \heavydef{spring eigenbasis} because the ``spring matrix'' $\mathsf{K}$ written in this basis is
+diagonal.\bigskip
+
+The classical equations of motion for this system are $\ddot{\vec{x}} = -\mathsf{A}\vec{x}$, where $\mathsf{A} = \mathsf{M}^{-1}\mathsf{K}$,
+	\begin{equation*} 
+		\mathsf{A}_{[e]} = \begin{pmatrix} k/m_{o} & -k/m_{o} & 0\\ -k/m_{c} & 2k/m_{c} & -k/m_{c} \\ 0 & -k/m_{o} & k/m_{o}\end{pmatrix}
+		= \frac{k}{m_{o}}\begin{smpmatrix}{1} 1 & -1 & 0 \\ -r & 2r & -r \\ 0 & -1 & 1 \end{smpmatrix},
+	\end{equation*}
+with $r \equiv m_{o}/m_{c}$.	
+It turns out that even though the matrix $\mathsf{A}$ is not normal, we can still make an eigenbasis out of the eigenvectors (the eigenbasis will \emph{not}
+be orthonormal, however).  Since $\mathsf{A}$ gives the dynamics of the system, we call this the \heavydef{dynamics eigenbasis}.
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(a)}
+Verify that the eigenvalues and eigenvectors of $\mathsf{A}$ (written in terms of the mass eigenbasis) are
+	\begin{equation*}
+		\lambda_{1} = 0,				\ \ \vec{d}_{1,[e]} = \threevect{1}{1}{1};	\qquad
+		\lambda_{2} = \frac{k}{m_{o}},		\ \ \vec{d}_{2,[e]} = \threevect{1}{0}{-1};	\qquad
+		\lambda_{3} = \frac{k}{\mu},		\ \ \vec{d}_{3,[e]} = \threevect{1}{-2r}{1},
+	\end{equation*}
+where $\mu \equiv m_{o}/(1+2r)$.  
+\emph{Without} bothering to go through the tedious change-of-basis process or doing any calculations, write down 
+the matrix $\mathsf{A}_{[d]}$ (that is, the matrix expressed in the dynamics eigenbasis).
+
+\begin{solution}
+	We can verify this by just doing the matrix multiplication:
+	\[
+		A \vec d_1 = \frac{k}{m_o}\begin{pmatrix} 1 & -1 & 0 \\ -r & 2r & -r \\ 0 & -1 & 1 \end{pmatrix} 
+		\begin{pmatrix} 1\\1\\1 \end{pmatrix} = \frac{k}{m_o}\begin{pmatrix} 0\\0\\0 \end{pmatrix} = 
+		(0)\begin{pmatrix} 1\\1\\1 \end{pmatrix} 
+	\] 
+	hence we verify that it has an eigenvalue of 0. Now for the second vector:
+	\[
+		A\vec d_2 = \frac{k}{m_o}\begin{pmatrix} 1 & -1 & 0 \\ -r & 2r & -r\\0 & -1 & 1 \end{pmatrix} 
+		\begin{pmatrix} 1 \\0 \\ 1 \end{pmatrix}  = \frac{k}{m_o}\begin{pmatrix} 1\\0\\1 \end{pmatrix} 
+	\] 
+	hence we verify that its eigenvalue is $\frac{k}{m_o}$. For the final vector:
+	\[
+		A\vec d_3 = \frac{k}{m_o}\begin{pmatrix} 1 & -1 & 0\\ -r & 2r & -r\\ 0 & -1 & 1 \end{pmatrix} 
+		\begin{pmatrix} 1\\-2r\\1 \end{pmatrix} = k \cdot \frac{1 + 2r}{m_o}\begin{pmatrix} 1 \\-2r \\ 1 \end{pmatrix} = \frac{k}{\mu}\begin{pmatrix} 1\\-2r\\1 \end{pmatrix} 
+	\] 
+	The matrix $A_{[d]}$ can be constructed using these eigenvectors, by putting their eigenvalues on the 
+	diagonal, and all other entries zero:
+	\[
+		A_{[d]} = \begin{pmatrix} 0 & 0 & 0\\ 0 & \frac{k}{m_o}& 0 \\ 0 & 0 & \frac{k}{\mu} \end{pmatrix} 
+	\] 
+
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(b)}
+Sketch and/or describe the displacement of the three atoms in the carbon-dioxide molecule corresponding to the three dynamics eigenvectors.   How does the 
+center-of-mass position change under each displacement?  How does the potential energy change?
+
+\begin{solution}
+	The first eigenvector represents all three atoms are 
+	displaced an equal amount to the right of the equilibrium position. Here, the center of mass shifts one 
+	unit to the right, since all three atoms have moved.
+
+	The second eigenvector denotes that the leftmost carbon displaes to the right 1 unit, the carbon remains 
+	stationary, and the rightmost carbon displaces 1 unit to the left. Here, the center of mass doesn't change, 
+	since the leftmost oxygen moving to the right is cancelled by the oxygen on the other side. 
+
+	The third eigenvector denotes that both carbons displace to the right, while the oxygen displaces $-2r$ 
+	units to the left. For the center of mass here, we need to do a little bit of math:
+	\[
+		x_{cm} = \frac{m_o + (-2r)m_c + m_o}{m_o + m_c + m_o} = 0
+	\] 
+	And thus we find that the center of mass doesn't change. 
+
+	As for the potential energy, the first eigenvector has all three masses moving in unison, meaning 
+	that there is no compression exerted on the springs. This meas that there is no potential energy change 
+	in this system.
+
+	As for the second eigenvector, the potential energy is given by $U = \frac{1}{2}\vec x \cdot K \vec x$, so 
+	we can plug this in:
+	\[
+		U_2 = \frac{1}{2}\vec d_2 \cdot K \vec d_2 = \frac{k}{2}\begin{pmatrix} 1&0&-1 \end{pmatrix} 
+		\begin{pmatrix} 1 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{pmatrix}
+		\begin{pmatrix} 1 \\0\\-1 \end{pmatrix} 
+		= \frac{k}{2}\begin{pmatrix} 1 & 0 & -1  \end{pmatrix} \begin{pmatrix} 1\\0\\-1 \end{pmatrix} = k
+	\] 
+	this also makes sense if we want to look at it in the mechanics perspective, since we can just add 
+	up the potentials from the two springs: 
+	\[
+	U_2 = \frac{1}{2}k(1)^2 + \frac{1}{2}k(1)^2 = k
+	\] 
+	Now for $U_3$:
+	\[
+		U_3= \frac{1}{2}\vec d_3 \cdot K \vec d_3 = \frac{k}{2}(1 + 2r) \left[\begin{pmatrix} 1 & -2r & 1 \end{pmatrix} \begin{pmatrix} 1\\-2\\1 \end{pmatrix}\right] = \frac{k(1 + 2r)}{2}(2 + 4r) = k(1 + 2r)^2
+	\] 
+\end{solution}
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+Now let's explore changes of basis!  Recall that we have the mass eigenbasis $\{\hat{e}_{i}\}$, the spring eigenbasis $\{\hat{s}_{i}\}$, and the
+dynamics eigenbasis $\{\vec{d}_{i}\}$.
+
+\paragraph{(c)}
+Construct the change-of-basis matrix $\mathsf{C}_{e\to s}$ that takes us from the mass eigenbasis to the spring eigenbasis.  
+Check explicitly that $\mathsf{C}_{e\to s}$ is an orthogonal matrix.
+
+\begin{solution}
+	The mass matrix is diagonal, so our mass eigenbasis is very easy:
+	\[
+		\{\hat{e}_1, \hat{e}_2, \hat{e}_3\} = \left\{ \begin{pmatrix} 1\\0\\0 \end{pmatrix} , \begin{pmatrix} 0\\1\\0 \end{pmatrix} , \begin{pmatrix} 0\\0\\1 \end{pmatrix} \right\}
+	\] 
+	To find the change of basis matrix, we use the formula that $c_{ij} = \hat{e}_i \cdot \hat{f}_j$. Thus we 
+	compute each matrix element by doing the dot product between all of these. Doing so, we get:
+	\[
+		C_{e \to s} = \begin{pmatrix} \frac{1}{\sqrt{3} }& \frac{1}{\sqrt{2} }& \frac{1}{\sqrt{6} }\\
+		\frac{1}{\sqrt{3} } & 0 & -\frac{2}{\sqrt{6} }\\
+	\frac{1}{\sqrt{3} } & -\frac{1}{\sqrt{2} } & \frac{1}{\sqrt{6} }\end{pmatrix} 
+	\] 
+	Checking that this matrix is orthogonal, we check that $C^\T C = \mathbbold 1$:
+	\begin{align*}
+		C^\T C &= \begin{pmatrix} \frac{1}{\sqrt{3} }& \frac{1}{\sqrt{3} }& \frac{1}{\sqrt{3} }\\ \frac{1}{\sqrt{2} } & 0 & -\frac{1}{\sqrt{2} }\\\frac{1}{\sqrt{6} } & -\frac{2}{\sqrt{6} } & \frac{1}{\sqrt{6} } \end{pmatrix} \begin{pmatrix} \frac{1}{\sqrt{3} }& \frac{1}{\sqrt{2} }& \frac{1}{\sqrt{6} }\\
+		\frac{1}{\sqrt{3} } & 0 & -\frac{2}{\sqrt{6} }\\
+	\frac{1}{\sqrt{3} } & -\frac{1}{\sqrt{2} } & \frac{1}{\sqrt{6} }\end{pmatrix} 
+ \\
+ &= \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0\\0 & 0 & 1 \end{pmatrix}  
+	\end{align*}
+	as desired. I'm not going to show the full multiplication out (I got permission to do this), but the 
+	matrix multiplication does indeed work out if you try it. 
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(d)}
+Find the matrices $\mathsf{M}_{[s]}$ and $\mathsf{K}_{[s]}$ written with respect to the spring eigenbasis. \\ 
+\note{While this change-of-basis does indeed diagonalize $\mathsf{K}$, it ``un-diagonalizes'' $\mathsf{M}$!  It turns out that since $\mathsf{K}$ and $\mathsf{M}$ don't
+commute, we can never find a basis in which both matrices will be simultaneously diagonal.}
+
+\begin{solution}
+	To find $M_{[s]}$ and $K_{[s]}$, we use the fact that $M_{[s]} = C^{-1}_{e \to s} M_{[e]} C_{e \to s}$, and 
+	the same formula goes for $K$. Doing so:
+	\[
+		K_{[s]} = C^{-1}_{e \to s} K_{[e]} C_{e \to s} = k\begin{pmatrix} 0 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 3\end{pmatrix} 
+	\] 
+	Similarly, with $M$:
+	\[
+		M_{[s]} =  C^{-1}_{e \to s} M_{[e]} C_{e \to s} = 
+		\begin{pmatrix} \frac{2m_o + m_c}{3} & 0 & \frac{\sqrt{2}}{3}(m_o - m_c)\\ 0 & m_o & 0\\ \frac{\sqrt{2}}{3}(m_o - m_c) & 0 & \frac{2m_c + m_o}{3}  \end{pmatrix} 
+	\] 
+	Again, I've gotten permission to omit the calculation, though if you'd like, I can send screenshots proving
+	that I did do this by hand on my iPad.
+\end{solution}
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+Since $\mathsf{A}_{[e]}$ is not a normal matrix, we have no chance of finding an orthonormal eigenbasis.  When we write the inverse of our change-of-basis matrix, we have to 
+actually compute an inverse rather than rely on orthogonality or unitary of the matrix.  For the change of basis from the mass eigenbasis to the dynamics eigenbasis,
+we have
+	\begin{equation*}
+		\mathsf{C}_{e\to d} = \begin{smpmatrix}{1} 1 & 1 & 1 \\ 1 & 0 & -2r \\ 1 & -1 & 1 \end{smpmatrix},	\qquad
+		\mathsf{C}^{-1}_{e\to d} = \frac{1}{2(1+2r)}\begin{smpmatrix}{1} 2r & 2 & 2r \\ 1+2r & 0 & -(1+2r) \\ 1 & -2 & 1 \end{smpmatrix}.
+	\end{equation*}
+Suppose the carbon atom was initially displaced a distance $\delta$ to the right, while the two oxygens remained in their original equilibrium position.  Call this
+$\vec{x}(0)$.  Let all three atoms initially be at rest, so $\vec{v}=\dot{\vec{x}}=\vec{0}$.
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(e)}
+Express the displacement vector $\vec{x}(0)$ as a vector in the mass eigenbasis, $\vec{x}_{[e]}(0)$.  Then perform a change-of-basis operation on this vector to find the vector
+$\vec{x}_{[d]}(0)$ in the dynamics eigenbasis.  
+
+\begin{solution}
+	In the mass eigenbasis, this vector can be expressed as:
+	\[
+		\vec x_{[e]} (0) = \begin{pmatrix} 0 \\ \delta \\ 0 \end{pmatrix} 
+	\] 
+	Now, we have $\vec x_{[d]} = C^{-1}_{e \to d} \vec x_{[e]}$, which gives:
+	\[
+		\vec x_{[d]} = C^{-1}_{e \to d} \vec x_{[e]} = \frac{1}{2(1 + 2r}\begin{pmatrix} 2\delta \\ 0 \\ -2\delta \end{pmatrix} 
+		= \frac{\delta}{1+ 2r}\begin{pmatrix} 1 \\0\\-1 \end{pmatrix} 
+	\] 
+\end{solution}
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+Let $\omega_{2} \equiv \sqrt{\lambda_{2}}$ and $\omega_{3} \equiv \sqrt{\lambda_{3}}$.  Consider the six time-dependent vectors
+	\begin{alignat*}{4}
+		\vec{x}_{\alpha}(t) 		&\equiv 	\vec{d}_{1};	&&\qquad&
+		\vec{x}_{\beta}(t) 		&\equiv 	t\vec{d}_{1};\\
+		\vec{x}_{\gamma}(t)		&\equiv	\cos(\omega_{2}t)\vec{d}_{2};	&&\qquad&
+		\vec{x}_{\delta}(t)		&\equiv	\sin(\omega_{2}t)\vec{d}_{2};	\\
+		\vec{x}_{\epsilon}(t)		&\equiv	\cos(\omega_{3}t)\vec{d}_{3};	&&\qquad&
+		\vec{x}_{\zeta}(t)		&\equiv	\sin(\omega_{3}t)\vec{d}_{3}.
+	\end{alignat*}
+
+\paragraph{(f)}
+Show that all six of these vectors solve the equation of motion $\ddot{\vec{x}} = -\mathsf{A}\vec{x}$.\\
+\note{Each vector should only take one line of work to show that it's a solution.  An example for one of these vectors is given as a spoiler at the end of this problem set
+and in the spoilers document.} 
+
+\begin{solution}
+	We'll go through the vectors, starting with $x_\alpha$:
+	\begin{align*}
+		\ddot {\vec x}_{\alpha}(t) &= \vec 0\\
+		-A\vec x_{\alpha} &= -A\vec d_1 = \vec 0 \checkmark\\
+		\\
+		\ddot{\vec x}_{\beta}(t) &= \vec 0 \\
+		-A \vec x_{\beta}(t) &= -t(A \vec d_1) = \vec 0 \checkmark \\
+		\\
+		\ddot{\vec x}_{\gamma}(t) &= -\omega_2^2 \cos(\omega_2t) \vec d_2 = -\lambda_2 \cos(\omega_2t) \vec d_2\\
+		-A \vec x_{\gamma}(t) &= -\cos(\omega_2t)A\vec d_2 = \lambda_2 \cos(\omega_2t)\vec d_2 \checkmark\\
+		\\
+		\ddot{\vec x}_\delta(t) &= -\omega_2^2 \sin(\omega_2t)\vec d_2 = \lambda_2 \sin (\omega_2t)\vec d_2 \\
+		-A \vec x_{\delta}(t) &= -\lambda_2 \sin(\omega_2t) \vec d_2 \checkmark \\
+		\\
+		\ddot{\vec x}_\epsilon(t) &= -\omega_3^2\cos(\omega_3t) \vec d_3 = -\lambda_3 \cos(\omega_3t) \vec d_3 \\		 -A \vec x_{\epsilon}(t) &= -\lambda_3\sin(\omega_3t) \vec d_3 \checkmark \\
+		\\
+		\ddot{\vec x}_\zeta(t) &= -\omega_3^2 \sin(\omega_3t) \vec d_3 = -\lambda_3 \sin(\omega_3t) \vec d_3 \\
+		-A \vec x_{\zeta}(t) &= -\lambda_3 \sin(\omega_3t) \vec d_3 \checkmark \\
+	\end{align*} 
+\end{solution}
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+The most general solution to our system is a linear combination of these six vectors,
+	\begin{align}
+		\vec{x}(t) &= c_{\alpha}\vec{x}_{\alpha}(t) + c_{\beta}\vec{x}_{\beta}(t) + c_{\gamma}\vec{x}_{\gamma}(t) 
+				+ c_{\delta}\vec{x}_{\delta}(t) + c_{\epsilon}\vec{x}_{\epsilon}(t) + c_{\zeta}\vec{x}_{\zeta}(t)\nonumber\\
+				&= \big(c_{\alpha}+tc_{\beta}\big)\vec{d}_{1} 
+				+ \big(c_{\gamma}\cos(\omega_{2}t) +c_{\delta}\sin(\omega_{2}t)\big)\vec{d}_{2}
+				+ \big(c_{\epsilon}\cos(\omega_{3}t) +c_{\zeta}\sin(\omega_{3}t)\big)\vec{d}_{3}.
+		\label{evolve}
+	\end{align}
+We can determine the six coefficients using the initial conditions $\vec{x}_{0}$ and $\vec{v}(0) = \dot{\vec{x}}(0)$ and the linear independence of the dynamics
+eigenbasis.
+
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(g)}
+Use the initial conditions from part (e) to find the six coefficients in Eq.~\ref{evolve} displacement vector in the dynamics basis at a later time.  Finally, express the 
+displacement vector in the mass eigenbasis as a function of time, $\vec{x}_{[e]}(t)$.
+
+\begin{solution}
+	To do this we need our initial conditions. From part (e), we know that the initial condition for position is:
+	\[
+		\vec x_0 = \vec x_{[d]}(0) = \frac{\delta}{1 + 2r}\begin{pmatrix} 1 \\0 \\ -1 \end{pmatrix} = 
+		\frac{\delta}{1 + 2r}\vec d_1 - \frac{\delta}{1 + 2r}\vec d_3
+	\] 
+	remember that we need everything to be in the $d$ basis since $\vec x(t)$ is also given in the $d$ basis. 
+	Plugging in $t = 0$ into equation 1, we get:
+	\[
+	\vec x(0) = c_\alpha \vec d_1 + c_\gamma \vec d_2 + c_\epsilon \vec d_3 
+	\] 
+	Matching coefficients (therefore implicitly using the linear independence of the eigenbasis), we find that 
+	$c_\alpha = \frac{\delta}{1 + 2r}, c_\gamma = 0, 
+	c_\epsilon = -\frac{\delta}{1 + 2r}$. Similarly, we have the initial condition that $\dot{\vec x}(0) = 
+	\vec 0$, since the system is initially at rest. Taking the derivative:
+	\[
+		\dot{x}(t) = c_\beta \vec d_1 + (c_\delta \omega_2 \cos(\omega_2 t) - c_\gamma \omega_2\sin(\omega_2t))
+		\vec d_2 + (c_\zeta\omega_3\cos(\omega_3t) - c_\epsilon \omega_3 \sin(\omega_3t))\vec d_3
+	\] 
+	Plugging in $t = 0$:
+	\[
+	\dot x(t) = c_\beta \vec d_1 + c_\delta\omega_2 \vec d_2 + c_\zeta \omega_3 \vec d_3 
+	\] 
+	And using the fact that this is supposed to equal the zero vector, we conclude that $c_\beta = c_\delta =
+	c_\zeta = 0$. Therefore, our solution is:
+	\[
+	\vec x(t) = \frac{\delta}{1 + 2r}\vec d_1 -\frac{\delta}{1 + 2r}\cos(\omega_3t) \vec d_3
+	\] 
+	In terms of the mass eigenbasis, we know how the vectors $\vec d_i$ are expressed, so we can just plug 
+	them in:
+	\begin{align*}
+		\vec x_{[e]} &= \frac{\delta}{1 + 2r}\begin{pmatrix} 1\\1\\1 \end{pmatrix} - 
+		\frac{\delta}{1 + 2r}\cos(\omega_3t) \begin{pmatrix} 1 \\-2r\\1 \end{pmatrix} \\
+					 &= \left[\frac{\delta}{1 + 2r}(1 - \cos(\omega_3t))\right]\hat{e}_1 + \left[\frac{\delta}{1 + 2r} - \frac{2r \delta}{1 + 2r}\cos(\omega_3t)\right]\hat{e}_2 + \left[\frac{\delta}{1 + 2r}(1 - \cos(\omega_3t))\right]\hat{e}_3
+	\end{align*}
+\end{solution}
+
+\bigskip
+\dphline
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Problem 6.2 - Similarity Ensues}
+\relevid{Diagonalization;
+Similarity Transformations}
+
+\paragraph{}
+Recall that a \heavydef{similarity transformation} is defined via $\mathsf{M}\to \mathsf{S}^{-1}\mathsf{MS}$, where $\mathsf{S}$ is an invertible matrix.
+If there exists an invertible $\mathsf{S}$ such that $\widetilde{\mathsf{M}}$ and $\mathsf{M}$ are connected by a similarity transformation 
+(that is, $\widetilde{\mathsf{M}} = \mathsf{S}^{-1}\mathsf{MS}$ for some $\mathsf{S}$), then $\mathsf{M}$ and $\widetilde{\mathsf{M}}$
+are called \heavydef{similar}.\footnote{A similarity transformation is an example of a \heavydef{equivalence relation}, which we explore in a supplement!}
+
+\paragraph{}
+Similar matrices have many identical properties, which we explore in this problem.  Note that some of these properties
+will hold for an \emph{arbitrary} similarity transformation and some will only hold for a \heavydef{unitary} or \heavydef{orthogonal} transformation (one in which
+$\mathsf{S}$ is further constrained to be either unitary or orthogonal).  If two matrices are similar under a unitary transformation we sometimes call them 
+\heavydef{unitarily equivalent}.  I will indicate at the start of each part which class of similarity transformations you should be concerned with.
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(a)}
+For this part, we will consider arbitrary similarity transforms.  Prove that two similar matrices have identical traces and determinants.
+\extrasubpart{We went over this in lecture, but \ul{without looking at the notes}, prove that two similar matrices have identical spectra of eigenvalues.}
+
+\begin{solution}
+	First let's compute the determinant, using the property that $\det(AB) = \det(A)\det(B)$:
+	\begin{align*}
+		\det(S^{-1}MS) &= \det(S^{-1}) \det(M) \det(S)\\
+		&= \frac{1}{\det(S)} \det(M) \det(S)  \\
+		&=  \det(M) 
+	\end{align*}
+	As for the trace, we use the cyclic property of trace $\tr(ABC) = \tr(CAB) = \tr(BCA)$:
+	\begin{align*}
+		\tr(S^{-1}MS) &= \tr(SS^{-1}M) \\
+		&= \tr(\mathbbold 1 M) \\
+		&= \tr(M) 
+	\end{align*}
+	hence we've proven both properties. 
+\end{solution}
+
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(b)}		\extrapart
+For this part, we will consider arbitrary similarity transforms.  Let $\widetilde{\mathsf{M}} = \mathsf{S}^{-1}\mathsf{MS}$ and show that $\mathsf{S}^{-1}$ is an 
+isomorphism between $\ker{\mathsf{M}}$ and $\ker{\widetilde{\mathsf{M}}}$.  Use this result to show that similar matrices have identical nullities and ranks.\\
+\note{We already know that $\mathsf{S}^{-1}:\mathsf{M}\to\widetilde{\mathsf{M}}$ is an isomorphism (since $\mathsf{S}^{-1}$ is invertible)!  
+To show that $\mathsf{S}^{-1}$ also provides an isomorphism between $\ker{\mathsf{M}}$ and $\ker{\widetilde{\mathsf{M}}}$ you need to show two properties:  
+1. If $\vec{v}\in\ker{\mathsf{M}}$ then $\mathsf{S}^{-1}\vec{v}\in \ker{\widetilde{\mathsf{M}}}$.  
+2. If $\vec{w}\in\ker{\widetilde{\mathsf{M}}}$ then there exists a $\vec{v}\in\ker{\mathsf{M}}$ such that $\vec{w} = \mathsf{S}^{-1}\vec{v}$.}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(c)}
+For this part, we will consider unitary transformations.  Let $\mathsf{M}$ be unitarily equivalent to $\widetilde{\mathsf{M}}$.  
+Prove that if $\mathsf{M}$ is Hermitian then so is $\widetilde{\mathsf{M}}$.
+Similarly, prove that if $\mathsf{M}$ is unitary then so is $\widetilde{\mathsf{M}}$.\\
+\note{Unitary transformations also keep symmetric matrices symmetric, orthogonal matrices orthogonal, and, more generally, normal matrices normal.}
+
+
+\begin{solution}
+	Being unitarily equivalent just meas that there exists some unitary matrix $S$ such that $\tilde M = 
+	S^{-1}MS$. Given that $M$ is Hermitian, let's write out $\tilde M^\dagger$:
+	\[
+		(\tilde M)^\dagger = (S^{-1}MS)^\dagger = S^\dagger M^\dagger (S^{-1})^\dagger
+	\] 
+	Since $M$ is Hermitian, then $M^\dagger = M$. Then, since $S$ is unitary, we note that $S^\dagger = S^{-1}$.
+	Therefore, $(S^{-1})^\dagger = (S^\dagger)^\dagger = S$, and $S^\dagger = S^{-1}$. This turns 
+	our expression into:
+	\[
+		S^{\dagger} M^\dagger (S^{-1})^\dagger = S^{-1} M S = \tilde M
+	\] 
+	Hence we've proven that $\tilde M^\dagger = \tilde M$, meaning that $\tilde M$ is also Hermitian. 
+
+	Now for the second part, suppose that $M$ is unitary. This implies that $M^{-1} = M^\dagger$. Then, let's 
+	write out $\tilde M^{-1}$:
+	\[
+		\tilde M^{-1} = (S^{-1}MS)^{-1} = S^{-1}M^{-1} (S^{-1})^{-1} = S^\dagger M^\dagger (S^{-1})^\dagger = 
+		(S^{-1}MS)^\dagger = \tilde M^\dagger 
+	\] 
+	as desired. Here I've used the property that since $S$ is unitary, then $S^{-1}$ is also unitary. 
+\end{solution}
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(d)}		\extrapart
+Row reduction does \emph{not} produce similar matrices!  Show explicitly that two of the three elementary row operations - flipping two rows and multiplying
+one row by a non-zero scalar $c$ (let $c\neq 1$ for this part, since that doesn't change the matrix at all) can't be accomplished by a similarity transformation.
+\spoilers{How do the row operations affect the determinant?  What did we learn in part (a)?}
+
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+Now let $\mathsf{M}$ be diagonalizable and let $\mathsf{D} = \mathsf{S}^{-1}\mathsf{MS}$ be the diagonalization of $\mathsf{M}$.  
+Here we are allowing $\mathsf{M}$ to be non-normal and allowing $\mathsf{S}$ to be non-unitary.
+
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(e)}
+Use the result from part (a) to show $\det(e^{\mathsf{M}}) = e^{\tr \mathsf{M}}$.
+\spoilers{Remember Problem 4.4, which foreshadowed all of this!}
+
+\begin{solution}
+	First, I claim that it suffices to show that $\det(e^D) = e^{\tr(D)}$. Firstly, we know that $e^{\tr M} = 
+	e^{\tr D}$ directly from part (a). As for the left hand side, we recall our results from problem 4.4, 
+	where we showed that:
+	\[
+		f(A^{-1} B A)  = A^{-1} f(B) A
+	\] 
+	as long as $f$ is Taylor-expandable. In our case, $e^x$ is Taylor-expandable, so we can invoke this 
+	property to conclude:
+	\[
+		e^{D} = e^{S^{-1}MS} = S^{-1} e^M S
+	\] 
+	Now taking determinants of both sides:
+	\[
+		\det(e^D) = \det(S^{-1}MS) = \frac{1}{\det(S)}\det(M) \det(S) = \det(M)
+	\] 
+	so incidentally we find that $\det(M) = \det(D)$. Therefore, proving that $\det(e^M) = e^{\tr M}$ is 
+	in fact equivalent to proving $\det(e^D) = e^{\tr D}$, which we will now do. 
+	First, we compute $e^D$:
+    \[
+        e^D = \sum \frac{D^n}{n!} = D + \frac 12 D^2 + \dots
+    \]
+    And using the fact that exponents of diagonal matrices are nice, we can simplify this massively:
+    \[ 
+        e^D = \begin{pmatrix} d_{11} + \frac 12 d_{11}^2 + \cdots & \dots & 0\\
+        0 & \ddots & \vdots \\
+        0 &\dots & d_{nn} + \frac 12 d_{nn}^2 + \cdots \end{pmatrix} = \begin{pmatrix} e^{d_{11}} & \dots & 0\\
+        0 & \ddots & 0\\
+        0  & \dots & e^{d_{nn}}\end{pmatrix}
+        \]
+    Now, computing the determinant:
+    \[ 
+        \det(e^D) = e^{d_{11}} e^{d_{22}} \cdots e^{d_{nn}} = e^{d_{11} + d_{22} + \cdots + d_{nn}} = e^{\tr(D)}
+        \]
+\end{solution}
+
+
+\bigskip
+\dphline
+\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Problem 6.3 - Simultaneous Diagonalization}
+\relevid{Diagonalization;
+Similarity Transformations}
+
+\paragraph{}
+We saw in our \OCO\ problem that we couldn't find a basis in which both $\mathsf{K}$ and $\mathsf{M}$ were diagonal.  
+Given two matrices $\mathsf{A}$ and $\mathsf{B}$, when \emph{can} we find a basis in which both $\mathsf{A}$ and $\mathsf{B}$ are diagonal?  
+Answer:  When they \heavydef{commute}!
+
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(a)}
+Consider the two Pauli matrices $\sigma_{x} = \smmatrix{0.8}{0&1\\1&0}$ and $\sigma_{y} = \smmatrix{0.8}{0 & -i \\ i & 0}$.  Show that these two matrices don't
+commute.  Find an orthonormal eigenbasis that diagonalizes $\sigma_{x}$ and show that $\sigma_{y}$ is not diagonal in this basis.
+
+\begin{solution}
+	To show that they don't commute, let's just consider the top left entry:
+	\[
+		(\sigma_x \sigma_y )_{11} = i \phantom{aaa} (\sigma_y \sigma_x)_{11} = -i
+	\] 
+	Since they are not the same, they clearly don't commute. To find the orthonormal eigenbasis, we find
+	the eigenvalues of $\sigma_x$ first:
+	\[
+		\begin{vmatrix} -\lambda & 1\\1 & -\lambda\end{vmatrix} = \lambda^2 - 1 \implies \lambda = \pm 1
+	\] 
+	This generates the pair of eigenvectors:
+	\[
+	\hat{e}_1 = \begin{pmatrix} 1\\1 \end{pmatrix}, \hat{e}_2 = \begin{pmatrix} -1 \\1 \end{pmatrix} 
+	\] 
+	The basis that diagonalizes $\sigma_x$ is then given by the matrix formed by the eigenvectors of $\sigma_x$:
+	\[
+		S = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} 
+	\] 
+	To show that $\sigma_y$ is not diagonal in this basis, we can just do $S^{-1}\sigma_y S$ and show that 
+	the resulting matrix is not diagonal. To do this, we first need to find $S^{-1}$. The matrix 
+	inverse can be calculated using the cofactor method: $\det(S) = 2$, and the cofactor matrix is:
+	\[
+		C_S = \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} 
+	\] 
+	So then taking the transpose and dividing by $\det(S)$:
+	\[
+		S^{-1} = \frac{1}{2} \begin{pmatrix} 1 & 1\\ -1 & 1 \end{pmatrix} 
+	\] 
+	Now, let's compute $S^{-1}\sigma_y S$:
+	\[
+		S^{-1} \sigma_y S = \frac{1}{2}\begin{pmatrix} 1 &1 \\ -1 & 1  \end{pmatrix} \begin{pmatrix} 0 & -i\\ i & 0 \end{pmatrix} \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 0 & -i \\i & 0 \end{pmatrix} 
+	\] 
+	Clearly this matrix is not diagonal, so therefore $\sigma_y$ is not diagonal in this basis. I also got 
+	permission to omit the matrix multiplication here, and since it's quite a pain to type, I will do that from
+	now on. 
+\end{solution}
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(b)}
+Now consider $\sigma_{x}$ and $\mathsf{B}=\smmatrix{0.8}{2&3\\3&2}$.  Show that these two matrices \emph{do} commute and show that the basis that
+diagonalizes $\sigma_{x}$ from part (a) also diagonalizes $\mathsf{B}$.
+
+\begin{solution}
+	To show that they commute, let's show that $\sigma_x B = B \sigma_x$:
+	\begin{align*}
+		\sigma_x B &= \begin{pmatrix} 0 & 1\\1 & 0 \end{pmatrix} \begin{pmatrix} 2 & 3\\ 3& 2  \end{pmatrix} = \begin{pmatrix} 3 & 2\\ 2 & 3 \end{pmatrix} \\
+		B \sigma_x &= \begin{pmatrix} 2 & 3\\ 3& 2 \end{pmatrix} \begin{pmatrix} 0 & 1\\1 & 0 \end{pmatrix} = \begin{pmatrix}  3& 2\\2 & 3 \end{pmatrix}
+	\end{align*}
+	And since they are identical, we confirm that $\sigma_x$ does commute with $B$. To show that the same basis
+	diagonalizes $B$, we just compute $S^{-1} BS$:
+	\begin{align*}
+		S^{-1} BS = \frac{1}{2}\begin{pmatrix} 1 &1 \\ -1 & 1  \end{pmatrix} \begin{pmatrix} 2 & 3\\ 3 &2\end{pmatrix} \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix} = \begin{pmatrix} 5 & 0 \\ 0 & -1 \end{pmatrix} 
+	\end{align*}
+	which is a diagonal matrix, so we've confirmed that the same $S$ diagonalizes $B$ as well. Also, just like
+	the previous part, I got permission to omit the matrix multiplication.
+\end{solution}
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+Now let $\mathsf{A}$ be any diagonalizable matrix and let $\mathsf{B}$ be any matrix that commutes with $\mathsf{A}$.
+
+\paragraph{(c)}
+Let $\vec{v}$ be an eigenvector of $\mathsf{A}$ belonging to eigenvalue $\lambda$.  Show that $\mathsf{B}\vec{v}$ is then \emph{also} and eigenvector of 
+$\mathsf{A}$ belonging to the same eigenvalue $\lambda$.  
+
+\begin{solution}
+	Since $A$ and $B$ commute, we know that $AB = BA$. Thus, we can write:
+	\[
+		(AB)\vec v = (BA)\vec v  = B(A \vec v) = B \lambda \vec v = \lambda B\vec v
+	\] 	
+	this is an eigenvalue equation $A(B \vec v ) = \lambda (B \vec v)$, showing that $B \vec v$ is an 
+	eigenvector of $A$ with eigenvalue $\lambda$.
+\end{solution}
+
+\phline
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{}
+Finally, suppose $\mathsf{A}$ from part (c) has a non-degenerate spectrum so that all of the eigenspaces are one-dimensional.
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\paragraph{(d)}
+Show that $\vec{v}$ must then \emph{also} be an eigenvector for $\mathsf{B}$.
+\spoilers{There's some thinking to be done here!  The key is that the eigenspaces are one-dimensional, with means that if $\vec{v}$ is an eigenvector of $A$ belonging
+to eigenvalue $\lambda$ than any eigenvector of $A$ belonging to a that same eigenvalue $\lambda$ must be proportional to $\vec{v}$.}
+
+
+\begin{solution}
+	We use the spoiler here: the fact that if two vectors have the same eigenvalue, then they must be 
+	proportional to one another. Since $\vec v$ and $B\vec v$ have the same eigenvalue, then this is precisely
+	the case. Thus, this allows us to write:
+	\[
+	B\vec v = k \vec v
+	\] 
+	for some proportionality constant $k$. Notice now that this is again an eigenvalue equation for the matrix 
+	$B$ and $\vec v$, meaning that $\vec v$ is also an eigenvector
+	of matrix $B$.
+\end{solution}
+
+\paragraph{}
+\noindent\emph{Commentary: This shows that an eigenbasis of $\mathsf{A}$ will \emph{also} be an eigenbasis of $\mathsf{B}$ and thus in this eigenbasis both 
+$\mathsf{A}$ and $\mathsf{B}$ will be diagonal!  This of course doesn't prove the general statement that $A$ and $B$ can be simultaneously diagonalized if and only 
+if they commute, but it demonstrates all of the relevant elements of the proof.}
+
+
+
+
+\bigskip
+\dphline
+\bigskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Spoilers!  An Example Solution for Problem 6.1(f)}
+
+\color{spoilerwhite}
+The equations of motion are $\ddot{\vec{x}} = -\mathsf{A}\vec{x}$.  We are going to use the fact that $\vec{d}_{i}$ are eigenvectors. 
+We'll find the left-hand and right-hand side of all six of our 
+forms to show that they are solutions.  Note that the vectors $\vec{d}_{i}$ are constant with respect to time - all the explicit time dependence is in the coefficients.
+	\begin{alignat*}{5}
+		\vec{x}_{\delta}(t) &= \sin(\omega_{2}t)\vec{d}_{2},
+			&\qquad	\ddot{\vec{x}}_{\delta} &= -\omega_{2}^{2}\sin(\omega_{2}t)\vec{d}_{2},
+			&\qquad	-\mathsf{A}\vec{x}_{\delta} &= -\sin(\omega_{2}t)\bff{A}\vec{d}_{2} = -\lambda_{2}\sin(\omega_{2}t)\vec{d}_{2}.
+	\end{alignat*}
+Since $\omega_{2}^{2} = \lambda_{2}$, we have $\ddot{\vec{x}}_{\delta} = -\mathsf{A}\vec{x}_{\delta}$ as claimed!
+\color{black}
+
+\endofhomework
+\addfooter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+

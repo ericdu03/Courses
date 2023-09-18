@@ -1,0 +1,285 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 105}
+\newcommand{\classname}{Analytic Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 12} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Adarsh Iyer, Aren Martinian} and \textbf{Andrew Binder} to complete this homework.
+	\section*{Problem 1}
+	Calculate the solid angles subtended by the Moon and by the Sun, both as seen from the Earth.
+
+	\begin{solution}
+		From the textbook, we know that the solid angle is given by $\Delta \Omega = \frac{A}{r^2}$, so 
+		all we need to do is find the cross sectional area of each celestial body (given by $\pi R^2$), and 
+		divide that by the mean distance between the Earth and the Sun/Moon. Plugging in numbers for the Sun:
+		\[
+			\Delta \Omega_{\text{sun}} = 6.79 \times 10^{-5} \text{ sr}
+		\] 
+		And then for the moon:
+		\[
+			\Delta \Omega_{\text{moon}} = 6.4\times 10^{-5} \text{ sr}
+		\] 
+		This actually makes sense, since we see that the sun and moon look approximately the same size, despite 
+		the sun being much bigger, because the Sun is also much farther away than the moon. 
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 2}
+	One can set up a two-dimensional scattering theory, which could be applied to puck projectiles sliding on 
+	an ice rink and colliding with various target obstacles. The cross section would be the effective width
+	of a target, and the differential cross section $d\sigma/d\theta$ would give the number of projectiles 
+	scattered in the angle $d\theta$.
+
+	\begin{enumerate}[label=\alph*)]
+		\item Show that the two-dimensional analog of Eq. (14.23) is $d\sigma/d\theta = |db/d\theta|$. (Note
+			that in two-dimensional scattering it is convenient to take $\theta \in [-\pi, \pi]$. 
+
+			\begin{solution}
+				The small patch of particles that scatter into the solid angle $d\theta$ is now 
+				given by a small patch of vertical height $db$, so therefore $d\sigma = db$. 
+				Further, since the system is symmetric for $\pm \theta$, then we can combine this 
+				information and solve for the absolute value instead. Therefore:
+				\[
+					\dv{\sigma}{\theta} = \left| \dv{b}{\theta}\right|
+				\] 
+			\end{solution}
+		\item Now consider the scattering of a small projectile off a hard ``sphere'' (actually a hard
+			disk) of radius $R$ pinned down to the ice. Find the differential cross section.
+
+			\begin{solution}
+				We follow a very similar argument to that of the hard ball scattering. Consider a particle
+				with an impact parameter $b$. Due to the geometry of the problem, we see that 
+				$b = R \sin \alpha$. Further, due to momentum conservation, this scattering must obey the law
+				of reflection, which implies that $\theta = \pi - 2\alpha$ (see diagram). Therefore, 
+				we can write
+				\[
+				b = R \left|\sin (\frac{\pi - \theta}{2})\right|
+				\] 
+				Now, taking the derivative with respect to $\theta$, we get: 
+				\[
+					\left|\dv{b}{\theta}\right| = \left|\frac{R}{2}\cos(\frac{\pi - \theta}{2})\right|
+				\] 
+			\end{solution}
+		\item By integrating your answer to part (b), show that the total cross section is $2R$ as expected.
+
+			\begin{solution}
+				Here, we integrate with respect to $\theta$, from the bounds $-\pi$ to $\pi$:
+				\[
+					b = \frac{R}{2}\int_{-\pi}^\pi \left| \cos\left( \frac{\pi - \theta}{2} \right) \right| d\theta = \frac{R}{2}(4) = 2R
+				\] 
+				as desired. 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 3}
+	One of the first observations that suggested his nuclear model of the atom to Rutherford was that several 
+	alpha particles got scattered by metal foils into the backward hemisphere, $\pi/2 \le \theta \le \pi$ - an
+	observation that was impossible to explain on the basis of rival atomic models, but emerged naturally 
+	from the nuclear model. In an early experiment, Geiger and Marsden measured the fraction of incident alphas
+	scattered into the backward hemisphere off a platinum foil. By integrating the Rutherford cross section
+	\[
+		\dv{\sigma}{\Omega} = \frac{\sigma_0(E)}{\sin^4(\theta/2)}, \text{    with     } \sigma_0(E) =
+		\frac{k^2q^2Q^2}{16E^2}
+	\] 
+	over the backward hemisphere, show that the cross section for scattering with $\theta \ge \pi/2$ should be 
+	$4 \pi \sigma_0(E)$. Using the following numbers, predict the ratio $N_{sc}(\theta\ge \pi/2)/N_{in}$: 
+	thickness of platinum foil $\approx$ 3 pm, density = 21.4 gram/$\text{cm}^3$, atomic weight = 195, atomic
+	number = 78, energy of incident alphas = 7.8 MeV. Compare your answer with their estimate that 
+	``of the incident $\alpha$ particles about 1 in 8000 was reflected". (that is, scattered into the backward 
+	hemisphere). Small as this fraction is, it was still far larger than any rival model of the atom could 
+	explain.
+
+	\begin{solution}
+		The integral we want to take is 
+		\[
+			\sigma = \int \frac{\sigma_0(E)}{\sin^4(\frac{\theta}{2})} d\Omega
+		\] 
+		Since $\sigma_0(E)$ is a constant, we can take it out of the integral. Therefore, we now have:
+		\[
+			\sigma = \sigma_0(E) \int \frac{1}{\sin^4(\frac{\theta}{2})} d\Omega
+		\] 
+		We can do two things here: first, we rewrite $d\Omega = \sin \theta d\theta d\phi$. Then, we note our
+		bounds of integration are $\theta \in [\pi/2, \pi]$, and 
+		$\phi \in [0, 2\pi]$. Since everything in the integral is independent of $\phi$, we can just multiply by
+		$2\pi$, leaving us with:
+		\[
+			\sigma = 2\pi \sigma_0(E) \int_{\frac{\pi}{2}}^\pi \frac{\sin \theta}{\sin^4(\frac{\theta}{2})} 
+			d\theta
+		\] 
+		Then, we can perform a $u$-substitution, letting $u = \frac{\theta}{2}$, so therefore $du = \frac{1}{2}
+		d\theta$. This turns our integral into: 
+		\begin{align*}
+			\sigma &= 2\pi \sigma_0(E) \int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \frac{\sin 2u}{\sin^4u} (2 du)\\
+				   &= 4\pi \sigma_0(E) \int_{\frac{\pi}{4}}^\frac{\pi}{2}\frac{2 \cos u}{\sin^3 u} du \\ 
+				   &= 8 \pi \sigma_0(E) \int_{\frac{\pi}{4}}^{\frac{\pi}{2}} \frac{\cos u}{\sin^3 u} du
+		\end{align*}
+		From here, it's a simple $u$-substitution again: let $v = \sin u$, so $dv = \cos u du$. Therefore:
+		\begin{align*}
+			\sigma &= 8\pi \sigma_0(E) \int_{\frac{1}{\sqrt{2} }}^1 \frac{dv}{v^3}\\
+				&= 8\pi \sigma_0(E) (\frac{1}{2})\\
+				&= 4\pi \sigma_0(E) 
+		\end{align*}
+		as desired. Plugging in numbers, we get:
+		\[
+			\frac{N_{\text{sc}}}{N_{\text{in}}} = 1.292 \times 10^{-4}
+		\] 
+		this gives a frequency of about 1/8333, which is approximately what Rutherford got.
+	\end{solution}
+
+
+	\pagebreak
+
+	\section*{Problem 4}
+	The derivation of the Rutherford cross section was made simpler by the fortuitous cancellation of the factors
+	of $r$ in the integral, Eq. (14.30). Here is a method of finding the cross section which works, in principle,
+	for any central force field: The general appearance of the scattering orbit is as shown in Figure 14.11. It 
+	is symmetric about the direction $\mathbf u$ of closest approach. If $\psi$ is the projectile's polar 
+	angle, measured from the direction $\mathbf u$, then $\psi \to \pm \psi_0$ as $t \to \pm \infty$ and the 
+	scattering angles $\theta = \pi - 2\psi_0$, as in the following figure depicting nuclear scattering:
+
+	[insert tikz here] 
+
+	The angle $\psi_0$ is equal to $\int_{t_0}^\infty \dot \psi(t) dt$ taken from the time of closest approach
+	$t = t_0$ to $t = \infty$. We can rewrite this as
+	\[
+		\int_{t_0}^\infty \frac{\dot \psi(t)}{\dot r(t)}\dot r(t) dt = \int_{r_0}^\infty
+		\frac{\dot \psi(r)}{\dot r(r)} dr
+	\] 
+	where now $r_0$ is the distance of closest approach. Next rewrite $\psi$ in terms of the angular momentum 
+	$\ell$ and $r$, and rewrite $\dot r$ in terms of the energy $E$ and the effective potential $U_{\text{eff}}$. Having
+	done all this you should be able to prove that 
+	\[
+	\theta = \pi - \frac{2}{b} \int_{r_0}^\infty \frac{(b/r)^2}{\sqrt{1 - (b/r)^2 - U(r)/E}} 
+	\] 
+	Provided this integral can be evaluated, it gives $\theta$ in terms of $b$, and hence the cross section. Fill
+	in the details of this calculation to prove this formula. 
+
+	\begin{solution}
+		First, we start by noticing that $\dot \psi$ is the polar angle, so $\dot \psi$ represents
+		the angular velocity of the particle. Therefore, we can write the angular momentum as $\ell = 
+		mr^2 \dot \psi$, which rearranges to
+		\[
+		\dot \psi = \frac{\ell}{mr^2}
+		\] 
+		Next, we know that at large distance, we have $\ell = r \times p = rp \sin \theta$, and since $r \sin 
+		\theta = b$, then we have $l = p \cdot b$, and using the expression that $E = \frac{p^2}{2m}$ 
+		(conservation of energy), we get $\ell =b \sqrt{2mE}$, so therefore:
+		\[
+		\dot \psi = \frac{\sqrt{2mE} b}{mr^2} = \sqrt{\frac{2E}{m}} \frac{b}{r^2}
+		\] 
+		Now, we have to handle $\dot r$. To do this, consider the conservation of energy
+		\[
+			E = \frac{1}{2}m \dot r^2 + U_{\text{eff}}(r) = \frac{1}{2}m \dot r^2 + U(r) + \frac{\ell^2}{2m
+			r^2}
+		\] 
+		The $\frac{\ell^2}{2mr^2}$ term can be simplified directly using our substitution of $\ell = \sqrt{
+		2mE} b$, giving us 
+		\[
+		\frac{\ell^2}{2mr^2} = \frac{Eb^2}{r^2}
+		\] 
+		Next, solving for $\dot r$:
+		\[
+		\dot r = \sqrt{\frac{2}{m}\left( E - U(r) - \frac{Eb^2}{r^2} \right) } = \sqrt{\frac{2E}{m}
+		\left( 1 - \frac{U}{E} - \frac{b^2}{r^2} \right) } 
+		\]
+		Therefore, putting it all together: 
+		\[
+			\frac{\dot \psi}{\dot r} = \frac{\sqrt{\frac{2E}{m}} \frac{b}{r^2}}{\sqrt{\frac{2E}{m}\left( 1 - 
+			\frac{U}{E} - \frac{b^2}{r^2} \right) }} = \frac{b/r^2}{\sqrt{1 - \frac{U}{E} - \frac{b^2}{r^2}}}
+		\] 
+		Factoring out a $b$, we have:
+		\[
+			\frac{1}{b}\frac{\dot \psi}{\dot r} = \frac{(b/r)^2}{\sqrt{1 - \frac{U}{E} - \frac{b^2}{r^^2}}}
+		\] 
+		Now we integrate from $r_0$ to $\infty$, so we get:
+		\[
+			\theta = \pi - 2 \int_{r_0}^\infty \frac{(b/r^2) dr}{\sqrt{1 - (b/r)^2 - U(r)/E} }
+		\]
+		as desired.
+	\end{solution}
+	 
+	\pagebreak
+
+
+	\section*{Problem 5}
+	Use the formula obtained in the previous problem to answer the following problems. You may use a computer
+	to evaluate integrals.
+
+	\begin{enumerate}[label=\alph*)]
+		\item Consider hard sphere scattering. What should you take to be $U(r)$? Find $b(\theta)$, and then 
+			$d\sigma/d\Omega$, and finally $\sigma$. Does your result for $\sigma$ make sense?
+
+			\begin{solution}
+				For a hard sphere, we know that $U(r) = 0$ for $r > r_0$ (the radius of the sphere), and the location of closest approach is
+				$r = r_0$, so therefore our integral for $\theta$ becomes:
+				\[
+					\theta = \pi - \frac{2}{b}\int_{r_0}^\infty \frac{(b/r)^2}{\sqrt{1 - (b/r)^2}} dr
+				\] 
+				we substitute $u = \frac{b}{r}$ so this integral becomes $\sin^{-1}(u)$, so then we get:
+				\[
+					\theta = \pi - 2\sin^{-1}\left( \frac{b}{r_0} \right) 
+				\]
+				Therefore, we have: 
+				\[
+				b = r_0\cos\left( \frac{\theta}{2} \right) 
+				\] 
+				To find $\dv{\sigma}{\Omega}$, we then integrate this using 
+				\[
+				\dv{\sigma}{\Omega} = \frac{b}{\sin \theta} \left|\dv{b}{\theta}\right| = \frac{r_0^2}{4}
+				\] 
+				Now finally, we integrate this from $\theta \in [0, \pi]$ and $\phi \in [0, 2\pi]$:
+				\[
+				\int \frac{r_0^2}{4} d\Omega = (4\pi) \frac{r_0^2}{4} = \pi r_0^2
+				\] 
+				this makes sense, since it's equal to the cross sectional area of the hard ball. 
+			\end{solution}
+		\item Consider Rutherford scattering with $F = kqQ/r^2$. Find the values of $b(\theta)$, 
+			$d\sigma/d\Omega$ and $\sigma$. 
+
+			\begin{solution}
+				Here, we need to solve:
+				\[
+					\theta = \pi - \frac{2}{b} \int_{r_0}^\infty \frac{(b/r)^2}{\sqrt{1 - \frac{b^2}{r^2} -
+					\frac{kqQ}{rE}} }
+				\] 
+				First, we perform a $u$ substitution of $u = \frac{b}{r}$, which simplifies the integral to:
+				\[
+					\theta = \pi + 2 \int_{\frac{b}{r_0}}^{0} \frac{u \ du}{\sqrt{ 1 - u^2 - \frac{kqQu}{bE}} }
+				\] 
+				We can then plug this into Mathematica, which gives us: 
+				\[
+					\theta = \pi - 2\tan^{-1}\left( \frac{2bE}{kqQ} \right) 
+				\] 
+				Rearranging for $b$, we have: 
+				\[
+					b = \frac{kqQ}{2e} \tan\left( \frac{\pi - \theta}{2} \right)  =
+					\frac{kqQ}{2e}\cot\left( \frac{\theta}{2} \right) 
+				\] 
+				Now we can get $\dv{\sigma}{\Omega}$:
+				\[
+					\dv{\sigma}{\Omega} = \frac{b}{\sin \theta} \left| \dv{b}{\theta}\right| = -\frac{b}{\sin \theta}\frac{kqQ}{4E}\csc^2\left( \frac{\theta}{2} \right) 
+				\] 
+				Finally, integrating this over $d\Omega$, we get:
+				\[
+					\sigma = -\frac{kqQb}{4E}\int \frac{\csc^2\left( \frac{\theta}{2} \right)}{\sin \theta} 
+					d\Omega = -\frac{kqQb}{4E}(2\pi) \int_0^\pi \frac{\csc^2\left( \frac{\theta}{2} \right) }
+					{\sin \theta} d\theta
+				\] 
+				which does not converge. 
+			\end{solution}
+	\end{enumerate}
+
+\end{document}

@@ -11,11 +11,11 @@
 
     \subsection*{Solution}
 
-    This is how I would go through the solution with a student. 
+%    This is how I would go through the solution with a student. 
     
     First, I'll start by noting that it's easy to get a problem like this and immediately feel stuck because although you clearly know that the problem involves the Berlekamp-Welch algorithm in some way, the problem doesn't really tell us how it's supposed to be used. 
 
-    Therefore, the best way to go about solving this is to go through every step of the Berlekamp-Welch algorithm, and see where exactly do the number of packets actually matter. This will be the key to the solution, and in the meantime we also gain useful insight into how the algorithm works, so hopefully similar problmes won't be as hard in the future. As I'll get into later, this is also the advice I'd give to literally any problem you encounter.
+    Therefore, the best way to go about solving this is to go through every step of the Berlekamp-Welch algorithm, and see where exactly do the number of packets actually matter. This will be the key to the solution, and in the meantime we also gain useful insight into how the algorithm works, so hopefully similar problems won't be as hard in the future. As I'll get into later, this is also the advice I'd give to literally any problem you encounter.
     
     Starting off, we know that $P(x)$ is a degree $n-1$ polynomial with $n$ unknown coefficients. Then, Alice sends out packets $P(1) = r_1, P(2) = r_2, \dots, P(m) = r_{m}$ to Bob. (suppose we don't know that $n+2k$ packets are required at this stage, so we'll say Alice sends $m$ packets.)
 
@@ -39,11 +39,11 @@
 
     \[ P(i)E(i) = r_iE(i).\] 
     
-    \begin{guidance*}{}{}
-        Once this equation is presented, the guidance I would give is to study each side of this equation separately, and identify which values are currently unknown. This will hopefully point them towards looking at the coefficients, and then figuring out that $n+2k$ packets are required. In general, this is a good way to approach any equation which has very different forms on the LHS and RHS $-$ the equality sign always hints at a hidden connection between both sides; its our job to find that conneciton and use it to our advantage.
-    \end{guidance*}
+%    \begin{guidance*}{}{}
+%        Once this equation is presented, the guidance I would give is to study each side of this equation separately, and identify which values are currently unknown. This will hopefully point them towards looking at the coefficients, and then figuring out that $n+2k$ packets are required. In general, this is a good way to approach any equation which has very different forms on the LHS and RHS $-$ the equality sign always hints at a hidden connection between both sides; its our job to find that conneciton and use it to our advantage.
+%    \end{guidance*}
     
-    Before we go any further with the solution, I want to take a minute to actually look at why this equation is even valid to begin with; I believe this to be a valuable step in understanding the algorithm, and will no doubt be useful to solving future problems. To show its validity, we consider two cases $-$ whether the received packet $i$ is an error:
+    Before I go any further with the solution, I want to take a minute to actually look at why this equation is even valid to begin with; I believe this to be a valuable step in understanding the algorithm, and will no doubt be useful to solving future problems. To show its validity, we consider two cases $-$ whether the received packet $i$ is an error:
     
     \begin{itemize}
         \item If the packet $i$ is an error, then we know that $E(i)$ will be 0 by the definition of $E(x)$, and since $E(i)$ exists on both sides of the equation, then we have $0=0$, so equality is preserved. 
@@ -52,7 +52,7 @@
 
     This covers all possible cases, and since equality holds in both of them, this equation does make sense for all packets $i$. 
 
-    Now that we fully understand what this equation tells us, now let's examine the left hand side $P(i)E(i)$ more closely. We know from earlier that $P(x)$ is a polynomial of degree $n-1$, and $E(x)$ is a polynomial of degree $k$. Now comes the first of two crucial observations to solve this problem: \textbf{when we multiply two polyonomials together, the combined polynomial has a degree equal to the sum of the two indiviudal degrees.} To see why this is true, we know that the largest power of $x$ in $P(x)$ is $x^{n-1}$ (degree $n-1$), and in $E(x)$ is $x^k$ (degree $k$), so when these two terms multiply together, then we get an $x^{n+k-1}$ term, and so therefore the degree of the product is $n+k-1$. 
+    Now that we fully understand what this equation tells us, now let's examine the left hand side $P(i)E(i)$ more closely. We know from earlier that $P(x)$ is a polynomial of degree $n-1$, and $E(x)$ is a polynomial of degree $k$. Now comes the first of two crucial observations to solve this problem: \textbf{when we multiply two polynomials together, the combined polynomial has a degree equal to the sum of the two individual degrees.} To see why this is true, we know that the largest power of $x$ in $P(x)$ is $x^{n-1}$ (degree $n-1$), and in $E(x)$ is $x^k$ (degree $k$), so when these two terms multiply together, then we get an $x^{n+k-1}$ term, and so therefore the degree of the product is $n+k-1$. 
 
     Now, since the left hand side is a polynomial of degree $n+k-1$, so we can write it as:
 
@@ -65,7 +65,7 @@
     \end{aside*}
 
     \begin{guidance*}{}{}
-        One common mistake to make here is to forget that becuase we have a constant $a_0$ term, there are $n+k$ coefficients instead of $n+k-1$ of them. One way to avoid this is to look explicitly at where you're starting the counting and where you're ending. 
+        One common mistake to make here is to forget that because we have a constant $a_0$ term, there are $n+k$ coefficients instead of $n+k-1$ of them. One way to avoid this is to look explicitly at where you're starting the counting and where you're ending. 
 
         Now that you've seen me do this with the left hand side, I encourage you to try and do the same thing with the right hand side: write down $E(x)$ in its most general polynomial form, then count the number of unknown coefficients. 
     \end{guidance*}
@@ -87,11 +87,13 @@
 
     As we know, for a system of $n+2k$ unknown coefficients, we require at least $n+2k$ equations to solve. Since each packet we receive gives us one of these equations, then we require at least $n+2k$ packets in order to solve for the value of all these coefficients.
 
-    At this point, I would basically consider the problem done, since we've essentially shown why $n+2k$ packets are needed $-$ specifically, \textbf{we need this many becuase it's the minimum number of packets required to guarantee that we can solve for all $n+2k$ coefficients.} Then, after these coefficients are found, we can divide the polynomial on the left hand side by $E(x)$ to get $P(x)$, which finally allows us to decode the message. In the algorithm, this division is formally written as the step: 
+    At this point, I would basically consider the problem done, since we've essentially shown why $n+2k$ packets are needed $-$ specifically, \textbf{we need this many because it's the minimum number of packets required to guarantee that we can solve for all $n+2k$ coefficients.} Then, after these coefficients are found, we can divide the polynomial on the left hand side by $E(x)$ to get $P(x)$, which finally allows us to decode the message. In the algorithm, this division is formally written as the step: 
 
     \[ P(x) = \frac{Q(x)}{E(x)} = \frac{P(x) E(x)}{E(x)}\] 
 
-    this is where we see $Q(x) \equiv P(x) E(x)$ pop back up again. If we \textit{didn't} have all the coefficients determined (i.e. less than $n+2k$ packets), then this polynomial division step would be impossible since there are unknown coefficients, and thus we likely won't be able to decode the message.
+    this is where we see $Q(x) \equiv P(x) E(x)$ pop back up again. If we \textit{didn't} have all the coefficients determined (i.e. less than $n+2k$ packets), then this polynomial division step would be impossible since there are unknown coefficients, and thus we likely won't be able to decode the message. That isn't to say it's 
+	impossible -- you could theoretically get a system that requires fewer equations to solve -- but this isn't true
+	in general. 
 
     \subsection*{Takeaways}
 

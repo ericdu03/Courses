@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.24)  11 FEB 2023 02:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.24)  17 FEB 2023 00:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/eric/Documents/Courses/PHYSICS 105/Homework 3/Homework 3.tex"
-(/Users/eric/Documents/Courses/PHYSICS 105/Homework 3/Homework 3.tex
+**"Homework 3.tex"
+(./Homework 3.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -22,7 +22,7 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-) (/Users/eric/Documents/Courses/PHYSICS 105/Homework 3/../local.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
+) (../local.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
@@ -96,7 +96,8 @@ File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfsyssoftpath@bigbuffer@items=\count193
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-)) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
  (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -155,7 +156,8 @@ File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgflinewidth=\dimen172
-) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@pt@x=\dimen173
 \pgf@pt@y=\dimen174
@@ -205,7 +207,8 @@ Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
 \pgffor@skip=\dimen181
 \pgffor@stack=\toks28
 \pgffor@toks=\toks29
-)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
  (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
@@ -394,7 +397,8 @@ File: pgflibrarycurvilinear.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@circ@res@count=\count294
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex
 \pgfcirc@labelshift=\dimen292
-) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/local/texlive/2021/texmf-dist/tex/latex/physics/physics.sty
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/local/texlive/2021/texmf-dist/tex/latex/physics/physics.sty
 Package: physics 
  (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2021-02-18 L3 programming layer (loader) 
@@ -464,7 +468,8 @@ Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
 \c@Hy@tempcnt=\count300
- (/usr/local/texlive/2021/texmf-dist/tex/latex/url/url.sty
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -550,7 +555,8 @@ File: tikzlibrarybabel.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@lib@dec@text@box=\box67
 )
 \tikz@lib@dec@te@box=\box68
-) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.tex
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.tex
 \pgf@intersect@solutions=\count310
 )) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
 File: tikzlibrarypatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
@@ -619,7 +625,8 @@ Package: fp-addons 1995/03/15
 Package: fp-snap 1995/04/05
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-exp.sty
 Package: fp-exp 1995/04/03
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-trigo.sty
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-trigo.sty
 Package: fp-trigo 1995/04/14
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-pas.sty
 Package: fp-pas 1994/08/29
@@ -915,7 +922,7 @@ Package: chemformula 2020/12/22 v4.16 typeset chemical compounds and reactions (
 \l__chemformula_subscript_box=\box85
 \l__chemformula_plus_space_skip=\skip85
 \l__chemformula_minus_space_skip=\skip86
-)) (/Users/eric/Documents/Courses/PHYSICS 105/Homework 3/Homework 3.aux)
+)) (./Homework 3.aux)
 \openout1 = `"Homework 3.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
@@ -968,7 +975,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 16.
 LaTeX Info: Redefining \pageref on input line 16.
 LaTeX Info: Redefining \nameref on input line 16.
- (/Users/eric/Documents/Courses/PHYSICS 105/Homework 3/Homework 3.out) (/Users/eric/Documents/Courses/PHYSICS 105/Homework 3/Homework 3.out)
+ (./Homework 3.out) (./Homework 3.out)
 \@outlinefile=\write6
 \openout6 = `"Homework 3.out"'.
 
@@ -1022,20 +1029,20 @@ File: curse.JPG Graphic file (type jpg)
 <use curse.JPG>
 Package pdftex.def Info: curse.JPG  used on input line 165.
 (pdftex.def)             Requested size: 388.51665pt x 291.38748pt.
- [4] [5 </Users/eric/Documents/Courses/PHYSICS 105/Homework 3/curse.JPG>] [6] [7] [8] (/Users/eric/Documents/Courses/PHYSICS 105/Homework 3/Homework 3.aux)
+ [4] [5 <./curse.JPG>] [6] [7] [8] (./Homework 3.aux)
 Package rerunfilecheck Info: File `"Homework 3".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 44844 strings out of 478994
- 1031925 string characters out of 5858184
- 1678699 words of memory out of 5000000
+ 44842 strings out of 478994
+ 1031080 string characters out of 5858184
+ 1678698 words of memory out of 5000000
  61540 multiletter control sequences out of 15000+600000
  406686 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,12n,130p,1254b,820s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,12n,130p,1201b,820s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "/Users/eric/Documents/Courses/PHYSICS 105/Homework 3/Homework 3.pdf" (8 pages, 3044402 bytes).
+Output written on "Homework 3.pdf" (8 pages, 3044522 bytes).
 PDF statistics:
  134 PDF objects out of 1000 (max. 8388607)
  93 compressed objects within 1 object stream

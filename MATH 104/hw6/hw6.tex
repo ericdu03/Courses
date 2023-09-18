@@ -1,0 +1,228 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Real Analysis}
+\newcommand{\sgn}{\mathrm{sgn}}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 06} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	Let $f$ be a continuous function from $(0, 1)$. Assume $f(x) < 1$ for any $x \in (0, 1)$, $\lim_{x \to 0} 
+	f(x) < 1$ and $\lim_{x \to 1}f(x) < 1$. Prove $\sup_{x \in (0, 1)} f(x) < 1$.
+
+	\begin{solution}
+		Since $f(x) < 1$ for any $x \in (0, 1)$ then if we pick a subinterval $(a, b) \subset (0, 1)$, then we
+		know that $f(x) < 1$ for any $x \in (a, b)$, and thus $\sup_{x \in (a, b)} f(x) < 1$ since $(a, b)$ is a subinterval of $(0, 1)$. Now, we need to 
+		prove that this also holds for the intervals $(b, 1)$ and $(0, a)$. Let's first do it for $(b, 1)$. 
+
+		Consider the sequence of intervals:
+		\[
+			\left(b, b + \frac{1 - b}{2}\right ), \left(b + \frac{1 - b}{2}, b + \frac{1-b}{2} + \frac{1 - \frac{1 - b}{2}}{2}\right), 
+			\dots
+		\] 
+		where each next interval is defined recursively as $(b_{n-1}, b_{n-1} + \frac{1 - b_{n-1}}{2})$. Focusing
+		just on the upper bound, we have the recursive relation $b_n = b_{n-1} + \frac{1-b_{n-1}}{2}$. If we
+		can prove that as $n\to \infty$ that $b_n \to 1$, then we can prove that in the limit, this limit is 
+		equivalent to the interval $(b, 1)$. Now let's prove this claim. This sequence $b_n$ is written as:
+		\[
+			b_n = b_{n-1} + \frac{1 - b_{n-1}}{2} = \frac{1}{2} + \frac{b_{n-1}}{2}
+		\] 
+		So in the limit as $n \to \infty$, then we can actually write: 
+		\[
+			b_\infty  = \frac{1}{2} + \frac{b_\infty}{2} \implies \frac{b_\infty}{2} = \frac{1}{2}, b_{\infty} 
+			= 1
+		\] 
+		 so therefore we do conclude that $b_n \to 1$ as $n \to \infty$. Then, since each of these intervals $(
+		 b_n, b_{n+1})$ is a subinterval of $(0,1)$, we know that $\sup_{x \in (b_n, b_{n+1})} f(x) <1$. This implies
+		 that the supremum of the union of all these intervals:
+		 \[
+			 S = \bigcup_{n = 1}^\infty (b_n, b_{n+1})
+		 \] 
+		 is also less than 1, or equivalently $\sup_{x \in S} f(x) < 1$. The same logic 
+		 holds for the interval $(0, a)$, where we construct a sequence $a_n = \frac{a_{n-1}}{2}$, and it's clear
+		 that regardless of the choice of $a_0$ that this sequence goes to 0, so the supremum of the unions:
+		 \[
+			S' = \bigcup_{n = 1}^\infty (a_{n+1}, a_n)
+		 \] 
+		 is also less than 1, or $\sup_{x \in S'} f(x) < 1$. Now, we can combine all three intervals together. 
+		 Since the supremum of each interval $S$, $S'$ and $(a, b)$ is less than 1, then we know that the 
+		 supremum of the set $A = S \cup S' \cup (a, b)$ also has the property that $\sup_{x \in A} f(x) < 1$, 
+		 and since $A = (0, 1)$, this implies that $\sup_{x \in (0, 1)} f(x) < 1$, as desired.
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 2}
+	Let $f$ be a continuous function from $[0, 1]$ to $[0, 1]$. Prove: There exists one (or more) fixed point
+	$x$ such that $f(x) = x$. Hint: Consider $g(x) = f(x) - x$.
+
+	\begin{solution}
+		Consider the function $g(x) = f(x) - x$. The minimum difference that $f(x)$ can be from $x$ given the
+		problem statement is $-1$ (just take the minimum value and maximum values), and the maximum difference
+		is $1$. Therefore, $g(x)$ maps to a subset of the
+		interval $[-1, 1]$. Now, if this interval that $g(x)$ maps to contains 0, then we know that the fixed
+		point we are looking for is the value $x_0$ such that $g(x_0) = 0$. Now, we prove that it must always
+		contain 0. We proceed by contradiction. 
+
+		Suppose that the interval $g(x)$ maps onto does not contain $0$. Then, this means that the sign of $g(x)$
+		is either strictly positive or strictly negative. In the case where $g(x) > 0$ for all $x \in [0, 1]$, 
+		then this implies that $f(x) > x$ on this interval. However, this is impossible: consider the point $x =
+		1$. The sign of $g(x)$ implies that $f(x) > 1$ for this specific point. This is a contradiction, since 
+		the maximum value of $f$ is 1, as indicated by the question. 
+
+		Now suppose that $g(x) < 0$ for all $x \in [0, 1]$. This would then imply that $f(x) < x$ for all $x$. 
+		Now, consider $x = 0$. In this case, the sign of $g(x)$ implies that $f(x) < 0$, which is also impossible
+		since the minimum value of $f$ is 0, given in the problem. Therefore, since neither case works, then 
+		$g(x)$ must contain 0, and therefore must contain at least one fixed point. 
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 3}
+	Prove that a polynomial function $f$ of odd degree has at least one real root. \textit{Hint:} It may help 
+	to consider the first case of a cubic, i.e. $f(x) = a_0 + a_1x + a_2x^2 + a_3x^3$ where $a_3 \neq 0$. 
+
+	\begin{solution}
+		Since the polynomial is an odd degree, then our goal is to show that regardless of the coefficients, 
+		we can choose a value $x_1$ such that $f(x_1) < 0$ and another point $x_2$ such that $f(x_2) > 0$. Since
+		$f$ is continuous\footnote{I assume that polynomials are continuous, this is also something that's 
+		assumed in the lecture notes}, if we can prove the existence of these two points then we can invoke the
+		intermediate
+		value theorem to prove that there's some $x_1 < c < x_2$ such that $f(c) = 0$. 
+
+		Now, we aim to prove the existence of $x_1$ and $x_2$. To do so, we look at the sign of the leading 
+		coefficient. If $a_3 > 0$, then we know that $\lim_{x \to \infty} f(x) = \infty$ (see below for proof). Specifically, this 
+		means that for any positive $M > 0$, we know that there exists some $x_2$ such that $f(x_2) > M$. 
+		Therefore, there exists $x_2$ such that $f(x_2) > 0$. Likewise, we know that $\lim_{x \to -\infty} f(x) =
+		-\infty$, so therefore for any $M < 0$, there exists a value $x_1$ such that $f(x_1) < M$, and thus
+		$f(x_1) < 0$. Finally, since $x_1$ and $x_2$ exist, then by IVT there exists some real value $c$ where 
+		$x_1 < c < x_2$ such that $f(c) = 0$. 
+
+		The same logic works for the second case where $a < 0$. In this case, we know that $\lim_{x \to \infty} =
+		-\infty$, so for any $M < 0$ there exists some $f(x_2) < M$, and hence $f(x_2) < 0$. Likewise, since
+		$\lim_{x \to -\infty} f(x) = \infty$, then for any $M > 0$, there exists some $x_1$ such that $f(x_1) > M
+		$, hence $f(x_1) > 0$. Therefore, since $f(x_1)>0$ and $f(x_2) < 0$, and $f$ is continuous, there must 
+		exist a point $c$ such that $f(c) = 0$, implying that $f$ has a real root.
+
+		I'm going to now prove that the limits as $x \to \pm \infty$, we have $f(x) \to \pm \infty$. Consider
+		the function 
+		\[
+		 g(x) = \frac{\sgn(a_n)}{x^{n-1}}f(x) = \sgn(a_n)(a_{n-1} + a_n x)
+		\]
+		From here, it is clear that
+		depending
+		on the sign of $a_n$, that the limit as $x \to \pm \infty$ means that $g(x) \to \pm \infty$, and thus 
+		$f(x) \to \pm \infty$ as well. 
+	\end{solution}
+
+	
+
+	\pagebreak
+
+	\section*{Problem 4}
+	Suppose $f$ is continuous on $[0, 2]$ and $f(0) = f(2)$. Prove there exist $x, y$ in $[0, 2]$ such that 
+	$|y - x| = 1$ and $f(x) = f(y)$. \textit{Hint:} Consider $g(x) = f(x+1) - f(x)$ on $[0, 1]$. 
+
+	\begin{solution}
+		Following the hint, consider $g(x) = f(x+1) - f(x)$. 
+		Now we proceed to show that $g(x)
+		= 0$ for some $x$ via contradiction. 
+
+		Suppose that $g(x) \neq 0$ for all $x \in [0, 1]$. Since $g$ is continuous, then this means that either
+		$g(x) > 0$ for all $x \in [0, 1]$ or $g(x) < 0$ for all $x \in [0, 1]$. Otherwise, if $g(x)$ flips sign
+		in the interval $[0, 1]$, then the intermediate value theorem would tell us that there exists some $x_0$
+		such that $g(x_0) = 0$, and hence $f(x) = f(y)$ when $|y - x| = 1$.
+
+		First, suppose $g(x) > 0$ for all $x$. 
+		Then, this means that for $x = 0$, this gives the relation that $f(1) > f(0)$, and plugging in $x = 1$
+		gives $f(2) > f(1)$. Combining these two inequalities, this gives $f(2) > f(0)$, which is a 
+		contradiction. 
+
+		Likewise, suppose that $g(x) < 0$ for all $x$. Then, this gives $f(1) < f(0)$ for $x = 0$ and plugging in
+		$x = 1$ gives $f(2) < f(1)$, so combining these two this gives $f(2) < f(0)$, which is also a 
+		contradiction. 
+
+		Therefore, since $g(x)$ cannot strictly be either positive or negative, there must exist a point where
+		$g(x)$ switches sign. Therefore, there exists a point where $g(x) = 0$, and thus there exists $x, y \in 
+		[0, 2]$ such that $|y - x| = 1$ and $f(x) = f(y)$.
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 5}
+	Prove the Cauchy condition for the limits of a function: Given $f: A \to \mathbb R$ and $c \in A$ is an 
+	accumulation point of $A$. Then, $\lim_{x \to c} f$ exists if and only if the following Cauchy condition 
+	holds. For any $\epsilon > 0$, there exists $\delta > 0$ such that for any $x_1, x_2 \in (c - \delta, c + 
+	\delta)$, we have
+	\[
+	|f(x_1) - f(x_2)| < \epsilon
+	\] 
+
+	\begin{solution}
+		First we prove the forward direction: that $\lim_{x \to c} f(x)$ exists if the Cauchy condition holds. 
+		In other words, we prove that $\lim_{x \to c}$ exists if for any $x_1, x_2 \in (c - \delta, c + \delta)$
+		then $|f(x_1) - f(x_2)| < \epsilon$. In this case, since $x_1, x_2$ are chosen from the interval $(c -
+		\delta, c+\delta)$, then we know that $0 < |x_1 - c| < \delta$ and $0 < |x_2 - c| < \delta$. Then by 
+		the triangle inequality: 
+		\[
+		|f(x_1) - f(c) - f(x_2) + f(c)| \le |f(x_1) - f(c)| + |f(x_2) - f(c)| < \epsilon
+		\] 
+		This implies that $|f(x_1) - f(c)| < \epsilon$ and $|f(x_2) - f(c)| < \epsilon$, which is the standard 
+		statement for continuity. 
+
+		Now for the reverse direction: if the limit exists, we prove the Cauchy condition holds. Recall the 
+		standard definition of the limit: $\forall \epsilon >0$, $\exists \delta > 0$ such that $0 < |x - c| <
+		\delta$ means that $|f(x) - f(c)| < \epsilon$. Therefore, the Cauchy condition holds if we just choose 
+		two $x_1, x_2$ such that $x_1 \neq x_2$ that satisfy this continuity statement since $x_1, x_2$ are 
+		within the interval $(c - \delta, c + \delta)$, and again by the triangle inequality, 
+		\[
+		|f(x_1) - f(c)| + |f(c) - f(x_2)| < 2\epsilon \implies |f(x_1) - f(x_2)| < 2 \epsilon 
+		\]
+		Since $\epsilon$ is arbitrary, we can just choose $\epsilon' = 2\epsilon$ and we get the Cauchy condition. 
+	\end{solution}
+	\pagebreak
+
+	\section*{Problem 6}
+	Prove: A set $A$ is compact (bounded and closed) if and only if $A$ is sequentially compact, meaning that for
+	any sequences $(x_n)$ of $A$, there exists a subsequence $(x_{n_k})$ of $(x_n)$ such that $x_{n_k}$ converges
+	to some point $a \in A$.
+
+	\begin{solution}
+		We prove the forward direction: $A$ is sequentially compact if $A$ is compact. Because $A$ is bounded,
+		then every sequence $x_n \in A$ has a convergent subsequence (By Bolzano-Weierstrass). Furthermore,
+		since $A$ is closed, then every sequence \textit{must} converge to a point $a \in A$, since $A$ contains
+		all its limit points.
+
+		Now the reverse direction: we prove that if $A$ is sequentially compact, then $A$ is compact. Using the
+		hint from the notes, suppose that $A$ is not compact. This means that either $A$ is not bounded, not 
+		closed, or both.
+
+		Firstly, if $A$ is not closed, then this implies the existence of some sequence $x_n$ such that it 
+		converges to a point $a \not\in A$. This contradicts the statement that $A$ is sequentially compact, 
+		because we can just choose the subsequence $x_{n_k}$ to be the sequence $x_n$ itself, which does not
+		converge to $a \in A$. 
+
+		Secondly, if $A$ is not bounded, then this implies that $A$ is not bounded either from above or below. 
+		Suppose without loss of generality that $A$ is not bounded from above. Now, define a sequence $x_n$ which
+		is strictly increasing. Then, every subsequence of $x_n$ is also strictly increasing, and therefore there
+		will not exist an $M$ which bounds \textit{any} sequence, because for any $M$ that bounds  
+		$x_{n_k}$ up to some $n_k$, we know that there exists some $x_{n_m}$ where $n_m > n_k$ such that $x_{n_m}
+		- x_{n_k} > M - x_{n_k}$. This implies that if we take the sequence up to $x_{n_m}$, $M$ no longer bounds
+		the sequence. Therefore, since every subsequence of $x_n$ is unbounded, it must diverge, contradicting 
+		the fact that there exists a sequence $x_{n_k}$ that converges to a value $a \in A$. This is a 
+		contradiction, hence $A$ must be bounded. 
+
+		Therefore, $A$ must be closed and bounded, and thus compact by definition. 
+	\end{solution}
+
+
+\end{document}

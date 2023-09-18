@@ -348,7 +348,6 @@ def fastest_words(match):
     return result
     # END PROBLEM 10
 
-
 def match(words, times):
     """A data abstraction containing all words typed and their times.
 

@@ -1,0 +1,54 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Real Analysis}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill  \classcode}
+\newline
+\large{HW 03} \Large{\hfill  \classname \hfill } \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+		\maketitle
+
+		\section*{Problem 1}
+
+		Let $s_n = n!/n^n$. Prove that $s_n \to 0$ as $n \to \infty$.
+
+		\begin{solution}
+				First, we rewrite $s_n$: 
+				\[ \frac{n!}{n^n} = \frac{n(n-1) \cdots 1}{n \cdot n \cdots n} = \frac{n-1}{n} \cdot 
+				\frac{(n-2)(n-3)\cdots 1}{n \cdot n \cdots n} \le \frac{n-1}{n}\]
+				We also know that this sequence is bounded below by 0 since $n$ is positive, so if we can prove
+				that 
+				\[ \lim_{n \to \infty} \frac{n-1}{n} = 0 \] 
+				Then we've solved the problem. To do this, we look for a value of $N$ such that for all 
+				$\epsilon > 0$: 
+				\begin{align*}
+						|\frac{n-1}{n} - 0| &< \epsilon\\
+						\frac{n-1}{n} &< \epsilon\\
+						n-1 &< n\epsilon\\
+						\therefore n &> \frac{1}{1-\epsilon}
+				\end{align*}
+				So therefore if we let $N = \frac{1}{1-\epsilon}$ then we satisfy this inequality for all 
+				$\epsilon > 0$. Therefore, we've proven the limit, so we now have
+				\[ 0 \le \lim_{n \to \infty} s_n \le 0\]
+				which implies that $\lim_{n \to \infty} s_n = 0$.
+		\end{solution}
+
+		\pagebreak
+		\section*{Problem 2}
+		Let $(t_n)$ be a bounded sequence, i.e. there exists $M$ such that $|t_n| \le M$ for all $n$, and let 
+		$(s_n)$ be a sequence such that $\lim s_n = 0$. Prove $\lim(s_nt_n) = 0$.
+
+		\begin{solution}
+				Since $t_n$ is bounded, then we know that our sequence satisfies:
+				\[ -Ms_ \le t_n s_n \le Ms_n \ \forall n \in \mathbb N\]
+				
+		\end{solution}
+
+\end{document}

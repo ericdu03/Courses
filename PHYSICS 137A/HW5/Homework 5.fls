@@ -1,9 +1,9 @@
-PWD /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5
+PWD /Users/eric/Documents/Courses/PHYSICS 137A/HW5
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.tex
-OUTPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.log
+INPUT Homework 5.tex
+OUTPUT Homework 5.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -949,7 +949,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
-OUTPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.pdf
+OUTPUT Homework 5.pdf
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
@@ -1324,19 +1324,40 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/../local.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.aux
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.aux
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.aux
-OUTPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.aux
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/amssymb.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/array.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/mathtools/mathtools.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/circuitikz/circuitikz.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/physics/physics.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/parskip/parskip.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tkz-euclide/tkz-euclide.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titlesec/titlesec.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/lipsum/lipsum.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amscls/amsthm.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3experimental/xcoffins/xcoffins.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
+INPUT ./Homework 5.aux
+INPUT Homework 5.aux
+INPUT Homework 5.aux
+OUTPUT Homework 5.aux
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1394,17 +1415,17 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-OUTPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
+INPUT ./Homework 5.out
+INPUT Homework 5.out
+INPUT ./Homework 5.out
+INPUT Homework 5.out
+INPUT ./Homework 5.out
+INPUT Homework 5.out
+INPUT ./Homework 5.out
+INPUT Homework 5.out
+INPUT ./Homework 5.out
+INPUT ./Homework 5.out
+OUTPUT Homework 5.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
@@ -1430,9 +1451,9 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx5.tfm
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.aux
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
-INPUT /Users/eric/Documents/Berkeley/PHYSICS-137A/HW5/Homework 5.out
+INPUT Homework 5.aux
+INPUT ./Homework 5.out
+INPUT ./Homework 5.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

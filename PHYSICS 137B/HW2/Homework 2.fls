@@ -2,8 +2,8 @@ PWD /Users/eric/Documents/Courses/PHYSICS 137B/HW2
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.tex
-OUTPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.log
+INPUT Homework 2.tex
+OUTPUT Homework 2.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -19,15 +19,15 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty
+INPUT ../../local.sty
+INPUT ../../local.sty
+INPUT ../../local.sty
+INPUT ../../local.sty
+INPUT ../../local.sty
+INPUT ../../local.sty
+INPUT ../../local.sty
+INPUT ../../local.sty
+INPUT ../../local.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
@@ -844,17 +844,17 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/uniquecounter/uniquecounter
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tkz-euclide/tkz-euclide.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tkz-euclide/tkz-euclide.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/tkz-euclide/tkz-euclide.sty
@@ -931,7 +931,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
-OUTPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.pdf
+OUTPUT Homework 2.pdf
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
@@ -1330,95 +1330,152 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/mweights/mweights.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amstext.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.aux
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.aux
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.aux
-OUTPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.aux
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
+INPUT ./Homework 2.aux
+INPUT Homework 2.aux
+INPUT Homework 2.aux
+OUTPUT Homework 2.aux
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1math.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1math.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1math.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1math.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathsym.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathsym.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathsym.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathsym.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1476,54 +1533,89 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-OUTPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT ./Homework 2.out
+INPUT Homework 2.out
+INPUT ./Homework 2.out
+INPUT Homework 2.out
+INPUT ./Homework 2.out
+INPUT Homework 2.out
+INPUT ./Homework 2.out
+INPUT Homework 2.out
+INPUT ./Homework 2.out
+INPUT ./Homework 2.out
+OUTPUT Homework 2.out
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathrm.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathrm.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathrm.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathit.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathit.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathit.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathsym.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathsym.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathsym.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathex.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathex.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathex.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathex.fd
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathex.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathex.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathex.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1mathbb.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1mathbb.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1mathbb.fd
+INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1mathbb.fd
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathbb.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathbb.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathbb.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathrm-bold.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathrm-bold.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathrm-bold.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathit-bold.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathit-bold.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertinust1math/libertinust1-mathit-bold.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t1.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm
 INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.aux
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf-t1.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1--base.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf-t1.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1--base.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/public/libertine/LinLibertineTI-tlf-t1.vf
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t1--base.tfm
+INPUT Homework 2.aux
+INPUT ./Homework 2.out
+INPUT ./Homework 2.out
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusSYM.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusEX.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusMR.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusMI.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertinust1math/LibertinusT1Math.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb

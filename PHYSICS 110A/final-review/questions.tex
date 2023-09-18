@@ -1,0 +1,55 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electromagnetism and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Review Questions} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Chapter 4}
+	\begin{itemize}
+		\item (Griffiths p.189) Book mentions that $\div \mathbf D = \rho_f$ and $\curl \mathbf D = 0$ only
+			when the space is 
+			entirely filled with a homogeneous dielectric -- can this argument be extended to say that within
+			a homogeneous dielectric (that is large enough, but $E$ field is nonzero outside), that the same
+			equations hold true?
+		\item (Griffiths p.189) How does $\mathbf D = \epsilon_0\mathbf E_{\text{vac}}$ come from the two
+			expressions 
+			above it?
+		\item (Griffiths p.192) I thought that $\rho_b$ had to do with polarization, which does not require
+			the presence of free charge. Why must it be the case that if $\rho_f = 0$ then $\rho_b = 0$?
+		\item (Griffiths p.193) Where does the $-E_0r \cos \theta$ term in Equation 4.45 come from? 
+			\\
+			\textbf{Answer:} Comes from the fact that $\mathbf E = E_0 \hat{z}$ so therefore using $V = 
+			- \int \mathbf E \cdot d\mathbf l$ you get that $V = -E_0z = -E_0r\cos \theta$, since $z = r
+			\cos \theta$. 
+		\item (Griffiths p.195) When only given $\chi_e$, should the approach always be to use $\sigma_b = 
+			\epsilon_0\chi_e \mathbf E$, then use the $\mathbf E$ field at the boundary (due to the bound charge) to solve for 
+			$\sigma_b$, which then allows us to find $\mathbf E$?
+	\end{itemize}
+
+	\section*{Chapter 7}
+	\begin{itemize}
+		\item (Griffiths p.304) Why is it true that if $\sigma = \infty$, then the net force on the charges
+			equals zero? Is this becuase we require $\mathbf J$ to be finite and since $\mathbf J = \sigma 
+			\mathbf f $, then if $\sigma = \infty$ then in order for $\mathbf J$ to be finite then 
+			we require that $\mathbf f = 0$?
+	\end{itemize}
+
+	\section*{Chapter 8}
+	\begin{itemize}
+		\item (Griffiths p. 359) Why is it that when $\dv{W}{t} = 0$, then we can conclude that 
+			\[
+				\int\pdv{u}{t}d\tau = - \oint \mathbf S \cdot d\mathbf a?
+			\] 
+	\end{itemize}
+\end{document}

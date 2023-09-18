@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.24)  2 FEB 2023 13:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.24)  23 MAR 2023 03:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2021,26 +2021,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 221--226
 
  []
 
-) [8] (/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.aux)
+) (/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/lecture18.tex [8]
+Chapter 2.
+[9
+
+] [10] [11]) [12] (/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 484FCE71583657C2E562DD493E124AC4;829.
+(rerunfilecheck)             Checksum: FA0076D75CC14F9B0D45D2D5AB79992E;1745.
  ) 
 Here is how much of TeX's memory you used:
- 54020 strings out of 478994
- 1329145 string characters out of 5858184
- 2097447 words of memory out of 5000000
- 70583 multiletter control sequences out of 15000+600000
+ 54040 strings out of 478994
+ 1329480 string characters out of 5858184
+ 2097452 words of memory out of 5000000
+ 70591 multiletter control sequences out of 15000+600000
  415089 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,20n,125p,1252b,989s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.pdf" (8 pages, 252147 bytes).
+Output written on "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.pdf" (12 pages, 279360 bytes).
 PDF statistics:
- 193 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
- 29 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 233 PDF objects out of 1000 (max. 8388607)
+ 181 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

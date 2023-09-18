@@ -1,0 +1,179 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mechanics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 09} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder} to complete this assignment. 
+	\section*{Problem 1}
+	Calculate the total cross-section for scattering from a Yukawa potential, in the Born approximation. Express your answer as a function of $E$. 
+
+\begin{solution}
+	Griffiths solves in problem 10.11 that the scattering amplitdue is given by: 
+	\[
+	f(\theta) = -\frac{2m\beta}{\hbar^2(\mu^2 + \kappa^2}
+	\] 
+	Using this result, we can now calculate the differential cross section using the relation
+	$\dv{\sigma}{\Omega} = |f(\theta)|^2$, so therefore: 
+	\[
+		\dv{\sigma}{\Omega} = \frac{4m^2 \beta^2}{\hbar^2(\mu^2 + \kappa^2)}
+	\] 
+	Now we integrate this with respect to $d\Omega = \sin \theta d\theta d\phi$ in order to get the 
+	total cross-section. Here, we will need to return the substitution $\kappa = 2k \sin \frac{\theta}{2}$, 
+	since there is $\theta$ dependence in $\kappa$. Therefore, we integrate: 
+	\[
+		\sigma =\left( \frac{2m\beta}{\hbar}\right)^2 \int_0^{2\pi} \int_0^\pi \frac{\sin \theta}{\mu^2 +
+		4k^2 \sin^2 \frac{\theta}{2}} d\theta d\phi
+	\] 
+	From here, the integral can be evaluated by hand (the integral by hand is rather tedious in my opinion)
+	or via a computer, eventually we get:
+	\[
+	\sigma = \left( \frac{4m\beta}{\mu\hbar^2} \right)^2 \frac{\pi}{\mu^2 + \frac{8mE}{\hbar^2}}
+	\] 
+		\end{solution}
+
+		\pagebreak
+	\section*{Problem 2}
+	For the potential in Problem 10.4, 
+	\begin{enumerate}[label=(\alph*)]
+		\item calculate $f(\theta)$, $D(\theta)$ and $\sigma$, in the low-energy Born approximation;
+		
+		\begin{solution}
+			The potential in question is the delta function $V(r) = a \delta(r - a)$, and in the low energy 
+			Born approximation, we compute: 
+			\[
+			f(\theta) = -\frac{m}{2\pi\hbar^2}\int V(r) d^3r
+			\] 
+			
+			So therefore:
+			\begin{align*}
+				f(\theta) &= -\frac{m}{2\pi\hbar^2}\int_0^\infty \int_0^{2\pi} \int_0^\pi \alpha \delta(r-a)
+				d\theta d\phi dr\\
+					&= \frac{4\pi\alpha m}{2\pi\hbar^2}\int_0^\infty \delta(r-a)r^2 dr\\
+					&= -\frac{2\alpha ma^2}{\hbar^2}
+			\end{align*}
+			In the last step, I used the fact that $\int f(x) \delta(x - a) = f(a)$, a well known result. The 
+			differential cross section $D(\theta) = |f(\theta)|^2$, so therefore: 
+			\[
+			D(\theta) = \frac{4\alpha^2 m^2 a^4}{\hbar^4}
+			\] 
+			Thus, the total cross section integrates over $d\Omega = \sin \theta d\theta d\phi$, so:
+			\begin{align*}
+				\sigma &= \int D(\theta) d\Omega\\
+					   &=\int_0^\pi \int_0^2\pi \frac{4\alpha^2m^2a^4}{\hbar^4} \sin \theta d\theta d\phi \\
+					   &= \frac{4\alpha^2m^2a^4}{\hbar^4} (4\pi) \\
+					   &= \frac{16\pi\alpha^2 m^2 a^4}{\hbar^4} 
+			\end{align*}
+		\end{solution}
+		\item calculate $f(\theta)$ for arbitrary energies, in the Born approximation;
+
+		\begin{solution}
+			For arbitrary energies, the scattering amplitude is: 
+			\[
+			f(\theta) = -\frac{2m}{\hbar^2 \kappa}\int_0^\infty V(r) r \sin(\kappa r) dr
+			\] 
+			So plugging our $V(r)$ in: 
+			\begin{align*}
+				f(\theta) &= -\frac{2m\alpha }{\hbar^2 \kappa}\int_0^\infty \delta(r - a)r \sin (\kappa r) dr\\
+				&= -\frac{2m\alpha}{\hbar^2 \kappa} a \sin(\kappa a) \\
+				&= -\frac{ma\alpha}{\hbar^2 k \sin \frac{\theta}{2}}\sin(2k\sin \frac{\theta}{2}a)
+			\end{align*}
+		\end{solution}
+		
+		
+	\end{enumerate}
+	\pagebreak	
+	\section*{Problem 3}
+
+	Using the Born approximation, evaluate the differential scattering cross section for scattering of particles
+	of mass $m$ and incident energy $E$ by the repulsive well with potential
+	\[
+	V(r) = \begin{cases}
+		V_0 & 0 < r < a\\
+		0 & r> a
+	\end{cases}
+	\]
+	Exhibit $E$ and $\theta$ dependence. 
+
+	\begin{solution}
+		Recall the equation for the cross section scattering: 
+		\[
+			\dv{\sigma}{\Omega} = \frac{m^2}{4\pi^2 \hbar^4}|\mel{k_f}{V(r)}{k_i}|^2
+		\] 
+		So we need to compute the matrix element $\mel{k_f}{V(r)}{k_i}$. Under the born approximation, we assume
+		that the wavefunctions are free particles, so this matrix element is the integral: 
+		\begin{align*}
+			\mel{k_f}{V(r)}{k_i} &= \int e^{-i \vec {k_f} \cdot \vec r} V(r) e^{i \vec{k_i}\cdot \vec r} d^3r \\
+								 &= \int e^{-i(\vec k_f - \vec k_i) \cdot r}V(r) d^3r 
+		\end{align*}
+		To compute this integral, we first perform the usual coordinate transform, so this integral becomes: 
+		\[
+			\mel{k_f}{V(r)}{k_i} = V_0 \int e^{-i(2k \sin \frac{\theta}{2}) r' \cos \theta'} r;^2 \sin \theta 
+			dr' d\theta' d\phi'
+		\] 
+		where $k = k_f - k_i$. Applying bounds to our integral, this gives: 
+		\[
+			\mel{k_f}{V(r)}{k_i} = 2\pi V_0 \int_0^a \int_0^\pi \int_0^{2\pi} e^{-2ik \sin \frac{\theta}{2}r' 
+			\cos \theta'} r'^2 \sin \theta d\phi d\theta dr
+		\] 
+		The $\phi$ integral evaluates to $2\pi$ since no term has $\phi$ dependence, then the other two 
+		integrals are taken by a calculator. When evaluated, they give:
+		\[
+			\mel{k_f}{V(r)}{k_i} = 4\pi \frac{V_0}{k'} \frac{\sin(ak') - ak' \cos (ak')}{k'^2}
+		\] 
+		Here, $k' = 2k \sin \frac{\theta}{2}$. Therefore, the scattering cross section is:
+		\[
+			\dv{\sigma}{\Omega} = \frac{m^2}{4\pi^2 \hbar^4} \frac{16 \pi^2 V_0^2}{k'^6}\left[\sin (ak') - 
+			ak' \cos (ak')\right]^2 = \frac{4m^2V_0^2}{\hbar^4 k'^6}\left[\sin(ak') - (ak')\cos(ak')\right]^2
+		\] 
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 4}
+	Using the Born approximation, obtain an integral expression for the total cross section for scattering of 
+	particles of mass $m$ under the attractive Gaussian potential
+
+	\[ 
+		V(r) = -V_0 \ \mathrm{exp}\left[-\left( \frac{r}{a} \right)^2\right]
+	\] 
+	
+	\begin{solution}
+		We are just asked to come up with the integral expression, which essentially just asks for $\mel{k_f}
+		{V(r)}{k_i}$. Therefore, the matrix element becomes: 
+		\[
+			\mel{k_f}{V(r)}{k_i} =  -V_0\int e^{-i(\vec k_f - \vec k_i) \cdot \vec r} e^{-(r/a)^2} d^3r\\
+		\] 
+		Just like the previous problem, this means that we're solving: 
+		\[
+			\int_0^\infty \int_0^{2\pi} \int_0^\pi e^{-2ik \sin \frac{\theta}{2}r' \cos \theta'} e^{-r'^2/a^2}
+			r'^2 \sin \theta' d\theta' d\phi' dr'
+		\] 
+		The $\phi$ integral drops out as usual, and after evaluating the $\theta$ term, we're left with the 
+		integral: 
+		\[
+			\frac{2\pi}{k \sin \frac{\theta}{2}}\int_0^\infty e^{-(r'/a)^2} r' \sin (2r'\sin \frac{\theta}{2}k)
+			dr'
+		\] 
+		I tried plugging this into WolframAlpha, and it didn't give me an expression out. So unfortunately, 
+		we're going to have to leave this integral as is. Since $d\Omega = \sin \theta d\phi d\theta$, the total
+		cross section becomes: 
+		\begin{align*}
+			\sigma &= \frac{m^2}{4\pi^2 \hbar^4} \int_0^\pi \int_0^{2\pi} \left[\frac{2\pi}{k \sin \frac{\theta}{2}} \int_0^\infty e^{-(r/a)^2} r' \sin(2r' \sin \frac{\theta}{2} k) dr'\right]^2  \sin \theta d\phi d\theta \\
+				   &= \frac{m^2}{k\hbar^4} \int_0^\pi \frac{\sin \theta}{\sin^2 \frac{\theta}{2}}\left[ \int_0^\infty  
+				   e^{-(r/a)^2} r' \sin(2r' \sin \frac{\theta}{2} k) dr'\right]^2 d\theta  
+		\end{align*}
+	\end{solution}
+\end{document}

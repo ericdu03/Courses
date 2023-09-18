@@ -2,8 +2,8 @@ PWD /Users/eric/Documents/Courses/CS 70/HW3
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.tex
-OUTPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.log
+INPUT hw03-student.tex
+OUTPUT hw03-student.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -21,17 +21,17 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size11.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size11.clo
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr10.tfm
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/header.sty
+INPUT ./header.sty
+INPUT ./header.sty
+INPUT header.sty
+INPUT ./header.sty
+INPUT ./header.sty
+INPUT ./header.sty
+INPUT ./header.sty
+INPUT ./header.sty
+INPUT header.sty
+INPUT ./header.sty
+INPUT header.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/algorithms/algorithm.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/algorithms/algorithm.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/algorithms/algorithm.sty
@@ -1239,10 +1239,10 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/t1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
-OUTPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
+INPUT ./hw03-student.aux
+INPUT hw03-student.aux
+INPUT hw03-student.aux
+OUTPUT hw03-student.aux
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1301,18 +1301,18 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-OUTPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.pdf
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-OUTPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
+INPUT ./hw03-student.out
+INPUT hw03-student.out
+INPUT ./hw03-student.out
+INPUT hw03-student.out
+INPUT ./hw03-student.out
+INPUT hw03-student.out
+INPUT ./hw03-student.out
+INPUT hw03-student.out
+OUTPUT hw03-student.pdf
+INPUT ./hw03-student.out
+INPUT ./hw03-student.out
+OUTPUT hw03-student.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
@@ -1406,9 +1406,9 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/times/ptmr8c.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/vf/adobe/times/ptmr8c.vf
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.aux
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
-INPUT /Users/eric/Documents/Courses/CS 70/HW3/hw03-student.out
+INPUT hw03-student.aux
+INPUT ./hw03-student.out
+INPUT ./hw03-student.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmdunh10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

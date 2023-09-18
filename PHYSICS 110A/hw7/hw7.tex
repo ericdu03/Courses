@@ -1,0 +1,172 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electrostatics and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 07} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+
+	I worked with \textbf{Andrew Binder, Teja Nivarthi, Nathan Song, Christine Zhang} and \textbf{Nikhil
+	Maserang} to complete this homework. 
+	\section*{Problem 1}
+	Show that the quadrupole term in the multipole expansion can be written as
+	\[
+		V_{\text{quad}}(r) = \frac{1}{4\pi \epsilon_0}\frac{1}{r^3}\sum_{i, j = 1}^3 \hat{r_i}\hat{r_j}Q_{ij}
+	\] 
+	where 
+	\[
+		Q_{ij} = \int \left[\frac{3}{2}r_i'r_j' - \frac{1}{2}(r')^2 \delta_{ij}\right]\rho(\mathbf r') d\tau'
+	\] 
+	Note that $Q_{ij}$ is a two-rank tensor, so it is possible to express it as a matrix. Also show that $Q_{ij}$
+	is traceless.
+
+
+	\begin{solution}
+		Here we will compare this expression to the quadrupole expansion term we are normally used to show 
+		equivalence. Recall that the actual way we write the quadrupole term is:
+		\[
+			V_{\text{quad}}(r) = \frac{1}{4\pi \epsilon_0}\frac{1}{r^3}\int (r')^2\left( \frac{3}{2}\cos^2 \alpha
+			- \frac{1}{2}\right) \rho(r') d\tau
+		\] 
+		Comparing this with our expression, it's clear that we only need to show that:
+		\[
+			\sum_{i, j = 1}^3 \hat{r_i}\hat{r_j}\int \left(\frac{3}{2}r_i' r_j' -
+			\frac{1}{2}(r')^2 \delta_{ij}\right)\rho(r') d\tau' = \int (r')^2\left( \frac{3}{2}\cos^2 \alpha - 
+			\frac{1}{2}\right) \rho(r') d\tau'
+		\] 
+		Moving the integral in the sum, it means we need to show that:
+		\begin{equation}
+		\label{eq1}
+			\sum_{i, j = 1}^3 \hat{r_i}\hat{ r_j}\left( \frac{3}{2}r_i' r_j' - 
+			\frac{1}{2}(r')^2 \delta_{ij}\right)
+			= (r')^2 \left( \frac{3}{2}\cos^2 \alpha - \frac{1}{2} \right)
+		\end{equation} 
+		Looking at the first term in particular, we want to show that:
+		\[
+			\frac{3}{2}\sum_{i, j = 1}^3 \hat{r_i}\hat{r_j}r_i'r_j' = (r')^2 \cos^2 \alpha
+		\] 
+		We can then split the left hand side into $\frac{3}{2}(\sum_i \hat{r_i}r_i' \sum_j \hat{r_j}r_j')$ and
+		each term $\sum_i \hat{r_i}r_i' = r'\cos \alpha$, then we get that the total term:
+		\[
+			\frac{3}{2}\sum_{i, j = 1}^3 \hat{r_i}\hat{r_j}r_i'r_j' = \frac{3}{2}\sum_{i = 1}^3 \hat{r_i}r_i'
+			\sum_{j = 1}^3 \hat{r_j}r_j' =  \frac{3}{2}(r'\cos \alpha)(r' \cos \alpha) = \frac{3}{2}(r')^2 
+			\cos^2 \alpha
+		\] 
+		Now for the second term, we can see that: 
+		\[
+			\frac{1}{2}\sum_{i, j = 1}^3 \hat{r_i}\hat{r_j}(r')^2 \delta_{ij} = \frac{1}{2}\sum_{i = 1}^3
+			(\hat{r_i})^2 (r')^2 = \frac{1}{2}(r')^2
+		\] 
+		So therefore, the two terms on either side of equation \ref{eq1} are the same, and thus this is an 
+		equivalent way to write the quadrupole term. Furthermore, to show that $Q_{ij}$ is traceless, notice 
+		that when $i = j$, then the term we get is:
+		\[
+			\sum_{i = 1}^3 \frac{3}{2}(r_i)^2 - \frac{1}{2}(r')^2 = \frac{3}{2}(r')^2 - \frac{3}{2}(r')^2 = 0
+		\] 
+		Since the diagonal elements are zero, $Q_{ij}$ is traceless. 
+	\end{solution}
+	\pagebreak
+	\section*{Problem 2}
+	Show that the quadrupole moment $Q_{ij}$ is independent of origin if the monopole and dipole moments both 
+	vanish.
+
+	\begin{solution}
+		If the monopole and dipole terms vanish, this means that $p = 0$ and $Q = 0$. Suppose we picked another
+		origin point $O' = O + \mathbf R$. Then, we have the following: 
+		\begin{align*}
+			\mathbf{r_{o'}} &= \mathbf{r_o} + \mathbf R\\
+			\mathbf{r_{i, o'}} &= \mathbf{r_{i, o}} + \mathbf{R_i} \\
+			\mathbf{r_{j, o'}} &= \mathbf{r_{j, o}} + \mathbf{R_j} 
+		\end{align*}
+		Now we can expand the quadrupole term:
+		\begin{align*}
+			Q_{ij}' &= \int \left[ \frac{3}{2}(r_{i, o} + Ri)(r_{j, o} + R_j) - \frac{1}{2}(\mathbf{r_o} 
+				+\mathbf R)^2
+			\delta_{ij}\right]\rho(\mathbf{r_0} + \mathbf R) d\tau'\\
+					&= \int \left[\frac{3}{2}r_{i, o}r_{j, o} - \frac{1}{2}(\mathbf r_o)^2\right]\rho d\tau
+				+ \frac{3}{2} R_j \int r_{i, o} \rho d\tau - \mathbf r_0 \cdot \mathbf R \delta_{ij} \int 
+				\rho d\tau \\&\phantom{aaaaaaaa} + \frac{3}{2}R_i \int r_{i, o} \rho d\tau -
+				\int \mathbf r_o \cdot \mathbf R \rho
+					d\tau + \int \left[\frac{3}{2}R_i R_j  -
+					\frac{1}{2}|\mathbf R|^2 \delta_{ij} \right]\rho d\tau\\
+							 &= Q_{ij} + \frac{3}{2}R_j p_i + \frac{3}{2}R_ip_j - 2\delta_{ij}\mathbf r_o \cdot 
+							 \mathbf R Q + \left[\frac{3}{2}R_i R_j - \frac{1}{2}|\mathbf R|^2\delta_{ij}\right]
+							 Q
+		\end{align*}
+		And since $Q = 0$ and $p = 0$, then all the terms vanish except the first term, implying that 
+		\[
+			Q_{ij}' = Q_{ij}
+		\] 
+		And thus the quadrupole moment is independent of the origin. 
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 3}
+	A circular disk has a radius $R$ and uniform charge density $\sigma$. The disk is lying on the $x-y$ plane, 
+	with its center fixed at the origin. Find the potential $V(\mathbf r)$ of the disk for large $r$, up to 
+	the $1/r^3$ term. 
+
+	\begin{solution}
+		This problem essentially asks for the multipole expansion for this disk of radius $R$. Considering the 
+		monopole term, we have:
+		\[
+			V_{\text{mon}}(r) = \frac{1}{4\pi\epsilon_0}\frac{Q}{r} = 
+			\frac{1}{4\pi \epsilon_0}\frac{\pi R^2 \sigma}{r}
+		\] 
+		For the dipole term, we have:
+		\[
+			V_{\text{dip}}(r) = \frac{1}{4\pi\epsilon_0}\frac{1}{r^2} \int r' \cos \alpha \rho(r') d\tau'
+		\] 
+		Since the origin is placed at the center of the disc, then this integral becomes: 
+		\begin{align*}
+			\int r' \cos \alpha \sigma(r') dA &= \sigma \cos \alpha \int_0^R \int_0^{2\pi} r' r' d\phi dr'\\
+											  &= 2\pi \sigma \cos \alpha \frac{R^3}{3}\\
+			&= \frac{2\pi \sigma \cos \alpha R^3}{3} 
+		\end{align*}
+		Giving us: 
+		\[
+			V_{\text{dip}}(r) = \frac{1}{4\pi \epsilon_0}\frac{2\pi \sigma \cos \alpha R^2}{3r^2}
+		\] 
+		Similarly for the quadrupole, we need to solve:
+		\[
+			V_{\text{quad}}(r) = \frac{1}{4\pi \epsilon_0}\frac{1}{r^3}\int (r')^2 \left(\frac{3}{2}\cos^2 \alpha
+			- \frac{1}{2}\right)\sigma(r') da
+		\] 
+		Again, computing the integral:
+		\begin{align*}
+			\int (r')^2 \left( \frac{3}{2}\cos^2 \alpha - \frac{1}{2} \right) \sigma(r') dr' &= \sigma \left[ 
+			\frac{3}{2}\cos^2 \alpha \int (r')^2 r' d\phi dr'- 
+		\frac{1}{2} \sigma \int(r')^2 r' d\phi dr'\right] \\
+			&= \frac{3\pi \sigma \cos^2 \alpha R^4}{4} - \frac{\pi \sigma R^4}{4}
+		\end{align*}
+		So therefore the quadrupole term becomes: 
+		\[
+			V_{\text{quad}}(r) = \frac{1}{4\pi \epsilon_0}\left( \frac{3\pi \sigma \cos^2 \alpha  R^4}{4r^3} -
+			\frac{\pi \sigma R^4}{4r^3} \right) 
+		\] 
+		Finally, since $\alpha$ is defined as the angle between the plane and the radius vector $\mathbf r$, 
+		we can write $\alpha = \frac{\pi}{2} - \theta$, therefore we can express the potential in terms of the
+		natural spherical coordinates $V(r, \theta)$. Combining all three terms, we get:
+		\[
+		V(r, \theta) = \frac{1}{4\pi \epsilon_0}\frac{\pi R^2 \sigma}{r} + \frac{1}{4\pi \epsilon_0}\frac{2\pi\sigma}{3r^2}\cos\left( \frac{\pi}{2} - \theta \right) + \frac{1}{4\pi \epsilon_0}\left( \frac{3\pi\sigma R^4}{4r^3}\cos^2\left( \frac{\pi}{2} - \theta \right) - \frac{\pi \sigma R^4}{4r^3} \right) 
+		\] 
+		We can cancel off the $\pi$ terms:
+		\[
+		 V(r, \theta) = \frac{R^2 \sigma}{4 \epsilon_0r} +
+		 \frac{\sigma}{6 \epsilon_0 r^2}\cos\left( \frac{\pi}{2} -
+			\theta \right)  + \frac{1}{4\epsilon_0 r^3}\left(\frac{3 \sigma R^4}{4} \cos^2\left( \frac{\pi}{2}- 
+			\theta \right) - \frac{\sigma R^4}{4}\right)  \\
+		\]
+	\end{solution}
+\end{document}

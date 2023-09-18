@@ -1,0 +1,336 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 105}
+\newcommand{\classname}{Analytic Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 05} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder, Adarsh Iyer} and \textbf{Aren Martinian} to complete this assignment.
+	\section*{Problem 1}
+	\begin{enumerate}[label=\alph*)]
+			\item Use Kepler's laws to weigh the sun. Use $G = 6.67 \times 10^{-11} \mathrm m^3 \mathrm{kg}^{-1}
+					\mathrm s^{-2}$ and $R = 1.50 \times 10^{11}$ m (the average radius of Earth's orbit)
+
+					\begin{solution}
+							Here we use Kepler's relation that
+							\[
+							\tau^2 = \frac{4\pi^2a^3}{GM}
+							\] 
+							where $M$ here represents the mass of the sun. Therefore, solving for $M$, we get:
+							\[
+							M = \frac{4\pi^2a^3}{G\tau^2}
+							\] 
+							Computing this with the known values,  we get: $1.979 \times 10^{30}$ kg
+					\end{solution}
+			\item For which $n$ do stable circular orbits exist for the potential
+					\[ V(r) = -\frac{A}{r^n}\]
+					Think graphically!
+
+					\begin{solution}
+						This would imply an effective potential of 
+						\[
+								V_{eff} = -\frac{A}{r^n} + \frac{\ell^2}{\mu r^2}
+						\] 
+						This solution only has a bounded orbit when $n = 1$, when we plot it on a graphing 
+						calculator. This also makes sense, since for $n =1$ our $V_{eff}$ is written as: 
+						\[
+								V_{eff} = -\frac{A}{r} + \frac{\ell^2}{\mu r^2}
+						\] 
+						which is the equation for planetary motion, which we know has bounded orbits. On the 
+						other hand, we can also just graph $V_{eff}$ for different values of $n$:
+						\begin{center}
+								\begin{tikzpicture}[domain=0.3:5, samples=100]
+										\draw[thick] (-1, 0) -- (5, 0);
+										\draw[thick] (0, -2) -- (0, 3);
+										\draw[color=red] plot (\x, {-2.5/\x + 1/(\x^2)}) node[right] {$n = 1$};
+										\draw[color=blue, yscale=0.2] plot(\x, {-2.5/(\x^2) + 1/(\x^2)}) node[right]{$n = 2$};
+										\draw[color=green!40!black, yscale=0.02] plot(\x, {-2.5/(\x^3) + 1/(\x^2)}) node[above] {$n>2$};
+								\end{tikzpicture}
+						\end{center}
+						as shown in the diagram above, bounded orbits exist only when $n = 1$.
+
+						
+
+					\end{solution}
+			\item \begin{enumerate}[label=(\roman*)]
+				\item A puck of mass $m$ on frictionless ice is attached to a horiziontal string which is fed 
+						through a thin hole in the ice of radius $R$. Initially, the piece of string above 
+						the ice has length $l$. With the free end of the string in place, the puck is given 
+						a kick so that it circles around the hole with initial speed $v_0$ at radius $l$. But 
+						at $t = 0$, the free end of the string is pulled downwards beneath the ice at a constant
+						rate $\lambda$, so that the length of string \textit{above the ice} is $l(t) = l - 
+						\lambda t$. Eventually, the string has been pulled all the way in, and the puck falls 
+						into the hole, upon reaching $r =R$. 
+						What quantity is preserved during the motion? What is the puck's speed right before it 
+						falls through the hole? Explain how this is consistent with conservation of energy
+						and conservation of angular momentum.
+
+						\begin{solution}
+								Angular momentum of the system must be conserved because there is no net torque
+								on the system. Therefore, we have the equation:
+								\[
+								mv_0l = mv_f R \implies v_f = \frac{v_0l}{R}
+								\] 
+								The energy of the system is not conserved here, because we are actively pulling
+								on the string, which does work on the system. While the tangential velocity of 
+								the puck does not change, its radial velocity changes (since we are puling it),
+								and thus energy is being put into the system so the energy is not conserved.
+						\end{solution}
+				\item Another puck of mass $m$ on frictionless ice is attached by a horizontal string of length
+						$l$ to a very thin vertical pole of radius $R$. The puck is given a kick and circles
+						around the pole with initial speed $v_0$. The string wraps around the pole, and the puck
+						gets drawn in and eventually hits the pole. What quantity is preserved during the 
+						motion? What is the puck's speed right before it hits the pole?
+
+						Answer the same questions from (i)
+
+						\begin{solution}
+								Here, the energy is conserved, because the tension in the string always acts
+								perpendicular to the motion of the puck, so no work is done to the puck. 
+								However, the angular momentum here is not conserved, because the path of the 
+								puck spirals into the pole, and in order for this to occur a torque must have
+								caused that motion. Therefore, using conservation of energy, we get:
+								\[
+								\frac{1}{2}m v_i^2 = \frac{1}{2} m v_f^2 \implies v_f = v_i
+								\] 
+						\end{solution}
+			\end{enumerate}	
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 2}
+	Suppose you have a satellite orbiting the earth (mass $M$) at a radius $R$. We want to move the satellite
+	to a higher orbit at radius $R' > R$. One way to make such a transfer is by the following maneuver, 
+	illustrated and described in the figure overleaf. Calculate the boosts $\Delta v$ and $\Delta v'$ needed.
+	It'll be useful to consider when energy and momentum are conserved. 
+	
+	\begin{solution}
+			We can calculate the initial velocity of the satellite can be calculated as 
+			\[ \frac{mv^2}{R} = \frac{GMm}{r^2} \implies v_1 = \sqrt{\frac{GM}{R}} \]
+			I will stick to using $v_1$ for now, to simplify the algebra. We know that the energy right after 
+			the boost is:
+			\[
+			E_1 = \frac{1}{2}m(v_1 + \Delta v)^2 - \frac{GMm}{R}
+			\] 
+			And since angular momentum is conserved, then we also know that $m(v_1 + \Delta v)R = mv_2R'$, 
+			where $v_2$ is the velocity of the satellite just before the second boost. This gives: 
+			\[
+			v_2 = \frac{(v + \Delta v)R}{R'}
+			\] 
+			Writing out the energy at this location: 
+			\[
+			E_1 = \frac{1}{2}m v_2^2 - \frac{GMm}{R'}
+			\] 
+			And since energy is conserved, these two quantities are equal to each other (I've suggestively 
+			labeled them as I've used $E_1$ in both equations, but the real principle is that energy is 
+			conserved). Therefore: 
+			\begin{align*}
+					\frac{1}{2}m \left[ \frac{(v_1 + \Delta v)R}{R'} \right]^2 - \frac{GMm}{R'} &= 
+					\frac{1}{2}m (v_1 + \Delta v)^2 - \frac{GMm}{R}\\
+					\frac{(v_1 + \Delta v)^2 R^2}{R'^2} - \frac{2GM}{R'} &=  (v_1 + \Delta v)^2 - \frac{2GM}{R} \\
+					(v_1 + \Delta v)^2 &=
+					\frac{2GM\left( \frac{1}{R'} - \frac{1}{R} \right) }{\frac{R^2}{R'^2} - 1} \\
+									   &=  \frac{2GMR'}{R(R + R')} \\
+					\therefore \Delta v &= \sqrt{\frac{2GMR'}{R(R + R')}} - \sqrt{\frac{GM}{R}} 
+			\end{align*}
+			Since the second boost is circular, then we can also write:
+			\[
+			v_f = \sqrt{\frac{GM}{R'}} 
+			\] 
+			And since we know $\Delta v' = v_f - v_2$, we can just solve for $\Delta v$ explicitly: 
+			\begin{align*}
+					\Delta v &= v_f - v_2 \\
+					&= \sqrt{\frac{GM}{R'}}- \frac{R}{R'}\left( \sqrt{\frac{2GMR'}{R(R + R')}}  \right) 
+			\end{align*}
+			
+	\end{solution}
+	
+	\pagebreak
+	\section*{Problem 3}
+	For a particle subject to an inverse square force, written $\mathbf F = -\frac{km}{r^2} \mathbf{\hat{r}}$, 
+	we define the vectors
+	\[ \mathbf{h = r \times \hat{r}}\]
+	and 
+	\[ \mathbf e = \frac{\mathbf{\dot r \times h}}{k} - \hat{\mathbf{r}}\]
+	The vector $\mathbf e$ is known as the \textit{Runge-Lenz vector}. It can be used to show that particles 
+	follow conic sections when acted upon by an inverse square force. For this problem, it may be useful to 
+	consult \url{https://en.wikipedia.org/wiki/Triple_product}
+	\begin{enumerate}[label=\alph*)]
+			\item Show that $\mathbf h$ is constant, and hence that under arbitrary conditions the particle
+					will be confined to move in a plane passing through the origin.
+
+					\begin{solution}
+							To show that $\mathbf h$ is constant, we show instead that $\dot{\mathbf h} = 0$. 
+							Taking the derivative, we get:
+							\begin{align*}
+									\dot{\vec h} &= \vec r \times \dot{\vec r} + \vec{r} \times \ddot{\vec{r}}\\
+									&= \vec r  \times \left( -\frac{k}{r^2}\hat{r} \right)  \\
+									&= -\frac{k}{r^2}(\vec r \times \hat{r}) = 0
+							\end{align*}
+					\end{solution}
+			\item Show that $\mathbf e$ is also constant.
+					
+					\begin{solution}
+							We do the same thing as the previous problem: 
+							\begin{align*}
+									\dot{\vec e} &= \frac{1}{k}\left( \ddot{vec r} \times \vec h
+									 + \dot{\vec r} \times \dot{\vec h} \right) - \dot{\hat{r}} \\
+												 &= \frac{1}{k}\left( -\frac{km}{r^2}\hat{r}\times \vec{h} 
+												 \right)  \\
+												 &= \frac{1}{r^2}(\hat{r}\times (\vec{r} \times \dot{\vec r}))
+												 - \dot \theta \hat{\theta}\\
+												 &= -\frac{1}{r^2}\left( \vec{r}(\hat{r}\cdot \dot{\vec r}) -
+												 (\hat{r} \cdot \vec r) \dot{\vec r}\right)  - 
+												 \dot \theta \hat{\theta}\\
+												 &= -\frac{1}{r^2}\left( \hat{r}\dot{r} - \dot{\vec r} \right) -
+												 \dot{\theta} \hat{\theta}\\
+												 &= -\frac{1}{r}\left( \hat{r}\dot r - (\dot r \hat{r} 
+												 + r\dot \theta \hat{\theta}) \right) -
+												 	\dot \theta \hat{\theta} \\
+												 &= \dot{\theta} \hat{\theta} - \dot \theta \hat{\theta} = 0 \\
+							\end{align*}
+					\end{solution}
+			\item Show that 
+					\[ er \cos \theta = \frac{h^2}{k}-r\]
+					where $e = |\mathbf e|$ and $h = |\mathbf h|$ and $\theta$ is the angle between $\mathbf r$
+					and $\mathbf e$. Since $\mathbf h$ and $\mathbf e$ are constant, we can solve for 
+					$r(\theta)$ to deduce that the particle will follow a conic section trajectory.
+
+					\begin{solution}
+							We compute $\vec{e} \cdot \vec{r}$ so we get: 
+							\begin{align*}
+									\vec{e} \cdot \vec{r} = er\cos \theta &=
+									\left( \frac{\dot{\vec{r}} \times \vec{h}}{k} -
+									\hat{r} \right)\cdot \vec{r}  \\  
+									&= \frac{(\dot{\vec{r}} \times \vec{h})\cdot \vec{r}}{k} -
+									\frac{\vec{r}}{r} \cdot \vec{r} \\
+									&= \frac{(\vec{r}\times \dot{\vec{r}}) \cdot \vec{h}}{k} - \frac{r^2}{r} \\
+									&= \frac{\vec{h} \cdot \vec{h}}{k}-r  \\
+									&= \frac{h^2}{k} - r 
+							\end{align*}
+							as desired. 
+					\end{solution}
+
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 4}
+	Suppose we have a particle in a central force potential
+	\[ V(r) = -\frac{A}{r} + \frac{B}{2mr^2}\]
+	where $A$ and $B$ are constants, and $m$ is the mass of the particle (the factor of $2m$ appears for 
+	convenience only). 
+	\begin{enumerate}[label=\alph*)]
+			\item Show that the equation of orbit has an exact solution that can be put in the form 
+					\[ \frac{r_0}{r} = 1 + \epsilon \cos (\alpha \theta)\]
+					\textit{(Hint: repeat the orbit derivation with the new potential)}
+
+					\begin{solution}
+							As per the hint, we solve the orbit equation:
+							\[
+									\dv[2]{u}{\phi} + u(\phi) = -\frac{m}{\ell^2} \frac{1}{u^2}F(u)
+							\] 
+							We find the force using 
+							\begin{align*}
+									F(r) &= -\dv{u}{r}\\
+									&= -\frac{A}{r^2} + \frac{B}{r^3} \\
+									&= -Au^2 + \frac{B}{m}u^3 \\
+							\end{align*}
+							So now we solve the differential equation: 
+							\begin{align*}
+									\dv[2]{u}{\phi} + u(\phi) &= -\frac{m}{\ell^2}\frac{1}{u^2}\left(-Au^2 +
+									\frac{B}{m}u^3\right) \\
+									-\frac{\ell^2u^2}{m}\dv[2]{u}{\phi} &= -Au^2 +
+									u^3\left( \frac{\ell^2 + B}{m} \right) \\	
+									-\frac{\ell^2}{m}u''(\phi) &= -A + u\left( \frac{\ell^2 + B}{m} \right) \\
+									\therefore u''(\phi) &= \frac{Am}{\ell^2} - u\left( 1 +
+									\frac{B}{l^2} \right)  \\
+							\end{align*}
+							Now let $k^2 = 1 + \frac{B}{\ell^2}$:
+							\[
+								u''(\phi) + k^2 u = \frac{Am}{\ell^2}
+							\] 
+							Now let $w(\phi) = k^2u -\frac{Am}{\ell^2}$, this gets us $w''(\phi) = k^2u''(\phi)$,
+							so this gets us: 
+							\[
+							w''(\phi) + k^2w(\phi) = 0
+							\] 
+							which is the equation for simple harmonic motion. Therefore, we get the solution 
+							\[
+							w(\phi) = C\cos(k\phi-\delta)
+							\] 
+							Here, we can let $\delta = 0$ for an appropriate choice for $\phi = 0$, so we get
+							\[
+							w(\phi) = C\cos(k\phi)
+							\] 
+							As the general solution. Substituting back $u$, we get:
+							\begin{align*}
+									k^2 u(\phi) - \frac{Am}{\ell^2} &=  C\cos(k\phi) \\
+									\therefore u(\phi) &= \frac{C}{k^2} + \frac{Am}{k^2\ell^2} \\
+							\end{align*}
+							Finally, we return $u = \frac{1}{r}$:
+							\begin{align*}
+									\frac{1}{r}&= \frac{C}{k^2}\cos (k\phi) + \frac{Am}{k^2\ell^2} \\
+									&= \frac{Am}{k^2\ell^2}\left(1 + \frac{C\ell^2}{Am}\right) \\
+							\end{align*}
+							We let $k = \alpha$ to match with the problem, so we get: 
+							\[
+							\frac{1}{r} = \frac{Am}{\alpha\ell^2}\left( 1 + 
+							\frac{C\ell^2}{Am}\cos(\alpha \phi) \right) 
+							\] 
+							setting $\alpha = \frac{k^2l^2}{Am}$ and $\epsilon = \frac{C\ell^2}{Am}$, we get the
+							equation: 
+							\[
+							\frac{r_0}{r} = 1 + \epsilon \cos (\alpha \phi)
+							\] 
+					\end{solution}
+			\item The trajectory in (a)  is an ellipse of $\alpha = 1$, but if $\alpha \neq 1$, the ellipse 
+					\textit{precesses}, which may be described in terms of the precession of the apsides 
+					(turning points). For $B$ small, derive an approximate expression for the precession rate.
+					You may express your answer in terms of the period of the orbit where $B = 0$ - call it $T$.
+
+					\begin{solution}
+							The apsides are the furthest and nearest point, which are described by
+							$\cos(\alpha\phi) = 1$, or equivalently when $\alpha \theta = 2\pi n$. This allows 
+							us to solve for $\theta$: 
+							\[
+							\theta = \frac{2\pi n}{\alpha}
+							\] 
+							So the deviation per orbit can be calculated is 
+							\[
+							\Delta \theta = \frac{2 \pi (n+1)}{\alpha} - \frac{2\pi n}{\alpha} =
+							\frac{2\pi}{\alpha}
+							\] 
+							So per one orbit, the deviation from $\theta$ from a singular orbit is:
+							\[
+							\delta \theta = 2\pi - \Delta \theta = 2\pi\left(1 - \frac{1}{\alpha}\right) 
+							= 2\pi\left[ 1 - \left( 1 + \frac{B}{\ell^2} \right)^{-1/2}\right] 
+							\] 
+							Taylor expanding this quantity, we get: 
+							\begin{align*}
+									2\pi \left[ 1 - \left( 1 + \frac{B}{\ell^2} \right) ^{-1/2}\right] &= 
+									2\pi\left[1 - \left( 1-\frac{B}{2\ell^2} \right) \right]\\
+									&= 2\pi\left( \frac{B}{2\ell^2} \right)  \\
+									&= \frac{\pi B}{\ell^2} \\
+							\end{align*}
+							For small $B$, where we've dropped the higher order terms. Therefore, the period of
+							precession is: 
+							\[
+									\frac{\delta \theta}{T} = \frac{\pi B}{T\ell^2}
+							\] 
+					\end{solution}
+	\end{enumerate}
+\end{document}
+

@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.24)  4 FEB 2023 01:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.24)  8 SEP 2023 13:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.tex"
-(/Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.tex
+**"Homework 2.tex"
+(./Homework 2.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-02-18> (/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -22,7 +22,7 @@ File: size10.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-) (/Users/eric/Documents/Courses/PHYSICS 137B/HW2/../local.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
+) (../../local.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
@@ -96,7 +96,8 @@ File: pgfsyssoftpath.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgfsyssoftpath@bigbuffer@items=\count193
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-)) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
  (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
@@ -155,7 +156,8 @@ File: pgfcorescopes.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgflinewidth=\dimen172
-) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@pt@x=\dimen173
 \pgf@pt@y=\dimen174
@@ -205,7 +207,8 @@ Package: pgffor 2020/12/27 v3.1.8b (3.1.8b)
 \pgffor@skip=\dimen181
 \pgffor@stack=\toks28
 \pgffor@toks=\toks29
-)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+))
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2020/12/27 v3.1.8b (3.1.8b)
  (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2020/12/27 v3.1.8b (3.1.8b)
@@ -394,7 +397,8 @@ File: pgflibrarycurvilinear.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 \pgf@circ@res@count=\count294
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircquadpoles.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircmultipoles.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcirclabel.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircvoltage.tex
 \pgfcirc@labelshift=\dimen292
-) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/local/texlive/2021/texmf-dist/tex/latex/physics/physics.sty
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcirccurrent.tex) (/usr/local/texlive/2021/texmf-dist/tex/generic/circuitikz/pgfcircflow.tex)) (/usr/local/texlive/2021/texmf-dist/tex/latex/physics/physics.sty
 Package: physics 
  (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2021-02-18 L3 programming layer (loader) 
@@ -464,7 +468,8 @@ Package hyperref Info: Backreferencing OFF on input line 4212.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4445.
 \c@Hy@tempcnt=\count300
- (/usr/local/texlive/2021/texmf-dist/tex/latex/url/url.sty
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -512,9 +517,14 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 286.
 )
 \Hy@SectionHShift=\skip58
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/enumerate.sty
-Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
-\@enLab=\toks38
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip59
+\enit@outerparindent=\dimen297
+\enit@toks=\toks38
+\enit@inbox=\box65
+\enit@count@id=\count307
+\enitdp@description=\count308
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/tkz-euclide/tkz-euclide.sty
 2020/03/18 3.06c tkz-euclide.sty
 Package: tkz-euclide 2020/03/18 3.06c for euclidan geometry 
@@ -527,26 +537,27 @@ File: tikzlibraryangles.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 File: tikzlibraryarrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
  (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2020/12/27 v3.1.8b (3.1.8b)
-\arrowsize=\dimen297
+\arrowsize=\dimen298
 )) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarybabel.code.tex
 File: tikzlibrarybabel.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.code.tex
-\pgfdecoratedcompleteddistance=\dimen298
-\pgfdecoratedremainingdistance=\dimen299
-\pgfdecoratedinputsegmentcompleteddistance=\dimen300
-\pgfdecoratedinputsegmentremainingdistance=\dimen301
-\pgf@decorate@distancetomove=\dimen302
-\pgf@decorate@repeatstate=\count307
-\pgfdecorationsegmentamplitude=\dimen303
-\pgfdecorationsegmentlength=\dimen304
+\pgfdecoratedcompleteddistance=\dimen299
+\pgfdecoratedremainingdistance=\dimen300
+\pgfdecoratedinputsegmentcompleteddistance=\dimen301
+\pgfdecoratedinputsegmentremainingdistance=\dimen302
+\pgf@decorate@distancetomove=\dimen303
+\pgf@decorate@repeatstate=\count309
+\pgfdecorationsegmentamplitude=\dimen304
+\pgfdecorationsegmentlength=\dimen305
 )
-\tikz@lib@dec@box=\box65
+\tikz@lib@dec@box=\box66
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.markings.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.markings.code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.shapes.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.shapes.code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.text.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.text.code.tex
-\pgf@lib@dec@text@box=\box66
+\pgf@lib@dec@text@box=\box67
 )
-\tikz@lib@dec@te@box=\box67
-) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.tex
-\pgf@intersect@solutions=\count308
+\tikz@lib@dec@te@box=\box68
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex)) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryintersections.code.tex
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryintersections.code.tex
+\pgf@intersect@solutions=\count310
 )) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
 File: tikzlibrarypatterns.code.tex 2020/12/27 v3.1.8b (3.1.8b)
  (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
@@ -573,54 +584,55 @@ File: pgflibraryshapes.misc.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 File: tikzlibrarythrough.code.tex 2020/12/27 v3.1.8b (3.1.8b)
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/numprint/numprint.sty
 Package: numprint 2012/08/20 v1.39 Print numbers (HH)
-\c@nprt@mantissa@digitsbefore=\count309
-\c@nprt@mantissa@digitsafter=\count310
-\c@nprt@exponent@digitsbefore=\count311
-\c@nprt@exponent@digitsafter=\count312
-\nprt@digitwidth=\skip59
-\nprt@sepwidth=\skip60
-\nprt@decimalwidth=\skip61
-\nprt@blockwidth=\skip62
+\c@nprt@mantissa@digitsbefore=\count311
+\c@nprt@mantissa@digitsafter=\count312
+\c@nprt@exponent@digitsbefore=\count313
+\c@nprt@exponent@digitsafter=\count314
+\nprt@digitwidth=\skip60
+\nprt@sepwidth=\skip61
+\nprt@decimalwidth=\skip62
+\nprt@blockwidth=\skip63
 \nprt@digittoks=\toks39
 \nprt@pretoks=\toks40
 \nprt@posttoks=\toks41
-\nprt@thisdigit=\count313
-\nprt@curpos=\count314
-\nprt@rndpos=\count315
-\c@nprt@digitsfirstblock=\count316
-\c@nprt@blockcnt=\count317
-\c@nprt@cntprint=\count318
+\nprt@thisdigit=\count315
+\nprt@curpos=\count316
+\nprt@rndpos=\count317
+\c@nprt@digitsfirstblock=\count318
+\c@nprt@blockcnt=\count319
+\c@nprt@cntprint=\count320
  No configuration file `numprint.cfg' found.) (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfp/xfp.sty
 Package: xfp 2021-03-12 L3 Floating point unit
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp.sty
 Package: fp 1995/04/02
  `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count319
+\actioncount=\count321
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count320
-\FP@xia=\count321
-\FP@xib=\count322
-\FP@xfa=\count323
-\FP@xfb=\count324
-\FP@rega=\count325
-\FP@regb=\count326
-\FP@regs=\count327
-\FP@times=\count328
+\FP@xs=\count322
+\FP@xia=\count323
+\FP@xib=\count324
+\FP@xfa=\count325
+\FP@xfb=\count326
+\FP@rega=\count327
+\FP@regb=\count328
+\FP@regs=\count329
+\FP@times=\count330
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-snap.sty
 Package: fp-snap 1995/04/05
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-exp.sty
 Package: fp-exp 1995/04/03
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-trigo.sty
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-trigo.sty
 Package: fp-trigo 1995/04/14
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-pas.sty
 Package: fp-pas 1994/08/29
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count329
+\FPseed=\count331
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-upn.sty
@@ -628,26 +640,26 @@ Package: fp-upn 1996/10/21
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fp/fp-eval.sty
 Package: fp-eval 1995/04/03
 ))
-\tkzRadius=\dimen305
-\tkzLength=\dimen306
-\tkz@radi=\dimen307
-\tkz@ax=\dimen308
-\tkz@ay=\dimen309
-\tkz@bx=\dimen310
-\tkz@by=\dimen311
-\tkz@cx=\dimen312
-\tkz@cy=\dimen313
-\tkz@dx=\dimen314
-\tkz@dy=\dimen315
-\tkz@tax=\dimen316
-\tkz@tay=\dimen317
-\tkz@tbx=\dimen318
-\tkz@tby=\dimen319
-\tkz@tcx=\dimen320
-\tkz@tcy=\dimen321
-\tkz@tdx=\dimen322
-\tkz@tdy=\dimen323
-\tkz@cntmk=\count330
+\tkzRadius=\dimen306
+\tkzLength=\dimen307
+\tkz@radi=\dimen308
+\tkz@ax=\dimen309
+\tkz@ay=\dimen310
+\tkz@bx=\dimen311
+\tkz@by=\dimen312
+\tkz@cx=\dimen313
+\tkz@cy=\dimen314
+\tkz@dx=\dimen315
+\tkz@dy=\dimen316
+\tkz@tax=\dimen317
+\tkz@tay=\dimen318
+\tkz@tbx=\dimen319
+\tkz@tby=\dimen320
+\tkz@tcx=\dimen321
+\tkz@tcy=\dimen322
+\tkz@tdx=\dimen323
+\tkz@tdy=\dimen324
+\tkz@cntmk=\count332
 
 Local configuration file tkz-base.cfg found and used
 (/usr/local/texlive/2021/texmf-dist/tex/latex/tkz-base/tkz-base.cfg
@@ -689,8 +701,8 @@ File: tkz-tool-arith.tex tkz-tool-arith 3.02 c
 2020/03/18 3.06c tkz-tools-angles.tex
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/tkz-euclide/tkz-obj-eu-angles.tex
 2020/03/18 3.06c tkz-tool-eu-angles.tex
-\tkz@arcsize=\dimen324
-\tkz@fillsize=\dimen325
+\tkz@arcsize=\dimen325
+\tkz@fillsize=\dimen326
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/tkz-euclide/tkz-obj-eu-arcs.tex
 2020/03/23 3.06c tkz-obj-eu-arcs.tex
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/tkz-euclide/tkz-obj-eu-compass.tex
@@ -725,15 +737,15 @@ File: tkz-tool-arith.tex tkz-tool-arith 3.02 c
 2020/03/18 3.06c tkz-obj-eu-triangles.tex
 )) (/usr/local/texlive/2021/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2019/10/16 v2.13 Sectioning titles
-\ttl@box=\box68
-\beforetitleunit=\skip63
-\aftertitleunit=\skip64
-\ttl@plus=\dimen326
-\ttl@minus=\dimen327
+\ttl@box=\box69
+\beforetitleunit=\skip64
+\aftertitleunit=\skip65
+\ttl@plus=\dimen327
+\ttl@minus=\dimen328
 \ttl@toksa=\toks42
-\titlewidth=\dimen328
-\titlewidthlast=\dimen329
-\titlewidthfirst=\dimen330
+\titlewidth=\dimen329
+\titlewidthlast=\dimen330
+\titlewidthfirst=\dimen331
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2021-03-03 v2.3 150 paragraphs of Lorem Ipsum dummy text
  (/usr/local/texlive/2021/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex
@@ -742,13 +754,13 @@ File: lipsum.ltd.tex 2021-03-03 v2.3 The Lorem ipsum dummy text
 Package: babel 2021/03/24 3.56 The Babel package
  (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2021/03/24 3.56 Babel common definitions
-\babel@savecnt=\count331
-\U@D=\dimen331
+\babel@savecnt=\count333
+\U@D=\dimen332
 \l@babelnohyphens=\language87
  (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read3
 )
-\bbl@dirlevel=\count332
+\bbl@dirlevel=\count334
  (/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: \l@canadian = using hyphenrules for english
@@ -764,29 +776,29 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headfont=\toks45
 \thm@notefont=\toks46
 \thm@headpunct=\toks47
-\thm@preskip=\skip65
-\thm@postskip=\skip66
-\thm@headsep=\skip67
+\thm@preskip=\skip66
+\thm@postskip=\skip67
+\thm@headsep=\skip68
 \dth@everypar=\toks48
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footers
-\f@nch@headwidth=\skip68
-\f@nch@O@elh=\skip69
-\f@nch@O@erh=\skip70
-\f@nch@O@olh=\skip71
-\f@nch@O@orh=\skip72
-\f@nch@O@elf=\skip73
-\f@nch@O@erf=\skip74
-\f@nch@O@olf=\skip75
-\f@nch@O@orf=\skip76
+\f@nch@headwidth=\skip69
+\f@nch@O@elh=\skip70
+\f@nch@O@erh=\skip71
+\f@nch@O@olh=\skip72
+\f@nch@O@orh=\skip73
+\f@nch@O@elf=\skip74
+\f@nch@O@erf=\skip75
+\f@nch@O@olf=\skip76
+\f@nch@O@orf=\skip77
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/l3experimental/xcoffins/xcoffins.sty
 Package: xcoffins 2021-02-18 L3 Experimental design level coffins
-\l__coffin_hoffset_dim=\dimen332
-\l__coffin_voffset_dim=\dimen333
-\l__coffin_height_dim=\dimen334
-\l__coffin_depth_dim=\dimen335
-\l__coffin_width_dim=\dimen336
-\l__coffin_totalheight_dim=\dimen337
+\l__coffin_hoffset_dim=\dimen333
+\l__coffin_voffset_dim=\dimen334
+\l__coffin_height_dim=\dimen335
+\l__coffin_depth_dim=\dimen336
+\l__coffin_width_dim=\dimen337
+\l__coffin_totalheight_dim=\dimen338
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2020/10/09 version 4.42 text color boxes
  (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/verbatim.sty
@@ -799,17 +811,17 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
  (/usr/local/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box69
-\tcb@upperbox=\box70
-\tcb@lowerbox=\box71
-\tcb@phantombox=\box72
-\c@tcbbreakpart=\count333
-\c@tcblayer=\count334
-\c@tcolorbox@number=\count335
-\tcb@temp=\box73
+\tcb@titlebox=\box70
+\tcb@upperbox=\box71
+\tcb@lowerbox=\box72
+\tcb@phantombox=\box73
+\c@tcbbreakpart=\count335
+\c@tcblayer=\count336
+\c@tcolorbox@number=\count337
 \tcb@temp=\box74
 \tcb@temp=\box75
 \tcb@temp=\box76
+\tcb@temp=\box77
 \tcb@out=\write4
 \tcb@record@out=\write5
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
@@ -817,100 +829,146 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count336
-\Gm@cntv=\count337
-\c@Gm@tempcnt=\count338
-\Gm@bindingoffset=\dimen338
-\Gm@wd@mp=\dimen339
-\Gm@odd@mp=\dimen340
-\Gm@even@mp=\dimen341
-\Gm@layoutwidth=\dimen342
-\Gm@layoutheight=\dimen343
-\Gm@layouthoffset=\dimen344
-\Gm@layoutvoffset=\dimen345
+\Gm@cnth=\count338
+\Gm@cntv=\count339
+\c@Gm@tempcnt=\count340
+\Gm@bindingoffset=\dimen339
+\Gm@wd@mp=\dimen340
+\Gm@odd@mp=\dimen341
+\Gm@even@mp=\dimen342
+\Gm@layoutwidth=\dimen343
+\Gm@layoutheight=\dimen344
+\Gm@layouthoffset=\dimen345
+\Gm@layoutvoffset=\dimen346
 \Gm@dimlist=\toks51
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
-Package: xtemplate 2021-03-12 L3 Experimental prototype document functions
-\l__xtemplate_tmp_dim=\dimen346
-\l__xtemplate_tmp_int=\count339
-\l__xtemplate_tmp_muskip=\muskip18
-\l__xtemplate_tmp_skip=\skip77
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
+Package: titling 2009/09/04 v2.1d maketitle typesetting
+\thanksmarkwidth=\skip78
+\thanksmargin=\skip79
+\droptitle=\skip80
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
+Package: libertine 2020/03/26 (Bob Tennent) Supports Libertine and Biolinum fonts for all LaTeX engines.
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks52
+\XKV@tempa@toks=\toks53
 )
-Package: xfrac 2021-03-12 L3 Experimental split-level fractions
-\l__xfrac_slash_box=\box77
-\l__xfrac_tmp_box=\box78
-\l__xfrac_denominator_bot_sep_dim=\dimen347
-\l__xfrac_numerator_bot_sep_dim=\dimen348
-\l__xfrac_numerator_top_sep_dim=\dimen349
-\l__xfrac_slash_left_sep_dim=\dimen350
-\l__xfrac_slash_right_sep_dim=\dimen351
-\l__xfrac_slash_left_muskip=\muskip19
-\l__xfrac_slash_right_muskip=\muskip20
-
-Package xtemplate Info: Declaring object type 'xfrac' taking 3 argument(s) on
-(xtemplate)             line 80.
-
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
-Package: nicefrac 1998/08/04 v0.9b Nice fractions
-\L@UnitsRaiseDisplaystyle=\skip78
-\L@UnitsRaiseTextstyle=\skip79
-\L@UnitsRaiseScriptstyle=\skip80
- (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-))
-Package: chemformula 2020/12/22 v4.16 typeset chemical compounds and reactions (CN)
-\l__chemformula_tmpa_dim=\dimen352
-\l__chemformula_tmpb_dim=\dimen353
-\l__chemformula_tmpc_dim=\dimen354
-\l__chemformula_tmpa_int=\count340
-\l__chemformula_tmpb_int=\count341
-\l__chemformula_tmpc_int=\count342
-\l__chemformula_tmpa_box=\box79
-\l__chemformula_tmpb_box=\box80
-\l__chemformula_arrow_length_dim=\dimen355
-\l__chemformula_arrow_label_height_dim=\dimen356
-\l__chemformula_arrow_label_offset_dim=\dimen357
-\l__chemformula_arrow_minimum_length_dim=\dimen358
-\l__chemformula_arrow_shortage_dim=\dimen359
-\l__chemformula_arrow_offset_dim=\dimen360
-\l__chemformula_arrow_yshift_dim=\dimen361
-\l__chemformula_radical_radius_dim=\dimen362
-\l__chemformula_radical_hshift_dim=\dimen363
-\l__chemformula_radical_vshift_dim=\dimen364
-\l__chemformula_radical_space_dim=\dimen365
-\l__chemformula_arrow_head_dim=\dimen366
-\l__chemformula_name_dim=\dimen367
-\l__chemformula_adduct_space_dim=\dimen368
-\l__chemformula_charge_shift_dim=\dimen369
-\l__chemformula_subscript_shift_dim=\dimen370
-\l__chemformula_superscript_shift_dim=\dimen371
-\l__chemformula_subscript_dim=\dimen372
-\l__chemformula_superscript_dim=\dimen373
-\l__chemformula_bond_dim=\dimen374
-\l__chemformula_bond_space_dim=\dimen375
-\l__chemformula_elspec_pair_distance_dim=\dimen376
-\l__chemformula_elspec_pair_line_length_dim=\dimen377
-\l__chemformula_elspec_pair_width_dim=\dimen378
-\l__chemformula_kroegervink_positive_radius_dim=\dimen379
-\l__chemformula_kroegervink_positive_hshift_dim=\dimen380
-\l__chemformula_kroegervink_positive_vshift_dim=\dimen381
-\l__chemformula_kroegervink_positive_space_dim=\dimen382
-\l__chemformula_stoich_space_skip=\skip81
-\l__chemformula_math_space_skip=\skip82
-\l__chemformula_additions_symbol_space_skip=\skip83
-\l__chemformula_count_tokens_int=\count343
-\g__chemformula_lewis_int=\count344
-\l__chemformula_arrow_arg_i_box=\box81
-\l__chemformula_arrow_arg_ii_box=\box82
-\l__chemformula_superscript_box=\box83
-\l__chemformula_subscript_box=\box84
-\l__chemformula_plus_space_skip=\skip84
-\l__chemformula_minus_space_skip=\skip85
-)) (/Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.aux)
+\XKV@depth=\count341
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+Package: fontaxes 2020/07/21 v1.0e Font selection axes
+LaTeX Info: Redefining \upshape on input line 29.
+LaTeX Info: Redefining \itshape on input line 31.
+LaTeX Info: Redefining \slshape on input line 33.
+LaTeX Info: Redefining \swshape on input line 35.
+LaTeX Info: Redefining \scshape on input line 37.
+LaTeX Info: Redefining \sscshape on input line 39.
+LaTeX Info: Redefining \ulcshape on input line 41.
+LaTeX Info: Redefining \textsw on input line 47.
+LaTeX Info: Redefining \textssc on input line 48.
+LaTeX Info: Redefining \textulc on input line 49.
+)
+LaTeX Info: Redefining \oldstylenums on input line 484.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/libertine/LinLibertine_I.tex)) (/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
+Package: libertinust1math 2020/11/04 v1.2.2---latex support for LibertinusT1Math (msharpe)
+Now handling font encoding LS1 ...
+... no UTF-8 mapping file for font encoding LS1
+Now handling font encoding LS2 ...
+... no UTF-8 mapping file for font encoding LS2
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 68.
+LaTeX Font Info:    Encoding `OML' has changed to `LS1' for symbol font
+(Font)              `letters' in the math version `normal' on input line 68.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> LS1/libertinust1math/m/it on input line 68.
+LaTeX Font Info:    Encoding `OML' has changed to `LS1' for symbol font
+(Font)              `letters' in the math version `bold' on input line 68.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> LS1/libertinust1math/m/it on input line 68.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 69.
+LaTeX Font Info:    Encoding `OT1' has changed to `LS1' for symbol font
+(Font)              `operators' in the math version `normal' on input line 69.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> LS1/libertinust1math/m/n on input line 69.
+LaTeX Font Info:    Encoding `OT1' has changed to `LS1' for symbol font
+(Font)              `operators' in the math version `bold' on input line 69.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> LS1/libertinust1math/m/n on input line 69.
+\symsymbolsbb=\mathgroup6
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 71.
+LaTeX Font Info:    Encoding `OMS' has changed to `LS2' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 71.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> LS2/libertinust1mathsym/m/n on input line 71.
+LaTeX Font Info:    Encoding `OMS' has changed to `LS2' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 71.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> LS2/libertinust1mathsym/m/n on input line 71.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 72.
+LaTeX Font Info:    Encoding `OMX' has changed to `LS2' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 72.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> LS2/libertinust1mathex/m/n on input line 72.
+LaTeX Font Info:    Encoding `OMX' has changed to `LS2' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 72.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> LS2/libertinust1mathex/m/n on input line 72.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 73.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> LS1/libertinust1mathsf/m/n on input line 73.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> LS1/libertinust1mathsf/m/n on input line 73.
+LaTeX Font Info:    Redeclaring math alphabet \mathsfbf on input line 82.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfbf' in version `normal'
+(Font)                  LS1/libertinust1mathsf/b/n --> LS1/libertinust1mathsf/b/n on input line 82.
+LaTeX Font Info:    Overwriting math alphabet `\mathsfbf' in version `bold'
+(Font)                  LS1/libertinust1mathsf/b/n --> LS1/libertinust1mathsf/b/n on input line 82.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  LS1/libertinust1math/m/it --> LS1/libertinust1math/b/it on input line 84.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  LS1/libertinust1math/m/n --> LS1/libertinust1math/b/n on input line 85.
+\symbold-operators=\mathgroup7
+\symbold-letters=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 88.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 90.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  LS1/libertinust1mathsf/m/n --> LS1/libertinust1mathsf/b/n on input line 118.
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 130.
+LaTeX Font Info:    Overwriting math alphabet `\mathcal' in version `bold'
+(Font)                  U/stixcal/m/n --> U/stixcal/b/n on input line 131.
+LaTeX Info: Redefining \checkmark on input line 585.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 659.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 660.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 661.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 662.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 663.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 664.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 665.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 666.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 668.
+LaTeX Font Info:    Redeclaring math accent \check on input line 669.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 677.
+LaTeX Info: Redefining \vdots on input line 1086.
+LaTeX Info: Redefining \cdots on input line 1090.
+LaTeX Info: Redefining \not on input line 1330.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+LinuxLibertineT-TLF on input line 112.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
+File: T1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/LinuxLibertineT-TLF.
+)
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 10.0pt on input line 112.
+)) (./Homework 2.aux)
 \openout1 = `"Homework 2.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
@@ -931,19 +989,31 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for LS1/libertinust1math/m/n on input line 23.
+LaTeX Font Info:    Trying to load font information for LS1+libertinust1math on input line 23.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1math.fd
+File: ls1libertinust1math.fd 2016/03/23 Fontinst v1.933 font definitions for LS1/libertinust1math.
+)
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for LS2/libertinust1mathsym/m/n on input line 23.
+LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathsym on input line 23.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathsym.fd
+File: ls2libertinust1mathsym.fd 2015/04/17 v1.1.2-latex LibertinusT1Mathsym LS2 font definitions
+)
+LaTeX Font Info:    ... okay on input line 23.
  (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count345
-\scratchdimen=\dimen383
-\scratchbox=\box85
-\nofMPsegments=\count346
-\nofMParguments=\count347
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count348
-\MPscratchDim=\dimen384
-\MPnumerator=\count349
-\makeMPintoPDFobject=\count350
-\everyMPtoPDFconversion=\toks53
+\scratchcounter=\count342
+\scratchdimen=\dimen347
+\scratchbox=\box78
+\nofMPsegments=\count343
+\nofMParguments=\count344
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count345
+\MPscratchDim=\dimen348
+\MPnumerator=\count346
+\makeMPintoPDFobject=\count347
+\everyMPtoPDFconversion=\toks55
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -958,12 +1028,12 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count351
+\c@section@level=\count348
 )
 LaTeX Info: Redefining \ref on input line 23.
 LaTeX Info: Redefining \pageref on input line 23.
 LaTeX Info: Redefining \nameref on input line 23.
- (/Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out) (/Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.out)
+ (./Homework 2.out) (./Homework 2.out)
 \@outlinefile=\write6
 \openout6 = `"Homework 2.out"'.
 
@@ -1002,32 +1072,150 @@ LaTeX Info: Redefining \nameref on input line 23.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+\c@mv@tabular=\count349
+\c@mv@boldtabular=\count350
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 12.0pt on input line 24.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 14.4pt on input line 25.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 14.4pt on input line 25.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
+(Font)              scaled to size 10.0pt on input line 27.
+
+./Homework 2.tex:30: Package enumitem Error: (a) undefined.
+
+See the enumitem package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.30     \begin{enumerate}[(a)]
+                               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
+(Font)              scaled to size 10.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
+(Font)              scaled to size 8.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
+(Font)              scaled to size 6.5pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
+(Font)              scaled to size 10.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
+(Font)              scaled to size 8.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
+(Font)              scaled to size 6.5pt on input line 31.
+LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
+(Font)              scaled to size 10.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
+(Font)              scaled to size 8.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
+(Font)              scaled to size 6.5pt on input line 31.
+LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathex on input line 31.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathex.fd
+File: ls2libertinust1mathex.fd 2016/03/15 v1.0.0-latex LibertinusMath extensions LS2 font definitions
+)
+LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
+(Font)              scaled to size 10.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
+(Font)              scaled to size 8.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
+(Font)              scaled to size 6.5pt on input line 31.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 31.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 31.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+LaTeX Font Info:    Trying to load font information for LS1+libertinust1mathbb on input line 31.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1mathbb.fd
+File: ls1libertinust1mathbb.fd 2016/08/22 latex LibertinusT1Mathbb LS1 font definitions
+)
+LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
+(Font)              scaled to size 10.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
+(Font)              scaled to size 8.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
+(Font)              scaled to size 6.5pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
+(Font)              scaled to size 10.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
+(Font)              scaled to size 8.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
+(Font)              scaled to size 6.5pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
+(Font)              scaled to size 10.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
+(Font)              scaled to size 8.0pt on input line 31.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
+(Font)              scaled to size 6.5pt on input line 31.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
+(Font)              scaled to size 10.0pt on input line 33.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 40.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.5pt on input line 40.
+ [1
 
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] (/Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.aux)
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+
+./Homework 2.tex:83: Package enumitem Error: (a) undefined.
+
+See the enumitem package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.83     \begin{enumerate}[(a)]
+                               
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[3] [4] [5]
+
+./Homework 2.tex:125: Package enumitem Error: (a) undefined.
+
+See the enumitem package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.125     \begin{enumerate}[(a)]
+                                
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[6]
+
+./Homework 2.tex:151: Package enumitem Error: (a) undefined.
+
+See the enumitem package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.151     \begin{enumerate}[(a)]
+                                
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[7] [8] (./Homework 2.aux)
 Package rerunfilecheck Info: File `"Homework 2".out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 44409 strings out of 478994
- 1023150 string characters out of 5858184
- 1675579 words of memory out of 5000000
- 61108 multiletter control sequences out of 15000+600000
- 406686 words of font info for 40 fonts, out of 8000000 for 9000
+ 45725 strings out of 478994
+ 1030535 string characters out of 5858184
+ 1662392 words of memory out of 5000000
+ 62383 multiletter control sequences out of 15000+600000
+ 465211 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,10n,130p,1248b,464s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "/Users/eric/Documents/Courses/PHYSICS 137B/HW2/Homework 2.pdf" (8 pages, 147241 bytes).
+ 128i,10n,130p,1201b,514s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusSYM.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusEX.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusMR.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusMI.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertinust1math/LibertinusT1Math.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb>
+Output written on "Homework 2.pdf" (8 pages, 369496 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
+ 111 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
  18 named destinations out of 1000 (max. 500000)
  109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

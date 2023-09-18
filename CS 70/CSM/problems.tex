@@ -1,0 +1,28 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{a}
+\newcommand{\classname}{b}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 1} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	Consider throwing $n$ balls into $n$ bins uniformly at random. Let $X$ be the number of balls in the 
+	first bin.
+	\begin{enumerate}[label=\alph*)]
+		\item What is the expected value of $X$?
+		\item What is the variance of $X$?
+	\end{enumerate}
+
+
+	What is the covariance of $X$ and $X^3$ where $X$ is a uniformly distributed variable on the interval $[0, 
+	1]$? (i.e. $X \sim U[0, 1]$)
+\end{document}

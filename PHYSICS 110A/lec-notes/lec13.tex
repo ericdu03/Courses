@@ -1,0 +1,127 @@
+\chapter{Lecture 13}
+
+Lecture 13  was held on \textbf{Friday, February 17, 2023}  and covered the Separation of Variables technique for
+solving the Laplace equation.
+% check the date
+
+\section{Separation of Variables}
+
+Our goal is to find a general solution to the equation $\nabla^2 V = 0$. Once we find this solution, we can then 
+just fit them to our boundary conditions in order to solve the potential of our specific system. To solve this 
+system, we can assume that $V$ takes on a nice form, specifically a separable form:
+\[ V = X(x) Y(y) Z(z)\]
+Plugging this into $\laplace V =0$, we get:
+\[ 0 = YZ \pdv{x^2} x + XZ \pdv{y^2} Y + XY \pdv{z^2}z\]
+Diving both sides by $XYZ$, we then get: 
+\[ \underbrace{\frac{1}{X}\pdv{x^2} X}_{f(x)} + \underbrace{\frac{1}{Y}\pdv{y^2}Y}_{g(y)} +
+\underbrace{\frac{1}{Z}\pdv{z^2} Z}_{h(z)} = 0\]
+\begin{insight*}{}{}
+		Note that this is not the \textit{most} general form for $V$. We require that $V$ is separable in order to
+		come up with this equation. Generally, we'd have to plug our equation into some form of computer 
+		(i.e. Mathematica or MATLAB) in order to solve this equation. A good example of this is in quantum 
+		mechanics, where solutions to the \schrodinger equation for spherically symmetric potentials is 
+		\[ \psi_{nlm} = R_{nl}(r) Y_{lm}(\theta, \phi)\]
+\end{insight*}
+Notice that in this equation, we actually require that $f, g$ and $h$ be constant. If they were not constant, 
+then for a given point $(x_0, y_0, z_0)$ if we have 
+\[ f(x_0) + g(y_0) + h(z_0) = 0\]
+and we then proceed to vary $x$, $f(x) + g(y_0) + h(z_0) = 0$ does not necessarily hold, but it is a requirement 
+of the Laplace equation that it holds over all space, and thus $f, g$ and $h$ must be constant. Therefore, we 
+now have 3 ordinary differential equations: 
+\begin{align*}
+		\frac{1}{X}\pdv{x^2}X &= C_1\\
+		\frac{1}{Y}\pdv{y^2}Y &= C_2  \\
+		\frac{1}{Z}\pdv{z^2}Z &= -(C_1 + C_2)
+\end{align*}
+It turns out that although not all solutions to $\laplace V = 0$ has the form of $X(x)Y(y)Z(z)$, the general 
+solution often forms a complete basis so that any arbitrary solution can written as a linear combination of
+these separable solutions. 
+
+\subsection{Linear Algebra Aside}
+Suppose we have a set of functions $\{ \phi_i\}$ that form a complete basis. This means that any function $f$
+ can be written as a linear combination of $\phi_i$: 
+ \[ f = \sum_i c_i \phi_i \]
+ \begin{insight*}{}
+ 		Note that this summation notation can also be converted into an integral if we're working in a continuous
+		basis. This is the case in quantum mechanics when we are working in a continuous basis, such as momentum 
+		space, where we can write our wavefunction in terms of a Fourier transform: 
+		\[ \psi(x) = \frac{1}{2\pi}\int \phi(k) e^{ikx} dk\]
+ \end{insight*}
+Regardless of whether this is treated as a sum or integral, we assume that the $\phi_i$ terms are all orthogonal 
+to one another.
+\begin{notation*}{Orthogonality}
+		A set of functions $\{\phi_i\}$ are orthogonal to one another if the inner product is written as:
+		 \[ \braket{\phi_i}{\phi_j} = N_i \delta_{ij} = \begin{cases}
+		 0 & i \neq j\\
+		 N_i & i = j
+ 		\end{cases}\]
+		To compute the inner product, we compute the integral: 
+		\[ \braket{\phi_i}{\phi_j} = \int d^3x \phi_i^*(x, y, z) \phi_j(x, y, z)\]
+\end{notation*}
+We can also find the coefficients $c_i$ by taking the inner product of our function and the $\phi_i$ we're 
+interested in:
+\[ \braket{\phi_i}{f} = \braket{\phi_i}{\sum_i c_i \phi_j} = \sum_j c_j \braket{\phi_i}{\phi_j} = c_i N_i\]
+And so therefore: 
+\[ c_i = \frac{1}{N_i}\braket{\phi}\]
+\begin{insight*}{}
+		Intuitively, this process of finding the inner product is identical to what we would to to find a given 
+		component of a vector $\vec v = v_x \hat{x} + v_y \hat{y} + v_z \hat{z}$: we'd take the dot product $v_y = 
+		\hat{y} \cdot \vec v$. In this case with functions, we are essentially just generalizing this process,
+		but the underlying principles remain the same.
+\end{insight*}
+Now we will illustrate how to utilize these principles in an example:
+
+
+\begin{example}{}{}
+	Consider two planes bounded by the $yz$-plane, with one plane sitting at $y=0$ and the other at $y=a$. The
+	planes are connected together by a thin strip on the $yz$-plane, with a potential $V(y)$. The top and bottom
+	planes have potential $V = 0$ and the potential along the $x$-direction $V_x$ goes to 0 as $x\to\infty$. Find 
+	the solution to $V$ in the region $y=0$ and $y=a$. 
+
+	[INSERT TIKZ HERE]
+	
+	There is translational symmetry in the $\hat{z}$ direction, so therefore the system has no $\hat{z}$ 
+	dependence. Thus, we can write $V = V(x, y)$. Using the method of separation of variables, we can write:
+	\begin{align*}
+			\frac{1}{X}\partial_x^2 X &= \text{const.}\\
+			\frac{1}{Y}\partial_y^2	Y &= \text{const}
+	\end{align*}
+	Assuming real functions for $X$ and $Y$, these differential equations mean that depending on the sign of the 
+	constant, our solutions are either oscillatory or exponential. More specifically, if the constant is negative
+	then we get oscillatory solutions, and exponential ones if the constant is positive. 
+
+	Note that we want $V = 0$ and $y = 0$ and $y = a$, so therefore it makes sense that the $\hat{y}$ direction 
+	should have oscillatory solutions. And since the sum of these two must be zero, it forces the solution to $X$
+	to be an exponential function. However, this also makes sense intuitively, since we require that $V_x \to 0$ 
+	as $x \to \infty$. So now we have:
+	\begin{align*}
+			\frac{1}{X}\partial_x^2 X &= k^2\\
+			\frac{1}{Y}\partial_y^2 Y &= -k^2
+	\end{align*}
+	And so therefore:
+	\begin{align*}
+			x &= Ae^{kx} + Be^{-kx}\\
+			Y &= C \sin (ky) + D \cos(ky)
+	\end{align*}
+	Now we apply the boundary conditions, which will fix the solution to our given problem. We have that $V \to 0$
+	as $x \to \infty$, so therefore this kills the growing exponential term, so $A = 0$. Likewise, we have $V =0$
+	at $y = 0$, so this forces the cosine term to disappear to, so $D = 0$. Therefore, we have the equations:
+	\begin{align*}
+			x &= Be^{-kx}\\
+			Y &= C\sin(ky)
+	\end{align*}
+	So $V(x, y) = BCe^{-kx}\sin(ky)$. Now, we can let $\mathcal A = BC$, so we can change our equation into 
+	$V(x, y) = \mathcal A e^{-kx} \sin(ky)$. Then, we impose the condition that $V = 0$ at $y = a$, so we get:
+	\[0 = e^{-ka}\sin(ka) \implies  k = \frac{n\pi}{a}, n = 1, 2, 3, 4, \dots\]
+	And so therefore we can write:
+	\[ V(x, y) = \sum_{n = 1}^\infty A_n e^{n\pi x/a} \sin\left( \frac{n\pi y}{a} \right) \]
+
+
+
+
+	
+\end{example}
+
+
+
+

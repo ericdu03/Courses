@@ -2,8 +2,8 @@ PWD /Users/eric/Documents/Courses/PHYSICS 137B/HW3
 INPUT /usr/local/texlive/2021/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.tex
-OUTPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.log
+INPUT Homework 3.tex
+OUTPUT Homework 3.log
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
@@ -19,15 +19,15 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
+INPUT ../local.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
@@ -931,7 +931,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libr
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/pgflibraryfadings.code.tex
-OUTPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.pdf
+OUTPUT Homework 3.pdf
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.misc.code.tex
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.misc.code.tex
@@ -1415,10 +1415,10 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.aux
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.aux
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.aux
-OUTPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.aux
+INPUT ./Homework 3.aux
+INPUT Homework 3.aux
+INPUT Homework 3.aux
+OUTPUT Homework 3.aux
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1476,17 +1476,17 @@ INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-OUTPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
+INPUT ./Homework 3.out
+INPUT Homework 3.out
+INPUT ./Homework 3.out
+INPUT Homework 3.out
+INPUT ./Homework 3.out
+INPUT Homework 3.out
+INPUT ./Homework 3.out
+INPUT Homework 3.out
+INPUT ./Homework 3.out
+INPUT ./Homework 3.out
+OUTPUT Homework 3.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
@@ -1510,9 +1510,9 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT /usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.aux
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
-INPUT /Users/eric/Documents/Courses/PHYSICS 137B/HW3/Homework 3.out
+INPUT Homework 3.aux
+INPUT ./Homework 3.out
+INPUT ./Homework 3.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb

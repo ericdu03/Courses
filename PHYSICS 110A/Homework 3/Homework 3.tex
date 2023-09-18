@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage{../local}
+\usepackage{../../local}
 
 
 \newcommand{\classcode}{Physics 110A}
@@ -11,8 +11,10 @@
 \large{HW 03} \Large{\hfill \classname \hfill} \large{\today}
 \hrule height4pt \vskip .7em
 \normalsize
+\let\maketitle\relax
+\let\@maketitle\relax
 }
-\linespread{1.1}
+\setlength{\droptitle}{-0.75in}
 \begin{document}
     \maketitle
     \section*{Collaborators}
@@ -115,4 +117,6 @@
 
         The alternative explanation (and one that I find more convincing) is the fact that even though the fields are the same, this doesn't mean that the charge \textit{distributions} must be the same. Since the density is only computed as the total charge over volume, it tells us nothing about the exact distributions of these charges, so we can still get very different field lines without changing the total charge of the system.
     \end{solution}
+
+
 \end{document}

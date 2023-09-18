@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1675374456 "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.tex" "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.pdf" "notes" 1675374458
+["pdflatex"] 1679568918 "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.tex" "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.pdf" "notes" 1679568920
   "../notes.sty" 1675061438 16018 3060d88086a04348fb531c6fa5da0132 ""
-  "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.aux" 1675374457 2201 48f404e6a4a2ebd35525db668c7fcd5e ""
-  "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.tex" 1675374456 97 30bad2de8824876e23bf3507223150e3 ""
+  "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.aux" 1679568919 2905 96953fd93b1b21f60f87f04f7d90ad40 ""
+  "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.tex" 1679568118 121 f8f825c4ff1f98ca419d19c45a159c70 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -347,14 +347,15 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
+  "lecture18.tex" 1679568918 9153 8acff3bd922d8e5d1f4a7fa622e4f8d4 ""
   "lecture4.tex" 1675374456 23909 edb2fb4ae00f6e50d2f4a46cb28e3737 ""
-  "notes.aux" 1675374457 2201 48f404e6a4a2ebd35525db668c7fcd5e "pdflatex"
-  "notes.out" 1675374457 829 484fce71583657c2e562dd493e124ac4 "pdflatex"
-  "notes.tex" 1675374456 97 30bad2de8824876e23bf3507223150e3 ""
+  "notes.aux" 1679568919 2905 96953fd93b1b21f60f87f04f7d90ad40 "pdflatex"
+  "notes.out" 1679568919 1745 fa0076d75cc14f9b0d45d2d5ab79992e "pdflatex"
+  "notes.tex" 1679568118 121 f8f825c4ff1f98ca419d19c45a159c70 ""
   (generated)
-  "notes.log"
+  "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.pdf"
   "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.log"
   "notes.aux"
-  "/Users/eric/Documents/Courses/PHYSICS 137B/Course Notes/notes.pdf"
-  "notes.out"
   "notes.pdf"
+  "notes.out"
+  "notes.log"

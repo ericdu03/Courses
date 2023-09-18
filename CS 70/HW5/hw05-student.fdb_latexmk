@@ -1,7 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1664667537 "/Users/eric/Documents/Berkeley/CS-70/HW5/hw05-student.tex" "/Users/eric/Documents/Berkeley/CS-70/HW5/hw05-student.pdf" "hw05-student" 1664682191
-  "/Users/eric/Documents/Berkeley/CS-70/HW5/hw05-student.aux" 1664667538 1558 73f1b17c85f36553594f66e6a17ba841 ""
-  "/Users/eric/Documents/Berkeley/CS-70/HW5/hw05-student.tex" 1664667537 25598 3f8f3ee111ad8ced2969c2a66d3d6888 ""
+["pdflatex"] 1680738165 "hw05-student.tex" "hw05-student.pdf" "hw05-student" 1680740230
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -260,13 +258,11 @@
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
   "header.sty" 1662599415 10081 2d2c2a994aa2fdb308bb01aa9b5fd053 ""
-  "hw05-student.aux" 1664667538 1558 73f1b17c85f36553594f66e6a17ba841 "pdflatex"
-  "hw05-student.out" 1664667538 1025 062ffd291906d65a65a910245a4d806f "pdflatex"
+  "hw05-student.aux" 1680738166 1558 73f1b17c85f36553594f66e6a17ba841 "pdflatex"
+  "hw05-student.out" 1680738166 1025 062ffd291906d65a65a910245a4d806f "pdflatex"
   "hw05-student.tex" 1664667537 25598 3f8f3ee111ad8ced2969c2a66d3d6888 ""
   (generated)
-  "/Users/eric/Documents/Berkeley/CS-70/HW5/hw05-student.log"
-  "hw05-student.log"
   "hw05-student.out"
-  "hw05-student.pdf"
   "hw05-student.aux"
-  "/Users/eric/Documents/Berkeley/CS-70/HW5/hw05-student.pdf"
+  "hw05-student.log"
+  "hw05-student.pdf"

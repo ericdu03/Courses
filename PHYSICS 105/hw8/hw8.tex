@@ -1,0 +1,119 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 105}
+\newcommand{\classname}{Analytic Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 08} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Adarsh Iyer, Aren Martinian} and \textbf{Andrew Binder} to complete this homework. 
+	\section*{Problem 1}
+	Revisit Problem 4 on Homework 4, with the following modifications. The chain is now a massless, ideal string.
+	The ends of the string are wrapped around and fixed to two uniform-density cylindrical shafts of mass $M_1$
+	and $M_2$, respectively, as shown in the figure. The string can slide along the wedge without friction. 
+	Gravity acts downwards. Find the tension in the string and the (linear) acceleration of each mass.
+
+	\begin{solution}
+		First, let $x_1$ and $x_2$ denote the positions of the masses down their respective slopes. Then, writing
+		down the Lagrangian, we get:
+		\[
+		\mathcal L = T - U = \frac{1}{2}M_1\dot x_1^2 + \frac{1}{2}M_2 \dot x_2^2 + \frac{1}{2}I_1 \omega_1^2
+		+ \frac{1}{2}I_2\omega_2^2 + M_1gx_1\sin \alpha + M_2gx_2\sin \beta
+		\] 
+		Here, I use the top of the wedge as the point of zero potential. Now, we have the constraint equation:
+		\[
+		x_1 + x_2 = L + R_1 \theta_1 + R_2 \theta_2 \implies f = x_1 + x_2 - R_1 \theta_1 - R_2 \theta_2 = \text{
+		const.}
+		\] 
+		Therefore, our full Lagrangian with constraint is:
+		\[
+		\mathcal L = T - U = \frac{1}{2}M_1\dot x_1^2 + \frac{1}{2}M_2 \dot x_2^2 + \frac{1}{2}I_1 \omega_1^2
+		+ \frac{1}{2}I_2\omega_2^2 + M_1gx_1\sin \alpha + M_2gx_2\sin \beta + \lambda(x_1 + x_2 - R_1\theta_1
+		- R_2 \theta_2)
+		\] 
+		Then, we can write down the Euler-Lagrange equations for each coordinate, for which we have 4 (since 
+		$\omega = \dot \theta$:
+		\begin{align*}
+			\dv{\mathcal L}{x_1} &= \dv{t}\dv{\mathcal L}{\dot x_1} \implies \lambda + M_1g \sin \alpha = M_1
+			\ddot x_1\\
+			\dv{\mathcal L}{x_2} &= \dv{t}\dv{\mathcal L}{\dot x_2} \implies \lambda + M_2g \sin \beta = M_2
+			\ddot x_2\\
+			\dv{\mathcal L}{\theta_1} &= \dv{t}\dv{\mathcal L}{\dot \theta} \implies -R_1 \lambda = I_1 \ddot 
+			\theta_1 \\
+			\dv{\mathcal L}{\theta_2} &=  \dv{t} \dv{\mathcal L}{\dot \theta_2} \implies -R_2 \lambda = 
+			I_2 \ddot \theta_2 
+		\end{align*}
+		Finally, we can use the second derivative of the time constraint to get a final equation: 
+		\[
+		\ddot x_1 + \ddot x_2 - R_1\ddot \theta_1 - R_2 \ddot \theta_2 = 0
+		\] 
+		Using all five of these equations, it's possible to solve for $\ddot x_1$ and $\ddot x_2$ in terms of 
+		known quantities. I did this computation via a computer, which gave:
+		\begin{align*}
+			\ddot x_1 &= \frac{3gM_1 \sin \alpha + 2gM_2 \sin \alpha - M_2g\sin \beta}{3(M_1 + M_2)} \\
+			\ddot x_2 &=  \frac{3gM_2 \sin \beta + 2gM_2 \sin \beta - M_1g \sin \alpha}{3(M_1 + M_2)}  \\
+			\lambda &=  -g\frac{M_1M_2}{M_1 + M_2}\frac{\sin \alpha + \sin \beta}{3} 
+		\end{align*}
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 2}
+	A heavy, uniform rod AB moves without friction inside a cylindrical hole as shown below, remaining in the 
+	vertical plane passing through $O$. The initial position of the rod is as shown in the figure, with $A$ at 
+	the cusp. Gravity acts downwards. Find the angular velocity of the rod at the moment the rod becomes 
+	horizontal. 
+
+	\begin{solution}
+		To do this problem, we first notice that the angular velocity of the center of mass $M$ around the point
+		$O$ is equal to the angular velocity of the rod about its center of mass due to geometry. Therefore, 
+		if we can find the angular velocity of the rod at the moment the rod becomes horizontal, then we 
+		have solved the problem. First, consider the bottom of the hole as 0 potential. 
+
+		From geometry alone, we find that the potential energy of the rod when it is horizontal is equal to:
+		\[
+			U_{\text{bottom}} = Mga\left(1 - \sqrt{a^2 - \frac{l^2}{4}}\right)
+		\] 
+		Likewise, we can solve for the potential energy of the rod in the initial position as:
+		\[
+			U_{\text{top}} = Mgy_0
+		\] 
+		To calculate $y_0$, we use similar triangles:
+		\[
+			\frac{\sqrt{a^2 - \frac{l^2}{4}} }{a} = \frac{\frac{l}{2}}{y_0} \implies y_0 = \frac{al}{2\sqrt{
+			a^2 - \frac{l^2}{4}} }
+		\] 
+		The last quantity we need to calculate to solve is the moment of inertia of the rod about the point $O$.
+		To do this, we use parallel axis theorem. Since we know that the moment of inertia of the rod about 
+		its center of mass is $\frac{1}{3} mL^2$, then:
+		\[
+			I_{\text{center}} = \frac{1}{3}ML^2 + M\left( a^2 - \frac{l^2}{4} \right) 
+		\] 
+		Finally, we can use conservation of energy:
+		\begin{align*}
+			\frac{1}{2}I_{\text{center}} \omega^2 &= U_{\text{top}} - U_{\text{bottom}}\\
+			\frac{1}{2}\left( \frac{1}{3}ML^2 + M\left( a^2 - \frac{l^2}{4} \right)  \right) \omega^2 &= \frac{mgal}{2\sqrt{a^2 - \frac{l^2}{4}} } - mga\left( 1 - \sqrt{a^2 - \frac{l^2}{4}}  \right)
+		\end{align*}
+		First, let the quantity $\sqrt{a^2 - \frac{l^2}{4}}$ be denoted as $k$. Therefore, we have the equation:
+		\[
+		\frac{1}{2}\left( \frac{1}{3}ML^2 + Mk^2  \right)\omega^2 = \frac{mgal}{2k^2} - mga(1 - k)
+		\] 
+		We can now solve for $\omega$:
+		\begin{align*}
+			\omega^2 &= \frac{\frac{2mgal}{2k^2} - 2mga(1 - k)}{\frac{1}{3}ML^2 + Mk^2} \\
+			\therefore \omega &= \sqrt{\frac{\frac{mgal}{k^2} - 2mga(1-k)}{\frac{1}{3}ML^2 + Mk^2}} 
+		\end{align*}
+		Again, remember that $k = \sqrt{a^2 - \frac{l^2}{4}}$. Returning the substitution, I'd argue, doesn't
+		really simplify the expression too much, so I'll leave the final expression in terms of $k$.
+	\end{solution}
+\end{document}
