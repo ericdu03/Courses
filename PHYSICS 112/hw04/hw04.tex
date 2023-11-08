@@ -1,0 +1,348 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 112}
+\newcommand{\classname}{Introduction to Statistical Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 04} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	The energy of a two-state paramagnet with $N$ spins $\sigma_i = \pm 1$ is
+	\[
+		U = -\mu B\sum_{i = 1}^N \sigma_i
+	\] 
+	Consider two such paramagnets with $N_A = 200$ and $N_B = 100$. 
+	\begin{enumerate}[label=\alph*)]
+		\item The two paramagnets are initially at temperatures $T_A = \mu B/ k_B$ and $T_B = -\mu B / k_B$
+			respectively. Note the latter is at negative temperature! Using the formulas derived in class and 
+			lecture, what are $U_A$ and $U_B$?  
+
+			\begin{solution}
+				From equation 3.31 in the book, we have 
+				\[
+				U = -N \mu B \tanh\left( \frac{\mu B}{kT}\right) 
+				\] 
+				so for the given values of $T_A$ and $T_B$, we have:
+				\begin{align*}
+					U_A &= -N_A \mu B \tanh \left( \frac{\mu B}{k (\mu B / k)} \right) = -N_A \mu B
+					\tanh(1)\\
+					U_B &= -N_B \mu_B \tanh\left( \frac{\mu B}{k (-\mu B / k)} \right) = -N_B \mu B 
+					\tanh(-1)
+				\end{align*}
+			\end{solution}
+		\item The two paramagenets are brought into contact, and energy flows between them until they reach 
+			equilibrium. They are isolated from the environment. Once in equilibrium, what are $U_A, U_B$, 
+			$T_A$ and $T_B$? Use Mathematica to obtain a numerical answer for $T$.
+
+			\begin{solution}
+				We're given the formula for $T^{-1}$:
+				\[
+				\frac{1}{T} = \frac{k}{2 \mu B} \ln\left( \frac{N - U /\mu B}{N + U / \mu B} \right) 
+				\] 
+				At thermal equilibrium, we have $T_A = T_B$, so 
+				\begin{align*}
+					\ln \left( \frac{N_A - U_A / \mu B}{N_A + U_A / \mu B} \right) &= 
+					\ln \left( \frac{N_B - U_B / \mu B}{N_B + U_B/ \mu B} \right) \\
+					\frac{\mu B N_A - U_A}{\mu B N_A + U_A} = \frac{\mu B N_B - U_B}{\mu B N_B + U_B}
+				\end{align*}	
+				Simplifying this expression all the way down gets us 
+				\[
+					U_B N_A - U_A N_B = 0 \implies \frac{U_B}{U_A} = \frac{N_B}{N_A} = \frac{1}{2}
+				\] 
+				Therefore, $U_B = 2U_A$. To numerically calculate $T$, we'll need to calculate $U_B$ 
+				and $U_A$ first, which we can do using conservation of energy. We know the intiial energy is:
+				\[
+				U_i = -N_A \mu B \tanh(1) - N_B \mu B \tanh(-1) = (N_B - N_A) \mu B \tanh(1)
+				\] 
+				We know that the final energy can be written as $U_f = 3U_B$, so:
+				\[
+				U_f = 3 U_B \implies U_B = \frac{N_B - N_A}{3}\mu B \tanh (1) = -25.38 \mu B
+				\] 
+				$U_A$ is twice this value, so:
+				\[
+				U_A = \frac{2(N_B - N_A)}{3}\mu B \tanh(1) = -50.77 \mu B
+				\] 
+				We can then solve for $T_A$ algebraically by plugging our value for $U_A$ at equilibrium 
+				and $N_A$ back into the expression for $U$ (I told Mathematica to simplify this expression 
+				and this is what it gave me):
+				\[
+					T_A = \frac{2 B \mu}{k \ln \left( \frac{200 + \frac{200 \tanh(1)}{3}}{200
+					- \frac{200\tanh(1)}{3}}\right) }
+				\] 
+				Similarly for $T_B$:
+				\[
+				T_B = \frac{2 B \mu}{k \ln \left( \frac{100 + \frac{100\tanh(1)}{3}}{100
+					- \frac{100\tanh(1)}{3}}\right) }
+				\] 
+				Written in a nicer form, the algebraic
+				\footnote{I wouldn't really call it an algebraic expression since we've already done 
+					some simplifications already; I'd argue that the initial equation for $\frac{1}{T_A}$ 
+				is the \textit{true} algebraic expression.}
+				expression for $T_A$ and $T_B$ is:
+				\[
+				T_A = \frac{3.85 \mu B}{k} \ T_B = \frac{3.85 \mu B}{k}
+				\] 
+				Numerically, we have:
+				\begin{align*}
+					T_A &= 2.79 \times 10^{-21} \mu B\\
+					T_B &= 2.79 \times 10^{-21} \mu B
+				\end{align*}		
+				These two values are identical, which makes sense, since from the start we claimed 
+				that $T_A = T_B$.
+			\end{solution}
+		\item What is the change in the entropy $\Delta S_A$, $\Delta S_B$ and $\Delta S_{AB}$ during this 
+			process? Is the 2nd law satisfied?
+
+			\begin{solution}
+				We can solve this problem by counting the number of microstates available to the 
+				paramagnet. We know that initially, we have the following:
+				\begin{align*}
+					U_A &= -N_A \mu B \tanh(1) = -152.3 \mu B \\
+					U_B &= -N_B \mu B \tanh(-1) = 76.15 \mu B
+			\end{align*} 
+				Since we're dealing with integer number of spins, I'm going to round down for both numbers, 
+				so we have:
+				\begin{align*}
+					U_A &= -152 \\ 
+					U_B &= 76
+			\end{align*} 
+				For magnet $A$, this means that there are 152 spin down states, and 48 spins that cancel each 
+				other out. This means that half of the 48 spins are spin up, so there are a total of 24 spin 
+				up states in magnet $A$. There are 200 spins in magnet $A$, so:
+				\[
+					S_A^i = k \ln {200 \choose 24}
+				\] 
+				Similarly, magnet $B$ has 76 spin up states, so 24 spins cancel, hence 12 spin down states.
+				Therefore, the entropy of magnet $B$ is:
+				\[
+					S_B^i = k \ln {100 \choose 12}
+				\] 
+				Now recall our values for $U_A$ and $U_B$ at equilibrium:
+				\begin{align*}
+					U_A^f &= -50.77 \mu B\\
+					U_B^f &= -25.38 \mu B 
+				\end{align*}
+				Again, we need to round these numbers to the nearest integer. Since we need an even number 
+				of spins so that they cancel nicely, our rounding is going to be:
+				\begin{align*}
+					U_A^f &=  -52 \mu B \\
+					U_B^f &= -24 \mu B
+				\end{align*}
+				The reason we round from $-50.77\mu B$ down to $-52\mu B$ is because initially the 
+				system starts at a 
+				lower energy of $-152 \mu B$ and it gains energy, since $-50 \mu B$ is higher energy 
+				than $-50.77 \mu B$, this system cannot have that much energy. Therefore, we're forced
+				to round down to $-52 \mu B$. Similarly, this means that system $B$ goes to $-24 \mu B$, 
+				since it lost energy, and can't possibly give away more energy since that doesn't 
+				contribute to the changing of a spin state in system $A$. 
+
+				We then perform the same analysis as we did with the initial energy: there are 52 spin up
+				states, and the remaining cancel 
+				out, meaning that there are 74 spin down states, so 
+				\[
+					S_A^f = k \ln {200 \choose 74}\\
+				\] 
+				Similarly, for magnet $B$ we have 24 spin up states, so this corresponds to 38 spin down
+				states, so 
+				\[
+					S_B^f = k \ln {100 \choose 38}
+				\] 
+				Now to calculate the entropy changes (done in Mathematica):
+				\begin{align*}
+					\Delta S_A &= S_A^f - S_A^i = 8.005 \times 10^{-22} \text{ J/K}\\
+					\Delta S_B &= S_B^f - S_B^i = 4.045 \times 10^{-22} \text{ J/K}
+				\end{align*}
+				Then $\Delta S_{AB} = \Delta S_A + \Delta S_B = 1.205 \times 10^{-21}$ J/K. Clearly, this 
+				value is positive, so the second law is satisfied.
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 2}
+	A liter of air, initially at room temperature and atmospheric pressure, is heated at constant pressure until 
+	it doubles in volume. Calculate the increase in entropy during this process. 
+
+	\begin{solution}
+		We begin first by verifying the table. For diatomic gases, since $f = 5$, we expect a $C_P$ value 
+		of $\frac{7}{2}R \approx 29.1$. Looking at the table, we get that for oxygen, 
+		$C_P = 29.38$ and for Nitrogen, 
+		$C_P = 29.12$, exactly as expected. 
+
+		Now solving the problem:  We know that $Q = C_P dT$, and that:
+		\[
+			(\Delta S)_P = \int_{T_i}^{T_f} \frac{Q}{T} = C_P \int_{T_i}^{T_f} \frac{dT}{T} 
+			= C_P \ln \left( \frac{T_f}{T_i} \right) 
+		\] 
+		So now all we need to do is calculate $T_f$ and $T_i$. This is relatively simple, we can use the 
+		ideal gas law:
+		\[
+		T_i = \frac{P_0V_0}{Nk}, \ T_f = \frac{P_0(2V_0)}{Nk} = 2T_i
+		\] 
+		Therefore:
+		\[
+			(\Delta S)_P = C_P \ln \left( \frac{2T_i}{T_i} \right) = C_P \ln 2
+		\] 
+		This calculation for entropy gives us the change in entropy in one mole of air. We have one liter
+		of air, which is $\frac{1}{22.4} = 0.044$ moles of air. (Here I used the fact that the molar volume
+		is 22.4L). Therefore, the change in entropy is: 
+		\[
+			(\Delta S)_P = (29)(0.044)\ln 2 = 0.88 \text{ J/K}
+		\] 
+	\end{solution}
+	\pagebreak
+	\section*{Problem 3}
+	Consider a monoatomic gas in which each particle experiences a constant potential energy $v$:
+	\[
+		U = \sum_{i = 1}^{N}\left[ \frac{\mathbf p_i^2}{2m} + v\right]
+	\] 
+	\begin{enumerate}[label=\alph*)]
+		\item What is the entropy $S(U, N, V)$? Your result should be just a small modification of the 
+			Sackur-Tetrode equation coming from the potential $v$; you don't need to derive the Sackur-Tetrode
+			from scratch.
+
+			\begin{solution}
+
+				With the given potential, we can write this instead as:
+				\[
+					U_T = U_{\text{free}} + Nv
+				\] 
+				so rearranging, $U_{\text{free}} = U_T - Nv$. Since the free energy is really what the 
+				Sackur-Tetrode equation uses as its value for $U$, then we can just substitute 
+				this in for our entropy:
+				\[
+					S = Nk\left[ \ln\left( \frac{V}{N}\left( \frac{4 \pi m(U - Nv)}{3Nh^2} \right)^{3 / 2}\right) + \frac{5}{2} \right] 
+				\] 
+			\end{solution}
+		\item What is $U(T, N, V)$?
+
+			\begin{solution}
+				We know that $U_{\text{free}} = \frac{3}{2}NkT$, so therefore:
+				\[
+				U(T, N, V) = \frac{3}{2}NkT - Nv
+				\] 
+			\end{solution}
+		\item What is $P(T, N, V)$?
+
+			\begin{solution}
+				We have the relation $P = T\left( \pdv{S}{V} \right)_{U, N}$ so all we need to do 
+				is take the derivative of $S$ with respect to $V$. Note that in the equation for $S$, there is 
+				only one $V$ term, so once we split the logarithm only the $\frac{V}{N}$ term matters.
+				Therefore, taking the derivative:
+				\begin{align*}
+					P &= T \pdv{v} \left[ Nk\left( \ln \left( 
+					\frac{V}{N}\left( \frac{4 \pi m(U - Nv)}{3Nh^2} \right)^{3 / 2} \right) +
+			\frac{5}{2} \right)  \right] \\
+			&= NkT\left( \frac{1}{V} \right)
+			\end{align*}
+			Therefore, we have:  
+			\[
+				P(T, N, V) = \frac{NkT}{V}	
+			\] 
+			\end{solution}
+		\item Prove that 
+			\[
+			\mu(N, V, T) = -k_B T \ln\left( \frac{V}{N \lambda_T^3} \right) + v
+			\] 
+			where $\lambda_T = 1 / \sqrt{2\pi m k_BT / h^2}$.
+
+			\begin{solution}
+				This problem has a lot of algebra so I won't bother going through it all, though I'll 
+				highlight the major steps. We know that 
+				to calculate the chemical potential, 
+				\[
+					\frac{\mu}{T} = - \pdv{S}{N}
+				\] 
+				Therefore, we have to take the derivative of $S$ with respect to $N$. Here comes the algebra:
+				\begin{align*}
+					-\frac{\mu}{T} &= \dv{N} \left[ Nk\left( \ln \left( \frac{V}{N} \right) + \frac{3}{2}
+					\ln \left( \frac{4 \pi m (U - Nv)}{3Nh^2} \right)+ \frac{5}{2}\right) \right]\\
+								   &= k \left[ \ln \left( \frac{V}{N} \right) +
+								   \frac{3}{2}\left( \frac{4 \pi m(U - Nv)}{3Nh^2} \right) +
+							   \frac{5}{2}\right] + 
+								   Nk \left[ -\frac{1}{N} +
+								   \frac{3}{2}\frac{-4 \pi m v}{4\pi m(U - Nv)} - \frac{3}{2}\frac{1}{3Nh^2}(3h^2) \right]  \\
+								   &= k \ln \left( \frac{V}{N}\left( \frac{4 \pi m(U - Nv)}{3Nh^2} \right)^{3 / 2} + \frac{5}{2} \right) - Nk\left( \frac{1}{N} + \frac{3}{2}\frac{v}{U - Nv} + \frac{3}{2N} \right)
+				\end{align*}
+				I skipped quite a bit of from the second to third step, but I also can't be bothered to 
+				write out all the algebra. From here, we can substitute $U= \frac{3}{2}NkT + Nv$
+				\footnote{I'm omitting the $T$ subscript I used in 
+				part (a), but it's the same $U$ I'm referring to}
+				into both places, eventually getting us:
+				\[
+					-\frac{\mu}{T} = k \ln \left( \frac{V}{N}\left( \frac{4 \pi m}{3 N h^2} \frac{3}{2}NkT \right)^{3 / 2} \right) - \frac{3}{2}\frac{Nkv}{\frac{3}{2}NkT}
+				\] 
+				From here we multiply the $T$ and the negative sign over, and we get:
+				\[
+					\mu = -kT \ln \left( \frac{V}{N}\left( \frac{2 \pi m kT}{h^2} \right)^{3 / 2} \right) + v
+				\] 
+				We now recognize that everything inside the logarithm beside the $\frac{N}{V}$ is our $\lambda$
+				term, so we finally get the desired equation:
+				\[
+				\mu(N, V, T)= -kT \ln \left( \frac{V}{N \lambda_T^3} \right) + v
+				\] 
+			\end{solution}
+		\item Two boxes of gas with differing potentials $v_A \neq v_B$ are broiught into contact. Particles 
+			and number flow to achieve chemical and thermal equilibrium, with their volumes $V_A, V_B$ fixed.
+			They equilibriate to density $n_A = \frac{N_A}{V_A}$ and $\frac{N_B}{V_B}$ and temperature $T$.
+			Find the expression for $\frac{n_A}{n_B}$ that depends on $v_A - v_B$ and $T$. 
+
+			\begin{solution}
+				We have the following expressions for the chemical potentials:
+				\begin{align*}
+					\mu_A &=  -kT_A\ln \left( \frac{V_A}{N_A \lambda_{T_A}^3} \right) + v_A \\
+					\mu_B &= -kT_B\ln \left( \frac{V_B}{N_B \lambda_{T_B}^3} \right) + v_B 
+				\end{align*}
+				Our end goal is to set these two equal to each other to find an expression for $n_A$ and $n_B$.
+				Note that at thermal equilibrium, $T_A = T_B = T$, and since $\lambda$ is only dependent on $T$,
+				then $\lambda_{T_A} = \lambda_{T_B} = \lambda$. Now we set these equal to each other:
+				\[
+					kT \ln\left( \frac{V_A}{N_A \lambda^3}\right) - v_A - kT\ln\left( \frac{V_B}{N_B \lambda^3} \right)  + v_B = 0
+				\]
+				Simplify this by pulling $v_A$ and $v_B$ to one side and combine the logarithm:
+				\begin{align*}
+					kT \ln \left( \frac{V_A / (N_A \lambda^3)}{V_B / (N_B \lambda^3)} \right) &= v_A - v_B\\
+					\ln \left( \frac{n_B}{n_A} \right) &= \frac{1}{kT}(v_A - v_B) \\
+					\therefore \frac{n_A}{n_B} &= e^{-(v_A - v_B) / kT}
+				\end{align*}
+			\end{solution}
+		\item How can this problem be used to give an alternative explanation to Schroder 1.16c from HW1? 
+
+			\begin{solution}
+				Problem 1.16c was discussing the relationship between the pressure and altitude, assuming
+				that $T$ remained constant throughout the Earth's atmosphere. In that problem we 
+				reasoned the equation for pressure by considering the volume of air at height $z$ and $z + dz$.
+
+				Notice that in these two volumes of air, the particles have different
+				potentials, just like the system described in part (e). Furthermore, notice that 
+				the pressure of a gas is proportional to the density via the relationship:
+				\[
+					P = \frac{NkT}{V} = nkT
+				\] 
+				where $n$ is the density. Since $T$ is constant, $P \propto n$. Therefore, up to 
+				some constants, we can write:
+				\[
+					\frac{P_A}{P_B} = e^{-(v_A - v_B) /kT} \implies P_A = P_B e^{-(v_A - v_B) / kT}
+				\] 
+				If we let $P_B$ be the lower of the two volumes, then this final equation gives us a 
+				relationship between the pressure at a higher altitude in terms of the pressure 
+				at a lower altitude. This matches exactly the equation we derived in 1.16c:
+				\[
+					P(z) = P(0) e^{-mgz / kT}
+				\] 
+				where the pressure at a height $z$ is related to the pressure at sea level $P(0)$. Note 
+				that the potentials also match, since $v_A - v_B$ is the difference in potential energy 
+				and if $B$ is at sea level then $v_B = 0$ so $v_A - v_B = mgz$, exactly as in the 
+				equation for $P(z)$. 
+			\end{solution}
+	\end{enumerate}
+
+\end{document}

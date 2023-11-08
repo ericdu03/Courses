@@ -1,25 +1,4 @@
-% Header and Style File for CS170 TeX Files
-%
-% This package contains references to other packages, new commands, and values
-% for different parameters, common to all documents.
-% This file should be placed one level above the TeX files in the directory
-% tree.
-%
-% Please modify the appropriate section below with information about
-% the class: this information needs to be updated only once per semester.
-%
-% Compiled by Aditya Baradwaj (abaradwaj@berkeley.edu),
-% with significant inspiration taken from CS 70's header.sty file,
-% which was compiled and cleaned by Alvin Wan (http://alvinwan.com)
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\ProvidesPackage{cs170}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ProvidesPackage{../cs170}
 % Course Information
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -46,9 +25,8 @@
 \usepackage{circuitikz}
 \usepackage{color}
 \usepackage{colortbl}
-\usepackage{enumerate}
-\usepackage{csquotes}
-% \usepackage{enumitem}
+%\usepackage{enumerate}
+%\usepackage{csquotes}
 \usepackage{epsf}
 \usepackage{fancyhdr}
 \usepackage{forest}
@@ -67,7 +45,8 @@
 \usepackage{url}
 \usepackage{verbatim}
 \usepackage[all]{xy}
-\usetikzlibrary{automata, arrows, positioning, shapes}
+\usepackage[shortlabels]{enumitem}
+\usetikzlibrary{automata, arrows, positioning, shapes, patterns, graphs}
 
 \usepackage{multicol}
 \usepackage[margin=1in]{geometry}
@@ -76,14 +55,16 @@
 %\usepackage{algorithmic}
 \usepackage[noend]{algpseudocode}
 
+% fonts
+\usepackage{libertine}
+\usepackage{libertinust1math}
+%\usepackage{crimson}
+\usepackage[T1]{fontenc}
+
 %\usepackage[ruled, vlined]{algorithm2e}
 %\setlength\parindent{0pt}
 
-% \usepackage{minted}
-
-\usepackage{libertine}
-\usepackage{libertinust1math}
-\usepackage[T1]{fontenc}
+%\usepackage{minted}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
@@ -131,8 +112,10 @@
 
 % Commands for questions, parts, and solutions
 \newcommand{\question}[1]{\section{#1}}
+
 \newenvironment{subparts}{\begin{enumerate}[(a)]
 \newcommand\subpart{\item}}{\end{enumerate}}
+
 \newenvironment{solution}{\color{blue} \smallskip \textbf{Solution:}}{}
 \newcount\starcounter
 \newcommand{\stars}[1]{%

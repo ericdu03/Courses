@@ -12,32 +12,96 @@
 \hrule height4pt \vskip .7em
 \normalsize
 }
-\linespread{1.1}
 \begin{document}
 	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder, Adarsh Iyer, Nathan Song} and \textbf{Teja Nivarthi} on this homework
+	assignment. 
+
+
 	\section*{Problem 1 (25 pts)}
 	In this class (and in pretty much all of physics) it is key to be proficient at computing Gaussian integrals.
 	Consider
 	\[
-		\iinf dx e^{-\frac{1}{2}x^2}
+		I = \iinf dx e^{-\frac{1}{2}x^2}
 	\] 
 	\begin{enumerate}[label=\alph*)]
 		\item Show that
 			\[
 				I^2 = \int_{\mathbb R} dx dy e^{-\frac{1}{2}(x^2 + y^2)}
 			\] 
+			\begin{solution}
+				The definition of $I^2$ is that we multiply two integrals together, with separate 
+				integration variables. Therefore, we can write,
+				\begin{align*}
+					I^2 = \left( \iinf e^{-\frac{1}{2}x^2} dx \right) 
+					\left( \iinf e^{-\frac{1}{2}y^2} dy \right) 
+				\end{align*}
+				Then notice that since these integrals are independent of each other, this is the same 
+				as writing a double integral:
+				\[
+					I^2 = \iinf \iinf e^{-\frac{1}{2}(x^2 + y^2)} dx dy = \int_{\mathbb R^2} 
+					e^{-\frac{1}{2}(x^2 + y^2)} dx dy
+				\] 
+				as desired.
+			\end{solution}
 		\item Compute $I^2$ by expressing this integral in polar coordinates. Conclude that
 			\[
 				I = \iinf dx e^{-\frac{1}{2}x^2} = \sqrt{2\pi} 
 			\] 
+			\begin{solution}
+				Following the hint, we compute this integral in polar coordinates, where our 
+				integration bounds now go from $r \in [0, \infty)$ and $\theta \in [0, 2\pi]$. Our 
+				integral becomes:
+				\[
+					I^2 = \int_{0}^{2\pi}\int_0^\infty e^{-\frac{1}{2}r^2} r dr d\theta 
+					= \int_0^{2\pi} d\theta \int_0^\infty e^{-\frac{1}{2}r^2} r dr
+				\] 
+				The second integral can be solved via a $u$-substitution of $u = \frac{r^2}{2}$ so 
+				$du = r dr \implies dr = \frac{du}{r}$, hence:
+				\[
+					I^2 = 2\pi \int_0^\infty e^{-u} du = 2\pi \left[-e^{-u}\right]_{u = 0}^\infty = 2\pi
+				\] 
+				Since this is $I^2$, then we conclude that $I = \sqrt{2\pi}$.
+			\end{solution}
 		\item Show that 
 			\[
 				I = \iinf dx e^{-\frac{a}{2}x^2} = \sqrt{\frac{2\pi}{a}} 
 			\] 
+			\begin{solution}
+				The same steps done to part (b) can solve this problem as well. We split into polar coordinates,
+				and instead of letting $u = \frac{r^2}{2}$, we can let $u = \frac{ar^2}{2}$, meaning 
+				$dr = \frac{du}{ar}$. Therefore, the integral becomes:
+				\[
+					I^2 = 2\pi \int_0^\infty e^{-u} \frac{du}{a} = \frac{1}{a}\underbrace{\left( 2\pi \int_0^\infty 
+					e^{-u} du \right)}_{\text{same integral as part (b)}} = \frac{2\pi}{a}
+				\] 
+				Hence, $I = \sqrt{\frac{2\pi}{a}}$, as desired.
+			\end{solution}
 		\item Show that
 			\[
 				I = \iinf dx e^{-\frac{a}{2}x^2 + bx}  = e^{\frac{1}{2a}b^2}\sqrt{\frac{2\pi}{a}} 
 			\] 
+			\begin{solution}
+				Here, we complete the square on the exponent. First, factor out $-\frac{a}{2}$ from the 
+				exponent:
+				\[
+					I = \iinf e^{-\frac{a}{2}(x^2 + \frac{2b}{a}x)} dx
+				\] 
+				And now we complete the square:
+				\[
+					I = \iinf e^{-\frac{a}{2}\left(\left(x - \frac{b}{a}\right)^2 - \frac{b^2}{a^2}\right)} dx
+					= \iinf e^{-\frac{a}{2}\left( x - \frac{b}{a} \right)^2 + \frac{b^2}{2a}} dx = e^{\frac{b^2}{2a}}
+					\iinf e^{-\frac{a}{2}\left( x - \frac{b}{a} \right)^2} dx
+				\] 
+				This integral gives the same result as the previous integral, since we can perform a 
+				$u$-substitution $u = x + \frac{b}{a}$ so $du = dx$. Therefore:
+				\[
+					I = e^{\frac{b^2}{2a}} \underbrace{\iinf e^{-\frac{a}{2}u^2} du}_{\text{same as part (c)}}
+					= e^{\frac{b^2}{2a}} \sqrt{\frac{2\pi}{a}} 
+				\] 
+				as desired.
+			\end{solution}
 		\item Show that
 			\[
 				I = \iinf dx e^{-\frac{a}{2}x^2} x^2 = \frac{1}{a}\sqrt{\frac{2\pi}{a}} 
@@ -48,6 +112,18 @@
 			\] 
 			by both differentiating under the integral sign and explicitly computing its derivatives using 
 			the result in d).
+
+			\begin{solution}
+				Following the hint, we know the result of the integral from the previous problem, so we're 
+				basically just left with 
+				\[
+					I = \pdv[2]{b}\left[ e^{\frac{b^2}{2a}}\sqrt{\frac{2\pi}{a}}\right]_{b = 0} 
+					= \sqrt{\frac{2\pi}{a}} \pdv{b}\left[\frac{b}{a}e^{\frac{b^2}{2a}}\right]_{b =0} 
+					= \sqrt{\frac{2\pi}{a}} \left[ \frac{1}{a}e^{\frac{b^2}{2a}} + \frac{b^2}{a^2}e^{\frac{b^2}{2a}}\right]_{b =0}
+						= \frac{1}{a}\sqrt{\frac{2\pi}{a}} 
+				\] 
+				as desired. 
+			\end{solution}
 	\end{enumerate}
 	\pagebreak
 	\section*{Problem 2 (20 pts)}
@@ -65,15 +141,155 @@
 			\[
 				\Omega(N, E) = {N \choose E/D} 2^{E / D}
 			\] 
+			\begin{solution}
+				Since each particle contributes an energy $D$ to the system, if we have a total system 
+				with energy $E$ then we can divide this up into $\frac{E}{D}$ quanta of energy, and we need 
+				to count the number of ways to allocate $\frac{E}{D}$ quanta of energy among $N$ particles. This
+				is a problem that we've done countless times before, where $q = \frac{E}{D}$, where we have 
+				${N \choose q}$ possible ways. 
+
+				Further, since a spin of $\pm 1$ contributes the same toward the total energy, then we have 
+				2 choices for the spin of each particle among those that we've selected to carry 
+				energy. This explains the $2^{E/D}$ term. Putting these two together, we get:
+				\[
+					\Omega(N, E) = {N \choose E / D} 2^{E / D}
+				\] 
+			\end{solution}
 		\item Compute the entropy of the system $S(N, E)$ in the limit of many particles and high energies 
 			$E \gg D$.
+
+			\begin{solution}
+				We use the definition of $S = k \ln \Omega$, so we have:
+				\[
+					S = k \ln \left[{N \choose E / D}\right] + k\frac{E}{D} \ln 2
+				\] 
+				For this, we expand the binomial coefficient into an expression involving factorials, and 
+				use Stirling's formula of the form $\ln x! = x \ln x - x$, which gives us:
+				\begin{align*}
+					S &= k\left[ N \ln N - N - \frac{E}{D}\ln \frac{E}{D} + \frac{E}{D} - 
+						\left( N - \frac{E}{D} \right) \ln \left( N - \frac{E}{D} \right) + 
+					\left( N - \frac{E}{D}\right) + \frac{E}{D}\ln 2\right]\\
+						&= k\left[N \ln N - \frac{E}{D}\ln \frac{E}{D}- \left( N - \frac{E}{D} \right) 
+						\ln \left( N - \frac{E}{D} \right) + \frac{E}{D}\ln 2\right]
+				\end{align*}
+				We can't simplify this further, so that's where we'll stop. In the limit where $E \gg D$, 
+				we can replace all $\frac{E}{D} = E$, so this gives us:
+				\[
+					S = k\left[N \ln N - E \ln E - \left( N - E \right) \ln (N - E) + E \ln 2\right]
+				\] 
+			\end{solution}
 		\item Compute the temperature of this system as a function of the energy and the number of particles. 
 			Can the temperature of this system be negative?
+
+			\begin{solution}
+				To calculate temperature, we use the definition that $\frac{1}{T} \equiv \dv{S}{U} = \dv{S}{E}$.
+				Therefore, computing this derivative:
+				\begin{align*}
+					\frac{1}{T} &= k \left[-\frac{1}{D}\ln \frac{E}{D} - \frac{E}{D} \cdot \frac{1}{\frac{E}{D}}
+						\frac{1}{D} -\left(-\frac{1}{D}\right) \ln \left(N - \frac{E}{D}\right) -
+						\left( N - \frac{E}{D} \right) \frac{1}{\left( N - \frac{E}{D} \right) } 
+					\left( -\frac{1}{D} \right)  + \frac{1}{D} \ln 2\right]\\
+								&= \frac{k}{D}\left[\ln\left( N - \frac{E}{D} \right) + \ln 2 - \ln \frac{E}{D}\right]
+				\end{align*}
+				We can combine this into a single logarithm, giving us:
+				\[
+					\frac{1}{T} = \frac{k}{D}\ln\left[\frac{2\left( N - \frac{E}{D} \right)}{\frac{E}{D}}\right]
+				\] 
+				From here, we can see that it is indeed possible for $T$ to be negative, and precisely it 
+				is negative when the logarithm returns a negative number, which occurs when:
+				\[
+					\frac{2\left( N - \frac{E}{D} \right) }{\frac{E}{D}} < e
+				\] 
+				Specifically in terms of $E$, this occurs when $E > \frac{2}{3}ND$.
+			\end{solution}
 		\item Obtain the energy for the system as a function of temperature. Discuss the low and high temperature
-			limits. What happens to the entropy i these limits? What is the physical meaning of this?
+			limits. What happens to the entropy in these limits? What is the physical meaning of this?
+
+			\begin{solution}
+				We simply take the expression we got in the previous part and solve for $E$, which gives 
+				us the following expression:
+				\[
+					E = \frac{ND}{1 + \frac{1}{2}e^{D / kT}}
+				\] 
+				Now to analyze the bounds. At high temperature, then $e^{D / kT} \to e^0 = 1$, so we have 
+				$E \to \frac{2}{3}ND$ in this limit. At low temperature, $e^{D / kT} \to \infty$ so $E \to 0$
+				in this limit. 
+
+				Physically, the low temperature limit makes intuitive sense, since $E \to 0$
+				at low temperature, matching our intuitive relationship between energy and temperature .
+				At high temperature, we expect every single bit to be randomly 
+				distributed, so $\frac{2}{3}$ of them will be in the states $\pm 1$, which contributes 
+				to the total energy of the system. So, with this analysis, the high temperature limit 
+				works as well.
+				
+				As for the entropy, we can substitute $E = \frac{2}{3}ND$ into the expression we 
+				derived in part (b) for the high temperature limit, which gives us:
+				\[
+				S = kN \ln 3 = k \ln 3^N
+				\] 
+				At the low temperature limit, $E \to 0$, so all the terms with $E$ immediately disappear (note
+				that $\lim_{x \to 0} x \ln x = 0$). This
+				gives us that at low temperature, 
+				\[
+					S = k\left[N \ln N - N \ln N\right] = 0
+				\] 
+				The physical interpretation of the high temperature limit is that at high temperatures, each 
+				particle has three possibilities for its spin, hence there are $3^N$ total microstates, which 
+				matches our expression of $S = k \ln \Omega = k \ln 3^N$. At low temperatures, this limit also 
+				makes sense (kind of), where we can think of the low temperature limit as a configuration where 
+				we have very little information, hence $S$ approaches zero. 
+			\end{solution}
 	\end{enumerate}
 	\pagebreak
 	\section*{Problem 3 (20 pts)}
 	Consider an ideal gas undergoing a process described by the fact that $pV^2$ is a constant. 
 	What is the molar heat capacity of this process?
+
+	\begin{solution}
+		The heat capacity is defined as $C = \frac{Q}{\Delta T}$, and using the first law of Thermodynamics
+		gets us
+		\[
+			C = \frac{Q}{\Delta T} = \frac{\Delta U - W}{\Delta T} = \frac{\Delta U}{\Delta T} -
+			\frac{W}{\Delta T}
+		\] 
+		We assume that we're working with a monoatomic ideal gas so $f = 3$ (from Ed), so we have:
+		\[
+			U = \frac{3}{2}NkT = \frac{3}{2}nRT \implies \frac{\Delta U}{\Delta T} = \dv{U}{T} = \frac{3}{2}nR
+		\] 
+		Meanwhile, we can use $W = -P\Delta V$ to simplify the second term:
+		\[
+			\frac{W}{\Delta T} = -\frac{P \Delta V}{\Delta T} = -P \dv{V}{T}
+		\] 
+		To do this, we use the fact that $PV^2$ is constant, so $\dv{(PV^2)}{T} = 0$:
+		\begin{align*}
+			\dv{(PV^2)}{T} &= P \dv{V^2}{T} + V^2 \dv{P}{T}\\
+			0 &= 2PV \dv{V}{T} + V^2 \dv{P}{T}\\
+			V^2 \dv{P}{T} &= -2PV \dv{V}{T}
+		\end{align*}
+		Rearranging this to match the expression we have for $\frac{W}{\Delta T}$:
+		\[
+			-P  \dv{V}{T} = \frac{V}{2} \dv{P}{T} 
+		\] 
+		To calculate $\dv{P}{T}$, we use the ideal gas law:
+		\[
+			\dv{P}{T} = \dv{T}\left( \frac{nRT}{V} \right) = \frac{nR}{V} - \frac{nRT}{V^2} \dv{V}{T}
+		\] 
+		Therefore, we have:
+		\begin{align*}
+			-P \dv{V}{T} &= \frac{V}{2}\left( \frac{nR}{V} - \frac{nRT}{V^2}\dv{V}{T} \right) \\
+						 &= \frac{nR}{2} - \frac{P}{2} \dv{V}{T} 
+		\end{align*} 
+		Noticing that we have the same term on the left hand side, we get:
+		\[
+			-\frac{P}{2} \dv{V}{T} = \frac{nR}{2} \implies -P \dv{V}{T} = nR = \frac{W}{\Delta T}
+		\] 
+		Therefore, putting them both together:
+		\[
+			C = \frac{Q}{\Delta T} = \frac{\Delta U - W}{\Delta T} = \frac{3}{2}nR - nR = \frac{1}{2}nR
+		\] 
+		Finally, computing the molar heat capacity:
+		\[
+		C_n = \frac{C}{n} = \frac{R}{2}
+		\] 
+	\end{solution}
 \end{document}

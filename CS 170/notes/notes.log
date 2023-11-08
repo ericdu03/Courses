@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.24)  14 SEP 2023 15:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.24)  2 NOV 2023 14:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -846,6 +846,87 @@ Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmarkwidth=\skip78
 \thanksmargin=\skip79
 \droptitle=\skip80
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/chemformula/chemformula.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xfrac/xfrac.sty (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2021-03-12 LaTeX2e option processing using LaTeX3 keys
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xtemplate/xtemplate.sty
+Package: xtemplate 2021-03-12 L3 Experimental prototype document functions
+\l__xtemplate_tmp_dim=\dimen347
+\l__xtemplate_tmp_int=\count341
+\l__xtemplate_tmp_muskip=\muskip18
+\l__xtemplate_tmp_skip=\skip81
+)
+Package: xfrac 2021-03-12 L3 Experimental split-level fractions
+\l__xfrac_slash_box=\box78
+\l__xfrac_tmp_box=\box79
+\l__xfrac_denominator_bot_sep_dim=\dimen348
+\l__xfrac_numerator_bot_sep_dim=\dimen349
+\l__xfrac_numerator_top_sep_dim=\dimen350
+\l__xfrac_slash_left_sep_dim=\dimen351
+\l__xfrac_slash_right_sep_dim=\dimen352
+\l__xfrac_slash_left_muskip=\muskip19
+\l__xfrac_slash_right_muskip=\muskip20
+
+Package xtemplate Info: Declaring object type 'xfrac' taking 3 argument(s) on
+(xtemplate)             line 80.
+
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/units/nicefrac.sty
+Package: nicefrac 1998/08/04 v0.9b Nice fractions
+\L@UnitsRaiseDisplaystyle=\skip82
+\L@UnitsRaiseTextstyle=\skip83
+\L@UnitsRaiseScriptstyle=\skip84
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+))
+Package: chemformula 2020/12/22 v4.16 typeset chemical compounds and reactions (CN)
+\l__chemformula_tmpa_dim=\dimen353
+\l__chemformula_tmpb_dim=\dimen354
+\l__chemformula_tmpc_dim=\dimen355
+\l__chemformula_tmpa_int=\count342
+\l__chemformula_tmpb_int=\count343
+\l__chemformula_tmpc_int=\count344
+\l__chemformula_tmpa_box=\box80
+\l__chemformula_tmpb_box=\box81
+\l__chemformula_arrow_length_dim=\dimen356
+\l__chemformula_arrow_label_height_dim=\dimen357
+\l__chemformula_arrow_label_offset_dim=\dimen358
+\l__chemformula_arrow_minimum_length_dim=\dimen359
+\l__chemformula_arrow_shortage_dim=\dimen360
+\l__chemformula_arrow_offset_dim=\dimen361
+\l__chemformula_arrow_yshift_dim=\dimen362
+\l__chemformula_radical_radius_dim=\dimen363
+\l__chemformula_radical_hshift_dim=\dimen364
+\l__chemformula_radical_vshift_dim=\dimen365
+\l__chemformula_radical_space_dim=\dimen366
+\l__chemformula_arrow_head_dim=\dimen367
+\l__chemformula_name_dim=\dimen368
+\l__chemformula_adduct_space_dim=\dimen369
+\l__chemformula_charge_shift_dim=\dimen370
+\l__chemformula_subscript_shift_dim=\dimen371
+\l__chemformula_superscript_shift_dim=\dimen372
+\l__chemformula_subscript_dim=\dimen373
+\l__chemformula_superscript_dim=\dimen374
+\l__chemformula_bond_dim=\dimen375
+\l__chemformula_bond_space_dim=\dimen376
+\l__chemformula_elspec_pair_distance_dim=\dimen377
+\l__chemformula_elspec_pair_line_length_dim=\dimen378
+\l__chemformula_elspec_pair_width_dim=\dimen379
+\l__chemformula_kroegervink_positive_radius_dim=\dimen380
+\l__chemformula_kroegervink_positive_hshift_dim=\dimen381
+\l__chemformula_kroegervink_positive_vshift_dim=\dimen382
+\l__chemformula_kroegervink_positive_space_dim=\dimen383
+\l__chemformula_stoich_space_skip=\skip85
+\l__chemformula_math_space_skip=\skip86
+\l__chemformula_additions_symbol_space_skip=\skip87
+\l__chemformula_count_tokens_int=\count345
+\g__chemformula_lewis_int=\count346
+\l__chemformula_arrow_arg_i_box=\box82
+\l__chemformula_arrow_arg_ii_box=\box83
+\l__chemformula_superscript_box=\box84
+\l__chemformula_subscript_box=\box85
+\l__chemformula_plus_space_skip=\skip88
+\l__chemformula_minus_space_skip=\skip89
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/libertine/libertine.sty
 Package: libertine 2020/03/26 (Bob Tennent) Supports Libertine and Biolinum fonts for all LaTeX engines.
  (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
@@ -854,15 +935,14 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
- (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2021/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks52
 \XKV@tempa@toks=\toks53
 )
-\XKV@depth=\count341
+\XKV@depth=\count347
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-)) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
-Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/fontaxes/fontaxes.sty
 Package: fontaxes 2020/07/21 v1.0e Font selection axes
@@ -959,8 +1039,7 @@ LaTeX Font Info:    Redeclaring math accent \vec on input line 677.
 LaTeX Info: Redefining \vdots on input line 1086.
 LaTeX Info: Redefining \cdots on input line 1090.
 LaTeX Info: Redefining \not on input line 1330.
-)
-(/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+LinuxLibertineT-TLF on input line 112.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd
@@ -968,24 +1047,28 @@ File: T1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for T1/Lin
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 10.0pt on input line 112.
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/graphs/tikzlibrarygraphs.code.tex
+File: tikzlibrarygraphs.code.tex 2020/12/27 v3.1.8b (3.1.8b)
+\tikz@lib@auto@number=\count348
+\tikz@qnode@count=\count349
 )) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count342
-\lst@gtempboxa=\box78
+\lst@mode=\count350
+\lst@gtempboxa=\box86
 \lst@token=\toks54
-\lst@length=\count343
-\lst@currlwidth=\dimen347
-\lst@column=\count344
-\lst@pos=\count345
-\lst@lostspace=\dimen348
-\lst@width=\dimen349
-\lst@newlines=\count346
-\lst@lineno=\count347
-\lst@maxwidth=\dimen350
+\lst@length=\count351
+\lst@currlwidth=\dimen384
+\lst@column=\count352
+\lst@pos=\count353
+\lst@lostspace=\dimen385
+\lst@width=\dimen386
+\lst@newlines=\count354
+\lst@lineno=\count355
+\lst@maxwidth=\dimen387
  (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count348
-\lst@skipnumbers=\count349
-\lst@framebox=\box79
+\c@lstnumber=\count356
+\lst@skipnumbers=\count357
+\lst@framebox=\box87
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
@@ -993,48 +1076,48 @@ Package: listings 2020/03/24 1.8d (Carsten Heinz)
  (./notes.aux)
 \openout1 = `notes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for LS1/libertinust1math/m/n on input line 25.
-LaTeX Font Info:    Trying to load font information for LS1+libertinust1math on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for LS1/libertinust1math/m/n on input line 31.
+LaTeX Font Info:    Trying to load font information for LS1+libertinust1math on input line 31.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1math.fd
 File: ls1libertinust1math.fd 2016/03/23 Fontinst v1.933 font definitions for LS1/libertinust1math.
 )
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for LS2/libertinust1mathsym/m/n on input line 25.
-LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathsym on input line 25.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for LS2/libertinust1mathsym/m/n on input line 31.
+LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathsym on input line 31.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathsym.fd
 File: ls2libertinust1mathsym.fd 2015/04/17 v1.1.2-latex LibertinusT1Mathsym LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    ... okay on input line 31.
  (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count350
-\scratchdimen=\dimen351
-\scratchbox=\box80
-\nofMPsegments=\count351
-\nofMParguments=\count352
+\scratchcounter=\count358
+\scratchdimen=\dimen388
+\scratchbox=\box88
+\nofMPsegments=\count359
+\nofMParguments=\count360
 \everyMPshowfont=\toks55
-\MPscratchCnt=\count353
-\MPscratchDim=\dimen352
-\MPnumerator=\count354
-\makeMPintoPDFobject=\count355
+\MPscratchCnt=\count361
+\MPscratchDim=\dimen389
+\MPnumerator=\count362
+\makeMPintoPDFobject=\count363
 \everyMPtoPDFconversion=\toks56
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1042,7 +1125,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 25.
+Package hyperref Info: Link coloring OFF on input line 31.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1050,11 +1133,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count356
+\c@section@level=\count364
 )
-LaTeX Info: Redefining \ref on input line 25.
-LaTeX Info: Redefining \pageref on input line 25.
-LaTeX Info: Redefining \nameref on input line 25.
+LaTeX Info: Redefining \ref on input line 31.
+LaTeX Info: Redefining \pageref on input line 31.
+LaTeX Info: Redefining \nameref on input line 31.
  (./notes.out) (./notes.out)
 \@outlinefile=\write6
 \openout6 = `notes.out'.
@@ -1094,83 +1177,83 @@ LaTeX Info: Redefining \nameref on input line 25.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count357
-\c@mv@boldtabular=\count358
-\c@lstlisting=\count359
+\c@mv@tabular=\count365
+\c@mv@boldtabular=\count366
+\c@lstlisting=\count367
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 12.0pt on input line 26.
+(Font)              scaled to size 12.0pt on input line 32.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 14.4pt on input line 26.
+(Font)              scaled to size 14.4pt on input line 32.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 14.4pt on input line 27.
-LaTeX Font Info:    Trying to load font information for TS1+LinuxLibertineT-TLF on input line 30.
+(Font)              scaled to size 14.4pt on input line 33.
+LaTeX Font Info:    Trying to load font information for TS1+LinuxLibertineT-TLF on input line 36.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/libertine/TS1LinuxLibertineT-TLF.fd
 File: TS1LinuxLibertineT-TLF.fd 2017/03/20 (autoinst) Font definitions for TS1/LinuxLibertineT-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 8.0pt on input line 30.
+(Font)              scaled to size 8.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 6.5pt on input line 30.
+(Font)              scaled to size 6.5pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 8.0pt on input line 30.
+(Font)              scaled to size 8.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 6.5pt on input line 30.
+(Font)              scaled to size 6.5pt on input line 36.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 8.0pt on input line 30.
+(Font)              scaled to size 8.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 6.5pt on input line 30.
-LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathex on input line 30.
+(Font)              scaled to size 6.5pt on input line 36.
+LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathex on input line 36.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathex.fd
 File: ls2libertinust1mathex.fd 2016/03/15 v1.0.0-latex LibertinusMath extensions LS2 font definitions
 )
 LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 8.0pt on input line 30.
+(Font)              scaled to size 8.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 6.5pt on input line 30.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
+(Font)              scaled to size 6.5pt on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for LS1+libertinust1mathbb on input line 30.
+LaTeX Font Info:    Trying to load font information for LS1+libertinust1mathbb on input line 36.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/libertinust1math/ls1libertinust1mathbb.fd
 File: ls1libertinust1mathbb.fd 2016/08/22 latex LibertinusT1Mathbb LS1 font definitions
 )
 LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 8.0pt on input line 30.
+(Font)              scaled to size 8.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 6.5pt on input line 30.
+(Font)              scaled to size 6.5pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 8.0pt on input line 30.
+(Font)              scaled to size 8.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 6.5pt on input line 30.
+(Font)              scaled to size 6.5pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 10.0pt on input line 30.
+(Font)              scaled to size 10.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 8.0pt on input line 30.
+(Font)              scaled to size 8.0pt on input line 36.
 LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 6.5pt on input line 30.
+(Font)              scaled to size 6.5pt on input line 36.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 10.0pt on input line 35.
+(Font)              scaled to size 10.0pt on input line 41.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
-(Font)              scaled to size 12.0pt on input line 42.
+(Font)              scaled to size 12.0pt on input line 48.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstlang2.sty
@@ -1193,41 +1276,125 @@ File: lstlang3.sty 2020/03/24 1.8d listings language file
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
-(Font)              scaled to size 9.0pt on input line 80.
-LaTeX Font Info:    Trying to load font information for T1+LinuxLibertineMonoT-TLF on input line 80.
+(Font)              scaled to size 9.0pt on input line 86.
+LaTeX Font Info:    Trying to load font information for T1+LinuxLibertineMonoT-TLF on input line 86.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/libertine/T1LinuxLibertineMonoT-TLF.fd
 File: T1LinuxLibertineMonoT-TLF.fd 2019/05/20 (autoinst) Font definitions for T1/LinuxLibertineMonoT-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LinuxLibertineMonoT-TLF/m/n' in size <9> not available
-(Font)              Font shape `T1/LinuxLibertineMonoT-TLF/regular/n' tried instead on input line 80.
+(Font)              Font shape `T1/LinuxLibertineMonoT-TLF/regular/n' tried instead on input line 86.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineMonoT-TLF/regular/n' will be
-(Font)              scaled to size 9.0pt on input line 80.
+(Font)              scaled to size 9.0pt on input line 86.
  [1
 
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `T1/LinuxLibertineMonoT-TLF/m/n' in size <10> not available
-(Font)              Font shape `T1/LinuxLibertineMonoT-TLF/regular/n' tried instead on input line 106.
+(Font)              Font shape `T1/LinuxLibertineMonoT-TLF/regular/n' tried instead on input line 112.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineMonoT-TLF/regular/n' will be
-(Font)              scaled to size 10.0pt on input line 106.
+(Font)              scaled to size 10.0pt on input line 112.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
-(Font)              scaled to size 10.0pt on input line 111.
- [2] [3] [4] [5] (./notes.aux)
+(Font)              scaled to size 10.0pt on input line 117.
+ [2] [3] [4] [5]
+<dijkstra.png, id=468, 717.68124pt x 208.78pt>
+File: dijkstra.png Graphic file (type png)
+<use dijkstra.png>
+Package pdftex.def Info: dijkstra.png  used on input line 369.
+(pdftex.def)             Requested size: 358.83974pt x 104.38972pt.
+ [6 <./dijkstra.png>] [7] [8] [9]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 8.0pt on input line 569.
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
+(Font)              scaled to size 6.5pt on input line 569.
+<Huffman.png, id=488, 712.6625pt x 268.00125pt>
+File: Huffman.png Graphic file (type png)
+<use Huffman.png>
+Package pdftex.def Info: Huffman.png  used on input line 592.
+(pdftex.def)             Requested size: 356.33038pt x 134.00029pt.
+ [10 <./Huffman.png>]
+LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/it' will be
+(Font)              scaled to size 10.0pt on input line 661.
+ [11] [12] [13]
+LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
+(Font)              scaled to size 12.0pt on input line 834.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
+(Font)              scaled to size 12.0pt on input line 834.
+LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
+(Font)              scaled to size 12.0pt on input line 834.
+LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
+(Font)              scaled to size 12.0pt on input line 834.
+LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
+(Font)              scaled to size 12.0pt on input line 834.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
+(Font)              scaled to size 12.0pt on input line 834.
+LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
+(Font)              scaled to size 12.0pt on input line 834.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 834.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 834.
+
+[14] (./lec-13.tex [15] [16]
+<alignment.png, id=527, 619.31375pt x 96.36pt>
+File: alignment.png Graphic file (type png)
+<use alignment.png>
+Package pdftex.def Info: alignment.png  used on input line 92.
+(pdftex.def)             Requested size: 309.65611pt x 48.17987pt.
+<alignment-pseudocode.png, id=528, 418.56375pt x 264.99pt>
+File: alignment-pseudocode.png Graphic file (type png)
+<use alignment-pseudocode.png>
+Package pdftex.def Info: alignment-pseudocode.png  used on input line 114.
+(pdftex.def)             Requested size: 209.28136pt x 132.49467pt.
+ [17 <./alignment.png> <./alignment-pseudocode.png>]
+<knapsack-repetition.png, id=535, 403.5075pt x 184.69pt>
+File: knapsack-repetition.png Graphic file (type png)
+<use knapsack-repetition.png>
+Package pdftex.def Info: knapsack-repetition.png  used on input line 145.
+(pdftex.def)             Requested size: 201.75325pt x 92.34476pt.
+) (./lec-14.tex [18 <./knapsack-repetition.png>] [19]
+<TSP-code.png, id=546, 425.59pt x 256.96pt>
+File: TSP-code.png Graphic file (type png)
+<use TSP-code.png>
+Package pdftex.def Info: TSP-code.png  used on input line 110.
+(pdftex.def)             Requested size: 212.79446pt x 128.47968pt.
+ [20 <./TSP-code.png>] [21]) (./lec-15.tex [22]
+<LP-geo.png, id=561, 717.68124pt x 401.5pt>
+File: LP-geo.png Graphic file (type png)
+<use LP-geo.png>
+Package pdftex.def Info: LP-geo.png  used on input line 95.
+(pdftex.def)             Requested size: 358.83974pt x 200.7495pt.
+ [23]
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 127.
+
+[24 <./LP-geo.png>]) (./lec-16.tex [25]) (./lec-17.tex [26] [27]
+<LP-duality-gap.png, id=585, 562.1pt x 141.52875pt>
+File: LP-duality-gap.png Graphic file (type png)
+<use LP-duality-gap.png>
+Package pdftex.def Info: LP-duality-gap.png  used on input line 102.
+(pdftex.def)             Requested size: 393.46732pt x 99.06944pt.
+ [28 <./LP-duality-gap.png>]) (./lec-18.tex [29] [30] [31]) (./lec-19.tex [32] [33]) (./lec-20.tex [34] [35]) [36] (./notes.aux)
 Package rerunfilecheck Info: File `notes.out' has not changed.
-(rerunfilecheck)             Checksum: 6536CDD25FDC69CBE42905FB1563E163;2054.
+(rerunfilecheck)             Checksum: 812A3742017AC9D0F5FB746C404B9481;15450.
  ) 
 Here is how much of TeX's memory you used:
- 48680 strings out of 478994
- 1072834 string characters out of 5858184
- 1899426 words of memory out of 5000000
- 65280 multiletter control sequences out of 15000+600000
- 467958 words of font info for 75 fonts, out of 8000000 for 9000
+ 51180 strings out of 478994
+ 1139350 string characters out of 5858184
+ 1966368 words of memory out of 5000000
+ 67591 multiletter control sequences out of 15000+600000
+ 519195 words of font info for 128 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,8n,147p,1194b,2418s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusEX.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_dhi6qf.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusSYM.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusMR.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusMI.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertinust1math/LibertinusT1Math.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineMT.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb>
-Output written on notes.pdf (5 pages, 407679 bytes).
+ 128i,15n,147p,1194b,2418s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusBMR.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusBB.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_ki75ao.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusEX.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_dhi6qf.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusSYM.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusMR.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertinust1math/libusMI.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertinust1math/LibertinusT1Math.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineMT.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTBI.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb>
+Output written on notes.pdf (36 pages, 1214217 bytes).
 PDF statistics:
- 161 PDF objects out of 1000 (max. 8388607)
- 131 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 699 PDF objects out of 1000 (max. 8388607)
+ 616 compressed objects within 7 object streams
+ 148 named destinations out of 1000 (max. 500000)
+ 949 words of extra memory for PDF output out of 10000 (max. 10000000)
 

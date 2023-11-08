@@ -1,0 +1,270 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\newcommand{\classcode}{Physics 112}
+\newcommand{\classname}{Introduction to Statistical Mechanics}
+\renewcommand{\maketitle}{
+	\hrule height4pt
+	\large {Eric Du \hfill \classcode}
+	\newline
+	\large{HW 06} \Large{\hfill \classname \hfill} \large{\today}
+	\hrule height4pt \vskip .7em
+	\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder} and \textbf{Adarsh Iyer} on this assignment. asdjf;alsdfj kdsfj 
+	\section*{Schroeder 5.6}
+	A muscle can be thought of as a fuel cell, producing work from the metabolism of glucose:
+	\[
+		\ch{C6H12O6} + 6\ch{O2} \to 6\ch{CO2} + 6\ch{H2O}
+	\]
+	\begin{enumerate}[label=\alph*)]
+		\item Use the data at the back of this book to determine the values of \( \Delta H \) and \( \Delta G \)
+			for this reaction, for one mole of glucose. Assume that the reaction takes place at 
+			room temperature and atmospheric pressure.
+
+			\begin{solution}
+				Looking at the back of the book, we have the following values:
+				\begin{center}
+					\begin{tabular}{c|c|c}
+						Substance & \(\Delta H\) (kJ) & \(\Delta G\) (kJ)\\
+						\hline
+						\ch{C6H12O6} & -1275 & -910 \\
+						6\ch{O2} & 0 & 0\\
+						6\ch{CO2} & -2361.06 &-2366.16\\ 
+						6\ch{H2O} & -1714.04 & -1422.78
+					\end{tabular}
+				\end{center}
+				So to find $\Delta H$ of the entire reaction, we take \(\Delta H\) on the right and 
+				subtract it from \(\Delta H \) on the left. This gives us \(\Delta H = -2803.04\) kJ/mol. We 
+				can calculate $\Delta G$ using the same process, giving us $\Delta G = -2878.94$ kJ/ mol
+			\end{solution}
+		\item What is the maximum amount of work that a muscle can perform, for each mole of 
+			glucose consumed, assuming ideal operation? 
+
+			\begin{solution}
+				Since $\Delta G$ is the quantity that takes into account the energy supplied by the
+				environment, then assuming ideal operation, the muscle can perform 2879 kJ of work per mole 
+				of glucose. 
+			\end{solution}
+		\item Still assuming ideal operation, how much heat is absorbed or expelled by the chemicals 
+			during the metabolism of a mole of glucose? (Be sure to say which direction the heat flows.)
+
+			\begin{solution}
+				Recall that $G = H - TS$, meaning that $TS = H - G = 75.9$ kJ, and the positive sign indicates
+				that we need to supply 75.9 kJ of energy, meaning that heat flows into the system.
+			\end{solution}
+		\item Use the concept of entropy to explain why the heat flows in the direction it does. 
+
+			\begin{solution}
+				Looking at the back of the book again, we have:
+				\begin{center}
+					\begin{tabular}{c|c}
+						Substance & \(S\) \\
+						\hline 
+						\ch{C6H12O6} & 212\\
+						6\ch{O2} & 1230.84\\
+						6\ch{CO2} & 1282.44\\
+						6\ch{H2O} & 1131.78
+					\end{tabular}
+				\end{center}
+				So calculating the entropy of the reactants and products:
+				\begin{align*}
+					\Delta S_{\text{reactants}} &= 212 + 1230 = 1442.84 \\
+					\Delta S_{\text{products}} &= 
+					1282.44 + 1131.78 = 2414.22
+				\end{align*} 
+				Since the entropy of the products is higher than that of the reactants, this means that 
+				heat must enter the system to raise the entropy of the reactants to a point where the reaction 
+				can proceed, explaining why heat flows into the system.
+			\end{solution}
+		\item How would your answers to parts (b) and (c) change, if the operation of the 
+			muscle is not ideal?
+
+			\begin{solution}
+				If the operation of the muscle is not ideal, then we wouldn't be able to use all the energy 
+				that is produced via this reaction, so the values in part (b) would be lower. As a result 
+				of this, some of the energy generated from the reaction will be lost to the environment 
+				as heat, meaning that our answer to part (c) would also be lower since there we calculated the 
+				net heat. 
+			\end{solution}
+	\end{enumerate}	
+	\pagebreak
+
+	\section*{Schroeder 5.7}
+	The metabolism of a glucose molecule (see previous problem) occurs in many steps, resulting in the 
+	synthesis of 39 molecules of ATP (adenosine triphosphate) out of ADP (adenosine diphosphate) and 
+	phosphate ions. When the ATP splits back into ADP and phosphate, it liberates energy that is used in 
+	a host of important processes including protein synthesis, active transport of molecules across cell 
+	membranes, and muscle contraction. In a muscle, the reaction $\text{ATP} \to \text{ADP} + \text{phosphate}$
+	is catalyzed by an enzyme called myosin that is attached to a muscle filament, causing the muscle to 
+	contract. The force it exerts averages about 4 piconewtons and acts over a distance of about 11 nm. From 
+	this data and the results of the previos problem, compute the ``efficiency'' of a muscle, that is, the 
+	ratio of the actual work done to the maximum work that the laws of thermodynamics would allow. 
+
+	\begin{solution}
+		First, let's calculate the work done on average, which we can use $W = F \Delta x$ to get 
+		$W = (4 \times 10^{-12})( 11 \times 10^{-9}) = 4.4 \times 10^{-20}$ joules. This means that 
+		with one mole of this process, we get: $4.4 \times 10^{-20} \times 6.02 \times 10^{23} =  26.5$ kJ/mol. 
+
+		By the problem statement, we see that a single mole of glucose gives us 39 moles of ATP, so 
+		this means that per mole of glucose, we are doing 1033.5 kJ of work. Then, to compute the 
+		efficiency, we divide this value by the maximum amount of work calculated in part (b) of the previous 
+		problem, which gives us:
+		\[
+		\epsilon = \frac{1033.5}{2878.94} = 0.358 = 35.8 \%
+		\] 
+		So we get that the efficiency is about 35.8\%. 
+	\end{solution}
+	\pagebreak
+
+	\section*{Schroeder 5.23}
+
+	By subtracting $\mu N$ from $U, H, F$, or $G$, one can obtain four new thermodynamic potentials. Of the 
+	four, the most useful is the \textbf{grand free energy} (or \textbf{grand potential})
+	\[
+		\Phi \equiv U - TS - \mu N
+	.\]
+	\begin{enumerate}[label=\alph*)]
+		\item Derive the thermodynamic identity for $\Phi$ and the related formulas for the partial 
+			derivatives of $\Phi$ with respect to $T, V$ and $\mu$.
+
+			\begin{solution}
+				We follow the approach we used in class, we first take a differential element $d \Phi$:
+				\[
+				d\Phi = dU - T dS - S dT - \mu dN 
+				\] 
+				Now we use the first law: $dU = T dS - PdV + \mu dN + N d \mu$:
+				\[
+				d\Phi = (T dS - PdV + \mu dN) - T dS - S dT - \mu dN = -PdV - SdT - N d \mu
+				\]
+				So we can get the identities:
+				\begin{align*}
+					\left( \pdv{\Phi}{V} \right)_{T,\mu} &= -P\\
+					\left( \pdv{\Phi}{T} \right)_{V, \mu} &= -S\\
+					\left( \dv{\Phi}{\mu} \right)_{T, V} &= -N
+				\end{align*}
+			\end{solution}
+		\item Prove that, for a system in thermal and diffusive equilibrium (with a reservoir that can 
+			supply both energy and particles), $\Phi$ tends to decrease. 
+
+			\begin{solution}
+				We'll follow the same approach as what was done in the textbook. Recall that 
+				$dS$ can be calculated as:
+				\[
+				dS = \frac{1}{T}dU + \frac{P}{T}\ dV - \frac{\mu}{T}\ dN
+				\] 
+				Now consider a system $R$ and $E$ which are allowed to interact with one another, ensuring 
+				thermal and diffusive equilibrium (so $T$ and $\mu$ are the same between both systems, which is
+				why we're not subscripting them). Then, the total entropy is expressed as a sum of the 
+				two individual entropies:
+				\[
+					dS_{\text{tot}} = dS_E + dS_R
+				\] 
+				In terms of the system $R$, then we can write, 
+				\[
+					dS_{R} = \frac{1}{T}\ dU_R - \frac{\mu}{T}\ dN_R
+				\] 
+				Now, in terms of the larger system, \(U\) and \(N\) flowing out of $R$ enters $E$, so in terms 
+				of system $E$, we can write:
+				\[
+				dS_R = -\frac{1}{T}\ dU_E + \frac{\mu}{T }\ dN_E
+				\] 
+				Therefore, in total,
+				\[
+					dS_{\text{tot}} = dS_E - \frac{1}{T} dU_E + \frac{\mu}{T}dN_E = \frac{1}{T}(T dS_E - dU_E + 
+					\mu dN_E)
+				\] 
+				Now, consider $\Phi$ under diffusive and thermal equilibrium. This means that $d \mu = 0$ and 
+				$dN = 0$, so from the expression we got from part (a) with the differentials, we find that 
+				\[
+				d\Phi_E = dU_E - T dS_E - \mu dN_E
+				\] 
+				which is exactly what we have in parentheses in $dS_{\text{tot}}$. Therefore, we have:
+				\[
+					dS_{\text{tot}} = -\frac{1}{T}d\Phi_E
+				\] 
+				And since $S_{\text{tot}}$ tends to increase, then it must be the case that $\Phi$ decreases
+				as a result. Note that while we have the subscript in $\Phi_E$, this is the same 
+				as calculating $\Phi$ for any given system, since we really haven't specified anything about 
+				system $E$ besides the fact that it's in thermal and diffusive equilibrium.
+			\end{solution}
+		\item Prove that $\Phi = -PV$. 
+
+			\begin{solution}
+				Note that $\Phi = U - TS - \mu N$, and we have from the textbook that $G = \mu N$, so therefore:
+				\[
+				\Phi = U - TS - (U - TS + PV) = -PV
+				\] 
+				and we're done.
+			\end{solution}
+		\item As a simple application, let the system be a single proton, which can be ``occupied" either 
+			by a single electron (making a hydrogen atom, with energy -13.6 eV) or by none (with energy 
+			zero). Neglect the excited states of the atom and the two spin states of the electron, so that 
+			both the occupied and occupied states have zero entropy. Suppose that this proton is in the 
+			atmosphere of the sun, a reservoir of temperature 5800 K and an electron concentration of 
+			about $2 \times 10^{19}$ per cubic meter. Calculate \( \Phi\) for both the occupied and 
+			unoccupied states, to determine which is more stable under these conditions. To compute the chemical
+			potential of the electrons, treat them as an ideal gas. At about what 
+			temperature would the occupied and unoccupied states be equally stable, for this value of the 
+			electron concentration? (As in Problem 5.20, the prediction for such a system is only 
+			a probabilistic one.)
+
+			\begin{solution}
+				First, let's start with the unoccupied state. Here, $S = 0$, $N = 0$ since we have no electron, 
+				and $U = 0$ also because we don't have an electron. Therefore, all three terms 
+				in $\Phi$ go to zero, so $\Phi = 0$ in the unoccupied state. 
+
+				Now for the occupied state, we have $U = -13.6$ eV, $T = 5800$ K, $S = 0$, and $N = 1$. To 
+				calculate $\mu$, we use the relation
+				\[
+					\mu= -T \pdv{S}{N}
+				\] 
+				so we have to find $\pdv{S}{N}$ first. To do this, we take the direction of the problem 
+				statement and treat this system as an ideal gas, under which the entropy can be 
+				expressed by the Sackur-Tetrode equation:
+				\[
+					S = Nk\left[ \ln\left( \frac{V}{N}\left( \frac{4\pi m U }{3Nh^2} \right)^{3 / 2} \right) + \frac{5}{2} \right] 
+				\] 
+				To make the differentiation with respect to $N$ easier, we can simplify this to:
+				\[
+					S = Nk\left[ \ln\left( V\left( \frac{4 \pi m U}{3h^2} \right)^{3 / 2} \right) 
+					- \frac{5}{2} \ln N + \frac{5}{2}\right] 	
+				\] 
+				Therefore, this gives us: =
+				\[
+					\pdv{S}{N} = k\left[ \ln\left( V\left( \frac{4 \pi m U}{3h^2} \right)^{3 / 2} \right) 
+					- \frac{5}{2} \ln N + \frac{5}{2}\right] + Nk \left( -\frac{5}{2}\frac{1}{N} \right) 
+				\] 
+				which, after some simplification, gets us:
+				\[
+					\pdv{S}{N} = k \ln \left( \frac{V}{N}\left( \frac{4 \pi m U}{3Nh^2} \right)^{3 / 2} \right) 
+				\] 
+				As a final point of simplification, we can use the fact that $U = \frac{3}{2}NkT$ to further 
+				simplify the argument inside the log:
+				\[
+					\pdv{S}{N} = k\ln \left( \frac{V}{N} \left( \frac{2 \pi m k T}{h^2} \right)^{3/2} \right) 
+				\] 
+				Finally, we can calculate $\mu$:
+				\[
+					\mu = -T \pdv{S}{N} = -kT\ln\left( \frac{V}{N}\left( \frac{2 \pi m kT}{h^2} \right)^{3 / 2} \right) 
+				\] 
+				Plugging these values into a calculator, this gives us $\mu = 8.863$ eV. This means that for 
+				the unoccupied state, we have:
+				\[
+					\Phi = -13.6 \text{ eV} + 8.863 \text{ eV} = -4.737 \text{ eV}
+				\] 
+				Now for the last part of the problem: calculating stability comes down to finding the 
+				temperature at which $\Phi$ for the occupied state is equal to that of the unoccupied state. 
+				Since $\Phi$ for the unoccupied state is always 0, then this just comes down to finding 
+				when $\Phi$ for the occupied state approaches zero. Plugging this into Mathematica, we find 
+				that this is reached at a temperature of: 
+				\[
+					T \approx 8559.16 \text{ K}
+				\] 
+				aaa
+			\end{solution}
+	\end{enumerate}
+\end{document}

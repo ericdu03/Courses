@@ -1,0 +1,95 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 112}
+\newcommand{\classname}{Introduction to Statistical and Thermal Physics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 09} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	Let \(  \Phi = E - TS - \mu N\) be the ``grand'' potential
+	\begin{enumerate}[label=\alph*)]
+		\item Derive the thermodynamic identity \( d\Phi = -S dT - P dV + N d \mu \) 
+		\item Under what conditions does a system adjust so as to minimize \( \Phi \)?
+		\item Suppose you have computed \( \Phi(T, V, \mu) \). How could you use it to determine 
+			\( N(T, V, \mu)  \) and \( P(T, V, \mu) \)?
+		\item Prove that \( \Phi(T, V, \mu) = -kT \ln \mathscr Z\), where \( \mathscr Z = \sum_{\alpha}
+			e^{-\beta(E_\alpha - \mu N_\alpha})\)
+	\end{enumerate}
+	\pagebreak
+	\section*{Schroeder 7.19}
+	Each atom in a chunk of copper contributes one conduction electron. Look up the density and atomic mass 
+	of copper, and calculate the Fermi energy, the Fermi temperature, the degeneracy pressure, and the 
+	contribution of the degeneracy pressure to the bulk modulus. Is room temperature sufficiently low 
+	to treat this system as a degenerate electron gas?
+
+	\pagebreak
+	\section*{Schroeder 7.22}
+	Consider a degenerate electron gas in which essentially all of the electrons are highly relativistic 
+	\( \epsilon \gg mc^2 \), so that their energies are \( \epsilon = pc \) (where \( p \) is the magnitude 
+	of the momentum vector).
+	\begin{enumerate}[label=\alph*)]
+		\item Modify the derivation given above to show that for a relativistic electron gas at zero temperature,
+			the chemical potential (or Fermi energy) is given by \( \mu = hc(3N / 8 \pi V)^{1 / 3} \).
+		\item Find a formula for the total energy of this system in terms of \( N \) and \( \mu \).
+	\end{enumerate}
+	\pagebreak
+	\section*{Schroeder 7.23}
+	A \textbf{white dwarf} star (see Figure 7.12) is essentially a degenerate electron gas, with a bunch of 
+	nuclei mixed in to balance the charge and to provide gravitational attraction that holds the start 
+	together. In this problem you will derive a relation between the mass and the radius of a white dwarf 
+	star, modeling the star as a uniform-density sphere. White dwarf stars tend to be extremely hot by our 
+	standards; nevertheless, it is an excellent approximation in this problem to set \( T = 0 \).
+	\begin{enumerate}[label=\alph*)]
+		\item Use dimensional analysis to argue that the gravitational potential energy of a uniform-density 
+			sphere (mass \( M \), radius \( R \) ) must equal 
+			\[
+				U_{\text{grav}} = -(\text{constant}) \frac{GM^2}{R}
+			\] 
+			where (constant) is some universal constant. Be sure to explain the minus sign. The constnat 
+			turns out to equal 3/5; you can derive it by calculating the (negative) work needed to 
+			assemble the sphere, shell by shell, from the inside out.
+		\item Assuming that the star contains one proton adn one neutron for each electron, and that the 
+			electrons are nonrelativistic, show that the total (kinetic) energy of the 
+			degenerate electrons equals 
+			\[
+				U_{\text{kinetic}} = (0.0088) \frac{h^2 M^{5 / 3}}{m_e m_p^{5 / 3}R^2}
+			\] 
+			The numerical factor can be expressed exactly in terms of \( \pi \) and cube roots 
+			and such, but it's not worth it.
+		\item The equilibrium radius of the white dwarf is that which minimizes the total energy 
+			\( U_{\text{grav}} + U_\text{kinetic} \). Sketch the total energy as a function of \( R \), 
+			and find a formula for the equilibrium radius in terms of the mass. As the mass increases, does 
+			the radius increase or decrease? Does this make sense?
+		\item Evaluate the equilibrium radius for \( M = 2 \times 10^{30} \) kg, the mass of the sun. Also 
+			evaluate the density. How does the density compare to that of water?
+		\item Calculate the Fermi energy and the Fermi temperature, for the case considered in part (d). Discuss
+			whether the approximation \( T = 0 \) is valid. 
+		\item Suppose instead that the electrons in the white dwarf are highly relativistic. Using the result 
+			from the previous problem, show that the total kinetic energy of the electrons is now 
+			proportional to \( 1 / R \) instead of \( 1 / R^2 \). Argue that there is no stable 
+			equilibrium radius for such a star.
+		\item The transition from the nonrelativistic regime to the ultrarelativistic regime occurs 
+			approximately where the average kinetic energy of an electron is equal to its rest energy, 
+			\( mc^2 \). Is the nonrelativistic approximation valid for a one-solar-mass white dwarf? Above
+			what mass would you expect a white dwarf to become relativistic and hence unstable?
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Schroeder 7.25}
+	Use the results of this section to estimate the contribution of conduction electrons to the heat capacity 
+	of one mole of copper at room temperature. How does this contribution compare to that of 
+	lattice vibrations, assuming that these are not frozen out? (The electronic contribution has been measured
+	at low temperatures, and turns out to be about 40\% more than predicted by the free electron model 
+	used here.) 
+\end{document}

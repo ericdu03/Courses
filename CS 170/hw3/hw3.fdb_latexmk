@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1695069589 "hw3.tex" "hw3.pdf" "hw3" 1695069589
-  "../cs170.sty" 1694386976 7599 58fb33a82fb284e20aea50579aa54716 ""
+["pdflatex"] 1695103055 "hw3.tex" "hw3.pdf" "hw3" 1695103057
+  "../cs170.sty" 1695073657 7610 60493d3f917cde704acaac0037b4773d ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1490131464 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/libertine/lbtn_dhi6qf.enc" 1558472472 2914 3d1e3c4123f03ab27df5767d5039d109 ""
@@ -227,6 +227,7 @@
   "/usr/local/texlive/2021/texmf-dist/tex/latex/csquotes/csquotes.def" 1614030765 20781 dc1bec6693d5466d8972ecc6b81f9f0b ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/csquotes/csquotes.sty" 1614030765 62518 6e0d74482f5cb16b3b0755031e72faf1 ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/elocalloc/elocalloc.sty" 1481841771 1428 7d469063535b93044f827bfdb1b0a130 ""
+  "/usr/local/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty" 1561238569 51697 f8f08183cd2080d9d18a41432d651dfb ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/environ/environ.sty" 1399239813 4378 f429f0da968c278653359293040a8f52 ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
   "/usr/local/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty" 1601931149 46845 3b58f70c6e861a13d927bff09d35ecbc ""
@@ -308,11 +309,11 @@
   "/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1616695603 5169178 a2ce6e2d73f603b690db6777d06dbccb ""
   "/usr/local/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1627101606 2724740 f36a3f5cfec5c6df7b7d2dd3a8cb54e4 ""
   "/usr/local/texlive/2021/texmf.cnf" 1616695596 577 4c1911a7228e554c6032256d3cf5567d ""
-  "hw3.aux" 1695069583 1375 55c50b8e65290e28ec9701543ff5cf03 "pdflatex"
-  "hw3.out" 1695069583 818 ed264b3d5f0e2cf405fb9b2452bc1900 "pdflatex"
-  "hw3.tex" 1695069589 8891 06c08f6071f42e365ca1fc1bf30b3381 ""
+  "hw3.aux" 1695103057 1377 47fbd6b72cc9f0ca0f6e728fef5b3fa7 "pdflatex"
+  "hw3.out" 1695103057 818 ed264b3d5f0e2cf405fb9b2452bc1900 "pdflatex"
+  "hw3.tex" 1695103053 24587 52f317353bf204f0c10b5bda11630e63 ""
   (generated)
   "hw3.aux"
-  "hw3.log"
   "hw3.pdf"
+  "hw3.log"
   "hw3.out"

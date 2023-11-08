@@ -18,10 +18,16 @@
 \linespread{1.1}
 
 \newcommand{\pre}{\mathrm{pre}}
+\newcommand{\prev}{\mathrm{prev}}
 \newcommand{\post}{\mathrm{post}}
+\newcommand{\dist}{\mathrm{dist}}
+\newcommand{\cost}{\mathrm{cost}}
+\newcommand{\size}{\mathrm{size}}
+\newcommand{\capacity}{\mathrm{capacity}}
 
 \newcommand{\question}[1]{\textcolor{red}{#1}}
 \newcommand{\answer}[1]{\textcolor{green!80!black!}{#1}}
+\renewcommand{\comment}[1]{\textcolor{blue!50}{#1}}
 \begin{document}
 	\maketitle
 	\section{Graphs}
@@ -295,5 +301,580 @@ def explore():
 		\item Run DFS on $G$, but explore unvisited nodes in \textit{decreasing} order of post-r. For every 
 			DFS we run, we find a new SCC.
 	\end{itemize}
-	Compute the reverse of $G$, call it $G^R$. 
+	\section{Paths in Graphs}
+
+	\subsection{Single Source Shortest Path (SSSP)}
+	\begin{itemize}
+		\item We want to compute the distances from a source $s \in V$ to other nodes in $V$. 
+		\item We don't use DFS here because DFS might explore much longer paths first, so it might be very 
+			inefficient.
+		\item Solution: use \textbf{Breadth-First Search (BFS)}
+			\begin{itemize}
+				\item Analogous to a bird's eye perspective, where we explore successively outward in 
+					``neighbourhoods.''
+				\item Start at exploring from distance 1, then when everything at distance 1 is explored, 
+					continue to explore at distance 2, etc. 
+			\end{itemize}
+		\item The type of BFS that we use depends a lot on what kind of graph we're dealing with:
+			\begin{itemize}
+				\item Unweighted graphs: Ordinary BFS works
+				\item Positive Weights: Dijkstra's algorithm
+				\item Negative Weights allowed: Bellman-Ford Algorithm
+			\end{itemize}
+		\item Going down this list makes the graph more general, but they are less efficient than the ones 
+			above. 
+
+			\question{Would a more correct statement be that BFS works if all the edges have the same weight?}
+	\end{itemize}
+
+	\subsection{Breadth First Search (BFS)}
+	\begin{itemize}
+		\item Start at $s$, and add all the neighbours of $s$ to a queue. For every vertex in 
+			the queue, we visit all the unvisited nodes from that vertex, and add it to the queue. Repeat
+			until all nodes have been visited.
+	\end{itemize}
+
+	\subsubsection{Runtime of BFS}
+	\begin{itemize}
+		\item 	We enqueue and deque every node exactly once if the node is connected, otherwise we don't do it 
+			at all. This takes $O(1)$ time. 
+		\item Once an item is dequeued, we need to check all the neighbours of a graph, costing $O(\deg(u))$ 
+			time.
+		\item In total, our runtime is:
+			\[
+				\sum_{u \in V} O(1 + \deg(u)) = O(n + m)
+			\] 
+			This is the same runtime as DFS, which is not a coincidence! DFS and BFS are actually related, 
+			except the queue is replaced by a stack.
+		\item We didn't implement it as a stack in lecture, but the idea is the same.
+	\end{itemize}
+
+	\subsection{Weighted Graphs}
+	\begin{itemize}
+		\item BFS doesn't work here because it ignores the weights of the graph. It is possible that a graph 
+			ends up being shorter but goes through more nodes, a possibility that BFS doesn't catch.
+		\item \textbf{Useful Fact:} Any sub path of a shortest path is also a shortest path. This is rather 
+			obvious.
+		\item So what we should think about is that to build the shortest path, we build the shortest path from 
+			other, shotest paths but add in the shortest edge. This guarantees that our shortest path 
+			remains the shortest.
+	\end{itemize}
+
+	\subsection{Dijkstra's Algorithm}
+	\begin{itemize}
+		\item Let $K$ denote the set of ``known'' nodes where the length of shortest path is computed. To 
+			determine node we should add to $K$, we should select the vertex that gives the smallest 
+			$\dist(s, u) + \ell(u, v)$. Visually:
+			\begin{center}
+				\includegraphics[scale=0.5]{dijkstra.png}
+			\end{center}
+		\item The red region is the set of nodes that we look at.
+		\item We don't need to recompute all distances at every iteration - instead we can just store 
+			the distances as we go along. Initial overestimates are fine, since eventually we will explore 
+			the shortest path, and its distance will eventually be updated. 
+		\item If we find a shorter path later on, we can update $\dist(s, u)$ to reflect that.
+		\item If we want to find the shortest path from $S$, then we can add a new variable that stores 
+			the previous node in the sequence from $S$ to $u$. Therefore, when we want to find the 
+			shortest path, then we are continually looking backward until we get back to $S$. 
+	\end{itemize}
+
+	\subsubsection{Runtime of Dijkstra's}
+	\begin{itemize}
+		\item The runtime of Dijkstra's depends on the kind of data structure we used to keep track 
+			of the distances:
+			\begin{center}
+				\begin{tabular}{c|c|c|c|c}
+					\textbf{Implementation} & \textbf{Insert} & \textbf{Delete Min} & 
+					\textbf{Decrease Key} & \textbf{Runtime}\\
+					\hline 
+					Array & $O(1)$ & $O(n)$ & $O(1)$ & $O(n^2 + m) = O(n^2)$\\
+					Binary Heap & $O(\log n)$ & $O(\log n)$ & $O(\log n)$ & $O((n + m) \log n)$\\
+					Fibonacci Heap & $O(1)$ & $O(\log n)$ & $O(1)$ & $O(n \log n + m)$
+				\end{tabular}
+			\end{center}
+		\item The best known runtime of Dijkstra's algorithm is $O(n \log \log n + m)$.
+		\item At the end of the day, this is slower than DFS, by the $\log n$ term.
+	\end{itemize}
+	
+	\subsection{Negative Weights: Bellman-Ford Algorithm}
+	\begin{itemize}
+		\item Sometimes, having negative weights is possible, for instance when traversing an edge is more 
+			beneficial to you in some way.
+		\item Shortest paths don't really make sense if a cycle has negative length (since then we'd be 
+			infinitely descending) 
+		\item All we need to do is modify Dijkstra's update function!
+			\begin{itemize}
+				\item Call an update ``safe'' if $\dist(w)$ is an overestimate of the true shortest path 
+					between $s$ and $w$. In other words, $\dist(w) \ge d(s, w)$ for all $w \in V$. 
+			\end{itemize}
+	\end{itemize}
+
+	\question{see lectures for Bellman-Ford}
+
+	\section{Greedy Algorithms}
+
+	\begin{itemize}
+		\item Are algorithms that build their solution piece by piece, and always takes the piece that 
+			offers the \textbf{most obvious and immediate benefit}.
+		\item Some applications of where Greedy algorithms do work: Scheduling, satisfiability, Huffman Coding
+			MSTs. 
+	\end{itemize}
+	\subsection{Scheduling}
+	\begin{itemize}
+		\item Input: collection of jobs specified by their time intervals $[s_1, e_1], \dots, [s_n, e_n]$. We
+			want to find the largest subset of jobs that have no time conflicts.
+		\item To do this, after choosing an interval, we'd want to choose the next interval that 
+			has the \textit{earliest end time}. Jobs that finish earlier give us more opportunities to 
+			slot in more jobs later in the day. 
+			\begin{itemize}
+				\item This is not achieved by selecting the shortest job, because it does not give us freedom 
+					in where $s_i$ and $e_i$ are. 
+				\item This is also not achieved by selecting the earliest job, since we don't know where $e_i$
+					is. 
+			\end{itemize}
+		\item So our code is as follows:
+
+			While set of intervals is not empty: \\
+			Add interval $j$ with the earliest finish time $e_j$. \\
+			Remove any conflicted interval $i$ from the set, i.e. $[s_j, e_j] \cap [s_i, e_i] \neq 
+				\emptyset$.
+		\item The runtime of this algorithm is $O(n)$ if the intervals are already sorted by the end time,
+				otherwise, we'd need $O(n \log n)$ time since we'd need to sort the intervals first.
+		\item To show that the greedy algorithm works, we need to show that this algorithm doesn't rule out 
+			an optimal solution.
+		\item Induction is very nice to prove these algorithms, since we'd just need to prove that 
+			the algorithm selects optimally at every time step! Let's try this for our scheduler: 
+
+			Claim: For any $m \le k$ there is an optimal schedule OPT that agrees with the Greedy solution 
+			$G$ on the first $m$ intervals. More formally, if the OPT can be labelled as a list of $i_1, \dots
+			i_m$ and $G$ has a list of $j_1, \dots, j_m$, then we require that $i_1 = j_1, \dots, i_m = j_m$.
+
+			Base case: $m = 0$, this is fairly trivial. Any two schedules agree on 0 things.
+
+			Inductive Hypothesis: This claim holds true for $m$. Now we show $m+1$. 
+
+			Inductive Step: There are two cases we need to consider:
+			\begin{itemize}
+				\item Case 1: when $i_{m+1} = j_{m+1}$, in which case we are done.
+				\item Case 2: $i_{m+1} \neq j_{m+1}$. Then let's define another schedule OPT' which is 
+					the same as $OPT$ except for the fact that $i_{m+1}$ is replaced with $j_{m+1}$. 
+
+					Note that $j_{m+1}$ does not conflict with $j_1, \dots, j_m$, since the greedy algorithm does
+					not produce time conflicts. 
+					Also, $j_{m+1}$ does not conflict with 
+					$i_{m+2}$ since $j_{m+1}$ ends earlier than $i_{m+1}$ (by the greedy algorithm). Hence, 
+					placing $j_{m+1}$ into this algorithm instead of $i_{m+1}$ produces an \textit{equally 
+					valid solution} for the schedule, since the size of OPT' is the same as that of OPT. 
+					Therefore, OPT' is also optimal, completing the proof.
+			\end{itemize}
+			\question{Does this proof by induction assume that the Greedy solution gives a correct 
+			schedule?}
+		\item In essence, the proof is showing that there is no choice that the Greedy algorithm makes which 
+			rules out an optimal solution. 
+	\end{itemize}
+	\subsection{Horn Formulas}
+	\begin{itemize}
+		\item Variables $x_1, \dots, x_n$ are either true or false.  
+		\item Clauses: 
+			\begin{itemize}
+				\item ``Implication clause'' where $(x_i \land x_j \land \dots) \implies x_k$. This is 
+					equivalent to $\overline x_i \lor \overline x_j \lor \dots \lor x_k$.
+				\item ``Pure Negative Clauses'' where $(\overline x_i \lor \overline x_j \lor \dots )$
+			\end{itemize}
+		\item A Horn formula is an AND of all Horn clauses, which are either implication or pure negative.
+		\item There is a problem called Horn-SAT which asks us to find an assignment of variables that makes
+			all Horn formulas to be true, if an assignment exists.
+		\item Greedy Algorithm: 
+			\begin{itemize}
+				\item For all $i$, set $x_i$ to be false. 
+				\item While there exists an implication $(x_i \land \dots \land x_j) \implies x_k$ being 
+					set to false, set $x_k$ to be true. 
+				\item If every pure negative clause $(\overline x_i \lor \dots \lor \overline x_j)$ is 
+					set to true, we return $(x_1, \dots, x_n)$. 
+				\item Otherwise, return ``not satisfiable.''
+			\end{itemize}
+	\end{itemize}
+	\subsubsection{Proof of Correctness}
+	\begin{itemize}
+		\item We want to show that whenever the greedy algorithm sets a variable $x_i$ to true, it does not 
+			ruin a satisfying assignment. In other words, whenever a satsifying assignment exists, 
+			then Greedy will output one.
+		\item We can show a stronger statement: the set of variables set to True by the greedy algorithm 
+			has to be set to true in any other assignment. We prove this by induction 
+
+			Base case: In the 0th iteration of the while loop, nothing is set to true, so we're fine.
+
+			Inductive Hypothesis: The first $m$ variables set to true by Greedy are also true in every satisfying
+			solution.
+
+			Inductive Step: Let $x_{m+1}$ be the next variable set to True by the greedy algorithm.
+			This means that there was an unsatisfied implication $(x_i \land \dots \land x_j) \implies x_k$ 
+			where the LHS was true, and $x_{m+1}$ is false. This only happens when $x_i, \dots x_j$ are all 
+			set to True, by the greedy algorithm on $m$ steps (which we know to match the optimal solution by 
+			inductive hypothesis).
+
+			Then the only way to satisfy this condition MUST have $x_{m+1}$ set to true as well, and that 
+			completes the proof.
+		\item Now we have to prove correctness. If Greedy outputs a solution, then it must be satisfiable --
+			this is fairly obvious, since the while loop and if condition makes sure that all clauses are 
+			satisfied. 
+		\item We also want to 
+	\end{itemize}
+	\subsection{Codes}
+	\begin{itemize}
+		\item Usually (things like ASCII) encode English characters using a fixed length of bits per character.
+		\item If our goal is to save space, then we probably don't want that. Particularly, there are letters
+			 that appear more often than other characters, so if we were to use the same space for every 
+			 character that'd be fairly wasteful.
+		 \item Assume that we have four letters with varying frequencies:
+			 \begin{center}
+				 \begin{tabular}{cc|c|c|c}
+					 \multicolumn{1}{c|}{\textbf{Frequency}} & \textbf{Letter} & \textbf{Encoding 1} &
+					 \textbf{Encoding 2} & 
+					\textbf{ Encoding 3}\\
+					 \multicolumn{1}{c|}{0.4} & A & 00 & 0 & 0 \\
+					 \multicolumn{1}{c|}{0.2} & B & 01 & 00 & 110 \\
+					 \multicolumn{1}{c|}{0.3} & C & 10 & 1 &10 \\
+					 \multicolumn{1}{c|}{0.4} & D & 11 & 01 &111 \\
+					\hline 
+					   & & & \\
+					 Total Cost:  & & $2N$ & $\begin{aligned} N(0.4 + 0.3) &+ 2N(0.1 + 0.2)\\& = 1.3N
+						 \end{aligned} $& $\begin{aligned} 0.4N + 2N(0.3) & + 3N(0.2 + 0.4)\\
+										&= 1.9N \end{aligned}$
+			 	\end{tabular}
+			 \end{center}
+		 \item There are issues with encoding 2: it's lossy in the sense that AB is encoded in the same way that 
+			 BA is coded.
+		 \item These issues are solved in encoding 3, and we found that we can still do better than the $2N$ 
+			 from our naive application where every letter gets the same number of bits.
+	\end{itemize}
+
+	\section{Huffman Coding, MSTs}
+	Recap of Greedy algorithms:
+	\begin{itemize}
+		\item Our goal is to prove that whenever a choice is made, that an optimal solution still exists, proven
+			to exist via induction.
+		\item Base case: at the beginning, achieving optimal choice is always possible
+		\item Inductive Hypothesis is the same as normal induction, and inductive step is to show that if 
+			an alternate choice is made it doesn't violate the optimal solution.
+	\end{itemize}
+	\subsection{Prefix codes and Trees}
+	\begin{itemize}
+		\item Prefix codes can be represented as a binary tree with $k$ leaves. 
+		\item the code is the ``address'' of a letter in the tree (i.e. the string of numbers leading from 
+			the root to that leaf). We want to order the tree from highest to lowest frequency, so that the 
+			letters with the highest frequency uses less characters.
+		\item In general, the cost for such a tree is:
+			\[
+				\mathrm{cost} = \sum_{i = 1}^n f_i \cdot \text{depth(leaf $i$)}
+			\] 
+		\item Our goal is to find an \textit{optimal subtree}. What does such a tree look like? 
+
+		Answer: Even if 
+			we don't know what the frequencies are, the optimal code should be a \textbf{full binary tree.} 
+
+		\item Now
+			we need to prove that there exists an optimal tree when the
+			two lowest frequency symbols are siblings 
+			of each other.
+
+			\textit{Proof:} By contradiction, let $x, y$ be symbols with lowest frequencies and assume they 
+			aren't siblings. Let $a, b$ be the deepest pair of siblings. Since $x, y$ aren't siblings 
+			of each other, then only one of $a, b$ are one of $x$ or $y$. WLOG, let $x = a$. 
+			What happens if we swap $x,y$ and $a, b$? Well, we know that $f_a, f_b \ge f_x, f_y$, and we've 
+			reduced the length of $a, b$ while also reduced frequency of the deepest entries in the tree, meaning
+			that we've ended up with a cheaper tree! Hence, the original tree could not have 
+			been an optimal tree. 
+	\end{itemize}
+	\subsection{Algorithm (Huffman Coding)} 
+	See below for pseudocode:
+	\begin{center}
+		\includegraphics[scale=0.5]{Huffman.png}
+	\end{center}
+	\begin{itemize}
+		\item The idea is to recursively generate a tree using the lowest frequencies, and combining them 
+			together by adding the frequencies of each tree's children. 
+		\item \textbf{Runtime Analysis:} Storing in our priority queue can be optimized by using a binary heap, 
+			which takes $O(n \log n)$ time. Combination also takes $O(n \log n)$ time, so total runtime
+			 is $O(n \log n)$.
+			\begin{itemize}
+				\item Inserting into priority queue takes $O(n \log n)$ time. 
+				\item At every step of the while loop, we perform 2 deleteMin instructions, which is constant
+					time.
+				\item There is 1 insert each time (after the connection). This means that on every 
+					iteration, we are halving the number of nodes (hence $O(n \log n)$). 
+				\item So total time complexity is $2O(n \log n) = O(n \log n)$.
+			\end{itemize}
+		 \item This generates a full binary tree with optimal coding. 
+
+			 \textit{Proof:} We show that a greedy selection (which is what Huffman Coding is doing) does not 
+			 rule out an optimality coding.
+
+			Base case: $n = 2$. We can generate optimal code using $0$ for first letter and $1$ for 
+			second letter. Huffman coding does the same.
+
+			Inductive Hypothesis: Assume that this works for $n-1$ letters.
+
+			Inductive Step: Let $T$ be the optimal tree for the frequencies $f_1, \dots, f_n$. WLOG, let 
+			$f_1 \le \dots \le f_n$. Assume that the two lowest frequency codes are siblings (proven 
+			from earlier), and merge the two into a single node, where $f = f_1 + f_2$. Looking at the cost 
+			of the new tree $T'$, we know that 
+			\[
+				\mathrm{cost}(T) = \mathrm{cost}(T') + f_1 + f_2
+			\] 
+			Huffman coding also does this merging process, and our inductive hypothesis guarantees that this 
+			tree is optimal on $n-1$ letters, so when we split back into the two characters it is still
+			guaranteed to be optimal. Formally, if $H'$ is the cost of the reduced tree, then
+			\[
+				\mathrm{cost}(H) = \mathrm{cost}(H') + f_1 + f_2
+			\] 
+			which is the same as the cost relationship with $T$, so Huffman coding does indeed give an optimal 
+			coding.
+	\end{itemize}
+	\question{What if $f_1 + f_2$ happens to be large enough such that $f_1 + f_2 > f_n$?}
+
+	\answer{Apparently it doesn't matter?} 
+	\subsection{Minimum Spanning Trees (MSTs)}
+	\begin{itemize}
+		\item Tree also has edges, so we can assign a cost as well: $\cost(T) = \sum_{e \in T} w_e$ (the 
+			sum of the weights).
+		\item Suppose we're given a graph $G(V, E)$ with non-negative weights. We want to find a set of edges
+			that connects the graph, and has the smallest cost. 
+		\item Why do we care? This gives the notion of connectivity in a network, so you can think of cell 
+			towers or roads/railways as practical applications.
+		\item We will use the same approach: first we ask about what an MST looks like.
+			\begin{itemize}
+				\item It will be an acyclic graph, since removing an edge that's part of a cycle still preserves
+					the connectivity in the graph.
+			\end{itemize}
+	\end{itemize}
+	\subsubsection{Graph Structures and Cuts}
+	\begin{itemize}
+		\item \textbf{Cuts:} a way to partition a graph that splits up the vertices into two groups. 
+		\item They're important because cuts go through edges to divide vertices into groups.  
+		\item Imagine we've already discovered some edges $X$ of the MST. Consider the cut that doesn't cut 
+			any edges $X$. Now we look at the edges that are being cut. The edge from a larger MST is being cut,
+			and it's the lowest weight edge that we should add to our MST!
+
+			\textbf{This is a very important property, it shows that \textit{any} cut that we make 
+				is an edge that \textit{can} be added to our MST, so therefore regardless of which vertex
+			we start searching at, an MST is still guaranteed.}
+		\item Therefore, we should add this edge and its corresponding vertex to our MST.
+		\item We can formalize this argument via a proof, but I'm too lazy to write it here.
+		\item Turns out that any algorithm that fits the following properties forms an MST:
+			\begin{itemize}
+				\item Start with $X$, an empty list.  
+				\item Pick $S \subseteq V$ such that $X$ has no edges from $S$ to $V \setminus S$
+				\item Choose the lighest weight edge from $S$ to $V \setminus S$. 
+				\item Add edge to $X$.
+			\end{itemize}
+		\item The proof for why this does give an MST can be done via induction.
+	\end{itemize}
+	\subsubsection{Kruskal's Algorithm}
+	\begin{itemize}
+		\item Instead of doing $S$ and $V \setminus S$, it instead selects edges, and checks whether 
+			the edge forms a cycle. If it does, we don't add this edge. This process of checking a cycle 
+			actually does split our graph into $S$ and $V \setminus S$, albeit implicitly. 
+		\item We show correctness by showing that Kruskal's algorithm fits the meta algorithm given above. 
+	\end{itemize}
+
+	\section{A different greedy algorithm for MSTs}
+	
+	\subsection{Prim's Algorithm}
+	\begin{itemize}
+		\item The idea is to draw a tree by greedily adding the cheapest edge that can grow the tree.
+		\item Start from some vertex, and repeatedly pick the lightest edge $(u, v)$ such that 
+			$u \in S$ and $v \in V \setminus S$. 
+
+			\question{How exactly is this different from Kruskal's algorithm? Aren't both using cuts in 
+			the same way?}
+
+			\answer{Kruskal's doesn't start from a given vertex, but instead just selects edges. Prim's 
+			starts with vertices and looks at edges that connect from $S$ to $V \setminus S$}
+		\item Remember: the shape of the MST is dependent on the node that we start at, but an MST will 
+			always exist no matter which vertex we start at.  
+		\item Both Prim's and Kruskal's algorithm works on negative edge weights. This is because the cut 
+			property still holds, and the notion \textit{minimum} spanning tree is not broken with 
+			negative edge weights.
+	\end{itemize}
+
+	\subsection{Implementation}
+	\begin{itemize}
+		\item The naive implementation of Prim's is actually quite slow, since on every added vertex we 
+			are looking for new cuts and checking edges every time.
+		\item We can optimize by using priority queues (basically a max heap based on priority).  
+
+			\question{Is this true about priority queues?}
+		\item So here are the things we need to keep track of:
+			\begin{itemize}
+				\item For every edge $v \in V \setminus S$, check whether $v$ has a direct 
+					edge of the set $S$ of ``visited'' vertices, and also the cost of the lightest 
+					edge connecting
+					$v$ to the set $S$ of visited vertices.
+				\item We had the same dilemma before, with Dijkstra's algorithm!
+			\end{itemize}
+		\item So let's follow the same procedure as Dijkstra's!
+			\begin{itemize}
+				\item First start with $\dist(v)$ set to infinity, and $\prev(v)$ to null for 
+					every vertex.
+				\item If a neighbor $u$ is added to $S$ (visited set) and $\dist(v) > w_{u, v}$, then 
+					we update $\dist(v) = w_{(u, v)}$, and set $\prev(v) = u$. 
+				\item This is slightly different from Dijkstra's, where the dist array instead marks 
+					the minimum edge between two visited nodes, instead of the total distance 
+					from a certain vertex. 
+				\item Part of the reason for this is that MSTs don't care about where you start. 
+			\end{itemize}
+		\item The ``cut" in this case is actually the process of adding adjacent edges from visited nodes
+			to unvisited ones into the priority queue. 
+	\end{itemize}
+	\subsection{Runtime}
+	\begin{itemize}
+		\item For a priority queue: we can either use a binary heap ($O(\log n)$ for each operation) or 
+			fibonacci heap (a little bit better, since $\log(n)$ for inserts but $O(1)$ for everything else. 
+		\item So because of the constant time for Fibonacci heap, it has $O(m + n \log n)$ time, whereas
+			a binary heap has $O((m + n) \log n)$.
+		\item Comparing both algorithms:
+			\begin{itemize}
+				\item Kruskal's: $O((m + n) \log n)$
+				\item Prim's (with Fibonacci heap) $O(m + n \log n)$.
+				\item For sparse graphs (so ones with not many edges), both are equally as good.
+				\item For dense graphs, Prim's is much better. 
+			\end{itemize}
+	\end{itemize}
+	\subsection{Set Cover Problem}
+	\begin{itemize}
+		\item Input: the universe of $n$ elements $U = \{1, \dots, n\}$, and subsets 
+			$S_1, S_2, \dots, S_m \subseteq U$, such that $\bigcup_{i = 1}^m S_i = U$. 
+		\item Output: A collection of $S_i$ of minimal size.
+		\item This is an example of a problem where the greedy algorithm is \textit{not optimal!} Instead, 
+			it is approximately optimal. 
+		\item Claim: if the optimal solution uses $k$ sets, then the greedy algorithm uses 
+			at most $k \ln n$ sets. 
+		\item We will prove this recursively: let $n_t$ be the number of elements not covered by the greedy 
+			algorithm after $t$ choices. Then, we can reframe the problem to be that 
+			when $t = k \ln n$, we want $n_t < 1$. 
+			\begin{itemize}
+				\item Subclaim 1: $n_1 \le n_0 - \frac{n_0}{k}$. 
+
+					\textit{Proof:} the optimal solution requires $k$ sets to cover $U$, so the 
+					average number of elements in any set is $\frac{n}{k}$. Hence, there is a set 
+					that counts more than $\frac{n}{k}$ elements (if not equal).
+				\item Subclaim 2: for any $t$, $n_{t+1} \le n_t(1 - 1 / k)$.
+					
+					\textit{Proof:} This is a natural extension of claim 1.  
+			\end{itemize}
+		\item With this proven, we introduce an \textbf{approximation factor}, which is a way to say that Greedy
+			is optimal, with an approximation factor of $\ln n$. 
+	\end{itemize}
+
+	\section{Dynammic Programming I}
+
+	\subsection{Fibonacci Numbers, revisited}
+	\begin{itemize}
+		\item Imagine computing Fibonacci numbers; there's a lot of repeated calculations! For instance, 
+			$F(1)$ is computed $2^n$ times when we're looking for $F(n)$!
+		\item To optimize this, store each successive computation of $F(n)$ into an array that we access, 
+			so that we only need to compute each $F(k)$ exactly once.
+		\item This is called \textbf{memoization}, where we store things in a ``memo,'' to be accessed by our 
+			algorithm later on. 
+	\end{itemize}
+	\subsection{Elements of Dynamic Programming}
+	\begin{itemize}
+		\item There are a couple hallmarks of DP:
+			\begin{enumerate}
+				\item Subproblems, or ``optimal substructure''. Refers to the fact that large problems 
+					can be broken up into smaller subproblems. For Fibonacci, this means that 
+					$F(n)$ is recursively expressed in terms of smaller subproblems.
+				\item Overlapping subproblems: A lot of subproblems overlap with one another. We recurse to 
+					smaller subproblems, and in doing so we see that a lot of computation 
+					is repeated. The solution to this is to use memoization, so that 
+					each computation is done only once.
+		\item There are two ways to do DP:
+			\begin{itemize}
+				\item Top-Down: start from the largest subproblem and recurse to smaller subproblems. 
+					This often involves recursion.    
+				\item Bottom-up: start from the smallest subproblems then work to larger subproblems.
+					Memoization still happens; we just fill the table from the small to 
+					largest problems. In this method, this doesn't need a recursive call. 
+			\end{itemize}
+		\end{enumerate}
+		\item The mathematical runtime of top-down and bottom-up are the same.
+		\item The computation structure for DP actually looks awfully similar to a DAG. 
+		\item If we view every subproblem as a node in the graph: construct it in such a way that 
+			an edge $i \to j$ exists if the solution to subproblem $j$ directly depends on the solution to of 
+			subproblem $i$. 
+		\item Consider a topological sort on this DAG: then the bottom-up solution directly follows the 
+			conputation of this DAG! 
+			\begin{itemize}
+				\item In the top-down framework, we are filling up the memo table in topological sort order, 
+					since that table is still being filled from bottom up.
+			\end{itemize}
+	\end{itemize}
+	\subsection{Shortest Paths on DAGs}
+	\begin{itemize}
+		\item We're given a DAG with a source $s$. We want to find the cost of the shortest path from 
+			$s$ to $u$ for all $u \in V$. We also want to do this in linear time, 
+			$O(n + m)$.
+		\item We can always run a topological sort on this DAG in $O(n + m)$ time. Our subproblems 
+			are the distances from $s$ to $u$ for every node $u$.
+		\item After ordering in topological sort, we can just go down this graph \textit{in topological 
+			order!} This means that the structure of the DP tree is the same as that of the topological sort.
+		\item In terms of our recurrence relation, $\dist(u) = \dist(v) + \ell(u, v)$. Here, 
+			$\dist(v)$ is implied to be memoized, since it's already a solved problem.
+		\item This is an $O(n +m)$ solution to this problem!
+	\end{itemize}
+	\subsection{DP Recipe}
+	\begin{enumerate}[label=\alph*)]
+		\item Identify the subproblems (i.e. find the optimal substructure)
+		\item Find a recursive formulation for the subproblems: just try to solve it via recursion and 
+			see where it gets you.
+		\item Design the DP algorithm -- fill in a table, starting with the smallest sub-problems and 
+			building up. 
+	\end{enumerate}
+	\subsection{Shortest Paths with $k$}
+	\begin{itemize}
+		\item Here we consider the same problem of finding shortest path, but we're restricted to use at most 
+			$k$ edges. 
+
+			\question{Fill this out from lecture recordings}
+	\end{itemize}
+	\subsection{All-Pair Shortest Paths}
+	\begin{itemize}
+		\item Here, instead of finding the shortest path from a singular source node, we want to find 
+			it for all pairs of nodes. 
+		\item Input: again a graph with no negative cycles.
+		\item Naively, we can run Bellman-Ford on all nodes, but this would take $O(nm)$ a total 
+			of $n^2$ times, so our total runtime could be as large as $O(n^4)$ for dense graphs.
+			Therefore, we're looking for a better algorithm.
+		\item Identify the subproblem: subproblem $k$: for all pairs, find the shortest $u \to v$ path 
+			whose internal vertices (so the path they take) only use nodes $\{1, 2, \dots, k\}$.
+			\begin{itemize}
+				\item In other words, there's a collection of $k$ nodes, and the path from $u \to v$ 
+					\textit{only} uses these nodes.
+			\end{itemize}
+		\item Recursion: When we have the set from $\{1, \dots, k\}$, we want to find the relation between 
+			this set and how to expand this set. There are a couple ways that the new 
+			node can be added:
+			\begin{itemize}
+				\item Case 1: The new node added does not lie on the path: then nothing really changes, so 
+					$\dist_{k +1}(u, v) = \dist_k(u, v)$.
+				\item Case 2: The shortest path uses the added node: this path can be broken into two 
+					parts: the shortest $u \to (k+1)$ path and then the shortest $(k+1) \to v$ path. 
+					Both of these paths are already computed (by definition of them only using 
+					the set $\{1, \dots, k\} $), so we just have to add these two up. 
+				\item To combine these two, we find the minimum of these two to find whether the 
+					path from $u$ to $v$ has changed or not.  
+			\end{itemize}
+		\item Runtime: Each update is $O(1)$ time, and we have to loop over $u, v$ a total of $k$ times, 
+			so overall $O(n^3)$ runtime. 
+		\item This is called the \textbf{Floyd-Washall Algorithm.}
+	\end{itemize}
+	\input{lec-13.tex}
+	\input{lec-14.tex}
+	\input{lec-15.tex}
+	\input{lec-16.tex}
+	\input{lec-17.tex}
+	\input{lec-18.tex}
+	\input{lec-19.tex}
+	\input{lec-20.tex}
 \end{document}
