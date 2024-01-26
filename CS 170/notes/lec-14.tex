@@ -182,7 +182,7 @@ We'll look at more examples today of DP.
 \begin{itemize}
 	\item We need a data structure to store the tree easily, and also make sure that every child is processed 
 		before the parents are. Well, we can iterate through the graph in post decreasing post order! 
-	\item The runtime of DFS on trees is \(O(|V|\), and each edge is looked at \(\le 2\) times -- once 
+	\item The runtime of DFS on trees is \(O(|V|)\), and each edge is looked at \(\le 2\) times -- once 
 		for the children and also once for its grandchildren, so each subproblme takes constant time. 
 	\item So that the total work is \(O(|E|) = O(|V|)\), since \(|E| = |V| - 1\).
 \end{itemize}

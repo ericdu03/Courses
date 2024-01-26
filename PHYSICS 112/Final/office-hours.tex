@@ -1,0 +1,65 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 112}
+\newcommand{\classname}{Introduction to Statistical and Thermal Physics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Office Hours} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\begin{itemize}
+		\item Study the occupancy stuff (energies larger than \( n_F \) go to zero).  
+		\item Bose-Einstein Condensation: solve the number integral, then say that the number of excited particles is restricted 
+			the max value given by the number integral. Then, the remainder of the particles must be in the ground state (we 
+			get BEC from that.) 
+		\item The issue arises in the fact that there are a large number of particles in the ground state, hence 
+			\( g(\epsilon) \) isn't smooth, so we can't replace this with an integral. Therefore, only the number of particles 
+			in the excited states can be transferred to an integral equation:
+			\[
+				N = \sum_j n_B(\epsilon_j - \mu) = \underbrace{n_B(\epsilon_0 - \mu)}_{N_0} + 
+				\underbrace{\sum_{j > 0} n_B(\epsilon_j - \mu)}_{N_{\text{ex}}} = N_0 + \int_0^{\infty}g(\epsilon)
+				n_B(\epsilon - \mu) d\epsilon
+			\] 
+			(The \( N_0 \) here is the source of the Bose-Einstein condensation. The proportion of particles between \( 0 \) 
+			and \( \epsilon_1 \) goes to 0 in the thermodynamic limit, so this 
+			approximation as an integral on \( [0, \infty) \) is good enough. 
+		\item Stefan-Boltzmann Law: sphere of temperature \( T \) and radius \( R \), how much power does it radiate?
+
+			\[
+			P = (\text{surface area}) \cdot T^4 \cdot \sigma_B = 4\pi R^2 T^{4} \sigma_B 
+			\] 
+			\( \sigma_B \) is the Stefan-Boltzmann constant.
+		\item Given \( g(\epsilon) \) (single particle density of states) and a temperature \( T \), how do we calculate the 
+			occupancy?
+		\item Relation between \( g(\epsilon) \) and momentum space:
+	
+			Given \( \epsilon(k) = \frac{\hbar^2 k^2}{2m} \), we can find the number of particles:
+			\[
+				N = \sum_{\vec k} n_{F/B}(\epsilon_k - \mu)
+			\] 
+			We converted this then to an integral and calculated \( N \). There's another way to calculate this:
+			\[
+			N = \int d\epsilon g(\epsilon) n_{F / B}(\epsilon - \mu)
+			\] 
+			where \( g(\epsilon)  \) is given by the number of single-particle with energy within the interval 
+			\( [\epsilon, \epsilon + d\epsilon] \). For \( k^2 \) dispersion, read book to figure out \( g(\epsilon) \). 
+			In lecture we did:
+			\[
+			N = \sum_{\vec k} n_{F / B}(\epsilon_k - \mu) = \left( \frac{L}{2\pi} \right) ^3 \int d^3k \cdot n
+			_{F / B}(\epsilon_k - \mu)
+			\] 
+			We can replace this sum with an integral when the function is "smooth" around \( \epsilon_F \).  
+		\item Learn how to do this: given a density of states, calculate the total number of particles in the system.  
+			Is the solution to literally do the integral?
+		\item Dispersion relation relates \( \epsilon \) to \( k \). 
+	\end{itemize}	
+\end{document}

@@ -1,7 +1,7 @@
 % NECESSARY PACKAGES 
 % \usepackage[pdftex]{graphicx}
 \usepackage[utf8]{inputenc}
-\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
 \usepackage{enumitem}
 \usepackage{tkz-euclide}
 \usepackage{titlesec}
@@ -18,6 +18,7 @@
 
 \usepackage{libertine}
 \usepackage{libertinust1math}
+\usepackage{inconsolata}
 \usepackage[T1]{fontenc}
 %\usepackage{bera}
 %\usepackage{crimson}
@@ -27,7 +28,11 @@
 \newcommand{\iinf}{\int_{-\infty}^{\infty}} % Indefinite integral
 \newcommand{\schrodinger}{Schr\"{o}dinger }   % Schrodinger's name
 \newcommand{\lhopitals}{L'H\^{o}pital's}      % L'Hopital's rule
+\newcommand{\diff}{\ensuremath{\ d}} % differential? 
 \newcommand{\dx}{\ \mathrm d x}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
 \renewcommand{\curl}{\nabla \times}           % vector curl
 \renewcommand{\div}{\nabla \cdot}             % vector divergence
 \renewcommand{\dd}{\ \mathrm d}
@@ -56,15 +61,11 @@
 % SOLUTION ENVIRONMENT
 \newenvironment{solution}{\medskip \textit{Solution:}}{\hfill \qedsymbol \medskip \hrule height1pt \medskip}
 
-% GRIFFITHS EM SCRIPT R
-\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../ScriptR}}$}}}
-\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../BoldR}}$}}}
-\def\hrcurs{{\mbox{$\hat \brcurs$}}}
+
 
 % Tikz Libraries 
-
-\usetikzlibrary{decorations.markings, decorations.pathreplacing, graphs}
-%\usegdlibrary{trees}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings, decorations.pathreplacing, graphs, quantikz2, shapes.geometric, patterns}
 \tikzset{
   % style to apply some styles to each segment of a path
   on each segment/.style={
@@ -95,4 +96,7 @@
         mark=at position .5 with {\arrow[#1]{Stealth}}
       }}},
 }
-
+% GRIFFITHS EM SCRIPT R
+\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../ScriptR}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../BoldR}}$}}}
+\def\hrcurs{{\mbox{$\hat \brcurs$}}}

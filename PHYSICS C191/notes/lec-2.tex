@@ -1,0 +1,159 @@
+\section{Entanglement \& Bell Inequalities}
+\subsection{Projection Operators}
+\begin{itemize}
+	\item The basic form of an operator is that it takes one vector and spits out another: \( \ket{c} = \ket{c}
+		\braket*{a}{a}\). So, the outer product \( \ket{c}\bra{a} \) is the operator. 
+	\item Consider a state \( \ket{w} = \sum_{i=1}^{n}a_i \ket{u_i}\), where \( \{\ket{u_i}\} \) form an orthonormal 
+		basis. If we want to find any one of the \( a_j \), then we compute \( \braket*{u_j}{w} \):
+		\[
+			\braket*{u_j}{w} = \sum_{i = 1}^{n} a_i \underbrace{\braket*{u_j}{u_i}}_{\delta_{ij}} = a_j
+		\] 
+		Alternatively, this allows us to write \( \ket{w} \) in terms of:
+		\[
+		\ket{w} = \sum_{i}^{n}\braket*{u_i}{w}\ket{u_i} = \sum_{i = 1}^{n}\ket{u_i}\braket*{u_i}{w}
+		\] 
+		Now, the term \( \ket{u_i}\bra{u_i} \) is an operator, and is called the \textbf{projection operator}. 
+		If we act the operator on one of the basis vectors:
+		\[
+		\ket{u_i}\braket*{u_i}{u_i} = \ket{u_i}
+		\] 
+		whereas if we do it on an arbitrary vector \( \ket{w} \) :
+		\[
+			\ket{u_i}\underbrace{\braket*{u_i}{w}}_{a_i} = a_i \ket{u_i}
+		\] 
+	\item The projection operator is written as \( P_i = \ket{u_i}\bra{u_i} \), which has the property that 
+		\( P_i^2 = \ket{u_i}\braket*{u_i}{u_i}\bra{u_i} = P_i \). It also has the property 
+		that 
+		\[
+			\sum_{i}^{n}P_i = \sum_{i}^{n}\ket{u_i}\bra{u_i} = I
+		\] 
+\end{itemize}
+\subsection{General Operators}
+\begin{itemize}
+	\item A general operator is defined as \( A = IAI \). Now, we're going to express the identity matrices in terms 
+		of the projection operators:
+		\begin{align*}
+			A &= \sum_i \sum_{j}\ket{u_i}\overbrace{\mel{u_i}{A}{u_j}}^{A_{ij}}\bra{u_j}\\
+			  &= \sum_{i, j} A_{ij} \ket{u_i}\bra{u_j}
+		\end{align*}
+		The term \( A_{ij} \) represents a \textit{matrix element}, represented in the \( \ket{u_j} \) basis. 
+
+		\question{What does the \( \ket{u_i}\bra{u_j} \) operator represent?}
+	\item One basis that we'll use very frequently is to express \( A \) in terms of the eigenbasis. That is, the 
+		set \( \ket{a_i} \) of vectors such that 
+		\[
+		A\ket{a_i} = a_i \ket{a_i}
+		\] 
+		In this basis, then \( A \) is written as:
+		\begin{align*}
+			A &= IAI \\
+			  &= \sum_{ij}\ket*{a_i}\mel*{a_i}{A}{a_j}\bra*{a_j}\\
+			  &= \sum_{i, j} a_j \ket*{a_i}\braket*{a_i}{a_j}\bra*{a_j} 
+		\end{align*}
+		Here we've used the property that \( A\ket*{a_j} = a_j\ket*{a_j} \). Then, if we choose the eigenvectors 
+		to be orthogonal (which is okay for a Hermitian \( A \) ), then \( \braket*{a_i}{a_j} = \delta_{ij} \), so:
+		\[
+		A = \sum_i a_i \ket*{a_i}\bra*{a_i}
+		\] 
+		\question{Why can we choose the \( \{\ket*{a_i}\}  \) to be orthogonal?}
+	\item We choose \( A \) to be Hermitian (which is the only way we were able to make this simplification). Since 
+		they have real eigenvalues, they have mutually orthogonal eigenvectors.  
+\end{itemize}
+\subsection{Measurement Postulate}
+\begin{itemize}
+	\item An observable \( A \) can be measured by a set of operators \( \{M_m\}  \) with outcomes (observable values)
+		\( m \). 
+	\item For example, a qubit (so any 2-level system) with states \( \ket*{0} \) and \( \ket*{1} \), we can make 
+		a general state \(  \ket*{\psi} = \alpha\ket*{0} + \beta\ket*{1}\) with normalization 
+		constraint \( \|\alpha\|^2 + \|\beta\|^2 = 1 \). 
+
+		By measuring, we "learn" the value of \( \alpha \) and \( \beta \). Our measurement operators 
+		consist of 
+		\[
+		M_0 = \ket*{0}\bra*{0}, \ \ M_1 = \ket*{1}\bra*{1}
+		\] 
+		You'll notice that these are projections onto a given state -- this is intentional. 
+	\item Upon measuring \( \ket*{\psi} \), we will get one outcome (either 0 or 1), with probability
+		\( p(m) = \mel*{\psi}{M_m^{\dagger}M_m}{\psi} \). 
+	\item After measurement, the state "collapses" into the state \( \frac{M_m \ket*{\psi}}{\sqrt{p(m)} } \). This 
+		is a fancy way to say that it will only give us \( \ket*{0} \) if the outcome was 0. This probabilistic 
+		determination of the final state is intrinsic to quantum mechanics.   
+
+		As an example, if we have one state \( \ket*{\psi} \), we either get 0 or 1 but have no information about 
+		\( \alpha \) or \( \beta \). However, if we have many identical \( \ket*{\psi} \), then we get 0 with 
+		probability \( \|\alpha\|^2 \), and we get 1 with probability \( \|\beta\|^2 \). This is because:
+		\begin{align*}
+			p(m = 0) &= \braket*{\psi}{0}\braket*{0}{0}\braket*{0}{\psi} = \|\alpha\|^2\\
+			p(m = 1) &= \braket*{\psi}{1}\braket*{1}{1}\braket*{1}{\psi} = \|\beta\|^2 
+		\end{align*}
+		\comment{Note that \( M_m^{\dagger} = M \), based on the way we've defined them.}
+		If we get 0, then the final state is written as:
+		\[
+		\frac{\ket*{0}\braket*{0}{\psi}}{\sqrt{\|\alpha\|^2} } = \ket*{0} = e^{i\theta}\ket*{0}
+		\] 
+		the \( e^{i\theta} \) is just some overall phase factor. 
+	\item We introduce an average over many measurements to be the quantity \( \mean{A} \), which is calculated
+		as:
+		\[
+			\mean{A} = \sum_m p(m)a_m
+		\] 
+		This is also sometimes called the \textit{average value} of an operator. The measurement basis we 
+		choose for a Hermitian \( A \) is given by the eigenvectors of \( A \), so we have: 
+		\[
+		M_m = \ket*{a_m}\bra*{a_m}
+		\] 
+		where \( \ket*{a_i} \) is the \( i \)-th eigenvector of \( A \). Then, this means that \( \mean{A} = 
+		\sum_m p(m) a_m\). Remember that \( A \) is represented as: 
+		\[
+		A = \sum_m a_m \ket*{a_m}\bra*{a_m}
+		\] 
+	\item Some cool expansion: 
+		\begin{align*}
+			\mean{A} &= \sum_m p(m)a_{m}\\
+					 &= \sum_m a_{m}\mel*{\psi}{M_m^{\dagger}M_m}{\psi} \\
+					 &= \sum_m a_m \braket*{\psi}{a_m}\braket*{a_m}{a_m}\braket*{a_m}{\psi} \\
+					 &= \sum_m a_m \braket*{\psi}{a_m}\braket*{a_m}{\psi} 
+		\end{align*}
+		But now let's throw a \( \bra*{\psi} \) to the left:
+		\[
+			\bra*{\psi}\sum_m a_m \ket*{a_m}\bra*{a_m}\ket*{\psi} = \mel*{\psi}{A}{\psi}
+		\] 
+		This is the matrix element we've come across earlier. 
+ \end{itemize}
+ \subsubsection{Specific Examples}
+ \begin{itemize}
+	 \item Suppose we want to measure \( Z \) for a qubit. Recall that \( Z = \begin{pmatrix} 1 & 0 \\ 
+		 0 & -1 \end{pmatrix}  \). This has eigenvalues \( \pm 1 \), with eigenvectors \( \ket*{0}, \ket*{1} \). 
+	 \item Now, we compute \( \mean{Z} \) for a general state \( \ket*{\psi} = \alpha\ket*{0} + \beta\ket*{1} \).
+		 \begin{align*}
+			 \mean{Z} &= p(+1)(+1) + p(-1) (-1)\\
+			 &=  \|\alpha\|^2 - \|\beta\|^2	
+		 \end{align*}
+		 \comment{Remember that the equation is \( (\text{probability of obtaining state}) \times 
+		 (\text{eigenvalue of that state})\).}
+		 \item Now let's measure \( X = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \) on the same state 
+			 \( \ket*{\psi} \). It's eigenvalues are \( \pm 1 \), with eigenvectors \( \ket*{+},  \ket*{-} \). Recall 
+			 that 
+			 \begin{align*}
+			 	\ket*{+} &= \frac{1}{\sqrt{2} }\left( \ket*{0} + \ket*{1} \right)  \\
+				\ket*{-}&= \frac{1}{\sqrt{2} }\left( \ket*{0} - \ket*{1} \right)  
+			 \end{align*}
+			 This means that we can solve for  \( \ket*{0} \) and \( \ket*{1} \) :
+			 \begin{align*}
+			 	\ket*{0}&= \frac{1}{\sqrt{2} }\left( \ket*{+} + \ket*{0} \right)  \\
+				\ket*{1}&= \frac{1}{\sqrt{2} }\left( \ket*{+} - \ket*{-} \right)  \\
+			 \end{align*}
+			 Therefore, the average \( \mean{X} \):
+			 \[
+				 \mean{X} = p_m(+1)(+1) + p_m(-1)(-1) 
+			 \]
+			 Then, we expand the probabilities: 
+			\begin{align*}
+				p_m(+1) &= \braket*{\psi}{+}\braket*{+}{+}\braket*{+}{\psi} = \braket*{\psi}{+}\braket*{+}{\psi} \\
+				p_m(-1) &= \braket*{\psi}{-}\braket*{-}{-}\braket*{-}{\psi} = \braket*{\psi}{-}\braket*{-}{\psi}
+			\end{align*}
+			To complete the computation, we have to express \( \ket*{\psi} \) in the \( \ket*{\pm} \) basis:
+			\[
+			\ket*{\psi} = \alpha \ket*{0} + \beta \ket*{1} = \frac{\alpha}{\sqrt{2} }\left( \ket*{+} + \ket*{-} \right) 
+			\] 
+ \end{itemize}

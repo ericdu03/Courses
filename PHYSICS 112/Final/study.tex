@@ -1,0 +1,729 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 112}
+\newcommand{\classname}{Inroduction to Statistical and Thermal Physics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Final Review} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+
+\newcommand{\question}[1]{\textcolor{red}{#1}}
+\newcommand{\answer}[1]{\textcolor{green!80!black!}{#1}}
+\renewcommand{\comment}[1]{\textcolor{blue!50}{#1}}
+\begin{document}
+	\maketitle
+	\section{Free Energy and Chemical Thermodynamics}
+	\subsection{Free Energy as Available Work}
+	There are four quantities that are important:
+	\begin{align*}
+		H &\equiv U + PV\\
+		F &\equiv U - TS\\
+		G &\equiv U - TS + PV
+	\end{align*}
+	\( F \) is the total energy minus the heat you can get for free from an environment at temperature \( T \). In other words, 
+	this is the energy that we \textit{have} to provide if we're "creating" the system from thin air. Alternatively, if we are 
+	annihilating the system, the maximum amount of energy extracted is given by \( F \). 
+
+	If the system is in an environment with constant pressure and temperature, then the work we do to create it is given by 
+	the Gibbs free energy \( G \). \question{Need some intuition on what these actually mean again.}
+
+	In most systems, we won't really be concerning ourselves with creating/annihilating, so we'll look at changes 
+	in these quantities:
+	\[
+		\Delta F = \Delta U - T \Delta S = Q + W - T \Delta S 
+	\] 
+	Now, since \( Q \le T \Delta S \) (with equality when the process is quasistatic, then we have the relationship that 
+	\( F \le W \) at constant \( T \). (where the  \( T \Delta S \) formula applies). A similar argument can be made for 
+	\( G \), where we have \( G \le W_{\text{other}} \), where this denotes the extraneous work done on the system, that is 
+	not from the environment. As a rule of thumb, if we don't care about the energy the environment provides, then we 
+	use \( G \) instead of \( F \). 
+
+	\subsection{Fuel Cells}
+
+	Consider the chemical reaction:
+	\[
+		\ch{H_2O -> H_2 + 1/2 O_2}
+	\] 
+	Looking up \( \Delta H \) values gives us 289 kJ, meaning that we need to supply this amount of energy (somehow) 
+	in order for the reaction to proceed. Not all of this energy needs to be supplied by us though, we can use the environment
+	to do some of it for us. To figure out how much we need, we compute the change in entropy and calculate \( T \Delta S \), 
+	which will be the energy supplied by the environment. Once we have that, then \( H - T \Delta S \) (which is \( G \) ) will 
+	tell us how much energy \textit{we} need to supply. For this particular reaction, that works out to be 237 kJ.  
+
+	In general, just look at the chemical reaction, determine \( \Delta H \) and \( \Delta S \), then use these quantities
+	to calculate \( \Delta G \), simple. 
+
+	\subsection{Thermodynamic Identities}
+	Recall the formula for \( dU \) :
+	\[
+	dU = T dS - P dV + \mu dN
+	\] 
+	We can create similar equations for \( dH \), using the knowledge that \( H = U + PV \):
+	\[
+	dH = dU + P dV + V dP
+	\] 
+	(note that we need to take the product rule with \( PV \), which gives us the two terms.) Now we substitute \( dU \) into 
+	this equation, so we get:
+	\[
+	dH = T dS + V dP + \mu dN
+	\] 
+	This tells us how \( H \) changes with respect to other thermodynamic quantities. Similarly, we can do this for \( F \) :
+	\[
+	dF = - S dT - P dV + \mu dN
+	\] 
+	holding \( V \) and \( N \) constant gives us:
+	\[
+		S = -\left( \pdv{F}{T} \right)_{V, N}
+	\] 
+	The same can be done for \( G \), and its respective quantities. If we have a mixture of multiple particles in our system, 
+	then recall that we replace \( \mu dN \) by \( \sum_i \mu_i dN_i \), and so to calculate \( \mu \), then we have:
+	\[
+		\mu_1 = \left( \pdv{G}{N_1} \right)_{T, P, N_2} \ \ \mu_2 = \left( \pdv{G}{N_2} \right)_{T, P, N_1}
+	\] 
+	\section{Boltzmann Statistics}
+	\subsection{Boltzmann Factor}
+	Essentially deals with a system in contact with a reservoir of energy \( E \). The reservoir has to have a 
+	specified temperature. Because the system is interacting with its environment, then we can relate the probability of our particle 
+	being in one state to another:
+	\[
+		\frac{\mathcal P(s_2)}{\mathcal P(s_1)} = \frac{\Omega_R(s_2)}{\Omega_R(s_1)} = e^{[S_R(s_2) - S_R(s_1)] / k}
+	\] 
+	Then use the thermodynamic identity \( dS_R = \frac{1}{T}(dU_R + P dV_R - \mu dN_R) \) (note that the signs of 
+	\( P dV \) and \( \mu dN \) are flipped, because we are looking from the reservoir's perspective. We will 
+	now neglect these two terms for the time being (generally \( P dV \) is small, and we'll add \( dN \) back later), 
+	so this gives us:
+	\[
+		\frac{P(s_2)}{P(s_1)} = \frac{e^{-E(s_2) / kT}}{e^{-E(s_1) / kT}}
+	\] 
+	To get the probability, divide by the partition function \( Z \) :
+	\[
+	P(s) = \frac{1}{Z} e^{-E(s) / kT}
+	\] 
+	To get \( Z \), we note that:
+	\[
+	1 = \sum_s \frac{1}{Z} e^{ -E(s) / kT} \implies Z = \sum_s e^{-E(s) / kT}
+	\] 
+	so \( Z \) is the \textbf{sum of all boltzmann factors.}
+	\subsection{Average (Expected) Values}
+	The average value of any state variable \( X \) with \( X(s) \) being the value at state \( s \), then we have:
+	\[
+	\overline X = \sum_s X(s) P(s) = \frac{1}{Z} \sum_s \sum_s X(s) e^{-\beta E(s)}
+	\] 
+	Note that \( \beta = \frac{1}{kT} \). Then, to calculate the energy, we have:
+	\[
+	\overline E = \sum_s E(s) P(s) 
+	\] 
+	then, we can calculate the total energy \( U \) by using the formula \( U = N \overline E \).    
+
+	\subsubsection{Paramagnetism}
+
+	Consider a dipole having spin up energy \( \mu B \)  and spin down energy  \( -\mu B \). Then, for a singular dipole:
+	\[
+		Z = \sum_s e^{\beta E(s)} = e^{-\beta \mu B} + e^{\beta \mu B} = 2 \cosh(\beta \mu B) 
+	\] 
+	The average energy is calculated as:
+	\[
+	\overline E = \sum_s E(s) P(s) = -\mu B \tanh(\beta \mu B)
+	\] 
+	So in total, we have \( U = -N \mu B \tanh(\beta \mu B) \). There's also an alternate way to calculate the mean energy:
+	\[
+		\overline E = -\frac{1}{Z} \pdv{Z}{\beta}
+	\] 
+	The total magnetization can then be calculated by scaling the average magnetization:
+	\[
+	\overline \mu_z = \sum_s \mu_z(s) P(s) = \mu P(\uparrow) - \mu P(\downarrow) = \mu \tanh(\beta \mu B) \implies M = N 
+	\overline \mu_z = N \mu \tanh(\beta \mu B)
+	\] 
+	\comment{Problem 6.22 looks good as practice}
+
+	\subsection{Equipartition Theorem}
+	Suppose we have a system whose energy is given by a quadratic function \( E(q) = cq^2 \), where \( q \) represents any 
+	state variable (coordinate, momentm, etc). Then, the partition function is:
+	\[
+	Z = \sum_q e^{-\beta E(q)} = \sum_q e^{-\beta cq^2} = \frac{1}{\Delta q} \sum_q e^{-\beta cq^2} \Delta q
+	\]
+	Now, since \( \Delta q \) is very small, then we can interpret this as an integral \question{(when can we no longer do this?)}. 
+	Therefore we have:
+	\[
+	Z = \frac{1}{\Delta q} \iinf e^{-\beta cq^2} dq = \frac{1}{\Delta q} \frac{1}{\sqrt{\beta c} }\iinf e^{-x^2}dx
+	= \frac{1}{\Delta q} \sqrt{\frac{\pi}{\beta c}}  = C \beta^{-1 / 2}
+	\] 
+	Then, taking the average energy is easy:
+	\[
+		\overline E = -\frac{1}{Z} \pdv{Z}{\beta} = \frac{1}{2}\beta^{-1} = \frac{1}{2}kT
+	\] 
+	\subsection{Maxwell Speed Distribution}
+	We know that the root mean squared distribution:
+	\[
+	v_{\text{rms}} = \sqrt{\frac{3kT}{m}} 
+	\] 
+	This is nice, but we now want to calculate the proportion of molecules that are travelling at a given speed. Given 
+	a distribution \( \mathcal D(v) \), the probability that our particle is within \( v_1 \) and \( v_2 \) is:
+	\[
+		P(v \in [v_1, v_2]) = \int_{v_1}^{v_2} \mathcal D(v) dv
+	\] 
+	The distribution function can be written as:
+	\[
+	\mathcal D(v) \propto (\text{probability of having velocity \( \vec v \)}) \times (\text{number of vectors with speed 
+	\( v \)})
+	\] 
+	The first factor is (proportional to) the Boltzmann factor:
+	\[
+		(\text{probability of having velocity \( \vec v \)}) \propto e^{-mv^2 /2kT}
+	\] 
+	Recall that having a speed \( v \) means having energy \( \frac{1}{2}mv^2 \), which explains the exponent. To calculate the 
+	number of velocity vectors with velocity \( v \), we imagine the surface of a sphere in velocity space, and the set of 
+	velocity vectors with speed \( v \) lives on the surface of that sphere with radius \( v \). This is due to the 
+	fact that on a surface of a sphere, the magnitude of the velocity vector is always going to be \( v \). Therefore:
+	\[
+		(\text{number of vectors with speed \( v \)}) \propto 4 \pi v^2
+	\] 
+	Combining the two now gives:
+	\[
+	\mathcal D(v) = C \cdot 4 \pi v^2 e^{-mv^2 / 2kT}
+	\] 
+	The constant \( C \) is just the constant that ensures that the integral over all space is 1, so at the end of all the algebra, 
+	we get:
+	\[
+	\mathcal D(v) = \left( \frac{m}{2\pi kT} \right) ^{3 /2} 4 \pi v^2 e^{-mv^2 / 2kT}
+	\] 
+	This is the \textbf{Maxwell distribution}. Knowing the distribution, we can now calculate the average speed:
+	\[
+		\overline v = \sum_{v} v \mathcal D(v) dv = \int_{0}^{\infty} v \mathcal D(v) dv = \sqrt{\frac{8kT}{\pi m}} 
+	\] 
+	\subsection{Partition Functions and Free Energy}
+	Here we will prove that the equation \( F = -kT \ln Z \) is true. To do this, we start with the definition of \( F = U - TS\), 
+	and recall the thermodynamic identity
+	\[
+		\left( \pdv{F}{T} \right)_{V, N} = -S
+	\] 
+	We can write \( S  \) in terms of the first equation, so
+	\[
+		\left( \pdv{F}{T} \right)_{V, N} = \frac{F - U}{T}
+	\] 
+	This is a differential equation for \( T \), and from here we will show that \( F = -kT \ln Z \) obeys this differential 
+	equation and also shares the same initial condition at \( T = 0 \). Let \( \tilde F = -kT \ln Z	\), so then we have:
+	\[
+		\pdv{\tilde F}{T} = -k \ln Z - kT \pdv{T} \ln Z = -k \ln Z - kT \pdv{\beta}{T} \pdv{\beta} \ln Z = \frac{U}{kT^2}
+	\] 
+	Therefore:
+	\[
+		\pdv{\tilde F}{T} = -k \ln Z - kT \frac{U}{kT^2} = \frac{\tilde F - U}{T}
+	\] 
+	So it follows the same differential equation as \( F \). Then, looking at \( T = 0 \), we have \( F = U = U_0\), since all 
+	excited states should limit to 0. The partition function does the same thing, and so all we get is the ground state 
+	term, so therefore:
+	\[
+	\tilde F(0) = -kT \ln Z(0) = U_0 = F(0)
+	\] 
+	Hence, we have \( F = -kT \ln Z \). 
+
+	\subsection{Partition Function for Composite Systems}
+	How do we derive the general partition function? We just multiply them together, as long as they are 
+	noninteracting. For instance, for two identical particles, we have:
+	\[
+	Z_{\text{total}} = Z_1Z_2
+	\] 
+	where \( Z_1 \) is the partition function for particle 1, and \( Z_2 \) for particle 2. This holds as long as 
+	the particles don't interact with one another. We also need the case that the particles are distinguishable. If they are 
+	indistinguishable, then simply taking the product is incorrect because we end up overcounting the number of states we have 
+	in our system. In general then, we'd have to divide by a factor of the number of permutations of the particles in the 
+	indistinguishable case, whereas the distinguishable case is relatively easy:
+	\[
+		Z_{\text{total}} = \begin{cases}
+			Z_1Z_2 \cdots Z_N = \prod_i Z_i & \text{noninteracting, distinguishable}\\
+			\frac{1}{N!} Z_1^{N} & \text{noninteracting, indistinguishable}
+		\end{cases}
+	\] 
+	Note that the indistinguishable case is still not exactly correct, since we haven't eliminated the possibility that the 
+	energies of the particles could be the same when we divided by \( N! \). This will be handled in the next
+	chapter. 
+
+	\subsection{Ideal Gas Revisited}
+	Consider an ideal gas with identical particles, then we have the partition function 
+	\[
+	Z = \frac{1}{N!} Z_1^{N}
+	\] 
+	Then, we need to calculate \( Z_1 \) (the partition function for a single molecule). To find \( Z_1 \), first look at the 
+	Boltzmann factor:
+	\[
+	e^{-E(s) / kT} = e^{-E_{\text{tr}}(s) / kT} e^{-E_{\text{int}}(s) / kT}
+	\] 
+	\( E_{\text{tr}}(s) \) is the translational energy and \( E_{\text{int}}(s) \) is the internal energy (rotational, for 
+	example) for the state \( s \). Then, we can just write \(  Z_1= Z_{\text{tr}}Z_{\text{int}} \). First, we look at all the 
+	possible translational states of a molecule. For a particle in a box, there are only a defined number of states:
+	\[
+	\lambda_n = \frac{2L}{n} \implies p = \frac{h}{\lambda_n} = \frac{hn}{2L} \implies E_n = \frac{p_n^2}{2m} = \frac{h^2 n^2}{8mL^2}
+	\] 
+	So now that we have \( E_n \), we can calculate \( Z_{\text{1d}} \), the partition function for a molecule 
+	in 1D:
+	\[
+	Z_{\text{1d}} = \sum_n e^{-E_n /kT}
+	\] 
+	And if the energy levels are close together (which is the case when \( L \) or \( T \) are large enough), then we can treat
+	this as an integral over \( dn \):
+	\[
+	Z_{\text{1d}} = \int_0^{\infty} e^{-h^2 n^2/8 mL^2 kT} dn = \sqrt{\frac{2\pi m kT}{h^2}} L = \frac{L}{\ell_Q}
+	\] 
+	where \( \ell_Q \) is the \textbf{quantum length}, defined as:
+	\[
+	\ell_Q = \frac{h}{\sqrt{2 \pi m kT} }
+	\] 
+	Consequently, then, we can calculate the full translational partition function by doing the same but now over all 
+	directions \( x, y, z \) :
+	\[
+	Z_{\text{tr}} = \sum_{n_x}\sum_{n_y}\sum_{n_z} e^{-E_{nx} / kT} e^{-E_{ny} / kT} e^{-E_{nz} / kT} = \frac{L_x}{\ell_Q} 
+	\frac{L_y}{\ell_Q} \frac{L_z}{\ell_Q} = \frac{V}{\ell_Q^3}
+	\] 
+	we define the quantum volume to be \( v_Q = \ell_Q^3 \), so we have \( Z_{\text{tr}} = \frac{V}{v_Q} \). Therefore, we can 
+	now combine this with \( Z_1 = Z_{\text{tr}}Z_{\text{int}} \) to get:
+	\[
+	Z_1 = \frac{V}{v_Q} Z_{\text{int}}
+	\] 
+	Then, for \( N \) molecules we use the formula derived in the previous section:
+	\[
+	Z = \frac{1}{N!}\left( \frac{VZ_{\text{int}}}{v_Q} \right) ^{N}
+	\] 
+	As a side note, we then have \( \ln Z = N[\ln V + ln Z_{\text{int}} - \ln N - \ln v_Q + 1] \), which will come 
+	up later. Now that we have \( Z \), we can compute all the properties of an ideal gas, and we'll find that 
+	everything lines up exactly with what we had predicted earlier. For instance, the total energy follows 
+	the equipartition theorem: 
+	\[
+		U = -\frac{1}{Z} \pdv{Z}{\beta} = U_{\text{int}} + \frac{3}{2} NkT
+	\] 
+	\comment{Review the actual derivation for how to differentiate}. Taking the derivative of this result also gives the 
+	heat capacity:
+	\[
+		C_V = \pdv{U}{T} = \pdv{U_{\text{int}}}{T} + \frac{3}{2}Nk
+	\] 
+	We can also calculate \( F = -kT \ln Z = -NkT[\ln V - \ln N - ln v_Q + 1] + F_{\text{int}}\), so then we have:
+	\[
+		P = -\left( \pdv{F}{V} \right)_{T, N} = \frac{NkT}{V}
+	\] 
+	Similarly, we have:
+	\[
+		S = Nk\left[ \ln \left( \frac{V}{Nv_Q} \right) + \frac{5}{2} \right] - \pdv{F_{\text{int}}}{T}, \ \ \mu = -kT \ln
+		\left( \frac{VZ_{\text{int}}}{Nv_Q} \right) 
+	\] 
+	Neglecting the internal terms, these results match what we had earlier.
+
+	\section{Quantum Statistics} 
+
+	\subsection{Gibbs Factor}
+	One thing we did at the beginning of the previous section was derive the relation:
+	\[
+		\frac{\mathcal P(s_2)}{\mathcal P(s_1)} = e^{[S_R(s_2) - S_R(s_1)] / k}
+	\] 
+	Then, with the assumption that \( P dV \) is small and \( dN = 0 \), we were able to derive:  
+	\[
+		\frac{\mathcal P(s_2)}{\mathcal P(s_1)} = e^{[E(s_2) - E(s_1)] / k}
+	\] 
+	Now, we'll relax the condition and let \( \mu dN \neq 0 \). Now we have:
+	\[
+		\frac{\mathcal P(s_2)}{ \mathcal P(s_1)} = \frac{e^{-[E(s_2) - \mu N(s_2)] / kT}}{e^{-[E(s_1) - \mu N(s_1)] / kT}}
+	\] 
+	Now, the exponent is called a Gibbs factor, similar to how the one without the \( \mu N \) term was called the Boltzmann 
+	factor:
+	\[
+		\text{Gibbs factor} = e^{-[E(s) - \mu N(s)] / kT}
+	\] 
+	Now, the probability is calculated by again inserting a normalization constant:
+	\[
+		\mathcal P(s) = \frac{1}{\mathcal Z} e^{-[E(s) - \mu N(s)] / kT}
+	\] 
+	where \( \mathcal Z \) is called the \textbf{Grand partition function}. If there are multiple particles, then we have 
+	to sum over the particles individually, so if there were two, then we'd have \( e^{-[E(s) - \mu_A n_A(s)
+	- \mu_B N_B(s)] / kT} \) as the exponent. 
+
+	\subsection{Bosons and Fermions}
+	Now we'll investigate the situation where identical particles actually do occupy the same energy state, where 
+	our equation for \( Z = \frac{1}{N!}Z_1^{N} \) no longer works, since the \( N! \) was derived from removing 
+	the multiplicity only if the particles are in different states. When they are allowed to occupy the same state, there are 
+	more copies that we need to get rid of. In fact, the \( N! \) gets rid of too many states, since two particles that occupy 
+	the same state should be counted as one state, but by dividing by \( N! \) we are actually getting rid of "half" of those states
+	too. 
+
+	So what happens when \( Z_1 \) is on the same order as \( N \) (in other words, our earlier analyses don't apply)? We first 
+	consider a "system" consisting of a single particle state (not a particle) \question{what is meant by this?}. Consider 
+	a particle in a box, whose occupied energy is \( \epsilon \). When the state is unoccupied, then the energy is zero, 
+	and when \( n \) states occupy it, then it has energy \( n \epsilon \). Therefore, the probability that 
+	the state is occupied by \( n \) particles is 
+	\[
+	\mathcal P(n) = \frac{1}{\mathcal Z} e^{-(n \epsilon - \mu n) / kT} = \frac{1}{\mathcal Z} e^{-n(\epsilon - \mu) / kT}
+	\] 
+	\comment{We get the exponents from the fact that we have \( E(s) - \mu N(s) \) as a general exponent, so when \( s \) is the 
+		condition that we have \( n \) particles, then \( E(s) = n \epsilon \) and \( N(s) = n \), giving us a 
+	\( n \epsilon - \mu n \) in the exponent.}
+	
+	If we have Fermions, then \( n \) can only be 0 or 1 (since no two Fermions can occupy the same state), so therefore:
+	\[
+	\mathcal Z = 1 + e^{-(\epsilon - \mu) / kT}
+	\] 
+	So therefore, we can now calculate the "occupancy", or the average number of particles in any given state:
+	\[
+	\overline n = \sum_n n P(n) = \frac{e^{-(\epsilon - \mu) / kT}}{1 + e^{-(\epsilon - \mu) / kT}} = 
+	\frac{1}{e^{(\epsilon - \mu) / kT} + 1}
+	\] 
+	\question{Is this the occupancy of \textit{this particular state \( n \)?} i.e. we'd have to calculate this for all states, 
+	or is this somehow calculating for all \( n \)?}
+
+	\answer{This is the value of \( \overline n \) for a particular state; we'll take into account all states later}
+
+	This is the \textbf{Fermi-Dirac distribution}, which tells us that:
+	\[
+	\overline n_{\text{FD}} = \frac{1}{e^{(\epsilon - \mu) / kT} + 1}
+	\]
+	If we have bosons instead of fermions, then we have to sum over all possible \( n \) :
+	\[
+	\mathcal Z = 1 + e^{-(\epsilon - \mu) / kT} + e^{-2(\epsilon - \mu) / kT} + \cdots = \frac{1}{1-e^{-(\epsilon - \mu) / kT}}
+	\] 
+	The average number of particles is then:
+	\[
+		\overline n = \sum_n n \mathcal P(n) = -\frac{1}{\mathcal Z} \pdv{\mathcal Z}{x}
+	\] 
+	where \( x = (\epsilon - \mu) / kT \). Therefore, we have:
+	\[
+	\overline n_{\text{BE}} = \frac{1}{e^{(\epsilon - \mu) /kT} - 1}
+	\] 
+	which is the \textbf{Bose-Einstein distribution}
+
+	\subsection{Degenerate Fermi Gases}
+	We are now going to consider the case where the Boltzmann statistics that we generally apply to an ideal gas, primarily 
+	the assumption that \( V / N \gg v_Q \) is not true, and that instead \( V / N \ll v_Q \). This applies to cases 
+	such as conduction electrons in metals, where the volume per conduction electron is very small. At this scale, the temperature
+	(not really room temperature, temperature as defined in terms of the change in entropy relative to energy) is very 
+	low. Here, we'll first look at the case where \( T = 0 \), then ask what happens when \( T \approx 0 \). 
+
+	At \( T = 0 \), then our Fermi-Dirac distribution becomes a step function, and this means that all the states less than
+	\( \mu \) are completely occupied. \question{Does this also mean that all states larger than \( \mu \) have occupancy of 
+	0?} \answer{Yes!} Here, \( \mu = \epsilon_F \), which is called the Fermi energy. At these temperatures where states below 
+	\( \epsilon_F \)  are occupied states above aren't, we consider these \textbf{degenerate gases}.
+
+	To calculate \( \epsilon_F \), we first assume that the electrons are free particles (a pretty good assumption for metals), and 
+	confined to a volume of \( V = L^3 \). Then, we have the discretization of states as a result of limited wavelengths:
+	\[
+	\lambda_n = \frac{2L}{n}, \ \ p_n = \frac{h}{\lambda_n} = \frac{hn}{2L}
+	\] 
+	Therefore, in all three dimensions, we have one for each dimension so:
+	\[
+	p_i = \frac{hn_i}{2L} \implies \epsilon = \frac{|\vec p| ^2}{2m} = \frac{h^2}{8mL^2}(n_x^2 + n_y^2 + n_z^2)
+	\] 
+	So basically, all triplets \( (n_x, n_y, n_z) \) that generate an energy less than \( \epsilon \) will be an allowed 
+	state. To count the number of states, then, we just have to find the number of states in this eighth-sphere. If the \( n \) 
+	corresponding to \(  \epsilon \) is \( n_{\text{max}} \) i.e.:
+	\[
+	\epsilon_F = \frac{h^2 n_{\text{max}}^2}{8mL^2}
+	\] 
+	Then, this means that the total number of states is going to be (roughly) the volume of the sphere (the factor of 
+	2 is to account for two spins):
+	\[
+	N = 2 \cdot \frac{1}{8} \cdot \frac{4\pi n_{\text{max}}^3}{3} = \frac{\pi n_{\text{max}}^3}{3}
+	\] 
+	Therefore, this gives us the equation:
+	\[
+	\epsilon_F = \frac{h^2}{8m}\left( \frac{3N}{\pi V} \right) ^{2 /3}
+	\] 
+	To calculate the total energy of the system, we just sum over the energies of all the states in all states: 
+	\[
+	U = 2\sum_{n_x}\sum_{n_y}\sum_{n_z} \epsilon(\vec n) = 2 \int \int \int \epsilon(\vec n) \ dn_x \ dn_y \ dn_z
+	\] 
+	\question{Is the reason why we're not accounting for any kind of "number of particles" term becuase these are electrons
+		(hence fermions), so the occupation is either 1 or 0, and the fact that at \( T = 0 \), the states below \( \epsilon_F \) 
+	are guaranteed to be filled?} \answer{Also yes!} At the end of the day, we're left with the equation:
+	\[
+	U = \pi \int_{0}^{n_{\text{max}}} \epsilon(n) n^2 dn = \frac{3}{5}N \epsilon_F 
+	\] 
+	\comment{Note that the \( n^2 \) term comes from switching the integral from Cartesian to polar.} So we get that the average
+	energy (divide by \( N \) ) of the electrons is \( \frac{3}{5}\epsilon_F \). For metals, the 
+	Fermi energy is typically \textit{much higher} when compared to the thermal energy (\( kT \) ), and the temperature 
+	at which \( kT \) is equal to  \( \epsilon_F \) is called the \textbf{Fermi temperature:}
+	\[
+	T_F = \frac{\epsilon_F}{k}
+	\] 
+	This temperature is generally high enough that metals become gases before this temperature is reached. Now that we have 
+	\( U \), we can figure out \( P \) using the identity: 
+	\[
+		P = -\left( \pdv{U}{V} \right)_{S, N} = \frac{2}{3}\frac{U}{V}
+	\] 
+	This is called the \textbf{degeneracy pressure.} This pressure is what keeps the matter from collapsing in on itself, 
+	and is \textit{solely} a product of the Pauli exclusion principle, and not the electrostatic repulsion between electrons. The 
+	degeneracy pressure is not directly computable, instead we compute the bulk modulus:
+	\[
+	B = -V\left( \pdv PV \right) _T = \frac{10}{9} \frac{U}{V}
+	\] 
+
+	\subsubsection{Small Nonzero Temperatures}
+	Earlier we looked at \( T = 0 \), but now we're going to concern ourselves with \( T \approx 0 \), or basically 
+	in the case where we have a small but nonzero \( T \). At some temperature \( T \), all particles can acquire thermal 
+	energy equal to \( kT \). However, because we're dealing with a degenerate Fermi gas, not all particles have the ability to 
+	acquire all that energy (since the states that they would be jumping into would be occupied already). Hence, 
+	the only particles that we care about are within \( kT \) of the Fermi energy, and this number must also scale with \( N \). 
+	Therefore: 
+	\[
+	\text{additional energy gained} \propto (\text{number of affected electrons}) \times (\text{energy acquired}) = NkT
+	\times kT = N(kT)^2
+	\] 
+	We'll see later on that the added energy should be:
+	\[
+	U_{\text{add}} = \frac{\pi^2}{4} N \frac{(kT)^2}{\epsilon_F}
+	\] 
+	And so the total energy \( U \) is now:
+	\[
+	U = \frac{3}{5}N \epsilon_F + \frac{\pi^2}{4}N \frac{(kT)^2}{\epsilon_F}
+	\] 
+	Then, the heat capacity is the derivative of this quantity with respect to \( T \) :
+	\[
+		C_V = \left( \pdv{U}{T} \right)_V = \frac{\pi^2 Nk^2 T}{2\epsilon_F}
+	\]  
+	\subsubsection{Density of States} 
+	Going back to the integral for the energy:
+	\[
+	U = \pi \int_{0}^{n_{\text{max}}} \epsilon(n) n^2 dn
+	\] 
+	we're going to change variables from \( n \) to energy \( \epsilon \) :
+	\[
+	n = \sqrt{\frac{8mL^2}{h^2}} \sqrt{\epsilon} \implies dn = \sqrt{\frac{8mL^2}{h^2}} \frac{1}{2\sqrt{\epsilon} } d\epsilon
+	\] 
+	Then, the energy integral becomes:
+	\[
+		U = \int_0^{\epsilon_F}\epsilon\left[\frac{\pi}{2}\left(\frac{8mL^2}{h^2} \right)^{3 / 2}\sqrt{\epsilon} \right] d\epsilon
+	\] 
+	The term in the square brackets represents the number of single-particle states per unit energy. Therefore, to compute the 
+	total energy, then we have to sum over the energy \( \epsilon \), then multiply that by the 
+	total number of single-particle states to get the total energy. \question{Why does this equation not take into account whether
+	the state is \textit{actually} occupied?}
+	
+	The \textbf{density of states} is \( g(\epsilon) \), and it is written as:
+	\[
+	g(\epsilon) = \frac{\pi(8m)^{3 / 2}}{2h^3} V \sqrt{\epsilon}  = \frac{3N}{2 \epsilon_F^{3 / 2}}\sqrt{\epsilon} 
+	\]
+	The first representation is nicer, since it implies the correct dependencies: that \( g(\epsilon) \) doesn't depend on 
+	\( N \), but instead depends linearly on \( V \) and proportional to \( \sqrt{\epsilon}  \). For an electron gas 
+	\comment{(remember, these are fermions)}, then finding the total number of particles is just equal to 
+	integrating the density of states: 
+	\[
+	N = \int_0^{\epsilon_F} g(\epsilon) d\epsilon \ \ (T = 0)
+	\] 
+	If \( T \) is nonzero, then we have to multiply \( g(\epsilon) \) by the probability that each state is occupied, so 
+	in other words by the Fermi-Dirac distribution. Therefore:
+	\[
+	N = \int_0^{\infty}g(\epsilon) \overline n_{\text{FD}}(\epsilon) d\epsilon = 
+	\int_0^{\infty}g(\epsilon) \frac{1}{e^{(\epsilon - \mu) / kT} + 1} d\epsilon
+	\] 
+	Then, to get the total energy, we just multiply this integrand by an extra \( \epsilon \) \question{why?}
+	\[
+	U = \int_0^{\infty}\epsilon g(\epsilon) \overline n_{\text{FD}}(\epsilon) d\epsilon = \int_0^{\infty}
+	\epsilon g(\epsilon) \frac{1}{e^{(\epsilon - \mu) / kT} + 1}
+	\] 
+	\subsection{Blackbody Radiation}
+	\subsubsection{Ultraviolet Catastrophe}
+	Classically, we think of radiation as a continuous field, and when confined to a box, we restrict the possible waves 
+	to be \textit{standing waves} \question{are these standing waves with respect to the ends, or just "waves" for now?}, 
+	with frequencies \( f = c / \lambda \). Each oscillator has two (\question{quadratic?}) degrees of freedom, 
+	meaning that each possible wave carries energy \( 2 \frac{1}{2}kT \). Since there are infinitely many possible waves 
+	that can be within the box (infinitely many wavelengths), then there should be theoretically an infinite amount of energy 
+	within that box. This, of course, cannot be true! This is called the \textbf{ultraviolet catastrophe}
+
+	\subsubsection{Planck Distribution}
+	The solution is to impose the fact that a harmonic oscillator can't just have arbitrary energy, but instead can only 
+	have discrete amounts of energy:
+	\[
+	E_n = 0, hf, 2hf, \dots 
+	\] 
+	Therefore, the partition function (a sum of all \( e^{-\beta E(s)} \) ) is going to be:
+	\[
+	Z = 1 + e^{-\beta hf} + e^{-2\beta hf} + \dots = \frac{1}{1-e^{-\beta hf}}
+	\] 
+	Therefore, the average energy is:
+	\[
+		\overline E = -\frac{1}{Z} \pdv{Z}{\beta} = \frac{hf}{e^{hf / kT} - 1}
+	\] 
+	And since energy is quantized in units of \( hf \), then we know that since  \( \overline E = N\epsilon \), then we know that
+	the average number of units of energy is given by
+	\[
+	\overline n_{\text{pl}} = \frac{1}{e^{hf / kT} -1}
+	\] 
+	This is called the \textbf{Planck distribution} 
+
+	\subsubsection{Photons}
+	Photons can also be considered particles, and are bosons (\question{how do we know this?}), so their distribution follows 
+	the Bose-Einstein distribution:
+	\[
+	\overline n_{\text{BE}} = \frac{1}{e^{(\epsilon - \mu) / kT} - 1}
+	\] 
+	Here \( \epsilon = hf \), the energy per mode. In order for this \( \overline n_{\text{BE}} \) to properly model
+	photons in a box, then it must match the plank distribution, which means that \( \mu = 0 \) for photons. 
+	
+	The Planck distribution gives us the distribution of particles in any given mode of the EM field, so we can use this 
+	distribution to figure out not only the total energy but also the total number of photons in our box. First, consider 
+	the case in 1 dimension. Here, if the "box" is of length \( L \), then the allowed wavelengths are:
+	\[
+	\lambda = \frac{2L}{n}; \ \ p = \frac{hn}{2L}
+	\]
+	where  \( n \) denotes the mode that we're talking about. Then, because they are photons, we have:
+	\[
+	\epsilon = pc = \frac{hcn}{2L}
+	\] 
+	In three dimensions, then our momentum becomes a vector \(  \vec p  \), so the energy \( \epsilon \) is going to be 
+	\( c \) times the magnitude of the momentum vector:
+	\[
+	\epsilon = c \sqrt{p_x^2 + p_y ^2 + p_z^2} = c\sqrt{\left(\frac{h}{2L}\right)^2\left( n_x^2 + n_y^2 + n_z^2 \right) }  = 
+	\frac{hcn}{2L}
+	\] 
+	the last \( n \) represents the magnitude of the \( \vec n \) vector. With the energy of every mode determined, we can now 
+	determine the total energy, by multiplying \( \epsilon \) with the occupancy of that state:
+	\[
+	U = \sum_{n_x, n_y, n_z} \epsilon \overline n_{\text{Pl}}(\epsilon) = \sum_{n_x, n_y, n_z} 
+	\frac{hcn}{L} \frac{1}{e^{hcn / 2LkT} - 1}
+	\] 
+	Converting this summation into an integral (\question{why can we do this?}), we now have:
+	\[
+		U = \int_0^{\infty} dn \int_0^{\pi /2} d\theta \int_0^{\pi /2} d\phi n^2 \sin \theta \frac{hcn}{L} 
+		\frac{1}{e^{hcn / 2LkT} - 1}
+	\] 
+	\subsubsection{Planck Spectrum}
+	Computing the integral is easier if we change variables into:
+	\[
+	\frac{U}{V} = \int_0^{\infty}\frac{8 \pi \epsilon^3 / (hc)^3}{e^{\epsilon / kT} - 1} d \epsilon
+	\] 
+	Then, the integrand is basically the energy density per unit photon energy, also called the \textbf{spectrum}:
+	\[
+	u(\epsilon) = \frac{\pi}{(hc)^3} \frac{\epsilon^3}{e^{\epsilon / kT} - 1}
+	\]
+	Evaluating this integral, it's more useful if we make another substitution of \( u = \epsilon / kT \) (to make the exponent on 
+	\( e \) nicer), so we have:
+	\[
+	\frac{U}{V} = \frac{8\pi (kt)^{4}}{(hc)^3} \int_0^{\infty} \frac{x^3}{e^{x} - 1} dx
+	\] 
+	\subsubsection{Total Energy} 
+
+	The previous integral evaluates to \( \pi^{4}/15\), so the total energy density is given by:
+	\[
+	\frac{U}{V} = \frac{8\pi^{5}(kT)^{4}}{15(hc)^3} \implies U = \frac{8\pi^{5}(kT)^{4}V}{15(hc)^3}
+	\] 
+	Note the dependence on \( T^{4} \). Now, we can figure out \( C_V \) :
+	\[
+		C_V = \left( \pdv{U}{T} \right)_V = 4\alpha T^3
+	\] 
+	where \( \alpha \) just absorbs all the constants. Then, since this works for all \( T \), we can now integrate 
+	\( C_V \) to find \( S \) :
+	\[
+	S(T) = \int_0^{T} \frac{C_V(T')}{T'}dT' = \frac{32 \pi^{5}}{45}V \left( \frac{kT}{hc} \right) ^3 k 
+	\] 
+
+	\question{As I understand it, this integral comes from the fact that \( T = \dv{U}{S} \) so \( dU = T dS \), thne 
+		if \( dU = C_V dT \), then we have \( T dS = C_V dT \) where we can get the integral. But this implies that \( P dV = 0\). 
+	Is this true?}
+	\section{Questions}
+	Alongside the red text, questions below:
+	\begin{itemize}
+		\item I noticed that your treatment of Debye solids is very different than the one from Schroeder. Should we study both, or 
+			is one of the approaches good enough?
+		\item Same question as above but for Bose-Einstein condensates. 
+		\item The Hamiltonian in problem 3 on homework 10: Do we just use that for \( \epsilon \) to find the occupation 
+			numbers?
+		\item Part b of problem 7: how do I argue this? Could we argue that \( g(\epsilon) \) is the problem?  
+	\end{itemize}
+	\section{Topic List}
+	\subsection{Multiplicity and Entropy}
+	Multiplicity is defined as \( \Omega \), where it defines the number of possible states our system can be in, given that it 
+	has energy \( E \). The multiplicity is useful because when we count the total number of states, we just have to sum over all 
+	the multiplicities corresponding to all the energies. Further, the probability of our system existing in any possible state is 
+	given by:
+	\[
+	\text{probability} = \frac{\Omega(n)}{\Omega(\text{all})}
+	\] 
+	where \( \Omega(\text{all}) \) refers to the sum of all microstates. This idea for the multiplicity explains why we see gases
+	mixed after left out for a while, since we expect that they exist in the most likely microstate (i.e. the one with the most 
+	possibitliies). This is one way of phrasing the second law of thermodynamics.  
+	
+	The entropy is then defined from this quantity, and since 
+	multiplicity gets very big, then we take the natural log to be nice:
+	\[
+	S \equiv k_B \ln \Omega 
+	\] 
+	Note that since \( \Omega \) is a function of \( E \), then \( S \) is also a function of \( E \). Entropy is also additive, 
+	so if we have two systems \( S_A \) and \( S_B \), then the entropy of their combination is given as \( S_A + S_B \). 
+	\subsection{Enumerating Microstates} 
+	This is generally a counting exercise, so just do problems for this.
+	\subsection{Relating thermodynamic quantities}
+	Knowing \( \Omega(U) \), we can go from \( \Omega(U) \) to \( S(U) \) by using \( S(U) = k_B \ln \Omega(U) \). Then, to get 
+	from that to \( T(U) \), we use the relation:
+	\[
+		\frac{1}{T} = \pdv{S(U)}{U} 
+	\] 
+	We write this as \( 1 / T \) mainly because we define \( S  \) to be a function of \( U \), so it only makes sense that we take 
+	\( \pdv{S}{U} \) instead of \( \pdv{U}{S} \), even though that would get us \( T \) directly. To get the heat capaicty, 
+	we use the fact that \( dU = C_V dT \), so this gets us 
+	\[
+		C_V = \dv{U}{T}
+	\] 
+	Generally, we'll be given a formula for \( U \) (for instance, in an ideal gas, \( U = \frac{3}{2}NkT \) ), from which 
+	we can just take the partial derivative with respect to \( T \).
+	\subsection{Energy Transfer}
+	To calculate the energy transfer to thermal equilibrium, note that the condition is that \( T_A = T_B \), and not that their 
+	energies are the same. In the case we did on the homework, energy in the system is conserved, so what we can do is 
+	first calculate \( U_i \) (the initial energy), and calculate the condition for thermal equilibrium (\( U_B = 2U_A \) )
+	and from there we conclude that \( U_f = U_B + U_A = 3U_B \), from which point we can calculate \( U_B \) and 
+	consequently \( U_A \) at equilibrium. From there, if we wish, we can then calculate the temperatures. 
+
+	\subsection{Ideal Gas Equations}
+	The total energy of a system is dependent on the number of quadratic degrees of freedom, enumerated by \( f \). Therefore, 
+	the total energy \( U  \) is given by 
+	\[
+	U = \frac{f}{2}NkT
+	\] 
+	This is the statement of the equipartition theorem. The Ideal gas law is given by 
+	\[
+	PV = NkT
+	\] 
+
+	\subsubsection{Process Curves}
+	\begin{itemize}
+		\item Isothermal: constant temperature, Since  \( \Delta U = \frac{3}{2}Nk\Delta T \), then this implies that 
+			\( \Delta U = 0 \) in this process too. This then means that \( Q = -W = \int P \Delta V \).  We have to 
+		\item Adiabatic: \( Q = 0 \), so this implies that \( U = W = \int P dV \). However, we use the relation that 
+			\( PV^{\gamma} = \text{const.} \) to do our integrals, instead of the ideal gas law. Specifically, we 
+			use \( P(V) = \frac{c}{V^{\gamma}} \), and then use one of the points in the adiabatic process to eliminate \( c \) later
+			on.
+		\item Isobaric: \( \Delta P = 0 \), so here calculating work is very easy, we can just calculate \( W = -P \Delta V \). We 
+			then calculate \( \Delta U \), and then solve for \( Q \). Calculating \( \Delta U \) can be done by noting that 
+			because \( \Delta P = 0 \), then \( \Delta U = \Delta(PV) = P \Delta V \). 
+		\item Isochoric: \( \Delta V = 0 \), so here we have \( W = 0 \), and \( Q = \Delta U \), and we calculate \( \Delta U = 
+			\Delta (PV) = P_f V_f - P_i V_i\). 
+		\item \question{Is there any special reason why \( \Delta (PV) = P_fV_f - P_iV_i \)? Should we be using that 
+			formula for all processes?}
+	\end{itemize}
+	Efficiency is calculated as 
+	\[
+	\epsilon = 1 - \frac{Q_c}{Q_h}
+	\] 
+	for a process operating between reservoirs, with it gaining \( Q_h \) heat and expelling \( Q_c \). Note that \( Q_h \) goes 
+	into the system, and hence is positive, and \( Q_c \) is negative, so it leaves the system. Note that when calculating 
+	the efficiency, because \( Q_c \) is negative (as heat leaves the system), in order to calculate the efficiency 
+	\( \epsilon \) properly, we need to flip the sign of \( Q_c \). For a Carnot cycle, the efficiency is 
+	\[
+	\epsilon = 1 - \frac{T_c}{T_h}
+	\] 
+	and we have a theorem that \( \epsilon_{\text{carnot}} > \epsilon \) for any other system.  
+
+	\subsection{Two-State Paramagnet} 
+	The general plot of \( S(U) \) is a semicircle, since the number of microstates is maximized when the overall energy 
+	of the system is 0 (this is assuming that a spin of 1 contributes positive energy, and a spin of \( -1 \) contributes 
+	negative energy.)
+
+	Here, we have \( \frac{1}{T} = \pdv{S}{U} \), so the regime where \( U > 0 \) actually corresponds to a negative temperature! 
+	Also, to get the plots for some of these diagrams, first we can plot the derivative (slope), and then take the reciprocal 
+	(look at magnitude). 
+
+	The magnetization is proportional to \( N_+ - N_- \propto U \), so asking for a higher magnetization is the same 
+	as computing the point where \( U \) is larger.  
+\end{document}

@@ -1,0 +1,211 @@
+\section{More on Model Functions, System Characterization}
+\subsection{Model Functions Continued}
+\begin{itemize}
+	\item \textbf{Ramp Function:} The continuous-time is expressed as:
+		\[
+		r(t) = \begin{cases}
+			0 & \text{for \( t < 0 \)}\\
+			t & \text{for \( t \ge 0 \)}
+		\end{cases}
+		\] 
+		Similarly in discrete time:
+		\[
+			\text{ramp}[n] = \begin{cases}
+				0 & \text{for \( n < 0 \)}\\
+				n & \text{for \( n \ge 0 \)}
+			\end{cases}
+		\] 
+		Note that we can express the ramp function in terms of the step function, in many ways:
+		\begin{itemize}
+			\item \( r(t) = t \cdot u(t) \)
+			\item \( r(t) = \int_{-\infty}^{t}u(t) \diff t \), the discrete case is just a sum over the same bound.
+		\end{itemize}
+	\item \textbf{Rectangular Function:} In continuous-time:
+		\[
+		\text{rect}(t) = \sqcap(t) = \begin{cases}
+			1 & \text{for \( |t| \le  1 / 2 \)}\\
+			0 & \text{else}
+		\end{cases}
+		\] 
+		In discrete time:
+		\[
+		\text{rect}\left[ \frac{n}{N} \right] = \begin{cases}
+			1 & \text{for \( |n| \le  N \)}\\
+			0 & \text{for \( |n| > N \)}
+		\end{cases}
+		\] 
+		We can also express \( \text{rect}(t) \) in terms of \( u(t) \) :
+		\[
+			\sqcap(t) = u\left( t + \frac{T}{2} \right)	- u\left( t - \frac{T}{2} \right) 
+		\] 
+	\item \textbf{Triangle Function:} In continuous-time:
+		\[
+		\Lambda(t) = \begin{cases}
+			1 - |t| & \text{for \( |t| \le  1 \)}\\
+			0 & \text{for \( |t| > 1 \)}
+		\end{cases}
+		\] 
+		And in discrete-time:
+		\[
+		\Lambda \left[ \frac{n}{N} \right]  = \begin{cases}
+			1 - \left|\frac{n}{N}\right| & \text{for \( |n| \le N \)}\\
+			0 &\text{else}
+		\end{cases}
+		\] 
+	\item \textbf{Delta Function:} In continuous time, it's called the Dirac delta function. It has the property 
+		that \( \delta(t) = 0 \) for all \( t \neq 0  \), but 
+		\[
+		\int_{-\infty}^{\infty} \delta(t) \diff t  = 1
+		\] 
+		So in essence, this is an infinitesimally "thin" function, that extends to infinity. There are also 
+		other ways to represent the Delta function:
+		\begin{itemize}
+			\item Derivative of the Heaviside step function: \( \delta(t) = \dv{u(t)}{t} \)
+			\item The integral of a complex exponential:
+				\[
+				\delta(t) = \int_{-\infty}^{\infty} e^{j 2 \pi f t} \diff f = \frac{1}{2\pi}
+				\int_{-\infty}^{\infty} e^{j \omega t}\diff  \omega 
+				\] 
+				\comment{The delta function allows us to approximate the integral \( \int_{-\infty}^{\infty} \cos(\omega t)
+				\diff  t\). We can do the following:
+				\begin{align*}
+					\int_{-\infty}^{\infty} \cos(\omega t) \diff t &= \Re\left[ \int_{-\infty}^{\infty} \cos(\omega t) + 
+					i \sin (\omega t)\right] \diff t \\
+					&= \Re\left[ \int_{-\infty}^{\infty} e^{i \omega t} \diff  t  \right]  \\
+					&= \Re\left[ 2\pi \delta(\omega)  \right]  
+				\end{align*}
+				Looking at the delta function, we know that when \( \omega = 0 \), then \( \cos(\omega t) = 1 \), so
+				the integral diverges, as expected. When \(  \omega \neq 0  \), our integral result implies that 
+				the integral evaluates to 0. This is not exactly true since the integral will oscillate 
+				between \( \pm 1 \), which is relatively small compared to \( \omega = 0 \), so it can effectively 
+				be taken as 0.}
+		\end{itemize}
+		\question{How does this compare with the definition we use in physics that \( \delta(t) \) is defined as 
+			the function which satisfies:
+			\[
+			\int_{-\infty}^{\infty} f(t) \delta(t) = f(0) 
+			\] 
+		Do both work?} 
+
+		\answer{See below bullet point, the definition allows you to derive this property.} 
+	\item Let's explore some properties of the Delta function: 
+		\begin{itemize}
+			\item \textbf{Scaling:} 
+				\[
+					\int_{-\infty}^{\infty} \delta(\alpha t) dt = \int_{-\infty}^{\infty} \delta(t) \dv{\tau}{\alpha}
+					= \frac{1}{|\alpha|}
+				\] 
+				In other words, \( \delta(\alpha t) = \frac{\delta(t)}{|\alpha|} \)
+			\item \textbf{Sifting:} If we have \( f(t) \) and multiply it by a Delta function:
+				\[
+				\int_{-\infty}^{\infty} f(t) \delta(t - T) \diff t = f(T) 
+				\] 
+			\item \textbf{Delta function of a function:} We can take the delta function of a function as well:
+				\[
+				\delta(f(t)) = \frac{\delta(t - t_0)}{|f'(t_0)|}, \ f(t_0) = 0
+				\] 
+				We take the derivative in the denominator. 
+		\end{itemize}
+	\item In discrete time, the delta function is represented as the Kronecker delta:
+		\[
+			\delta[n] = \begin{cases}
+				1 & n = 0\\
+				0 & \text{else}
+			\end{cases}
+		\] 
+		The function attempts to model the Dirac delta but for discrete time intervals:
+		\[
+			\sum_{n =-\infty}^{\infty}x[n] \delta[n - 10] = x[10]
+		\] 
+	\item \textbf{Shah function:} It's basically a bunch of Dirac deltas:
+		\[
+			\text{III}(t) = \sum_{k= 0}^{\infty}\delta(t - k)
+		\] 
+		In discrete time, it also is a sum of all deltas:
+		\[
+			\text{III}[n] = \sum_{k = 0}^{\infty}\delta[n - k]
+		\] 
+\end{itemize}
+\subsection{System Characterization} 
+\begin{itemize}
+	\item Systems perform operations on input signals, like functions \( F: x \to y \). For instance, 
+		the following is a moving average filter:
+		\[
+			y[n] = \frac{1}{3}(x[n - 1] + x[n] + x[n + 1])
+		\] 
+	\item We will be particularly interested in \textbf{linear systems}, systems which satisfy the following 
+		two properties:
+		\begin{itemize}
+			\item \textbf{Scaling:} If for any input-output pair \( x(t) \to y(t) \), then for any constant \( a \), 
+				\( ax(t) \to ay(t) \)
+			\item \textbf{Addition:} Given any two input-output pairs 
+				\begin{align*}
+					x_1(t) &\to y_1(t)\\
+					x_2(t) &\to y_2(t)
+				\end{align*}
+				Then it's also true that \( x_1(t) + x_2(t) \to y_1(t) + y_2(t) \)
+		\end{itemize}
+		Combining these two properties, given two general signals \( x_1(t) \to y_1(t) \) and \( x_2(t) \to y_2(t) \), 
+		then \( ax_1(t) + bx_2(t) \to ay_1(t) + by_2(t)\).
+
+		\comment{Note that a function like \( y(t) = x(t) + b \) is not a linear function, becuase it doesn't 
+			satisfy the second property. Even though the function is linear, doesn't mean that the transformation 
+		is linear.} 
+	\item \textbf{Shift Invariant:} A shift-invariant system is a system where if we shift the input, the output 
+		is also shifted. Given \( x(t) \) and its output \( y(t) \), then \( x(t - T) \) should produce 
+		 \( y(t -T) \) for any \( T \).
+	 \item \textbf{Memoryless:} A function whose output at any given time only depends on the input at that 
+		 time. For instance, machine learning algorithms are not memoryless, since their output depends on 
+		 previous inputs. 
+
+		 \question{Does "current" here refer to a given input, or does it refer to past inputs? For instance, 
+		 is the moving average function considered memoryless?}
+
+		 Most systems that take time to react are not considered memoryless, since 
+	 \item \textbf{Causality:} A system is causal if the output depends on the input at the present and past times 
+		 only, not on future times. A system defined by:
+		 \[
+			 y[n] = \frac{1}{3} (x[n] + x[n + 1])
+		 \] 
+		 is not considered causal, because \( y[n] \) depends on the \( n + 1 \)-th input. 
+	 \item \textbf{Stability:} There are many different ways to define stability, here are some of them:
+		 \begin{itemize}
+		 	\item A system is called BIBO stable if bounded inputs generate boudned 
+		 outputs. Mathematically, this means:
+		 \[
+		 \int_{-\infty}^{\infty} |x(t)|\diff t  < \infty
+		 \] 
+		 And in discrete time:
+		 \[
+		 \sum_{-\infty}^\infty |x[n]| < \infty
+		 \] 
+	 \item We can also look at the energy and power:
+		 \[
+		 E = \int_{-\infty}^{\infty} |x(t)|^2 \diff t  \ \ P = \lim_{T \to \infty } \int_{-T / 2}^{T / 2} |x(t)|^2 
+		 \diff t
+		 \] 
+		 \end{itemize} 
+	 \item \textbf{System Response function:} These are particular outputs for systems when given an impulse 
+		 response of a delta function. They are calculated by substituting \( x(t) = \delta(t)  \) in the 
+		 continuous case, and \( x[n] = \delta[n] \) in the discrete case. 
+		 \question{Watch lecture for this.}
+
+		 To calculate the impulse response for the moving average filter:
+		 \[
+			 y[n] = \frac{1}{3}(x[n -1] + x[n] + x[n + 1])
+		 \] 
+		 To find the impulse response, we substitute \( x[n] = \delta[n] \) to get \( h[n] \). Here, notice that 
+		 for \( n < -2 \), then \( h[n] = 0 \), since \( x[-2 + 1] = x[-1] = 0 \), and same goes for the other terms. 
+		 Then, refer to the following table:
+		 \begin{center}
+			 \begin{tabular}{c|c}
+				 \( n \) & \( h[n] \) \\
+				 \hline 
+				 -2 & 0 \\
+				 -1 & 1/3\\
+				 0 & 1/3\\
+				 1 & 1/3\\
+				 2 & 0
+		 	\end{tabular}
+		 \end{center}
+\end{itemize}

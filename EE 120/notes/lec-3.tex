@@ -1,0 +1,60 @@
+\section{Characterization Continued}
+\subsection{Step Response}
+\begin{itemize}
+	\item The step response function is the function \( y_{\text{step}}(t) \) when a step function 
+		\( u(t) \) is fed into the system. In discrete-time: we feed \( u[n] \) into the system, and get 
+		\( y_{\text{step}}[n] \) as an output.
+	\item For instance, for the moving average filter defined earlier, we have the following result:
+		\begin{center}
+			\begin{tabular}{c|c}
+				\( n \) &  \( y_{\text{step}}[n] \)\\
+				\hline 
+				-2 & 0\\
+				-1 & 1/3\\
+				0 & 2/3\\
+				1 & 1\\
+				2 & 1
+			\end{tabular}
+		\end{center}
+		Note that this resembles a ramp function, and is called a ramp-step function.
+	\item \textbf{Harmonic Response:} The harmonic response is the response by the system when presented with 
+		a harmonic function, of the form \( Ae^{i \omega t}\). 
+
+		In discrete time, we feed in \( Ae^{i \omega n} \) where \( n \) is an integer. 
+	\item For the moving average filter, let's write out \( y[n] \) :
+		\begin{align*}
+			y[n] &= \frac{1}{3}\left(Ae^{i \omega (n - 1)} + Ae^{i \omega n} + Ae^{i \omega (n + 1)}\right)\\
+			&= \frac{1}{3}\left( e^{-i \omega} + 1 + e^{i \omega} \right)  \\
+			&= \frac{1}{3}(2 \cos \omega + 1) Ae^{i \omega n} \\
+		\end{align*}
+		The interesting thing here is that when given a harmonic function, the system response just scales the signal 
+		by a constant amount!
+\end{itemize}
+\subsection{LCCDE} 
+\begin{itemize}
+	\item In this class, we will deal with lots of differential equations, so it's going to be very useful to 
+		look at their form, and how to solve them.   
+	\item There are two solutions to any differential equation: 
+		\begin{itemize}
+			\item \textbf{Particular Solution:} \( y_p(t) \) is called a particular solution if it satisfies:
+				\[
+					\sum_{k = 0}^{N}a_k \dv[k]{y_p(t)}{t} = \sum_{k = 0}^{N}b_k \dv[k]{x(t)}{t}
+				\] 
+			\item \textbf{Homogeneous Solution:} \( y_h(t) \) is called a homogeneous solution if it satisfies:  
+				\[
+						\sum_{k = 0}^{N}a_k \dv[k]{y_p(t)}{t} =	0
+				\] 
+		\end{itemize}
+	\item In general, the solution will be a linear combination of the two: 
+		\[
+		y(t) = y_p(T) + ay_h(t)
+		\] 
+		the value of \( a \) is generally going to be given by some initial condition. 
+	\item For the homogeneous solution, an ansats of the form \( Ae^{st} \) where \( s \) is an undetermined constant 
+		will solve the differental equation. We can then determine the value of \( s \) by solving the resulting 
+		polynomial.
+
+		To determine the value of \( A \), these are determined by the initial conditions, and depending on the 
+		number of initial conditions given, that would correspond directly to the number of distinct values of \( A \). 
+\end{itemize}
+

@@ -1,0 +1,139 @@
+\section{Introduction}
+\subsection{Motivations} 
+\begin{itemize}
+	\item Why study this class?
+		\begin{itemize}
+			\item Given a "black box" circuit, with input and output leads, we can determine what's within 
+				the "black 
+				box".
+			\item In this particular case, if our black box contains a voltage divider, and the output voltage is given 
+				by the equation:
+				\[
+				v_{\text{out}}(t) = \frac{R_2}{R_1+ R_2}v_{\text{in}}(t)
+				\] 
+				In principle though, the signal can be anything that we want: for facial recognition software, the input
+				signal could be the configuration of the intensity the camera picks up. There's many more we went over, 
+				don't really want to write it all down. 
+		\end{itemize}
+	\item In essence, there's a lot of systems that can be modeled by a system that takes in a signal \( x(t) \), and 
+		outputs a signal \( y(t) = f(x(t))\).
+		\begin{itemize}
+			\item The signals are usually functions of time, location, in any number of dimensions.
+			\item The systems does some sort of transformation on an input signal. In particular, we will study 
+				linear systems, shift-invariant systems, etc.
+				
+				We'll talk about mathematical operations that we use to perform these transformations: Fourier, 
+				Laplace, Z-transformations, convolutions, correlation, etc.\item 
+	\end{itemize}
+\end{itemize}
+\subsection{Types of Signals}
+\begin{itemize}
+	\item \textbf{Continuous-time:} signals defined over continuous variables (e.g. position, time). For 
+		instance, a signal \( x(t) \) is continuous for our purposes, since time is a continuous variable. 
+
+		Further, because \( t \) is continuous, then \( x \) must also be continuous.  If the signal is differentiable, 
+		then the derivative \( \dv{x(t)}{t} \) also exists. 
+
+		\question{\( t \) being continuous does not imply that \( x(t) \) is continuous (e.g. Thomae function),
+		but is it true for this class?} 
+	\item \textbf{Discrete-Time:} These are signals defined over discrete variables. For instance, if we had 
+		\( x[n] \) as a signal, where \( n \) is an integer. 
+
+		We don't have a concept of differentiability, but we can compute the difference: \( x[n] - x[n- 1] \), and 
+		talk about that quantity. 
+	\item \textbf{Real-Valued:} A signal \( x(t) \) is real-valued if \( x(t) \in \mathbb R \), where \( \mathbb R \) 
+		denotes the set of all real numbers. 
+	\item \textbf{Complex-Valued:} A signal \( x(t)  \) is complex-valued if \( x(t) \in \mathbb C \), where 
+		\( \mathbb C \) denotes the set of complex numbers. 
+	\item Note that while we're using the continuous-time notation here, the same concepts apply with discrete-time 
+		signals. 
+
+		\begin{itemize}
+			\item Quick recap on complex numbers: denoted by \( a + bj \) or \( a + bi \), where \( i \) and \( j \) 
+				denote the imaginary unit. 
+			\item They are defined as \( i^2 = -1 \) or \( j^2 = -1 \).
+			\item \( a \) is the real part, and \( b \) is the imaginary part. 
+			\item We can plot these values in the complex plane, using the real and imaginary representation:
+				\begin{center}
+					\begin{tikzpicture}
+						\draw[-stealth, thick] (-3, 0) -- (3, 0) node[above] {real};
+						\draw[-stealth, thick] (0, -3) -- (0, 3) node[above right] {imaginary};
+						\draw[red] (0, 0) -- (1.8, 1.4) node[above right, black] 
+							{\( z = a + bj \) }; 
+						\filldraw[red] (1.8, 1.4) circle (2pt); 
+						\draw[dashed] (1.8, 1.4) -- (1.8, 0) node[below] {\( a \) };
+						\draw[dashed] (1.8, 1.4) -- (0, 1.4) node[left] {\( b \) };
+					\end{tikzpicture}
+				\end{center}
+				Or using the magnitude-phase representation:
+				\begin{center}
+					\begin{tikzpicture}
+						\draw[-stealth, thick] (-3, 0) -- (3, 0) node[above] {real};
+						\draw[-stealth, thick] (0, -3) -- (0, 3) node[above right] {imaginary};
+						\draw[red] (0, 0) -- node[midway, above left] {\( m \) } (1.8, 1.4) node[above right, black] 
+							{\( z = m\cdot e^{j \theta} \) }; 
+						\filldraw[red] (1.8, 1.4) circle (2pt); 
+						\draw[red] (1, 0) arc (0:37.87:1) node[midway, right]{\( \theta \) };
+						\draw[dashed] (1.8, 1.4) -- (1.8, 0) node[below] {\( m \cdot \cos (\theta) \) };
+						\draw[dashed] (1.8, 1.4) -- (0, 1.4) node[left] {\( m \cdot \sin (\theta) \) };
+					\end{tikzpicture}
+				\end{center}
+				We represent the magnitude as \( m = |z| \), and the phase angle \( \theta \) is the angle made 
+				with the real axis. 
+		\end{itemize}
+	\item \textbf{Periodic Signal:} Two quantities we'll introduce here: the period \( T \) is the time it takes 
+		for the signal to repeat itself. \( T \) is measured in units of time, generally seconds.
+		
+		The frequency \( f \) is the "inverse" of period, defined by \( f = \frac{1}{T} \). We will also use 
+		the angular frequency \( \omega \), defined by \( \omega = \frac{2\pi}{T} = 2 \pi f \). Angular frequency
+		is mainly going to be used when we involve complex numbers. We will see:
+		\[
+		e^{j \omega t} = e^{j (2 \pi f t)} = \cos(2 \pi ft) + i \sin (2 \pi ft)
+		\] 
+	\item \textbf{Dimensionality:} We will deal with multi-dimensional signals: an example of a 2D signal are images, 
+		which determine the color of a pixel based on a row and column. The spaces that we'll be working with are 
+		either \( \mathbb R^{n} \) or \( \mathbb C^{n} \). 
+\end{itemize}
+\subsection{Signal Transformations}
+\begin{itemize}
+	\item \textbf{Shifts:} Essentially just shifts the signal along one dimension: \( x(t) \to x(t - T) \). \( T \) 
+		is some constant. If  \( T > 0 \), then the shift is to the \textit{right}, and if \( T < 0 \) then 
+		the shift is to the \textit{left}.
+	\item \textbf{Scaling:} We can multiply a signal \( x(t)  \) by some constant \( a \) : \( x(t) \to a\cdot x(t) \).
+		If \( a < 1 \), then we shrink \( x(t) \), and if \(  a > 1 \) then we amplify the signal. 
+	\item \textbf{Reversal:} Given \( x(t) \), we can "reverse time" by adding a negative to the argument: \( x(t)
+		\to x(-t)\). Visually, all we do is flip the signal around the \( y \)-axis.  
+\end{itemize}
+\subsection{Signal Properties}
+\begin{itemize}
+	\item \textbf{Even:} Functions which satisfy \( x(t) = x(-t) \). In other words, if we perform a reversal, the 
+		signal stays the same.
+	\item \textbf{Odd:} Functions which satisfy \( x(t) = -x(-t) \). If we perform a reversal, the signal becomes the 
+		negative of itself.
+	\item \textbf{Periodic:} If \( T \) is the period, then \( nT \) is also a period for any \( n \in \mathbb Z \).
+		However, we will call \( T \) the fundamental period; the smallest \( T \) for which the function 
+		repeats. 
+
+		For the function \( \sin(2 \pi ft) \), the fundamental period is \( 1 / f \).  
+\end{itemize}
+\subsection{Model Functions}
+\begin{itemize}
+	\item These are called model functions because they're idealized models to analyze. 
+	\item \textbf{Heaviside Step function:} For the continuous-time case it's usually modeled by:
+		\[
+		u(t) = \begin{cases}
+			0 & \text{for \( t < 0 \)}\\
+			1 & \text{for \( t \ge 0 \)}
+		\end{cases}
+		\] 
+		In the discrete-time case, it's written as:
+		\[
+			u[n] = \begin{cases}
+				0 & \text{for \( n < 0 \)}\\
+				1 & \text{for \(n \ge  0\)}
+			\end{cases}
+		\] 
+\end{itemize}
+
+
+

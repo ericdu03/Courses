@@ -1,0 +1,110 @@
+\section{More on Multiple Qubits}
+\begin{itemize}
+	\item Last time, we looked at multiple-qubit states, and talked about how the combination is the tensor product, 
+		written like this:
+		\[
+		\ket*{0} \otimes \ket*{1} \otimes \ket*{0} \otimes \cdots \otimes \ket*{0}
+		\] 
+	\item We also talked about how an entangled state is defined as a state where we cannot express as a (tensor) 
+		product state. In other words, the state is not separable. 
+	\item There are an infinite number of entangled states, called the Bell states:
+		\begin{align*}
+			\ket*{\Phi^{+}} &= \frac{\ket*{00} + \ket*{11}}{\sqrt{2} }\\
+			\ket*{\Phi^{-}} &= \frac{\ket*{00} - \ket*{11}}{\sqrt{2} } \\
+			\ket*{\Psi^{+}} &= \frac{\ket*{01} + \ket*{10}}{\sqrt{2} } \\
+			\ket*{\Psi^{-}}&= \frac{\ket*{01} - \ket*{10}}{\sqrt{2} } 
+		\end{align*}
+	\item To quantify entanglement, we use a Schmidt decomposition for qubits: (\( d = 2 \) for qubits)
+		\[
+		\ket*{\psi_{AB}} = \sum_{i = 0}^{d - 1} c_i \ket*{i}_A \ket*{i}_B
+		\] 
+		This state \( \psi_{AB} \) is separable if only one \( c_i \neq 0 \). The number of nonzero \( c_i \) is 
+		called the schmidt rank, and it's what we use to quantify how entangled a state is. If all \( c_i \) are equal, 
+		then the state is maximally entangled.
+		
+		The bell states \( \Phi^{\pm} \) are easily seen to be maximally entangled, since \( \ket*{00} \) and 
+		\( \ket*{11} \) are the basis states, and they each have a coefficient of \( 1 / \sqrt{2}  \).  
+\end{itemize}
+\subsection{Measurement}
+\begin{itemize}
+	\item Given a state \( \ket*{00} \) and we measure the first qubit in the \( Z \) basis, what happens?
+	\item Recall our measurement operator is a projection operator: 
+		\begin{align*}
+			M_1 &= \ket*{1}\bra*{1}\\
+			M_2 &= \ket*{0}\bra*{0} 
+		\end{align*}
+	\item Then, applying the measurement operators, we get an outcome of measuring 0 with probability 1. The state
+		after measurement is given by \( \ket*{00} \). Note that the second qubit is not affected by this measurement.  
+
+		\question{Are these two states identical?} 
+	\item Now suppose we had a state of the form 
+		\[
+		\ket*{\psi} = \ket*{0}\otimes \frac{1}{\sqrt{2} }\left( \ket*{0} + \ket*{1} \right) 
+		\] 
+		This is the state that results when the second qubit is passed through a Hadamard gate. Now, if we measure 
+		the first state, we again certainly get a result of 0, so the measurement is given by: =
+		\[
+		\ket*{\psi} = \ket*{0} \otimes \frac{1}{\sqrt{2} }\left( \ket*{0} + \ket*{1} \right) 
+		\] 
+		If we measure the second qubit (in the \( Z \) basis), then we get the state \( \ket*{0}\otimes \ket*{0} \) 
+		with probability \( \frac{1}{2} \), and \( \ket*{0} \otimes \ket*{1} \) also with probability \( \frac{1}{2} \).
+	\item Another example, given the state:
+		\[
+		\ket*{\psi} = \frac{1}{2 }\left( \ket*{0} + \ket*{1} \right) \otimes \left( \ket*{0} + \ket*{1} \right) 
+		= \frac{1}{2}\left( \ket*{00} + \ket*{01} + \ket*{10} + \ket*{11} \right) 
+		\] 
+		And now we measure the first qubit, we get 0 and 1 with probability \( \frac{1}{2} \), and 
+		we get the resulting states:
+		\[
+		\ket*{\psi'} = \ket*{0 \text{ or } 1} \otimes \frac{1}{\sqrt{2} }\left( \ket*{0} + \ket*{1} \right) 
+		\] 
+\end{itemize}
+\subsection{Measurement with Entangled States}
+\begin{itemize}
+	\item Suppose we have a qubit in the state \( \ket*{\Psi^{-}} = (\ket*{01} + \ket*{10}) / \sqrt{2} \). Now, 
+		we send the first qubit to Alice, and the second one to Bob. 
+	\item Alice will measure the first qubit in the \( Z \) basis, which will give her 0 or 1 with probability 
+		\( \frac{1}{2} \). 
+
+		The thing is, if alice measures 0, then it means that the state now collapses to the first term 
+		in the superposition: \( \ket*{\psi'} = \ket*{01} \), so Bob must get a result of 1 upon measurement. The
+		flip is also true.
+	\item This is an example where the outcomes of the measurements are now correlated! 
+	\item Now suppose we change our measurement basis: if we measure in the \( X \) basis, where measurements 
+		are given by \( M_1 = \ket*{+}\bra*{+} \) and \( M_2 = \ket*{-}\bra*{-} \).
+
+		The same correlation follows: if Alice measures \( \ket*{+} \), then Bob will certainly get \( \ket*{-} \), and
+		if  Alice gets \( \ket*{-} \), Bob will certainly get \( \ket*{+} \).
+
+		\question{How is the maesurement carried out? Do we express the state \( \ket*{\Psi^{-}} \) in terms of the 
+		\( \ket*{\pm} \) basis, and then carry out the probabilities?} 
+	\item This idea that you can glean information about a quantum state without making a full measurement was 
+		problematic, and led Einstein, Podolsky and Rosen to speculate the presence of "hidden variables". 
+
+		John Bell proposed a set of inequalities (now called Bell inequalities) that would tell us for sure whether 
+		these hidden variables actually exist. He proposed a set of measurements that can be made called \( g \), 
+		and if the systems were truly classical, then we would be able to determine that \( \mean{g} \le 2 \). 
+		Otherwise, \( \mean{g} > 2 \) was possible. 
+
+		What we found through experiment was that \( \mean g > 2 \) was indeed possible, which leads us to the 
+		conclusion that there are no hidden variables are present.  
+\end{itemize}
+\subsection{Quantum Teleportation}
+\begin{itemize}
+	\item Consider the following circuit: 
+		\begin{center} 
+			\begin{quantikz}
+				\lstick{\( \ket{\psi} \)} & & && \ctrl{1} & \gate{H}  & 
+				\meter{M_1} & \setwiretype{c} & & \phase{} \wire[d][2]{c}  \\
+				\lstick{\(\ket*{0} \)} & & \targ{}& & \targ{} & & \meter{M_2} & \setwiretype{c} & 
+				\phase{} \wire[d][1]{c}\\
+				\lstick{\( \ket*{0} \) } & \gate{H} & \ctrl{-1} & & & & & & \gate{X^{M_2}}& \gate{Z^{M_1}} &  \rstick{\( \ket{\psi} \) }
+			\end{quantikz}
+		\end{center}
+
+		Initially, the state is in \( \ket*{\psi}\ket*{0}\ket*{0} \). After the third qubit passes through the 
+		Hadamard gate, the state is
+		\[
+		\ket*{\psi_2} = \ket*{\psi}\ket*{0}\frac{1}{\sqrt{2} }\left( \ket*{0} + \ket*{1} \right) 
+		\] 
+\end{itemize}

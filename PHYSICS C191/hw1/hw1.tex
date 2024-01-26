@@ -1,0 +1,76 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics C191}
+\newcommand{\classname}{Introduction to Quantum Computing}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 01} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	\begin{enumerate}[label=\alph*)]
+		\item Find the eigenvectors, eigenvalues, and diagonal representations of the Pauli operators \( I, X, Y, Z \),
+			where the corresponding matrices are given by:
+			\begin{align*}
+				I &\equiv \sigma_0 \equiv \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} & X &\equiv \sigma_x \equiv 
+				\begin{pmatrix} 0 & 1 \\1 & 0  \end{pmatrix} \\
+				Y &\equiv \sigma_y \equiv \begin{pmatrix} 0 & -i\\i & 0 \end{pmatrix}  & Z &\equiv \sigma_z \equiv 
+				\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} 
+			\end{align*}
+			Show that \( X^2 = Y^2 = Z^2 = I \) (calculating \( X^{n}, Y^{n}, \) or \( Z^{n} \) thus becomes very 
+			simple).
+
+			\begin{solution}
+				I'll work down the list, starting with \( I \). Because it's already a diagonal matrix, we know its 
+				eigenvectors are on the diagonal. Moreover, 
+			\end{solution}
+		\item Find the points on the Bloch sphere that corresponds to the normalized eigenvectors of the Pauli 
+			matrices. 
+		\item Find the action of the \( Z \) operator on a general qubit state \( \ket*{\psi} = \alpha\ket*{0} + 
+			\beta\ket*{1}\) and describe this actino on the Bloch sphere vector, i.e., how does the vector connecting 
+			the origin to the point on the surface representing \( \ket*{\psi} \) in Bloch sphere coordinates
+			get rotated on the Bloch sphere?
+		\item If \( x \) is a real number and \( A \) a matrix with the property that \( A^2 = I \), show that the 
+			exponentiated operator \( e^{iAx} \) can be written as 
+			\[
+			e^{iAx} = \cos(x)I + i \sin(x) A
+			\] 
+		\item Use the result in d) to form the matrix representation of \( R_z(\gamma) = e^{-i \gamma Z / 2} \), and 
+			show how this exponentiated operator acts on the Bloch sphere vector for \( \ket*{\Psi} \). 
+			Evaluate the explicit form of \( R_z(\gamma) \) for \( \gamma = 0, 2\pi, 4\pi \), and comment 
+			on anything surprising. This operator gives rise to several well-known signal-qubit quantum gates, 
+			naely the phase gate \( S \) (\( \gamma = \pi / 2 \)) and the \( T \) gate (\( \gamma = \pi / 4 \)), up to 
+			a global phase factor in each case. Check these for yourself. 
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 2}
+	\begin{enumerate}[label=\alph*)]
+		\item Show that the Pauli operators and Hadamard gate satisfy the following identities:
+			\[
+			HXH = Z, HYH = -Y, HZH = X
+			\] 
+		\item Show that if \( U \) and \( V \) are unitary, then \( U \otimes V \) is also unitary. 
+		\item Write the \( 4 \times 4 \) matrix of the unitary operation on two qubits resulting from 
+			performing a Hadamard transform on the first qubit and a phase flip on the second qubit. 
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 3}
+	Compare the result of measuring the state \( \ket*{\psi} = \frac{1}{\sqrt{2} }\ket*{0} +
+	\frac{e^{i \theta}}{\sqrt{2} }\ket*{1} \) in the computational basis \( \ket*{0}, \ket*{1} \), 
+	and in the Hadamard basis \( \ket*{+}, \ket*{-} \). Hint: You will have to transform the state into the Hadamard
+	basis before making the second measurement. Can either of these two measurements give information about the value of
+	the relative phase \( \phi \)? Specify what can be learned. 
+	\pagebreak
+	\section*{Problem 4}
+	Start with two quantum bits in the state \( \alpha\ket*{00} + \beta\ket*{11} \). Subject the first bit to 
+	a Hadamard gate. Now measure the first bit. What is the state of the second bit?
+\end{document}
