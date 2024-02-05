@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1706130364 "main.tex" "main.pdf" "main" 1706130366 0
-  "../../local.sty" 1705959097 3428 2ad2beefb7b51086a44202971aa3f131 ""
+["pdflatex"] 1707168927 "main.tex" "main.pdf" "main" 1707168929 0
+  "../../local.sty" 1706935846 3430 fbcb6df2bc9a4cc736a32cb021e7a6c1 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1490131464 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc" 1490131464 3357 5261ce65ba03aef9faf6135657b9abb6 ""
@@ -317,12 +317,15 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1699664430 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1699664348 7883465 e8c6fc6f0ba841908e83b5299c0f4881 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "lec-1.tex" 1705957050 7173 be7f74d4fe61533bacf55d82b5866832 ""
-  "lec-2.tex" 1706127896 8504 78509bf7622a7686af075bb832c7e036 ""
-  "lec-3.tex" 1706130364 2735 af85d511af45df692d96b60eeed82bdd ""
-  "main.aux" 1706130365 2121 a4e838e23717da21bfdb0767c377264a "pdflatex"
-  "main.out" 1706130365 1855 b29c8b2db4e86a5c034224c725f08a65 "pdflatex"
-  "main.tex" 1706127558 704 5a11f686501d70262943fe1afb067228 ""
+  "lec-1.tex" 1707164112 7194 cca0772ad678bb298cb7b08889319a9b ""
+  "lec-2.tex" 1707164103 8525 18b9df87aa0f39f96628226ff852618f ""
+  "lec-3.tex" 1707164093 4931 3a48aeee7e303c2cc61a8cbb47f169d0 ""
+  "lec-4.tex" 1707164080 9575 ec7320ef5a222ea52aaa325dfbc21190 ""
+  "lec-5.tex" 1707166317 6170 efa08632ae4522645c75e0e83e12a287 ""
+  "lec-6.tex" 1707168914 2348 7ab7df7e2a3c2fcec927c7cf4bc1b72b ""
+  "main.aux" 1707168929 4716 278f1753044f6144cbb4ef00dc873813 "pdflatex"
+  "main.out" 1707168929 5268 b435ac50b737af8fc66fff2da428b097 "pdflatex"
+  "main.tex" 1707164311 795 dafbd37a417dcc7728bf248028778b85 ""
   (generated)
   "main.aux"
   "main.log"

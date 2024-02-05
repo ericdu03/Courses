@@ -30,26 +30,175 @@
 			simple).
 
 			\begin{solution}
-				I'll work down the list, starting with \( I \). Because it's already a diagonal matrix, we know its 
-				eigenvectors are on the diagonal. Moreover, 
+				I'll work down the list:
+				\begin{itemize}
+					\item \( I \) : Eigenvalue of 1, with eigenvectors \( \begin{pmatrix} 1\\0 \end{pmatrix} 
+						, \begin{pmatrix} 0\\1 \end{pmatrix} \). It's already diagonal so there's nothing to do here. 
+					\item \( X \): We find the eigenvalues by solving \( \det(A - \lambda I) = 0 \) :
+						\begin{align*}
+							\begin{vmatrix}
+								-\lambda & 1 \\ 1 & -\lambda
+							\end{vmatrix} = \lambda^2 - 1 = 0 \implies \lambda_1 = 1, \lambda_2 = -1
+						\end{align*}
+						The eignevectors, I just found using Mathematica, which are 
+						\( \begin{pmatrix} 1\\1 \end{pmatrix} , \begin{pmatrix} 1\\-1 \end{pmatrix}  \) respectively. 
+						The  
+						diagonal representation of this is given by: 
+						\[X =  \begin{pmatrix}
+							1 & 0 \\ 0 & -1
+						\end{pmatrix}
+						\] 
+						in the eigenbasis. 
+					\item \( Y \): same process as before:
+						\begin{align*}
+							\begin{vmatrix}
+								-\lambda & -i \\ i & -\lambda
+							\end{vmatrix} = \lambda^2 - 1 = 0 \implies \lambda_1 = 1, \lambda_2 = -1
+						\end{align*}
+						The eigenvectors are \( \begin{pmatrix} -i \\ 1 \end{pmatrix} , 
+						\begin{pmatrix} i\\ 1 \end{pmatrix} \), and its diagonal representation is:
+						\[
+							Y = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} 
+						\] 
+					\item \( Z \) : Last one: 
+						\[
+						\begin{vmatrix}
+							1 - \lambda & 0 \\ 0 & -1 - \lambda
+						\end{vmatrix} = -(1 - \lambda)(1 + \lambda)  = 0 \implies \lambda = \pm 1
+						\] 
+						The eigenvectors are \( \begin{pmatrix} 1 \\0 \end{pmatrix} , 
+						\begin{pmatrix} 0 \\ 1 \end{pmatrix}  \), with a diagonal representation of 
+						\[
+							Z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} 
+						\] 
+				\end{itemize}
 			\end{solution}
 		\item Find the points on the Bloch sphere that corresponds to the normalized eigenvectors of the Pauli 
 			matrices. 
+
+			\begin{solution}
+				We'll go down the list again:
+				\begin{itemize}
+					\item \( I \) : the eigenvectors are just the computational basis, so \( \ket*{0} \) and 
+						\( \ket*{1} \) are the eigenvectors (this means \( (\theta, \phi) = (0, 0), 
+						 (\pi, 0)\) respectively.
+					\item \( Z \): Like the identity matrix, the eigenvectors here are also just the computational 
+						basis, so here \( \ket*{0} \) and \( \ket*{1} \) are also its eigenvectors.
+					\item \( X \) : the normalized eigenvectors are:
+						\[
+						v_1 = \frac{1}{\sqrt{2} }\begin{pmatrix} 1\\1 \end{pmatrix} \ \ v_2 = 
+						\frac{1}{\sqrt{2} }\begin{pmatrix} 1\\-1 \end{pmatrix} 
+						\] 
+						Using the fact that \( \ket*{\psi} = \cos \theta / 2 \ket*{0} + 
+						e^{i \phi}\sin \theta / 2 \ket*{1}\), then we can infer that:
+						\begin{align*}
+							\cos(\theta / 2) &= \frac{1}{\sqrt{2} }\\
+							e^{i \phi} \sin(\theta / 2) &= \frac{1}{\sqrt{2} }
+						\end{align*}
+						This means that \( (\theta, \phi) = (\pi /2, 0) \) for \( v_1 \). For \( v_2 \), its 
+						the same story, except because of the \( -1 \), the value of \( \phi = \pi \), so 
+						we have \( (\theta, \phi) = (\pi /2, \pi) \) for \( v_2 \).
+					\item \( Y \) : the normalized eigenvectors are: 
+						\begin{align*}
+						v_1 = \frac{1}{\sqrt{2} }\begin{pmatrix} -i\\1 \end{pmatrix} = \frac{i}{\sqrt{2} }
+						\begin{pmatrix} -1\\-i \end{pmatrix} \\
+						v_2 = \frac{1}{\sqrt{2} }\begin{pmatrix} i\\1 \end{pmatrix} = 
+						\frac{i}{\sqrt{2} }\begin{pmatrix} 1\\-i \end{pmatrix} 
+						\end{align*} 
+						Following the same steps as earlier, this means that for \( v_1 \),  	
+						\begin{align*}
+							\cos(\theta / 2) &= -\frac{1}{\sqrt{2} }\\
+							e^{i\phi}\sin(\theta /2) &= -\frac{i}{\sqrt{2} }
+						\end{align*}
+						So we get \( (\theta, \phi) = (3 \pi /2, 3\pi / 2) \) for \( v_1 \). For \( v_2 \) : 
+						\begin{align*}
+							\cos(\theta /2) &= \frac{1}{\sqrt{2} }\\
+							e^{i \phi}\sin(\theta /2) &= -\frac{i}{\sqrt{2} }
+						\end{align*}
+						This means that \( (\theta, \phi) = (\pi /2, 3\pi / 2) \). 
+				\end{itemize}
+			\end{solution}
 		\item Find the action of the \( Z \) operator on a general qubit state \( \ket*{\psi} = \alpha\ket*{0} + 
-			\beta\ket*{1}\) and describe this actino on the Bloch sphere vector, i.e., how does the vector connecting 
+			\beta\ket*{1}\) and describe this action on the Bloch sphere vector, i.e., how does the vector connecting 
 			the origin to the point on the surface representing \( \ket*{\psi} \) in Bloch sphere coordinates
 			get rotated on the Bloch sphere?
+
+			\begin{solution}
+				Acting the \( Z \) operator on the state:
+
+				\[
+				Z \ket*{\psi} = \alpha \ket*{0} - \beta\ket*{1}
+				\] 
+				It's not very easy to visualize what's going on, but what is nicer is instead of using 
+				\( \alpha \) and \( \beta \), we let \( \ket*{\psi} = \cos \theta / 2 \ket*{0} +
+				e^{ i \phi} \sin \theta / 2 \ket*{1}\) represent the general qubit state. Then:
+				\[
+				Z\ket*{\psi} = \cos \frac{\theta}{2}\ket*{0} - e^{i \phi} \sin \frac{\theta}{2} \ket*{1}
+				= \cos \frac{\theta}{2} \ket*{0}
+				+ e^{i (\phi + \pi)} \sin \frac{\theta}{2} \ket*{1}
+				\]  
+				This means that this is a rotation of \( \pi = 180^\circ \) around the \( z \)-axis. 
+			\end{solution}
 		\item If \( x \) is a real number and \( A \) a matrix with the property that \( A^2 = I \), show that the 
 			exponentiated operator \( e^{iAx} \) can be written as 
 			\[
 			e^{iAx} = \cos(x)I + i \sin(x) A
 			\] 
+			
+			\begin{solution}
+				We write out the Taylor series of \( e^{iAx} \) :
+				\[
+				e^{iAx} = 1 + iAx + \frac{(iAx)^2}{2} + \frac{(iAx)^3}{3!} + \cdots = 1 + iAx - \frac{A^2 x^2}{2} - \frac{iA^3 x^3}{3!}
+				\] 
+				Now, using the fact that \( A^2 = I \), then:
+				\[
+				1A^{0} + iAx - \frac{A^2x^2}{2} + \frac{A^3x^3}{3!} + \cdots = I + iAx - \frac{Ix^2}{2} - \frac{iA x^3}{3}
+				\] 
+				Note that for all the even exponents of \( A \), we always have \( A^{2n} = (A^2)^{n} = I^{n} = I \),
+				so any even exponent 
+				will just simplify to \( \frac{x^{2n}}{(2n)!} \).
+				Further, we can always make the following simplification for odd \( n \) :
+				\[
+				A^{2n + 1} = A^{2n} A = A
+				\] 
+				Therefore, all the odd terms will have a factor of \( iA \) remaining. Now, we can group the terms 
+				as follows:
+				\[
+					e^{iAx} = I \underbrace{\left(1 - \frac{x^2}{2} + \frac{x^{4}}{4!} + \cdots \right)}_{\cos x} +
+					iA\underbrace{\left(x - \frac{x^3}{3!} + \frac{x^{5}}{5}\right)}_{\sin x} 
+					= \cos(x) I+ i \sin(x) A
+				\] 
+				as desired. 
+			\end{solution}
 		\item Use the result in d) to form the matrix representation of \( R_z(\gamma) = e^{-i \gamma Z / 2} \), and 
 			show how this exponentiated operator acts on the Bloch sphere vector for \( \ket*{\Psi} \). 
 			Evaluate the explicit form of \( R_z(\gamma) \) for \( \gamma = 0, 2\pi, 4\pi \), and comment 
 			on anything surprising. This operator gives rise to several well-known signal-qubit quantum gates, 
 			naely the phase gate \( S \) (\( \gamma = \pi / 2 \)) and the \( T \) gate (\( \gamma = \pi / 4 \)), up to 
 			a global phase factor in each case. Check these for yourself. 
+
+			\begin{solution}
+				We know that \( Z^2 = I \), so the condition in part (d) applies. Therefore, we identify that 
+				 \( x = -\frac{\gamma}{2}\), so therefore we can write:
+				 \[
+					R_z(\gamma) = \cos(-\frac{\gamma}{2}) I + i \sin(-\frac{\gamma}{2})Z = \cos(\frac{\gamma}{2})I
+					- i \sin(\frac{\gamma}{2})Z
+				 \] 
+				 Then, for specific values for \( \gamma \) :
+				 \begin{align*}
+					 R_z(0) &= I\\
+					 R_z(2\pi) &= -I = \begin{pmatrix} -1 &0\\ 0 & -1 \end{pmatrix} \\
+					 R_z(4\pi) &= I = \begin{pmatrix} 1 &0\\0 & 1 \end{pmatrix} 
+				 \end{align*}
+				 From what I understand, this operator denotes some rotation around the \( z \)-axis, 
+				 where every \( 2\pi \) rotation we make we pick up a negative sign. It is interesting that 
+				 a "full rotation" (i.e. returning to the identity) takes \( 4\pi \) degrees instead of 
+				 \( 2\pi \). 
+
+				 I assume that I don't have to show that \( \gamma = \pi / 2 \) and \( \gamma = \pi / 4 \) 
+				 generate the \( S \) and \( T \) gates respectively, though it could easily be 
+				 verified by plugging in the appropriate value for \( \gamma \). 
+			\end{solution}
 	\end{enumerate}
 	\pagebreak
 	\section*{Problem 2}
@@ -58,9 +207,60 @@
 			\[
 			HXH = Z, HYH = -Y, HZH = X
 			\] 
+			\begin{solution}
+				We can prove these identities by brute force, starting with the first one:
+				\[
+					HXH = \frac{1}{2}
+					\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} 0 & 1\\ 1 & 0 \end{pmatrix} 
+					\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}  =\frac{1}{2} 	
+					\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} 1 & -1\\ 1 & 1 \end{pmatrix} 
+					= \frac{1}{2}\begin{pmatrix} 2 & 0\\ 0 & -2 \end{pmatrix} = Z
+				\] 
+				Now for the second identity:
+				\[
+				HYH = 	\frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \begin{pmatrix} 0 & -i\\ i & 0 \end{pmatrix} 
+					\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}  =
+					\frac{1}{2}\begin{pmatrix}  1 & 1 \\ 1 & -1\end{pmatrix} \begin{pmatrix} -i & i\\ i&i \end{pmatrix} 
+					= \frac{1}{2}\begin{pmatrix} 0 & 2i\\-2i & 0 \end{pmatrix} = -Y
+				\] 
+				Finally:
+				\[
+				HZH =  	\frac{1}{2}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} 
+				\begin{pmatrix} 1 & 0\\ 0 & -1 \end{pmatrix} 
+					\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}  
+					= \frac{1}{2}\begin{pmatrix}1 & 1\\1&-1\end{pmatrix} 
+					\begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix} 
+					= \frac{1}{2} \begin{pmatrix} 0 & 2 \\ 2 & 0 \end{pmatrix} = X
+				\] 
+			\end{solution}
 		\item Show that if \( U \) and \( V \) are unitary, then \( U \otimes V \) is also unitary. 
+
+			\begin{solution}
+				If \( U \) and \( V \) are unitary, this implies that \( U^{-1} = U^{\dagger} \), and 
+				\( V^{-1} = V^{\dagger}\) . Then, we can write:
+				\[
+					(U \otimes V)^{\dagger} = V^{\dagger} U^{\dagger}
+				\] 
+				So therefore:
+				\[
+					(U \otimes V)\otimes (V^{\dagger} \otimes U^{\dagger}) = 
+					U \otimes V \otimes V^{\dagger} \otimes U^{\dagger} = I \otimes I = I
+				\] 
+				and since their product is equal to the identity, \( U \otimes V \) is also unitary. 
+			\end{solution}
 		\item Write the \( 4 \times 4 \) matrix of the unitary operation on two qubits resulting from 
 			performing a Hadamard transform on the first qubit and a phase flip on the second qubit. 
+
+			\begin{solution}
+				To find the 4x4 matrix we take the tensor product of \( H \) and the phase flip 
+				\( Z \):
+				\[
+				U = \frac{1}{\sqrt{2} }\begin{pmatrix} 1 &1\\1&-1\end{pmatrix}  \otimes 
+				\begin{pmatrix} 1&0\\0&-1 \end{pmatrix} 
+				= \frac{1}{\sqrt{2} }\begin{pmatrix} 1&0&1&0\\0&-1&0&-1\\1&0&-1&0\\
+				0&-1&0&1\end{pmatrix} 
+				\] 
+			\end{solution}
 	\end{enumerate}
 	\pagebreak
 	\section*{Problem 3}
@@ -69,8 +269,74 @@
 	and in the Hadamard basis \( \ket*{+}, \ket*{-} \). Hint: You will have to transform the state into the Hadamard
 	basis before making the second measurement. Can either of these two measurements give information about the value of
 	the relative phase \( \phi \)? Specify what can be learned. 
+
+	\begin{solution}
+		Measuring the state \( \ket*{\psi} \) in the computational basis results in an outcome of 0 with probability
+		\( \frac{1}{2} \), and outcome 1 also with probability \( \frac{1}{2} \). To compute the outcome in the 
+		Hadamard basis, we take the hint, and first convert \( \ket*{\psi} \) into the Hadamard basis, using 
+		the following two relations:
+		\begin{align*}
+			\ket*{0} &= \frac{1}{\sqrt{2} }(\ket*{+} + \ket*{-})\\
+			\ket*{1} &= \frac{1}{\sqrt{2} }(\ket*{+} - \ket*{-}) \\
+		\end{align*}
+		Therefore, our state \( \ket*{\psi} \) is given by:
+		\begin{align*}
+			\ket*{\psi} &= \frac{1}{\sqrt{2} }\left(\frac{1}{\sqrt{2} }(\ket*{+} + \ket*{-})\right)
+		+ \frac{e^{i \theta}}{\sqrt{2} }\left( \frac{1}{\sqrt{2} }(\ket*{+} - \ket*{-}) \right) \\
+		&= \frac{1}{2}(\ket*{+} + \ket*{-}) + \frac{e^{i \theta}}{2}(\ket*{+} - \ket*{-}) \\
+		&= \frac{1 + e^{i \theta}}{2}\ket*{+} + \frac{1 - e^{i \theta}}{2}\ket*{-} 
+		\end{align*}
+		Therefore, we measure \( \ket*{+} \) with probability 
+		\[
+		\left\|\frac{1 + e^{i \theta}}{2}\right\|^2 = \left( \frac{1 + e^{ i \theta}}{2} \right) 
+		\left( \frac{1 + e^{-i \theta}}{2} \right) = \frac{1}{4}(2 + e^{i \theta} + e^{-i \theta})
+		= \frac{1 + \cos \theta}{2}
+		\] 
+		Likewise, we measure \( \ket*{-} \) with probability:
+		\[
+			\left\| \frac{1 - e^{i \theta}}{2}\right\|^2 = \left( \frac{1 - e^{i \theta}}{2} \right) 
+		\left( \frac{1 - e^{-i \theta}}{2} \right) = \frac{1}{4}(2 - e^{i \theta} - e^{-i \theta})
+		= \frac{1 - \cos \theta}{2}
+		\]	
+		In principle, this means that the Hadamard basis should be able to distinguish the phase angle 
+		\( \theta \) in \( \ket*{\psi} \), given enough measurements. With a single measurement, 
+		we do not know anything about \( \theta \). In the computational basis, identifying \( \theta \) is 
+		impossible even given repeated measurements, since the probability of measuring 0 or 1 is independent 
+		of \( \theta \) entirely.
+	\end{solution}
 	\pagebreak
 	\section*{Problem 4}
 	Start with two quantum bits in the state \( \alpha\ket*{00} + \beta\ket*{11} \). Subject the first bit to 
 	a Hadamard gate. Now measure the first bit. What is the state of the second bit?
+
+	\begin{solution}
+		The first bit is sent through a Hadamard gate, so therefore we get:
+		\[
+		\ket*{\psi} = \frac{1}{\sqrt{2} }(\alpha \ket*{00} + \alpha \ket*{10} + \beta\ket*{01} - \beta \ket*{11})
+		\] 
+		Now, we group this based on the state of the first qubit:
+		\[
+		\ket*{\psi} = \frac{1}{\sqrt{2} }(\alpha\ket*{00} + \beta\ket*{01}) 
+		+ \frac{1}{\sqrt{2} }(\alpha \ket*{10} - \beta\ket*{11})
+		\] 
+		Measuring the first qubit, if we get an outcome of 0, then the state \( \ket*{\psi} \) collapses
+		to:
+		\[
+		\ket*{\psi} = \frac{1}{\sqrt{2} }(\alpha \ket*{00} + \beta\ket*{01}) = \frac{1}{\sqrt{2} }
+		\ket*{0}(\alpha \ket*{0} + \beta\ket*{1})
+		\] 
+		So the state of the second qubit is:
+		\[
+		\ket*{\psi_2} = \alpha \ket*{0} + \beta\ket*{1}
+		\] 
+		If we measure 1, then: 
+		\[
+		\ket*{\psi} = \frac{1}{\sqrt{2} }(\alpha \ket*{10} - \beta \ket*{11}) = \frac{1}{\sqrt{2} }\ket*{1}
+		(\alpha\ket*{0} - \beta\ket*{1})
+		\] 
+		And the second qubit is: 
+		\[
+		\ket*{\psi_2} = \alpha \ket*{0} - \beta\ket*{1}
+		\] 
+	\end{solution}
 \end{document}

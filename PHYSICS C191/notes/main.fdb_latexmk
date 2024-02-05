@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1706214432 "main.tex" "main.pdf" "main" 1706214434 0
-  "../../local.sty" 1705959097 3428 2ad2beefb7b51086a44202971aa3f131 ""
+["pdflatex"] 1706819314 "main.tex" "main.pdf" "main" 1706819316 0
+  "../../local.sty" 1706733087 3428 2ad2beefb7b51086a44202971aa3f131 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1490131464 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc" 1490131464 3357 5261ce65ba03aef9faf6135657b9abb6 ""
@@ -323,10 +323,12 @@
   "lec-1.tex" 1705604794 7253 bc8e979afb9341c851e53da94e186d8f ""
   "lec-2.tex" 1705613248 7840 3ab7baa59fee0543f4683a99f430b1b9 ""
   "lec-3.tex" 1706048402 7253 ebd8b82505653e39187aa0d87df1f3ec ""
-  "lec-4.tex" 1706214430 6004 73c5c000a099d4dbfe4bb016f185e16d ""
-  "main.aux" 1706214434 3300 fd6718249398580e46c27cb3fefc44b2 "pdflatex"
-  "main.out" 1706214434 3396 3e5a64cb5ff724172e5b245053a7b2f8 "pdflatex"
-  "main.tex" 1706210227 757 111b7f7e77e44686f0576fb6b6630c1a ""
+  "lec-4.tex" 1706491590 8454 91533e78789217b5550ac87cd52c3abd ""
+  "lec-5.tex" 1706814871 6664 7b48b79229527ee0d6015fe71778e86b ""
+  "lec-6.tex" 1706819313 6316 4ebcaf3d23b0b4f9707709e61d90fcec ""
+  "main.aux" 1706819316 4194 ec8e98c23348de5867f40204ec25fdf0 "pdflatex"
+  "main.out" 1706819316 4551 2b9b7989e3a2aee8dfe1cb1c33944cdd "pdflatex"
+  "main.tex" 1706814685 795 9e1b6a4d4bb37815335ba4c8a53b8d77 ""
   (generated)
   "main.aux"
   "main.log"

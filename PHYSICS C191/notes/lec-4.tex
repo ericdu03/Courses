@@ -107,4 +107,52 @@
 		\[
 		\ket*{\psi_2} = \ket*{\psi}\ket*{0}\frac{1}{\sqrt{2} }\left( \ket*{0} + \ket*{1} \right) 
 		\] 
+		After the first CNOT, we have:
+		\[
+			\ket*{\psi_3} = \ket*{\psi}  \frac{1}{\sqrt{2} }(\ket*{00} + \ket*{11}) = 
+			\frac{1}{\sqrt{2} }(\alpha \ket*{000} + \alpha\ket*{011} + \beta \ket*{100} + \beta\ket*{111})
+		\] 
+		\comment{Note that this is the resulting state because the third qubit is the control bit, which flips 
+		the state of the second qubit.} 
+
+		After the second CNOT, then:
+		\[
+		\ket*{\psi_4} = \frac{1}{\sqrt{2} }(\alpha \ket*{000} + \alpha \ket*{011} + 
+		\beta\ket*{110} + \beta\ket*{101})
+		\] 
+		Finally, we send the first qubit thorugh a Hadamard gate:
+		\[
+		\ket*{\psi_4} = \frac{1}{2}(\alpha\ket*{000} + \alpha \ket*{100} + \alpha \ket*{011} + \alpha\ket*{111}
+		+ \beta \ket*{010} - \beta\ket*{110} + \beta\ket*{001} - \beta\ket*{101})
+		\] 
+		\comment{The way to compute this is to look at the first qubit, and recall that:
+			\[
+			H \ket*{\psi} = H\begin{pmatrix} \alpha\\ \beta \end{pmatrix}  = 
+			\frac{1}{\sqrt{2} }\begin{pmatrix} \alpha + \beta \\
+		\alpha - \beta\end{pmatrix} 
+			\] 
+			so on the states \( \ket*{0} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \) and \( \ket*{1} = 
+			\begin{pmatrix}  0 \\ 1 \end{pmatrix} \), we have:
+			\begin{align*}
+				H \begin{pmatrix} 1\\0 \end{pmatrix} &= \frac{1}{\sqrt{2} }\begin{pmatrix} 1 \\ 1 \end{pmatrix}  
+				= \frac{1}{\sqrt{2} } (\ket*{0} + \ket*{1})\\
+				H \begin{pmatrix} 0\\-1 \end{pmatrix}  &= \frac{1}{\sqrt{2} }\begin{pmatrix} -1 \\ 1 \end{pmatrix}  = 
+				\frac{1}{\sqrt{2} }(\ket*{0} - \ket*{1})
+			\end{align*}
+			so basically, each term gets split up into two terms: the last two qubits aren't changed, and the first 
+			qubit is split into a superposition between 0 and 1, with the sign determined by the coefficient.  
+		}
+		\item We then measure this state, and depending on the state of 
+			measurement, we either apply (or don't) the \( X \) gate or \( Z \) gate onto 
+			the third qubit. 
+
+			What we will find is that upon performing this procedure, the state \( \ket*{\psi} \) is now encoded 
+			in qubit 3 rather than qubit 1. 
+		\item Note however, that even though this feels like the state has "teleported", no information is being 
+			sent here that violates causality. Because we will only know what gate to apply based upon 
+			the measurement results, it means that we need to transfer this information over 
+			thorugh some \textit{classical} channel, meaning that the information could not possibly travel 
+			faster than light. 
+
 \end{itemize}
+

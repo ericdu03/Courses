@@ -1,0 +1,105 @@
+\section{Complexity Classes}
+\begin{itemize}
+	\item Last lecture we saw the Deutsch-Josza algorithm, which required only a single query to determine the identity
+		of \( f(X) \). However, in order to show that quantum computation is truly beneficial, then what we really 
+		need to show is that no classical algorithm could \textit{possibly} do as well as a quantum one. 
+	\item In the case of the Deutscsh-Josza problem, a simple randomized algorithm that samples \( f(x) \) at random 
+		also achieves a similar accuracy with comparable queries. For instance, 2 queries already give us a 
+		probability of error of less than 1/3.
+	\item In general, for a probability of error less than \( \frac{1}{2^{n}} \), we only need \( n+1 \) queries.   
+	\item What we want is a problem in which the quantum algorithm \textit{exponentially} speeds up
+		the computation process. 
+	\item Some algorithms which show an exponential gap:
+		\begin{itemize}
+			\item Bernstein-Vazirani
+			\item Simons algorithm 
+		\end{itemize}
+		We won't really go over these too in depth, but they are described in great detail in many textbooks.  
+\end{itemize}
+\subsection{Quantum Complexity}
+\begin{itemize}
+	\item This is the study of computation using information encoded in quantujm bits, or quantum 
+		states \( \ket*{\psi} = \alpha \ket*{0} + \beta\ket*{1} \).
+	\item The quantum circuit is the description of the algorithm we apply to get a result. 
+	\item We need to determine the number of gates needed, and precisely the number of 2-qubit gates.   
+	\item For an arbitrary circuit with \( n \) qubits, we need no more than \( 2^{n} \) gates. This is because 
+		\( 2^{n} \) denotes a situation where every bit is connected with every other gate. However, for an efficient
+		circuit, we only need a polynomial \( n^{c} \) number of gates, where \( c \) is some real, finite 
+		constant.
+	\item So really, what we're studying is the class of algorithms which are efficiently implementable on \( n \) 
+		qubits, which is described by a sequence of \( O(n) \) qubit gates drawn from a universl set. Mathematically, 
+		we write: 
+		\[
+		U \approx U_{g_k} \cdots U_{g_2}U_{g_1}, \ \ k = O(\text{poly}(n))
+		\] 
+	\item There's an approximation symbol because of the \textbf{Solovay-Kitaev} theorem, which states 
+		that the accuracy of a combination of 1-qubit gates is approximated by 
+		\( O(\log^{c}(1 / \epsilon) \) with \( c \approx 2 \). 
+
+		By extension, this means that 1 qubit and \( m \) 2-qubit gates requires at most 
+		\( O(m \log^{c}(1 / \epsilon) \). 
+	\item This means that we have one universal gate set and we wanted to switch to another, we only have to pay 
+		a constant factor of change.  
+		
+		\comment{The \href{https://en.wikipedia.org/wiki/Solovay-Kitaev_theorem}{Wikipedia 
+		Article} on this does a better job explaining this.}
+\end{itemize}
+\subsection{Quantum Complexity Clasification}
+\begin{itemize}
+	\item Generally, we will describe algorithms with respect to the size of the problem (generally 
+		the number of qubits \( n \)). 
+		
+		\comment{Here, the number of qubits refers to the number of data qubits.}  
+	\item We also might want to consider the resource scaling, so for instance the number of ancillas, the number 
+		of measurements, and also the number of gates. 
+	\item \textbf{Classical Church-Turing thesis:} Any computable function (classical algorithm) can be modeled by  
+		the running of some Turing machine.
+
+		A Turing machine is a machine with a finite set of states, and an infinitely long input tape to which 
+		it can read and write from. The Turing machine also defines a transition matrix to transition between states.
+		Note that this thesis does not talk about efficiency at all; the program could run infinitely and still 
+		be valid. 
+	\item \textbf{Strong Church-Turing Thesis (ECT):} A probabilitstic Turing machine, which has the same 
+		input and output tape but instead jumps randomly at each step, can efficiently (in polytime) 
+		simulate any realistic 
+		model of computation. 
+	\item Quantum computation challenges this fact -- Shor's algorithm factors numbers in \( O(\text{poly}(n)) \), 
+		but there is no known polynomial time for factoring large numbers.
+	\item \textbf{Strong Quantum Church-Turing thesis:} A quantum Turing machine can efficiently 
+		simulate any realistic (includes quantum) model of computation.
+
+		Anything that's polynomial in \( L \) (the input size in bits) is considered easy, and anything 
+		that's superpolynomial is considered hard. 
+	\item A review on different algorithms and their classical runtimes:
+		\begin{itemize}
+			\item Matrix multiplication: \( O(n^3) \), with optimizations \( O(n^{2.37}) \) 
+			\item Sorting: \( O(n \log n) \), also theorized to be a lower bound.
+			\item Factoring: number field sieve, has \( O(e^{n^{1 / 3} (\log(n))^{2 / 3}} \)
+		\end{itemize}
+	\item Classical complexity classes:
+		\begin{itemize}
+			\item P: problems which are solvable in polynomial time.
+			\item NP: problems which are verifiable in polynomial time. 
+
+				Here, the verifier takes in the proposed input from the solver, and we ask whether the verifier 
+				can check the solution in polynomial time. 
+			\item It's believed that \( \text{P} \subset \text{NP} \). 
+			\item NP-Hard: any problem in NP can be converted to an NP-Hard problem within polynomial time.   
+			\item NP-Complete: A problem which is NP-Hard and is also in NP. 
+			\item PSPACE: problems which are solvable in polynomial number of bits, with no constraints on 
+				time. It's trivial to show that \( \text{P}\subset \text{PSPACE} \), but we don't know 
+				how close the two sets are to each other. 
+			\item BPP: problems which are efficiently solvable by a randomized algorithm up to some error. 
+				
+				\question{Does this refer to polynomial in the error?}  
+			\item BQP: problems which are efficiently solvable on a quantum computer with an allowed error. 
+			\item Quantum Merlin Arthur: a decision of the following form:
+
+				If the answer is YES, then Merlin (the solver) has a quantum state to which the verifier can 
+				verify in polynomial time on a quantum computer. 
+		\end{itemize}
+	\item What is known: 
+		\begin{itemize}
+			\item \( \text{P}\subseteq \text{BPP} \subseteq \text{BQP} \subseteq \text{PSPACE} \)
+		\end{itemize}
+\end{itemize}

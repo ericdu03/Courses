@@ -1,0 +1,266 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics C191}
+\newcommand{\classname}{Introduction to Quantum Computing}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 02} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	\begin{enumerate}[label=\alph*)]
+		\item Consider a general qubit basis \( \ket*{v}, \ket*{v^{\perp}} \) where \( \ket*{v} = a\ket*{0} + 
+			b\ket*{1}\), and \( \ket*{v^{\perp}} = b^* \ket*{0} - a^* \ket*{1} \) are arbitrary 
+			normalized vectors. Show that \( \ket*{v} \) and \( \ket*{v^{\perp}} \) are 
+			orthogonal.
+
+			\begin{solution}
+				To show that they're orthogonal, we can take the inner product of the two:
+				\begin{align*}
+					\braket*{v^{\perp}}{v} &= (\bra*{0}b - \bra*{1}a)(a\ket*{0} + b\ket*{1})\\
+					&=  ba \braket*{0}{0}  + b^2 \braket*{0}{1} - a^2\braket*{1}{0} + ab \braket*{1}{1}	\\
+					&= ab - ba \\
+					&= 0 
+			\end{align*} 
+			And since the inner product evaluates to 0, then these two vectors are orthogonal.
+			\end{solution}
+		\item Prove that the Bell state \( \ket*{\psi^{-}} = \frac{1}{\sqrt{2} }(\ket*{vv^{\perp}} - 
+			\ket*{v^{\perp}v})\) with \( \ket*{v} \) annd \( \ket*{v^{\perp}} \) perpendicular 
+			normalized vectors, is invariant under rotations of the two qubits (applying the same rotation on 
+			both qubits). i.e., taking the form of \( \ket*{v} \) and \( \ket*{v^{\perp}} \) as in (a), show that 
+			the state \( \ket*{\psi^{-}} = \frac{1}{\sqrt{2} }(\ket*{vv^{\perp}} - \ket*{v^{\perp}v}) \) will 
+			always be equal to \( \frac{1}{\sqrt{2} }(\ket*{10} - \ket*{01}) \). 
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 2}
+	Consider the state \( \ket*{\phi} = \cos \phi \ket*{0} + \sin \phi \ket*{1} \). Suppose that with 1/2 probability 
+	you are given the state \( \ket*{\phi} \) and with 1/2 probability you're given the state \( \ket*{0} \), but 
+	you don't know which one you were given. What measurement basis is optimal to distinguish the two states, i.e., 
+	to guess with the greatest likelihood which of the two states you have been give? 
+
+	In the following you will prove that the basis \( \{\ket*{a}, \ket*{b}\} \) that maximizes the probability of 
+	distinguishing the two states is given by 
+	\begin{align}
+		\ket*{a} &=  \cos(\pi / 4 + \phi / 2) \ket*{0} + \sin(\pi /4 + \phi / 2) \ket*{1} \\
+		\ket*{b} &=  \sin(\pi / 4 + \phi / 2) \ket*{0} - \cos(\pi / 4 + \phi / 2) \ket*{1} 
+	\end{align}
+	Note that this basis sares the same angle bisector as te one between \( \ket*{0} \) and \( \ket*{\phi} \) 
+	as shown in the drawing below. 
+	\begin{center}
+		\begin{tikzpicture}[scale=3]
+			\draw(-1, 0) -- (1, 0);
+			\draw(0, -1) -- (0, 1); 
+			\draw[thick, -stealth, red] (0, 0) -- (1, 0) node[above] {\( \ket*{0} \) };
+			\draw[thick, -stealth, red] (0, 0) -- (60:1) node[above right] {\( \ket*{\phi} \) };
+			\draw[thick, -stealth, blue] (0, 0) -- (-20:1) node[below right] {\( \ket*{b} \) };
+			\draw[thick, -stealth, blue] (0, 0) -- (70:1) node[above left] {\( \ket*{a} \) };
+		\end{tikzpicture}
+	\end{center}
+	So how do we go about proving this? First, we have to quantify what we mean by distinguishing the two states
+	 and also define the probability of doing this successfully. To do this, use basic concepts of probability theory 
+	 to argue that the probability of guessing the correct state from a measurement with basis 
+	 \( \{\ket*{a}, \ket*{b}\}  \) is 
+	 \begin{equation}\label{prob} 
+	 \frac{1}{2}|\braket*{a}{\phi}|^2 + \frac{1}{2}|\braket*{b}{0}|^2
+	 \end{equation} 
+	 where outcome \( a \) would imply the state is \( \ket*{\phi}\) and outcome \( b \) would imply the 
+	 state is \( \ket*{0} \). 
+
+	 Now show that the optimal basis to distinguish these 2 states is on the real plane. To do so consider 
+	 a general parametrization of our measurement basis as 
+	 \begin{align}
+		 \ket*{a} &= \cos(\theta) \ket*{0}+ \sin(\theta) e^{i \gamma}\ket*{1} \\
+		 \ket*{b} &= \sin(\theta) e^{-i \gamma}\ket*{0} - \cos(\theta) \ket*{1} 
+	 \end{align}
+	 By plugging this in, you should be able to deduce that the guessing probability is maximized when 
+	 \( e^{i \gamma} \) is \( +1 \) or \( -1 \), so the optimal basis is indeed on the real plane. 
+
+	 So the measurement basis parametrization simplifies to 
+	 \begin{align*}
+	 \ket*{a} &=  \cos(\theta) \ket*{0} + \sin(\theta) \ket*{1} \\
+	 \ket*{b} &= \sin(\theta) \ket*{0} - \cos(\theta) \ket*{1} 
+	 \end{align*} 
+	 Now you can write out the corresponding probability of successfully distinguishing the states, Eq. 
+	 (\ref{prob}), in terms of \( \theta \). Find the maximum value of this with respect to the angle \( \theta \) 
+	 that defines the optimal measurement basis vectors \( \ket*{a} \) and \( \ket*{b} \). This should give 
+	 you an equation defining one or more possible values of \( \theta \) in the relevant range 
+	 \( [0, 2\pi) \). Insert each of your solutions back into the guessing function, 
+	 eq. (\ref{prob}) to identify the value of \( \theta \) that gives the maximum probability.
+
+	 \begin{solution}
+	 	
+	 \end{solution}
+	 \pagebreak
+	 \section*{Problem 3}
+	 This problem will have you explore basic quantum operations on states. Consider the following situation: 
+	 you start with the two qubit state
+	 \[
+		 \ket*{\psi_0} = \frac{1}{2}\ket*{00} + \frac{i}{2}\ket*{01} - \frac{1}{\sqrt{2}} \ket*{11}
+	 \] 
+	 Next you apply a Hadamard gate to the first qubit then a CNOT gate with the first qubit as the control 
+	 and the second as the target. 
+	 \begin{enumerate}[label=\alph*)]
+	 	\item Verify that the initial state is normalized. 
+
+			\begin{solution}
+				To verify that it's normalized, we have: 
+				\[
+					\left( \frac{1}{2} \right) ^2 + \left( \frac{i}{2} \right) ^2 + \left( \frac{1}{\sqrt{2} } \right) ^2 = \frac{1}{4} + \frac{1}{4} + \frac{1}{2} = 1
+				\] 
+				Since the total sum is 1, then the state is fully normalized.  
+			\end{solution}
+		\item Draw a quantum circuit diagram representing this series of operations. 
+
+			\begin{solution}
+				The quantum cricuit can be drawn as:
+				\begin{center}
+					\begin{quantikz}
+						\lstick[2]{\( \ket*{\psi_0} \) } & \gate{H} & \ctrl{1} & \\
+													   & & \targ{} & 
+					\end{quantikz}
+				\end{center}
+			\end{solution}
+		\item Write the intermediate state after application of the Hadamard gate. 
+			Argue that it is also noramlized (hint: this can be done without explicit calculation using properties 
+			of unitary operations).
+
+			\begin{solution}
+				The Hadamdard gate does the following operation on the qubits:
+				\begin{align*}
+					\ket*{0} &\mapsto \frac{\ket*{0} + \ket*{1}}{\sqrt{2} }\\
+					\ket*{1} &\mapsto \frac{\ket*{0} - \ket*{1}}{\sqrt{2} }
+				\end{align*}
+				Therefore, we have: 
+				\begin{align*}
+					\ket*{\psi_1}&= \frac{1}{2}\left( \frac{\ket*{0} - \ket*{1}}{\sqrt{2}} \right)\ket*{0}
+					+ \frac{i}{2}\left( \frac{\ket*{0} + \ket*{1}}{\sqrt{2} } \right) \ket*{1}
+					- \frac{1}{\sqrt{2} }\left( \frac{\ket*{0} -\ket*{1}}{\sqrt{2} } \right) \ket*{1}\\
+					&= \frac{1}{2\sqrt{2} }\ket*{00} + \left( \frac{1}{2\sqrt{2} } - \frac{1}{2} \right) \ket*{01}
+					- \frac{1}{2\sqrt{2} }\ket*{10} + \left( \frac{i}{2\sqrt{2} } + \frac{1}{2} \right) \ket*{11}
+				\end{align*} 
+				This state must be normalized becuase a unitary gate is a norm-preserving transformation.
+			\end{solution}
+		\item What is the final state at the end of the circuit. Is it normalized?
+
+			\begin{solution}
+				We then send the bit through a CNOT, so the final state can be written as:
+				\[
+				\ket*{\psi_2} = \frac{1}{2\sqrt{2} }\ket*{00} + \left( \frac{i}{2\sqrt{2} } - \frac{1}{2} \right) 
+				\ket*{01} - \frac{1}{2\sqrt{2} }\ket*{11} + \left( \frac{i}{2\sqrt{2} } + \frac{1}{2} \right) \ket*{10}
+				\] 
+				The factors in front of all the states are the same, and since the previous part is normalized, 
+				then so is this one.
+			\end{solution}
+	 \end{enumerate}
+	 \pagebreak
+	 \section*{Problem 4}
+	 Circuit identities are mathematical equivalences between different operations on quantum registers. They can be 
+	 useful in converting between desired algorithmic opreations and the restricted set of possible operations 
+	 on a given processor, i.e., for compiling. This question will have you explore several different 
+	 circuit idnetities. 
+	 \begin{enumerate}[label=\alph*)]
+	 	\item Prove the following 2-qubit identities: 
+			\begin{center}
+				\begin{quantikz}
+					& \ctrl{1} & \\
+					& \targ{} &
+				\end{quantikz}
+				$=$ 
+				\begin{quantikz}
+					& &\ctrl{1} & &\\
+					& \gate{H} & \gate{Z} & \gate{H} & 
+				\end{quantikz}
+			\end{center}
+
+			\begin{center}
+				\begin{quantikz}
+					& \ctrl{1} & \\
+					& \gate{Z} &
+				\end{quantikz}
+				$=$
+				\begin{quantikz}
+					&\gate{Z} & \\ 
+					& \ctrl{-1}& 
+				\end{quantikz}
+			\end{center}
+			The second identity shows that the control and target in the controlled-Z gate are symmetric, and so 
+			the gate is often denoted as: 
+			\begin{quantikz}
+				& \ctrl{1} &\\ 
+				& \ctrl{-1}& 
+			\end{quantikz}
+
+			\begin{solution}
+				We can do this by showing that the resulting matrices from the tensor product of the two 
+				result in the same matrix:
+			\end{solution}
+		\item Prove that the direction of the CNOT is reversed in the Hadamard basis, i.e., show the following 
+			circuit identity (hint: use the prior part):
+			\begin{center}
+				\begin{quantikz}
+					& \ctrl{1} &\\
+					& \targ{}& 
+				\end{quantikz}
+				\( = \) 
+				\begin{quantikz}
+					& \gate{H} & \targ{} & \gate{H}&\\
+					&\gate{H} & \ctrl{-1} & \gate{H}
+				\end{quantikz}
+			\end{center}
+	 \end{enumerate}
+	 \pagebreak
+	 \section*{Problem 5}
+	 The following circuit identities will be useful when we study quantum error correction. The point is that 
+	 single qubit operations can be "pushed through" conditional gates. Prove each one.
+	 \begin{enumerate}[label=\alph*)]
+	 	\item 
+			\begin{quantikz}
+				& \gate{X} & \ctrl{1} & \\
+				& & \targ{}& 
+			\end{quantikz} 
+			$=$ 
+			\begin{quantikz}
+				& \ctrl{1} & \gate{X} & \\
+				& \targ{} & \gate{X} & 
+			\end{quantikz}
+		\item 
+			\begin{quantikz}
+				& \gate{Z} & \ctrl{1} & \\
+				& & \targ{}&
+			\end{quantikz}
+			\( = \) 
+			\begin{quantikz}
+				& \ctrl{1} & \gate{Z} & \\
+				& \targ{} & &
+			\end{quantikz}
+		\item 
+			\begin{quantikz}
+				& & \ctrl{1} & \\
+				& \gate{X} & \targ{} &
+			\end{quantikz}
+			\( = \) 
+			\begin{quantikz}
+				& \ctrl{1} & & \\
+				& \targ{} & \gate{X}& 
+			\end{quantikz}
+		\item 
+			\begin{quantikz}
+				& & \ctrl{1} & \\
+				& \gate{Z} & \targ{} &
+			\end{quantikz}
+			\( = \)
+			\begin{quantikz}
+				& \ctrl{1} & \gate{Z} & \\
+				& \targ{} & \gate{Z} & 
+			\end{quantikz}
+	 \end{enumerate}
+\end{document}

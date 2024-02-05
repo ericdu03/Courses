@@ -1727,6 +1727,14 @@ INPUT ./lec-4.tex
 INPUT lec-4.tex
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf
 INPUT /usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm
+INPUT ./lec-5.tex
+INPUT lec-5.tex
+INPUT ./lec-5.tex
+INPUT lec-5.tex
+INPUT ./lec-6.tex
+INPUT lec-6.tex
+INPUT ./lec-6.tex
+INPUT lec-6.tex
 INPUT main.aux
 INPUT ./main.out
 INPUT ./main.out

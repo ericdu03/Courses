@@ -1,4 +1,5 @@
-\section{Characterization Continued}
+%\section{Characterization Continued}
+\section{Lecture 3}
 \subsection{Step Response}
 \begin{itemize}
 	\item The step response function is the function \( y_{\text{step}}(t) \) when a step function 
@@ -56,5 +57,61 @@
 
 		To determine the value of \( A \), these are determined by the initial conditions, and depending on the 
 		number of initial conditions given, that would correspond directly to the number of distinct values of \( A \). 
+\end{itemize}
+\subsubsection{Example}
+\begin{itemize}
+	\item Given a first order LCCDE, with a step function input (this means that the right hand side is a 
+		step function). This means we're solving for a solution 
+		\( y(t) \) to:
+		\[
+			\dv{y(t)}{t} + ay(t) = bx(t) = bu(t)
+		\] 
+	\item First we look for the homogeneous solution, which will give us:
+		\[
+			\dv{y_h(t)}{t} + ay_h(t) = 0
+		\] 
+		This is a separable DE, so we move \( ay_h(t)  \) to the right hand side and integrate, 
+		which gives us a solution of the form:
+		\[
+		y_h(t) = Ae^{-at}
+		\] 
+	\item The particular solution is the function \( y_p(t) \) that satisfies:
+		\[
+			\dv{y_p(t)}{t} + ay_p(t) = bu(t)
+		\] 
+		Now, we break this up into what values \( u(t)  \) takes along the real line. For \( t < 0 \), we have 
+		\( u(t) =0\), which gives us a solution of \( y_p(t) = 0 \). Note that even though the right hand side 
+		is zero doesn't mean this is homogeneous, since the homogeneous solution has 0 on the right hand side 
+		\textit{for all \( t \)}.
+
+
+	\item For \( t > 0 \), the differential equation becomes:
+		\[
+			\dv{y_p(t)}{t} + ay_p(t) = b
+		\] 
+		We can rearrange this slightly:
+		\[
+			\dv{\left( y_p(t) - \frac{b}{a} \right)}{t} + a\left( y_p(t) - \frac{b}{a} \right) = 0
+		\] 
+		You can verify that this is actually the same differential equation, since the derivative of a constant 
+		is zero. But now, we can define \( z(t) = y_p(t) - \frac{b}{a} \), and solve instead a homogeneous differential
+		equation for \( z(t) \). Going through the same steps as before, we have \( y_p(t) = \frac{b}{a} + Be^{-at} \). 
+	\item We can combine both \( t < 0 \) and \( t > 0 \) with a nice analytical form:
+		\[
+		y_p(t) = \left( \frac{b}{a} + Be^{-at} \right) u(t)
+		\] 
+		\question{Is this necessary when possible?}
+	\item The general solution is then:
+		\[
+		y(t) = y_p(t) + y_h(t) = \frac{b}{a} + Be^{-at} + Ae^{-at}
+		\] 
+		We need an initial condition to solve for \( A \) and \( B \) :  
+		\begin{itemize}
+			\item Initial rest condition: at \( t = 0 \), no input, so the output should also be 0. This 
+				gives the equation:
+				\[
+				A + B = -\frac{b}{a}
+				\]
+		\end{itemize}				
 \end{itemize}
 

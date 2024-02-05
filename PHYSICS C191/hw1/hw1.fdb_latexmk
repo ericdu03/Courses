@@ -1,8 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1706169807 "hw1.tex" "hw1.pdf" "hw1" 1706169809 0
+["pdflatex"] 1706581975 "hw1.tex" "hw1.pdf" "hw1" 1706581977 0
   "../../local.sty" 1705959097 3428 2ad2beefb7b51086a44202971aa3f131 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1490131464 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc" 1490131464 3357 5261ce65ba03aef9faf6135657b9abb6 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc" 1490131464 2933 8d808fcabf70c6c809bb14c283ece4da ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertinust1math/libusEX.enc" 1459202234 4370 9a6960ad261c3b8505f8616a17a865d2 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertinust1math/libusMI.enc" 1459202234 2466 b4c444f17020acc82bb4a3da32916aa7 ""
@@ -17,6 +18,8 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm" 1246382020 940 228d6584342e91276bf566bcf9716b83 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1--base.tfm" 1490131464 1740 2943dd2ba1dcd3849599663c1d2693ef ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-t1.tfm" 1490131464 19504 bdf9fb416f5a91bf56b1ccda887f5b91 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ts1--base.tfm" 1490131464 1488 9b803beb26c181b228c4fde93d4398a3 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertine/LinLibertineT-tlf-ts1.tfm" 1490131464 1516 5e35377e77f0326136c4078d4c186a36 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1--base.tfm" 1490131464 1724 248b3a23a2f748bd3089e9d3118d991e ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertine/LinLibertineTB-tlf-t1.tfm" 1490131464 19488 f569478ca339d9b5ad93b46bf7a470e2 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/public/libertine/LinLibertineTI-tlf-t1--base.tfm" 1490131464 1932 54655639067fe21ae3b23b77173351a5 ""
@@ -36,6 +39,7 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb" 1354061736 490980 e27f1e217a0902faea22205f197918d4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertinust1math/LibertinusT1Math.pfb" 1643231490 1034565 fdc9009b58d9dd28c195db02ac815403 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-t1.vf" 1354061736 1728 b078a050f24d7649619baa987d7216d8 ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/vf/public/libertine/LinLibertineT-tlf-ts1.vf" 1490131464 640 f2633b196ddbd644937d19e300a5024e ""
   "/usr/local/texlive/2023/texmf-dist/fonts/vf/public/libertine/LinLibertineTB-tlf-t1.vf" 1490131464 1768 5d66dfd9709f1f38b8fb3cb38db46402 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/vf/public/libertine/LinLibertineTI-tlf-t1.vf" 1490131464 1768 b3bfd8ed1fe2dce5fd19610abe4c3dbe ""
   "/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
@@ -233,6 +237,7 @@
   "/usr/local/texlive/2023/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty" 1575499565 5766 13a9e8766c47f30327caf893ece86ac8 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/libertine/LinLibertine_I.tex" 1355443847 24957 22a8dc56372173d7ffa65753dfc6757e ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/libertine/T1LinuxLibertineT-TLF.fd" 1490131464 2980 15412b63bb0119ade194e089fff355d4 ""
+  "/usr/local/texlive/2023/texmf-dist/tex/latex/libertine/TS1LinuxLibertineT-TLF.fd" 1490131464 1689 42435c12d9d3dc0c446eb02409690ab9 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/libertine/libertine.sty" 1663014219 19153 c2c69760dc75ad50078da17b17f72310 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty" 1641503239 78868 1c4c0736d54ac6e605676beb380b6d36 ""
   "/usr/local/texlive/2023/texmf-dist/tex/latex/libertinust1math/ls1libertinust1math.fd" 1537563990 1736 a88dc46de39d1762bf28fbdcb81e1eba ""
@@ -311,9 +316,9 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1699664430 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1699664348 7883465 e8c6fc6f0ba841908e83b5299c0f4881 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "hw1.aux" 1706169809 634 ced71c1676fb9a5754ad8922a88aca1f "pdflatex"
-  "hw1.out" 1706169808 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "hw1.tex" 1705874947 3909 aa235f0ffa2a4afe7fccfac00b76a28f ""
+  "hw1.aux" 1706581976 634 0e523a01d190bcbd0aea11b6d849d034 "pdflatex"
+  "hw1.out" 1706581976 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "hw1.tex" 1706581973 15721 8a630744a942ac62adc7421c3acc8fae ""
   (generated)
   "hw1.aux"
   "hw1.log"
