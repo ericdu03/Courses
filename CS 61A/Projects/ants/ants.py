@@ -138,7 +138,7 @@ class Ant(Insect):
             if place.ant.is_container and place.ant.ant_contained == None and self.is_container == False:
                 place.ant.ant_contained = self
             elif self.is_container and self.ant_contained == None and place.ant.is_container == False:
-                ContainerAnt.store_ant(self, place.ant)
+                ContainerAnt.store_ant(self, place.ant);
                 place.ant = self
             else:
                 assert place.ant is None, 'Two ants in {0}'.format(place)

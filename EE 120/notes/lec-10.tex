@@ -1,0 +1,104 @@
+\section{Continuous-Time Fourier Transform Properties}
+\subsection{Why CTFT?} 
+\begin{itemize}
+	\item Recall the definition of the Fourier transform:
+		\begin{align*}
+			X(f) &\equiv \mathcal F \{x(T)\} = \int_{-\infty}^{\infty} x(t) 
+			e^{- j 2 \pi ft}\diff t & x(t) &= \mathcal F^{-1} \{X(f)\} = \int_{-\infty}^{\infty} X(f) e^{j 2 \pi f t}
+			\diff  f\\
+			X(\omega) &\equiv \mathcal F \{x(t)\} = \int_{-\infty}^{\infty} x(t) e^{- j \omega t}\diff t & 
+			x(t) &= \mathcal F^{-1} \{X(\omega)\}  = \frac{1}{2\pi}\int_{-\infty}^{\infty}  X(\omega) e^{j \omega t}
+			\diff \omega
+		\end{align*}
+	\item Why would we do a Fourier transform? For instance, NASA's Perseverance rover carries two microphones that 
+		record the audio on the Martian surface. There are many sources of the sound; one of them is instrumentation
+		sound, which we would like to remove. The only to remove sources like this is to perform a Fourier transform, 
+		get rid of the unwatned frequencies, then do an IFT to get back to the original signal.
+\end{itemize}
+\subsection{CTFT Properties, DTFT Properties} 
+\begin{itemize}
+	\item Linearity: given \( ax(t) + by(t) \), then the Fourier transform would be \( aX(\omega) + bY(\omega) \). 
+		An easy way to see this is the fact that the Fourier transform relies on an integral, which is indeed 
+		linear. 
+
+		So, computing the Fourier transform of \( \cos(2 \pi f_0 t) \) can be simplified using linearity:
+		\[
+			\cos(2 \pi f_0 t) = \frac{1}{2}(e^{j 2 \pi f_0 t} + e^{- j 2\pi f_0 t}) \overset{\mathcal F}\leftrightarrow
+			\frac{1}{2}(\delta(f - f_0) + \delta(f + f_0)) = \frac{1}{2}(2 \pi \delta(\omega - \omega_0) + 
+			2\pi \delta(\omega + \omega_0))
+		\] 
+	\item Time shift property: If a signal is shifted in time (i.e. \( x(t - t_0) \)), then the 
+		Fourier transform picks up a phase of \( e^{- j \omega t_0} \). That is:
+		\[
+		x(t - t_0) \quad \leftrightarrow \quad e^{-j \omega t_0}X(\omega) = e^{- j 2 \pi f t_0} X(f)
+		\] 
+		where \( X(\omega) = \mathcal F \{x(t)\}  \). The proof of this property is in the lecture notes, 
+		it's also not very hard to prove; just use a change of variables. 
+	\item Frequency shift property: Given a signal \( e^{j \omega_0 t}x(t) \), then the Fourier transform 
+		would be shifted by that frequency:
+		\[
+		e^{j \omega_0 t}\quad \leftrightarrow \quad X(\omega - \omega_0)
+		\] 
+		An application of this is with AM waves, where we have a signal to be transmitted \( x(t) \) that serves 
+		as the envelope of some \textit{carrier signal}, gemerally of the form \( \cos(\omega_0 t) \). Therefore, 
+		we can write the transmitted signal as:
+		\[
+		y(t) = x(t) \cos(\omega_0 t)
+		\] 
+		In Fourier space, then this signal transmits as:
+		\[
+		Y(\omega) = \frac{1}{2}X(\omega - \omega_0) = \frac{1}{2}X(\omega + \omega_0)
+		\] 
+		with the shift due to the frequency shift property. 
+	\item Complex conjugate symmetry: the Fourier transform of a signal \( x^{*}(t) \) transforms as:
+		\[
+		x^{*}(t) \quad \leftrightarrow \quad X^{*}(\omega)
+		\] 
+		Again, proof in lecture notes. If \( x(t) \) is a real function, then we have \( x^{*}(t) = x(t) \), 
+		so \( X^{*}(-\omega) = X(\omega) \). 
+
+		The magnitude is an even function, and the phase will be an odd function.
+	\item Differentiation Property: The Fourier transform of the derivative of \( x(t) \) is 
+		given by 
+		\[
+			\dv{x(t)}{t} \quad \leftrightarrow \quad j \omega X(\omega) = j 2\pi f X(f)
+		\] 
+		Further, we have:
+		\[
+			-jt x(t) \quad \leftrightarrow \quad \dv{X(\omega)}{\omega}
+		\] 
+	\item Time and Frequency scaling: Given a signal \( x(at) \), then the Fourier transform is
+		\[
+		x(at) \quad \leftrightarrow \quad \frac{1}{|a|}X\left( \frac{\omega}{a} \right) 
+		\] 
+		as long as \( a \neq 0 \). 
+	\item Multiplication Property: Given two signals \( x_1(t)x_2(t) \), then in frequency space this 
+		is a convolution:
+		\[
+		x_1(t) x_2(t) \quad \leftrightarrow \quad \frac{1}{2\pi}X_1(\omega) * X_2(\omega)
+		\] 
+	\item Parseval's relation: A theorem about the signal \( x(t) \):
+		\[
+		\int_{-\infty}^{\infty} |x(t)|^2 \diff t = \int_{-\infty}^{\infty} |X(f)|^2 \diff f = \frac{1}{2\pi}
+		\int_{-\infty}^{\infty} |X(\omega)|^2 \diff \omega 
+		\] 
+		This is basically a statement of energy conservation between the two domains: the energy of the wave 
+		in temporal space is expressed as the integral of \( |x(t)|^2 \), and intuitively by taking a fourier 
+		transform that energy shouldn't change, so the integral \( |X(f)|^2 \) should be the same. 
+	\item Energy spectral density: intuitively, this is a measure of the ``energy per unit" of frequency interval. 
+		Mathematically, this is written as:
+		\[
+		\epsilon(f_0) = \lim_{\delta f \to 0}\frac{E(f_0 + \delta f)}{\delta f}
+		\] 
+		So basically the slope of the energy curve. By Parseval's theorem, then we can write:
+		\[
+		\epsilon(f_0) = \lim_{\delta f \to 0}\frac{\int_{f_0}^{f_0 + \delta f} |X(f)|^2 \diff  }{\delta f}
+		= \lim_{\delta f\to 0}\frac{|X(f)|^2 \delta f}{\delta f} = |X(f_0)|^2
+		\] 
+		In terms of \( \omega \), we have:
+		\[
+		\epsilon(\omega_0) = \frac{1}{2\pi}\lim_{\delta \omega \to 0} \frac{|X(\omega)|^2 \delta \omega}{\delta \omega}
+		= \frac{1}{2\pi}|X(\omega)|^2
+		\] 
+\end{itemize}
+

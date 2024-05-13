@@ -1,0 +1,266 @@
+\chapter{Introduction to Sets}
+\section{Introduction}
+One thing mathematicians love doing is finding similarities between different objects, then 
+grouping these objects based on their common properties. It is precisely this idea of clasification that 
+gives rise to set theory, a field so important that without it many fields of mathematics 
+would (quite literally) collapse. 
+
+What use is set theory to computer science? Well, the idea of classifying things based on their 
+similarities is such a natural habit that we do it here as well. For instance, consider the 
+famous P vs NP problem: the entire premise of this problem relies on the notion that we can 
+classify problems based on whether they're efficiently solvable -- that's an act of classification, 
+and hence we need set theory here.\footnote{Math majors will probably hate me for calling this an application of 
+set theory, but it \textit{somewhat works}, so please just let it slide.}
+
+The basic definition of a set is as follows:
+\begin{definition}{Set}{}
+	A \textit{set} is a well-defined collection of objects. 
+\end{definition}
+A couple things about this definition here: firstly, there really is no restriction on what the ``objects'', 
+also more commonly called the ``elements'' of a set, referred
+to in this definition can be: it can be numbers, variables, problem statements (as with the P vs. NP 
+example), and even other sets.\footnote{One should be careful about this last point since it's caused 
+a lot of headache for mathematicians over the past 200 years.} 
+
+Secondly, the notion of what it means to be ``well-defined" for our purposes 
+is that there is a clear way to tell whether an element 
+belongs or doesn't belong to a set.\footnote{If you want a more rigorous definition 
+of what it means to be well-defined, this book really isn't for you.} As an example, the set of even numbers is 
+well defined, since given a number \( x \), we know it belongs to the set if \( x \) is even, and doesn't belong 
+if \( x \) is odd. The following box describes how we would talk about set membership mathematically. 
+
+\begin{notation}{Membership}{}
+	If an element \( x \) is a member of a set \( S \), then we write \( x \in S \). If \( x \) is not a 
+	member of \( S \), then we write \( x \not\in S \). 
+\end{notation}
+\section{Describing Sets}
+Now that we know what a set is, what are some ways we can write them down? The easiest and perhaps the most 
+obvious one is to just list out the elements in the set one by one. If we wanted to write down the set of 
+numbers between 1 and 10 inclusive, then we could write:
+\[
+S = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\} 
+\] 
+This is certainly a valid way of writing this set, but you can imagine that if you were to write down the set 
+of numbers from 1 to 1000 like this, it would take forever. So, there is indeed a better way to write this: what we 
+do instead is we can define \( S \) as belonging to a larger set of items, but with certain conditions. In this 
+way, the set \( S \) can be rewritten as:
+\begin{equation}
+	\label{setbuild}
+S = \{x \in \Z \mid 1 \le x \le 10\} 
+\end{equation} 
+In English, we read this as: ``\( x \) belongs to the set of integers
+such that \( x \) is between 1 and 10". Notice how in this 
+way, we've defined \( x \) to first belong to the set of integers (a larger set of numbers), but then 
+we added the restriction that \( x \) is between 1 and 10 to construct our set \( S \). Note that we're also 
+not restricted by the number of conditions we can put, as long as all restrictions are satisfied by every 
+element in the set. For instance, if we wanted to describe the set of numbers between 1 and 10 (inclusive) except 5, 
+then we could write:
+\[
+S = \{x \in \Z \mid 1 \le x\le 10, x \neq 5\} = \{1, 2, 3, 4, 6, 7, 8, 9, 10\} 
+\] 
+In English, we read this as ``\( x \) belongs to the set of integers such that \( x \) is between 1 and 10, 
+and \( x \) is not equal to 5." Notice that all the elements in the set satisfy both restrictions: they're 
+between 1 and 10, and they're not equal to 5. 
+\subsection{Notable Sets}
+There are some sets that are so commonly used throughout the rest of this course that it's in your best 
+interest to just go ahead and memorize them: 
+\begin{itemize}
+	\item \textbf{Natural Numbers:} Denoted by \(\mathbb N =  \{0, 1, 2, \dots \}  \)  
+	\item \textbf{Integers:} Denoted by \( \Z = \{\dots, -2, -1, 0, 1, 2, \dots\}  \)
+	\item \textbf{Rationals:} fractional numbers, denoted by \( \mathbb Q = \{\frac{x}{y} | y \in \Z, 
+		y \neq 0 \}  \) 
+	\item \textbf{Real Numbers}: any (potentially infinite) decimal number, denoted by \( \R \) 
+	\item \textbf{Complex Numbers:} Denoted by \( \C = \{a + bi \mid a, b \in \R\} \)
+	\item \textbf{Empty set:} The set that contains nothing, denoted by \( \varnothing \)\footnote{You might 
+			be wondering: didn't we just say 
+			that a set is defined to have elements in it? Doesn't an empty set contradict that very statement? 
+		Short answer: don't worry about it. Long answer: go read a set theory textbook.} 
+\end{itemize}
+\section{Subsets}
+When we were describing a set, I implicitly introduced the concept of describing a set \( S \) as being 
+\textit{part of} another larger set. Rigorously, what this means is that the elements contained in \( S \) 
+can be found within a larger set, in which case \( S \) would be considered a subset of that larger set. 
+\begin{definition}{Subset}{}
+	Given two sets \( A \) and \( B \), if every element of \( A \) is also a member of \( B \), then 
+	\( A \) is a \textit{subset} of \( B \), which we write as 
+	\( A \subseteq B \). 
+\end{definition}
+Sometimes, there is also the subtle distinction of whether \( B \) contains elements not contained in \( A \). If 
+this is the case, then we sometimes call \( A \) a \textit{proper subset} of \( B \):
+\begin{definition}{Proper Subset}{}
+	Given two sets \( A \) and \( B \), if every element of \( A \) is also a member of \( B \) and \( B \) 
+	contains elements not contained in \( A \), then \( A \) is a \textit{proper subset} of \( B \), 
+	which we write as \( A \subset  B \). 
+\end{definition}
+This distinction is not really explored that much in CS70, so you won't have to worry too much about it. Another 
+thing you won't have to worry about but I'll include here anyways is the notion of a superset: 
+\begin{definition}{Superset}{}
+	Given two sets \( A \) and \( B \), if every element of \( A \) is also a member of \( B \), then 
+	\( B \) is a \textit{superset} of \( A \), denoted as \( A \supseteq B \). 
+\end{definition}
+And analogous to what a proper subset is to a subset, there is also the notion of a proper superset:
+\begin{definition}{Proper Superset}{}
+	Given two sets \( A \) and \( B \), if every element of \( A \) is also a member of \( B \) and \( B \) 
+	contains elements not contained in \( A \), then 
+	\( B \) is a \textit{proper superset} of \( A \), denoted as \( A \supset B \). 
+\end{definition}
+Again, these definitions are really just for completness sake and aren't really things we explore 
+much in CS70. The next section, however, is extremely important.
+\section{Combining Sets}
+So far, we've covered what a set is, how to describe them, and also how to classify them in terms of one 
+being a subset of another set. What I haven't explained yet is how we can mathematically talk about the relationship
+between sets, which is done through unions and intersections of sets. 
+
+Let's say that you have a set of numbers \( A  \), and another set of numbers \( B \).
+Now, suppose you wanted to describe a set \( S \), which is formed by taking elements in either \( A \) or 
+\( B \). Mathematically, we'd write that as
+\[
+S = A \cup B
+\] 
+where the \( \cup \) symbol denotes a \textbf{union}, defined below:
+\begin{definition}{Union}{}
+	Given two sets \( A \) and \( B \), the \textit{union} of \( A \) and \( B \) is the 
+	set formed by all elements in \( A \) or \( B \), written as \( A \cup B \). 
+\end{definition}
+To fully illustrate the ``or'' condition here, it's helpful to look at an example:
+\begin{example}{}{}
+	Given a set \( A = \{1, 2, 3\}  \) and a set \( B = \{3, 4, 5\}  \), then the \textit{union} 
+	is denoted by \( S = A \cup B = \{1, 2, 3, 4, 5\}  \).  
+
+	Notice that here, even though the element 3 was contained in both \( A \) and \( B \), it only appears
+	once in \( S \). This is the subtlety of the ``or'' condition: if the same element exists in both \( A \)
+	and \( B \), only one copy of it is retained in \( A \cup B \). 
+\end{example}
+What if instead of looking at elements in \( A \) or \( B \), you wanted to look at the elements that are common 
+between \( A \) and \( B \)? Then, we'd write it as:
+\[
+S = A \cap B
+\] 
+where the \( \cap \) symbol denotes a \textbf{intersection}, defined below:
+\begin{definition}{Intersection}{}
+	Given two sets \( A \) and \( B \), the \textit{intersection} of \( A \) and \( B \) 
+	is the set formed by the elements common between \( A \) and \( B \), written as \( A \cap B \). 
+\end{definition}
+Like the union, let's illustrate this with an example:
+\begin{example}{}{}
+	Given a set \( A = \{1, 2, 3\}  \) and a set \( B = \{3, 4, 5\}  \), then the \textit{intersection}
+	is denoted by \( S = A \cap B = \{3\}  \)
+
+	Since 3 is the only common element between  \( A \) and \( B \), this is the only element that the 
+	intersection picks out. 
+\end{example}
+Note that the intersection of two sets could potentially contain zero elements: this is what we call a 
+disjoint set:
+\begin{definition}{Disjoint Sets}{}
+	Two sets \( A \) and \( B \) are said to be \textit{disjoint} if they contain no elements in common, or 
+	equivalently, \( A \cap B = \varnothing \).
+\end{definition}
+\section{Complements}
+Aside from combining two sets, another thing we would like to do is to learn how to subtract elements from the set. 
+How do we express the act of \textit{taking away} elements from a set? This is where we introduce set complements 
+and set differences. 
+
+You might wonder why an operation like this is even useful to begin with. Well, on the surface, with sets
+you can easily write down, it really isn't that useful. However, when it comes to infinitely sized sets, 
+where describing a rule for them is quite complicated, this idea of subtracting or taking away elements actually 
+comes in very useful.
+
+Consider the set of irrational numbers for example. Because irrational numbers by definition go on infinitely 
+and also don't repeat, you can't ever find a way of writing this set down in the way we described 
+in equation \ref{setbuild}. However, you \textit{can} define the set of irrationals in terms of a difference 
+between two known sets: the reals and the rationals. By	``difference", what we really mean is to take the set of 
+reals \( \R \), take away all the rational numbers (members of \( \Q \)), and the set we're left with is the 
+set of irrational numbers. Mathematically, we write that as:
+\[
+\Q' = \R \setminus \Q
+\] 
+Here, the set of irrationals is denoted by \( \Q' \). I formalize this notion in the box below:
+\begin{definition}{Set Differences}{}
+	Given two sets \( A \) and \( B \), the set \( S = A \setminus B \) consists only of elements in \( A \) that 
+	are not elements of \( B \). 
+\end{definition}
+\begin{remark}{}{}
+	There's a couple different ways we write set differences, which I've listed below:
+	\begin{itemize}
+		\item \( A \setminus B = \{x \in A \mid x \not \in B \}  \)
+		\item \( A \setminus B = A - A \cap B \)
+		\item \( x \in A \setminus B \iff x \in A \land x \not \in B \)
+	\end{itemize}
+	The last bullet here might not make sense at the moment; we'll revisit this one later so don't worry. See if you
+	can convince yourself that these are indeed equivalent ways to write \( A \setminus B \).  
+\end{remark}
+This idea of set differences also allows us to also introduce the idea of \textit{complements}. Let's return to the 
+irrational numbers. Because we've defined the irrationals to be constructed from taking the rationals \( \Q \) 
+away from the set of reals \( \R \), it should make sense that if we tried to take the union and intersection  
+between the two sets: 
+\[
+\Q \cap \Q' = \varnothing \quad \Q \cup \Q' = \R
+\] 
+Let's think about why this makes sense: if the intersection was not the empty set, then this would mean there 
+is some element \( x \) which is both rational and irrational. However, we know that's impossible, hence the 
+intersection must be the empty set.
+On the other hand, if we take the union between the two, we can think of this process as adding the 
+irrationals \( \Q' \) back into the set of rationals, and since we constructed \( \Q' \) by taking \( \Q \) away 
+from \( \R \), it makes sense that adding them back would give us \( \R \) back as well. 
+ 
+Because \( \Q  \) and \( \Q' \) have the property that their combination makes \( \R \) and they share no 
+common elements, we say that they are complements of one another.\footnote{Implicitly, we've defined the universe
+\( \mathbb U \) to be \( \R \) here. For the purposes of this book, we won't worry too much about what a universe is; 
+it'll be very clear whether two sets are complements of each other.} 
+\begin{notation}{Complement}{}
+	If two sets \( A \) and \( B \) are complements of each other, we write \( \overline A = B \) or \( A^{c} = B \). 
+	The little \( c \) here stands for ``complement."
+\end{notation}
+
+Complements will be useful to us later in the probability section of this book, 
+so for now, keep this in the back of your mind. 
+\section{Cartesian Products}
+Now we've come to the second last thing about sets: the Cartesian product. Even though it may not seem like it, 
+this is actually something you're familiar with already: you know how in algebra you write \( \R^2 \) to denote 
+the real plane? That is a Cartesian product in disguise! I'll give the definition below:
+
+\begin{definition}{Cartesian Product}{}
+	Given two sets \( A \) and \( B \), the \textit{Cartesian Product}, denoted \( A \times B \), is the set of 
+	all pairs \( (x, y) \) such that \( x \in A \) and \( y \in B \). Equivalently:
+	\[
+	A \times B = \{(a, b) \mid x \in A \land y \in B\} 
+	\] 
+\end{definition}
+Looking back now at \( \R^2 \), hopefully you can see why we say that this defines the 2D-plane of numbers. We 
+write \( \R^2 = \R \times \R \), and based on the definition above we know that it means all pairs 
+\( (x, y) \) such that both \( x \) and \( y \) are real numbers. That's exactly the definition of the 
+real plane!
+\begin{example}{}{}
+	Given the set \( A = \{1, 2\}  \) and \( B = \{2, 3\} \), the set \( A \times B \) is written as:
+	\[
+	A \times B = \{(1, 2), (1, 3), (2, 2), (2, 3)\} 
+	\] 
+	Notice the difference between this and a union: the point \( (2, 2) \) exists here because we're pulling 
+	the first 2 from set \( A \) and the second 2 from set \( B \). If we were to union the two sets, 
+	we'd get \( \{1, 2, 3\}  \), and not the pairs. 
+\end{example}
+ 
+
+%Note the differenceds between this and an intersection 
+ 
+ 
+
+
+\section{Power Sets}
+Now we come to the last thing about sets: the power set. This is not a very important concept since it appears 
+only once elsewhere in this book, so let's go over the definition, and we'll discuss it further when the time 
+comes.
+\begin{definition}{Power Set}{}
+	Given a set \( S \), the power set, denoted by \( \mathcal P(S) \), is the set of all subsets of \( S \). Note that 
+	the empty set is also in \( \mathcal P(S) \), as it's a valid subset of \( S \). 
+\end{definition}
+\begin{example}{}{}
+	Given a set \( A = \{1, 2, 3\}  \), the power set is written as:
+	\[
+		\mathcal P(A) = \{ \{\} , \{1\} , \{2\} , \{3\} , \{1, 2\} , \{1, 3\} , \{2, 3\} , \{1, 2, 3\} \} 
+	\] 
+	You can check that each one of these are indeed subsets of \( A \).  
+\end{example}
+That's all for sets! If you don't understand everything that we've talked about here just yet, that's okay! Sets are
+a fairly abstract concept, intentionally so because they're meant to be a very general kind of mathematical object. 
+Hopefully, when we start applying these concepts, things will make more sense.

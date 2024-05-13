@@ -1,0 +1,27 @@
+\setcounter{section}{17}
+\section{Fault Tolerance}
+Suppose we have a quantum computer that encodes the following qubits:
+\begin{align*}
+	\ket*{\overline 0} &= \ket*{000}\\
+	\ket*{\overline 1} &= \ket*{111} 
+\end{align*}
+As we've seen before, this corrects against \( Z \)-errors (bit flips) very well, but is susceptible to \( X \)-errors.
+Now suppose that this code goes into a channel with a probability \( p \) of flipping the bit, and a proability 
+\( 1-p \) of it staying the same. There are three states that exist with one error:
+\[
+\ket*{001}, \ket*{010}, \ket*{100}
+\] 
+since each one has a probability \( p \) of occurring, then the probability we end up in either one of these states 
+is \( 3p \). There are also three states with two errors:
+\[
+\ket*{101}, \ket*{011}, \ket*{110}
+\] 
+these codes, when checked with our error correction, will send these states to \( \ket*{111} \), which 
+results in a logical error. The probability of this happening is \( 3p^2 \), since that's the probability 
+we get sent to any one of these qubits. Therefore, we say that this code sends \( p \to 3p^2\).   
+
+\question{why is this not \( 3p^2 + p^3\)?} 
+
+
+\subsection{Concatenation} 
+What if we wanted to correct against more errors? We can concatenate the code 

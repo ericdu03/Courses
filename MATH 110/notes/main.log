@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.10)  18 JAN 2024 18:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.10)  3 MAR 2024 16:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -899,94 +899,7 @@ LaTeX Info: Redefining \textssc on input line 48.
 LaTeX Info: Redefining \textulc on input line 49.
 )
 LaTeX Info: Redefining \oldstylenums on input line 483.
- (/usr/local/texlive/2023/texmf-dist/tex/latex/libertine/LinLibertine_I.tex)) (/usr/local/texlive/2023/texmf-dist/tex/latex/libertinust1math/libertinust1math.sty
-Package: libertinust1math 2022/01/05 v2.0.1---latex support for LibertinusT1Math (msharpe)
-
-amsthm NOT loaded
-Now handling font encoding LS1 ...
-... no UTF-8 mapping file for font encoding LS1
-Now handling font encoding LS2 ...
-... no UTF-8 mapping file for font encoding LS2
-LaTeX Font Info:    Redeclaring symbol font `letters' on input line 85.
-LaTeX Font Info:    Encoding `OML' has changed to `LS1' for symbol font
-(Font)              `letters' in the math version `normal' on input line 85.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
-(Font)                  OML/cmm/m/it --> LS1/libertinust1math/m/it on input line 85.
-LaTeX Font Info:    Encoding `OML' has changed to `LS1' for symbol font
-(Font)              `letters' in the math version `bold' on input line 85.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  OML/cmm/b/it --> LS1/libertinust1math/m/it on input line 85.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 86.
-LaTeX Font Info:    Encoding `OT1' has changed to `LS1' for symbol font
-(Font)              `operators' in the math version `normal' on input line 86.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> LS1/libertinust1math/m/n on input line 86.
-LaTeX Font Info:    Encoding `OT1' has changed to `LS1' for symbol font
-(Font)              `operators' in the math version `bold' on input line 86.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> LS1/libertinust1math/m/n on input line 86.
-\symsymbolsbb=\mathgroup7
-LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 88.
-LaTeX Font Info:    Encoding `OMS' has changed to `LS2' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 88.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/cmsy/m/n --> LS2/libertinust1mathsym/m/n on input line 88.
-LaTeX Font Info:    Encoding `OMS' has changed to `LS2' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 88.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/cmsy/b/n --> LS2/libertinust1mathsym/m/n on input line 88.
-LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 89.
-LaTeX Font Info:    Encoding `OMX' has changed to `LS2' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 89.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/cmex/m/n --> LS2/libertinust1mathex/m/n on input line 89.
-LaTeX Font Info:    Encoding `OMX' has changed to `LS2' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 89.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/cmex/m/n --> LS2/libertinust1mathex/m/n on input line 89.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 90.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> LS1/libertinust1mathsf/m/n on input line 90.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> LS1/libertinust1mathsf/m/n on input line 90.
-LaTeX Font Info:    Redeclaring math alphabet \mathsfbf on input line 99.
-LaTeX Font Info:    Overwriting math alphabet `\mathsfbf' in version `normal'
-(Font)                  LS1/libertinust1mathsf/b/n --> LS1/libertinust1mathsf/b/n on input line 99.
-LaTeX Font Info:    Overwriting math alphabet `\mathsfbf' in version `bold'
-(Font)                  LS1/libertinust1mathsf/b/n --> LS1/libertinust1mathsf/b/n on input line 99.
-LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
-(Font)                  LS1/libertinust1math/m/it --> LS1/libertinust1math/b/it on input line 101.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  LS1/libertinust1math/m/n --> LS1/libertinust1math/b/n on input line 102.
-\symbold-operators=\mathgroup8
-\symbold-letters=\mathgroup9
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 105.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 107.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  LS1/libertinust1mathsf/m/n --> LS1/libertinust1mathsf/b/n on input line 135.
-LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 147.
-LaTeX Font Info:    Overwriting math alphabet `\mathcal' in version `bold'
-(Font)                  U/stixcal/m/n --> U/stixcal/b/n on input line 148.
-\tx@tA=\toks53
-\tx@tB=\toks54
-\tx@su=\read5
-\tx@sbptoks=\toks55
-LaTeX Info: Redefining \checkmark on input line 739.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 813.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 814.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 815.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 816.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 817.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 818.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 819.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 820.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 822.
-LaTeX Font Info:    Redeclaring math accent \check on input line 823.
-LaTeX Font Info:    Redeclaring math accent \vec on input line 831.
-LaTeX Info: Redefining \vdots on input line 1241.
-LaTeX Info: Redefining \cdots on input line 1246.
-LaTeX Info: Redefining \not on input line 1488.
-) (/usr/local/texlive/2023/texmf-dist/tex/latex/inconsolata/inconsolata.sty
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/libertine/LinLibertine_I.tex)) (/usr/local/texlive/2023/texmf-dist/tex/latex/inconsolata/inconsolata.sty
 Package: inconsolata 2019/05/17 v1.12
  `inconsolata-zi4' v1.12, 2019/05/17 Text macros for Inconsolata (msharpe)
 \zifour@ocount=\count338
@@ -1005,8 +918,8 @@ File: tikzlibrarygraphs.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/quantikz/tikzlibraryquantikz2.code.tex (/usr/local/texlive/2023/texmf-dist/tex/latex/xargs/xargs.sty
 Package: xargs 2008/03/22 v1.1  extended macro definitions  (mpg)
 \xargs@max=\count341
-\xargs@toksa=\toks56
-\xargs@toksb=\toks57
+\xargs@toksa=\toks53
+\xargs@toksb=\toks54
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/xstring/xstring.sty (/usr/local/texlive/2023/texmf-dist/tex/generic/xstring/xstring.tex
 \integerpart=\count342
 \decimalpart=\count343
@@ -1028,42 +941,6 @@ File: pgflibraryshapes.symbols.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \myh=\skip88
 \myd=\skip89
 \c@aaa=\count345
-LaTeX Font Info:    Trying to load font information for LS1+libertinust1math on input line 1044.
- (/usr/local/texlive/2023/texmf-dist/tex/latex/libertinust1math/ls1libertinust1math.fd
-File: ls1libertinust1math.fd 2016/03/23 Fontinst v1.933 font definitions for LS1/libertinust1math.
-)
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 10.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 7.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 5.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 10.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 7.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 5.0pt on input line 1044.
-LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathsym on input line 1044.
- (/usr/local/texlive/2023/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathsym.fd
-File: ls2libertinust1mathsym.fd 2015/04/17 v1.1.2-latex LibertinusT1Mathsym LS2 font definitions
-)
-LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 10.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 7.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 5.0pt on input line 1044.
-LaTeX Font Info:    Trying to load font information for LS2+libertinust1mathex on input line 1044.
- (/usr/local/texlive/2023/texmf-dist/tex/latex/libertinust1math/ls2libertinust1mathex.fd
-File: ls2libertinust1mathex.fd 2016/03/15 v1.0.0-latex LibertinusMath extensions LS2 font definitions
-)
-LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 10.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 7.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 5.0pt on input line 1044.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 1044.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1076,37 +953,20 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 104
  (/usr/local/texlive/2023/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Trying to load font information for LS1+libertinust1mathbb on input line 1044.
- (/usr/local/texlive/2023/texmf-dist/tex/latex/libertinust1math/ls1libertinust1mathbb.fd
-File: ls1libertinust1mathbb.fd 2016/08/22 latex LibertinusT1Mathbb LS1 font definitions
-)
-LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 10.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 7.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 5.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 10.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 7.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 5.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 10.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 7.0pt on input line 1044.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 5.0pt on input line 1044.
 \c@wirenumberpermute=\count346
 ) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
 File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geometric.code.tex
+
+(/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geometric.code.tex
 File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)) (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex
+File: tikzlibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
+File: pgflibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 \c@theorem=\count347
-
-(./main.aux)
+\c@definition=\count348
+ (./main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
@@ -1127,25 +987,19 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for LS1/libertinust1math/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for LS2/libertinust1mathsym/m/n on input line 23.
-LaTeX Font Info:    ... okay on input line 23.
-LaTeX Info: Command `\dddot' is already robust on input line 23.
-LaTeX Info: Command `\ddddot' is already robust on input line 23.
  (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count348
+\scratchcounter=\count349
 \scratchdimen=\dimen377
 \scratchbox=\box95
-\nofMPsegments=\count349
-\nofMParguments=\count350
-\everyMPshowfont=\toks58
-\MPscratchCnt=\count351
+\nofMPsegments=\count350
+\nofMParguments=\count351
+\everyMPshowfont=\toks55
+\MPscratchCnt=\count352
 \MPscratchDim=\dimen378
-\MPnumerator=\count352
-\makeMPintoPDFobject=\count353
-\everyMPtoPDFconversion=\toks59
+\MPnumerator=\count353
+\makeMPintoPDFobject=\count354
+\everyMPtoPDFconversion=\toks56
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -1166,15 +1020,15 @@ Package hyperref Info: Link coloring OFF on input line 23.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* h-part:(L,W,R)=(50.58878pt, 513.11745pt, 50.58878pt)
+* v-part:(T,H,B)=(50.58878pt, 693.79243pt, 50.58878pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-37.0pt
+* \textwidth=513.11745pt
+* \textheight=693.79243pt
+* \oddsidemargin=-21.68121pt
+* \evensidemargin=-21.68121pt
+* \topmargin=-58.68121pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
@@ -1192,8 +1046,8 @@ Package hyperref Info: Link coloring OFF on input line 23.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@mv@tabular=\count354
-\c@mv@boldtabular=\count355
+\c@mv@tabular=\count355
+\c@mv@boldtabular=\count356
 (/usr/local/texlive/2023/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbatim
 )
@@ -1203,34 +1057,6 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 14.4pt on input line 24.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 9.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 9.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/n' will be
-(Font)              scaled to size 6.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 9.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/m/it' will be
-(Font)              scaled to size 6.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 9.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS2/libertinust1mathsym/m/n' will be
-(Font)              scaled to size 6.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 9.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS2/libertinust1mathex/m/n' will be
-(Font)              scaled to size 6.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 9.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1mathbb/m/n' will be
-(Font)              scaled to size 6.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 9.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/n' will be
-(Font)              scaled to size 6.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 9.0pt on input line 24.
-LaTeX Font Info:    Font shape `LS1/libertinust1math/b/it' will be
-(Font)              scaled to size 6.0pt on input line 24.
  (./lec-2.tex
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/b/n' will be
 (Font)              scaled to size 14.4pt on input line 1.
@@ -1248,23 +1074,23 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/it' will be
 (Font)              scaled to size 10.0pt on input line 25.
  [1
 
-{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertinust1math/libusMI.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertinust1math/libusMR.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertinust1math/libusSYM.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}]) [2] (./main.aux)
+{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_nh77jq.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc}{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc}]) (./lec-3.tex) [2] (./main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: DA6A1F00045B6B080429FF464FDC9FA4;491.
+(rerunfilecheck)             Checksum: 58B18F6A57D53CDC175192C24C2E35F6;569.
  ) 
 Here is how much of TeX's memory you used:
- 54393 strings out of 476025
- 1288580 string characters out of 5790016
- 1995255 words of memory out of 5000000
- 73983 multiletter control sequences out of 15000+600000
- 575618 words of font info for 100 fonts, out of 8000000 for 9000
+ 53565 strings out of 476025
+ 1279506 string characters out of 5790016
+ 2001840 words of memory out of 5000000
+ 73160 multiletter control sequences out of 15000+600000
+ 560847 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 132i,5n,132p,2020b,544s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertinust1math/LibertinusT1Math.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb>
-Output written on main.pdf (2 pages, 410201 bytes).
+ 132i,8n,132p,2030b,655s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on main.pdf (2 pages, 284882 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
- 37 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
+ 26 named destinations out of 1000 (max. 500000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 

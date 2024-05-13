@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1707119138 "hw2.tex" "hw2.pdf" "hw2" 1707119140 0
+["pdflatex"] 1707198182 "hw2.tex" "hw2.pdf" "hw2" 1707198185 2
   "../../local.sty" 1706935846 3430 fbcb6df2bc9a4cc736a32cb021e7a6c1 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1490131464 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
@@ -311,9 +311,9 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1699664430 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1699664348 7883465 e8c6fc6f0ba841908e83b5299c0f4881 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "hw2.aux" 1707119140 676 db3f3188029328f4f767af2426b4386c "pdflatex"
-  "hw2.out" 1707119139 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "hw2.tex" 1707119137 10888 2452729142b493f8c4279b359095d6c3 ""
+  "hw2.aux" 1707198185 676 9cf1d9da71479b539ddc2da01f8a4672 "pdflatex"
+  "hw2.out" 1707198183 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "hw2.tex" 1707198181 19390 5d7a5c2cc6857753fbb37a5fc61780ed ""
   (generated)
   "hw2.aux"
   "hw2.log"

@@ -16,8 +16,14 @@
 \usepackage{chemformula} % deal with molecules a lot in 112 
 \usepackage{mathrsfs}
 
+%% FONTS
+
+%% SANS-SERIF FONTS
+%\usepackage{nunito}
+%\usepackage[sfdefault]{noto}
+%% SERIF FONTS
 \usepackage{libertine}
-\usepackage{libertinust1math}
+%\usepackage{libertinust1math}
 \usepackage{inconsolata}
 \usepackage[T1]{fontenc}
 %\usepackage{bera}
@@ -28,7 +34,7 @@
 \newcommand{\iinf}{\int_{-\infty}^{\infty}} % Indefinite integral
 \newcommand{\schrodinger}{Schr\"{o}dinger }   % Schrodinger's name
 \newcommand{\lhopitals}{L'H\^{o}pital's}      % L'Hopital's rule
-\newcommand{\diff}{\ensuremath{\ d}} % differential? 
+\newcommand{\diff}{\ensuremath{\ d}}	% dummy variable with integrals
 \newcommand{\dx}{\ \mathrm d x}
 \newcommand{\R}{\mathbb R}
 \newcommand{\C}{\mathbb C}
@@ -39,6 +45,11 @@
 \renewcommand{\exp}[1]{ \mathrm{exp}\left( #1 \right)} %exponential
 \renewcommand{\Re}{\mathrm{Re}}               % Real part
 \renewcommand{\Im}{\mathrm{Im}}               % Imaginary part
+\newcommand{\sinc}{\mathrm{sinc}}
+\newcommand{\question}[1]{\textcolor{red}{#1}}
+\newcommand{\answer}[1]{\textcolor{green!80!black!}{#1}}
+\renewcommand{\comment}[1]{\textcolor{blue!50}{#1}}
+\newcommand{\corr}{\mathrm{corr}}
 
 % NAMES OF COLLABORATORS 
 
@@ -59,8 +70,8 @@
 \definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
 
 % SOLUTION ENVIRONMENT
-\newenvironment{solution}{\medskip \textit{Solution:}}{\hfill \qedsymbol \medskip \hrule height1pt \medskip}
-
+\newenvironment{solution}{\medskip \textit{Solution:}}{\qed\endtrivlist \medskip \hrule height1pt\medskip\endtrivlist}
+%\newenvironment{solution}{\medskip \textit{Solution:}}{\hfill \qedsymbol \medskip \hrule height1pt \medskip}
 
 
 % Tikz Libraries 
@@ -96,7 +107,26 @@
         mark=at position .5 with {\arrow[#1]{Stealth}}
       }}},
 }
+\DeclareDocumentCommand\derivative{ s o m g d() }
+{ % Total derivative
+    % s: star for \flatfrac flat derivative
+    % o: optional n for nth derivative
+    % m: mandatory (x in df/dx)
+    % g: optional (f in df/dx)
+    % d: long-form d/dx(...)
+    \IfBooleanTF{#1}
+    {\let\fractype\flatfrac}
+    {\let\fractype\frac}
+    \IfNoValueTF{#4}
+    {
+        \IfNoValueTF{#5}
+        {\fractype{\diffd \IfNoValueTF{#2}{}{^{#2}}}{\diffd #3\IfNoValueTF{#2}{}{^{#2}}}}
+        {\fractype{\diffd \IfNoValueTF{#2}{}{^{#2}}}{\diffd #3\IfNoValueTF{#2}{}{^{#2}}} \argopen(#5\argclose)}
+    }
+    {\fractype{\diffd \IfNoValueTF{#2}{}{^{#2}} #3}{\diffd #4\IfNoValueTF{#2}{}{^{#2}}}\IfValueT{#5}{(#5)}}
+}
 % GRIFFITHS EM SCRIPT R
 \def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../ScriptR}}$}}}
 \def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../BoldR}}$}}}
 \def\hrcurs{{\mbox{$\hat \brcurs$}}}
+

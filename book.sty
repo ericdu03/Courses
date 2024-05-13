@@ -1,0 +1,388 @@
+\ProvidesPackage{../../book}
+%%%MISCELLANEOUS INCLUDED PACKAGES - ANDREW BINDER%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}
+\usepackage[letterpaper, margin=0.75in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage{array, mathtools}
+\usepackage{enumitem}
+\usepackage{parskip, hyperref, dsfont, multirow}
+\usepackage{tkz-euclide,cancel}
+\usepackage{titlesec,caption,subcaption}
+\usepackage{chemformula}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm, mathrsfs, amssymb, makecell}
+\usepackage{physics}
+\usepackage{fancyhdr, stmaryrd}
+\usepackage{xcoffins}
+\usepackage{dirtytalk}
+\usepackage{framed, textcomp, dsfont, matlab-prettifier, caption, subcaption}
+\usepackage{xcolor, mdframed}
+% \usepackage[default]{lato}
+\usepackage{libertine}
+\renewcommand{\familydefault}{\sfdefault}
+% TIKZ/PGF STUFF %
+\usepackage{tikz, pgfplots, wrapfig}
+\usetikzlibrary{calc,shadings}
+\usetikzlibrary{shapes.arrows,positioning}
+\usetikzlibrary{decorations.pathreplacing,decorations.pathmorphing,decorations.shapes}
+\usetikzlibrary{patterns,patterns.meta}
+\usetikzlibrary{calligraphy,calc,angles,quotes}
+% MISCELLANEOUS %
+\usepackage[toc,page,title]{appendix}
+\usepackage{fontawesome}
+%SOME PRESETS%
+\pagestyle{fancy}
+\fancyfoot[C]{\sffamily\fontsize{11pt}{11pt}\selectfont\thepage}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\pgfplotsset{compat=1.17}
+%%%THEOREMS STYLINGS - ANDREW BINDER%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%RELEVANT PACKAGES%%
+% Any necessary packages to make theorem environments
+% As well as their relevant presets
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable}
+\tcbuselibrary{theorems}
+\theoremstyle{plain}
+\tcbuselibrary{skins}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%ENVIRONMENT COLORS%%
+% Background and Frame colors defined for all environments
+%%%%
+% Green (Definition, Notation)
+\definecolor{dgf}{RGB}{217,247,233}
+\definecolor{dgb}{RGB}{61,153,120}
+% Yellow (Remark, Insight, Aside)
+\definecolor{ryb}{RGB}{255,243,198}
+\definecolor{ryf}{RGB}{205,168,25}
+% Blue (Lemma, Corollary, Theorem)
+\definecolor{tbb}{RGB}{68,104,156}
+\definecolor{tbf}{RGB}{224,242,255}
+% Gray (Example, Non-Example, Exercise)
+\definecolor{egb}{RGB}{241,241,241}
+\definecolor{egf}{RGB}{100,100,100}
+% Red (Warning, Caution)
+\definecolor{wrf}{RGB}{253,214,214}
+\definecolor{wrb}{RGB}{185,64,64}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%ENVIRONMENT STYLINGS%%
+% Description for each preset given
+% Some environments look the same, but are titled differently
+% (for extra variety)
+%%%%
+% Definition and Notation Stylings (GREEN) %
+\newtcbtheorem[number within=chapter]{definition}{Definition}
+    {
+        breakable, % Make box breakable
+        enhanced,
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = dgf!50,                  % Background color
+        colframe            = dgb,                     % Frame color
+        fonttitle           = {\color{dgb}\mdseries},  % Title color
+        description font    = {\mdseries},     % Italicized desc
+        arc                 = 0mm,   % No rounded corners
+        parbox              = false,  % Fix inner spacing
+        beforeafter skip    = 1.5ex,  % Outer margins
+		fontupper			= {\linespread{1.4}\selectfont}
+    }
+    {def} % For referencing
+\newtcbtheorem[no counter]{notation}{Notation}
+    {
+        breakable, % Make box breakable
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = dgf!50,                  % Background color
+        colframe            = dgb,                     % Frame color
+        fonttitle           = {\color{dgb}\mdseries},  % Title color
+        description font    = {\mdseries},     % Italicized desc
+        arc                 = 0mm,   % No rounded corners
+        parbox              = false,  % Fix inner spacing
+        beforeafter skip    = 1.5ex,  % Outer margins
+		fontupper			= {\linespread{1.4}\selectfont}
+    }
+    {not} % For referencing
+%%%%
+% Remark, Insight, and Aside Stylings (YELLOW) %
+\newtcbtheorem[no counter]{remark}{Remark}
+    {
+        breakable, % Make box breakable
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = ryb!50,                 % Background color
+        colframe            = ryf,                    % Frame color
+        fonttitle           = {\color{ryf}\mdseries}, % Title color
+        description font    = {\mdseries\itshape},    % Italicized desc
+        arc                 = 0mm,   % No rounded corners
+        parbox              = false, % Fix inner spacing
+        beforeafter skip    = 1.5ex,  % Outer margins
+		fontupper			= {\linespread{1.4}\selectfont}
+    }
+    {rem} % For referencing 
+\newtcbtheorem[no counter]{insight}{Insight}
+    {
+        breakable, % Make box breakable
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = ryb!50,                 % Background color
+        colframe            = ryf,                    % Frame color
+        fonttitle           = {\color{ryf}\mdseries}, % Title color
+        description font    = {\mdseries\itshape},    % Italicized desc
+        arc                 = 0mm,   % No rounded corners
+        parbox              = false, % Fix inner spacing
+        beforeafter skip    = 1.5ex  % Outer margins
+    }
+    {ins} % For referencing
+\newtcbtheorem[no counter]{aside}{Aside}
+    {
+        breakable, % Make box breakable
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = ryb!50,                 % Background color
+        colframe            = ryf,                    % Frame color
+        fonttitle           = {\color{ryf}\mdseries}, % Title color
+        description font    = {\mdseries\itshape},    % Italicized desc
+        arc                 = 0mm,   % No rounded corners
+        parbox              = false, % Fix inner spacing
+        beforeafter skip    = 1.5ex  % Outer margins
+    }
+    {asi} % For referencing
+%%%%
+% Lemma, Corollary, and Theorem Stylings (BLUE) %
+\newtcbtheorem[number within=chapter]{lemma}{Lemma}
+    {
+        breakable, % Make box breakable
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = tbf!50,                 % Background color
+        colframe            = tbb,                    % Frame color
+        fonttitle           = {\color{tbb}\mdseries}, % Title color
+        description font    = {\mdseries\itshape},    % Italicized desc
+        arc                 = 0mm,   % No rounded corners
+        parbox              = false, % Fix inner spacing
+        beforeafter skip    = 1.5ex  % Outer margins
+    }
+    {lem} % For referencing
+\newtcbtheorem[number within=chapter]{corollary}{Corollary}
+    {
+        breakable, % Make box breakable
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = tbf!50,                 % Background color
+        colframe            = tbb,                    % Frame color
+        fonttitle           = {\color{tbb}\mdseries}, % Title color
+        description font    = {\mdseries\itshape},    % Italicized desc
+        arc                 = 0mm, % No rounded corners
+        parbox              = false,
+        beforeafter skip    = 1.5ex
+    }
+    {cor} % For referencing
+\newtcbtheorem[number within=chapter]{theorem}{Theorem}
+    {
+        breakable, % Make box breakable
+        enhanced,
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        boxrule             = 0mm,            % Remove lines
+        toprule             = 1mm,            % Top line
+        leftrule = 0mm, bottomrule = 0mm,     % Remove other lines
+        left = 2mm, right = 2mm, top = 0mm,   % inner margins
+        toptitle = 1mm, bottomtitle = 1mm,    % Title margins
+        titlerule           = 0mm,            % Title lines
+        colframe            = tbb,            % Frame color
+        colback             = tbf!50,         % Back color
+        coltitle            = tbb,            % Title color
+        title style         = {color=tbf!50}, % Separate title style
+        arc                 = 0mm,            % No rounded corners
+        parbox              = false,          % Fix inner spacing
+        beforeafter skip    = 1.5ex,		  % Outer margins
+		fontlower			= {\linespread{1.4}\selectfont}
+    }
+    {th} % For referencing
+%%%%
+% Example, Non-Example, and Exercise Stylings (GREY)
+\newtcbtheorem[number within=chapter]{example}{Example}
+    {
+        breakable, % Make box breakable
+        enhanced,
+        bottomrule at break = 0mm, toprule at break =0mm, % No break borders
+        boxrule             = 0mm,            % Remove lines
+        toprule             = 1mm,            % Top line
+        leftrule = 0mm, bottomrule = 0mm,     % Remove other lines
+        left = 2mm, right = 2mm, top = 0mm,   % Inner margins
+        toptitle = 1mm, bottomtitle = 1mm,    % Title margins
+        titlerule           = 0mm,            % Remove lines
+        colframe            = egf,            % Frame color
+        colback             = egb!50,         % Back color
+        coltitle            = egf,            % Title color
+        title style         = {color=egb!50}, % Separate title style
+        arc                 = 0mm,            % No rounded corners
+        parbox              = false,          % Fix inner spacing
+        beforeafter skip    = 1.5ex,           % Outer margins
+		fontupper			= {\linespread{1.1}\selectfont}
+    }
+    {exa} % For referencing
+\newtcbtheorem[number within=chapter]{nonexample}{Non-Example}
+    {
+        breakable, % Make box breakable
+        enhanced,
+        bottomrule at break = 0mm, toprule at break =0mm, % No break borders
+        boxrule             = 0mm,            % Remove lines
+        toprule             = 1mm,            % Top line
+        leftrule = 0mm, bottomrule = 0mm,     % Remove other lines
+        left = 2mm, right = 2mm, top = 0mm,   % Inner margins
+        toptitle = 1mm, bottomtitle = 1mm,    % Title margins
+        titlerule           = 0mm,            % Remove lines
+        colframe            = egf,            % Frame color
+        colback             = egb!50,         % Back color
+        coltitle            = egf,            % Title color
+        title style         = {color=egb!50}, % Separate title style
+        arc                 = 0mm,            % No rounded corners
+        parbox              = false,          % Fix inner spacing
+        beforeafter skip    = 1.5ex           % Outer margins
+    }
+    {non} % For referencing
+\newtcbtheorem[number within=chapter]{exercise}{Exercise}
+    {
+        breakable, % Make box breakable
+        enhanced,
+        bottomrule at break = 0mm, toprule at break =0mm, % No break borders
+        boxrule             = 0mm,            % Remove lines
+        toprule             = 1mm,            % Top line
+        leftrule = 0mm, bottomrule = 0mm,     % Remove other lines
+        left = 2mm, right = 2mm, top = 0mm,   % Inner margins
+        toptitle = 1mm, bottomtitle = 1mm,    % Title margins
+        titlerule           = 0mm,            % Remove lines
+        colframe            = egf,            % Frame color
+        colback             = egb!50,         % Back color
+        coltitle            = egf,            % Title color
+        title style         = {color=egb!50}, % Separate title style
+        arc                 = 0mm,            % No rounded corners
+        parbox              = false,          % Fix inner spacing
+        beforeafter skip    = 1.5ex,           % Outer margins
+		fontlower			= {\linespread{1.4}\selectfont}
+    }
+    {exe} % For referencing
+%%%%
+% Warning and Caution Stylings (RED) %
+\newtcbtheorem[no counter]{warning}{Warning}
+    {
+        breakable,  % Make box breakable
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = wrf!50,                 % Back color
+        colframe            = wrb,                    % Frame color
+        fonttitle           = {\color{wrb}\mdseries}, % Title color
+        description font    = {\mdseries\itshape},    % Italicized desc
+        arc                 = 0mm,   % No rounded corners
+        parbox              = false, % Fix inner box spacing
+        beforeafter skip    = 1.5ex,  % Outer margins
+		fontupper			= {\linespread{1.4}\selectfont}
+    }
+    {war} % For referencing
+%%%%
+\newtcbtheorem[no counter]{caution}{Caution}
+    {
+        breakable, % Make box breakable
+        bottomrule at break = 0mm, toprule at break = 0mm, % No break borders
+        theorem style       = plain, % Removes top frame
+        boxsep              = 2mm,   % Padding on box
+        leftrule            = 1mm,   % Line on left
+        rightrule = 0mm, toprule = 0mm, bottomrule = 0mm, % No border lines
+        left = 0mm, right = 0mm, top = 0mm, bottom = 0mm, % No margins
+        colback             = wrf!50,                 % Back color
+        colframe            = wrb,                    % Frame color
+        fonttitle           = {\color{wrb}\mdseries}, % Title color
+        description font    = {\mdseries\itshape},    % Italicized desc
+        arc                 = 0mm,   % No rounded corners
+        parbox              = false, % Fix inner box spacing
+        beforeafter skip    = 1.5ex,  % Outer margins
+		fontupper			= {\linespread{1.4}\selectfont}
+    }
+    {cau} % For referencing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%HEADER STYLINGS - ANDREW BINDER%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%PRESETS%
+\usepackage{titlesec}
+\raggedbottom
+\setcounter{tocdepth}{1}
+\newcommand{\epigraph}[1]{\begin{center}\textit{#1}\end{center}\vspace{20pt}}
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%HEADER STYLINGS%
+% Various stylings for different headers
+%%%%
+% Part
+\titleformat{\part}[display]
+{\filcenter}
+{\vspace{10pt}\huge\enspace\MakeUppercase\partname\ \thepart\enspace}{3ex}{{\titlerule[1pt]\vspace{0.6ex}\titlerule[2pt]\vspace{0.6ex}\titlerule[1pt]\vspace{3ex}}\fontsize{36pt}{36pt}\selectfont\MakeUppercase}[\vspace{-20pt}]
+% Chapter
+\titleformat{\chapter}[display]
+{\filcenter}{\vspace{-85pt}\small\enspace\MakeUppercase\chaptername\ \thechapter\enspace}{0.3ex}{{\titlerule[1pt]\vspace{0.3ex}\titlerule[1pt]}\huge\bfseries\MakeUppercase}[\vspace{-30pt}]
+% Section
+\titleformat{\section}{\vspace{0pt}\Large\bfseries}{\thesection}{0.75em}{}[\hrule]
+% Subsection
+\titleformat{\subsection}{\vspace{0pt}\large\bfseries}{\thesubsection}{0.75em}{}[\hrule]
+% Subsubsection
+\titleformat{\subsubsection}{\normalsize\bfseries}{}{}{}[]
+%%%%
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%SHORTCUTS%
+\newcommand{\mean}[1]{\langle #1 \rangle}     % Mean <x>
+\newcommand{\iinf}{\int_{-\infty}^{\infty}} % Indefinite integral
+\newcommand{\schrodinger}{Schr\"{o}dinger }   % Schrodinger's name
+\newcommand{\lhopitals}{L'H\^{o}pital's}      % L'Hopital's rule
+\newcommand{\diff}{\ensuremath{\ d}}	% dummy variable with integrals
+\newcommand{\dx}{\ \mathrm d x}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\renewcommand{\curl}{\nabla \times}           % vector curl
+\renewcommand{\div}{\nabla \cdot}             % vector divergence
+\renewcommand{\dd}{\ \mathrm d}
+\renewcommand{\exp}[1]{ \mathrm{exp}\left( #1 \right)} %exponential
+\renewcommand{\Re}{\mathrm{Re}}               % Real part
+\renewcommand{\Im}{\mathrm{Im}}               % Imaginary part
+\newcommand{\sinc}{\mathrm{sinc}}
+\newcommand{\question}[1]{\textcolor{red}{#1}}
+\newcommand{\answer}[1]{\textcolor{green!80!black!}{#1}}
+\renewcommand{\comment}[1]{\textcolor{blue!50}{#1}}
+\newcommand{\corr}{\mathrm{corr}}
+

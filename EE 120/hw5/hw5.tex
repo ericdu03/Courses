@@ -1,0 +1,324 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{EE 120}
+\newcommand{\classname}{Signals and Systems}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 05} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\newcommand{\sinc}{\mathrm{sinc}}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	\begin{enumerate}[label=\alph*)]
+		\item Find the Fourier series \( X_k \) for the following signal. Use the minimum period
+			\[
+			x(t) = \sin(\pi t) + 2 \cos(3 \pi t)
+			\] 
+
+			\begin{solution}
+				Firstly, the sine function has a period of 2, and the cosine has a period of \( \frac{2}{3} \), so 
+				it's obvious that the least common multiple of these two is 2. Therefore, the fundamental 
+				period \( \omega_0 = \frac{2\pi}{T} = \pi\). In order to get the values for \( X_k \), first we look at 
+				the inverse Fourier series:
+				\[
+				x(t) = \sum_{k=-\infty}^{\infty} X_ke^{ik\omega_0 t}
+				\] 
+				Therefore, while one could calculate \( X_k \) via the integral definition, it's far eaiser to break
+				\( x(t)  \) down into exponentials instead:
+				\[
+				x(t) = \frac{e^{i \pi t} - e^{- i \pi t}}{2i} + 2 \frac{e^{3 \pi t} + e^{-3 \pi t}}{2}
+				\] 
+				Therefore, since \( \omega_0 = \pi\), then we can conclude:
+				\[
+				X_{1} = \frac{1}{2i}, \ X_{-1} = -\frac{1}{2i}, \ X_{\pm 3} = 1
+				\] 
+				All other \( X_k = 0\).
+			\end{solution}
+		\item Let \( x(t) = \sum_{k=-\infty}^{\infty} X_ke^{-i k \omega_0 t} \) be a \( p \)-periodic signal. 
+			\begin{enumerate}[label=\roman*)]
+				\item Determine the Fourier coefficients of \( y(t) = x(t - T) \), for some  \( t \in \R \). 
+
+					\begin{solution}
+						We already have \( x(t)  \) represented as a Fourier series, so:
+						\[
+						x(t - T) = \sum_{k=-\infty}^{\infty} X_k e^{-i k \omega_0 (t - T)} = 
+						\sum_{k=-\infty}^{\infty} \underbrace{X_ke^{- i k \omega_0 T}}_{Y_k} e^{-i k \omega_0 t}
+						\] 
+						Therefore, the Fourier coefficeints \( Y_k = X_k e^{-i k\omega_0 T} \).
+					\end{solution}
+				\item Let \( z(t) = e^{i M \omega_0 t}x(t) \), for some \( M \in \Z \). Determine the Fourier 
+					coefficeints of \( z(t) \). 
+
+					\begin{solution}
+						Because we're multiplying \( x(t)  \) by a constant factor, then we have
+						\[
+						Z_k = e^{-i M \omega_0 t} X_k
+						\] 
+						After checking the solutions, it seems that we can make this even simpler by eating the 
+						exponential into the summation itself:
+						\begin{align*}
+							z(t) = \sum_{k=-\infty}^{\infty}X_k e^{i (k + M) \omega_0 t}
+						\end{align*}
+						So \( X_k \) corresponds to the fourier coefficeint for index \( k + M \) in \( Z \), so 
+						therefore:
+						\[
+						Z_k = X_{k - M}
+						\] 
+					\end{solution}
+			\end{enumerate}
+		\item Given the Fourier series coefficeints, determine the continuous time signal \( x(t)  \) with 
+			period \( T = 4 \):
+			\[
+			X_k = \begin{cases}
+				ik & |k| <3\\
+				0 & \text{otherwise}
+			\end{cases}
+			\] 
+
+			\begin{solution}
+				First, we have \( \omega_0 = \frac{2\pi}{T} = \frac{\pi}{2} \). Then, we can just use the definition:
+				\begin{align*}
+					x(t) &= -2ie^{-2i \omega_0 t} - ie^{-i \omega_0 t} + ie^{i \omega_0 t} + 2ie^{2 i \omega_0 t}\\
+					&= 2i(e^{2 i \omega_0 t} - e^{-2i \omega_0 t}) + i(e^{i \omega_0 t} - e^{- i \omega_0 t})\\
+					&= -4\sin(2 \omega_0 t) - 2\sin(\omega_0 t)
+				\end{align*} 
+				Plugging in \( \omega_0 = \frac{\pi}{2} \), we then have;
+				\[
+				x(t) = -4 \sin(\pi t) - 2 \sin(\frac{\pi}{2}t) 
+				\] 
+			\end{solution}
+
+		\item \textbf{(Optional)} Find the Fourier coefficents \( X_k \) for the following signal. Assume 
+			\( x(t)  \) is periodic with period \( T \). 
+			\[
+			x(t) = \begin{cases}
+				1 & |t| \le T_1\\
+				0 & T_1 < |t| \le  \frac{T}{2}
+			\end{cases}
+			\] 
+		\item Find the CTFS coefficients \( X_k \) for the impulse train 
+			\[
+			x(t) = \sum_{\ell=-\infty}^{\infty} \delta(t - \ell p)
+			\] 
+			where \( p \in \R \). 
+
+			\begin{solution}
+				The period of this function is \( p \), therefore the fundamental frequency 
+				\( \omega_0 = \frac{2\pi}{p} \). We can use the integral to solve for each \( X_k \). However, 
+				note that here, due to the delta function:
+				\[
+				X_k = \frac{1}{p} 
+				\int_{0}^{p} \sum_{\ell=-\infty}^{\infty} \delta(t - \ell p) e^{-i k\omega_0 t} \diff t
+				\] 
+				However these integral bounds don't really help us since the delta function doesn't have a spike 
+				within this interval. It's more useful to take the integral over the region
+				\( [-\frac{p}{2}, \frac{p}{2}] \), where the summation actually just collapses to a single 
+				delta function:
+				\[
+				X_k = \frac{1}{p} \int_{-\frac{p}{2}}^{\frac{p}{2}} \delta(t) e^{- i k \omega_0 t} =  \frac{1}{p}
+				\] 
+				Therefore, all the coefficients here are going to be \( \frac{1}{p} \). 
+			\end{solution}
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 2}
+	Determine the DTFT or inverse DTFT for the following subproblems.
+	\begin{enumerate}[label=\alph*)]
+		\item 
+			\[
+			x(n) = \left( \frac{1}{2} \right) ^{-n} u(-n - 1)
+			\] 
+
+			\begin{solution}
+				The DTFT for this is given by:
+				\[
+					X(e^{j \omega}) = \sum_{n=-\infty}^{\infty} x[n] e^{- j\omega n}
+				\] 
+				Plugging in what we have for \( x[n] \):
+				\[
+				X(e^{j \omega}) = \sum_{n=-\infty}^{\infty} \left( \frac{1}{2} \right) ^{-n}u(-n - 1) e^{- j \omega n}
+				= \sum_{n=-\infty}^{-1} \left( \frac{1}{2} \right)^{-n}e^{- j \omega n}
+				= \sum_{n=1}^{\infty} \left( \frac{e^{j \omega}}{2} \right)^{n}
+				\] 
+				This is an infinite geometric series (that is convergent), with \( a = r = e^{j \omega} / 2 \), 
+				so this actually simplifies:
+				\[
+				\sum_{n=1}^{\infty} \left( \frac{e^{j \omega}}{2} \right)^{n} = \frac{e^{j \omega}}{2}\frac{1}{1 - 
+				e^{j \omega} / 2} = \frac{1}{2e^{- j \omega} -1}
+				\] 
+			\end{solution}
+		\item 
+			\[
+				x[n] = \begin{cases}
+					n & \text{if \( |n| \le 3 \)}\\
+					0 & \text{if \( |n| > 3 \)}
+				\end{cases}
+			\]
+
+			\begin{solution}
+				We use the same formula, except here becuase \( x[n] \) is onlynonzero on the interval 
+				\( x \in [-3, 3] \), then we have:
+				\[
+					X(e^{j \omega}) = \sum_{n=-3}^{3} x[n] e^{- j \omega n}
+					= 3(e^{-3 j \omega} - e^{3 j \omega}) + 2(e^{-2 j \omega} - e^{2 j \omega}) + 
+					e^{- j \omega} - e^{j \omega} = 
+					-2j[3 \sin(3 \omega) + 2 \sin (2 \omega) + \sin \omega]
+				\] 
+			\end{solution}
+		\item 
+			\[
+			X(e^{j \omega}) = \sum_{k=-\infty}^{\infty} (-1)^{k} \delta\left( \omega - \frac{\pi}{2}k \right) 
+			\] 
+
+			\begin{solution}
+				To find \( x[n] \), we use the following formula:
+				\[
+					x[n] = \frac{1}{2\pi}\int_{\mean{2\pi}} X(e^{ j \omega})e^{ j \omega n}\diff \omega
+				\] 
+				What matters now is what chunk of \( 2\pi \) do we choose. Looking at the solutions (I had initially 
+				chosen \( [0, 2\pi] \) becuase that was standard, but that was a bad choice since one of the 
+				delta spikes occurs at 0), we can take 
+				\( [-\pi / 4, 7 \pi /4] \). Therefore:
+				\begin{align*}
+					x[n] &= \frac{1}{2\pi}\int_{-\pi / 4}^{7 \pi / 4} X(e^{j \omega}) e^{j \omega n} \diff \omega\\
+					&= \frac{1}{2\pi}\int_{- \pi / 4}^{7 \pi / 4} \sum_{k=-\infty}^{\infty} (-1)^{k}
+					\delta\left( \omega - \frac{\pi}{2}k \right) e^{ j \omega n}\diff  \omega
+				\end{align*}
+				So here, the deltas that we're concerned with are the ones at 
+				\( \omega = 0, \pi / 2, \pi, 3 \pi / 2 \), so this corresponds to \( k = 0, 1, 2, 3 \). 
+				Therefore, skipping the algebra, we get:
+				\[
+					x[n] = \frac{1}{2\pi}(1 - j^{n} + (-1)^{n} - (-j)^{n})
+				\] 
+			\end{solution}
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 3}
+	\begin{enumerate}[label=\alph*)]
+		\item Let \( H \) be a DT-LTI filter that delays its input by \( k \in \Z \) samples. Find an expression for 
+			\( h(n) \), the filter's impulse response. 
+
+			\begin{solution}
+				Such a filter will also delay a delta signal by \( k \) samples, so therefore we have 
+				\( h(n) = \delta(n - k) \). 
+			\end{solution}
+		\item Find an expression for \( H(\omega) \), the filter's frequency response. 
+
+			\begin{solution}
+				Applying the formula:
+				\[
+				H(\omega) = \sum_{n=-\infty}^{\infty} h(n)e^{-i \omega n} = \sum_{n=-\infty}^{\infty} 
+				\delta(n - k) e^{-i \omega n} = e^{-i \omega k}
+				\] 
+			\end{solution}
+		\item Consider a DT-LTI filter \( G \) with frequency response 
+			\[
+				G(e^{j \omega}) = e^{-j \omega / 2} \ \ \omega \in [-\pi, \pi]
+			\] 
+
+			Based on the result of part (b), explain why it makes sense to call \( G \) a \textit{half-sample delay 
+			filter}.
+
+			\begin{solution}
+				This is the case where \( k = \frac{1}{2} \) in the previous problem, and since \( k \) also 
+				represents the sample delay, having \( k = \frac{1}{2} \) makes sense for it to be called 
+				a half sample delay filter. 
+			\end{solution}
+		\item Determine the impulse response \( g(n) \) of the filter \( G \).
+
+			\begin{solution}
+				We can figure out \( g(n) \) from \( G(\omega) \):
+				\[
+					g(n) = \frac{1}{2\pi}\int_{-\pi}^{\pi} e^{-j \omega / 2} e^{j \omega n} \diff \omega 
+				\]
+				I plugged this into mathematica because I got lazy: 
+				\[
+				g(n) = \frac{2 \cos(n \pi)}{(1 - 2n) \pi}
+				\] 
+				Checking the solutions, the answer they got was \( \sinc(\pi(n - 1/2)) \), which is actually 
+				the same as the \( g(n) \) I got above. 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 4} 
+	Determine the complex-exponential discrete-time Fourier series (DTFS) expansion for each signal \( x: 
+	\Z \to \R\) described below, or explain why no such expansion exists. For each case where a DTFS expansion exists, 
+	be sure to identify the period \( p \) and the fundamental frequency \( \omega_0 \). 
+	
+	For part (e), assume \( x \) denotes \textit{exactly one period} of a periodic signal \( \tilde x \). Your answer
+	 would then be the DTFS expansion of the periodic signal \( \tilde x \) for certain values of \( n \), and 
+	 zero otherwise.
+
+	 \begin{enumerate}[label=\alph*)]
+	 	\item \( x(n) = \sin\left( \frac{2\pi}{5}n \right)  + \cos\left( \frac{4\pi}{5}n \right) , \ \forall n \).
+
+			\begin{solution}
+				Well, we can write this in terms of exponential form:
+				\[
+				x(n) = \frac{1}{2i}(e^{i 2 \pi / 5 n} - e^{-i 2 \pi / 5 n}) 
+				+ \frac{1}{2}(e^{i 4 \pi / 5 n} + e^{- i 4 \pi / 5 n})
+				\] 
+				In terms of the period, the sine wave has period 5 and the cosine wave has period 2.5, so therefore
+				the common period  \( p = 5 \), and thus \( \omega_0 = 2\pi / p = \frac{2\pi}{5} \).
+			\end{solution}
+		\item \textbf{(Optional)} \( x(n) = \cos\left( \frac{\sqrt{2} \pi}{5}n \right) \ \forall n \). 
+		\item \textbf{(Optional)} \( x(n) = \cos\left( \frac{2\pi}{3}n \right)  + (-1)^{n}, \ \forall n \).
+		\item \( x(n) = \sum_{l=-\infty}^{\infty} \delta(n - lp) \), where \( p \) is a positive integer. 
+
+			\begin{solution}
+				This equation is identical to the one solved in problem 1e, where we got 
+				\[
+				X_k = \frac{1}{p}
+				\] 
+				for all values of \( k \). The signal repreats every \( p \) times, so the period is \( p \), 
+				and therefore the fundamental frequency \( \omega_0 = \frac{2\pi}{p} \).
+			\end{solution}
+		\item \( x(n) = \delta( n + 2) + 2\delta(n+1) + 3\delta(n) + \delta(n - 2) \). 
+
+			\begin{solution}
+				As suggested by the problem statement, we can treat this signal \( x(n) \) as part of a 
+				larger signal \( \tilde x(n) \), written as:
+				\[
+				\tilde x(n) = \sum_{n=-\infty}^{\infty} x(n - 5l)
+				\] 
+				Becuase the signal has finite length \( 5 \), then we can identify that \( p = 5 \), and 
+				\( \omega_0 = \frac{2\pi}{5} \). 
+				Now, we can find the Fourier coefficients of \( \tilde x(n) \), call them \( \tilde X_k \):
+				\[
+				\tilde X_k = \frac{1}{p}\sum_{n=\mean p} \tilde x(n) e^{-i k \omega_0 n}
+				\] 
+				then, because we're working with a finite signal, we will only have 5 nonzero terms, namely 
+				those at \( k = 0, 1, 2, 3, 4 \). I will admit that from here, I just looked at the solutions 
+				pdf, which has the following values for \( \tilde X_k \):
+				\begin{align*}
+					\tilde X_0 &= \frac{1}{5}(\tilde x(-2) + \tilde x(-1) + \tilde x(0) + \tilde x(1) + \tilde x(2))\\
+					\tilde X_1 &= \frac{1}{5}\left( 2 \cos\left( \frac{4\pi}{5} \right) + 4\cos\left( \frac{2\pi}{5} \right)  + 3 \right)  \\
+					\tilde X_2 &= \frac{1}{5}\left( 2 \cos\left( \frac{8\pi}{5} \right)  + 4\cos\left( \frac{4\pi}{5} \right) + 3 \right)  \\
+					\tilde X_3 &=  \tilde X_2 \\
+					\tilde X_4 &= \tilde X_1 
+				\end{align*}
+				Therefore, we can now plug this into the formula:
+				\[
+				x(n) = \sum_{k=-\infty}^{\infty} X_k e^{i \omega_0 n}
+				\] 
+				and we get:
+				\[
+				x(n) = \begin{cases}
+					\tilde X_0 + \tilde X_1 e^{2 \pi i n / 5} + \tilde X_2 e^{4 \pi i n / 5} + 
+					\tilde X_3 e^{6 \pi i n / 5} + \tilde X_4 e^{8 \pi i n / 5} & -2 \le n \le 2\\
+					0 & \text{else}
+				\end{cases}
+				\] 
+			\end{solution}
+	 \end{enumerate}
+\end{document}

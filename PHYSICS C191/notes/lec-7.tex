@@ -1,0 +1,96 @@
+\section{Quantum Fourier Transform}
+\begin{itemize}
+	\item This is perhaps the most important lecture in all of quantum information. 
+	\item Classically, the Fourier Transform is defined as: 
+		\[
+		y_k \equiv \frac{1}{\sqrt{2^{n}} }\sum_{j = 0}^{2^{n} - 1} x_j e^{2 \pi i j k / 2^{n}}
+		\] 
+	\item The important thing about this definition is the phase factors. If we let \( N = 2^{n} \), the form 
+		looks a bit more familiar: =
+		\[
+		y_k = \frac{1}{\sqrt{N} }\sum_{k = 0}^{N - 1} \omega^{-jk}f_k
+		\] 
+		where \( \omega^{-jk} = \exp{-2 \pi i /N} \). 
+	\item Quantumly, the Quantum fourier transform is:
+		\[
+		\ket*{j} \to \frac{1}{\sqrt{2^{n}} }\sum_{k = 0}^{2^{n} - 1} e^{2 \pi i j k / 2^{n}} \ket*{k}
+		\] 
+		The states \( \ket*{k} \) are analogous to the phases in the classcal Fourier transform, and are represented by
+		an integer basis state.
+	\item So an arbitrary state \( \ket*{\psi} \) can be written as: 
+		\[
+		\ket*{\psi} = \sum_{j = 0}^{2^{n} - 1} y_j \ket*{k}
+		\] 
+	\item Here, we'll represnet \( j \) as a binary number: \( j = j_{12}^{n - 1} + j_2 2^{n - 2} + \cdots + 
+		j_n 2^{0}\), and let \( k \) be defined similarly.
+	\item Now, we're going to write \( k \) out in terms of this binary expansion, and we get:
+		\[
+		\frac{1}{\sqrt{2^{n}} }\sum_{k = 0}^{2^{n} - 1}e^{2 \pi i j k_1 2^{-1}} \times e^{2 \pi i j k_2 2^{-2}} \times 
+		\cdots \times e^{2 \pi i j k_n 2^{-n}}\ket*{k_1k_2\dots k_n}
+		\] 
+	\item After a bit more math (see notes), we ultimately get the following expansion:
+		\[
+		\frac{1}{\sqrt{2} }(\ket*{0} + e^{2 \pi ij 2^{-1}}\ket*{1})(\ket*{0} + e^{2 \pi i j 2^{-2}}\ket*{1}) 
+		\cdots \left( \ket*{0} + e^{2 \pi i j 2^{-n}}\ket*{1} \right) 
+		\] 
+		So this is basically just a tensor product of a bunch of states, each with a different phase 
+		factor \( e^{2 \pi i j / 2^{k}} \) where \( k \) ranges from 1 to \( n \). 
+	\item To put this in a form which we can exploit, we'll rewrite the quantity \( \frac{j}{2^{k}} \) in binary 
+		fractional form, so that it's easy to work with. Specifically, write \( \frac{j}{2^{k}} \) as a 
+		"decimal":
+		\begin{align*}
+			\frac{j}{2^{k}} &= \sum_{\nu}^{n}j_{\nu}2^{n - \nu - k} \\
+			&= j_1j_2\dots j_{n-k}.j_{n-k+1}\dots j_n 
+		\end{align*}
+	\item Now we use this representation on the phase factors we found earlier. For the values of 
+		\( \frac{j}{2^{k}} \) that are larger than 1, notice we can just pull it out and instead represent it 
+		entirely by a binary fraction:
+		\[
+		e^{2 \pi i \frac{j}{2^{k}}} = 1\times e^{2 \pi i (0.j_1j_2\dots j_n)}
+		\] 
+		Doing this for every term, we get:
+		\[
+		\frac{1}{\sqrt{2^{n}} }\left( \ket*{0} + e^{2 \pi i (0.j_n)}\ket*{1} \right) 
+		\left( \ket*{0} + e^{2 \pi i (0.j_{n-1}j_n)}\ket*{1} \right) \cdots 
+		\left( \ket*{0} + e^{2 \pi i (0.j_1j_2\dots j_n)} \right) 
+		\] 
+		\question{Why does the decimal representation get more complex as we go down the list?} 
+	\item To see how to implement this, first notice that the \( n - l + 1 \)-th qubit is determined by 
+		the expression: 
+		\[
+		\frac{1}{\sqrt{2} }\left( \ket*{0} + e^{2 \pi (0.j_l \dots j_n)} \right) 
+		\] 
+		We'll first pull out the first component of the phase:
+		\[
+		\frac{1}{\sqrt{2} }\left( \ket*{0} + e^{2 \pi i (0.j_l)} \times e^{ 2 \pi (0.0 j_{l + 1} \dots j_n)} \right) 
+		\] 
+		This first component can be rewritten as:
+		\[
+		\frac{1}{\sqrt{2} }(\ket*{0} + e^{2 \pi i (0.j_l)} = \frac{1}{\sqrt{2} }
+		(\ket*{0} + e^{2 \pi i j_l / 2} \ket*{1}) = \frac{1}{\sqrt{2} }(\ket*{0} + (-1)^{j_l}\ket*{1})
+		\] 
+		where we've used the definition of the binary fraction and also the fact that \( e^{i\pi j_l} = (-1)^{j_l} \).
+		This looks exactly like what we would get if we acted the Hadamard gate on \( \ket*{j_l} \) ! 
+
+		\comment{This is becuase \( (-1)^{j_l} = 0 \) if \( j_l = 0 \), so we get the \( + \) in the middle, and 
+		the \( - \) in the middle if we had \( j_l = 1 \).}
+	\item With this first bit taken care of, we repeat the same process to get the second gate, and so on. Therefore,
+		the rest of the components can be done by implementing a series of rotations: 
+		\[
+			R_k = \begin{bmatrix} 1& 0\\0 & e^{2 \pi i / 2^{k}} \end{bmatrix} 
+		\] 
+		with each value being controlled by the value of the \( j_k \)-th qubit. This is becuase we only want the 
+		rotation to be applied when \( j_k = 1 \). 
+	\item So in general, we just apply a bunch of controlled \( H \) gates to get the final state. 
+	\item However, when the state is prepared, notice that the states are in reverse order of what we want them to be. 
+		That's okay, however, since we have SWAP gates that allow us to swap the states so that we get them in the 
+		right order. Recall that a SWAP gate is basically just three CNOT gates put alongside each other in 
+		reversed order.  
+	\item In terms of runtime complexity, the total number of \( R \) gates needed is \( n(n+1) / 2 \), which means 
+		that the Quantum Fourier transform is \( O(n^2) \). Compared to the classical algorithm which completes
+		the same task in \( O(n \log n) \), this is much faster. 
+	\item The QFT is also unitary, just like the Classical FT. This makes sense, since had it not been unitary then 
+		we'd have massive issues. 
+\end{itemize}
+
+

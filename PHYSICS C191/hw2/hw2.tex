@@ -34,11 +34,36 @@
 			And since the inner product evaluates to 0, then these two vectors are orthogonal.
 			\end{solution}
 		\item Prove that the Bell state \( \ket*{\psi^{-}} = \frac{1}{\sqrt{2} }(\ket*{vv^{\perp}} - 
-			\ket*{v^{\perp}v})\) with \( \ket*{v} \) annd \( \ket*{v^{\perp}} \) perpendicular 
+			\ket*{v^{\perp}v})\) with \( \ket*{v} \) and \( \ket*{v^{\perp}} \) perpendicular 
 			normalized vectors, is invariant under rotations of the two qubits (applying the same rotation on 
 			both qubits). i.e., taking the form of \( \ket*{v} \) and \( \ket*{v^{\perp}} \) as in (a), show that 
 			the state \( \ket*{\psi^{-}} = \frac{1}{\sqrt{2} }(\ket*{vv^{\perp}} - \ket*{v^{\perp}v}) \) will 
 			always be equal to \( \frac{1}{\sqrt{2} }(\ket*{10} - \ket*{01}) \). 
+
+			\begin{solution}
+				Our goal is to show that \( \ket*{\psi^{-}} \) is always orthogonal, and to do that we show that 
+				\( \ket*{\psi^{-}} = \frac{1}{\sqrt{2} }(\ket*{10} - \ket*{01}) \). To do this, we just write out 
+				the state:
+				\begin{align*}
+					\ket*{\psi^{-}} &= \frac{1}{\sqrt{2} }\left( (a \ket*{0} + b\ket*{1})
+					(b^{*}\ket*{0} - a^{*}\ket*{1}) - 
+				(b^{*}\ket*{0} - a^{*}\ket*{1})(a\ket*{0} + b\ket*{1})\right)  \\
+				&= \frac{1}{\sqrt{2} }\left( ab^{*}\ket*{00} - |a|^2 \ket*{01} + 
+				|b|^2\ket*{10} - ba^{*}\ket*{11} - \left( b^{*}a\ket*{00} + |b|^2\ket*{01} - |a|^2 \ket*{10}
+			- ba^{*}\ket*{11}\right) \right)  
+				\end{align*}
+				The \( \ket*{00} \) and \( \ket*{11} \) terms cancel, so we get: 
+				\[
+				\ket*{\psi^{-}} = \frac{1}{\sqrt{2} }\left( (|a|^2 + |b|^2) \ket*{10} - 
+				(|a|^2 + |b|^2) \ket*{01}\right) 
+				\] 
+				using the fact that \( |a|^2 + |b|^2 \) becuase the state \( \ket*{v} \) is normalized, 
+				this means that
+				\[
+					\ket*{\psi^{-}} = \frac{1}{\sqrt{2} }(\ket*{10} - \ket*{01})
+				\] 
+				 as desired. 
+			\end{solution}
 	\end{enumerate}
 	\pagebreak
 	\section*{Problem 2}
@@ -97,7 +122,55 @@
 	 eq. (\ref{prob}) to identify the value of \( \theta \) that gives the maximum probability.
 
 	 \begin{solution}
-	 	
+		I'm going to follow the solution step by step, so first I will argue that the probability of guessing the 
+		correct state is given by 
+		\[
+		\frac{1}{2}|\braket*{a}{\phi}|^2 + \frac{1}{2}|\braket*{b}{\phi}|^2
+		\] 
+		To do this, note that the probability of guessing the correct state is the product of the probaiblity of 
+		measuring the correct outcome times the probability that the state was the outcome we desire. In other 
+		words:
+		\[
+			p(\text{correct}) = p(\text{measure a}) \cdot p(\text{state \( \ket*{\phi} \)}) + p(\text{measure b}) \cdot 
+		p(\text{state \( \ket*{0} \)})
+		\] 
+		The probability that we get either \( \ket*{\phi} \) or \( \ket*{0} \) is \( \frac{1}{2} \), and the probability
+		of measuring the given state is given by the inner product between \( \ket*{a} \) and \( \ket*{\phi} \) or 
+		\( \ket*{b} \) and \( \ket*{0} \) respectively. Therefore, the probability of measuring the correct state 
+		is: 
+		\[
+		\frac{1}{2}|\braket*{a}{\phi}|^2 + \frac{1}{2}|\braket*{b}{0}|^2
+		\] 
+		Next, using the given states \( \ket*{a} \) and \( \ket*{b} \), we have:
+		\begin{align*}
+			\frac{1}{2}|\braket*{a}{\phi}|^2 + \frac{1}{2}|\braket*{b}{0}|^2 &= 
+			\frac{1}{2}\left|\left(\bra*{0}\cos \theta 
+			+ \bra*{1} \sin \theta e^{-i \gamma}\right) \ket*{\phi}\right|^2 + \frac{1}{2}\left| 
+			\left(\bra*{0} e^{i \gamma }\sin \theta - \bra*{1}\cos \theta\right) \ket*{0}\right| ^2\\
+			&= \frac{1}{2}\left| (\cos \theta \cos \phi + e^{-i \gamma} \sin \theta \sin \phi) \right|^2
+			+ \frac{1}{2}\left| e^{i \gamma}\sin \theta \right|^2 
+		\end{align*}
+		The phase term in the second term doesn't matter; it'll get cancelled out regardless of what 
+		\( \gamma \) is. For the first term, we see that (from Ed) this probability is maximized when 
+		\( \gamma = 0 \) (i.e. \( e^{i \gamma} = 1 \) ) when \( \cos \theta \cos \phi \) and 
+		\( \sin \theta \sin \phi \) are the same sign, and \( \gamma = \pi \) whne \( \cos \theta \cos \phi \) 
+		and \( \sin \theta \sin \phi \) have opposite sign. Then, using our new state, we have:
+		\[
+			P = \frac{1}{2}\left[(\cos \theta \cos \phi + \sin \theta \sin \phi)^2 + \sin^2 \theta\right]
+		\] 
+		then, to solve for where this probability is maximized, we take \( \dv{P}{\theta} = 0 \), and doing this 
+		in Mathematica gives us two solutions:
+		\begin{align*}
+			\theta &= -\frac{\pi}{4} + \frac{\phi}{2}\\
+			\theta &=  \frac{\pi}{4} + \frac{\phi}{2} 
+		\end{align*}
+		We only take the latter solution because we are interested in \( \theta \in [0, 2\pi) \), so the optimal 
+		states are:
+		\begin{align*}
+			\ket*{a} &= \cos(\pi /4 + \phi / 2) \ket*{0}+ \sin(\pi /4 + \phi /2) \ket*{1} \\
+		 \ket*{b} &= \sin(\pi /4 + \phi / 2) \ket*{0} - \cos(\pi /4 + \phi /2) \ket*{1} 
+		\end{align*}
+		as desired. 
 	 \end{solution}
 	 \pagebreak
 	 \section*{Problem 3}
@@ -201,7 +274,33 @@
 
 			\begin{solution}
 				We can do this by showing that the resulting matrices from the tensor product of the two 
-				result in the same matrix:
+				result in the same matrix. Starting with the first identity, we know that the circuit on the right 
+				is represented as:
+				\[
+					(I \otimes H)(\text{Controlled-Z})(I \otimes H) = 
+					\frac{1}{2}\begin{pmatrix} 2&0&0&0\\0&2&0&0\\0&0&0&2\\0&0&2&0\end{pmatrix} 
+					= \text{CNOT}
+				\] 
+				as desired. The left controlled-Z matrix is:
+				\[
+					\begin{pmatrix} 1 & 0 & 0 &0\\0&1 &0 &0\\0&0&1&0\\0&0&0&-1 \end{pmatrix} 
+				\] 
+				For the right controlled-Z matrix, let's look at what the gate does to the qubits. For the state 
+				\( \ket*{00} \), the gate does nothing. For the state \( \ket*{01} \), applying the \( Z \)-gate 
+				would do nothing, since applying \( Z\) to \( \ket*{0} \) does nothing. For the state \( \ket*{10} \), 
+				nothing happens, and for the state \( \ket*{11} \), then we get a phase which flips the sign of the 
+				state. Therefore, as a list:
+				\begin{align*}
+					\ket*{00} \to \ket*{00}\\
+					\ket*{01} \to \ket*{01}\\
+					\ket*{10} \to \ket*{10}\\
+					\ket*{11} \to -\ket*{11}
+				\end{align*}
+				And since this is our basis, then we can write out the right controlled-\( Z \) matrix as: =
+				\[
+					\begin{pmatrix} 1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&-1 \end{pmatrix} 
+				\] 
+				This is the same as the left controlled-\( Z \) gate, as desired. 
 			\end{solution}
 		\item Prove that the direction of the CNOT is reversed in the Hadamard basis, i.e., show the following 
 			circuit identity (hint: use the prior part):
@@ -213,9 +312,59 @@
 				\( = \) 
 				\begin{quantikz}
 					& \gate{H} & \targ{} & \gate{H}&\\
-					&\gate{H} & \ctrl{-1} & \gate{H}
+					&\gate{H} & \ctrl{-1} & \gate{H} & 
 				\end{quantikz}
 			\end{center}
+
+			\begin{solution}
+				Again, we show equality by showing the transformation is the same. The circuit on the right 
+				is written as (I'm skipping the algebra because it's too hard to type out):
+				\[
+					(H \otimes H)(\text{CNOT2})(H \otimes H) = \frac{1}{4}\begin{pmatrix} 1 & 1 & 1 & 1\\
+					1 & -1 & 1 & -1\\
+				1 & 1 & -1 & -1\\1 & -1 & -1 & 1\end{pmatrix}
+						\begin{pmatrix} 1&0&0&0\\0&0&0&1\\0&0&1&0\\0&1&0&0\end{pmatrix} 
+						\begin{pmatrix} 1&1&1&1\\1&-1&1&-1\\1&1&-1&-1\\1&-1&-1&1 \end{pmatrix} 
+						= \begin{pmatrix} 1&0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0 \end{pmatrix}  = \text{CNOT}
+				\] 
+				The resulting matrix is exactly the CNOT gate, as desired. Side note, I only realized that the previous 
+				part was useful becuase there is a series of simplifications that leads us to the answer after I had 
+				already bashed out the matrix product by hand. I give credit to my partner Teja Nivarthi for this 
+				set of simplifications:
+				\begin{align*}
+					\begin{quantikz}
+						& \gate{H} & \targ{} & \gate{H}&\\
+						& \gate{H} & \ctrl{-1} & \gate{H}&
+					\end{quantikz} &= 
+					\begin{quantikz}
+						& \gate{H} & \gate{X} & \gate{H}&\\
+						& \gate{H} & \ctrl{-1} & \gate{H}&
+					\end{quantikz}\\
+					&= 
+					\begin{quantikz}
+						& & \gate{Z} & &\\
+						& \gate{H} & \ctrl{-1} & \gate{H} & 
+					\end{quantikz}\\
+					&=
+					\begin{quantikz}
+						& & \ctrl{1} & & \\
+						& \gate{H} & \gate{Z} & \gate{H}&
+					\end{quantikz}\\
+					&=
+					\begin{quantikz}
+						& & \ctrl{1}&&\\
+						& & \gate{X} && 
+					\end{quantikz}\\
+					&= 
+					\begin{quantikz}
+						& &\ctrl{1} & &\\
+						& & \targ{}& &
+					\end{quantikz}
+				\end{align*}
+				To explain, this simplification uses the relation \( HXH = Z \) and 
+				\( HZH = X \) that we proved in the previous   
+				homework, along with the identity that the controlled-\( Z \) gate is symmetric.
+			\end{solution}
 	 \end{enumerate}
 	 \pagebreak
 	 \section*{Problem 5}
@@ -232,6 +381,17 @@
 				& \ctrl{1} & \gate{X} & \\
 				& \targ{} & \gate{X} & 
 			\end{quantikz}
+
+			\begin{solution}
+				For all of these gates, I'm just going to prove equality by bashing out the matrix products.
+				\[
+					\text{LS} = (X \otimes I)(\text{CNOT}) = \begin{pmatrix} 0&0&0&1\\0&0&1&0\\1&0&0&0\\0&1&0&0 \end{pmatrix} 
+				\] 
+				And the right side:
+				\[
+					\text{RS} = (\text{CNOT})(X \otimes X) = \begin{pmatrix} 0&0&0&1\\0&0&1&0\\1&0&0&0\\0&1&0&0 \end{pmatrix} 
+				\] 
+			\end{solution}
 		\item 
 			\begin{quantikz}
 				& \gate{Z} & \ctrl{1} & \\
@@ -242,6 +402,20 @@
 				& \ctrl{1} & \gate{Z} & \\
 				& \targ{} & &
 			\end{quantikz}
+
+			\begin{solution}
+				Left side:
+				\[
+					\text{LS} = (Z \otimes I)(\text{CNOT}) = 
+					\begin{pmatrix} 1&0&0&0\\0&1&0&0\\0&0&0&-1\\0&0&-1&0 \end{pmatrix} 
+				\] 
+				Right side: 
+				\[
+				\text{RS} = (\text{CNOT})(Z \otimes I) = 
+				\begin{pmatrix} 1&0&0&0\\0&1&0&0\\0&0&0&-1\\0&0&-1&0 \end{pmatrix} 
+				\] 
+				as desired. 
+			\end{solution}
 		\item 
 			\begin{quantikz}
 				& & \ctrl{1} & \\
@@ -252,6 +426,20 @@
 				& \ctrl{1} & & \\
 				& \targ{} & \gate{X}& 
 			\end{quantikz}
+
+			\begin{solution}
+				Left side: 
+				\[
+					\text{LS} = (I \otimes X)(\text{CNOT}) = 
+					\begin{pmatrix} 0&1&0&0\\1&0&0&0\\0&0&1&0\\0&0&0&1 \end{pmatrix} 
+				\] 
+				Right side: 
+				\[
+				\text{RS} = (\text{CNOT})(I \otimes X) =  
+				\begin{pmatrix} 0&1&0&0\\1&0&0&0\\0&0&1&0\\0&0&0&1 \end{pmatrix} 
+
+				\] 
+			\end{solution}
 		\item 
 			\begin{quantikz}
 				& & \ctrl{1} & \\
@@ -262,5 +450,18 @@
 				& \ctrl{1} & \gate{Z} & \\
 				& \targ{} & \gate{Z} & 
 			\end{quantikz}
+
+			\begin{solution}
+				Left side: 
+				\[
+					\text{LS} = (I \otimes Z)(\text{CNOT}) = \begin{pmatrix} 1&0&0&0\\0&-1&0&0\\0&0&0&1\\
+					0&0&-1&0\end{pmatrix} 
+				\] 
+				Right side: 
+				\[
+				\text{RS} = (\text{CNOT})(Z \otimes Z) = \begin{pmatrix} 1&0&0&0\\0&-1&0&0\\0&0&0&1\\
+					0&0&-1&0\end{pmatrix} 
+				\] 
+			\end{solution}
 	 \end{enumerate}
 \end{document}

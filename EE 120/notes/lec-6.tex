@@ -42,6 +42,16 @@
 \end{itemize}
 \subsection{Fourier Transform} 
 \begin{itemize}
+	\item The fourier transform came from the study of the heat equation, written as:
+		\[
+			c \rho \pdv{t} u(x, y, z, t) = k \left( \pdv[2]{x} + \pdv[2]{y} + \pdv[2]{z} \right) 
+			u(x, y, z, t)
+		\] 
+		Fourier then claimed that the solution can be expanded in a series of sines with multiples of the variable. 
+		In other word,s the solution is of the form:
+		\[
+		f(x) = \frac{1}{2a_0} + (a_1 \sin(x) + b_2 \cos(x)) + (a_2\sin(2x) + b_2\cos(2x)) + \cdots 
+		\] 
 	\item Recall the frequency response of an LTI system:
 		\begin{center}
 			\begin{tikzpicture}
@@ -56,26 +66,42 @@
 		\[
 		y(t) = \int_{-\infty}^{\infty} x(\tau) h(t - \tau) \diff  \tau 
 		\] 
-	\item Recall that the harmonic response of an LTI system is given by \( H(\omega) e^{j \omega t} \), where 
-		\begin{align*}
-			H(f) &\equiv \int e^{j 2\pi f t}h(t) \diff  t\\
-			H(\omega) &\equiv \int e^{i \omega t} h(t) \diff t
-		\end{align*}
-	\item The Fourier transform is defined as:
+		If we do this with our input \( e^{j 2 \pi ft} \), then we get:
+		\[
+		y(t) = H(f) e^{j 2 \pi ft} = H(\omega) e^{j \omega t }
+		\] 
+		Here, \( H(\omega) \) is defined to be the Fourier transfrm of the impusle response \( h(t) \):
+		\[
+			H(\omega) = \int_{-\infty}^{\infty} e^{- j \omega t} h(t) \diff t 
+		\] 
+		Alternatively, written in frequency language:
+		\[
+		H(f) = \int_{-\infty}^{\infty} e^{-j 2 \pi ft}h(t) \diff t 
+		\] 
+	\item Formally, the Fourier transform is defined as:
 		\[
 		H(f) \equiv \mathcal F \{h(t)\} \equiv \int_{-\infty}^{\infty} h(t) e^{-j 2\pi ft }\diff  t 
 		\] 
-		This transforms the signal \( h(t)  \) from the time domain into the frequency domain.   
+		This transforms the signal \( h(t)  \) from the time domain into the frequency domain. The reason for this 
+		is becuase the Fourier transform is a definite integral, which kills off any \( t \) dependence entirely. 
+		In terms of angular frequency, we have:
+		\[
+		H(\omega) \equiv \mathcal F \{h(t)\} = \int_{-\infty}^{\infty} h(t) e^{-j \omega t}\diff t 
+		\] 
 	\item The inverse Fourier transform is:
 		\[
 			h(t) = \mathcal F^{-1} \{H(f)\} = \int_{-\infty}^{\infty} H(f) e^{j 2\pi ft}\diff  f 
+		\]
+		Since the Fourier transform takes objects from the time domain to the frequency domain, the inverse 
+		Fourier transform takes things from the frequency domain to the time domain. 
+
+		In terms of angular frequency, we have:
+		\[
+		h(t) = \mathcal F^{-1} \{H(\omega)\} = \frac{1}{2\pi}\int_{-\infty}^{\infty} H(\omega) 
+		e^{j \omega t}\diff \omega 
 		\] 
-	\item We can also write this in terms of \( \omega \) :
-		\begin{align*}
-			H(\omega) &= \mathcal F \{h(t)\} = \int_{-\infty}^{\infty} h(t) e^{-j \omega t} \diff t \\
-			h(t) &= \mathcal F^{-1}\{H(\omega)\} = \frac{1}{2\pi}\int_{-\infty}^{\infty} H(\omega) e^{j \omega t}
-			\diff \omega\\
-	\end{align*}
-	The factor of \( \frac{1}{2\pi} \) that exists in the IFT for \( \omega \) is a result of the fact that we have 
-	\( \omega = 2\pi f \).
-\end{itemize}
+		This is also sometimes called the "synthesis equation", since we basically create \(  x(t) \) out of 
+		\( H(\omega) \). 
+	\item We can also provably show that the Inverse fourier transform does indeed invert the Fourier transform, 
+		albeit with a lot of algebra. See lecture slides for the full derivation.  
+	\end{itemize}

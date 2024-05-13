@@ -1,0 +1,52 @@
+\section{Subsets}
+Let's look back at what we've defined so far: 
+	\begin{itemize}
+		\item Sets, fields, vector spaces: these are groups of objects that follow a certain pattern, 
+			becoming increasingly specific.
+		\item We also defined the notion of a subset: given two sets \( T_1 \subset S \) and \( T_2 \subset S \), 
+			then we also investigated the union \( T_1 \cup T_2 \) and intersection \( T_1 \cap T_2 \) 
+			of \( T_1 \) and \( T_2 \). 
+		\item Within these definitions, we've implicitly defined the idea of a "sub" -- the idea that 
+			a set can be contianed within another set.
+	\end{itemize}
+Sets on their own have no real structure, so it's fairly difficult to really study them. Instead, 
+we will study sets with \textit{some} structure, such as a field. How would we define subsets for a
+field \( F \)? Well, we'd define them to have the same structure as \( F \): being euipped with two 
+operations \( +, \cdot \), and that it's closed under these operations. 
+
+An example of a subfield is the reals: \( \R \subset \C \). Complex numbers are of the 
+form \( a + bi \), whereas reals are written as \( a + 0i \), a subset of \( \C \). The reals 
+also satisfies the notion of a field, since the sum and product of two real numbers is also a 
+real number. 
+
+Our interest is to define the notion of a \textit{subspace}, for vector spaces. It's defined as follows:
+\begin{definition}
+	Let \( V \) be a vector space over \( F \). A subset \( U \subset V \) is called a \textit{subspace} of 
+	\( V \) if it is preserved by the operations of addition and scalar multiplication.
+\end{definition}
+Explicitly, this means:
+\begin{align*}
+	\forall v, w, \in U, v + w \in U\\
+	\forall v \in U, \lambda \in F, \lambda v \in U
+\end{align*}
+Consequently, this means that \( U \) is also a vector space over \( F \) (the same \( F \)), with respect 
+to these operations. For instance, first the set of real tuples 
+\( \R^2 = \{(x_1, x_2) \vert x_1, x_2 \in \R \}  \). Now, consider the set \( U = (x_1, 0) \vert x_1 \in \R\). 
+It's easy to show \( U \) is preserved under addition and scalar multiplication, then \( U \) is indeed a vector space.
+Further, we can also show that \( U \subset  R \), so therefore \( U  \) is a valid vector subspace of \( \R^2 \). 
+
+Also, trivially, given a vector space \( V \), then \( V \) is also its own subspace. 
+
+\begin{theorem}
+	A subset \( U \subset V \) (\( V \) is the same as defined earlier) is a subspace if and only if the following 
+	three conditions are satisfied:
+	\begin{enumerate}[label=\alph*)]
+		\item The zero element \( 0 \in V \) is also in \( U \). 
+		\item For any \( u,v \in U \), then \( u + v \in U \). 
+		\item For all \( v \in U \) and \( \lambda \in F \), then \( \lambda v \in U \). 
+	\end{enumerate}
+\end{theorem}
+How is this statement different from the definition stated earlier? The latter two conditions are the same, but the 
+first condition of the zero element is the distinction. Earlier, to prove a vector subspace, what we'd have to do is 
+prove its closedness, then prove all six axioms of a vector space. However, we no longer need to do all that -- all we 
+need now is just to show that the zero element exists within \( U \).

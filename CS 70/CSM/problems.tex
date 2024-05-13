@@ -1,7 +1,6 @@
 \documentclass[10pt]{article}
 \usepackage{../../local}
 
-
 \newcommand{\classcode}{CS 70}
 \newcommand{\classname}{Problems}
 \renewcommand{\maketitle}{%
@@ -14,22 +13,159 @@
 }
 \linespread{1.1}
 \begin{document}
-	\maketitle
-	Consider throwing $n$ balls into $n$ bins uniformly at random. Let $X$ be the number of balls in the 
-	first bin.
-	\begin{enumerate}[label=\alph*)]
-		\item What is the expected value of $X$?
-		\item What is the variance of $X$?
-	\end{enumerate}
+%	\maketitle
+%	Consider throwing $n$ balls into $n$ bins uniformly at random. Let $X$ be the number of balls in the 
+%	first bin.
+%	\begin{enumerate}[label=\alph*)]
+%		\item What is the expected value of $X$?
+%		\item What is the variance of $X$?
+%	\end{enumerate}
 
 
-	What is the covariance of $X$ and $X^3$ where $X$ is a uniformly distributed variable on the interval $[0, 
-	1]$? (i.e. $X \sim U[0, 1]$)
+%	What is the covariance of $X$ and $X^3$ where $X$ is a uniformly distributed variable on the interval $[0, 
+%	1]$? (i.e. $X \sim U[0, 1]$)
 
-	\section{Halting Problem}
-		Basically problem comes down to reducing any given problem to the halting problem. We can 
-			do this by describing a program that halts if we reach the desired input, and not otherwise. 
-			Generally, things where we need to determine something about \textit{how} a program executes (for 
-			instance, executing a specific line) is uncomputable, and things that can be tracked (like 
-			how much memory a program uses) can be computable.
+	
+%	\section{Counting}
+\section*{Problem}
+	Suppose two integers \( a \) and \( b \) are drawn uniformly from \( [-n, \dots, n] \), 
+	that is, \( a, b \in \Z \) and \( -n \le a,b, \le n \). Find the probability that \( |a-b| \le k \). 
+	You may assume that \( k < \frac{n}{2} \). 
+
+	\begin{solution}
+		At first glance, this problem doesn't really give us a point of entry to even begin counting, because even for 
+		any particular \( k \) (say, \( k = 10 \)), there are so many values of \( a \) and \( b \) that satisfy this 
+		that it's hard to count. The strategy then is to \textit{give ourselves somewhere to start}, then sum over 
+		all possible ways to start to account for all the possibilities.
+
+		With that in mind, how do we employ this strategy? What I am really asking here is, what point of 
+		attack do we want to take? We could fix \( k \) and count all possible \( a, b \), which works and isn't too 
+		much more complicated than the solution I'm about to present,\footnote{You should try doing it like this, 
+		it's good practice!} but what I'm going to do instead is fix a value of \( a \), analyze 
+		the number of values \( b \) can take such that \( |a - b| \le k \), then sum over all the values of 
+		\( b \) given for each \( a \) to get our total count.
+
+		So with our strategy in place, let's start counting, and the first thing we immediately recognize is that 
+		depending on the value of \( a \), there's a different number of \( b \) that work. Specifically there's 
+		three cases:
+		\begin{itemize}
+			\item \( a < -n + k \)
+			\item \( -n + k \le  a \le  n - k \) 
+			\item \( a > n-k \)
+		\end{itemize}
+		To see why this is, consider \( n = 10 \) and \( k = 3 \). Then, consider a number that lives in the first 
+		case, say \( a = -8 \). Then, what values of \( b \) exist such that \( |a - b| \le 5 \)? Well, we can 
+		split these numbers into three categories:
+		\begin{itemize}
+			\item Numbers to the left of \( a \): \( b = -10, -9 \) 
+			\item \( a \) itself: \( b = -8 \) 
+			\item Numbers to the right of  \( a \): \( b = -7, -6, -5 \). 
+		\end{itemize}
+		What I want you to notice is the number of numbers in each category. The first category has less than \( k \)
+		numbers, the second category has one number, and the third category has \( k \) numbers. For every number 
+		in \( a < -n + k \), we will always have less than \( k \) numbers to the left, since we are limited 
+		by \( -n \) to the left. We will alwyas have \( b = a\) as an option, and to the right we will always have 
+		\( k \) since we're not limited by anything. 
+
+		In general you can visualize this first case as the following 
+		diagram, where \( a = -n + i \) and \( i \) is some number that is less than \( k \):
+		\begin{center}
+			\begin{tikzpicture}[scale=0.5]
+				\draw[stealth-stealth]  (-10, 0) node[left] {\( -n \) } -- (10, 0) node[right] {\( n \) };
+				\draw[-stealth, blue] (-8, -1) node[below] {\( a = -n + i\) } -- (-8, 0); 	
+				\draw[dashed, red] (-8, 0) -- (-8, 2);
+				\draw[dashed, red] (-10, 0) -- (-10, 2);
+				\draw[stealth-stealth, red] (-10, 1) -- node[midway, above] {\( i \) } (-8, 1); 
+				\draw[dashed, red] (-5, 0) -- (-5, 2);
+				\draw[stealth-stealth, red] (-8, 1) -- node[midway, above] {\( k \) } (-5, 1);
+			\end{tikzpicture}
+		\end{center}
+		Here, the range indicated in red is the values that \( b \) can take such that \( |a - b| \le k \). So, 
+		there are \( i \) values to the left, \( k \) values to the right, and including \( a \) itself, 
+		then we have \( i + k + 1 \) values in total for values in this category. 
+
+		Now let's look at the second case, returning back to our example of \( n = 10 \) and \( k = 3 \). Here, we can 
+		pick \( a = -1 \) as an example. Then, we can split the values of \( b  \) into the same three 
+		categories:
+		\begin{itemize}
+			\item Numbers to the left of \( a \): \( b = -4, -3, -2 \) 
+			\item \( a \) itself: \( b = -1 \) 
+			\item Numbers to the right of  \( a \): \( b = 0, 1, 2 \)
+		\end{itemize}
+		Again, counting the number of numbers in each category, we see that we have \( k \) numbers both to the right 
+		and left of \( a \), and this is true of every number in this category. This is becuase every number 
+		is at least \( k \) away from \( n \), so we will always have \( k \) available values for \( b \) on either 
+		side of \( a \). Visually, it looks something like this:
+		\begin{center}
+			\begin{tikzpicture}[scale=0.5]
+				\draw[stealth-stealth]  (-10, 0) node[left] {\( -n \) }-- (10, 0) node[right] { \( n \) };
+				\draw[-stealth, blue] (-1, -1) node[below] {\( a \) } -- (-1, 0); 	
+				\draw[dashed, red] (-4, 0) -- (-4, 2);
+				\draw[dashed, red] (-1, 0) -- (-1, 2);
+				\draw[stealth-stealth, red] (-4, 1) -- node[midway, above] {\( k \) } (-1, 1); 
+				\draw[dashed, red] (2, 0) -- (2, 2);
+				\draw[stealth-stealth, red] (-1, 1) -- node[midway, above] {\( k \) } (2, 1);
+			\end{tikzpicture}
+		\end{center}
+		So, there are \( k \) numbers to the left and right, and including \( a \) itself, this makes \( 2k + 1 \) 
+		numbers for every number in this section.
+		Now for the last category, let's choose \( a = 8 \). Then:
+		\begin{itemize}
+			\item Numbers to the left of \( a \): \( b = 5, 6, 7 \) 
+			\item \( a \) itself: \( b = 8 \) 
+			\item Numbers to the right of  \( a \): \( b = 9, 10 \)
+		\end{itemize}
+		Notice the symmetry in this case to the first case (except the minus sign): 
+		the numbers to the left of \( a \) are the same 
+		as those to the right of \( a \) in the first case, and the numbers to the right of \( a \) are the same as
+		those to the left of \( a \) in the first case. So, due to this symmetry, we conclude that the counting for the 
+		numbers in this category are the same as those in the first, so we can just double the first case to account 
+		for the numbers here. You can also see this symmetry visually:
+		\begin{center}
+			\begin{tikzpicture}[scale=0.5]
+				\draw[stealth-stealth]  (-10, 0) node[left] {\( -n \) } -- (10, 0) node[right] {\( n \) };
+				\draw[-stealth, blue] (8, -1) node[below] {\( a = n - i\) } -- (8, 0); 	
+				\draw[dashed, red] (8, 0) -- (8, 2);
+				\draw[dashed, red] (10, 0) -- (10, 2);
+				\draw[stealth-stealth, red] (10, 1) -- node[midway, above] {\( i \) } (8, 1); 
+				\draw[dashed, red] (5, 0) -- (5, 2);
+				\draw[stealth-stealth, red] (8, 1) -- node[midway, above] {\( k \) } (5, 1);
+			\end{tikzpicture}
+		\end{center}
+		Notice that this diagram is exactly the mirror image of what we had in case 1, so indeed there is symmetry here.
+		And just like from the first case, there are \( k + i + 1\) total values for \( b \) here. 
+
+		Now, it's time to sum everything up, and let's consider how many values of \( a \) exist in each category. 
+		For the first category, since we go up to \(a <  -n + k \), this implies that the range of numbers is from 
+		\( -n \) to \( -n + k - 1 \) or equivalently \( i \in \{0, 1, \dots, k - 1\}  \). Remember that 
+		for each one of these values, we have \( k + i + 1 \) values for \( b \). 
+
+		For the second category, 
+		we range from  \( -n + k \) to \( n - k \), so to calculate the number of numbers here we take the difference 
+		then add 1 to account for \( a = 0 \), giving us \( n - k - (-n + k) + 1 \) total values of \( a \), 
+		each one having \( 2k + 1 \) values for \( b \). We then said 
+		that we'd double case 1 to account for the third category so we're done counting. In total, we have:
+		\[
+		N(A) = 2\left( \sum_{i=0}^{k-1} k + i + 1 \right) + \sum_{i=1}^{(n - k) - (-n + k) + 1} 2k + 1
+		\] 
+		The rest is an algebra exercise that I won't really go into too much, but eventually we get
+		\[
+		N(A) = -k^2 + k + 4nk + 2n + 1
+		\] 
+		so in total, since the probability is calculated as \( P(A) = \frac{N(A)}{N(\text{all})} \), then:
+		\[
+		P(A) = \frac{-k^2 + k + 4nk + 2n + 1}{(2n + 1)^2}
+		\] 
+		Really, the takeaway from this problem is what I mentioned in section: take note of how we broke down the 
+		problem by considering individual values of \( a \), asking how many values of \( b \) there are, then 
+		finally summing over all these possible values to get the number of pairs \( (a, b) \) that satisfy 
+		our desired property. 
+
+		As practice, I encourage you to try and reproduce this solution without looking at it, and once you can do that,
+		try counting the number of \( a, b \) in a different way: instead of fixing \( a \) like we did here, try 
+		fixing \( k' \), figure out all the possible values of  \( a, b \) for that particular \( k' \), and sum 
+		over all possible values of \( k' \) that satisfy our original constraint. This method of counting 
+		requires you to be a \textit{little} more careful than this method, but I don't believe it to be much harder
+		and I think it's good practice. 
+	\end{solution}
 \end{document}

@@ -1,0 +1,72 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 221B}
+\newcommand{\classname}{Quantum Mechanics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Final Exam} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	We are given the Lagrangian density of the Dirac field 
+	\[
+		\mathcal L(\psi, \psi_{, \mu}) = \frac{i}{2} \overline \psi 
+		\gamma ^{\mu}\psi_{, \mu} - \frac{i}{2}\overline\ \psi_{, \mu} 
+		\psi - m \overline \psi \psi
+	\] 
+	\begin{enumerate}[label=\alph*)]
+		\item Show that \( \mathcal L \) is not invariant under local 
+			\( U(1) \) gauge transformations \( \psi \to \psi' = 
+			e^{i \lambda(x)}\psi\). 
+		\item In \( \mathcal L \), replace the ordinary derivatives \( \psi_{, \mu} = \partial_\mu \psi \) by 
+			\textit{covariant derivatives} \( \psi_{; \mu} = D_\mu \psi = (\partial_\mu + i gA_\mu) \psi \), 
+			with a new vector field \( A_\mu(x) \) and a constant \( g \). Find a condition on 
+			\( A_\mu \) so that the new Lagrangian density \( \mathcal L' \) is invariant under local gauge 
+			transformations. 
+		\item Derive the Dirac equation from the new Lagrangian \( \mathcal L' \). Waht is the interpretation of 
+			\( A_\mu \)? 
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 2}
+	Calculate the propagator \( \Delta(x) = \int \frac{d^{3}k}{(2\pi)^3} \frac{1}{\omega_k} \sin(kx) \) for both 
+	spacelike and timelike \( x \) explicitly in terms of Bessel functions. 
+	\pagebreak
+	\section*{Problem 3}
+	A particle of mass \( m \) and energy \( E \) scatters at a scattering center. At scattering resonance, 
+	one of the partial amplitudes has a maximum. State the scattering cross section \( \sigma \) at that 
+	\( E \), assuming that the other partial amplitudes are neglegible. 
+	\pagebreak
+	\section*{Problem 4}
+	The exchange integral (\( e = \hbar = 1 \)) 
+	\[
+	K_{10}^{nl} = \int d^3r_1 d^3r_2 \frac{\psi_{100}^{*}(\mathbf r_1) \psi_{nl 0}^{*}(\mathbf r_2)
+	\psi_{100}(\mathbf r_2) \psi_{nl0}(\mathbf r_1)}{|\mathbf r_1 - \mathbf r_2|}
+	\] 
+	where \( \psi_{nlm} \) is the usual hydrogenlike wave function, is responsible for the energy difference 
+	between the ortho- and para-helium states. 
+	\begin{enumerate}[label=\alph*)]
+		\item Expand \( 1 / |\mathbf r_1 - \mathbf r_2| \) in terms of spherical harmonics and express \( K_{10}^{nl} \) 
+			as a purely radial integral \( K_{10}^{nl} \int dr_1 r_1^2 \int dr_2 r_2^2 \dots \). Denote \( R_{nl} \) 
+			are the radial functions corresponding to \( \psi_{nlm} \), \( r_> = \max(r_1, r_2) \), and 
+			\( r_< = \min(r_1, r_2)  \). 
+		\item For \( l = n -1 \), argue why \( K \) can't be negative. Hint: How many zeros do the Radial functions 
+			have? 
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 5}
+	A charged, spinless particle with mass \( m \) (such as an ion) is trapped in a 3-D harmonic 
+	potential \( V = \frac{1}{2}m\omega^2 r^2 \), where \( r \) is the distance from the center. Denote 
+	\( \ket*{l, m, n} \) the energy eigenstates. The electromagnetic field is initially in the vacuum state. Give 
+	an expression for the decay time constant of the state \( \ket*{1, 0, 0} \) into the state \( \ket*{0, 0, 0} \). 
+	Please don't evaluate any matrix elements explicitly. Instead, state only whether they are zero, linear 
+	in the electromagnetic field operator \( \mathbf A \), or quadratic. 
+\end{document}

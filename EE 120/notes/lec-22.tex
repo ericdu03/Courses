@@ -1,0 +1,71 @@
+\section{2D Image Processing}
+\begin{itemize}
+	\item To start, we first characterize an image as a grid with 
+		\( M  \) rows and \( N \) columns, which we denote as 
+		living in \( \R^{M \times N} \). 
+	\item So, a digital image can be represented as a matrix, generally 
+		written as \( f[m, n] \in \R^{M \times N} \). The value of the 
+		entry can symbolize an intensity (in grayscale).
+	\item With color images, you can define them in RGB colors, then this 
+		is a \( M \times N \times 3 \) dimensional matrix. Here, 
+		each pixel \( f[m, n] \) is represented by a vector 
+		\( (r, g, b) \in [0, 1] \), 
+	\item Images can also be complex-valued, where each entry \( f[m, n] \) now has a magnitude and phase. 
+		 \[
+			 f[m, n] = \text{mag}[m, n] e^{i \text{phase}[m, n]}
+		\] 
+		We can now
+		plot two different maps: one that just shows magnitude, and another that shows phase. 
+\end{itemize}
+\subsection{Sampling}
+\begin{itemize}
+	\item We can downsample in two different directions:
+		\[
+			x[m, n] \to x[2m, 3n]
+		\] 
+		so this means that we down sampled by a factor of 2 in rows and a factor of 3 in columns. So, the number of 
+		rows reduces by a factor of 2, and the columns by a factor of 3. This is one way that we can reduce 
+		the amount of information contained in an image, so that it may be sent over channels that can't handle 
+		that much capacity. 
+	\item We can also upsample, in the same way we defined it for one-dimensional signals.
+		\[
+			x[m, n] = \begin{cases}
+				x\left[ \frac{m}{2}, \frac{n}{3} \right] & \text{\( m \) is a multiple of 2 and \( n \) is a multiple of 3}\\
+				0 & \text{else}
+			\end{cases}
+		\] 
+		so this is the way we increase the length of the signal, by basically sandwiching zeros between our known 
+		values. The strategy to do this is to do the rows first, then do the columns.    
+	\item The issue with upsampling is that because we fill in the matrix with zeros, it introduces undesirable 
+		lines into the final image, which we can fix using interpolation.   
+\end{itemize}
+\subsection{Fourier space} 
+\begin{itemize}
+	\item Recall with discrete 1D sampling that in Fourier space, because upon upsampling we increase the 
+		width in time, we decrease the width in frequency. What this means is that over the range 
+		\( [-\pi, \pi] \), which is what we originally had, we now will have multiple copies of the 
+		original image. 
+	\item Then, the way to fix this we pass image through an ideal 2D low-pass filter, which will give us back 
+		a single copy of the image. 
+	\item We can also realize the same thing in ``time'', by interpolating with a sinc function. \question{Is this 
+		convoluiton here?}
+\end{itemize}
+\subsection{2D Convolution} 
+\begin{itemize}
+	\item Here, we have a 2D continuous-time signal \( f(x, y) \) and \( g(x, y) \), and convolving them together 
+		\( f * * g \):
+		\[
+		f * * g = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x', y') g(x - x', y - y') \diff x', \diff y'  
+		\] 
+		This is exactly the formula that we derived a while back.   
+	\item In discrete-time, it's basically the same:
+		\[
+			f * * g = \sum_{k=-\infty}^{\infty} \sum_{l=-\infty}^{\infty} f[k, l] g[m - k, n - l] 
+		\] 
+		Here, just like the other case, \( m, n \) is the coordinate, and the summation is over \( k \) and \( l \). 
+	\item Visually, there's a couple ways to see what this actually is doing:
+		\begin{enumerate}[label=\arabic*.]
+			\item Flip the second matrix in two dimensions, shift in 2D, then multiply them element-by-element 
+				and sum them together. So, we basically overlay everything on top of each other.  
+		\end{enumerate}
+\end{itemize}

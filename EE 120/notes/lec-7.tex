@@ -1,0 +1,46 @@
+\section{Lecture 7}
+\subsection{DTFT and Convergence}
+\begin{itemize}
+	\item Not all functions have a Fourier transform, and the problem of whether a function has a Fourier 
+		integral is an incredibly complex problem with no simple statement. 
+	\item However, we know that there are several sufficient (but not necessary) conditions. Firstly, 
+		we know that \( x(t) \) must be absolutely integrable. That is, 
+		\[
+		\int_{-\infty}^{\infty} |x(t)| \diff t < \infty
+		\] 
+\end{itemize}
+\subsection{Fourier Transform Pairs}
+\begin{itemize}
+	\item There are several pairs of Fourier transforms that are useful to memorize.
+	\item The Delta function:
+		\[
+			x(t) = \delta(t - t_0) \leftrightarrow X(f) = e^{-j 2\pi ft_0}
+		\]
+		This actually has strong implications about the nature of the Fourier transform -- there is an 
+		"uncertainty principle" that manifests itself here. A signal cannot be both localized in time and frequency at
+		the same time.
+	\item Complex exponentials:
+		\[
+		x(t) = e^{j \omega_0 t} = e^{j 2 \pi f_0 t} \leftrightarrow X(f) = \delta(f - f_0)
+		\] 
+		This is the same as the previous point, except now we're going backwards.   
+	\item Cosine functions:
+		\[
+		x(t) = \cos(2 \pi f_0 t) \leftrightarrow X(f) = \frac{1}{2}\delta(f - f_0) + \delta(f + f_0))
+		\] 
+		This makes sense: a plane wave is a composition of a left and right travelling wave.  
+	\item Sine functions:
+		\[
+		x(t) = \sin(2 \pi f_0 t) \leftrightarrow X(f) = \frac{1}{2j}(\delta(f - f_0) - \delta(f + f_0))
+		\] 
+		Note that the only difference here is the minus sign, as a result of the conversion of sine into 
+		complex exponentials.
+	\item Shah function:
+		\[
+		x(t) = III(t) \leftrightarrow X(f) = III(f) \text{ or } X(\omega) = \frac{1}{2\pi}III(\omega)
+		\] 
+	\item Rect function:
+		\[
+		x(t) = \sqcap(t) \leftrightarrow \sinc(f)
+		\] 
+\end{itemize}

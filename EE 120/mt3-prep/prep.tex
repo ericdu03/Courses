@@ -1,0 +1,57 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{EE 120}
+\newcommand{\classname}{Signals and Systems}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Midterm 3 Prep} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section{2DFT} 
+	\begin{itemize}
+		\item 2DFT takes a signal \( f(x, y) \) and converts it into a 2D signal \( X(e^{j \omega_x}, e^{j \omega_y}) \)
+			that is defined as:
+			\[
+				X(\omega_x, \omega_y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) 
+				e^{-j \omega_x t_1} e^{-j \omega_y t_2} \diff t_1 \diff t_2
+			\] 
+			This is the definition of the Cartesian 2D Fourier transform. In frequency space, this is defined as:
+			\[
+			X(f_x, f_y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} f(x, y) 
+			e^{-2\pi j f_x t_1} e^{-j 2\pi f_y t_2}\diff t_1 \diff t_2
+			\] 
+			Then, to transform back:
+			\[
+			f(x, y) = \frac{1}{(2\pi)^2} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} X(\omega_x, \omega_y) 
+			e^{j \omega_x x} e^{j \omega_y y} \diff \omega_x \diff  \omega_y
+			\] 
+			And in frequency space, this is written as:
+			\[
+			f(x, y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} X(f_x, f_y) 
+			e^{2 \pi j f_x x} e^{2 \pi j f_y y} \diff f_x \diff f_y
+			\] 
+		\item A signal is separable if we can write a signal \( f(x, y) \) into \( f_x(x) f_y(y) \), in other words, 
+			into two functions that exhibit dependence in only one of the two variables. So, a 2-dimensional 
+			delta function \( \delta[x_0, y_0] \) is separable into \( \delta_x[x_0] \delta_y[y_0] \). 
+		\item In discrete time, the formulas are more or less the same:
+			\[
+			X(e^{j \omega_1}, e^{j \omega_2}) = \sum_{n_1=-\infty}^{\infty} \sum_{n_2=-\infty}^{\infty} 
+			x[n_1, n_2] e^{-j \omega_1 n_1}e^{-j \omega_2 n_2}
+			\] 
+	\end{itemize}
+	\section{Practice Problmes and Questions}
+	\subsection{Spring 2019}
+	\subsubsection{Problem 1}
+	\begin{itemize}
+		\item \( \forall t \in \R \), we have \( f(t) = e^{-\alpha t^2} \).  
+	\end{itemize}
+\end{document}

@@ -1,0 +1,159 @@
+\section{Phsyical Realization}
+\begin{itemize}
+	\item While the physical relaization for multiple qubit systems differ, the approach to creating a single-qubit 
+		gate is almost identical across all methods. 
+	\item The simplest two-level system is an electron subject to a magnetic field \( \vec B = B_z \hat{z} \). 
+		The Hamiltonian of this system is given by \( H = - \vec \mu \cdot \vec B = -g \mu_B B_z 
+		\hat{S_z} = -\frac{g \mu_B}{2}B_z \sigma_z\).  
+		This \( g \)-factor is very approximately equal to 2 (with very small corrections due to quantum field 
+		theory). 
+
+		\( \mu_B \) is called the \textit{Bohr Magneton}, which is made up of other fundamental constants:
+		\[
+		\mu_B = \frac{e \hbar}{2m} \approx 9.27 \times 10^{-24} \mathrm{\ J / T}
+		\] 
+	\item The eigenstates are going to be either aligned or antialigned to the magnetic field, as we would 
+		naturally expect. We will define the "spin down" to be the anti-aligned state, and it is separated from 
+		the "spin up" (aligned state) state by an energy \( \Delta E \). 
+	\item If we prepare a superposition of \( \ket*{\uparrow} \) and \( \ket*{\downarrow} \), then the state will 
+		actually precess around the magnetic field. Specifically, we can calculate the rate or precession:
+		\[
+			\dv{\vec L}{t} = \vec \tau = \vec \mu \times \vec B
+		\] 
+	\item Starting with a state of the form \( \ket*{\psi} = \alpha \ket*{\downarrow} + \beta \ket*{\uparrow}\), 
+		then based on the \schrodinger equation, this means that the time evolution of the system is:
+		\[
+			i \hbar \pdv{t} \ket*{\psi} = H \ket*{\psi}
+		\] 
+		Recall that:
+		\[
+			H = - g \mu_B B_z \hat{S_z} = -\frac{\Delta E}{2}\begin{pmatrix} 1 & 0\\0& 1 \end{pmatrix} 
+		\] 
+		This gives us:
+		\[
+			i\hbar \left( \dv{\alpha}{t} \ket*{\downarrow} + \dv{\beta}{t} \ket*{\uparrow}\right) 
+			= -\frac{\Delta E}{2}\ket*{\downarrow} + \frac{\Delta E}{2}\ket*{\uparrow}
+		\] 
+		Matching the evolution of states, this gives us the following differential equations:
+		\[
+			i \hbar \dot \alpha = -\frac{\Delta E}{2} \alpha \quad
+			i \hbar \dot \beta = \frac{\Delta E}{2}\beta
+		\]
+		This gives solutions
+		\[
+		\alpha(t) = e^{ i \Delta E t / 2 \hbar }\alpha_0 \quad \beta(t) = e^{-i \Delta E / 2 \hbar }\beta_0
+		\] 
+		So, our state is:
+		\[
+		\ket*{\psi(t)} = e^{i \Delta E t / 2\hbar} \alpha_0 \ket*{\downarrow} + e^{- i \Delta E t / 2\hbar}\beta_0
+		\ket*{\uparrow} = \alpha_0 \ket*{\downarrow} + \beta_0 e^{-i \Delta E t / \hbar }\ket*{\uparrow}
+		\] 
+		where \( \alpha_0, \beta_0 \) refer to the initial distribution.
+		
+	\item The frequency of precession is given by the Larmor 
+		frequency \( \omega_L = \Delta E / \hbar = \gamma_e B_z \). 
+	\item So how do we realize someting like an \( X \)-gate? We need to be able to flip the state from 
+		the \( \ket*{\uparrow} \) state into the \( \ket*{\downarrow} \) state. To do this, we apply an additional, 
+		much weaker alternating magnetic field along either 
+		\( \pm \hat{x} \) or \( \pm \hat{y} \). This method of flipping is called Rabi flopping.  
+\end{itemize}
+\subsection{Rabi flopping} 
+\begin{itemize}
+	\item The first thing we'll do is abstract away from the spin picture, and instead label the state 
+		\( \ket*{g}  \) and \( \ket*{e} \), separated by an energy  \( \hbar \omega_0 \). We now send in a 
+		plane wave with energy \( \hbar \omega \). 
+	\item We will first break up our Hamiltonian based on perturbation theory: \( H = H_0 + H' \). We will also 
+		define the ground state energy to be 0, so \( \ket*{e} \) has energy \( \hbar \omega_0 \). Hence, 
+		we can write \( H_0 = \hbar \omega_0\ket*{e}\bra*{e} \). 
+	\item \( H' \) consists of a dipole operator, which quantifies how strongly the particle interacts with the 
+		surrounding field. For an electric interaction, then we'd have \( H' = - e \hat{r} \cdot \vec E \), and 
+		with a magnetic interaction we could have \( H_x' = g \mu_B B_x \sigma_x \). In general, we can 
+		write \( H' = \hat{d} \cdot \vec E \).
+
+		To abstract away from this, we will insetad consider the coherence between \( \ket*{e} \) and 
+		\( \ket*{g} \) by looking at the off-diagonal elements of the density matrix:
+		\[
+			\mel{e}{\hat{d}}{g} = \mu_{eg}^{*} \quad \mel{g}{\hat{d}}{e} = \mu_{eg}
+		\] 
+		So, the dipole operator may be written as:
+		\[
+		\hat{d} = \mu_{eg}* \ket*{g}\bra*{e} + \mu_{eg} \ket*{e}\bra*{g}
+		\] 
+		As for \( \vec E \), we will choose a plane wave, so that the oscillation at the location of the particle 
+		would be just a sine or cosine wave:
+		\[
+		\vec E = \frac{\mathcal E}{2}e^{- i \omega t} + \frac{\mathcal E^{*}}{2}e^{i \omega t}
+		\] 
+	\item So, our full hamiltonian is written as:
+		\[
+		H = \hbar \omega_0 \ket*{e} \bra*{e} - (\mu_0g \ket*{e}\bra*{g} + \mu_{eg}^{*}\ket*{g}\bra*{e})\cdot 
+		\left( \frac{\mathcal E}{2}e^{-i \omega t} + \frac{\mathcal E^{*}}{2} e^{ i \omega t}\right) 
+		\] 
+		with a wavefunction \( \ket*{\psi} = \alpha \ket*{g} + \beta \ket*{e} \). Based on the Rabi oscillation 
+		example we had earlier, we can write \( \alpha \) and \( \beta \) as a function of time. To be consistent
+		with the previous notes, we will use \( c_g(t) = \alpha(t) \), and \( c_e(t) = \beta(t) e^{i \omega t} \).
+
+		With this redefinition, we can write 
+		\[
+		\ket*{\psi} = c_g(t) \ket*{g} + c_e(t) e^{- i \omega t} \ket*{e}
+		\] 
+	\item Now, we do the \schrodinger equation, and we will split this into two equations by projecting the 
+		\schrodinger equation into the two basis states:
+		\begin{align*}
+			\mel{g}{i \hbar \pdv{t}}{\psi} &= \mel{g}{H}{\psi} \\
+			\mel{e}{i\hbar \pdv{t}}{\psi} &= \mel{e}{H}{\psi}
+		\end{align*}
+		The first equation is relatively easy:
+		\[
+			i\hbar \dv{c_g}{t} = -\mu_{cg}^{*} e^{- i \omega t}c_e(t) \vec E
+			= - \mu_{eg}^{*}c_e(t) \left( \frac{\mathcal E}{2} e^{- 2 i \omega t}
+			+ \frac{\mathcal E^{*}}{2}\right) 
+		\] 
+		The second equation, due to the extra phase factor in \( c_e(t) \), we get:
+		\[
+			\hbar \omega c_e(t) e^{- i \omega t} + i \hbar \dv{c_e(t)}{t} e^{-i \omega t} = 
+			\mu_{eg} c_g(t) \vec E + \hbar \omega_0 e^{-i \omega t}c_e(t)
+		\] 
+		Combining the terms:
+		\[
+			i\hbar \dv{c_e(t)}{t} = -\mu_{eg}e^{i \omega t}c_g(t) \left( \frac{\mathcal E}{2} 
+			e^{- i \omega t} + \frac{\mathcal E^{*}}{2} e^{i \omega t}\right) - \hbar \Delta c_e(t)
+			= -\mu_{eg}c_g(t)\left( \frac{\mathcal E}{2} + e^{2 i \omega t} 
+			\frac{\mathcal E^{*}}{2}\right) - \hbar \Delta c_e
+		\] 
+		Here, we define \( \Delta = \omega - \omega_0 \), known as the detuning frequency. 
+	\item Now, we see that in both cases, the differential equation has a very rapidly oscillating term 
+		at a frequency \( 2 \omega \). Becuse they oscillate so fast, it's relatively safe to ignore them, which 
+		leaves us with the following differential equations:
+		\begin{align*}
+			\dv{c_g}{t} &= \frac{i \Omega^{*}}{2}c_e\\
+			\dv{c_e}{t} &= i \Delta c_e  + \frac{i \Omega}{2}c_g
+		\end{align*}
+		we define \( \Omega = \frac{\mu_{eg}\mathcal E}{\hbar} \) and 
+		\( \Omega^{*} = \frac{\mu_{eg}^{*} \mathcal E^{*}}{hbar} \).
+	\item If we start with the initial conditions \( c_g(0) = 1 \) and \( c_e(0) = 0 \), then the probability 
+		as a function of time is:
+		\begin{align*}
+			|c_g(t)|^2 &= \cos^2\left( \frac{\Omega' t}{2} \right) + \frac{\Delta^2}{|\Omega|^2 + \Delta^2}
+		\sin^2\left( \frac{\Omega' t}{2} \right) \\
+		|c_e(t)|^2 &= \frac{|\Omega|^2}{|\Omega|^2 + \Delta^2} \sin^2\left( \frac{\Omega' t}{2} \right)  
+		\end{align*} 
+		Here, we define \( \Omega' = \sqrt{\Omega^2 + \Delta^2}  \). When the detuning frequency is zero (i.e. 
+		we send in our pulses, or light, at exactly \( \omega_0 \)), then we get even simpler expressions:
+		\begin{align*}
+			|c_g(t)|^2 &= \cos^2\left( \frac{\Omega t}{2} \right)  \\
+			|c_e(t)|^2&= \sin^2\left( \frac{\Omega t}{2} \right)  
+		\end{align*}
+		We can also stop applying this external perturbation at defined times, and specifically if we 
+		stop at \( t = \frac{\pi}{\Omega} \), then this corresponds to a complete transition from 
+		\( \ket*{g} \) to \( \ket*{e} \)! This is also called a \( \pi \)-pulse. 
+\end{itemize}
+\subsection{Rotation Axis}
+\begin{itemize}
+	\item The rotation axis that the particle takes along the bloch sphere depends on the phase of the radiation we 
+		apply. 
+		\[
+		H_{r, f} = \frac{\hbar \Delta}{2}\hat{\sigma_z} + \frac{\hbar \Omega}{2}\hat{\sigma_x}
+		\] 
+	\item Here, depending on \( \Delta \) alone, we have full control over what our qubit does.  
+\end{itemize}

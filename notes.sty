@@ -1,10 +1,9 @@
 %%%CUSTOM NOTES STYLE FILE - ERIC DU AND ANDREW BINDER%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\ProvidesPackage{../notes}
 %%INCLUDED PACKAGES%%
 % All packages needed are included here, with proper presets
 % Some packages edited from shortcuts.sty
-\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[letterpaper, margin=0.7in]{geometry}
 \usepackage[pdftex]{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage{tikz, wrapfig, amssymb, array, mathtools, enumitem, circuitikz, physics, parskip, hyperref, breqn}
@@ -30,6 +29,9 @@
 \makeatletter
 \pagestyle{fancy}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\usepackage{libertine}
+\renewcommand{\familydefault}{\sfdefault}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%ENVIRONMENT COLORS%%
 % All colors for different environments defined here
@@ -51,6 +53,11 @@
 % Miscellaneous colors (red) - Can be used for warnings
 %     \definecolor{exred-back}{rgb}{1.0, 0.55, 0.41}       % Background
 %     \definecolor{exred-frame}{rgb}{1.0, 0.25, 0.25}      % Frame
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%SOLUTION ENVIRONMENT
+\newenvironment{solution}{\medskip \textit{Solution:}}{\qed\endtrivlist \medskip \hrule height1pt \medskip\endtrivlist}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%ENVIRONMENT STYLING%%
 % Stylings for all boxes that environments use
@@ -306,3 +313,5 @@
 \makeatother
 \setcounter{tocdepth}{1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

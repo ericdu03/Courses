@@ -1,0 +1,129 @@
+\section{Quanutm Gates}
+\begin{itemize}
+	\item The discussion here is the preamble to decoherence and why quantum computers 
+		"don't work" (yet).
+	\item A classical NOT gate can be implemented using a transistor and some resistors. Such a circuit cannot be 
+		built quantumly, and we store information in qubits. 
+	\item \textbf{Qubit:} There's two different definitions that we use:
+		\begin{itemize}
+			\item A two-dimensional hilbert space -- this is the theoretically ideal picture of what a qubit 
+				is. 
+			\item A physical objects that acts a lot like an ideal object -- this is what experimentalists deal with.
+		\end{itemize}
+		What we will try to investigate is the actual physics of quantum computers.  
+	\item Now let's start talking about the former: let \( \mathcal H \) be a Hilbert space, spanned by 
+		the set \( \{\ket*{0}, \ket*{1}\} \), which is also written as the set 
+		\( \left \{\begin{pmatrix} 1\\0 \end{pmatrix}, 
+		\begin{pmatrix} 0\\1 \end{pmatrix} \right\}  \). 
+	\item If we were to fully characterize the quantum system, then the quantity we would like to know the most is the 
+		Hamiltonian \( H \). In a 2-level system, then Hamiltonian is written as: 
+		\[
+		H = E_a \ket*{a}\bra*{a} + E_B \ket*{b}\bra*{b}
+		\] 
+		Further, the Hamiltonian is an example of an \textit{observable}. Observables have the property that 
+		their eigenvalues are real, which implies that they must be Hermitian operators. 
+\end{itemize}
+\subsection{Time Evolution of Quantum Systems}
+\begin{itemize}
+	\item The time evolution of quantum systems is given by the Schr\"odinger equation, writtne as: 
+		\[
+			i \hbar \pdv{t} \ket*{\psi(t)} = H(t) \ket*{\psi(t)}
+		\] 
+		In introductory quantum mechanics, we're usually interested in the stationary states, where we're 
+		given the Hamiltonian and asked to solve for the Eigenstates. Here, we'll be interested more in the 
+		dynamics of the system. So, this means that we're more interested in the PDE in this equation more than 
+		\( \ket*{\psi} \) itself. 
+	\item Let's look at a simpler example first, the ODE counterpart to this equation (in a sense): 
+		\[
+			\dv{y}{t} = hy \implies y = Ce^{ht}
+		\] 
+		Why is this the case? Well, because for every small time step, we're saying that the amount that we increase 
+		by is equal to the previous value. This implies that we are growing exponentially over time, which 
+		is why we have the exponential term. Specifically, we can then write the increase as
+		\[
+		\lim_{N \to \infty} \left(1 + h \frac{t}{N}\right)^{N}
+		\] 
+		This trick also works with matrices! So, by analogy, the solution to \( \ket*{\psi(t)} \) can be written as: 
+		\[
+			\ket*{\psi(t)} = e^{-i H t / \hbar}\ket*{\psi(0)} = \mathcal U(t) \ket*{\psi(0)}
+		\] 
+		Here, the exponentiation can be resolved by taking a Taylor expansion. 
+	\item We can also take functions of matrices: consider \( f(H) = f(\mathcal U \Lambda \mathcal U^\dagger) = 
+		\mathcal U f(\Lambda) U^{\dagger}\). This can be proven easily by taking a Taylor expansion of \( f \).
+		This is also easy to calculate, since if \( \Lambda \) is a diagonal matrix, then we have the 
+		identity: 
+		\[
+			f(\Lambda) = \begin{pmatrix} f(a) & &&\\
+			& f(b) & & \\ & & \ddots & \end{pmatrix} 
+		\] 
+		basically, we apply \( f \) to all the elements on the diagonal.
+	\item Now, let's work with an example: consider a Hamiltonian 
+		\( H = -\frac{1}{2}g \mu_B \vec B \cdot \vec \sigma \), where \( \vec B \) is the magnetic field, 
+		and \( \vec \sigma \) is the vector characterized by the Pauli spin matrices. We can expand this out 
+		as: 
+		\[
+		H = -g \mu_B (B_x \sigma_x + B_y \sigma_y + B_z \sigma_z) 
+		\] 
+		If our magnetic field is only in the \( x \) direction (for simplicity), then we can write
+		\[
+		H = -g \mu_B B_x \sigma_x
+		\] 
+	\item We want to find time evolution, and as discussed earlier, the unitary matrix that describes the time evolution
+		is given by \( e^{-i H t} \), and given \( H \), therefore we have: 
+		\[
+			\mathcal U(t) = \exp{i \alpha B_x \sigma_x t}		
+		\] 
+		Now, we want to write this in a nicer form, so first we leverage the fact that \( \sigma_x = 
+		H \sigma_z H\), and since \( H \) is Hermitian, then this satisfies the relation 
+		\( f(\mathcal U \sigma_z \mathcal U) = \mathcal U f(\sigma_z) \mathcal U \), so we have: 
+		\[
+			\mathcal U(t) = H \exp{i \alpha B_x t \begin{pmatrix} 1 & 0\\0&-1 \end{pmatrix}} H
+		\] 
+		Applying the exponent to the diagonal matrix, we eventually get: 
+		\[
+			\mathcal U(t) = \begin{pmatrix} \cos(\alpha B_x t) & i \sin (\alpha B_x t)\\
+			i \sin (\alpha B_x t) & \cos(\alpha B_x t)\end{pmatrix} 
+		\] 
+	\item This result allows us to conclude a much more general fact. Recall De Moivre's formula
+		\( e^{ i \phi} = \cos(\phi) + i \sin(\phi) \), and more generally with matrices: 
+		\[
+			e^{i \phi \hat{n} \cdot \vec \sigma} = \cos(\phi) \mathbbm{1} + i \sin(\phi) \hat{n} \cdot \sigma
+		\] 
+	\item Now that we've found \( \mathcal U(t) \), let's see what happens when we act it in \( \ket*{\psi(0)} \) :
+		\begin{align*}
+			\ket*{\psi(t)} &= \mathcal U(t) \ket*{\psi(0)}\\
+			&= \begin{pmatrix} \cos(\omega t) & i \sin (\omega t) \\ i \sin(\omega t) & \cos(\omega t) \end{pmatrix}  \\
+			&= \begin{pmatrix} \cos(\omega t)\\ i \sin(\omega t) \end{pmatrix}  
+		\end{align*}
+		If we measure our state, the probabiilty that we get the state \( \ket*{0} \) is given by 
+		\( \cos^2(\omega t) \), which is also known as \textit{Rabi Oscillation}. 
+	\item The Hamiltonian we wrote down earlier is nice, but it's impractical because it's \textit{too} ideal. What 
+		we'll look at next is how to deal with small imperfections in our Hamiltonian.
+\end{itemize}
+\subsection{Energy Splitting}
+\begin{itemize}
+	\item Now, consider a Hamiltonian \( H_0 = \frac{1}{2}\omega_0 \sigma_z = 
+		\begin{pmatrix} \omega / 2 & \\ & -\omega / 2 \end{pmatrix} \). Under time evolution, the 
+		basis states evolve as: 
+		\begin{align*}
+			\begin{pmatrix} 1\\0 \end{pmatrix} &\to \begin{pmatrix} e^{-i \omega t / 2} \\0 \end{pmatrix} \\
+			\begin{pmatrix} 0 \\1 \end{pmatrix} &\to \begin{pmatrix} 0 \\ e^{i \omega t/2} \end{pmatrix} 
+		\end{align*}
+		So, we can write out the time evolution operator 
+		\[
+			\mathcal U(t) = \begin{pmatrix} e^{-i \omega t /2} & \\ & e^{i \omega t / 2} \end{pmatrix} 
+		\] 
+		What \( H \) does to the basis states are easily computable, but they also happen to be the most boring state
+		evolutions. What's more interesting is what happens to, say, the \( \ket*{+} \) state: 
+		\[
+			\ket*{+} = \frac{1}{\sqrt{2} }\begin{pmatrix} 1\\1 \end{pmatrix} \to 
+			\frac{1}{\sqrt{2} }\begin{pmatrix} e^{-i \omega t /2}\\e^{i \omega t /2} \end{pmatrix} 
+			= \begin{pmatrix} \cos(\omega t /2) - i \sin (\omega t /2)\\
+			\cos(\omega t /2) + i \sin(\omega t /2)\end{pmatrix} = \cos(\omega t /2) \ket*{+} 
+			- i \sin(\omega t / 2) \ket*{-}
+		\] 
+		So if we measure this state in the \( \ket*{+}, \ket*{-} \) basis, then we find that there are moments 
+		where the state is entirely in the \( \ket*{ + }\) state, and also moments where we're 
+		entirely in the \( \ket*{-} \) state. Here, the frequency \( \omega \) is also referred
+		to as the \textbf{Larmor frequency}. 
+\end{itemize}

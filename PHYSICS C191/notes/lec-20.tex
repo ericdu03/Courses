@@ -1,0 +1,65 @@
+\section{Guest Lecture: Superconducting Qubits}
+\subsection{Josephson Junctions}
+\begin{itemize}
+	\item Harmonic oscillators are linear, so we can't access individual transitions, since it's hard to control 
+		the energy levels if they're all spaced by \( \hbar \omega \). 
+	\item So, we employ a Josephson junction, which makes the energy spacing highly nonlinear. 
+	\item It's basically two superconductors that sandwich an insulator:
+		\( S(\phi_1) - I - S(\phi_2) \), and \( \delta = \phi_1 - \phi_2 \). 
+	\item Here, the current is modeled as \( I(\delta) = I_0 \sin \delta \), and \( V(\delta) = \frac{\hbar}{2e}
+		\dv{\delta}{t}\), which is what we call a \textit{nonlinear inductor}.  
+	\item This nonlinearity is so strong that we don't actually have to go to very high energies in order to 
+		feel the nonlinearity. 
+\end{itemize}
+\subsection{DiVincenzo's Criteria}
+\begin{itemize}
+	\item Recall the five criteria, and how we achieve these criterion using superconducting qubits.  
+		\begin{enumerate}[label=\arabic*)]
+			\item Stability
+				\begin{itemize}
+					\item The quantum circuit is a combination of the qubit, a coupler and a cavity. The cavity 
+						is a reasonator, and is connected to the qubit via a capacitor. This gives us a total 
+						Hamiltonian:
+					\item In the dispersive limit, or in other wrods wehn \( \Delta = \omega_q - \omega_c \gg g \), 
+						then:
+						\[
+						H = \omega_c a^{\dagger} a + \frac{1}{2}\omega_q \sigma_z + \chi(\sigma_z a^{\dagger}a)
+						\] 
+						We can then group the terms:
+						\[
+						H = (\omega_c + \chi \sigma_z) a^{\dagger}a + \frac{1}{2}\omega_q \sigma_z
+						\] 
+						This actually allows us to discern between whether the qubit is in the \( \ket*{0} \) or 
+						\( \ket*{1} \) state without destroying the qubit. We can also measure the state of multiple 
+						qubits with a single pulse, which makes this very efficient. 
+				\end{itemize}
+			\item Initialization 
+				\begin{itemize}
+					\item Modern refrigerators get down to about 10 mK, 
+						and by cooling the circuit down to such temperatures we can 
+						initialize the qubits in the ground state  \( \ket*{g} \). 
+				\end{itemize}
+			\item Long decoherence
+
+				\begin{itemize}
+					\item To look at decoherence, it's useful to look at Fermi's golden rule:
+						\[
+							\Gamma_{i \to f} = \frac{2\pi}{\hbar} S(E_{if}) |\mel{f}{H}{i}|^2
+						\] 
+				\end{itemize}
+			\item Universal quantum gates
+
+				\begin{itemize}
+					\item We can apply a controlled pulse to alter the state of a single qubit. Then, using what we 
+						learned last lecture, this can be combined with another pulse in order to basically produce
+						any qubit on the Bloch sphere.
+					\item Our ability to do this demonstrates the capability of realizing a universal set of quantum 
+						gates. 
+					\item However, there is error in this: if we send in too short of a \( \pi \)-pulse (like a
+						square wave), then this widens the spectrum in frequency space. This is bad, because this 
+						could potentially lead to the qubit jumping from the ground state \( \ket*{g} \) into 
+						higher energy states like \( \ket*{f} \), which we count as leakage. 
+				\end{itemize}
+			\item Qubit specific measurement
+		\end{enumerate}
+\end{itemize}

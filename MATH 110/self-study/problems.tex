@@ -1,0 +1,372 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Math 110}
+\newcommand{\classname}{Solutions to Selected Axler Problems}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.2}
+\renewcommand{\R}{\mathbf R}
+\newcommand{\F}{\mathbf F}
+\newcommand{\range}{\mathrm{range \ }}
+\renewcommand{\null}{\mathrm{null \ }}
+\newenvironment{problem}{\textbf{Problem:}}{}
+%\renewcommand{\familydefault}{\sfdefault}
+\begin{document}
+	\maketitle
+
+	\section{Linear Maps}
+	\subsection{Vector Space of Linear Maps}
+	\begin{problem}
+		Suppose \( b, c \in \mathbf R \). Define \( T:\mathbf R^3 \to \mathbf R^2 \) by 
+		\[
+		T(x, y, z) = (2x - 4y + 3z + b, 6x + cxyz)
+		\] 
+		Show that \( T \) is linear if and only if \( b = c = 0 \).
+	\end{problem}
+
+	\begin{solution}
+		We first show that if \( b = c = 0 \), then \( T \) is linear. Recall the facts of linearity:
+		\[
+		T(u + v) = Tu + Tv \quad T(\lambda v) = \lambda (Tv)
+		\] 
+		for all \( v \in V \). If \( b = c = 0 \), then we can define \( T \) as:
+		\[
+		T(x,y,z) = (2x - 4y + 3z, 6x)
+		\] 
+		Now suppose we have two vectors \( u = (x_1, y_1, z_1), v = (x_2, y_2, z_2) \). Then:
+		\[
+		Tu + Tv = (2x_1 - 4y_1 + 3z_1, 6x_1) + (2x_2 - 4y_2 + 3z_2, 6x_2) = (2(x_1 + x_2) - 4(y_1 + y_2) + 3(z_1 + z_2)
+		, 6(x_1 + x_2)) = T(u + v)
+		\] 
+		Now for homogeneity:
+		\[
+		T(\lambda u) = T(\lambda x_1, \lambda y_1, \lambda z_1) = (2 \lambda x_1 - 4 \lambda y_1 + 3 \lambda z_1, 
+		6\lambda x_1) = \lambda (Tu)
+		\] 
+		Therefore, both conditions are satisfied, indeed \( T \) is linear. Now we show that if \( T \) is linear, 
+		then \( b = c = 0 \) is necessary. Consider what we had earlier:
+		\[
+		Tu + Tv = (2(x_1 + x_2) - 4(y_1 + y_2) + 3(z_1 + z_2) + 2b, 6(x_1 + x_2) + cx_1y_1z_1 + cx_2y_2z_2)
+		\] 
+		This is only equal to \( T(u + v) \) if \( 2b = 0 \) and \( c(x_1y_1z_1 + x_2y_2z_2) = 0 \), since 
+		they are the only nonlinear terms. Thus, if \( T \) is linear, then \( b = c = 0 \). 
+	\end{solution}
+
+	\begin{problem}
+		Suppose that \( T \in \mathcal L(V, W) \) and \( v_1, \dots, v_m \) is a list of vectors in \( V \) such that 
+		\( Tv_1, \dots, Tv_m \) is a linearly independent list in \( W \). Prove that \( v_1, \dots, v_m \) is 
+		linearly independent. 
+	\end{problem}
+
+	\begin{solution}
+		We return to the definition of linear independence: a set of vectors \( v_1, \dots v_m \) is linearly 
+		independent the solution to the equation:
+		\[
+		a_1v_1 + \cdots + a_m v_m = 0
+		\] 
+		is that \( a_1, \dots, a_m = 0\). Since we know that the list \( Tv_1, \dots, Tv_m \) is linearly independent
+		in \( w \), then the solution to the equation:
+		\[
+		a_1Tv_1 + \dots + a_mTv_m = 0
+		\] 
+		is \( a_1 = \cdots = a_m = 0 \). Now, apply the rules of \( T \) being a linear map:
+		\[
+		a_1Tv_1 + \cdots +  a_mTv_m = T(a_1v_1) + \cdots + T(a_m v_m) = T(a_1v_1 + \cdots a_m v_m) = 0
+		\] 
+		Now, we use the fact that since linear maps take 0 to 0, this implies that \( a_1 v_1 + \cdots + 
+		a_m v_m = 0 \). Further, since the only values of \( a_i \) that satisfy this equation is 
+		\( a_1 = \cdots = a_m = 0 \), then this satisfies the condition that \( v_1, \dots, v_m \) is linearly 
+		independent.
+	\end{solution}
+
+	\begin{problem}
+		Show that every linear map from a one-dimensional vector space to itself is multiplication by some 
+		scalar. More precisely, prove that if \( \dim V =  1\) and \( T \in \mathcal L(V) \), then there 
+		exists \( \lambda \in \F \) such that \( Tv = \lambda v \) for all \( v \in V \). 
+	\end{problem}
+
+	\begin{solution}
+		Since \( V \) is one-dimensional, this implies that there is only one basis vector, \( v_1 \). Therefore, 
+		for all vectors \( v \in V \), then \( v = \alpha v_1 \) for some \( \alpha \in \F \). Then, becuase 
+		\( T \in \mathcal L(V) \), then \( T \) must map every vector \( v \in V \) to another vector in \( V \), 
+		which must be expressed as a scalar times \( v \). Thus, \( Tv = \lambda v \) is the only option for 
+		a linear map on this space. More precisely:
+		\[
+		Tv = T(\lambda v_1) = \lambda Tv_1 = \alpha \lambda v_1 = \lambda (\alpha v_1) = \lambda v
+		\] 
+		as desired. 
+	\end{solution}
+
+	\begin{problem}
+		Give an example of a function \( \varphi: \R^2 \to \R \) such that 
+		\[
+		\varphi(av) = a \varphi(v)
+		\] 
+		for all \( a \in \R \) and all \( v \in \R \) but \( \varphi \) is not linear. 
+	\end{problem}
+
+	\begin{problem}
+		Suppose \( U \) is a subspace of \( V \) with \( U \neq  V \). Suppose \( S \in \mathcal L(U, W) \) and 
+		\( S \neq 0 \) (which means that \( Su \neq 0 \) for some \( u \in U \)). Define 
+		\( T:V \to W \) by 
+		\[
+		Tv = \begin{cases}
+			Sv & \text{if \( v \in U \)}\\
+			0 & \text{if \( v \in V \) and \( v \not \in U \)}
+		\end{cases}
+		\] 
+		Prove that \( T \) is not a linear map on \( V \). 
+	\end{problem}
+
+	\begin{solution}
+		A linear map must satisfy \( T(\lambda v) = \lambda (Tv) \)  for all \( v \in V \). However, consider 
+		some \( \lambda \) such that \( v \in U \) but \(\lambda v \not\in U \). Then:
+		\[
+		T(\lambda v) = 0 \quad \lambda (Tv) = \lambda Sv \neq 0 
+		\] 
+		Hence, \( T \) is not linear on \( V \). Alternatively, we could define \( v \in V \) and \( w \in V \) 
+		but \( w \not \in U \), then we have:
+		\[
+		T(v + w) = 0
+		\] 
+		But:
+		\[
+		Tv + Tw = Sv \neq 0
+		\] 
+		so this also violates linearity.  
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( v_1, \dots, v_m \) is a linearly dependent list of vectors in \( V \). Suppose also that \( W \neq 
+		\{0\} \). Prove that there exist \( w_1, \dots, w_m \in W \) such that no \( T \in \mathcal L(V, W) \) 
+		satisfies \( Tv_k = w_k \) for each \( k = 1, \dots, m \). 
+	\end{problem}
+
+	\begin{solution}
+		Since \( v_i \) is linearly dependent, then we can write \( v_i = \sum_{j \neq i} a_j v_j \) for some 
+		set of \( a_j \). Then, consider some nonzero  \( w \in W \), and set the \( w_k \)'s as follows:
+		\[
+		w_k = \begin{cases}
+			w & k = i\\
+			0& \text{else}
+		\end{cases}
+		\] 
+		Then, suppose for all \( j \neq i \), that \( Tv_j = w_j = 0\). Then, let's write \( Tv_i \):
+		\[
+			Tv_i = T\left( \sum_{j \neq i}a_j v_j \right) = \sum_{j \neq i}a_j Tv_j \sum_{j \neq i}a_j w_j = w_i
+		\] 
+		But since all \( w_j = 0 \), this means that \( w_i = 0 \), but we set \( w_i \neq 0 \) purposefully, 
+		therefore there is no \( T \) that would stasify this. 
+	\end{solution}
+	\subsection{Null Spaces and Ranges}
+	\begin{problem}
+		Suppose \( S, T \in \mathcal L(V) \) are such that \( \range S \subseteq \null T\). Prove that \( (ST)^2 = 0 \).
+	\end{problem}
+
+	\begin{solution}
+		Consider a vector \( v \in V \). Then:
+		 \begin{align*}
+			 (ST)^2 v &= (STS)(Tv) \\
+			 &= ST(Sv') 
+		\end{align*}
+		Now, \( Sv' \) will exist within \( \range S \), and since we know that \( \range S \subseteq \null T \), 
+		then this impleis that \( T(Sv') = 0 \). Finally, \( S(0) = 0 \), so hence \( (ST)^2 v = 0 \), so 
+		\( (ST)^2 = 0 \). 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( v_1, \dots, v_m \) is a list of vectors in \( V \). Define \( T \in \mathcal L(\F^{m}, V) \) 
+		by 
+		\[
+		T(z_1, \dots, z_m) = z_1v_1 + \cdots + z_m v_m
+		\] 
+		\begin{enumerate}[label=\alph*)]
+			\item What property of \( T \) corresponds to \( v_1, \dots, v_m \) spanning \( V \)?
+
+				\begin{solution}
+					If \( T \) is surjective, then \( v_1, \dots, v_m \) spans \( V \). This is because if the range 
+					of \( T \) is \( V \), then the set of vectors \( T \) applies a linear combination to 
+					must span \( V \). 
+				\end{solution}
+			\item What property of \( T \) corresponds to the list \( v_1, \dots, v_m \) being linearly 
+				independent?
+
+				\begin{solution}
+					The set \( v_1, \dots, v_m \) is linearly independent if and only if \( T \) is injective, since 
+					linear independence means that there is only one way to express every vector (i.e. 
+					the solution to \( T(z_1, \dots, z_m) = 0 \) is \( z_1 = \cdots = z_m  = 0 \)). 
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Suppose \( T \in \mathcal L(V, W) \) is injective and \( v_1, \dots, v_n \) is linearly independent in \( V \).
+		Prove that \( Tv_1, \dots, Tv_n \) is linearly independent in \( W \). 
+	\end{problem}
+
+	\begin{solution}
+		The proof of this is very similar to the one we did earlier. If \( v_1, \dots, v_n \) is linearly dependent, 
+		then this means that
+		\[
+		a_1v_1 + \cdots + a_nv_n = 0
+		\] 
+		is solved by setting \( a_i = 0 \). Then, now let's consider the list  \( Tv_1, \dots, Tv_n \):
+		\[
+		a_1Tv_1 + \cdots + a_n Tv_n = T(a_1v_1 + \cdots + a_nv_n) = 0
+		\] 
+		where the last equality we obtain from the fact that linear maps map 0 to 0. This implies that 
+		the only solution to this equation is \( a_i = 0 \), hence the list \( Tv_1, \dots, Tv_n \) is 
+		linearly independent.
+	\end{solution}
+
+	\begin{problem}
+		Suppose that \( V \) is finite-dimensional and that \( T \in \mathcal L(V, W). \) Prove that there 
+		exists a subspace \( U \) of \( V \) such that 
+		\[
+		U \cap \null T = \{0\}  \quad \text{and} \quad \range T = \{Tu :u \in U\}.
+		\] 
+	\end{problem}
+
+	\begin{solution}
+		We can define \( U = \{0\} \cup (V \setminus \null T) \). This way, \( \null T \cap U = \{0\}  \) by 
+		definition, and \( \range T = \{Tv: v\in V\}  \), but since \( U \) defines the same set of vectors 
+		(since we only get rid of the null space), then \( \range T = \{Tu: u \in U\}  \), as desired. 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( T \) is a linear map from \( \F^{4} \) to \( \F^{2} \) such that 
+		\[
+		\null T = \{(x_1, x_2, x_3, x_4) \in \F^{4}: x_1 = 5x_2 \ \text{and} \ x_3 = 7x_4\} 
+		\] 
+		Prove that \( T \) is surjective.
+	\end{problem}
+
+	\begin{solution}
+		We know that \( T \in \mathcal L(\F^{4}, F^{2}) \). Because the null space can be determined by two variables
+		only (\( x_1, x_3 \)), so \( \dim \null T = 2 \). This implies that since  \( \dim V = 4 \), then 
+		\( \dim \range T = 2 \), and since this equals the dimension that \( T \) maps to \( \F^2 \), then 
+		this implies that \( T  \) is indeed surjective by (3.19).
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( V \) and \( W \) are both finite-dimensional. Prove that there exists an injective map 
+		from \( V \) to \( W \) if and only if \( \dim V \le \dim W \). 
+	\end{problem}
+
+	\begin{solution}
+		Recall the definition of injectivity: a linear map \( T \in \mathcal L(V, W)  \) is injective if and only if 
+		\( Tu = Tv \) implies that \( u = v \), or equivalently that \( \null T = \{ 0 \}  \). 
+
+		We prove the forward case: if \( \dim V \le \dim W \), we show that there exists 
+		an injective map from \( V \) to \( W \). Let \( v_1, v_2, \dots, v_n \) and \( w_1, w_2, \dots, w_m \) 
+		be the basis vectors of \( V \) and \( W \) respectively, and \( n \le m \). Then, define a map
+		\( Tv_i = w_i \) for all \( i = 1, \dots, n \). Then, \( \dim \range T = \dim V \), implying 
+		that \( \dim \null T = 0 \) from FTLM, as desired. 
+
+		Now we prove the reverse: we want to show that if there exists an 
+		injective map from \( V \) to \( W \), then \( \dim V \le \dim W \). This is trivial by contradiction:
+		if \( \dim V > \dim W \), then by (3.22) this is impossible, so we're done.   
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( V \) and \( W \) are finite-dimensional and \( U \) is a subspace of \( V \). Prove that 
+		there exists \( T \in \mathcal L(V, W) \) such that \( \null T = U \) if and only if 
+		\( \dim U \ge  \dim V - \dim W \). 
+	\end{problem}
+	
+
+	\begin{solution}
+		We prove the forward case: there exists a \( T \) such that \( \null T = U \) if 
+		\( \dim U \ge \dim V - \dim W \). Let \( \{u_i \} \) be a basis of \( U \), and \( \{ w_i \} \) be a basis 
+		of \( W \). Then, define a linear map \( T \) as follows:
+		\[
+		Tv_i = \begin{cases}
+			\vec 0 & v_i \in \{u_i\} \\
+			w_i & v_i \not \in \{u_i\} 
+		\end{cases}
+		\] 
+		One can check very easily that this is linear, with \( \null T = U \). Here, \( \dim \null T = \dim U\)
+		and \( \dim \range T = \dim W - \dim U \), since the basis vectors that map to a nonzero vector in \( W \) 
+		are those that do not form a basis of \( U \). Therefore, \( \dim V = \dim U + (\dim W - \dim U) = \dim W
+		\le \dim U + \dim W\), so the inequality is satisfied. 
+
+
+		Now we prove the reverse case: if such a \( T \) exists, then \( \dim U \ge \dim V - \dim W \). 
+		From the fundamental theorem of linear maps, we know that 
+		\( \dim V = \dim \null T + \dim \range T \). Now suppose we have a \( T \) such that \( \null T = U \). 
+		Then, we have \( \dim V = \dim U + \dim \range T \), and since \( \dim \range T \le \dim W \), then 
+		\( \dim V \le  \dim U + \dim W  \), which is the inequality we wanted to satisfy. 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( W \) is finite-dimensional and \( T \in \mathcal L(V, W) \). Prove that \( T \) is 
+		injective if and only if there exists \( S \in \mathcal L(W, V)  \) such that \( ST \) is the identity 
+		operator on \( V \).
+	\end{problem}
+
+
+	\begin{solution}
+		We show the forward case: \( T \) is injective if there exists an \( S \in \mathcal L(W, V) \) such that 
+		\( ST  \) is the identity. Suppose \( T \) is not injective, so there exists two vectors \( u \neq v \) 
+		such that \( Tu = Tv \). Then, acting \( S \) on the left of both sides gives:
+		\( STu = STv \) and since \( ST \) is the identity, then we're left with \( u = v \), which is a contradiction. 
+
+		Now we show the reverse case: if \( T \) is injective, there exists an \( S \in \mathcal L(W, V) \) such that 
+		\( ST \) is the identity. Since  \( T \) is injective, then we know that for any two vectors 
+		\( v_1, v_2 \in V \), if \( Tv_1 = Tv_2 \) then \( v_1 = v_2 \). Now, let \( \{w_1, w_2, \dots, w_m\}  \)
+		be a basis for \( W \) and \( \{v_1, v_2, \dots, v_n\}  \) be a basis for \( V \). 
+		Then, let \( S \in \mathcal L(W, V)\) be defined as:
+		\[
+		S w_i = \begin{cases}
+			v_i & i \in \{1, 2, \dots, n\}\\
+			0 & \text{else}
+		\end{cases}
+		\] 
+		\( S \) is clearly linear, and take any vector \( v = \sum_i \alpha_i v_i \). Then:
+		\[
+		STv = S\left( \sum_i \alpha_i w_i \right) = \sum_i \alpha_i v_i = v
+		\] 
+		so therefore \( ST  \) is indeed the identity.
+
+		As an aside, we also should prove that 
+		\( T \) transforms in a way such that \( Tv_i = w_i \), or in other words \( T \) transforms 
+		each basis vector in \( V \) to a basis vector in \( W \). This needs to be true since FTLM
+		says that \( \dim V = \dim \null T + \dim \range T \), and since \( \dim \null T = 0 \), then 
+		\( \dim \range T = \dim V \). 
+	\end{solution}
+	\begin{problem}
+		Suppose \( \phi \in \mathcal L(V, \F) \) and \( \phi \neq 0 \). Suppose \( u \in V \) is not in 
+		\( \null \phi \). Prove that
+		\[
+		V = \null \phi \oplus \{au : a \in \F \} 
+		\] 
+	\end{problem}
+
+	\subsection{Matrices}
+
+	\begin{problem}
+		Suppose \( T \in \mathcal L(V, W) \). Show that with respect ot each choice of bases of  \( V \) and \( W \), 
+		the matrix of \( T \) has at least \( \dim \range T \) nonzero entries. 
+	\end{problem}
+	
+	\begin{problem}
+		Suppose \( v_1, \dots, v_n \) is a basis of \( B \) and \( w_1, \dots, w_m \) is a basis of \( W \). 
+		\begin{enumerate}[label=\alph*)]
+			\item Show that if \( S, T \in \mathcal L(V, W) \) then 
+				\( \mathcal M(S + T) = \mathcal M(S) + \mathcal M(T) \) 
+			\item Show that if \( \lambda \in \F \) and \( T \in \mathcal L(V, W) \), then \( \mathcal M(\lambda T)
+				= \lambda \mathcal M(T)\). 
+		\end{enumerate}
+	\end{problem}
+
+
+\end{document}

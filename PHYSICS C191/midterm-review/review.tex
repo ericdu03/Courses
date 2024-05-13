@@ -1,0 +1,238 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics C191}
+\newcommand{\classname}{Introduction to Quantum Computing}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Midterm Review} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\newcommand{\question}[1]{\textcolor{red}{#1}}
+\newcommand{\answer}[1]{\textcolor{green!80!black!}{#1}}
+\renewcommand{\comment}[1]{\textcolor{blue!50}{#1}}
+\begin{document}
+	\maketitle
+	\section{Quantum Order Finding/Shor's Algorithm}
+	\subsection{From Nielsen-Chuang}
+	\begin{itemize}
+		\item Basically quantum phase estimation except with the matrix \( U \ket*{y} = \ket*{xy \pmod N} \). 
+			By convention, we say that \( U \) only acts when \( 0 \le y \le N - 1 \), and when 
+			\( N \le y \le 2^{N} - 1 \), that \( U\ket*{y} = \ket*{y} \). 
+		\item The eigenstates of  \( U \) are given by
+			\[
+				\ket*{u_s} = \frac{1}{\sqrt{r} }\sum_{k=0}^{r-1} \exp{\frac{-2 \pi i s k}{r}}\ket*{x^{k} \pmod N}
+			\] 
+			when \( s \in \{0, \dots, r - 1\}  \). This is because:
+			\[
+				U\ket*{u_s} = \frac{1}{\sqrt{r} }\sum_{k=0}^{r-1} \exp{\frac{-2 \pi i s k}{r}}
+				\ket*{x^{k + 1}\pmod N} = \exp{\frac{2 \pi i s}{r}} \ket*{u_s}
+			\] 
+			\question{Why is the eigenvalue not \( \exp{- \frac{2 \pi i s}{r}} \)? Shouldn't we be multiplying 
+			by the negative to get the \( k + 1 \)?} 
+			
+			\answer{It might be becuase we're re-indexing by going \textit{down}, not \textit{up} (i.e. we're 
+				going from \( k \) to \( k - 1 \) and not \( k \) to \( k + 1 \). Therefore, we multiply 
+			by a positive factor.}
+		\item We can perform modular exponentiation to perform the controlled-\( U^{2^{j}} \) operation, 
+			and we can use the fact that
+			\[
+			\frac{1}{\sqrt{r} }\sum_{s=0}^{r-1} \ket*{u_s} = 1
+			\] 
+			in order to prepare the state \( \ket*{u_s} \), without knowing \( r \) at all.
+	\end{itemize}
+	\subsection{From Lecture Notes} 
+	\begin{itemize}
+		\item Use two registers, the first of which has \( K \) qubits such that \( Q = 2^{K} \), and 
+			\( N^2 \le Q \le 2N^2 \) (so we have \( Q \) basis states). 
+			The second register has at least \( n = \log_2 N \) qubits, 
+			with \( N \) basis states. 
+		\item We first initialize both registers in the state \( \ket*{0} \otimes \ket*{0} \) 
+			
+			\question{So do we mean that register 1 has \( \ket*{0}^{\otimes K} \)?} 
+		\item Source register is transformed to an equal superposition over all \( Q \) basis states
+			\[
+			H^{\otimes K}\ket*{0} = \frac{1}{\sqrt{2^{K}} }\sum_y \ket*{y}
+			\] 
+			You can also accomplish the same thing by applying the Quantum Fourier transform:
+			\[
+			\ket*{0} \to \frac{1}{Q}\sum_{q;=0}^{Q-1} \ket*{q'}
+			\] 
+			Either way, we end up with the final state:
+			\[
+			\frac{1}{\sqrt{Q} }\sum_{q=0}^{Q-1} \ket*{q}\otimes \ket*{0}
+			\]
+		\item Apply a gate \( U_a \) that implements the Quantum modular exponentiation, as in 
+			\( q \to f(q) = a^{q} \pmod N \). We choose \( a \) randomly. Note that we don't really care about 
+			the implementation fo this very much. This function  \( f(q) \) has \( r \) as a period, and 
+			we want to find \( r \). Applying \( f \) to the values of the first register and 
+			storing the values in the second gives us:
+			\[
+			\frac{1}{\sqrt{Q} }\sum_{q=0}^{Q-1} \ket*{q}\ket*{a^{q}\mod N}
+			\] 
+			All \( Q  \) values of the function \( f(q) \) are computed in parallel, so the value of \( 
+			r\) will certainly appear somewhere.
+		\item Measure the second register, and we get some value, say \( f(q_0) \). If \( Q = mr \), then 
+			there are \( m \) different values of \( q \) that give us the result \( f(q) \), so those 
+			are the states that remain. So, the state is now:
+			\[
+			\frac{1}{\sqrt{Q / r} }\sum_{j=0}^{Q / r - 1} \ket*{jr + q_0}\ket*{f(q_0)}
+			\] 
+			\comment{Recall that we took the values from register 1 and stored \( f(q) \) in register 2, so therefore 
+				the second register has fully collapsed, but the first register still contains multiple 
+			possible values, specifically multiples of the order plus \( q_0 \).}
+		\item Apply the Fourier transform modulo \( Q \) on the first register. This gives us:
+			\[
+				\frac{1}{\sqrt{r} }\sum_{k=0}^{r-1} \omega^{k q_0}\ket*{k \frac{Q}{r}}
+			\] 
+			So therefore, the total state is:
+			\[
+				\frac{1}{\sqrt{r} }\sum_{k=0}^{r-1} \omega^{k q_0}\ket*{k \frac{Q}{r}} \ket*{f(q_0)}
+			\] 
+		\item Measure register 1, which gives us a value \( C = k \frac{Q}{r} \), where \( k \) is some number 
+			between \( 0 \) and \( r - 1 \) (since we only have access to one of these values). Repeating this procedure
+			will allow us to get all the values of \( k \), and eventually we can get \( r \). 
+		\item When we can't assume that \( Q = mr \), then we get a modified analysis that uses continued fractions 
+			in order to determine \( r \). 
+		\item Once we have the order, we can actually just factor and some clever number theory results to 
+			factor our number \( N \). 
+	\end{itemize}
+	\section{Grover's Algorithm}
+	\subsection{Nielsen-Chuang}
+	\begin{itemize}
+		\item Problem framed as a "promise" problem: where we're given a function \( f \) that takes in an 
+			integer \( x \), and  \( f(x) = 1 \) only when \( x \) is a solution to the search problem, and 
+			\( f(x) = 0 \) otherwise. 
+		\item First, suppose \( f \) is implemented in terms of an "oracle", which can recognize solutions 
+			to the search problem. We can define the oracle \( O \) in temrs of:
+			\[
+				\ket*{x}\ket*{q} \overset{O}\rightarrow \ket*{x}\ket*{q \oplus f(x)}
+			\] 
+			Where \( \oplus \) denotes addition modulo 2. This means that if \( f(x) = 1 \), the qubit 
+			\( \ket*{q} \) is flipped, and otherwise it's untouched. Therefore, to check whether 
+			\( \ket*{x} \) is a solution, we send in \( \ket*{x}\ket*{0} \), and see if the output 
+			is \( \ket*{x}\ket*{1} \); if yes, then we know that \( x \) is the solution. 
+		\item Just like the Deutsch-Jozsa algorithm, we will apply the oracle to the state
+			\[
+			\ket*{x}\frac{1}{\sqrt{2} }(\ket*{0} - \ket*{1})
+			\] 
+			If \( x \) is not a solution to the problem, then it will leave the state unchanged. If \( x \) is the 
+			solution, then it will flip the 0 to a 1 and vice versa, so we'd get the state:
+			\[
+			\ket*{x}\left(-\frac{1}{\sqrt{2} }(\ket*{0} - \ket*{1})\right)
+			\] 
+		\item Since it flips by a negative sign when \( f(x) = 1 \), then we can write this as:
+			\[
+				\ket*{x}\left( \frac{\ket*{0} - \ket*{1}}{\sqrt{2} } \right) \overset{O}\to 
+				(-1)^{f(x)}\ket*{x}\left( \frac{\ket*{0} - \ket*{1}}{\sqrt{2} } \right) 
+			\] 
+		\item With this in mind, we can actually get rid of the oracle bit entirely:
+			\[
+				\ket*{x} \overset{O}\to (-1)^{f(x)}\ket*{x}
+			\] 
+			With \( M  \) solutions, then we need only \( O(\sqrt{N / M}) \) times in order to obtain a solution. 
+		\item To do the search itself, we first start with the state
+			\[
+			\ket*{\psi} = \frac{1}{N^{1 / 2}} \sum_{x=0}^{N-1} \ket*{x}
+			\] 
+			We then use a Grover operator called \( G \) repeatedly, which works like this:
+			\begin{itemize}
+				\item Apply the oracle \( O \) 
+				\item Apply the Hadamard transform \( H^{\otimes n} \) 
+				\item Perform a conditional phase shift:
+					\[
+					\ket*{x} \to -(-1)^{\delta_{x 0}}\ket*{x}
+					\] 
+					\question{What is \( \delta_{x o} \)?}
+
+					\answer{Apparently, the phase shift basically is \( \ket*{0} \to \ket*{0} \), and 
+					\( \ket*{x} \to - \ket*{x}\) for all \( x > 0 \).}
+				\item Apply the Hadamard transform \( H^{\otimes n} \)
+			\end{itemize}
+		\item For simplicity, we can write \( G = 2(\ket*{\psi}\bra*{\psi} - I) O \). Geometrically, we can interpret
+			Grover's algorithm as a rotation in the 2-dimensional space spanned by the starting vector 
+			\( \ket*{\psi} \), and the vector that is the superposition of the solutions. 
+		\item In essence, \( G\ket*{\psi} \) rotates the vector \( \ket*{\psi} \) closer to \( \ket*{\beta} \), 
+			which is a superposition of the solutions. Therefore, once we get close to \( \ket*{\beta} \), 
+			making a measurement gives a solution to the search problem with high probability. 
+	\end{itemize}
+	\subsection{Lecture Notes}
+	\begin{itemize}
+		\item Suppose we're given a function \( f: \{0, \dots, N - 1\}  \to \{0, 1\}  \), with the \textit{promise}
+			that there is some \( x_0 \) such that \( f(x_0) = 1 \).
+		\item Quantumly, \( f \) is implemented as an "oracle" \( Q_f \), with the properties:
+			\[
+			Q_f \ket*{x} = \begin{cases}
+				-\ket*{x} & f(x) = 1\\
+				\ket*{x} & f(x) = 0
+			\end{cases}
+			\] 
+			So in other words, we can write \( Q_f(x) = (-1)^{f(x)}\ket*{x} \). 
+		\item Before Grover, we assume an algorithm of the following form:
+			\[
+			U_0, Q_f, U_1, Q_f, U_2, Q_f, \dots, U_T
+			\] 
+			But we don't know which entry will be marked by \( f \), so it's best for us to start with a 
+			maximally symmetric state:
+			\[
+			\ket*{\psi }=  \frac{1}{\sqrt{N} }\sum_{x=0}^{N-1} \ket*{x}
+			\] 
+			This is the same as \( H^{\otimes n}\ket*{0}^{\otimes n}\) if \( N = 2^{n} \). But, the probability of 
+			measuring the right \( \ket*{x_0} \) in this case is \( \frac{1}{N} \). 
+		\item Grover's trick is to use \( U = H(2\ket*{0^{n}}\bra*{0^{n}} - I_n)H \). If we repeat this 
+			\( \frac{\pi}{4}\sqrt{N}  \) times, then we get a probability of nearly 1 of measuring \( \ket*{x_0} \). 
+		\item The idea is that we know that by creating a maximally superimposed state, 
+			that when the oracle acts on the state 
+			it will change one of the values. Then, we can use Grover's 
+			operator \( 2\ket*{u}\bra*{u} - I \) in order to 
+			amplify that state, since it gets us closer to the state of solutions that we want.     
+	\end{itemize}
+	\section{Phase Estimation}
+	\subsection{Lecture Notes}
+	\begin{itemize}
+		\item Suppose we had a matrix \( U \) that transforms as: \( U\ket*{\psi} = e^{2 \pi i \theta}\ket*{\psi} \).  
+			In other words, it adds some global phase to the state. 
+		\item We basically need to come up with a way to figure out what this \( \theta \) value is. To do this, 
+			we have some state \( \ket*{\psi}\), and another state that starts out in \( \ket*{0} \):
+			\begin{center}
+				\begin{quantikz}
+					\lstick{\( \ket*{0} \) } & \gate{H} & \ctrl{1} & \gate{H} & \meter{}\\
+					\lstick{\( \ket*{\psi} \) } & & \gate{U} & & 
+				\end{quantikz}
+			\end{center}
+			After the first two gates, we have:
+			\[
+			\frac{1}{\sqrt{2} }(\ket*{0} + e^{2 \pi i \phi} \ket*{1}) \otimes \ket*{\psi}
+			\] 
+			\question{why do we even care about \( \ket*{\psi} \), if we're not going to use it?}
+		\item Then looking at the first qubit entirely, if we perform another Hadamard transform (or equivalently, 
+			measure in the Hadamard basis), then it's not hard to show that the probabilities 
+			of getting 0 or 1 are:
+			\[
+			P(0) = \frac{1 + \cos(2 \pi \phi)}{2}, \quad P(1) = \frac{1 - \cos(2 \pi \phi)}{2}
+			\] 
+			The issue with something liek this, is that the distributions aren't as great (\( \phi \) vs \( 1 - \phi \))
+			, so we want to modify our circuit a little bit.
+		\item The modified circuit looks like this: 
+			\begin{center}
+				\begin{quantikz}
+					\lstick{\( \ket*{0} \) } & \gate{H} & \gate{K} & \ctrl{1} & \gate{H} & \meter{}\\
+					\lstick{\( \ket*{\psi} \) } & &  & \gate{U^{2^k}} & & 
+				\end{quantikz}
+			\end{center}
+			Basically, the only thing we changed was that we added in this new gate \( K \). 
+		\item There is a way of doing this with Fourier transforms, but I'm not sure if I have enough time to understand
+			it. 
+	\end{itemize}
+	\question{How does this way of phase estimation coincide with the one we did in homework, where we measured 
+	in the Hadamard basis, and applied \( K = S \)?}
+	
+	\answer{Measuring in the Hadamard basis is equivalent to performing a Hadamard transofrm (i.e. Hadamard gate), 
+	then measuring in the computational basis. The probabilities are the same.} 
+\end{document}

@@ -1,0 +1,142 @@
+\section{Transfer Function of LTI Systems}
+\begin{itemize}
+	\item For an LTI system with the standard input and output pairs, we know that since \( y(t) = x(t) * h(t) \), 
+		then this means that 
+		\[
+		Y(s) = X(s) H(s)
+		\] 
+		where \( H(s) \) denotes the Laplace transform of the impulse response, 
+		\[
+		H(s) = \int_{-\infty}^{\infty} h(t) e^{-st}\diff t 
+		\] 
+	\item For an LCCDE of the form:
+		\[
+			\sum_{k=0}^{N} a_k \dv[k]{y(t)}{t} = \sum_{k=0}^{M} b_k \dv[k]{x(t)}{t}
+		\] 
+		then we can take the Laplace transform of both sides, 
+		\[
+		\sum_{k=0}^{N} a_k s^{k}Y(s) = \sum_{k=0}^{M} b_k s^{k}X(s)
+		\] 
+		So, this means that:
+		\[
+		H(s) = \frac{Y(S)}{X(s)} = \frac{\sum_{k=0}^{\infty} b_k s^{k}}{\sum_{k=0}^{N} a_k s^{k}}
+		\] 
+\end{itemize}
+\subsection{RLC Circuit}
+\begin{itemize}
+	\item Consider the following circuit:
+		\begin{center}
+			\begin{circuitikz}[american]
+				\draw (0, 3) to [voltage source, l_ = \( x(t) \)] (0, 0);
+				\draw (0, 3) to [R] (2, 3) to [R] (4, 3);
+			\end{circuitikz}
+		\end{center}
+\end{itemize}
+\subsection{Effect of Poles}
+\begin{itemize}
+	\item For non-repeated poles (as in, the poles aren't degenerate), then the transfer function can 
+		be written generically as:
+		\[
+		H(s) = \sum_{i=1}^{N} \frac{A_i}{s - a_i}
+		\] 
+		If the system is causal, then recall that for an LTI system this means that \( h(t) = 0 \) for \( t < 0 \)
+		\[
+		h(t) = \sum_{i=1}^{N} A_i e^{-a_i t}u(t)
+		\] 
+	\item If \( \alpha_i \) is repeated \( m \) times, then the system response will include these terms:
+		\[
+			t^{m-1}e^{\alpha_i t}, \cdots,te^{\alpha_1}t, e^{\alpha_i t}
+		\] 
+\end{itemize}
+\subsection{Stability of Causal System}
+\begin{itemize}
+	\item Given a causal system described by  \( H(s) \), we saw earlier that \( Y(s) = H(s) X(s) \). There's also 
+		a theorem that says that the system is stable if and only if all poles of \( H(s) \)  have strictly negative 
+		real parts. 
+		This is because of two reasons:
+		
+		\begin{enumerate}[label=\arabic*.]
+			\item This is because if \( H(s) \) is rational, 
+				then the causality is equivalent to the region of convergence to 
+				the right of the rightmost pole (on the real line)
+			\item The absolute integrability condition \( \int_{-\infty}^{\infty} |h(t)|\diff t < \infty \) means 
+				that the imaginary axis is within the ROC. 
+		\end{enumerate}
+\end{itemize}
+\subsection{Connected LTI Sytems}
+\begin{itemize}
+	\item For systems connected in series, then \( H(s) = H_1(s)H_2(s) \), and in parallel then
+		\( H(s) = H_1(s) + H_2(s) \). This is the exact same as the Fourier transform \( H(\omega) \) properties. 
+	\item For feedback control systems (e.g. a compensator), then we define an error function 
+		\( E(s) = X(s) - H_2(s) Y(s) \). The subtraction comes from the fact that the feedback is fed 
+		as a minus sign. Then, \( Y(s) = H_1(s) E(s) \), and solving both equations 
+		gives:
+		\[
+		Y(s) = H_1(s) X(s) - H_1(s) H_2(s) Y(s) \implies H(s) = \frac{Y(s)}{X(s)} = \frac{H_1(s)}{1 + H_1(s)H_2(s)}
+		\] 
+\end{itemize}
+\subsection{Z-transform}
+\begin{itemize}
+	\item Very much the same as the Laplace transform, but for discrete-time signals. 
+	\item This is very similar to the DTFT formula:
+		\[
+			X(e^{j \omega}) = \sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}
+		\] 
+		This is periodic because the signal is discrete in time. The z-transform is the generalized version of this 
+		formula, written as:
+		\[
+			X(z) = \sum_{n=-\infty}^{\infty} x[n] z^{-n}, z \in \C
+		\] 
+		so really, the only difference is that we swapped \( e^{-j \omega} \) for a general complex 
+		number \( z \). Because \( z \) also has a magnitude term, there's also a corresponding region of 
+		convergence for \( z \). 
+\end{itemize}
+\subsection{Pairs}
+\begin{itemize}
+	\item Given \( x[n] = \delta[n] \), then:
+		\[
+			X(z) = \sum_{n=-\infty}^{\infty} \delta[n] z^{-n} = 1
+		\] 
+		as long as \( z \neq 0 \). With that caveat in mind, the ROC is the entire complex plane. 
+	\item Given \( x[n] = a^{n}u[n] \):
+		\[
+			X(z) = \sum_{n=-\infty}^{\infty} a^{n}u[n] z^{-n} = \sum_{n=0}^{\infty} a^{n}z^{-n}
+			= \sum_{n=0}^{\infty} (az^{-1})^{n} = \frac{1}{1 - (az^{-1})}
+		\] 
+		the last step simplifies due to geometric series. The condition for this to converge is 
+		that \( |az^{-1}| < 1 \), since that's when the geometric series converges. So this simplifies 
+		to \( |z| > |a| \), or \( |z| > a \) since \( a \) is real. 
+
+		Visually, this corresponds to a boundary at infinity and one that's a circle at radius \( a \). Consequently, 
+		if the unit circle exists within the region of convergence, then we know that the DTFT of the signal 
+		exists. 
+	\item Given \( x[n] = -a^{n}u[-n - 1] \):
+		\[
+			X(z) = \sum_{n=-\infty}^{\infty} -a^{n}u[-n - 1] z^{-n} = \sum_{n=-\infty}^{-1} -a^{n}z^{-n}
+			= 1 - \sum_{n=0}^{\infty} (-a^{-1}z)^{n}  = 1 - \frac{1}{1 - a^{-1}z}
+		\] 
+		The region of convergence is defined similarly: \( |za^{-1}| < 1 \), so \( |z| < |a| \). This is just a
+		filled circle up to a radius of \( |a| \). Of course, the DTFT exists only when the radius of this circle 
+		is larger than 1. 
+	\item Given  \( x[n] = -\left( \frac{1}{2} \right)^{n}u[-n - 1] + \left( -\frac{1}{3} \right)^{n}u[n] \), 
+		since the z-transform is linear, then:
+		\[
+		X(z) = \frac{1}{1 - 2z } + \frac{1}{1 + z^{-1} / 3} = \cdots = \frac{6z^2 - 6z - 1}{(3z + 1)(2z - 1)}
+		\] 
+\end{itemize}
+\subsection{Z-transform properties}
+\begin{itemize}
+	\item The ROC for z-transforms are circles or rings instead of planes, and that's just becuase we're 
+		converting \( e^{j \omega} \) to \( z \). 
+	\item See the lecture slides for a table on the properties. 
+\end{itemize}
+\subsection{Inverse Z-transform}
+\begin{itemize}
+	\item We can compute the inverse Z-transform using partial fraction expansion. The reason we keep going back 
+		to this is because many Z-transforms are characterized by rational functions, so if we can find a way to 
+		split the fractions up then we can find the inverse from linearity.  
+\end{itemize}
+
+
+
+
