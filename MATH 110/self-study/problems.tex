@@ -19,7 +19,6 @@ Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
 \newcommand{\range}{\mathrm{range \ }}
 \renewcommand{\null}{\mathrm{null \ }}
 \newenvironment{problem}{\textbf{Problem:}}{}
-%\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 	\maketitle
 
@@ -252,7 +251,7 @@ Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
 
 	\begin{solution}
 		We know that \( T \in \mathcal L(\F^{4}, F^{2}) \). Because the null space can be determined by two variables
-		only (\( x_1, x_3 \)), so \( \dim \null T = 2 \). This implies that since  \( \dim V = 4 \), then 
+		\( (x_1, x_3) \), so \( \dim \null T = 2 \). This implies that since  \( \dim V = 4 \), then 
 		\( \dim \range T = 2 \), and since this equals the dimension that \( T \) maps to \( \F^2 \), then 
 		this implies that \( T  \) is indeed surjective by (3.19).
 	\end{solution}
@@ -311,6 +310,7 @@ Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
 		Suppose \( W \) is finite-dimensional and \( T \in \mathcal L(V, W) \). Prove that \( T \) is 
 		injective if and only if there exists \( S \in \mathcal L(W, V)  \) such that \( ST \) is the identity 
 		operator on \( V \).
+
 	\end{problem}
 
 
@@ -351,22 +351,499 @@ Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
 		\] 
 	\end{problem}
 
+	\begin{solution}
+		What we need to show is that the vector space \( V \) can be constructed as a direct sum of 
+		\( \null \phi \) and the set of scalar multiples of  \( u \). Suppose by contradiction that this is 
+		not the case. In other words, there is an element \( w \in V \) such that there are two eleemnts 
+		\( v_1, v_2 \in \null \phi\) and two distinct values \( a_1, a_2 \in \F \) such that \( w = v_1 + a_1 \) and 
+		\( w = v_2 + a_2 \). Acting \( \phi \) on these, we get that \( \phi w = a_1 = a_2 \), which 
+		is a contradiction to our original statement. 
+	\end{solution}
+
 	\subsection{Matrices}
 
 	\begin{problem}
-		Suppose \( T \in \mathcal L(V, W) \). Show that with respect ot each choice of bases of  \( V \) and \( W \), 
+		Suppose \( T \in \mathcal L(V, W) \). Show that with respect to each choice of bases of  \( V \) and \( W \), 
 		the matrix of \( T \) has at least \( \dim \range T \) nonzero entries. 
 	\end{problem}
+
+	\begin{solution}
+		For some \( v_k \), if \( Tv_k \neq \mathbf 0 \), then this implies that \( v_k \not \in \null T \). Then, 
+		this means that \( Tv_k \) must map to some linear combination of \( \{w_i\}  \), where one of 
+		\( A_{i, k} \neq 0 \). This must also be true for all the basis vectors \( \{v_i\}  \) that 
+		are not part of \( \null T \), meaning there are at least \( \dim \range T \) nonzero columns, leading to 
+		\( \dim \range T \) nonzero entries. 
+	\end{solution}
+
 	
 	\begin{problem}
-		Suppose \( v_1, \dots, v_n \) is a basis of \( B \) and \( w_1, \dots, w_m \) is a basis of \( W \). 
+		Suppose \( v_1, \dots, v_n \) is a basis of \( V \) and \( w_1, \dots, w_m \) is a basis of \( W \). 
 		\begin{enumerate}[label=\alph*)]
 			\item Show that if \( S, T \in \mathcal L(V, W) \) then 
 				\( \mathcal M(S + T) = \mathcal M(S) + \mathcal M(T) \) 
+
+				\begin{solution}
+					One way to show this is to show that the map \( (S + T)v = Sv + Tv \), but this is already given 
+					to us based on definition 3.5. Then, since \( \mathcal M(S + T) \) is just the matrix 
+					representation of \( S + T \) and \( \mathcal M(S) + \mathcal M(T) \) is the matrix representation 
+					of \( S + T \), then the proof holds. 
+				\end{solution}
 			\item Show that if \( \lambda \in \F \) and \( T \in \mathcal L(V, W) \), then \( \mathcal M(\lambda T)
 				= \lambda \mathcal M(T)\). 
+
+				\begin{solution}
+					This works in the same way as the previous problem: Definition 3.5 guarantees the things we want. 
+				\end{solution}
 		\end{enumerate}
 	\end{problem}
 
+	\begin{problem}
+		Suppose \( V \) and \( W \) are finite-dimensional and \( T \in \mathcal L(V, W) \). Prove that there 
+		exist a basis of \( V \) and a basis of \( W \) such that with respect to these bases, all entries 
+		of \( \mathcal M(T) \) are 0 except that the entries in row \( k \), column \( k \) equal 1 
+		if \( 1 \le k \le \dim \range T \).
+	\end{problem}
 
+	\begin{solution}
+		We know that \( T \) maps in the form of \( Tv_k = \lambda_k w_k \) for some \( \lambda_k \) if 
+		\( v_k \not \in \null T \). Therefore, we can construct \( \mathcal M(T) \) as follows: place every 
+		\( v_k \not\in \null T \) in colums \( 1, \dots, \dim \range T \), and populate the corresponding 
+		row with the basis vector that \( v_k \) maps to: \( \lambda_k w_k \). This will guarantee that the 
+		matrix is diagonal (i.e. row  \( k \) and column \( k \) equals 1 for \( 1 \le k\le \dim \range T \)), 
+		and zero otherwise. 
+
+		To be a bit more specific, the basis for \( V \) is just the standard basis, and the basis for 
+		\( W \) is the basis formed by the images of \( v_i \) when acted on by \( T \).  
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( v_1, \dots, v_m \) is a basis of \( V \) and \( W \) is finite-dimensional. Suppose \( T \in 
+		\mathcal L(V, W)\). Prove that there exists a basis \( w_1, \dots, w_n \) of \( W \) such that 
+		all entries in the first column of \( \mathcal M(T) \) [with respect to the bases 
+		\( v_1, \dots, v_m \) and \( w_1, \dots ,w_n \) ] are 0 except possibly a 1 in the first row, first 
+		column. 
+
+		\textit{Note: This exercise, unlike the previous one, we are given a basis of \( V \) instead of being 
+		able to choose a basis of \( V \). }
+	\end{problem}
+
+	\begin{solution}
+		Essentially, we want to prove that there exists a basis \( w_1, \dots, w_n \) such that either 
+		\( Tv_1 = w_1 \) or \( Tv_1 = \mathbf 0 \). The latter case is easy: all entries in the first column are zero 
+		becuase \( v_1 \in \null T \), so any basis \( w_1, \dots, w_n \) will work. 
+
+		Now suppose that \( v_1 \not \in \null T \). Then, we know that \( Tv_1 = \sum_k A_{k, 1}w_k = \mathbf w\).
+		Now, we can just choose \( \mathbf w \) as the first basis vector -- nothing prevents us from doing this, and 
+		the other bases of \( w \) can just be the basis vectors \( \{w_i\}  \) that don't contribute (i.e. 
+		have a prefactor of zero) to \( \mathbf w \). This ensures that the first column will be all zeros 
+		except for possibly the top left corner, which is allowed.  
+	\end{solution}
+
+
+	\begin{problem}
+		Give an example of 2-by-2 matrices \( A \) and \( B \) such that \( AB \neq BA \). 
+	\end{problem}
+
+	\begin{solution}
+		Consider the matrices:
+		\[
+			A = \begin{pmatrix} 1 & 1\\0 &1 \end{pmatrix}  \quad B = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} 
+		\] 
+		Then:
+		\[
+			AB = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix} \quad BA = \begin{pmatrix} 0 & 1\\1 & 1 \end{pmatrix} 
+		\] 
+		They're not equal, so we're done. 
+	\end{solution}
+
+	\begin{problem}
+		Prove that matrix multiplication is associative. In other words, suppose that \( A, B \) and \( C \) are 
+		matrices whose sizes are such that \( (AB)C \) makes sense. Explain why \( A(BC) \) makes sense 
+		and prove that 
+		\[
+			(AB)C = A(BC)
+		\] 
+		\textit{Try to find a clean proof that illustrates the following quote from Emil Artin: ``It is my 
+		experience that proofs involving matrices can be shortened by 50\% if one throws the matrices out''}
+
+		\begin{solution}
+			Let \( A, B, C \) be linear maps instead, so we show that \( (AB)Cv = A(BC)v \) for some 
+			vector  \( v \). Linear maps are then associative, so this completes the proof immediately. 
+
+			This is becuase the product of two matrices is defined in the context of the product of linear maps, 
+			so if linear maps are associative, then the matrix multiplication must be as well.   
+		\end{solution}
+	\end{problem}
+
+	\begin{problem}
+		Suppose \( m \) and \( n \) are positive integers. Prove that the function \( A \mapsto A^{t} \) 
+		is a linear map from \( \F^{m, n} \) to \( \F^{n, m} \). 
+	\end{problem}
+
+	\begin{solution}
+		We know that \( A \in \F^{m, n} \). Then, \( A^{t} \in \F^{n, m} \), by the definition 3.54 (transpose). 
+		Therefore, this is indeed a valid map from \( F^{m, n} \to \F^{n, m} \). Now we need to prove it is linear, 
+		which is done for us since the transpose is a linear operation:
+		\[
+			(A + B)^{t} = A^{t} + B^{t} \quad (\lambda A)^{t} = \lambda A^{t}
+		\] 
+		these are the additivity and homogeneity properties respectively, so indeed the transpose operation is linear.
+	\end{solution}
+
+	\subsection{Invertibility and Isomorphisms}
+	\begin{problem}
+		Suppose \( T \in \mathcal L(V, W) \) is invertible. Show that \( T^{-1} \) is invertible and 
+		\[
+			(T^{-1})^{-1} = T
+		\] 
+	\end{problem}
+
+	\begin{solution}
+		Since \( T \) is invertible, then \( T^{-1} \) is the unique element in \( \mathcal L(W, V) \) such that 
+		\( T^{-1}T = I \). Then, this also means that \( T \) is the unique element in \( \mathcal  L(V, W) \) 
+		such that \( T T^{-1} = I \), hence \( T^{-1} \) is invertible. Further, we then call \( T \) the 
+		inverse of \( T^{-1} \), hence \( (T^{-1})^{-1} = T \). 
+	\end{solution}
+	
+	\begin{problem}
+		Suppose \( T \in \mathcal L(U, V) \) and \( S \in \mathcal L(V, W) \) are both invertible linear maps. 
+		Prove that \( ST \in \mathcal L(U, W) \) is invertible and that \( (ST)^{-1} = T^{-1}S^{-1} \). 
+	\end{problem}
+
+	\begin{solution}
+		We're given that \( S \) and \( T \) are invertible, so \( T^{-1} \in \mathcal L (V, U) \) 
+		and \( S^{-1} \in \mathcal L(W, V) \) both exist and are unique. Then, \( T^{-1}S^{-1} \in \mathcal L(W, U)\) 
+		is a unique linear map determined by \( S \) and \( T \). We now prove that \( T^{-1}S^{-1} \) is the inverse 
+		of \( ST \) by showing that we get the identity:
+		\[
+			T^{-1}S^{-1}(ST) = T^{-1} (S^{-1} S) T = T^{-1} I T = T^{-1} T = I
+		\] 
+		Therefore, \( (ST)^{-1} = T^{-1} S^{-1} \). 
+	\end{solution}
+	
+	\begin{problem}
+		Suppose \( V \) is finite-dimensional and \( \dim V > 1 \). Prove that the set of noninvertible linear maps 
+		from \( V \) to itself is not a subspace of \( \mathcal L(V) \).
+	\end{problem}
+
+	\begin{solution}
+		Recall that \( \mathcal L(V) = \mathcal L(V, V)\). The set of noninvertible linear maps from \( V \) to 
+		itself cannot be a subspace of \( \mathcal L(V) \) becuase the zero element does not exist. The zero 
+		mapping maps any vector in \( V \) to the zero vector, so it is not a member of \( \mathcal L(V) \), and 
+		hence this set is not a subspace of \( \mathcal L(V) \). 
+
+		\question{Don't know if this is right, I haven't really used the noninvertible property? The set 
+		of linear maps from \( V \) to itself is just not a linear map?}
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( V \) is finite-dimensional, \( U \) is a subspace of \( V \), and \( S \in \mathcal L(U, V) \).
+		Prove that there exists an invertible linear map \( T \) from \( V \) to itself such that \( Tu = Su \) 
+		for every \( u \in U \) if and only if \( S \) is injective. 
+	\end{problem}
+
+	\begin{solution}
+		We prove the forward direction first: that there exists an invertible linear map if \( S \) is 
+		injective. Consider the linear map:
+		\[
+		Tv_i = \begin{cases}
+			Sv_i & v_i \in \{u_i\} \\
+			v_i & v_i \not \in \{u_i\} 
+		\end{cases}
+		\]
+		Then, \( T \) is basically the map \( S \) except it maps all basis vectors that are not part of the 
+		subspace \( U \) onto themselves. Firstly, it's obvious that \( T \in \mathcal L(V)\), and \( Tu = Su \) 
+		for every \( u \in U \) by the first case. \( T \) is also invertible, becuase it is both injective
+		and surjective: it's injective since \( \null T = \{0\}  \) (and \( S \) is 
+		injective), and it is surjective since \( \range T = V \). Therefore, such a  \( T \) exists. 
+
+		Now we prove the reverse case: that if there exists a linear map satisfying these properties, then
+		\( S \) must be injective. Since \( T \) is invertible and  \( T \in \mathcal L(V) \), then this 
+		implies that \( T \) is injective (by Theorem 3.65), hence \( S \) must also be 
+		injective since \( Tu = Su \). 
+	\end{solution}
+
+
+	\begin{problem}
+		Suppose that \( V \) is finite-dimensional and \( S, T\in \mathcal L(V, W) \). Prove that 
+		\( \range S = \range T \) if and only if there exists an invertible \( E \in \mathcal L(V) \) such that 
+		 \( S = TE \). 
+	\end{problem}
+
+	\begin{solution}
+		We prove the forward direction first. Suppose an invertible \( E \in \mathcal L(V) \) 
+		such that \( S = TE \) exists. Since \( E \) is invertible, this implies that \( E \) is 
+		a bijective map, or in other words, \( \dim \null E = 0 \). Then, since \( S = TE \), then 
+		\( \dim \null S = \dim \null TE \), and since \( \dim \null E = 0 \), then \( \dim \null S = 
+		\dim \null T\). Finally, since \( S, T \in \mathcal L(V, W) \) and their null spaces have the same dimension, 
+		then \( \range S = \range T \).\footnote{More precisely, we actually should have \( \dim \range S 
+		= \dim \range T\), from which we conclude that \( \range S = \range T \).}
+
+		Now the reverse direction. Suppose that \( \range S = \range T \), we aim to find an 
+		invertible \( E \in \mathcal L(V) \) such that \( S = TE \). This is relatively simple, as we can just 
+		let \( E \) be the identity map, which is invertible, and we also get \( S = TE \) automatically.
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( V \) and \( W \) are finite-dimensional and \( U \) is a subspace of \( V \). 
+		Let 
+		\[
+		\mathcal E = \{T \in \mathcal L(V, W) \mid U \subseteq \null T\} 
+		\] 
+		\begin{enumerate}[label=\alph*)]
+			\item Show that \( \mathcal E \) is a subspace of \( \mathcal L(V, W) \). 
+
+				\begin{solution}
+					We just have to show the properties of a subspace: closedness under addition and scalar 
+					multiplication.
+					\begin{itemize}
+						\item \textbf{Addition:} Let \( T_1, T_2 \in \mathcal E\) two linear maps. Then, 
+							consider \( v \in U \). Then, \( (T_1 + T_2)v = 0 \), so  \( T_1 + T_2 \in \mathcal E \), 
+							as desired. 
+						\item \textbf{Scalar Multiplication:} Let \( T \in \mathcal E\) be a linear map and 
+							\( v \in U \). Then, \( (\lambda T)v = \lambda (Tv) = 0 \), so 
+							\( \lambda T \in \mathcal E \), as desired. 
+					\end{itemize}
+					with both conditions satisfied, we've proven that \( \mathcal E \) is a subspace of 
+					\( \mathcal L(V, W) \).
+				\end{solution}
+			\item Find a formula for \( \dim E \) in terms of \( \dim V, \dim W \) and \( \dim U \). 
+				
+				\textit{Hint:} Define \( \Phi = \mathcal L(V, W) \to \mathcal (U, W) \) by 
+				\( \Phi(T) = T\vert_U \). What is \( \null \Phi \)? What is \( \range \Phi \)? 
+
+				\begin{solution}
+					\question{what is a formula here?} 
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Suppose \( V \) is finite-dimensional and \( S, T \in \mathcal L(V) \). Prove that 
+		\[
+		\text{\( ST \) is invertible} \iff \text{\( S \) and \( T \) are invertible.}
+		\] 
+	\end{problem}
+
+	\begin{solution}
+		We prove first that if \( S \) and \( T \) are invertible, then \( ST  \) is invertible. This is realtively 
+		easy, since \( S, T \) being inverible implies that they are both bijective maps, and hence their 
+		composition must also be a bijective map. This implies that \( ST \) is invertible.  
+
+		Now, assume that \( ST  \) is invertible. Then, by problem 2 we know that \( (ST)^{-1} = T^{-1} S^{-1} \), 
+		and since these two have inverses, then \( S \) and \( T \) must both be invertible.  
+	\end{solution}
+
+	\begin{problem}
+		Show that \( V \) and \( \mathcal L(\F, V) \) are isomorphic vector spaces. 
+	\end{problem}
+
+	\begin{solution}
+		Not sure if you can do this, but theorem 3.70 gives us a nice way of showing that two finite-dimensional 
+		vector spaces are isomorphic: if they have the same dimension. Combining this with Theorem 3.72, we 
+		find that \( \dim \mathcal L(\F, V) = (\dim \F) (\dim V) = \dim V\), which has the same dimension as 
+		\( \dim V \), so they are indeed isomorphic. 
+
+		\question{what happens if \( V \) is infinite-dimensional?} 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( q \in \mathcal P(\R) \). Prove that there exists a polynomial \( p \in \mathcal P(\R) \) such 
+		that 
+		\[
+		q(x) = (x^2 + x)p''(x) + 2xp'(x) + p(3)
+		\] 
+		for all \( x\in \R \). 
+	\end{problem}
+
+	\begin{solution}
+		Let \( D \in \mathcal L(\mathcal P(\R) \) be the differentiation linear map (it's shown to be 
+		linear on page 53). Then, using this language, 
+		we can rewrite the equation as:
+		\[
+		q(x) = (x^2 + x) D^2 p(x) + 2xDp(x) + p(3)
+		\] 
+		since \( D \in \mathcal L(\mathcal P(\R) \), then we know that \( Dp(x) \in \mathcal P(R) \), and 
+		\( D^2 p(x) \in \mathcal P(\R) \) as well. The set of polynomials is also a vector space, so 
+		the prefactors of \( x^2 + x \) and the addition of  \( p(3) \) do not alter the fact that 
+		\( q(x) \in \mathcal P(\R) \), as desired. 
+	\end{solution}
+
+	\begin{problem}
+		Suppose that \( u_1, \dots, u_n \) and \( v_1, \dots, v_n \) are bases of \( V \). Let 
+		\( T \in \mathcal L(V)  \) be such that \( Tv_k = u_k \) for each \( k = 1,\dots, n \). Prove that 
+		\[
+		\mathcal M(T, (v_1, \dots, v_n)) = \mathcal M(I, (u_1, \dots, u_n), (v_1, \dots, v_n)). 
+		\] 
+	\end{problem}
+
+	\begin{solution}
+		To prove this, we will consider a column \( k \) for both matrices. For the left hand side, we know that 
+		the transformation \( Tv_k = u_k \), so for column \( k \), the entries \( A_{j, k} \) are such that:
+		\[
+		u_k = A_{1, k}v_1 + \cdots + A_{n, k}v_n
+		\] 
+		Now, for the right hand side. The identity map maps  \( Iu_k = u_k \), and column \( k \) is filled such 
+		that:
+		\[
+		u_k = B_{1, k}v_1 + \cdots + B_{n, k}v_n
+		\] 
+		Since \( v_1, \dots, v_n \) is the same basis used in both equations, then we require that \( A_{j, k} = 
+		B_{j, k}\), and hence the matrices are the same. 
+	\end{solution}
+	\subsection{Products and Quotients of Vector Spaces}
+	\begin{problem}
+		Suppose \( T \) is a function from \( V \) to \( W \). The \textit{graph} of \( T \) is the subset 
+		of \( V \times W \) defined by \[
+		\text{graph of \( T \)} = \{(v, Tv) \in V \times W \mid v \in V\} 
+		\] 
+		Prove that \( T \) is a linear map if and only if the graph of \( T \) is a subspace of \( V \times W \).
+
+		\begin{center}
+			\begin{minipage}{0.9\textwidth} 
+				\textit{Formally, a function \( T \) from \( V \) to \( W \) is a subset \( T \) of 
+					\( V \times  W \) such that for each \( v \in V \), there exists exactly one element 
+					\( (v, w) \in T \). In other words, formally a function is what is called above its graph. 
+					We do not usually think of functions in this formal manner. However, if we do 
+					become formal, then this exercise can be rephrased as follows: Prove that a function 
+					\( T \) from \( V \) to \( W \) is a linear map if and only if \( T \) is a subspace 
+				of \( V\times  W \). }
+			\end{minipage}
+		\end{center}
+	\end{problem}
+
+	\begin{solution}
+		We first prove the forward case: the graph of \( T \) being a subspace implies that \( T \) is a 
+		linear map. To do this, consider the elements \( (v_1, Tv_1), (v_2, Tv_2) \in V\). Then, \( T \) being a 
+		subspace implies the following two conditions:
+		\begin{align*}
+			(v_1, Tv_1) + (v_2, Tv_2) &= (v_1 + v_2, Tv_1 + Tv_2) \in V\\
+			\lambda(v_1, Tv_1) &= (\lambda v_1, \lambda Tv_1) \in V
+		\end{align*}
+		Then, in order for this to be true, then \( T \) must obey \( Tv_1 + Tv_2 = T(v_1 + v_2) \) and 
+		\( \lambda Tv_1 = T(\lambda v_1) \). This is precisely the conditions for a linear map. 
+
+		Now we prove that \( T \) being a linear map implies that the graph of \( T \) is a subspace. Becuase 
+		\( T \) is a linear map, then we know that \( Tv_1 + Tv_2 = T(v_1 + v_2) \), and \( T(\lambda v_1) = 
+		\lambda Tv_1\). Now, we consider the addition and scalar multiplication:
+		\begin{align*}
+			(v_1, Tv_1) + (v_2, Tv_2) &= (v_1 + v_2, T(v_1 + v_2))\\
+			\lambda(v_1, Tv_1) &= (\lambda v_1, T(\lambda v_1))
+		\end{align*}
+		Since both of these are of the form \( (v, Tv) \), then it follows that both of these are also contianed 
+		within \( V \). Therefore, the graph of \( T \) is indeed a subspace. 
+	\end{solution}
+
+	\begin{problem}
+		Suppose that \( V_1, \dots, V_m \) are vector spaces such that \( V_1 \times  \dots \times  V_m \) 
+		is finite-dimensional. Prove that \( V_k \) is finite-dimensional for each \( k = 1, \dots, m \). 
+	\end{problem}
+
+	\begin{solution}
+		Theorem 3.92 says that \( \dim(V_1 \times \dots \times V_m) = \dim V_1 + \dots + \dim V_m \). Therefore, 
+		if one of \( \dim V_k = \infty\), then \( \dim(V_1 \times \cdots \times V_m) = \infty \). This is a 
+		contradiction, so therefore each \( V_k \) is finite dimensional. 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( V_1, \dots, V_m \) are vector spaces. Prove that 
+		\( \mathcal L(V_1 \times \dots \times V_m, W) \) and \( \mathcal L(V_1, W) \times  \dots \times 
+		\mathcal L(V_m, W)\) are isomorphic vector spaces. 
+	\end{problem}
+
+	\begin{solution}
+		Consider \( T \in \mathcal L(V_1 \times \dots \times V_m, W) \). 
+		We can define a linear map \( T_i \in  \mathcal L(V_i, W) \) such that for all \( v_i \in V_i \), 
+		we have \( T_i v_i = T(0, \dots, v_i, \dots) \). In other words, \( T_i v_i \) produces the same 
+		vector as if we just fed \( v_i \) into \( T \). Then, we can define a linear map:
+		\( \Lambda: T \to (T_1, \dots, T_m )\) based on \( T_i  \). 	
+
+		Now we prove the injectivity and surjectivity of \( \Lambda \). For injectivity, we aim to prove that 
+		\( \null \Lambda = \{ 0\}  \). Consider \( T \in \null \Lambda \), then, this implies that 
+		\( \Lambda T = (0_1, \dots, 0_m) \). Then, since each \( 0_i \) is defined such that 
+		\( T_i v_i = T(0, \dots, v_i, \dots, 0) \), we can write \( 0_i v_i = 0 = T(0, \dots, v_i, \dots, 0) \). 
+		This holds for every \( i \), so therefore we can write:
+		\[
+		T v = T(v_1, \dots, 0) + \dots + T(0, \dots, v_m) = 0 + \dots + 0 = 0
+		\] 
+		Therefore, \( T  \) is the zero map, hence \( \null T = \{0\}  \). 
+
+		To prove the surjectivity of \( \Lambda \), we want to show that given a set of \( (T_1, \dots, T_m) \), 
+		we can find a \( T \) such that \( \Lambda T = (T_1, \dots, T_m) \). To do so, let 
+		\( T \in \mathcal L(V_1 \times \dots \times V_m, W) \) such that \( T(v_1, \dots, v_m) = 
+		T_1v_1 + \dots + T_m v_m\). Then, \( T(0, \dots, v_i, \dots, 0) = T_i v_i \), so based on the 
+		definition of \( \Lambda \), we have \( \Lambda T = (T_1, \dots, T_m) \). This is 
+		the desired result. 
+	\end{solution}
+
+
+	\begin{problem}
+		Suppose that \( v,x \) are vectors in \( V \) and that \( U, W \) are subspaces of \( V \) such that 
+		\( v + U = x + W \). Prove that \( U = W \).
+	\end{problem}
+
+	\begin{solution}
+		Since \( U, W \) are subspaces, then the zero element exists in both. This means that \( v + 0 \in v + U \), 
+		and there exists some \( w \) such that \( v = x + w \), or in other words \( v - x = w 
+		\implies v - x \in W\). Then, by Theorem 3.101, \( v - x \in W \) implies that \( v + W = 
+		x + W\). Combining this with \( v + U = x + W \), we get \( v + U = v + W \), so \( U = W \), as 
+		desired. 
+	\end{solution}
+
+	\begin{problem}
+		Prove that a nonempty subset \( A \) of \( V \) is a translate of some subspace of \( V \) if 
+		and only if \( \lambda v + (1 - \lambda) w \in A \) for all \( v, w \in A \) and all \( \lambda \in \F \). 
+	\end{problem}
+
+	\begin{solution}
+		We prove first that if \( A \) is a translate of \( V \), then the equation holds. Since \( A \) is 
+		a translate of \( V \), then this means that \( A \) can be represented as \( A = 
+		\{x + u \mid u \in U\} \) for some subset \( U \) and \( x \in V \). Now, consider 
+		\( v = x + u_1 \) and \( w = x + u_2 \) for \( u_1, u_2 \in U \). Then, we have:
+		\[
+		\lambda v + (1 - \lambda)w = \lambda(x + u_1) + (1 - \lambda)(x + u_2) = \lambda x + \lambda u_1 + x + u_2
+		- \lambda x - \lambda u_2 = x + u_2 + \lambda(u_1 - u_2)
+		\] 
+		Since \( U \) is a subspace, then \( u_2 + \lambda(u_1 - u_2) \in U \), so 
+		we can conclude that \( \lambda v + (1 - \lambda)w \in A \). 
+
+		Now we prove the reverse direction: if \( \lambda v + (1 - \lambda)w \in A \), then 
+		\( A \) is some translate of \( V \). Rearranging this equation, it becomes \( w + \lambda(v - w) \in A\)
+		for all \( v, w \in A \). Now, since \( v, w \in V \) and \( V \) is a vector space, then \( 0 \in V \), 
+		so we can set \( w = 0 \), and then this basically gives the equation \( v \in A \). In other words, 
+		we can make a "trivial" translate by letting \( A = V \) and \( w = 0  \). 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( A_1 = v + U_1 \) and \( A_2 = w + U_2 \) for some \( v, w \in V \) and some 
+		subspaces \( U_1, U_2  \) of \( V \). Prove that the intersection \( A_1 \cap A_2 \) is either 
+		a translate of some subspace of \( V \) or the empty set. 
+	\end{problem}
+
+	\begin{solution}
+		There are two cases: either \( A_1 = A_2 \) or \( A_1 \neq A_2 \). 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( U = \{(x_1, x_2, \dots, ) \in \F^{\infty} \mid x_k \neq 0 \text{ for finitely many \( k \)}\}  \). 
+		\begin{enumerate}[label=\alph*)]
+			\item Show that \( U \) is a subspace of \( \F^{\infty} \).
+			\item Prove that \( \F^{\infty} / U \) is infinite-dimensional
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Suppose \( v_1, \dots, v_m \in V\). Let 
+		\[
+		A = \{\lambda_1 v_1 + \dots + \lambda_m v_m \mid \lambda_1, \dots, \lambda_m \in \F \text{ and }
+		\lambda_1 + \dots + \lambda_m = 1\} 
+		\] 
+		\begin{enumerate}[label=\alph*)]
+			\item Prove that \( A \) is a translate of some subspace of \( V \). 
+			\item Prove that if \( B \) is a translate of some subspace of \( V \) and 
+				\( \{v_1, \dots, v_m\}  \subseteq B \), then \( A \subseteq B \). 
+			\item Prove that \( A \) is a translate of some subspace of \( V \) of dimension less than \( m \). 
+		\end{enumerate}
+	\end{problem}
 \end{document}
+

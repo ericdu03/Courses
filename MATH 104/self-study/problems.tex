@@ -1,0 +1,697 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Solutions to Selected Rudin Problems}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{\phantom{Eric Du} \hfill \classcode}
+\newline
+Eric Du \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.2}
+
+\newenvironment{problem}{\textbf{Problem:}}{}
+\newenvironment{definition}{\textbf{Definition:}}{}
+\begin{document}
+	\maketitle
+	\section{The Real and Complex Number Systems} 
+
+	\begin{problem}
+		If \( r \) is rational (\( r \neq 0 \)) and \( x \) is irrational, prove that \( r + x \) and 
+		\( rx \) are irrational. 
+	\end{problem}
+
+	\begin{solution}
+		Suppose by contradiction that \( r  +x \) and \( rx \) are both rational. Then, since \( r \) is rational, 
+		then we can write \( r = \frac{a}{b} \). Similarly, we write \( rx = \frac{c}{d} \), \( r + x = \frac{e}{f} \). 
+		Then, we have:
+		\[
+		\frac{a}{b} + x = \frac{e}{f} \quad \frac{a}{b}x = \frac{c}{d}
+		\] 
+		Rearranging for \( x \) in both cases:
+		\[
+		x = \frac{e}{f} - \frac{a}{b} \quad x = \frac{c}{d} \cdot \frac{b}{a}
+		\] 
+		In both cases, since the rationals are closed under multiplication and addition, this implies that \( x \) is 
+		rational, which is a contradiction. 
+	\end{solution}
+	\begin{problem}
+		Let \( E \) be a nonempty subset of an ordered set; suppose \( \alpha \) is a lower bound of \( E \)
+		and \( \beta  \) is an upper bound of \( E \). Prove that \( \alpha \le  \beta \). 
+	\end{problem}
+
+	\begin{solution}
+		Let \( S \) be the set such that \( E \subset S \). Since \( \alpha \) is a lower bound of \( E \), then 
+		this means that \( \alpha \in S \) such that \( \alpha \le x \) for every \( x \in E \), and \( \beta \ge x \) 
+		for every \( x \in E \). 
+
+		Now suppose for the sake of contradiction that \( \beta < \alpha \). Then, since \( \alpha \) is 
+		the lower bound, this implies that for all \( x  \in E\), \( \alpha < x \). But since \( \alpha > \beta \), 
+		then this means that  \( \beta < x \) for every \( x \) as well. This is impossible however, since 
+		this contradicts the fact that \( \beta  \) is an upper bound.  
+	\end{solution}
+
+	\begin{problem}
+		Let \( A \) be a nonempty set of real numbers which is bounded below. Let \( -A \) be 
+		the set of all numbers \( -x \), where \( x \in A \). Prove that 
+		\[
+		\inf A = -\sup (-A)
+		\] 
+	\end{problem}
+
+	\begin{solution}
+		Since \( A \) is bounded below, then \( \beta = \inf A \) exists, such that \( \beta \le  x \) for all 
+		\( x \in A \). Equivalently, we can write this as \( -\beta \ge -x \) for all \( x \in A \). Then, since 
+		\( -x \) for \( x \in A \) is the set \( -A \), then we conclude that \( -\beta \) is an upper bound 
+		for the set \( -A \). Hence, we have:
+		\[
+		\sup(-A) = - \beta = - \inf A \implies \inf A = - \sup (-A)
+		\] 
+		as desired. 
+	\end{solution}
+	\begin{problem}
+		Fix \( b > 1 \). 
+		\begin{enumerate}[label=\alph*)]
+			\item If \( m, n, p, q \) are integers, \( n >0, q > 0 \) and \( r = m / n = p / q \), prove that 
+				\[
+					(b^{m})^{1 / n} = (b^{p})^{1 / q}
+				\] 
+				Hence it makes sense to define \( b^{r} = (b^{m})^{1 / n} \). 
+
+				\begin{solution}
+					We solve this by showing that we can exponentiate both sides to arrive at an equal value. If this 
+					is the case, then we know that the original numbers must be the same, becuase Theorem 1.21
+					guarantees us uniqueness in roots. 
+
+					Notice that since \( m / n = p / q \), then we can write:
+					\[
+					b^{mq}	= \left(  (b^{m})^{1 / n}\right)^{n q}\quad \quad
+						b^{np} = \left( (b^{p})^{1 / q} \right)^{nq} 
+					\] 
+					Then, since \( m / n = p / q \), we also have \( mq = np \), so the exopnents are the same 
+					on both sides here. Thus, the two original quantities are the same. 
+				\end{solution}
+			\item Prove that \( b^{r + s} = b^{r} b^{s} \) if \( r \) and \( s \) are rational. 
+
+				\begin{solution}
+					Again, we aim to show that these are equal like in the previous case. Since \( r \) and \( 
+					s\) are rational, let \( r = \frac{m}{n} \) and \( s = \frac{p}{q} \). Then, we have:
+					\[
+					b^{r + s} = b^{\frac{m}{n} + \frac{p}{q}} = b^{\frac{mq + np}{nq}}\quad 
+					b^{r}b^{s} = b^{\frac{m}{n}}b^{\frac{p}{q}} 
+					\]  
+					Now, exponentiate both of these to the power of \( nq \), which is an integer:
+					\[
+						(b^{\frac{mq + np}{nq}})^{nq} = b^{mq + np} \quad \left(b^{\frac{m}{n}} b^{\frac{p}{q}}\right)
+						^{nq} = b^{mq + np}
+					\] 
+					Then, since these values are the same, then it must follow that \( b^{r + s} = b^{r} b^{s} \). 
+				\end{solution}
+			\item If \( x \) is real, define \( B(x) \) to be the set of all numbers \( b^{t} \) where \( t \) 
+				is rational and \( t \le x \). Prove that 
+				\[
+				b^{r} = \sup B(r)
+				\] 
+				when \( r \) is rational. Hence it makes sense to define 
+				 \[
+				b^{x} = \sup B(x)
+				\] 
+				for every real \( x \).
+
+				\begin{solution}
+					Here, it is immediately clear that \( b^{r} \) is an upper bound of \( B(r) \), since \( r \) is 
+					the largest exponent, but we now need to show that \( b^{r} \) is the least upper bound of 
+					\( B(r) \).
+
+					We prove this by contradiction. Suppose there is some real number \( s \) such that 
+					\( s < b^{r} \) and \( s \) is still an upper bound on \( B(r) \). Then, this implies that 
+					\( b^{t} < s \) for all \( t < r \) as well. However, this cannot be the case, since 
+					\( B(x) \) is defined to contain \( b^{r} \), so \( s \) cannot be an upper 
+					bound on the entire set. Therefore, \( b^{r} \) is the least upper bound.  
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Prove that no order can be defined in the complex field that turns it into an ordered field. \textit{Hint:}
+		\( -1 \) is a square. 
+	\end{problem}
+
+	\begin{solution}
+		By proposition 1.18 condition (d), we require that if \( x \neq 0 \), then \( x^2 > 0 \). However, 
+		this is not true for the complex field, since \( i^2 = -1 < 0 \).  
+	\end{solution}
+
+	\begin{problem}
+		If \( z \) is a complex numer, prove that there exists an \( r \ge  0 \) and a complex 
+		number \( w \) with \( |w| = 1 \) such that \( z = rw \). Are \( w \) and \( r \) always uniquely 
+		determined by \( z \)? 
+	\end{problem}
+
+	\begin{solution}
+		This is essentially the construction of the polar coordinates. Let \( z = a + bi \). Then, we 
+		may express \( z \) in terms of \( z = |z| \hat{z} \), where \( |z| = r\)  and \( \hat{z} = w \). 
+		To find \( r \), one finds the norm of \( z \):
+		\[
+		r = \sqrt{a^2 + b^2} 
+		\] 
+		similarly, \( w \) takes the for \( e^{i \theta} \), where \( \theta \) is defined as the angle 
+		counterclockwise from the \( x \) axis:
+		\[
+		\theta = \tan^{-1}\left( \frac{b}{a} \right) 
+		\] 
+		This is not a unique representation, since different ratios of \( b  \) and \( a \) can give rise 
+		to the same value of \( \tan^{-1}(\theta) \). 
+	\end{solution}
+
+	\subsection{Challenge Problem from Bergman}
+	On p. 21, Rudin mentions, but does not prove, that any two ordered fields with the least-upper bound property 
+	are isomorphic. This exercise will sketch how that fact can be proved. For the benefit of students who 
+	have not had a course in Abstract Algebra, I begin with some observations generally included in that course 
+	(next paragraph and part (a) below). 
+
+	If \( F \) is any field, let us define an element \( n_F \in F\) for each integer \( n \) as follows: let 
+	\( 0_F \) and \( 1_F \) be the elements of \( F \) called ``0'' and ``1`` conditions (A4) and 
+	(M4) of the definition of a field. (We add the subscript \( F \) to avoid confusion with elements \( 0, 1 
+	\in \Z\)). for \( n = 1 \), once \( n_F \) is defined we recursively define \( (n+1)_F = n_F + 1_F \) ; in this 
+	way \( n_F \) is defined for all nonnegative integers. Finally, for negative integers \( n \) we define 
+	\( n_F = -(-n)_F \). (Note that in that expression, the ``inner'' minus is applied in \( Z \), the ``outer'' 
+	minus in \( F \).) 
+	\begin{enumerate}[label=\alph*)]
+		\item Show that under the above conditions, we have \( (m + n)_F = m_F + n_F \) and 
+			\( (mn)_F = m_F n_F \) for all \( n, n \in \Z \)
+		\item Show that if \( F \) is an \textit{ordered} field, then we laso have \( m_F < n_F \iff m < n \)
+	\end{enumerate}
+
+	\section{Basic Topology}
+	
+	\subsection{Notes}
+	\begin{definition}
+		Consider two sets \( A \) and \( B \), whose elements may be any objects. Suppose for every element 
+		\( x \in A \), there is an associated element in \( B \). Then, \( f \) is said to be a 
+		function from  \( A \) to \( B \) (or a mapping). \( A \) is called the domain, and \( B \) is called
+		the range of \( f \).  
+	\end{definition}
+
+	\subsection{Problems}
+	\begin{problem}
+		Prove that the empty set is a subset of every set. 
+	\end{problem}
+
+	\begin{solution}
+		The definition of a subset is that every element of the subset is also a member of the superset. 
+		Vacuously, the empty set contains elements of any set, and thus it is a subset of every set.  
+	\end{solution}
+
+	\begin{problem}
+		A complex number \( z \) is said to be \textit{algebraic} if there are integers \( a_0, \dots, a_n \) not 
+		all zero, such that
+		 \[
+		a_0z^{n} + a_1z^{n - 1} + \cdots + a_{n-1}z + a_n = 0
+		\] 
+		Prove that the set of algebraic numbers is countable. \textit{Hint:} For every positive 
+		integer \( N \), there are only finitely many equations with 
+		\[
+		n + |a_0| + |a_1| + \cdots + |a_n| = N
+		\] 
+	\end{problem}
+
+	\begin{solution}
+		By the fundamental theorem of algebra, we know that a degree \( n \) polynomial with complex 
+		coefficients (of which the integers are a subset) has exactly \( n \) roots, counting multiplicity. 
+		Therefore, for every polynomial of degree \( n \), there are finitely many roots. 
+
+		We now prove that there are countably many polynomials with integer coefficients. This is easy enough, 
+		since for every \( n \), let \( E_n \) denote the set of integer coefficient of degree \( n \). Since 
+		each coefficient is an integer, this set is countable. Then, the set of polynomials with integer coefficients 
+		can be represented as:
+		\[
+		S = \bigcup_{i = 1}^{\infty}E_n
+		\] 
+		which by Theorem 2.12, \( S \) is countable. Combining this with the fact that for any given \( n \) there are
+		finitely many roots, we conclude that the set of algebraic numbers is countable.  
+
+		\question{Not sure how to use the hint to solve the problem.}  
+	\end{solution}
+
+	\begin{problem}
+		Let \( E' \) be the set of all limit points of a set \( E \). Prove that \( E' \) is closed. Prove that 
+		\( E \) and \( \overline E \) have the same limit points (Recall that \( \overline E = E \cup E'. \)). 
+		Do \( E \) and \( E' \) always have the same limit points? 
+	\end{problem}
+
+	\begin{solution}
+		First, we list off the relevant definitions:
+		\begin{itemize}
+			\item \textbf{Closedness:} A set \( E \) is closed if the limit points of \( E \) are contained in \( E \). 
+			\item \textbf{Limit points:} A point \( p \) is a limit point of \( E \) if every neighborhood 
+				of \( p \) contains a point \( q \neq p \) such that \( q \in E \). 
+			\item \textbf{Neighborhood:} The set \( N_r(p) \) consisting of all points \( q \) such that 
+				\( d(p, q) < r \) for some \( r > 0 \). Here, \( r \) is called the \textit{radius}. 
+		\end{itemize}
+		So, to prove that \( E' \) is closed, we aim to show that all the limit points of \( E' \) are contained
+		within \( E' \). We prove this by contradiction. 
+		Suppose \( E' \) is not closed. Then, there exists a point \( p \) such that \( p \) is a limit point of 
+		\( E' \) but \( p \not \in E' \). This implies two things: 
+		\begin{itemize}
+			\item Since \( p \) is a limit point of \( E' \), it means that for any \( r > 0 \), there exists 
+				a neighborhood \( N_r(p) \) that contains a point \( q \in E' \).  
+			\item Since \( p \) is not a member of \( E' \), it means that \( p \) is not a limit point of \( E \). So, 
+				there exists some radius \( r_0 > 0 \) such that \( N_{r_0}(p) \) does not contain 
+				any points within \( E \).  
+		\end{itemize}
+		First, since \( q \in E' \), then \( q \) is a limit point of \( E \). Now, consider 
+		the set \( N_\alpha(q) \), where \( \alpha = r_0 - d(p, q) \). This is the set of points 
+		\( x \) defined by:
+		\[
+		\{x \mid d(x, q) < r_0 - d(p, q)\} 
+		\] 
+		The fact that \( q \) is a limit point of \( E \) implies that there exists some \( q' \in N_{\alpha}(q)\) 
+		such that \( q \in E \). 
+		Rearranging the inequality condition, 
+		we get \( d(x, q) + d(p, q) < r_0 \). Now, we use the property that \( d(p, q)
+		= d(q, p)\) and the triangle inequality to conclude that every point in \( N_{\alpha}(q) \) satisfies the 
+		inequality \( d(x, p) < r_0 \). This condition is incidentally the same as that of \( N_{r_0}(p) \), 
+		so the points in \( N_{\alpha}(q) \) form a (potentially proper) subset of \( N_{r_0}(p) \). By the 
+		second bullet point, we then know no point within \( N_{\alpha}(q) \) is contained within \( E \). This is a 
+		contradiction however, since \( q \) is defined to be a limit point. Thus, \( E' \) must 
+		be closed. 
+
+		Now, we prove that \( E \) and \( \overline E \) have the same limit points. First, the limit 
+		points of \( E \) is just the set \( E' \) itself. 
+		Then, since \( \overline E = E \cup E' \), then we know that the limit points of \( \overline E \) 
+		are either limit points of \( E \) or \( E' \). If they're limit points of \( E \), they're contained
+		in \( E' \), and if they're limit points of \( E' \), the fact that \( E' \) is closed means that they 
+		are also a part of \( E' \). Therefore, since the limit points of both sets is just \( E' \) itself, 
+		they have the same set of limit points. 
+
+		\( E \) and \( E' \) must always have the same set of limit points. The set \( E' \) is the set of 
+		limit points of \( E \), and since \( E' \) is closed, any limit point of \( E' \) is also contained in 
+		\( E' \), hence the set of limit points for \( E \) and \( E' \) is just \( E' \) itself.  
+	\end{solution}
+
+	\begin{problem}
+		Let \( A_1, A_2, \dots, A_n \) be subsets of a metric space. 
+		\begin{enumerate}[label=\alph*)]
+			\item If \( B_n = \bigcup_{i = 1}^{n}A_i \), prove that \( \overline B_n = 
+				\bigcup_{i = 1}^{n}\overline A_i \), for \( n = 1, 2, 3, \dots \). 
+
+				\begin{solution}
+					Assuming that \( A_i = A_i \cup A_i' \), where \( A_i'\) is the set of limit 
+					points of \( A_i \). Then, this equation becomes:
+					\[
+					\bigcup_{i = 1}^{n}\overline A_i = \bigcup_{i = 1} ^{n}(A_i \cup A_i')
+					= \bigcup_{i=1} ^{n}A_i \cup \bigcup_{i = 1} ^{n}A_i' = B_n \cup B_n' = \overline B_n 
+					\] 
+					this leverages the associativity property of unions.  
+				\end{solution}
+			\item If \( B = \bigcup_{i = 1}^{n}A_i \), prove that \( \overline B \supset 
+				\bigcup_{i = 1}^{\infty}\overline A_i \)
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Let \( E^{\circ} \) denote the set of all interior points of a set \( E \) [See Definition 
+		2.18(e); \( E^{\circ} \) is called the \textit{interior} of \( E \).]
+		\begin{enumerate}[label=\alph*)]
+			\item Prove that \( E^{\circ} \) is always open. 
+
+				\begin{solution}
+					We can prove that \( E^{\circ} \) is open by showing that every point of \( E^{\circ} \) 
+					is an interior point of \( E^{\circ} \). Suppose for the sake of contradiction that 
+					there exists a point \( p \) that is an interior point of \( E^{\circ} \), but 
+					\( p \not \in E^{\circ} \).  
+
+					We can prove that \( E^{\circ} \) is open by showing that every point of \( E^{\circ} \) is an 
+					interior point of \( E^{\circ} \). Suppose for the sake of contradiction that there exists 
+					a point \( p \in E^{\circ}\) that is not an interior point of \( E^{\circ} \). Then, this 
+					implies that there is no neighborhood \( N \) around \( p \) such that \( N \subset E^{\circ} \). 
+					Then, since \( p \in E^{\circ} \), \( p \) is an interior point of \( E \), so there 
+					exists a neighborhood \( N \) around \( p \) of radius \( r \) such that \( N_r(p) \subset E \). 
+
+					Now, let \( q \in N_r(p) \) and \( q \neq p \), and let the distance \( d = d(p, q) > 0\). Since 
+					\( N_r(p) \subset E \), then this also implies that \( N_\alpha(q) \subset E \), 
+					where \( \alpha = r - d(p, q) \), since \( N_\alpha(q) \subset N_r(p) \). Then, this 
+					implies that \( q  \) is an interior point of \( E \), and since \( q \) was 
+					arbitrarily chosen, this is true for every point within \( N_r(p) \). Therefore, 
+					\( N_r(p) \subset E^{\circ} \) since all points 
+					in \( N_r(p) \) are interior points of \( E^{\circ} \), which is a contradiction since we initially 
+					assumed that such a neighborhood cannot exist. 
+				\end{solution}
+			\item Prove that \( E \) is open if and only if \( E^{\circ} = E \). 
+
+				\begin{solution}
+					Forward case: Since \( E^{\circ} = E \), then since \( E^{\circ} \) is always open (by part a), then
+					\( E \) is also open. 
+
+					Reverse case: If \( E \) is open, then every point of \( E \) is an interior point of \( E \) 
+					hence, the set \( E^{\circ} \) must also be open since it's just the set \( E \) itself.  
+				\end{solution}
+			\item If \( G \subset E \) and \( G \) is open, prove that \( G\subset E^{\circ} \) 
+
+				\begin{solution}
+					Since \( G \) is open, then \( G^{\circ} = G \), and since \( G \subset E \), then 
+					\( G^{\circ} \subset E^{\circ} \) (one can easily show this to be true), 
+					and hence \( G \subset E^{\circ} \). 
+				\end{solution}
+			\item Prove that the complement of \( E^{\circ} \) is the closure of the complement of \( E \). 
+
+				\begin{solution}
+					The closure of a set \( E \) is the set \( \overline E = E \cup E' \), where \( E' \) 
+					denotes the set of limit points of \( E \). So, the closure 
+					of the complement of \( E \) is the union between \( E^{c} \cup \overline E^{c} \).  
+
+					From part (c), we know that \( E^{\circ} \) is the largest open set contained within 
+					\( E \), meaning 
+					that it is the union of all open sets contained within \( E \). Therefore, its complement 
+					is the intersection of all closed sets that contain the complement of \( E \). In other words, 
+					for all sets \( F \) in the complement, \( E^{c} \subset F \). Therefore, by Theorem 
+					2.27 (b), we see that \( \overline {E^{c}} \subset F \) for every set \( F \). Then, since 
+					we are taking the intersection of all such sets, we get that the intersection leaves us 
+					with only \( \overline{E^{c}} \), which is the closure of the complement of \( E \). 
+				\end{solution}
+			\item Do \( E \) and \( \overline E \) always have the same interiors?
+
+				\begin{solution}
+					No, take any finite set of points: then the interior of \( E \) is the null set, whereas
+					the closure of \( E \) contains at least \( E \) itself and is nonempty.
+				\end{solution}
+			\item Do  \( E \) and \( E^{\circ} \) always have the same closures? 
+
+				\begin{solution}
+					No, again take any finite set of points. Then the closure of \( E \) contains at least \( E \), 
+					whereas \( E^{\circ} = \varnothing\), so \( \overline{E^{\circ}} = \varnothing \). 
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Let \( X \) be an infinite set. For \( p \in X \) and \( q \in X \), define
+		 \[
+		 d(p, q) = \begin{cases}
+			 1 & \text{if \( p \neq q \)}\\
+			 0 & \text{if \( p = q \)}
+		 \end{cases}
+		 \] 
+		 Prove that this is a metric. Which subsets of the resulting metric space are open? Which are closed? 
+		 Which are compact? 
+	\end{problem}
+
+	\begin{solution}
+		To prove that this is a metric, it just needs to satisfy the three properties:
+		\begin{itemize}
+			\item Positivity: If \( p \neq q \), then \( d(p, q) = 1 > 0 \), and if \( p = q \) then
+				\( d(p, q) = 0 \), which is satisfied. 
+			\item Associativity: \( d(p, q) = d(q, p) \), this is rather obvious. 
+			\item Triangle inequality: for any \( r \in X \), \( d(p, q) = 1 \), whereas \( d(p, r) + d(r, q) = 2 \) 
+				if \( r \neq p \) and \( r \neq q \). If  \( r = p \) or \( r = q \), then 
+				\( d(p, r) + d(r,q) = 1 \). In any case, the triangle inequality is satisfied. 
+		\end{itemize}
+		In terms of open subsets, we need to find subsets which only contain interior points. Recall that an 
+		interior point is one where we can always find a neighborhood \( N \) around a point \( p \) such that 
+		\( N \subset E \). Since the defined metric gives a distance of 1 for every point \( q  \) as long as 
+		\( q \neq p \), then we know that every set containing only one point is open, since  \( N_{1/2}(p) = \{p\} \),
+		and is hence a subset of itself. By extension, we can union these sets together, so every subset
+		of \( X \) is also open. 
+
+		Every set is also closed, since the complement of any subset is also a subset of \( X \).     
+
+		A set is compact if every open cover of \( K \) contains a finite subcover. In other words, we basically 
+		require that there is a finite number of open subsets \( G_\alpha \) such that 
+		\( K \subset G_{\alpha_1} \cup \cdots \cup G_{\alpha_n} \). Based on this definition, every finite 
+		subset satisfies this property, since every subset of \( X \) is open. However, the set \( X \) itself
+		cannot be written in this way, since we cannot cover an infinitely-sized \( X \) with subsets of itself.  
+	\end{solution}
+
+	\begin{problem}
+		Let \( K \subset R^{1} \) consist of \( 0 \) and the numbers \( 1/n \), for \( n = 1, 2, 3, \dots \). 
+		Prove that \( K \) is compact directly from the definition (without using the Heine-Borel theorem). 
+	\end{problem}
+
+	\begin{solution}
+		Recall that a set is compact if every open cover of \( K \) has a finite subcover, or in other words, we can 
+		find a finite collection \( \{G_{\alpha}\}  \) of open subsets of \( R^{1} \) such that 
+		\( K \subset \bigcup_\alpha G_\alpha \). In other words, our objective is to find such a collection 
+		of open sets. 
+
+		Consider an open cover \( G = \bigcup_\alpha G_\alpha  \). 
+		Let \( G_0 \) be the open set containing 0. Since \( G_0 \) 
+		is open, this implies there exists some neighborhood \( N_\epsilon(0) \subset G \) that exists, where 
+		\( \epsilon > 0 \). Now, let \( N  \) be the largest value of \( n \) such that \( \frac{1}{N} \) is 
+		not contianed within \( G_0 \). Then, let \( G_k \) denote the open set containing \( 1 / k \), which 
+		we can then union together with \( G_0 \) to form the finite subcover of \( K \). 
+	\end{solution}
+	
+	\begin{problem}
+		Construct a compact set of real numbers whose limit points form a countable set.  
+	\end{problem}
+
+	\begin{solution}
+		Take the set above: the set of 0 with the numbers \( 1 / n \): 0 is the only limit point in this set, since 
+		it is the only point such that for every neighborhood \( N_r(0) \) can we find a point \( 1 / n \) that 
+		is always in the set. 
+
+		We can also show that 0 is the only limit point of the set; consider any point \( 1 / m \in K \). Then, 
+		for any neighborhood \( N_r(1 / m) \) where \( r < \frac{1}{m} - \frac{1}{m+1} < \frac{1}{m-1} - 
+		\frac{1}{m}\) will have no point 
+		within \( K \) inside, so it cannot be a limit point. 
+	\end{solution}
+
+	\begin{problem}
+		Show that Theorem 2.36 and its Corollary become false (in \( R^{1} \), for example) if the 
+		word ``compact'' is replaced by ``closed'' or by ``bounded.''
+	\end{problem}
+
+	\begin{solution}
+		I'll restate Theorem 2.36 and the Corollary for convenience:
+		
+		\begin{center}
+			\begin{minipage}{0.9\textwidth}
+				\textbf{Theorem:}
+					If \( \{K_\alpha\}  \) is a collection of compact subsets of a metric space \( X \) such that the 
+					intersection of every finite subcollection of \( \{K_\alpha\}  \) is nonempty, then 
+				\( \bigcap K_\alpha \) is nonempty. 
+
+				\medskip
+				\textbf{Corollary:} If \( \{K_n\}  \) is a sequence of nonempty compact sets such that \( K_n \supset
+				K_{n + 1}\) (\( n = 1,2, 3, \dots \)), then \( \bigcap_1^{\infty} K_n \) is not empty.  
+			\end{minipage}
+		\end{center}
+		First, note that a set that is both closed and bounded is compact. We can prove this as follows: let 
+		\( K \) be a closed and bounded set, and consider an open cover \( \{G_\alpha\}  \) of \( K \). 
+		Let \( p \in K  \). Since \( \{G_\alpha\}  \) is an open cover, let \( G_1 \) be the open set 
+		containing \( p \). Since \( G_1 \) is open, it has nonzero width (since it must contain some epsilon 
+		ball). Then, consider points on the boundary of the closure of \( G_1 \) that are also 
+		in \( K \). These points are not contained in \( p \), so there must be another open set \( G_2 \) that 
+		contians these points, which also have nonzero width. We repeat this construction until no boundary points are 
+		contained within \( K \).
+
+		The closedness of \( K \) ensures that all limit points of \( K \) are covered, and the boundedness ensures 
+		that we may complete this process in a finite number of steps. The union of the sets we selected, 
+		\( \bigcup_1^{N}G_n \) is a finite subcover of \( K \). 
+
+		With that in mind, we turn to the corollary: if \( \{K_\alpha\}  \) is bounded only, consider the set 
+		of open sets \( \{K_\alpha\} = \{(0, x) \mid x \in \R \}\), then for any subcollection 
+		of these sets \( \{G_\alpha\}  \), there exists a smallest set 
+		\( K_\epsilon = (0, \epsilon) = \bigcap_\alpha G_\alpha  \). However, if we take the infinite intersection, 
+		then for every point \( x \) there exists at least one set \( (0, x - \epsilon) \) that 
+		does not contain \( x \), and hence the infinite interseciton is the empty set. 
+
+		If \( \{K_\alpha\}  \) is unbounded, then consider the sets \( \{K_\alpha\}  = 
+		\{(x, \infty) \mid x \in \R\} \), and the idea is the same -- any finite intersection of \( K_{x} \) will 
+		be nonempty, but in the limit the intersection is the empty set, becuase for every point there exists 
+		at least one set that does not contain that point. 
+
+		Because the corollary is a special case of the theorem, the theorem also fails to these two 
+		examples, and hence we are done. 
+	\end{solution}
+
+	\begin{problem}
+		Let \( E \) be the set of all \( x \in [0, 1] \) whose decimal expansion contains only the digits 4 and 7.
+		Is \( E \) countable? Is \( E \) dense in \( [0, 1] \)? Is \( E \) compact? Is \( E \) perfect?
+	\end{problem}
+
+	\begin{solution}
+		\( E \) is clearly uncountable -- we can generate a decimal on the diagonal following the rule that if it's 
+		a 4, then turn it into a 7, and vice versa. \( E \) is dense, but not dense 
+		in \( [0, 1] \), since \( E \subset [0.4, 0.8] \). \( E \) is closed, since 
+		every limit point, which are the points within \( E \), is obviously contained within \( E \). 
+		\( E \) is also bounded, which means that it is also compact. 
+
+		Since all the limit points of \( E \) are contained within \( E \), this implies that \( E \) is 
+		also perfect, since every point of \( E \) is a limit point of \( E \). 
+	\end{solution}
+
+	\begin{problem}
+		Is there a nonempty perfect set in \( R^{1} \) which contains no rational number?
+	\end{problem}
+
+	\begin{solution}
+		I beleive the irrationals are considered a perfect set. Because the irrationals themselves are dense 
+		(as the reals themselves are dense), then every point in the irrationals is a limit point, which is 
+		all we need in order to ensure that the set is perfect. 
+	\end{solution}
+
+	\begin{problem}
+		\begin{enumerate}[label=\alph*)]
+			\item If \( A \) and \( B \) are disjoint closed sets in some metric space \( X \), prove 
+				that they are separated. 
+
+				\begin{solution}
+					Two sets \( A \) and \( B \) are considered separated if both \( A \cap \overline B \) and 
+					\( \overline A \cap B \) are empty. Since \( A \) and \( B \) are closed sets, 
+					then \( A = \overline A \) and \( B = \overline B \), so therefore 
+					\( A \cap B = \varnothing \) (disjoint) implies that \( A \cap \overline B = 
+					\overline A \cap B = \varnothing \). 
+				\end{solution}
+			\item Prove the same for disjoint open sets. 
+
+				\begin{solution}
+					Let \( p \in A \), and consider the intersection \( A \cap \overline B \). Assume that 
+					\( A \cap \overline B \) is nonempty. Therefore, we must ahve \( p \in \overline B \), and 
+					since \( p \not \in B \), then \( p \) must be a limit point of \( B \). Since \( p \in A \)  
+					and \( p \) is open, then consider the neighborhood of radius \( r \) such that 
+					\( N_r(p) \subset A\). Since \( p \) is a limit point of \( B \), then \( N_r(p) \) must contain 
+					a point \( q \in B \) as well. This is contradictory, however, since this implies that 
+					\( A \cap B \neq \varnothing \). 
+				\end{solution}
+			\item Fix \( p \in X, \delta > 0 \), define \( A \) to be the set of all \( q \in X \) for 
+				which \( d(p, q) < \delta \), define \( B \) similarly, with \( >  \) in place of \( < \). Prove 
+				that \( A \) and \( B \) are separated. 
+
+				\begin{solution}
+					Based on the definition, \( A = N_{\delta}(p) \), which is open. Now, it is clear 
+					that \( B = (\overline {A})^{c} \), since the closure is the set such that 
+					\( d(p, q) \le \delta \), so \( B \) is also an open set. These two sets 
+					are also disjoint (obviously), so by part (b) we conclude that they are separated. 
+				\end{solution}
+			\item Prove that any connected metric space with at least two points is uncountable. 
+				\textit{Hint: Use (c).}
+
+				\begin{solution}
+					Consider a metric space \( X \). Let \( a, b \) be two points in \( X \), and \( \delta = 
+					d(a, b) / 2\), and let \( A \) and \( B \) be defined as in part (c) with this value 
+					of \( \delta \). Since \( X \) is connected, it cannot be the union of two (nonempty) 
+					separated sets, and since we know from part (c) that \( A \) and \( B \) are separated, 
+					then \( X \) cannot be the union of these two. Therefore, the points 
+					\( e \in X \) such that \( d(a, e) = \delta \) must be in \( X \) as well.
+
+					However, we can choose different values of \( \delta \) as well. For every 
+					value \( r \in (0, 1) \), one can choose \( \delta_r = r \cdot d(a, b) \), 
+					to which there is a correspodning \( e_r \in X \). Since there are uncountably many 
+					\( r \), there are uncountably many points in \( X \). 
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Let \( A \) and \( B \) be separated subsets of some \( R^{k} \), suppose \( \mathbf a \in A \), 
+		\( \mathbf b \in B \), and define
+		\[
+		\mathbf p(t) = (1 - t) \mathbf a + t \mathbf b
+		\] 
+		for \( t \in R^{1} \). Put \( A_0 = \mathbf p^{-1}(A) \), \( B_0 = \mathbf p^{-1}(B) \). [Thus 
+		\( t \in A_0 \) if and only if \( p(t) \in A \).]
+		\begin{enumerate}[label=\alph*)]
+			\item Prove that \( A_0 \) and \( B_0 \) are separated subsets of \( R^{1} \). 
+
+				\begin{solution}
+					Suppose for contradiction that \( A_0 \) and \( B_0 \) are not separated subsets of \( R^{1} \). 
+					WLOG, this i=mplies that \( A_0 \cap \overline B_0 \) is nonempty. Consider
+					a point \( x \) in this intersection. Since \( x \in A_0 \), then 
+					we know that \( p(x) \in A \). We also have \( x \in \overline B_0 \), and we know that 
+					\( x  \) must exist in the closure of \( B_0 \), since if \( x \in B_0 \), then this 
+					implies that \( p(x) \in B \), but we know that \( A \) and \( B \) are separated
+					subsets of \( R^{1} \). 
+
+					Since \( x \in A \), then \( p(x) \) is an interior point of \( A \), 
+					therefore there exists a neighborhood \( N_r(p(x)) \subset A \). 
+					Since \( x \in B_0' \) then \( x \) is a limit point of \( B_0 \), so using the same 
+					neighborhood \( N_r(p(x)) \) there exists another point \( q \neq p(x) \) such that 
+					\( q \in B \). This last point then implies that \( A \cap B \) is nonempty, 
+					which is a contradiction. 
+				\end{solution}
+			\item Prove that there exists \( t_0 \in (0, 1) \) such that \( p(t_0) \not \in A \cup B \). 
+
+				\begin{solution}
+					Suppose such a \( t_0 \) doesn't exist. Then, for every \( t \in (0, 1) \), it must be the 
+					case that \( p(t) \in A \cup B \). Since \( A \) and \( B \) are separated 
+					subsets and \( A \cap B = \varnothing \), then this means that each point \( t \in (0, 1) \) 
+					can be placed into \( A_0  \) and \( B_0 \). Now, consider a point 
+					\( t \) on the boundary of \( B_0 \), and consider any neighborhood \( N_r(t) \). \( t \) is 
+					a limit point of \( B_0 \) by definition, but \( t \) must also be a limit point of \( A_0 \),
+					since any point \( t - \epsilon \in A_0 \) for every \( \epsilon > 0 \). 
+
+					Therefore, one of \( A_0 \cap \overline B_0 \) or \( \overline A_0 \cap B_0 \) is nonempty, 
+					contradicting the assumption that \( A_0 \) and \( B_0 \) are separated. 
+				\end{solution}
+			\item Prove that every convex subset of \( R^{k} \) is connected. 
+
+				\begin{solution}
+					\question{What is a convex subset?}
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		A metric space is called \textit{separable} if it contains a countable dense subset. Show that \( R^{k} \) 
+		is separable. \textit{Hint:} Consider the set of points which have only rational coordinates.  
+	\end{problem}
+
+	\begin{solution}
+		Before we begin, we should also establish a different definition of density: given an open set \( S \subset 
+		X\), the requirement that the set \( S \) be nonempty is equivalent to density. Part (j) of 
+		Definition 2.18 gives the following definition of density:
+		\[
+			\text{\( E \) is \textit{dense} in \( X \) if every point of \( X \) is a limit point of \( E \), or 
+			a point of \( E \) (or both).}
+		\] 
+		All we need to do is to show that the given definition implies that \( S \) is nonempty. Consider 
+		a point \( x \in X \) and an open neighborhood \( N_r(x) \). Based on the given definition, either 
+		\( x \in E\) or \( x \) is a limit point of \( E \). In the former case, then \( N_r(x) \) is obviously 
+		nonemtpy since it contains \( x \). In the latter, then \( N_r(x) \) by definition must contain 
+		a point \( q \neq x \) such that \( q \in E \), also satisfying that \( N_r(x) \) is nonempty. 
+
+		With this established, consider the set \( Q^{k} \subset R^{k} \), the set of points with only rational 
+		coordinates. Then, consider two points in this set, and consider these two points to the the boundary 
+		of our open set. That is, given \( A = (a_1, a_2, \dots, a_k) \) and \( B = (b_1, b_2, \dots, b_k) \), 
+		define the open set to be the points \( X = (x_1, x_2, \dots, x_k)  \) such that 
+		\begin{align*}
+			a_1 < \ &x_1 < b_1\\
+			a_2 < \ &x_2 < b_2\\
+				  &\vdots\\
+			a_k < \ &x_k < b_k
+		\end{align*}
+		this set is clearly open (proof is very easy), and since the rationals are dense in \( R \), then we are 
+		guaranteed to find an \( X \) that satisfies this inequality. Hence, the subset is dense. Further, this 
+		subset is also countable, since the rationals \( Q \) are countable. Combining these two allows us 
+		to conclude that \( R^{k} \) is separable. 
+	\end{solution}
+	
+
+	\begin{problem}
+		A collection \( \{V_\alpha\}  \) of open subsets of \( X \) is said to be a \textit{base} of \( X \) 
+		if the following is true: For every \( x \in X \) and every open set \( G \subset X \) 
+		such that \( x \in G \), we have \( x \in V_\alpha \subset G \) for some 
+		\( \alpha \). In other words, every open set in  \( X \) is the union of a subcollection of 
+		\( \{V_\alpha\}  \). 
+
+		Prove that every separable metric space has a \textit{countable} base. \textit{Hint:} Take 
+		all neighborhoods with rational radius and center in some countable dense subset of \( X \).   
+	\end{problem}
+
+	\begin{problem}
+		Let \( X \) be a metric space for which every infinite subset has a limit point. Prove that 
+		\( X \) is separable. \textit{Hint:} Fix \( \delta > 0 \), pick \( x_1 \in X \). Having chosen 
+		\( x_1, \dots, x_j \in X \), choose \( x_{j+1} \in X \), if possible, so that \( d(x_i, x_{j+1})
+		\ge  \delta \) for \( i = 1, \dots, j \). Show that this process must stop after a finite number of 
+		steps, and that \( X \) can therefore be covered by finitely many neighborhoods of radius \( \delta \). 
+		Take \( \delta = 1 / n \) ( \( n = 1, 2, 3, \dots \)), and consider the centers of the corresponding
+		neighborhoods. 
+	\end{problem}
+\end{document}

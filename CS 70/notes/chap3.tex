@@ -58,9 +58,9 @@ convenient is that sometimes proving \( \neg Q \implies \neg P \) is far easier 
 
 We'll illustrate this with an example:
 
-\begin{example}{}{}
-	Prove that if  \( a \) is an irrational number, then for all integers
-	 \( k \), \( ka \) is also an irrational number for all nonzero integers \( k \). 
+\begin{example}{}{irrational product}
+	Prove that if  \( a \) is an irrational number, then for all nonzero integers
+	 \( k \), \( ka \) is also an irrational number. 
 
 
 	 Proving this via a direct proof would be relatively difficult -- even though we know that \( a  \) is irrational, 
@@ -85,14 +85,57 @@ that \( \frac{p}{kq} \) is also rational, which completes the proof.
 While direct and contrapositive proofs do have their place, probably by far the most popular proof technique 
 is a proof by contradiction. The essence of this proof is exactly what the name suggests: instead of proving that 
 something is true, you show that it can't be untrue instead. The basic structure of a proof by contradiction 
-is as follows: suppose you wanted to prove that \( A \implies B \). Then, to prove by contradiction, we first 
-assume that \( A \implies \neg B \). Then, we prove that this is impossible by showing that \( A \implies B
-\) and  \( A \implies \neg B  \) must both be true at the same time -- by the law of the excluded middle
-(theorem \ref{th:law of excluded middle}), both of these cannot be true at the same time. Therefore, 
-\( A \implies \neg B \) must be false, and hence we've proven our original statement. 
- 
+is this: given that we want to prove \( A \implies B \), we assume instead that \( A \implies \neg B \) is true, 
+and use this to prove that assuming \( \neg B \), then \( A  \) and \( \neg A \) must simultaneously be true. By the 
+law of the excluded middle (see \ref{th:law of excluded middle}), this cannot be true, hence the only resolution 
+is that \( \neg B \) is false. From here, we're able to conclude that \( A \implies B \) is true. 
 
+If the above paragraph seems a bit complicted, let's try to see it through an example. In fact, let's just take 
+the same problem from \ref{exa:irrational product} and prove it via contradiction:
+
+\begin{example}{}{}
+	Prove that if \( a \) is an irrational number, then for all nonzero integers \( k \), \( ka \) is also an 
+	irrational number. 
+
+	We follow the recipe for contradiction: we assume the negation of \( B \), so here we assume that \( ka \) is 
+	in fact rational. Then, our goal is to prove that this is not possible. One way we could do this is that since 
+	\( ka  \) is rational, we can write \( ka = \frac{p}{q} \) for some integers \( p \) and \( q \). Dividing 
+	both sides by \( k \), we get \( a = \frac{p}{kq} \). 
+
+	But this is a contradiction! The right hand side of the last equation implies that \( a \) is a rational number, 
+	but this cannot be possible, since \( a \) was initially assumed to be rational. Hence, we've reached 
+	the conclusion that \( a \) is both rational and irrational, which is impossible. Therefore, 
+	\( ka \) must be irrational. 
+
+\end{example}
+
+This problem, while simple, is a fairly good illustration of why contradiction is useful. Just like in the proof 
+by contraposition, we see that the proof by contradiction makes the problem tractable by giving us an entry 
+point into the problem -- we are able to express \( ka = \frac{p}{q} \) and manipulate that equation into 
+a contradictory statement.  
+
+What I haven't shown you yet is why contradiction is generally considered a more powerful proof technique than 
+the contrapositive. The following example will demonstrate why:
+
+\begin{example}{}{}
+	Prove that if \( a^2 \) is even, then \( a \) must also be even. 
+
+	To fully show the power of contradiction, let's first consider why the other methods of proof fail here:
+	\begin{itemize}
+		\item \textbf{Direct Proof:}
+			Where do we even start? Well, we know that \( a^2 \) is even, but how do we show that 
+			taking the \textit{square root} of this is also even? It's hard to see how this may be done.  
+		\item \textbf{Contrapositive:} The contrapositive statement is that if \( a \) is odd, then 
+			\( a^2 \) is also odd. This method of proof is possible, if we use the fact that an odd number times an 
+			odd number always gives an odd number. 
+	\end{itemize}
+	Now let's look at the proof by contradiction. Suppose \( a \) is odd. Then, we know that \( a^2 \) must 
+	aslo be odd, since the product of two odd numbers must be odd. This contradicts the fact that \( a^2 \) 
+	is even, hence \( a \) must be even. 
+\end{example}
+%fix this, contradiction and contrapositive are basically on the same level here 
 \subsection{Induction}
+
  
 
    
