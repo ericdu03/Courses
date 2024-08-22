@@ -1,4 +1,0 @@
-pulp
-tqdm
-matplotlib
-otter-grader==4.4.1
