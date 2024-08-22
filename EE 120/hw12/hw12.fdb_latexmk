@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1723776732 "hw12.tex" "hw12.pdf" "hw12" 1723776734 0
-  "../../local.sty" 1722731644 4631 61371de093d0cf18870e5504c9a00c34 ""
+["pdflatex"] 1714348290 "hw12.tex" "hw12.pdf" "hw12" 1714348292 0
+  "../../local.sty" 1713856272 4577 e0aee77f2386c76c57e087cb5ce56e2c ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_76gpa5.enc" 1490131464 2933 9ad527ce78d7c5fa0a642dead095f172 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_7grukw.enc" 1490131464 2934 a4a9158faed2e9e89c771b4e3b7fc12f ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_naooyc.enc" 1490131464 3357 5261ce65ba03aef9faf6135657b9abb6 ""
@@ -316,9 +316,9 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1699664430 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1699664348 7883465 e8c6fc6f0ba841908e83b5299c0f4881 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
-  "hw12.aux" 1723776734 634 ced71c1676fb9a5754ad8922a88aca1f "pdflatex"
-  "hw12.out" 1723776733 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "hw12.tex" 1714387005 9943 14789f7f26896de6390ff8598d25ea69 ""
+  "hw12.aux" 1714348292 634 ced71c1676fb9a5754ad8922a88aca1f "pdflatex"
+  "hw12.out" 1714348292 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "hw12.tex" 1714348289 9943 14789f7f26896de6390ff8598d25ea69 ""
   (generated)
   "hw12.aux"
   "hw12.log"
