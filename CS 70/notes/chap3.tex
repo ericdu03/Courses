@@ -1,0 +1,147 @@
+\chapter{Proofs}
+In this chapter, we'll talk about the proof techniques you'll have to be familiar with in this class. Before we get
+to that though, I want to emphasize that this chapter alone might be the single most important chapter in this 
+entire book, especially if you intend to pursue any theory-heavy course in the future. 
+
+To really explain why proofs are so important, we have to look at the structure upon which mathematical logic 
+is built. At the very base, we have a set of axioms, which are a set of statements that are taken 
+to be true without proof. These axioms serve as the foundation of all mathematical logic; without them, we 
+wouldn't have anything to build off of.  
+
+The way we build off these axioms is through proofs -- a process in which we take true statements (either 
+axioms or previously proven statements), and massage them to arrive at a novel conclusion. At its core, 
+what we are really doing is asking ``given the set of true statements we have, what else can we 
+\textit{provably show} is also true?'' This is the fundamental question that pushes the boundaries of mathematics.
+
+\section{Methods of Proof}
+Now, how do we actually go about proving things? Well, we will generally be asked to prove a statement of the 
+form \( P(n) \implies Q(n) \), so we need to show that \textit{if} \( P(n) \) is true, then \( Q(n) \) is also true. 
+There are many different ways we can do that, which we will go over now. 
+
+Also, I should mention that while I will try to motivate the thought process behind choosing any particular 
+proof method for a problem, ultimately the process does take a lot of practice and there's no amount of 
+explaining I can do to remedy that.  
+\subsection{Direct Proof}
+Perhaps the most obvious method of proof is called a \textit{direct proof}. Basically, this method is to start 
+wtih the assumption that \( P(n) \) is true, and work our way towards the statement \( Q(n) \). Let's look at the 
+example below:
+\begin{example}{}{something}
+	Let's prove the statement that if \( a \mid b \),\footnote{The $\mid$ symbol here stands for ``divides'', basically 
+	meaning that \( \frac{b}{a} \) is an integer.} then \( a \mid kb \) for any integer \( k \). 
+
+	To prove this using the direct proof method, all we have to do is start with the statement \( a \mid b \), and show 
+	that for any integer \( k \), that \( a \mid kb \) as well. Starting with \( a \mid b \), another way we can 
+	write that is that \( b \) is represented as some integer multiple of \( a \), so \( b = na \) for some 
+	integer \( n \). With this in mind, the integer \( kb \) is now written as \( kb = kna \), and since \( k \) is
+	also an integer, this implies that \( kb \) is also an integer multiple of \( a \). Therefore, 
+	\( a \mid kb \)! And that concludes the proof. 
+\end{example}
+
+The hallmark of a direct proof is that we start with the assumption given to us in the ``if'' statement: in the 
+example above, this corresponds to \( a \mid b \). Then, we take this assumption in hand, and use the information 
+provided by the assumption to show that the ``then'' statement, that \( a \mid kb \) in our example, is also true.  
+
+Usually, one of the things to look out for when trying to directly prove something is to see whether the ``if'' 
+clause gives you information that looks like it can be applied to prove the statement. Looking back at the example, 
+we see that since both the ``if'' and ``then'' statements involved looking at divisibility, then it isn't a stretch 
+to imagine that we could take the information of \( a \mid b \) and directly massage it into the conclusion that 
+\( a \mid kb \) as well. 
+
+ 
+\subsection{Contrapositive}
+Along with a direct proof, the method by contrapositive also involves proving a direct implication. The principle 
+of the contrapositive is as follows: suppose you're asked to prove the statement \( P \implies Q \). You could go 
+about this directly, but remember in section \ref{Logical Equivalence} we introduced the idea of a contrapositive, 
+\( \neg Q \implies \neg P \), and because they have the same truth tables (see exercise \ref{exe:contrapositive}), 
+then proving \( \neg Q \implies \neg P \) is the same as proving \( P \implies Q \) ! The reason this is 
+convenient is that sometimes proving \( \neg Q \implies \neg P \) is far easier than \( P \implies Q \). 
+
+We'll illustrate this with an example:
+
+\begin{example}{}{irrational product}
+	Prove that if  \( a \) is an irrational number, then for all nonzero integers
+	 \( k \), \( ka \) is also an irrational number. 
+
+
+	 Proving this via a direct proof would be relatively difficult -- even though we know that \( a  \) is irrational, 
+	 there is no tangible information that allows us to use this information and prove that \( ka \) is irrational.  
+	 On the other hand, consider the contrapositive statement: if \( ka \) is a rational number, then
+	 \( a  \) must be a rational number for all integers \( k \). This is a far easier statement to prove. 
+
+	 Recall that if \( ka \) is a rational number, then \( ka = \frac{p}{q} \) where \( p \) and \( q \) are 
+	 integers. We can then express \( a = \frac{ka}{k} = \frac{p}{kq} \), and since \( k  \) is an integer, 
+	 \( kq \) is also an integer, and hence the fraction \( \frac{p}{kq} \) is rational, as desired. 
+\end{example}
+
+This problem illustrates perfectly why the contrapositive may be a useful tactic for some proofs. Take some time to 
+think about how difficult the forward direction would be: we know that \( a  \) is irrational, but how do we even 
+begin representing what an irrational number is? Even if we could figure out how to do this, how do we go about 
+showing that multiplication by any integer \( k \) is still irrational? 
+
+On the other hand, consider the simplicity of the contrapositive stastement. We know very concretely how to represent 
+\( ka \) if it were rational, and from there division by \( k \) is also well defined so we can conclude 
+that \( \frac{p}{kq} \) is also rational, which completes the proof.
+\subsection{Contradiction}
+While direct and contrapositive proofs do have their place, probably by far the most popular proof technique 
+is a proof by contradiction. The essence of this proof is exactly what the name suggests: instead of proving that 
+something is true, you show that it can't be untrue instead. The basic structure of a proof by contradiction 
+is this: given that we want to prove \( A \implies B \), we assume instead that \( A \implies \neg B \) is true, 
+and use this to prove that assuming \( \neg B \), then \( A  \) and \( \neg A \) must simultaneously be true. By the 
+law of the excluded middle (see \ref{th:law of excluded middle}), this cannot be true, hence the only resolution 
+is that \( \neg B \) is false. From here, we're able to conclude that \( A \implies B \) is true. 
+
+If the above paragraph seems a bit complicted, let's try to see it through an example. In fact, let's just take 
+the same problem from \ref{exa:irrational product} and prove it via contradiction:
+
+\begin{example}{}{}
+	Prove that if \( a \) is an irrational number, then for all nonzero integers \( k \), \( ka \) is also an 
+	irrational number. 
+
+	We follow the recipe for contradiction: we assume the negation of \( B \), so here we assume that \( ka \) is 
+	in fact rational. Then, our goal is to prove that this is not possible. One way we could do this is that since 
+	\( ka  \) is rational, we can write \( ka = \frac{p}{q} \) for some integers \( p \) and \( q \). Dividing 
+	both sides by \( k \), we get \( a = \frac{p}{kq} \). 
+
+	But this is a contradiction! The right hand side of the last equation implies that \( a \) is a rational number, 
+	but this cannot be possible, since \( a \) was initially assumed to be rational. Hence, we've reached 
+	the conclusion that \( a \) is both rational and irrational, which is impossible. Therefore, 
+	\( ka \) must be irrational. 
+
+\end{example}
+
+This problem, while simple, is a fairly good illustration of why contradiction is useful. Just like in the proof 
+by contraposition, we see that the proof by contradiction makes the problem tractable by giving us an entry 
+point into the problem -- we are able to express \( ka = \frac{p}{q} \) and manipulate that equation into 
+a contradictory statement.  
+
+What I haven't shown you yet is why contradiction is generally considered a more powerful proof technique than 
+the contrapositive. The following example will demonstrate why:
+
+\begin{example}{}{}
+	Prove that if \( a^2 \) is even, then \( a \) must also be even. 
+
+	To fully show the power of contradiction, let's first consider why the other methods of proof fail here:
+	\begin{itemize}
+		\item \textbf{Direct Proof:}
+			Where do we even start? Well, we know that \( a^2 \) is even, but how do we show that 
+			taking the \textit{square root} of this is also even? It's hard to see how this may be done.  
+		\item \textbf{Contrapositive:} The contrapositive statement is that if \( a \) is odd, then 
+			\( a^2 \) is also odd. This method of proof is possible, if we use the fact that an odd number times an 
+			odd number always gives an odd number. 
+	\end{itemize}
+	Now let's look at the proof by contradiction. Suppose \( a \) is odd. Then, we know that \( a^2 \) must 
+	aslo be odd, since the product of two odd numbers must be odd. This contradicts the fact that \( a^2 \) 
+	is even, hence \( a \) must be even. 
+\end{example}
+%fix this, contradiction and contrapositive are basically on the same level here 
+\subsection{Induction}
+
+ 
+
+   
+ 
+   
+ 
+  
+ 
+

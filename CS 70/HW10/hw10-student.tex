@@ -1,0 +1,306 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+\def\title{HW 10}
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+\begin{center}
+    Due: Saturday, 11/5, 4:00 PM \\
+    Grace period until Saturday, 11/5, 6:00 PM \\
+\end{center}
+
+\section*{Sundry}
+Before you start writing your final homework submission, state briefly how you worked on it.  Who else did you work with?  List names and email addresses.  (In case of homework party, you can just describe the group.)
+
+{\color{blue}{I worked on problems 4, 5, and 6 during office hours with two other people there on Thursday and Friday. I did not work with anybody else.}}
+
+\vspace{15pt}
+
+\Question{Cookie Jars}
+
+You have two jars of cookies, each of which starts with $n$ cookies initially.
+Every day, when you come home, you pick one of the two jars randomly (each jar is chosen with probability $1/2$) and eat one cookie from that jar.
+One day, you come home and reach inside one of the jars of cookies, but you find that is empty!
+Let $X$ be the random variable representing the number of remaining cookies in non-empty jar at that time.
+What is the distribution of $X$?
+
+\begin{solution}
+	The probability that we take all $n$ cookies from one of the two jars is $\frac{1}{2^n}$. Let $k$ denote the number of cookies in the non-empty jar. Then we can express the probability that there are $k$ cookies left is: 
+
+	\[ \Pr[x = k] = {n + k \choose k}\left(\frac 12\right)^n \left( \frac 12 \right)^{n - k}\]
+
+	This distribution, for a specific $k$, looks like $\Bin(n+k, 1/2)$.
+\end{solution}
+
+\pagebreak
+
+\Question{Maybe Lossy Maybe Not}
+
+Let us say that Alice would like to send a message to Bob, over some channel.
+Alice has a message of length 6.
+
+\begin{Parts}
+\Part Packets are dropped with probability $p$. If Alice sends 7 packets, what is probability that Bob can successfully reconstruct Alice's message using polynomial interpolation?
+
+\begin{solution}
+	If there are 7 packets, we require that at lesat 6 of the packets make it through. Therefore, the probability that Bob can reconstruct the message is equal to the proabbility that either all 7 packets make it through or only one is dropped: 
+
+	\[ \Pr[\text{success}] = {7 \choose 6}(1-p)^6 p + (1-p)^7\]
+\end{solution}
+
+\Part Again, packets can be dropped with probability $p$. The channel may additionally corrupt 1 packet after deleting packets.
+Alice realizes this and sends 10 packets for a message of length 6. What is the probability that Bob receives enough packets to successfully reconstruct Alice's message using Berlekamp-Welch?
+
+\begin{solution}
+	There are 10 packets this time, and we require that $n + 2k$ packets are received in order for the message to be properly reconstructed, so therefore 8 packets need to be sent successfully. Following a similar logic as the previous problem:
+
+	\[ \Pr[\text{success}] = (1-p)^{10} + {10 \choose 9} (1-p)^9  + {10 \choose 8}(1-p)^8 p^2 \]
+
+	To write this another way: 
+	
+	\[ \Pr[\text{success}] = \sum_{i = 8}^{10} {10 \choose i}(1-p)^i p^{10 - i}\]
+\end{solution}
+
+\Part Again, packets can be dropped with probability $p$. This time, packets may be corrupted with probability $q$.
+A packet being dropped is independent of whether or not is corrupted (i.e. a packet may be both corrupted and dropped). Consider the original scenario where Alice sends 7 packets for a message of length 6.
+What is probability that Bob can correctly reconstruct Alice's message using polynomial interpolation on all of the points he receives?
+
+\begin{solution}
+	Here, we require that at least 6 packets must be received and uncorrupted. Furthermore, if even one corrupted packet is received, then the message cannot be reconstructed.  Thus, there are several ways the message could be reconstructed:
+
+	\begin{itemize}
+		\item all packets sent are received and uncorrupted
+		\item 1 packet lost, none are corrupted
+		\item 1 packet lost, the lost packet is corrupted
+	\end{itemize}
+
+	We can rephrase the last two bullet points together into the probability that only 1 packet is lost, and at least 6 packets are uncorrupted, which makes our life a bit easier since there are less terms to count. Therefore, our probability is:
+
+	\[ \Pr[\text{success}] = (1-p)^7(1-q)^7 + {7 \choose 6} (1-p)^6 p (1-q)^6\]
+\end{solution}
+\end{Parts}
+
+\pagebreak
+\Question{Class Enrollment}
+Lydia has just started her CalCentral enrollment appointment. 
+She needs to register for a geography class and a history class. 
+There are no waitlists, and she can attempt to enroll once per day in either class or both. 
+The CalCentral enrollment system is strange and picky, so the probability of enrolling successfully in the geography class on each attempt is $\mu$ and the probability of enrolling successfully in the history class on each attempt is $\lambda$.
+Also, these events are independent. 
+
+\begin{Parts}
+	\Part Suppose Lydia begins by attempting to enroll in the geography class everyday and gets enrolled in it on day $G$. 
+	What is the distribution of $G$?
+
+	\begin{solution}
+		This distribution is geometric, since we are attempting to enroll with probability $\mu$ every day until we get it, so therefore 
+
+		\[ \Pr[G = k] = (1-\mu)^{k-1}\mu\]
+
+		which is the definition of a geometric distribution: $G \sim \Geom(\mu)$
+	\end{solution}
+
+	\Part Suppose she is not enrolled in the geography class after attempting each day for the first 7 days. What is $\Pr[G = i \mid G > 7]$, the conditional distribution of $G$ given $G > 7$?
+
+	\begin{solution}
+		Due to the property of memorylessness, the distribution of $G$ remains exactly the same. Suppose we require another $k$ days to enroll: 
+
+
+		\[ \Pr[G = 7 + k | G > 7] = \frac{\Pr[G > 7 + k]}{\Pr[G > 7]} = \Pr[G > k]\]
+
+		And so therefore this is the same as the first part, and so therefore the distribution is still $ G \sim \Geom(\mu)$.
+	\end{solution}
+
+	\Part Once she is enrolled in the geography class, she starts attempting to enroll in the history class from day $G+1$ and gets enrolled in it on day $H$.
+	Find the expected number of days it takes Lydia to enroll in both the classes, i.e. $\E[H]$.
+
+	\begin{solution}
+		By the linearity of expectation, we have that the expected number of days to enroll in both classes will be the sum of the expected number of days she enrolls in either class. In other words: 
+
+		\[ \E[H] = \frac{1}{\mu} + \frac{1}{\lambda}\]
+	\end{solution}
+	
+\end{Parts}
+Suppose instead of attempting one by one, Lydia decides to attempt enrolling in both the classes from day 1. Let $G$ be the number of days it takes to enroll in the geography class, and $H$ be the number of days it takes to enroll in the history class.
+
+\begin{ResumeParts}
+	\Part What is the distribution of $G$ and $H$ now? Are they independent?
+
+	\begin{solution}
+		The distributions of $G$ and $H$ are still independent, since getting into one class does not alter the probaiblity of getting into the other class. Therefore, both distributions remain unaltered and still geometric:
+
+		\begin{align*}
+			G &\sim \Geom(\mu)\\
+			H &\sim \Geom(\lambda)
+		\end{align*}
+	\end{solution}
+
+	\Part Let $A$ denote the day she gets enrolled in her first class and let $B$ denote the day she gets enrolled in both the classes.
+	What is the distribution of $A$?
+
+	\begin{solution}
+		We can write $A = \min(H, G)$, so therefore we are looking for the distribution of this minimum. Suppose that on day $k$, she gets into either class. Therefore, we can write this as: 
+
+		\[ \Pr[A = k] = \left[(1 - \mu)(1 - \lambda)\right]^{k-1} \mu + [(1 - \mu)(1 - \lambda)]^{k-1}\lambda - [(1 - \mu)(1 - \lambda)]^{k - 1} \mu \lambda\] 
+
+		We subtract off the last term due to the principle of inclusion and exclusion, since we are overcounting the fact that she ends up enrolled in both classes on the same day. We can then simplify this expression down: 
+
+		\[ \Pr[A = k] = [(1 - \mu)(1 - \lambda)]^{k -1}(\mu + \lambda - \mu \lambda) \]
+
+		and since $\mu + \lambda - \mu \lambda = 1 - (1 - \mu)(1 - \lambda)$, then we recognize that this is in fact a geometric distribution with probability $\mu + \lambda - \mu \lambda$, so therefore 
+
+		\[ A \sim \Geom(\mu + \lambda - \mu \lambda)\]
+	\end{solution}
+
+	\Part What is the expected number of days it takes Lydia to enroll in both classes now, i.e. $\E[B]$.
+
+	\begin{solution}
+		If $A = \min(H, G)$, then we can write $B = \max(H, G)$. By definition, we know that 
+
+		\[ H + G = \min(H, G) + \max(H, G) \implies \max(H, G) = H + G - \min(H, G)\]
+
+		We know $H$ and $G$ explicitly as $1/\lambda$ and $1/\mu$ respectively, so therefore by linearity of expectation: 
+
+		\[ \E[\max(H, G)] = \frac{1}{\lambda} + \frac{1}{\mu} + \frac{1}{\mu + \lambda - \mu \lambda}\]
+	\end{solution}
+	
+
+	\Part What is the expected number of classes she will be enrolled in by the end of 30 days?
+	
+	\begin{solution}
+		To find this, we compare this with the expected values of $\min(A, B)$ and $\max(A, B)$. If $\min(A, B) > 30$, then we expect her to be enrolled in none of the two classes. If $\min(A, B) < 30 < \max(A, B)$ then we expect her to be enrolled in one class, and if $\min(A, B) < \max(A, B) < 30$ then we expect her to be enrolled in both classes.
+	\end{solution}
+	
+
+\end{ResumeParts}
+
+\pagebreak
+\Question{Two Sides of a Coin}
+
+\begin{Parts}
+	\Part Alice has $1$ fair coin. She tosses the coin until she sees both sides. In expectation, how many tosses does this take?
+
+	\begin{solution}
+		We can view the first toss as not really mattering, since it effectively just decides what we require the other side of the coin to be. Once the first toss is decided (WLOG let it be heads) then we are looking for the expected number of throws are required before we get tails. This requires an expected 2 tosses, so added onto the first, we expect this to take 3 tosses.
+	\end{solution}
+
+	\Part Bob has $2$ fair coins. He tosses the first coin until he sees both sides of it, then tosses the second coin until he sees both sides of it. In expectation, how many total tosses does this take?
+
+	\begin{solution}
+		The individual coin tosses are independent of each other, so therefore each coin has an expected value of 3 tosses. Therefore, in expectation this will take 6 total tosses.
+	\end{solution}
+
+	\Part Charlie has $2$ fair coins. He repeatedly tosses the pair of coins simultaneously (i.e., two tosses at a time), until he has seen both sides of both coins. In expectation, how many total tosses does this take?
+
+	\begin{solution}
+		First, flip the coin once. Whichever side either coin lands on, we now desire the opposite side for subsequent flips for either coin. 
+
+		Now, let $A$ be the event that the first coin shows the opposite side, and let $B$ be the event that the second coin shows the opposite side. Then, we are asked to find $\max(A, B)$. We have the relation that (by linearity of expectation):
+
+		\[ \E[\max(A, B)] = \E[A] + \E[B] - \E[\min(A, B)]\]
+
+		First, note that the expected toss for $\E[A]$ and $\E[B]$ are both 2, since the probability distribution to get either side on a given throw is geometric with probability 1/2. 
+
+		So now all we need to do is calculate $\min(A, B)$. This is the same as problem 3, except for the fact that here, $\mu = \lambda = \frac{1}{2}$, so therefore we have 
+
+		\[ \E[\min(A, B)] = \left(\frac{1}{2} + \frac{1}{2} - \frac{1}{4}\right)^{-1} = \frac{4}{3}\]
+
+		And so therefore, our total expected value is: 
+
+		\[ \E[\max(A, B)] = 4 - \frac{4}{3} = \frac{8}{3}\]
+
+		Now we need to add back the first toss, so therefore our expected number of tosses is $\frac{11}{3}$ tosses.
+	\end{solution}
+\end{Parts}
+
+\pagebreak 
+
+\Question{Throwing Frisbees}
+
+Shahzar and his $n-1$ friends stand in a circle and play the following game: Shahzar throws a frisbee to one of the other people in the circle randomly, with each person being equally likely, and thereafter, the person holding the frisbee throws it to someone else in the circle, again uniformly at random. The game ends when someone throws the frisbee back to Shahzar.
+
+\begin{Parts}
+
+\Part What is the expected number of times the frisbee is thrown through the course of the game?
+
+\begin{solution}
+	After the first throw, the probability that the game ends on any given throw is $\frac{1}{n-1}$, since the game only ends once the frisbee is thrown back to Shahzar. Let $X$ be the random variable denoting the number of throws until the game ends, then:
+
+	\[ \Pr[X = k] = \left(1 - \frac{1}{n-1}\right)^{k-1}\]
+
+	which is a geometric distribution, so the expected value of this is $\frac{1}{\frac{1}{(n-1)}} = n-1$ throws. We then need to add back the first throw, giving us $n$ throws in total.
+\end{solution}
+
+\Part What is the expected number of people that never get the frisbee during the game?
+
+\begin{solution}
+	Let an indicator variable $I_i$ denote the event that person $i$ does not get the frisbee, and $X$ be the number of people in total who don't get the frisbee. First, we know that 
+	
+	\[ \E[X] = \sum_i \E[I_i] = \sum_i \Pr[I_i]\]
+
+	So we aim to calculate the probability $\Pr[I_i]$. The probability that this person does not receive the frisbee on any given throw is: 
+
+	\begin{align*}
+		\Pr[I_i] &= \frac{1}{n-1} + \frac{n - 3}{n-1}\cdot \frac{1}{n-1} + \left(\frac{n - 3}{n-1}\right)^2 \cdot \frac{1}{n-1} + \cdots\\
+		&= \frac{1}{n-1}\left( 1 + \frac{n-3}{n-1} + \cdots \right)\\
+		&= \frac{1}{n-1} \frac{1}{1 - \frac{n-3}{n-1}}\\
+		&= \frac{1}{2}
+	\end{align*}
+
+	Therefore the probability that any person does not get the frisbee is $\frac{1}{2}$. Now, as mentioned before, we just need to sum over all these probabilities. There are $n-2$ people excluding Shahzar and the $i$-th person, so therefore the expected number of people who don't get the frisbee is:
+
+	\[ \E[X] = \frac{n-2}{2}\]
+\end{solution}
+
+\end{Parts}
+
+\pagebreak
+\Question{Swaps and Cycles}
+
+We'll say that a permutation $\pi = (\pi(1),\ldots,\pi(n))$ contains a \emph{swap} if there exist $i,j\in\{1,\ldots,n\}$ so that $\pi(i) = j$ and $\pi(j) = i$, where $i \neq j$. 
+\begin{Parts}
+	\Part What is the expected number of swaps in a random permutation?
+
+	\begin{solution}
+		Let $I_{ij}$ be an indicator variable which denotes whether $\pi(i)$ and $\pi(j)$ are swapped. For every given swap involving $\pi(i)$ and $\pi(j)$, there are $(n-2)!$ ways of permuting the rest of the list. There are $n!$ permutations in total, so therefore the probability of any $I_{ij}$: 
+
+		\begin{equation}\label{eq1}
+			\Pr[I_{ij}] = \frac{(n-2)!}{n!} = \frac{1}{n(n-1)}
+		\end{equation}
+
+		Further, there are ${n \choose 2}$ possible pairs, so there are also ${n \choose 2}$ of these indicator variables, one for each $i, j$. We then use the relation that 
+
+		\[ \sum_{i, j}\E[I_{ij}] = \sum_{i, j} \Pr[I_{ij}]\]
+
+		and so therefore since we know the probability of each $I_{ij}$ is equal and given by equation \ref{eq1}, then 
+
+		\[ \sum_{i, j} \E[I_{ij}] = {n \choose 2} \frac{1}{n(n-1)} = \frac{1}{2}\]
+	\end{solution}
+	
+	\Part In the same spirit as above, we'll say that $\pi$ contains a \emph{$k$-cycle} if there exist $i_1,\ldots,i_k \in \{1,\ldots,n\}$ with $\pi(i_1) = i_2,\pi(i_2) = i_3,\ldots,\pi(i_k) = i_1$. Compute the expectation of the number of $k$-cycles. 
+
+	\begin{solution}
+		Let $I_{i_1, i_2, \dots, i_k}$ be an indicator variable that denotes whether $i_1, i_2, \dots, i_k$ form a $k$-cycle. For any given $k$-cycle, there are $(k-1)!$ ways of arranging the cycle itself, then there are also $(n-k)!$ ways of permuting the rest of the variables. Finally, there are $n!$ ways of arbitrary permuting a list. Therefore, the probability that $I_{i_1, i_2, \dots, i_k}$ exists is: 
+
+		\[ \frac{(n-k)!(k-1)!}{n!}\]
+
+		There are ${n \choose k}$ possible cycles that we can create, so therefore there are $n \choose k$ indicator variables. Again, we use the relation that: 
+		
+		\[ \E[k] = \sum_{i_1, \dots, i_k} \E[I_{i_1, \dots, i_k}] = \sum_{i_1, \dots, i_k} \Pr[I_{i_1, \dots, I_k}] = {n \choose k} \Pr[I_{i_1, \dots, i_k}]\]
+
+		where the last step is possible since the probability of each indicator variable happening is equal. Therefore, we have: 
+
+		\begin{align*}
+			\E[k] &= {n \choose k} \frac{(n-k)!}{n!} (k-1)!\\
+			&= \frac{n!}{k!(n-k)!} \frac{(n-k)!}{n!} (k-1)!\\
+			&= \frac{1}{k}
+		\end{align*}
+
+		Note that this answer also works with the previous part, since a swap is a 2-cycle, so we get 1/2, as desired.
+	\end{solution}
+	
+\end{Parts}
+
+\end{document}

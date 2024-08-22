@@ -1,0 +1,152 @@
+\documentclass[10pt]{article}
+\usepackage{../../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{CS 70}
+\newcommand{\classname}{Discrete Mathematics and Probability}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 01} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	
+	\section*{Problem 1}
+
+	\section*{Problem 2}
+	Let \( R \) be a binary predicate such that the following are true:
+	\begin{enumerate}[label=(\arabic*)]
+		\item \( \forall x \forall y \left( R(x, y) \implies R(y, x) \right)  \)
+		\item \( \exists x \forall y R(x, y) \)
+	\end{enumerate}
+	\begin{enumerate}[label=\alph*)]
+		\item Prove or disprove whether the following are logically implied by the 
+			conditions (1) and (2).
+			\begin{enumerate}[label=\roman*)]
+				\item \( \forall x \exists y R(x, y) \)
+
+					\begin{solution}
+						This is logically implied. From (2), we know that there 
+						exists some \( a \) such that \( R(a, y) \) for all \( y \), 
+						and (1) requires that \( R(a, y) \implies R(y, a) \), so 
+						we know there exists some \( a \) such that \( R(y, a) \) 
+						for all \( y \). This is precisely the statement 
+						\( \forall x \exists y R(x, y) \), up to variable names. 
+					\end{solution}
+				\item \( \forall x R(x, x) \) 
+
+					\begin{solution}
+						This is not logically implied. Part (i) only implies the 
+						\textit{existence} of a \( y \) such that 
+						\( \forall x R(x, y)\), but it does not make the claim that 
+						\( y = x \) always, a necessary condition to guarantee
+						 that \( \forall x R(x, x) \) is implied. 
+					\end{solution}
+				\item \( \exists y \forall x R(x, y) \)
+
+					\begin{solution}
+						This is logically implied, just swap variable 
+						names. 
+					\end{solution}
+				\item \( \forall x \forall y \left( R(x, y) \lor R(y, x) \right)  \)
+
+					\begin{solution}
+						From statement (i), we know that \( \forall x \), 
+						there \textit{exists} a \( y \) such that \( R(x, y) \) 
+						and condition (1) means that \( R(y, x) \) is true as well. 
+						However, this does not imply that such an \( x \) works 
+						such that \textit{all} values of \( y \) satisfy 
+						\( R(y, x) \), hence this is not logically implied. 
+					\end{solution}
+			\end{enumerate}
+		\item Consider the natural numbers with the binary predicate 
+			\( R(x, y) \) as ``\( x \cdot y = 0 \)''. 
+			\begin{enumerate}[label=\roman*)]
+				\item Check that the conditions (1) and (2) are true of \( R \) 
+					in this setting. 
+
+					\begin{solution}
+						Condition (1) is true becuase multiplication is commutative,
+						and select \( x = 0 \) to satisfy condition (2). 
+					\end{solution}
+				\item Translate conditions (1) and (2), when applied to this 
+					setting, into simple English sentences. 
+
+					\begin{solution}
+						See below
+						\begin{enumerate}[label=\arabic*.]
+							\item For all \( x, y \), if the product 
+								\( x \cdot y = 0 \), then \( y \cdot x = 0 \)
+							\item There exists a value of \( x \) such that 
+								for all values of \( y \), \( x \cdot y = 0 \). 
+						\end{enumerate}
+					\end{solution}
+			\end{enumerate}
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 3}
+	In this problem, we will prove the fundamental theorem of arithmetic: any 
+	integer \( n \ge 2 \) can be factorized as a prodcut of powers of its 
+	prime factors. That is, for any integer \( n \ge 2 \), we can write
+	\[
+	 n = p_1^{q_1} p_2^{q_2} \cdot \cdots \cdot p_m^{q_m}
+	\] 
+	where \( p_1, \dots, p_m \) are prime numbers and \( q_1, \dots, q_m  \) are 
+	positive integers. 
+	\begin{enumerate}[label=\alph*)]
+		\item We first consider the case where \( n \) is prime. Show that the 
+			fundamental theorem of arithmetic holds when \( n \) itself is a prime 
+			number. 
+
+			\begin{solution}
+				Since \( n \) is prime, then \( n = p \), which is clearly 
+				satisfied. 
+			\end{solution}
+		\item Now we consider the case when \( n \) is not prime: that is, 
+			\( n \) is composite. By the definition of a compositte number, there 
+			exists a positive integer \( d \) such that \( d \mid n \) and
+			\( 1 < d < n \). We call \( d \) a \textit{nontrivial divisor} of \( n \). 
+
+			Prove that if \( d \) and  \( n / d \) can be factorized as a product 
+			of powers of its prime factors, then \( n \) can also be factorized 
+			as a product of powers of its prime factors. 
+
+			\begin{solution}
+				Here we leverage the fact that \( d \cdot \frac{n}{d} = n \), 
+				so let \( d = p_1^{q_1} \cdots p_m^{q_m} \), and 
+				\( n / d = p_1^{r_1} \cdots p_m^{r_m} \). To make this 
+				definition work, we will choose 
+				\( p_m \) large enough such that the largest prime factor between 
+				both numbers is equal to \( p_m \). Consequently, we must 
+				allow for the possibility that \( q_i = 0 \) and \( r_i = 0 \). 
+				Then, the product can be expessed as follows:
+				\[
+				d \cdot \frac{n}{d} = n = p_1^{q_1 + r_1} \cdots p_m^{q_m + r_m}
+				\] 
+				which is of the desired form. 
+			\end{solution}
+		\item Using induction and the two parts above, prove the fundamental 
+			theorem of arithmetic. 
+
+			\begin{solution}
+				Base case: \( n = 2 \)\footnote{We skip \( n = 1 \) since 
+				1 is neither prime nor composite.}, which is prime, so we are done. 
+
+				Inductive hypothesis: For all values less than  \( k \), 
+				the proposition holds true. 
+
+				Inductive step: for \( k + 1 \), we know that it is either prime 
+				or composite. If \( k + 1 \) is prime, then we are immediately done, 
+				and if \( k + 1 \) is composite, then we know it can be written 
+				in the desired form based on part (b). 
+
+				The inductive step holds, and we are done. 
+			\end{solution}
+	\end{enumerate}
+\end{document}

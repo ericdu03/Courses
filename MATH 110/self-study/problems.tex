@@ -821,7 +821,12 @@ Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
 	\end{problem}
 
 	\begin{solution}
-		There are two cases: either \( A_1 = A_2 \) or \( A_1 \neq A_2 \). 
+		Suppose \( A_1 \cap A_2 \) is nonempty, and consider an element \( a \in A_1 \cap A_2 \). Then, we can 
+		write \( a = v + u_1 = w + u_2 \) for some \( u_1, u_2 \in U_1, U_2 \), and consider another element 
+		\( b = v + u_1' = w + u_2' \). Then, we conclude that \( u_1 - u_1' = u_2 - u_2' \), and since 
+		\( u_1 - u_1' \in U_1 \) and \( u_2 - u_2' \in U_2 \), then we conclude that 
+		\( u_1 - u_1' \in U_1 - U_2 \). 
+	%	We claim $A_1\cap A_2 = v + (U_1\cap U_2)$, which is an affine subset of $V$.  To see this, suppose $x \in v + (U_1\cap U_2)$.  Then there exists $u\in U_1\cap U_2$ such that $x = v + u$.  Since $u\in U_1$, we have $x \in v + U_1 = A_1$.  And since $u\in U_2$, we have $x\in v + U_2 = A_2$.  Thus $x\in A_1\cap A_2$ and $ v + (U_1\cap U_2) \subseteq A_1\cap A_2$.  Conversely, suppose $y\in A_1\cap A_2$.  Then there exist $u_1\in U_1$ and $u_2\in U_2$ such that $y = v + u_1$ and $y = v + u_2$.  But this implies $u_1= u_2$, and hence $u_1=u_2\in U_1\cap U_2$, thus $y\in v + (U_1\cap U_2)$.  Therefore $A_1\cap A_2\subseteq v + (U_1\cap U_2)$, and hence we have $A_1\cap A_2 = v + (U_1\cap U_2)$, as claimed.
 	\end{solution}
 
 	\begin{problem}

@@ -1,0 +1,240 @@
+\documentclass[10pt]{article}
+\usepackage{../../../local}
+\linespread{1.1}
+\urlstyle{same}
+
+\begin{document}
+\section{Expected Value}
+Given a random variable \( X \), the expected value \( E(X) \) is defined as:
+\[
+E(X) = \sum_k k P(X = k)
+\] 
+I did say earlier that you can interpret this value intuitively (and you still can, with limitations), but 
+probably the best and most consistent way to think about it is that \( E(X) \) measures the \textit{average value}
+of \( X \), weighted by the probability that \( X \) takes on those values. Note that \( E(X) \) may not be 
+an attainable value that that \( X \) can take on. In the case of rolling a die, you can check that \( E(X) = 3.5 \), 
+but you can never roll a 3.5 on any singular trial.   
+\section{Distributions}
+In CS70, you'll be responsible for several distributions and their expected values, which I'll go over below. 
+You'll also be responsible for a quantity called \textit{variance}, but that's a topic for future weeks so I won't 
+talk about it here.
+\subsection{Uniform Distribution}
+This is arguably the simplest distribution. Here, over the entire sample space \( \Omega = 
+\{1, 2, 3, \dots, N\} \), a uniform distribution 
+is characterized by the property that for all values that \( X \) takes on, 
+\[
+P(X = k) = \text{const.}
+\] 
+What value is that constant? Well, we know that from the law of total probability:
+\[
+\sum_k P(X = k) = 1
+\] 
+If we let \( P(X =k) = c \) and \( N \) be the total number of elements in \( \Omega \), then the equation
+simplifies to \( Nc = 1\), so
+\[
+	c = \frac{1}{N} \implies P(X=k) = \frac{1}{N}
+\] 
+As for expected value, we can just mathematically derive the result: 
+\[
+E(X) = \sum_k k P(X = k) = \frac{1}{N}	\sum_k k = \frac{1}{N}\frac{N(N+1)}{2} = \frac{N+1}{2}
+\] 
+I would say that this is the only result for \( E(X) \) that makes sense to me when interpreting it from an 
+average value sense. The reasoning is basically that becuase the probability of any event happening is the same, then 
+the average value weighted by the probability is just the same as the average value of \( X \) itself.  
+\subsection{Bernoulli Distribution}
+Bernoulli distributions are also relatively simple. The sample space for Bernoulli distributions are only over 
+\( \Omega = \{0, 1\}  \), with 1 usually referring to a "success", and 0 referring to a "failure". Then, we usually 
+say that a success has a probability \( p \) of occurring, or mathematically 
+\[
+P(X = 1) = p
+\] 
+then by the law of total probability, 
+\[
+P(X = 0) = 1-p
+\] 
+And that's the expression for \( P(X =k) \)! It's that simple becuase there are only two options. The expected 
+value is also relatively easy:
+\[
+E(X) = \sum_k k P(X = k) = 0 \cdot P(X = 0) + 1 \cdot P(X = 1) = p
+\] 
+In this class, we usually write Bernoulli distributions as \(X \sim \text{Bernoulli}(p) \). 
+\subsection{Binomial Distribution}
+Binomial distributions are basically repeated trials of Bernoulli distributions. Given a sequence of \( n \) 
+Bernoulli trials with success probability \( p \), we define a random variable \( X \) that counts the number of 
+times we succeed. If \( X \) is defined in this way, then \( X \) has a Bernoulli distribution.  
+
+For a Bernoulli distribution, the expression for \( P(X = k) \) looks a little complicated, but let's break it down:
+\[
+	P(X = k) = {n \choose k} p^{k}(1-p)^{n - k}
+\] 
+Let's forget about the choose expression first, and focus on \( p^{k}(1-p)^{n - k} \). Because \( X \) 
+counts the number of successes, then for \( X = k \) we require that \( p \) happens \( k \) times, so 
+that gets us the \( p^{k}  \) term. Similarly, becuase we want \( p \) to \textit{only} happen \( k \) times, 
+then this means that we must fail \( n-k \) times, so that explains the \( (1-p)^{n-k} \) term. These events 
+must happen simultaneously (and are independent), so we need to multiply them together. 
+
+Now for the choose expression. Because we have \( n \) trials, and we want \( k \) of them to succeed, then 
+we need to multiply by the total number of ways we can choose \( k \) successes out of  \( n \) trials, so 
+that's why we have an \( {n \choose k} \) out front. 
+ 
+With \( P(X = k) \) figured out, let's talk about \( E(X) \). Although it might be tempting to plug 
+everything into the formula, you'll probably not have a fun time doing the algebra:
+\[
+	E(X) = \sum_k k {n \choose k} p^{k}(1-p)^{n - k}
+\] 
+I actually can't think of a way to simplify this on the spot, but thankfully there's an easier way. 
+Instead of doing the math, let's think 
+about what a binomial distribution is: it's just \( n \) Bernoulli trials, each with expectation \( p \). So, 
+if each of them has an expectation of \( p \), then by repeating it \( n \) times, we should get \( E(X) = np \), which 
+is exactly the correct expression.
+
+In this class, you'll usually see Binomial distribution be written with two parameters: \( X \sim \text{Bin}(n, p) \). The 
+reason we have two is becuase \( n \) and \( p \) completely determine the distribution of \( X \). 
+\subsection{Geometric Distribution}
+Similar to binomial distributions, geometric distributions also deal with repeated Bernoulli trials, but in a different
+way. Instead of defining \( X \) as the number of successes over \( n \) trials, 
+if we define \( X \) as the number of trials needed
+before we succeed once, then \( X \) follows a geometric distribution. 
+
+So what does \( P(X = k) \) look like? Since \( X \) counts the \textit{number} of flips before we hit a success
+of probability \( p \), then this means that if \( X = k \), then we must have failed \( k-1 \) times, and 
+succeeded on the \( k \)-th try. This means:
+\[
+P(X = k) = (1-p)^{k-1}p
+\] 
+What about \( E(X) \)? Just like the Bernoulli distribution, there's a slightly easier way to calculate this than 
+just plugging \( P(X = k) \) into \( E(X) \) and doing the math. Here, we use a very nice fact about 
+expectation value:
+\[
+	E(X) = \sum_{k=1}^{\infty} P(X \ge k)
+\] 
+If you want the proof, you can either see the notes or the last section in this pdf. For a geometric series 
+\( P(X \ge k) \) is actually a very simple expression:
+\[
+P(X \ge k) = (1-p)^{k-1}
+\] 
+You can reason this expression through the fact that if we want at least \( k \) trials then we need to fail 
+at least \( k-1 \) times, which explains why we have a \( (1-p)^{k-1} \) term. Further, becuase there is no 
+upper limit on how many failures we can have, there is no other term we multiply by. Now, plugging this in:
+\[
+	E(X) = \sum_{k=1}^{\infty} P(X \ge k) = \sum_{k =1}^{\infty} (1-p)^{k-1}
+\] 
+This is just a geometric series with \( a = 1 \) and \( r = 1-p \), so using the geometric series formula:
+\[
+E(X) = \frac{1}{1 - (1 - p)} = \frac{1}{p}
+\] 
+\subsection{Poisson Distributions}
+Poisson distributions is the last kind of discrete distribution you'll be responsible for. You will generally see 
+Poisson distributions in the context of an event happening with a known rate, then letting \( X \) be the number 
+of events that we observe in that amount of time. 
+
+As a concrete example, suppose you're at a bus stop where the buses come at an average rate of 1 bus every 10 minutes. 
+Then, if \( X \) counts the number of buses you see in a span of 10 minutes, then \( X \) follows a Poisson 
+distribution. 
+
+The expression for \( P(X = k) \) is:
+\[
+P(X = k) = \frac{\lambda^{k}}{k!}e^{-\lambda}
+\] 
+Unfortunately I don't know of an easy way to intuitively argue why this formula is the way it is. Anyways, 
+to calculate \( E(X) \), here we can just plug it into our formula for \( E(X) \) (this calculation is taken from the 
+notes):
+\begin{align*}
+	E(X) &= \sum_{k=1}^{\infty} k P(X = k)\\
+	&= \sum_{k=1}^{\infty} k \frac{\lambda^{k}}{k!}e^{-\lambda} \\
+	&= \lambda e^{-\lambda}\underbrace{\sum_{k=1}^{\infty} \frac{\lambda^{k-1}}{(k-1)!}}_{e^{\lambda}} \\
+	&= \lambda e^{-\lambda} e^{\lambda} \\
+	&= \lambda 
+\end{align*}
+The summation in the third line simplifies by using the Taylor expansion of \( e^{\lambda} \). It's 
+a summation you should probably remember, since it comes up pretty frequently with problems that ask you to 
+prove a property of Poisson distriutions. 
+
+\section{Linearity of Expectation}
+The last thing to talk about right now is linearity of expectation, since it's one of the most useful 
+properties with expectation values. It says that given two random variables \( X, Y \), then 
+\[
+E(X + Y) = E(X) + E(Y) \quad E(cX) = c E(X) \quad E(X + c) = E(X) + c
+\] 
+The important thing to note here is that this works for \textit{any} \( X \) and \( Y \), even if they are dependent. 
+There are formulas like \( E(XY) = E(X) E(Y) \) that are true only when \( X \) and \( Y \) are independent, but 
+the above two are true for any \( X, Y \). 
+
+I can't really provide any intuition on why the first equation is true, but the other two are fairly intuitive. The key
+is to realize that the constant \( c \) doesn't actually affect the shape of the distribution of \( X \), and 
+because of that we can always take out the constants. 
+ 
+ 
+%t might be tempting to use the same 
+%xpression we've always used for \( E(X) \), but if you try to use that formula the math can be quite tedious. Instead, 
+%e use this formula for \( E(X) \) from the notes:
+%[
+%(X) = \sum_k P(X \ge k)
+%] 
+%ee the last section for the proof of this expression. 
+%\section{Expected Value}
+%Last section we talked about random variables, and how they are essentially a different way to look at probabilities. 
+%In particular, it allows us to move away from focusing on a specific event, but look at the \textit{distribution} 
+%of the kinds of events that can happen.  
+%
+%I also introduced the concept of an expected value
+%\begin{itemize}
+%   \item Go over random variables again, talk about how they're a different way to look at probabilities. 
+%   	Specifically, talk about the fact that RVs look at the distribution of things that can happen
+%   \item Expected value: defined as:
+%   	\[
+%   	E(X) = \sum_x x P(x)
+%   	\] 
+%   	written like this, it represents the ``average value" for the random varaible \( X \). Soemtimes, there is 
+%   	an intuition on what \( E(X) \) represents, but not all the time. Note that \( E(X)  \) need not be an 
+%   	attainable value by the trials themselves, but represents just an average value that we ``expect" over 
+%   	many trials. 
+%   %\item Different distributions: Uniform, Geometric, Bernoulli, Binomial, Poisson, Hypergeometric. 
+%   \item Uniform distribution: the distribution of \( X \) is uniform over the sample space (e.g. rolling a die). 
+%   	Each event has equal probability, with \( P(x =k) = \frac{1}{n} \). 
+%   	Expected value:
+%   	\[
+%   	E(X) = \sum_x xP(x) = \sum_x \frac{x}{n} = \frac{1}{n} \cdot \frac{n(n+1)}{2} = \frac{n+1}{2}
+%   	\] 
+%   	This expected value calculation assumes that \( X \) takes on the values \( \{0, \dots, n\}  \). 
+%   \item Bernoulli: The probability distribution of a \textit{single event}, that ``succeeds" with 
+%   	probability \( p \) and ``fails" with probability \( 1 -p \). The success is usually labelled with 
+%   	\( X = 1 \), and the failure is labelled with \( X = 0 \). Therefore:
+%   	\[
+%   	E(X) = \sum_k k P(X = k) = 0 P(X = 0) + 1 P(X = 1) = p
+%   	\] 
+%   \item Geometric distribution: the distribution of \( X \) is a geometric sequence, or a sum. Usually happens 
+%   	when we're asking for the number of trials needed for something with fixed probability \( p \) (so some 
+%   	kind of Bernoullli variable) to occur. 
+%
+%   	The probability of any given event happening is \( P(x =k) = (1-p)^{i - 1}p  \), so the expected value:
+%   	\[
+%   	E(X) = \sum_k k P(X = k) = \sum_k k (1-p)^{k-1}p
+%   	\] 
+%   	This summation is quite hard to calculate, so we employ this formula instead:
+%   	\[
+%   	E(X) = \sum_k P(X \ge k)
+%   	\] 
+%   	(see proof in the notes.) and \( P(X \ge k) \) for a geometric series is quite easy to calculate:
+%   	\[
+%   	P(X \ge k) = (1-p)^{k}
+%   	\] 
+%   	this should make sense -- the probability that we require \( k \) coin tosses is if we fail at least 
+%   	\( k \) times. Therefore:
+%   	\[
+%   	E(X) = \sum_k (1-p)^{k} = \frac{1}{1 - (1 - p)} = \frac{1}{p}
+%   	\] 
+%   \item Binomial Distribution: basically asking about the number of times a Bernoulli process succeeds given 
+%   	\( n \) trials. So, the probability \( P(X = k) \) is given by:
+%   	\[
+%   		P(X = k) = {n \choose k} p^{k}(1 - p)^{n - k}
+%   	\] 
+%   	The expectation value is also a little hard to calculate, but you can understand it from the perspective of 
+%   	linearity of expectation: because each trial has an \( E(X) = p \), then doing it \( n \) times 
+%   	gives us \( E(X) = np \). 
+%   \item Independence using conditional probability: \( P(A \cap B) = P(A) P(B)\), or also 
+%   	\( P(A | B) = P(A) \)
+%   \item Linearity of Expectation: Given two events on the same probability space, \( E(X + Y) = E(X) + E(Y) \), 
+%   	regardless of whether \( X \) and \( Y \) are independent. Further, \( E(cX) = cE(X) \).
+%end{itemize}
+\end{document}

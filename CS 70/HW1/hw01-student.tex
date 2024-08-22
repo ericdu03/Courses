@@ -1,0 +1,314 @@
+\documentclass[11pt]{article}
+\usepackage{header}
+\usepackage{cleveref}
+\def\title{HW 01}
+
+\begin{document}
+\maketitle
+\fontsize{12}{15}\selectfont
+
+\begin{center}
+    Due: Saturday, 9/3, 4:00 PM \\
+    Grace period until Saturday, 9/3, 6:00 PM \\
+\end{center}
+
+\section*{Sundry}
+Before you start writing your final homework submission, state briefly how you worked on it.  Who else did you work with?  List names and email addresses.  (In case of homework party, you can just describe the group.)
+
+{\color{blue}{I did not work with anybody to complete this homework. I did go to office hours once to ask for conceptual understanding of set operations, but I did not get any other help outside of that.}}
+
+\vspace{15pt}
+
+\Question{Solving a System of Equations}
+
+Alice wants to buy apples, beets, and carrots. An apple, a beet, and a carrot cost 16 dollars, two apples and three beets cost 23 dollars, and one apple, two beets, and three carrots cost 35 dollars. What are the prices for an apple, for a beet, and for a carrot, respectively? Set up a system of equations and show your work.
+
+\begin{solution}
+    Let $x$ be the value of apples, $y$ be the value of beets and $z$ be the value of carrots. Then from the information in the question, we have: 
+
+    \begin{align}
+        \label{eq1} x + y + z &= 16\\
+        \label{eq2} 2x + 3y &= 23\\
+        \label{eq3} x + 2y + 3z &= 35
+    \end{align}
+
+    Multiplying \cref{eq1} by 3 and subtracting \cref{eq2} from it we get:
+
+    \begin{equation}\label{eq4}
+        2x + y = 13
+    \end{equation}
+
+    Now we can take \cref{eq2} and subtract \cref{eq4} from it, and we get:
+
+    \[ 2y = 10 \Longrightarrow \boxed{y = 5}\]
+
+    Now knowing that $y = 5$, we can substitute this into \cref{eq2} to get:
+
+    \[ 2x + 15 = 23 \Longrightarrow \boxed{x = 4}\]
+
+    Now solving for $z$:
+    
+    \[ 4 + 5 + z = 16 \Longrightarrow \boxed{z = 7}\]
+
+    Now returning back to the fruits, we know that an apple costs 4 dollars, a beet costs 5 dollars and a carrot costs 7 dollars.
+\end{solution}
+
+\Question{Calculus Review}
+
+\begin{Parts}
+    \Part Compute the following integral:
+        \[
+            \int_0^{\infty} \sin(t)e^{-t} \dd{t}.
+        \]
+    
+    \begin{solution}
+        Call the integral $I$. Doing integration by parts gives:
+
+           \[ I = -\sin(t)e^{-t}\bigg\rvert_0^\infty + \int_0^\infty \cos(t)e^{-t}\dd{t}\]
+
+           Note that the first part vanishes at $\infty$ since $e^{-\infty} = 0$, and it also vanishes at $0$ since $\sin(0) = 0$. Thus we're left with:
+
+           \[ \int_0^\infty \cos(t) e^{-t} \dd t\]
+
+           Now we do integration by parts again: 
+
+
+            \begin{align*}
+                I &= -\cos(t)e^{-t} \bigg\rvert_0^\infty - \int_0^\infty \sin(t)e^{-t} \dd t\\
+                &= [0 + \cos(0) e^0] - \int_0^\infty \sin(t) e^{-t} \dd t
+            \end{align*}
+
+            Notice that the integral remaining is the same as our original integral to solve. Thus we can write:
+
+            \begin{align*}
+                2I &= 2 \int_0^\infty \sin(t) e^{-t} \dd t = 1\\
+                &\therefore \boxed{I = \frac{1}{2}}
+            \end{align*}
+
+            Thus
+
+            \[ \int_0^\infty \sin(t) e^{-t} \dd t = \frac{1}{2}\]
+    \end{solution}
+    \Part Find the minimum value of the following function over the reals and determine where it occurs.
+    \[f(x) = \int_{0}^{x^2} e^{-t^2} \dd{t}.\]
+    Show your work.
+
+    \begin{solution}
+        It's clear that the function $e^{-t^2}$ is positive for all real $t$, and if we interpret the integral as the area under the curve, it's clear that the integral over any nonzero interval $[0, x^2]$ will result in a positive result. Thus, the minimum of $f(x)$ is 0 when $x = 0$.
+    \end{solution}
+
+    \Part Compute the double integral
+    \[\iint_{R} 2x + y \dd{A},\]
+    where $R$ is the region bounded by the lines $x = 1$, $y = 0$, and $y = x$.
+
+    \begin{solution}
+    The line $y = x$ intersects the line $x = 1$ at $(1, 1)$. Therefore, we can set the bounds as follows: 
+
+    \[ \int_0^1\int_0^x 2x + y \ \dd y \ \dd x\]
+
+    Solving: 
+
+    \begin{align*}
+        \int_0^1\int_0^x 2x + y \ \dd y \ \dd x &= \int_0^1 (2xy + \frac{y^2}{2})\bigg\rvert_0^x \dd x\\
+        &= \int_0^1 2x^2 + \frac{x^2}{2}\\
+        &= \left(\frac{2}{3}x^3 + \frac{x^3}{6}\right)\bigg\rvert_0^1\\
+        &= \frac{1}{2}
+    \end{align*}
+
+    \end{solution}
+\end{Parts}
+
+\Question{Implication}
+Which of the following assertions are true no matter what proposition $Q$ represents? For any false assertion, state a counterexample (i.e. come up with a statement $Q(x, y)$ that would make the implication false). For any true assertion, give a brief explanation for why it is true.
+
+\begin{Parts}
+
+\item
+$\exists x \exists y Q(x,y) \implies \exists y \exists x Q(x,y)$.
+
+\begin{solution}
+    This is true. $\exists x \exists y \equiv \exists y \exists x$
+\end{solution}
+    
+
+\item
+$\forall x \exists y Q(x,y) \implies \exists y\forall x Q(x,y)$.
+    
+\begin{solution}
+    This is not true. The statement on the left indicates that regardless of any $x$ we choose we can choose a corresponding $y$. On the other hand, the statement on the right hand side indicates that there is a $y$ such that $Q(x, y)$ is true regardless of what value of $x$ we choose. These two statements are not equivalent, since choosing $x$ and a corresponding $y$ such that $Q(x, y)$ is true does not guarantee that there exists such a $y$ that makes $Q(x, y)$ true for all $x$.
+\end{solution}
+
+\item
+$\exists x \forall y Q(x,y) \implies \forall y \exists x Q(x,y)$.
+
+\begin{solution}
+    This statement is true, since the quantifiers for $x$ and $y$ not changed on both sides of the expresion.
+\end{solution}
+    
+
+\item
+$\exists x \exists y Q(x,y) \implies \forall y \exists x Q(x,y)$.
+
+\begin{solution}
+    This is not true. The statement on the left hand side indicates the existence of $x$ and $y$ such that $Q(x, y)$ is true, but it makes no statement on the fact that there is a corresponding $x$ regardless of what $y$ we choose. 
+\end{solution}
+    
+
+\end{Parts}
+
+\Question{Logical Equivalence?}
+
+Decide whether each of the following logical equivalences is correct and justify your answer. 
+
+\begin{Parts}
+    \Part $\forall x \; \bigl( P(x) \wedge Q(x) \bigr)~\equiv~\forall x \; P(x) \wedge \forall x \; Q(x)$
+
+    \begin{solution}
+        This is true, the universal quantifier can be distributed across a $\land$ symbol.
+    \end{solution}  
+    
+    
+    \Part $\forall x \; \bigl( P(x) \vee Q(x) \bigr)~\equiv~\forall x \; P(x) \vee \forall x \; Q(x)$
+
+    \begin{solution}
+        This is not true. The statement on the left says "for all $x$, either $P(x)$ or $Q(x)$ is true." On the other hand, the statement on the right side says "$P(x)$ is true for all $x$ or $Q(x)$ is true for all $x$". They are not the same, because the statement on the left makes no mention of whether $P(x)$ or $Q(x)$ is true for all $x$.
+    \end{solution}
+    
+    \Part $\exists x \; \bigl( P(x) \vee Q(x) \bigr)~\equiv~\exists x \; P(x) \vee \exists x \; Q(x)$
+
+    \begin{solution}
+        This is not true. The statement on the left says that there exists an $x$ such that \textit{either} $P(x)$ or $Q(x)$ is true, but the statement on the right says that there exists an $x$ such that $P(x)$ is true or that there exists an $x$ such that $Q(x)$ is true. The statement on the right says that the value of $x$ which satisfies $P(x)$ need not be the same as the $x$ that satisfies $Q(x)$, whereas the statement on the left refers to a singular value of $x$.
+    \end{solution}
+    
+    \Part $\exists x \; \bigl( P(x) \wedge Q(x) \bigr)~\equiv~\exists x \; P(x) \wedge \exists x \; Q(x)$
+
+    \begin{solution}
+        This is false. The statement on the left says that there exists an $x$ such that both $P(x)$ and $Q(x)$ is true (for the same $x$), whereas the statement on the right says that there exists an $x$, which is not necessarily unique, that makes $P(x)$ and $Q(x)$ true.
+    \end{solution}
+    
+\end{Parts}
+
+\Question{Preserving Set Operations}
+
+For a function $f$, define the image of a set $X$ to be the set $f(X) = \{y~|~y = f(x) \text{ for some } x \in X\}$. Define the inverse image or preimage of a set $Y$ to be the set $f^{-1}(Y) = \{x~|~f(x) \in Y\}$. Prove the following statements, in which $A$ and $B$ are sets. By doing so, you will show that inverse images preserve set operations, but images typically do not.
+
+\textit{Recall: For sets $X$ and $Y$, $X=Y$ if and only if $X \subseteq Y \text{ and } Y \subseteq X$. To prove that $X \subseteq Y$, it is sufficient to show that $(\forall x)~((x \in X) \implies (x \in Y))$.}
+
+\begin{Parts}
+    \Part $f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B)$.
+
+    \begin{solution}
+        Suppose there is an element $x \in f^{-1}(A \cap B)$. Then we know that $f(x) \in A$ and $f(x) \in B$, and thus $x \in f^{-1}(A)$ and $x \in f^{-1}(B)$, which is what the right hand side is showing.
+    \end{solution}
+    \Part $f^{-1}(A \setminus B) = f^{-1}(A) \setminus f^{-1}(B)$.
+
+    \begin{solution}
+        Suppose there is an element $x$ in $f^{-1}(A \setminus B)$. We can rewrite this as $f^{-1}(A - (A \cap B))$, so $f(x) \in A$ but $f(x) \notin B$ since otherwise it would have been included in $A \cap B$.
+
+        
+        On the right hand side, we have $f^{-1}(A) - (f^{-1}(A) \cap f^{-1}(B)) = f^{-1}(A) - f^{-1}(A \cap B)$, so we also have that $f(x) \in A$ but $f(x) \notin B$. Thus, they are the same. 
+    \end{solution}
+
+
+    % \begin{solution}
+    %     Let $x \in A \setminus B$. Then this means that $x \in A$, but $x \notin B$, and that $f^{-1}(x) \in f^{-1}(A)$ but $f^{-1}(x) \notin f^{-1}(B)$. This is exactly what the right hand side is saying, since we're taking the set subtraction of the inverse of $A$ and $B$ respectively.
+    % \end{solution}
+    \Part $f(A \cap B) \subseteq f(A) \cap f(B)$, and give an example where equality does not hold.
+
+    \begin{solution}
+        Let $x \in f(A \cap B)$. Then we know that $f^{-1}(x) \in A \cap B$, so $f^{-1}(x) \in A$ and $f^{-1}(x) \in B$, and thus $x \in f(A)$ and $x \in f(B) \implies x \in f(A)\cap f(B)$. 
+
+        An example of a situation where this does not hold is if $A$ and $B$ are disjoint sets, but their intersection after imaging is not disjoint. For instance, let $A = \{1, 2, 3\}$, and let $B = \{-1, -2, -3\}$ and $f(x) = x^2$. It's clear that $A$ and $B$ are disjoint, so $f(A \cap B) = \varnothing$, but $f(A) \cap f(B) = \{1, 4, 9\} \neq \varnothing$, so equality does not hold.
+    \end{solution}
+    \Part $f(A \setminus B) \supseteq f(A) \setminus f(B)$, and give an example where equality does not hold.
+
+    \begin{solution}
+        Let $x \in f(A) \setminus f(B)$. We can rewrite this as $x \in f(A) - (f(A) \cap f(B))$, meaning that $x \in f(A)$ but $x \notin f(B)$. Thus, it follows that $f^{-1}(x) \in A$ and $f^{-1}(x) \notin B$, and thus $f^{-1}(x) \in A \setminus B$, so $x \in f(A \setminus B)$. 
+
+
+        The same example given in part (c) works here as well. Suppose that $A = \{ 1, 2, 3\}$ and $B = \{-1, -2, -3\}$ and $f(x) = x^2$. Then $f(A \setminus B) = f(A) = f(B) = \{1, 4, 9\}$, but $f(A) \setminus f(B) = \{1, 4, 9\} \setminus \{1, 4, 9\} = \varnothing$.
+
+
+        % Let $x \in f(A \setminus B)$. Then, it holds that $x \in f(A - (A \cap B))$. Then this means that $x \in f(A)$ but $x \notin f(B)$ (since we have subtracted the intersection). 
+
+        % The expression on the right hand side can be rewritten as $f(A) - (f(A) \cap f(B))$. This is the 
+        
+        % Then this means that $f^{-1}(x) \in A$ but $f^{-1}(x) \notin B$. 
+    \end{solution}
+\end{Parts}
+
+\Question{Prove or Disprove}
+For each of the following, either prove the statement, or disprove by finding a counterexample.
+\begin{Parts}
+	\Part $(\forall n \in \mathbb{N})$ if $n$ is odd then $n^2 + 4n$ is odd.
+
+    \begin{solution}
+        We can show this statement true by factoring $n^2 + 4n = n(n+4)$. Since both $n$ and $n + 4$ are odd numbers, and the product of two odd numbers is always odd, then $n^2 + 4n$ is always odd given odd $n$.
+    \end{solution}
+
+	\Part $(\forall a, b \in \mathbb{R})$ if $a + b \le 15$ then $a \le 11$ or $b \le 4$.
+
+    \begin{solution}
+        We can show this statement to be true via contraposition. We show that if $a > 11$ and $b > 4$, then $a + b > 15$. This is clearly true, since $a + b > 11 + 4 \implies a + b > 15$, and thus the original statement is also true.
+    \end{solution}
+
+
+	\Part $(\forall r \in \mathbb{R})$ if $r^2$ is irrational, then $r$ is irrational.
+
+\begin{solution}
+    Suppose that $r^2$ is irrational and $r$ is rational. This means that $r =\frac{p}{q}$ for $p, q \in \mathbb Z$. Thus, $r^2 = \frac{p^2}{q^2}$, which is clearly a rational number, so $r$ must also be an irrational number.
+\end{solution} 
+
+
+	\Part $(\forall n \in \mathbb{Z}^+)$ $5n^3 > n!$. (Note: $\mathbb{Z}^+$ is the set of positive integers)
+
+    \begin{solution}
+    This is clearly false, $5(10)^3 = 5000$ is much smaller than $10! = 3628800$.
+    \end{solution}
+\end{Parts}
+
+\Question{Rationals and Irrationals}
+Prove that the product of a non-zero rational number and an irrational number is irrational.
+
+\begin{solution}
+    Let $a \in \mathbb Q$ and $b \notin \mathbb Q$. We are then asked to prove that $ab \notin \mathbb Q$. We prove this by contradiction.
+
+    Let that $ab \in \mathbb Q$. Then we can write:
+
+    \[ ab = \frac{p}{q}, \ a = \frac{r}{s}\]
+
+    Where $p, q, r, s \in \mathbb Z$ to denote rationals. Then, we can divide both sides by $\frac{p}{q}$:
+
+    \[ b = \frac{r}{s} \cdot \frac{q}{p} = \frac{rq}{sp}\] 
+
+    Where the right hand side represents a rational number, since $p, q, r, s \in \mathbb Z$. But since $b$ is an irrational number, it cannot be expressed this way, and thus we have reached a contradiction. Therefore, the product of a nonzero rational number and an irrational number is irrational.
+\end{solution}
+
+\Question{Twin Primes}
+
+\begin{Parts}
+
+\Part
+Let $p > 3$ be a prime. Prove that $p$ is of the form $3k + 1$ or $3k-1$ for some integer $k$.
+
+\begin{solution} 
+    We can rephrase this question slightly: that every prime number $p$ is either 1 or 2 modulo 3. We can rephrase this as such since we can rewrite $3k - 1 = 3(k-1) + 2 \equiv 2 \pmod{3}$, and $3k+1 \equiv 1 \pmod{3}$. Now notice that the only numbers which are not included in this description are those which are $0 \pmod {3}$, which cannot be prime since they are clealry divisible by 3. Thus, all primes are either 1 or 2 modulo 3, which is the original statement.
+\end{solution} 
+
+\Part
+\textit{Twin primes} are pairs of prime numbers $p$ and $q$ that have a difference of 2. Use part (a) to prove that 5 is the only prime number that takes part in two different twin prime pairs.
+
+\begin{solution}
+   From part $a$ we know that every prime can be written as $3k + 1$ or $3k - 1$. We work through both cases and show that this is not possible:
+
+   \begin{itemize}
+        \item \textit{Case 1: $p = 3k + 1$.} If $p = 3k + 1$, then $p - 2 = 3k - 1$ and $p + 2 = 3k+3 = 3(k+1)$, which is clearly not prime.
+        \item \textit{Case 2: $p = 3k-1$.} If $p = 3k-1$, then $p - 2 = 3k - 3 = 3(k-1)$ which is clearly not prime, so there cannot be three consecutive twin primes.
+   \end{itemize}
+
+   The only situation where we do have a number taking part in two different twin prime pairs is if $3k - 3 = 3$ (because 3 itself is prime), which gives $k = 2$ and thus $p = 5$, the only number that satisfies this condition.
+\end{solution}
+
+\end{Parts}
+
+\end{document}
