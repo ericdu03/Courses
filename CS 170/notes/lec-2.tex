@@ -1,0 +1,160 @@
+\section{Divide and Conquer I, Asymptotics}
+\begin{itemize}
+	\item Last time, we talked about the motivations for studying algorithms: designing ways to solve problems efficiently. 
+	\item We also talked about addition and multiplication, and the latter in particular we saw two algorithms for it, but 
+		couldn't break the \( O(n^2) \) runtime. Today, we'll try to beat this.
+\end{itemize}
+
+\subsection{Karatsuba's Algorithm}
+\begin{itemize}
+	\item The main issue we ran into with the divide and conquer algorithm is that when we broke a problem down, we didn't 
+		actually simplify our life at all -- we just created subproblmes for ourselves. What if we can create 
+		fewer than 4 subproblems? This is the key idea with divide and conquer: if we can use the results of subproblems 
+		to simplify computation at a given layer, we can generate an overall speedup.
+	\item In Karatsuba's case, if we can write the term \( \text{P2} + \text{P3} \) in terms of P1 and P4, then we can 
+		simplify the number of computations needed. 
+	\item Karatsuba's trick is as follows: let's compute only three things:
+		\begin{itemize}
+			\item Q1: \( a \times c \) 
+			\item Q2: \( b \times d \) 
+			\item Q3: \( (a + b)(c + d) \)
+		\end{itemize}
+		Then, the idea is that the middle term \( \text{P2} +  \text{P3} \) can be written in terms of these smaller subproblems:
+		\[
+		a\times d + c\times b = (a + b)(c + d) - ac - bd
+		\] 
+		Therefore, our multiplication now looks like:
+		\begin{align*}
+			x \times y &= \left( a \times 10^{n / 2} + b \right) \left( c \times 10^{n /2} + d \right) \\
+					   &= \underbrace{(a \times c)}_{\text{Q1}} 10^{n} + \underbrace{(a \times d + c \times b)}_{\text{Q3} - 
+					   \text{Q1} - \text{Q2}} 10^{ n / 2} + \underbrace{(b \times d)}_{\text{Q3}}
+		\end{align*}
+	\item With this algorithm, what is the runtime of this algorithm? The problem is almost the same, except we now only have 
+		3 subproblems instead of 4. Therefore, if we employ the tree method (just as last time), then we'll see that 
+		we have \( \log_2(n) \) layers, which means we have \( 3^{\log_2 n} = n^{\log_2 3} \approx n^{1.6} \), which is 
+		where we get our runtime from.
+		\begin{itemize}
+			\item The Toom-3 algorithm mentioned last lecture also uses divide and conquer, but instead it reduces 
+				9 problems into 5 subproblems, which gives a better bound. 
+		\end{itemize}
+	\item Note that Karatsuba's algorithm also doesn't care about the base we're working in: this works with any base. 
+		Note that the factor of \( 2^{n /2} \) that will appear in the division step is also just adding zeros, but in binary! 
+\end{itemize}
+\subsection{Asymptotic Notations (Formally)}
+\begin{itemize}
+	\item Suppose an algorithm takes \( T(n) = 5n^2 + 20n \log n + 7 \) microseconds. Then, we say that \( T(n) \in O(n^2) \), or 
+		also sometimes written as \( T(n) = O(n^2) \).
+	\item Why do we employ this \( O(\cdot) \) notation? It's because constants like 5, 20, 7 usually depend on the computer 
+		(say your computer is a year newer and has a faster CPU inside), so getting rid of these constants make comparing algorithms
+		much easier. It's also often the case that the constants can be improved via some other smaller, less important 
+		optimizations. 
+	\item The formal definition of \( O(\cdot) \) is as follows: 
+
+		Let \( T(n) \) and \( g(n) \) be functions of positive integers. Think of \( T(n) \) as a runtime, so it's positive and 
+		increasing with \( n \) (usually). Then, we say "\( T(n) \) is  \( O(g(n)) \)" if and only if for some large enough 
+		\( n \), \( T(n) \) is at most some constant multiple of \( g(n) \). Mathematically:
+
+		There exists \( c \) and \( n_0 > 0 \) such that for all \( n \ge  n_0\), \( T(n) \le  c \cdot g(n) \). 
+
+		Note that this \( g(n) \) also isn't unique! If a function is in \( O(n^2) \), then it's also \( O(n^3) \), and it's 
+		also in \( O(2n^2) \). However, we generally ask for the simplest and the tightest bound, so while these are 
+		all technically correct answers, \( O(n^2) \) is the "most correct". 
+	\item As an example, we can prove that \( T(n) = 2n^2 + 2 \in O(n^2)\). Here, we can choose \( n_0 = 1 \), \( c = 4 \), 
+		so that we have: 
+		\[
+		2n^2 + 2 \le 4n^2
+		\] 
+		All we have to do is prove that this inequality holds for all \( n \ge  n_0 \). We can do this via derivatives, or other 
+		equivalent methods. 
+	\item There's an equivalent definition for a lower bound: we say that "\( T(n) \in \Omega(g(n)) \)" if and only if 
+		there exists \( c \) and \( n_0 > 0 \) such that for all \( n \ge n_0 \), \( c \cdot g(n) \le T(n) \). Note that this 
+		inequality is reversed from the previous one. 
+
+	\item To test asymptotics, one way that's particularly efficient is using limits: 
+		\[
+			\lim_{n \to \infty} \frac{T(n)}{g(n)} = \begin{cases}
+				0 & T(n) \in O(g(n))\\
+				c \in \mathbb R & T(n) \in \Theta(g(n))\\
+				\infty & T(n) \in \Omega(g(n))
+			\end{cases}
+		\] 
+	\item The asymptotics of the geometric series is quite important for runtime analysis. Take any constant \( r \) and 
+		a function \( T(n) = 1 + r + r^2 + \cdot + r^{n} \). We have that:
+		\[
+		T(n) = \begin{cases}
+			\Theta{r^{n}} & \text{if \( r > 1 \) }\\
+			\Theta(1) & \text{if \( r < 1 \)}\\
+			\Theta(n) & \text{if \( r = 1 \)}
+		\end{cases}
+		\] 
+		\textit{Proof:} Recall that for a goemetric series with \( r \neq 1 \), then we have:
+		\[
+		1 + r + r^2 + \cdots + r^{n} = \frac{r^{n+1} - 1}{r-1}
+		\] 
+		For \( r > 1 \), then this right hand side roughly evalutes to \( \frac{r^{n + 1}}{r} = r^{n} \), hence the 
+		\( \Theta(r^n) \) bound. For \( r < 1 \), \( r^{n + 1} \) is going to be very small, and hence \( r^{n + 1} - 1 < 0\). 
+		Overall, this means 
+		\[
+			\frac{r^{n + 1} - 1}{r - 1} \approx \frac{1}{1 - r}
+		\] 
+		and since \( r \) is a constant we have \( T(n) = \Theta(1) \). For \( r = 1 \), then we have \( T(n) = n \in \Theta(n)\). 
+\end{itemize}
+\subsection{Formal Proof of Karatsuba's}
+\begin{itemize}
+	\item Now we formally look at Karatsuba's algorithm runtime. At each layer, we have 3 subproblems, each of size \( n / 2 \).  
+		At every layer, we have to do a bunch of things: finding Q1, Q2, Q3, additions, and other stuff. However, all of 
+		this stuff runs in \( O(n) \) time. To use a specific number, we'll say that the work is \( 20n \). Therefore, 
+		we have the following formula for \( T(n) \): 
+		\[
+		T(n) = 3T\left( \frac{n}{2} \right)  + 20n
+		\] 
+		This is a \textbf{recurrence relation.} We should also have a base case: \( T(1) = O(1) \). Now, our goal is to find a 
+		closed form relation to \( T(n) \). 
+
+		Now we look at this layer by layer. At the first layer, we have 1 problem, so that has \( 20n \) units of work. At 
+		the second layer, we have 2 subproblems, each of size \( n / 2 \), so we have \( 3 \times 20 \times \frac{n}{2} \) 
+		amount of work from this layer. In general, we have:
+		\[
+		\text{work} = (\text{number of subproblems}) \times 20 \times (\text{subproblem size})
+		\] 
+		This translates into the equation
+		\[
+		3^{t} \cdot 20 \left( \frac{n}{2^{t}} \right) 
+		\] 
+		We now need to sum this for all \( t \), so we have:
+		\begin{align*}
+			T(n) &= \sum_{t = 0}^{\log_2 n}3^{t} \cdot 20 \cdot \left( \frac{n}{2^{t}} \right) \\
+			&= 20n \sum \left( \frac{3}{2} \right)^{t} 
+		\end{align*}
+		Now recall the geometric series we had from earlier: since \( r = \frac{3}{2}> 1 \), then the summation 
+		is \( \Theta((3 / 2)^{\log_2 n}) \), so overall:
+		\[
+		T(n) = 20n \left( \Theta\left( \frac{3}{2} \right)^{\log(n)} \right) = 
+		O\left(n \left( \frac{3}{2} \right) ^{\log 3 - \log 2}\right) = O(n^{\log 3}) = O(n^{1.6})
+		\] 
+\end{itemize}
+\subsection{The Master Theorem}
+\begin{itemize}
+	\item The tree method is useful, but slightly annoying to deal with sometimes. There's a theorem, called the Master Theorem, 
+		that tells us the runtime of \( T(n) \), if we have a recurrence relation of the following form:
+		\[
+		T(n) = a \cdot T\left( \frac{n}{b} \right) + O(n^{d})
+		\] 
+		Then, we have:
+		\[
+		T(n) = \begin{cases}
+			O(n^{d}) & \text{if \( a < b^{d} \)}\\
+			O(n^{d} \log(n)) & \text{if \( a = b^{d} \)}\\
+			O(n^{\log_b(a)}) & \text{if \( a > b^{d} \)}
+		\end{cases}
+		\] 
+	\item The Master Theorem only tells us the runtime given this very specific recurrence relation. In fact, as you'll notice 
+		with the \( O(n^{d}) \) term, it only works if the work at every step is polynomial. Also, if \( n / b \) is not an 
+		integer, we can force it to be an integer by enforcing a recurrence relation of the form:
+		\[
+		T(n) = a \cdot T\left( \left\lceil \frac{n}{b} \right\rceil  \right) + O(n^{d})
+		\] 
+		Loosely, this is because constants don't matter, so small shifts (of less than 1) in the subproblem size doesn't really 
+		change the recurrence relation at all. 
+\end{itemize}
+

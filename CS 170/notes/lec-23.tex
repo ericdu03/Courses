@@ -1,0 +1,106 @@
+\section{Sampling and Streaming}
+\subsection{Sampling}
+\begin{itemize}
+	\item Suppose you have a question you want to ask like ``do you approve of the U.S. Congress?'' that 
+		admits a yes (1) or no (0) answer. Our goal is to estimate the fraction of population who say 
+		yes.
+	\item The naive approach would be to just ask everybody what their opinions are: and we can be certain of 
+		our result. 
+	\item Instead of doing this, we take a sample population of \( k \) people chosen at random, and collect 
+		their answers \( x_!, \dots, x_k \in \{0, 1\}  \), and output the fraction of those that say 
+		yes. 
+		\[
+			\hat p = \frac{1}{k}\sum_{i = 0}^{k}x_i
+		\] 
+	\item Our goal is to pick \( k \) such that with probability of \( 1 - \delta \), then
+		\[
+		|\hat{p} - p| \le  \epsilon
+		\] 
+		where \( p \) denotes the \textbf{true value} of \( \hat{p} \). 
+	\item The larger the value of \( k \), the smaller our \( \epsilon \) can be. 
+	\item \textbf{Chernoff Bound:} Suppose \( x_1, \dots, x_n \in \{0, 1\}  \) are independent and 
+		identically distributed random variables where \( P(x_i = 1) = p\) and \( P(x_{i} = 0) = 1-p \), then 
+		\[
+			P\left( \left| \frac{1}{k}\sum_{i = 1}^{k} x_i  - p \right| \ge  \epsilon \right) \le 2e^{-2 
+			\epsilon^2 k}
+		\] 
+		\question{How does this relate to the central limit theorem?}
+	\item So in order to get \( P(\text{error} \ge  \epsilon) \le  \delta \), then we choose: 
+		\[
+		k = \left\lceil \frac{1}{2\epsilon^2}\ln\left(\frac{1}{2\delta} \right)\right\rceil 
+		\] 
+		\comment{There's a mistake in the notes where it says \( \log_2 \), but it should be \( \ln \) instead.} 
+\end{itemize}
+\subsection{Streaming}
+\begin{itemize}
+	\item Suppose there's a stream and we're watching fish go by, and we want to know some things about the 
+		fish in the stream:
+		\begin{itemize}
+			\item How many fish went by?
+			\item What fraction of fish were red?
+			\item How many fish species are there?
+		\end{itemize}
+	\item The issue is, there are too many fish in the stream to record them all (basically no access to memory).
+		Further, we can never rewind the clock: once a fish goes by, it doesn't go by anymore. 
+	\item Streaming algorithms are actually used in the real world! (e.g. tracking packets over the internet)
+\end{itemize}
+\subsection{Sampling from a Stream}
+\begin{itemize}
+	\item Given a stream \( s_1, \dots, s_i \) (we don't know how many elements there are beforehand), and we want
+		to output a uniformly random element from the stream.
+	\item One way to do this is to record all elements and output a random \( s_i \). However, this takes 
+		up a lot of space and isn't preferred.
+	\item If \( L \) (length of stream) is known, then we can pick a random index \( i = \{1, \dots, L\}  \) 
+		and output a random \( s_i \). 
+	\item Neither of these two models work for our problem, because we don't know \( L \) and the first one 
+		is just downright slow.
+\end{itemize}
+\subsubsection{Reservoir Sampling}
+\begin{itemize}
+	\item We start with \( r = s_1 \). 
+	\item Then, for each new stream element, we flip a biased coin with probability \( p_i = 1/i\) of heads and 
+		tails with \( 1 - p_i \). If heads, replace \( r = s_i \). Otherwise, leave \( r \) as is.
+
+		Some intuition on why we might expect \( 1 / i \) : at every step \( i \), we have to handle the case
+		 where the stream stops there, in which case we want \( s_i \) to be selected with probability 
+		 \( 1 / i \).
+	\item When the stream stops, we output \( r \).
+	\item This probability is actually uniform! In order to output \( s_i \), then the coin would have 
+		flipped heads on element  \( i \), then tails at every \( i \) after that. This happens with probability:
+		\[
+		P = \frac{1}{i}\left( 1 - \frac{1}{i+1} \right)\left( 1 - \frac{1}{i+2} \right) \dots 
+		\left( 1 - \frac{1}{L} \right) = \frac{1}{i} \cdot \frac{i}{i+1} \dots \frac{L-1}{L} = \frac{1}{L}
+		\] 
+		\comment{Note that the flips before \( i \) don't matter, 
+		since if flip \( i \) is heads then \( r \) is replaced anyway.}   
+\end{itemize}
+\subsubsection{Distinct Elements}
+\begin{itemize}
+	\item Again, given a stream \( s_i \), we want to estimate the number of distinct elements in the stream. 
+	\item To solve this, we pick a random hash function \( h: \{1, \dots, N\}  \to [0, 1] \). As the stream 
+		goes by, we compute \( h(s_i) \) for each element. We only keep one value, that value being the minimum
+		of \( h(s_i) \), and call it \( \alpha \). Then, when the stream ends, we output \( 1 / \alpha \). 
+		
+		Intuition for why \( 1 / \alpha \) should be returned: suppose there's \( k \) elements in the stream. 
+		As our algorithm goes, then we're only going to see the hash values for those \( k \) elements 
+		that have been seen. Call these values \( r_1, \dots, r_k \). Since the hash function is random, we 
+		know that they should be (in expectation) evenly distributed on \( [0, 1] \). Therefore, the distance
+		between the hash values is  \( \frac{1}{k+1} \) and since \( \alpha \) is the minimum value then 
+		\( \alpha = \frac{1}{k+1} \). Therefore, \( \frac{1}{\alpha} = k+1 \), which works as an estimation. 
+
+		\comment{You can subtract 1 off the result, but because we're just estimating it really doesn't matter.} 
+
+		\question{How does the hash function know from \( 1 \) to \( N \)?}  
+
+		\answer{\( N \) is given to you beforehand.}
+	\item There are a couple issues with this, mainly that computers can't store arbitrary real numbers, and 
+		the hash function takes a lot of memory to store. One solution (preview for next time) is to use a 
+		\textit{pseudorandom hash function}.
+		\begin{itemize}
+			\item One way to circumvent the first problem is to have a hash function  \( h \) map from 
+				\( \{1, \dots, R\}  \) where \( R  \) is some very large number. This way,  \( h(i)/R \) is 
+				``random enough''.
+			\item For the second issue, we make \( h \) a pseudorandom hash function. This takes less space, 
+				while still guaranteeing that we get the randomness we want.
+		\end{itemize}
+\end{itemize}

@@ -1,0 +1,162 @@
+\section{Approximation Algorithms}
+\begin{itemize}
+	\item Suppose that you have a problem that is NP-hard. What now? There's a couple things 
+		we can still do:
+		\begin{enumerate}[label=\arabic*.]
+			\item Learn more about its inputs 
+			\item Come up with a Heuristic
+			\item Approximation Algorithm (this is what we'll study today)
+		\end{enumerate}
+	\item For a minimization problem, an algorithm \( A \) is an \( \alpha \)-approximation problem 
+		if \( A(I) \le \alpha \cdot \text{OPT} \), where OPT is the optimal value. For a maximization 
+		problem, then the inequality reads \( A(I) \ge \alpha \cdot \text{OPT} \). 
+\end{itemize}
+\subsection{Vertex Cover}
+\begin{itemize}
+	\item Given an input graph \( G = (V, E) \), and we want to return a vertex cover \( C \subseteq V \) of 
+		minimal size. 
+	\item A \textbf{vertex cover} is a set of vertices such that every edge \( (u, v) \) is incident on 
+		one of them.
+	\item This is indeed an NP-hard problem -- it reduces from Independent set.  
+
+		\comment{The NP-hardness comes from the fact that we want \( C \) of minimal size}
+\end{itemize}
+\subsection{Approximations to Vertex Cover}
+
+\subsubsection{Algorithm 1: Maximal Matching}
+\begin{itemize}
+	\item The question we want to ask is: what is the easiest problem we can compute that is similar to the 
+		problem we ultimately aim to solve?
+	\item In this case, it turns out to be the maximal matching problem. 
+	\item \textbf{Definition:} A \textit{matching} in a graph \( G \) is a set of edges with no 
+		overlapping vertices. The matching is then maximal if we can't add any more edges to the matching. 
+	\item We can compute this using a greedy algorithm: add edges to the matching, and delete all edges adjacent 
+		to it. 
+
+		\question{Is this problem also NP-hard, but there turns out to be a greedy algorithm that does it in 
+		a relatively simple manner? Also, why can't we just use a greedy algorithm on the original problem?}  
+
+		\answer{Consider the ``star graph" consisting of a central node connected to others. The maximal matching
+			would output a size of 2, but a greedy algorithm could potentially pick \( n-1 \) nodes (going 
+			around the circle). Hence, it's not optimal. Even with the modification to choose the vertex 
+		with the highest degree, this is still not optimal, see textbook for counterexample.}
+
+	\item Now we convert this into a vertex cover \( C \) by outputting both endpoints of every edge found in the
+		matching \( M \). We now prove that this is a valid vertex cover and that 
+		\( |C| \le  2 \cdot \text{OPT} \).  
+	\item We prove this in two parts:
+
+		\textit{Claim 1:} \( C \) is a vertex cover. 
+
+		\textit{Proof:} Assume for contradiction that \( C \) is not a vertex cover. Then, there is some 
+		edge \( (u, v) \in E \) where \( u, v \not\in C \). But this is a contradiction, because then 
+		the Greedy algorithm would have selected this edge as well. 
+
+		\textit{Claim 2:} \( |C| \le 2 \cdot \text{OPT} \). 
+
+		\textit{Proof:} Any vertex cover covers every edge in the matching \( M \). Therefore, the vertex cover 
+		includes one of \( (u, v) \) or potentially both. Therefore, the worst case is if both \( u, v \) are 
+		selected in the matching instance when only one was required, but this gives us an upper bound of 
+		\( 2 \cdot \text{OPT} \). 
+		
+		\question{Can we do better? Why can't we get rid of adjacently selected vertices at the end?}
+
+		
+		\comment{There is no restriction on adjacency of vertices in vertex cover, which is why the output 
+		actually works as a solution to vertex cover.}
+\end{itemize}
+\subsubsection{Algorithm 2: LP}
+\begin{itemize}
+	\item We can also formulate this problem as a linear programming problem.
+	\item Assign a variable \( x_i \) for each vertex \( i \), and ideally, we want to set \( x_i \) to 1 
+		if vertex \( i \) is in the vertex cover, and 0 otherwise. 
+	\item To formulate this as an LP, we'd want to minimize \( \sum_i x_i \), while subject to:
+		\begin{align*}
+			0 \le  x_i &\le  1\\
+			x_i + x_j &\ge 1 \ \forall (i, j) \in E
+		\end{align*}
+	\item \textit{Claim:} The optimal value for the LP \( \le  \) the optimal vertex cover.
+
+		\textit{Proof:} The optimal value for the LP could give us an infeasible (but smaller value) solution 
+		because it's allowed to give us fractional \( x_i \), but the optimal set cover is a feasible solution 
+		to the LP, so the LP either finds the optimal vertex cover, or an inadmissible value.    
+
+	\item We now want to convert this to an optimal set cover, by doing an operation called \textbf{rounding.}
+	\item Let \( \{x_i^*\}  \) be the optimal LP solution, and we will round based on the following rule:
+		\begin{align*}
+			x_i^* &\ge  \frac{1}{2} \Longrightarrow \text{Include in \( C \)}\\
+			x_i^* &< \frac{1}{2} \Longrightarrow \text{Do not include in \( C \)}
+		\end{align*}
+		
+		\textit{Claim:} \( C \) is a vertex cover.
+
+		\textit{Proof:} For every edge \( (i, j) \), we have a constraint that \( x_i^* + x_j^* \ge  1\), meaning
+		that \( \max(x_i^*, x_j^*) \ge  \frac{1}{2} \), so our rounding table would select one of these two 
+		vertices to be in \( C \). 
+
+		\textit{Claim:} \( |C| \le 2\cdot \text{OPT} \).
+
+		\textit{Proof:} For all vertices, the actual vertex cover pays 1 unit to some \( x_i \), while  our LP 
+		rounding algorithm pays \( x_i^* \ge  \frac{1}{2} \) every time, 
+		so we're never doing worse than twice the optimal 
+		LP. Therefore, \( |C| \le  2 \cdot \text{LP-OPT} \le  2 \cdot \text{OPT} \).
+		
+		\question{What is this concept of ``paying'' here? I'm not sure I understand this argument.} 
+
+		\answer{Paying is probably not the best way to understand it. Another way to phrase this is that the worst case 
+			scenario for our LP approximation is if it assigns \( x_i^* = \frac{1}{2}\) to all nodes, in which case 
+			our rounding would output all the nodes for the vertex cover. However, we know that at most 
+			we only need half of these nodes in the vertex cover (one per edge), hence the approximation 
+		factor of 2.} 
+\end{itemize}
+
+\subsection{Metric TSP}
+\begin{itemize}
+	\item Recall the TSP problem, where we have \( n \) cities and pairwise distances \( d_{ij} \). 
+	\item We want to output a minimum distance tour while still visiting every node exactly once. 
+	\item It's known that you can't even solve this with an approximation factor!  
+	\item But now we impose the restriction of the triangle inequality: for all cities \( i, j, k \), then 
+		we have:
+		\[
+			d_{ij} + d_{jk} \ge d_{ik}
+		\] 
+		and \( d_{ij} \ge 0 \ \forall i,j \). With this approximation, then we \textit{can} derive an upper bound!
+\end{itemize}
+\subsubsection{Algorithm: MST}
+\begin{itemize}
+	\item Notice that with this restriction, this is very similar to the MST problem, except MST finds 
+		a tree rather than a cycle. 
+	\item So we first find the MST on \( G \). Then, we know that \( \cost(\text{MST}) \le  \cost(\text{OPT}) \),
+		since the TSP also visits every vertex, and MST is known to be the set of edges that has the minimum 
+		weight. 
+
+		\begin{center}
+			\begin{tikzpicture}
+				\draw (0, 0) node[below left] {\( A \) } -- (1, 2) node[above] {\( B \) } -- (3, 0) node[above] {\( C \) } -- (4, 1) node[right] {\( D \) };
+				\draw (3, 0) -- (4, -1) node[below] {\( F \) };
+				\draw (3, 0) -- (2.5, -1) node[below] {$E$};
+			\end{tikzpicture}
+		\end{center}
+
+		\question{How is this even a tour?}   
+
+		\answer{It's not, the point is that we first do a DFS here and then find a tour by removing the repeated 
+		vertices.}
+	\item Now we explore the tree \( T \) using DFS, starting at \( A \). Then, the DFS visits all the vertices
+		then comes back to \( A \) at the end. Because it takes every edge in the MST twice, then we know that 
+		\[
+		\cost( \text{DFS}) = 2\cdot \cost(T)
+		\] 
+	\item Finally, we now skip over all the repeated vertices in the traversal: suppose we visited node \( D \), 
+		and we explore \( E \), and DFS gives the path \( E \to D \to F \), then we're wasting time by revisitng 
+		\( D \), and it's much more optimal to just go from \( E \to F \) by the triangle inequality.
+
+		Then, we have the inequality:
+		\[
+		\cost(\text{TSP}) \le  \cost(\text{DFS}) \implies \cost(\text{output}) \le  2 \cdot \text{OPT}
+		\] 
+		\question{Can we do better than 2?}
+
+		\answer{We can do \( \frac{3}{2}  \) using linear programming, and as of last year we now have a 
+		\( \left( \frac{3}{2} - \epsilon \right) \)-approximation (but \( \epsilon \) is very small}
+\end{itemize}
