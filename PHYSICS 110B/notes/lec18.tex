@@ -1,0 +1,93 @@
+\section{March 5}
+Last time we left off, we derived the equations of motion for electric and magnetic potential \( V\) and 
+\( \mathbf{A} \). Before we actually go ahead and solve these equations of motion, we will first talk about
+gauge transformations. 
+
+
+\subsection{Gauge Transformations}
+To begin our discussion, let's first start by looking at the number of degrees of freedom our equations give
+us. Because \( \mathbf{E} \) and \( \mathbf{B} \) are vector quantities, it would seem that we have 6 degrees
+of freedom, but in reality we know from studying waves that they only have two dynamical degrees
+of freedom: in the case of plane waves, we know that \( \mathbf{E} \cdot \mathbf{k} = 0 \) which knocks one
+degree out, and once \( \mathbf{E} \) is determined then so is \( \mathbf{B} \) via \( \mathbf{B} =
+\frac{1}{c}\mathbf{\hat{k}} \times \mathbf{E} \), so this gives only two degrees of freedom. 
+
+Now, if you swap \( \mathbf{E} \) and \( \mathbf{B} \) out for \( V \) and \( \mathbf{A} \), it seems that
+you've introduced two extra degrees of freedom: \( V \) supplies 1 and \( \mathbf{A} \) supplies the other
+three. What can we do with the extra two degrees, if they cannot manifest themselves in the underlying \(
+\mathbf{E} \) and \( \mathbf{B} \)? The answer is that it gives us some freedom in how we choose to define \(
+V \) and \( \mathbf{A} \). 
+
+To illustrate this point, recall that we've defined \( \mathbf{B} = \nabla \times \mathbf{A} \). Because we
+know that the curl of a gradient is zero, it means that applying the transformation \( \mathbf{A} \to \mathbf{A}' +
+\nabla \lambda \) doesn't affect the underlying \( \mathbf{B} \) field, since \(
+\mathbf{A}' = \nabla \times \mathbf{A} + \nabla \times (\nabla \lambda) = \nabla \times \mathbf{A} \).  
+The term \( \lambda \) here is called a \textbf{gauge}, and the fact that \( \mathbf{B} \) doesn't change
+means that \( \mathbf{B} \) is \textbf{invariant} under this gauge. 
+
+Now let's say that we do introduce \( \nabla \lambda \) to \( \mathbf{A} \). Then, in order to preserve the
+relation \( \mathbf{E} = -\nabla V - \partial_t \mathbf{A} \), how should \( V \to V' \) transform? To figure this
+out, we look at what happens when we substitute \( \mathbf{A}' \):
+\[
+	\mathbf{E} = -\nabla V' - \partial_t \mathbf{A}' = -\nabla V' - \partial_t (\mathbf{A} + \nabla \lambda)
+	= -\nabla V - \partial_t \mathbf{A}
+\]
+It's clear then that in order for the equation to hold, then we require \( V' = V - \partial_t \lambda \), so
+that the \( \partial_t \nabla \lambda \) terms cancel each other out. So, the full gauge transformation is:
+\begin{align*}
+	V & \to V' = V - \partial_t \lambda\\
+	\mathbf{A} & \to \mathbf{A}' = \mathbf{A} + \nabla \lambda
+\end{align*}
+Now, any scalar function \( \lambda \) here will work. So, we will choose a particular \( \lambda \) that
+allows \( V \) and \( \mathbf{A} \) to satisfy some additional conditions, which we can do because \( \lambda
+\) does not matter. This is the process of gauge fixing: we leverage the gauge invariance to choose a \(
+\lambda \) that is particularly convenient for us. 
+
+\subsection{Coulomb Gauge}
+The first gauge transformation we will look at is the \textit{Coulomb gauge}. Under this gauge, we choose \(
+\lambda\) such that \( \nabla \cdot \mathbf{A} = 0 \), or in other words we choose the \( \lambda \) such
+that \( \nabla^2 \lambda = - \nabla \cdot \mathbf{A} \). The equations of motion then become:
+\begin{align*}
+	\nabla^2 V &= -\frac{\rho}{\epsilon_0}\\
+	(\nabla^2 - \frac{1}{c^2}\partial_t^2 \mathbf{A}) - \nabla\left( \frac{1}{c^2} \partial_t V \right) &=
+	-\mu_0 \mathbf{J}
+\end{align*}
+This gauge isn't particularly useful because the equation for \( \mathbf{A} \) is still not very nice. But,
+it serves as a good example to show how we actually go through the process of gauge fixing. Suppose we have
+an initial potential \( \mathbf{A}' \) that has \( \nabla \cdot \mathbf{A}' \neq 0\) (for the moment I will
+use the prime to denote the original and the non-primed to denote the new one after introducing the gauge).
+Then, if we introduce a gauge \( \lambda \) such that \( \nabla^2 \lambda = -(\nabla \cdot \mathbf{A}') \),
+the transformed potential satisfies: 
+\[
+	\nabla \cdot (\mathbf{A}' + \nabla \lambda) = \nabla \cdot \mathbf{A}' + \nabla^2 \lambda = 0
+\]
+This then implies, as we've said before, that \( \nabla^2 V = -\frac{\rho}{\epsilon_0} \). In the case where
+\( \rho \neq 0 \), this \( \lambda \) is all we can do to fix the gauge -- we've run out of "extra" degrees
+of freedom to introduce further gauges \( \lambda' \). However, in the case where \( \rho = 0 \), this is not
+the case. We can in fact perform another gauge transformation by introducing \( \lambda' \) such that \(
+\nabla^2 \lambda' = 0 \), which doesn't affect our original gauge fixing because:
+\[
+	\nabla \cdot (\mathbf{A} + \nabla \lambda') = \nabla \cdot \mathbf{A} + \nabla^2 \lambda' = 0
+\]
+so we are allowed in choosing another \( \lambda' \). Under this so-called \textit{residual} gauge
+transformation, we know that
+in terms of \( V \) this manifests itself as an additional \( -\partial_t \lambda' \) term, so if we set \(
+\partial_t \lambda' = V \), then this gives us a final \( V \) such that \( V = 0 \).\footnote{Note that this
+	\( V \) is not the original \( V \) -- it's been transformed twice, so in terms of the original \( V \)
+	the equation is actually \( V \to V - \partial_t \lambda - \partial_t \lambda' \), where we set \(
+\partial_t \lambda' = V - \partial_t \lambda \) to get a net zero potential.}
+So now, with \( \lambda' \) we get the equations:
+\[
+	V = 0 \quad \nabla \cdot \mathbf{A} = 0
+\]
+and we've therefore reduced the original 4 degrees into two degrees of freedom, those two supplied by \(
+\nabla \cdot \mathbf{A} = 0 \). Explicitly, \( \nabla \cdot \mathbf{A} = 0  \) is written as:
+\[
+	\partial_x A_x + \partial_y A_y + \partial_z A_z = 0
+\]
+We have freedom in choosing two of the three values here: suppose \( \partial_x A_x = k_x \) and \(
+\partial_y A_y = k_y \), then we are forced to choose \( \partial_z A_z = -k_x - k_y\).  
+ 
+
+
+

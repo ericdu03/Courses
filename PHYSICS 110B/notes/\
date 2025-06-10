@@ -1,0 +1,143 @@
+\section{February 3}
+
+Last time, we started our discussion of plane waves, specifically why we can treat \( \mathbf{k} \) as a
+vector when we deal with multidimensional plane waves. 
+
+\subsection{Expression of Scalar Sinusoidal Plane Waves}
+Let's go back to our discussion of a plane wave in 3D space. Recall from earlier physics classes that there
+are basically two ways to rotate an object in space: by rotating your coordinate axis, or rotating the
+object itself. The former is the passive transformation, and the latter is the active transformation. In the
+active picture, a vector \( \mathbf{v} \) transforms as:
+\[
+	\mathbf{v}' = R \mathbf{v}
+\]
+where \( R \) is the standard rotation matrix:
+\[
+	R = \begin{bmatrix} \cos \theta & - \sin \theta \\ \sin \theta & \cos \theta \end{bmatrix}
+\]
+So, for a wave \( \phi(\mathbf{r}) \), then the rotated wave is written as \( \phi'(\mathbf{r}) = \phi(R^{-1}
+\mathbf{r})\), since \( R^{-1} \mathbf{r} \) gives us the point prior to rotation which we should read off to
+get the intensity of \( \phi \). Computing \( R^{-1} \mathbf{r} \) explicitly, we have:
+\[
+	R^{-1} \mathbf{r} = \begin{bmatrix} \cos \theta & \sin \theta \\ - \sin \theta & \cos \theta \end{bmatrix} 
+	\begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} \cos \theta x + \sin \theta y \\ - \sin \theta x +
+	\cos \theta y \end{bmatrix}
+\]
+In one dimension, our plane wave has the form \( \phi(x,y) = Ae^{i(kx - \omega t)} \), so we only need to read
+off the \( x \) component, so:
+\[
+	\phi'(x, y) = Ae^{i\left[ k(\cos \theta x + \sin \theta y) - \omega t \right]} = Ae^{i\left[ (k \cos
+	\theta) x + (k \sin \theta) y - \omega t \right]}
+\]
+And now, we see why it makes sense to treat \( k \) as a vector. If we define \( \mathbf{k} =
+|\mathbf{k}|\cos \theta \hat{\mathbf{x}} + |\mathbf{k}| \sin \theta \hat{\mathbf{y}} = k_x \hat{\mathbf{x}} +
+k_y \hat{\mathbf{y}} \), then we can write this as:
+\[
+	\phi(x, y) = Ae^{i\left[ k_x \hat{\mathbf{x}} + k_y \hat{\mathbf{y}} - \omega t \right]} =
+	Ae^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)}	
+\]
+Ignore the fact that we cheated a little since on one side the exponential is a vector quantity, but
+hopefully this gives enough intuition. Now we move to the main part of today's lecture, discussing about EM
+waves in a vacuum. 
+
+\subsection{EM Waves in a Vacuum}
+In a vacuum, where \( \rho = 0 \) and \( \mathbf{J} = \mathbf{0} \), then Maxwell's equations reads:
+\begin{align*}
+	\div \mathbf{E} &= \mathbf{0} \\ 
+	\div \mathbf{B} &=  0 \\ 
+	\curl \mathbf{E} &= -\partial_t \mathbf{B}\\
+	\curl \mathbf{B} &= \mu_0\epsilon_0 \mathbf{J}
+\end{align*}
+Our goal is to show that Maxwell's equations implies the wave equation, which isn't very hard. To do this, we
+first take the curl of Faraday's law:
+\[
+	\curl(\curl \mathbf{E}) = -\partial_t(\curl \mathbf{B})
+\]
+Expanding using product rule:
+\[
+	\nabla(\div \mathbf{E}) - \nabla^2 \mathbf{E} = -\partial_t(\mu_0 \mathbf{J} + \mu_0 \epsilon_0
+	\partial_t \mathbf{E}) = -\mu_0 \epsilon_0 \partial_t^2 \mathbf{E}
+\]
+And as such, we arrive at the wave equation:
+\begin{equation}
+	\label{wave-equation}
+	\left(\nabla^2 - \mu_0 \epsilon_0 \partial_t^2\right) \mathbf{E} = 0
+\end{equation}
+Now, we want to show that any function of the form \( f(\hat{\mathbf{n}} \cdot \mathbf{r} - v t) \) is a 
+solution to the wave equation. Here, we define \( \hat{\mathbf{n}} \) as the unit vector pointing along the
+direction of wave propagation, or in other words, the direction which is perpendicular to the wavefront. To
+begin checking, we first note that a single derivative of \( f \) is:
+\[
+	\partial_i f = \pdv{u^{j}}{x^{i}} \pdv{f}{u^{i}} = \delta_i^{j} \pdv{f}{u^{j}}
+\]
+As such, the Laplacian is equal to:
+\[
+	\nabla^2f =  \delta^{ij} \pdv{x^{i}}\pdv{x^{j}} f =  \delta^{ij}n_i n_j \dv[2]{f}{u} = \dv[2]{f}{u}
+\]
+Since \( \mathbf{n} \) is a unit vector, then \( n^{i}n_i \) is a unit vector. The time derivative is:
+\[
+	\partial_t f = \pdv{u}{t} \dv{f}{u} = -v \dv{f}{u} \implies \partial_t^2 f = v^2 \dv[2]{f}{u}
+\]
+If we now plug these into the wave equation, we do see that it comes out to be zero. Then, this justifies
+writing the wave as 
+\[
+	E^{i} = \Re\left[ \tilde A_{\mathbf{k}}^{j} e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)} \right]
+\]
+Here, \( A_{\mathbf{k}} \) represents the amplitude of the \( k \)-th mode, or basically the amplitude in the
+\( k \)-th direction. Now, we compute derivatives again, so
+\[
+	\pdv{E^{j}}{x^{m}} = \Re\left[ \tilde A_{\mathbf{k}}^{i}i \pdv{x^{m}} \left( k^{n}x^{n} - \omega t
+	\right) e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t )} \right]
+\]
+And since \( \pdv{x^{n}}{x^{m}} = \delta^{n}_m \), then we have:
+\[
+	\pdv{E^{j}}{x^{m}} = \Re\left[ \tilde A_{\mathbf{k}}^{i}(i k_m) e^{i(\mathbf{k} \cdot \mathbf{r} - \omega
+	t)} \right]
+\]
+So the Laplacian term is:
+\begin{align*}
+	\nabla^2 E^{j} &= \pdv{x^{m}}\pdv{x_m} \left( \Re\left[ \tilde A_{\mathbf{k}}^{j}e^{i(\mathbf{k} \cdot \mathbf{r}
+	- \omega t)} \right]\right)\\
+	&= \Re\left[ \tilde A_{\mathbf{k}}^{j} (ik^{m})(ik_m) e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)} \right] \\ 
+	&= \Re\left[ \tilde A_{\mathbf{k}}^{j} (-k^{m}k_m) e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)} \right] 
+\end{align*}
+And now for the time derivative:
+\[
+	\partial^2 E^{j} = \Re\left[ \tilde A_{\mathbf{k}}^{j}(-i \omega) (- i \omega) e^{i(\mathbf{k}\cdot
+	\mathbf{r} - \omega t)} \right] = \Re\left[ \tilde A_{\mathbf{k}}^{j} e^{i(\mathbf{k} \cdot \mathbf{r} -
+	\omega t)}\right]
+\]
+Putting these two together, we see that if we want to satisfy the wave equation, we require that \(
+|\mathbf{k}|^2 = \mu_0 \epsilon_0 \omega^2 = \frac{1}{c}\omega^2 \), which implies that \( |\mathbf{k}| =
+\frac{2\pi}{\lambda} \). This derivation is really where the \( \frac{2\pi}{\lambda} \) term comes from.
+
+Now, we will look at some more properties of the wave equation. First, we can show pretty easily that \(
+E^{j} \) must be perpendicular to the propagation direction. This must be true since there are no charges, 
+so \( \div \mathbf{E} = 0 \), hence:
+\[
+	\div \mathbf{E} = \partial_m E^{m} \Re\left[ \tilde A_k^{m} \partial_m e^{i(\mathbf{k} \cdot \mathbf{r} -
+	\omega t)} \right] = \Re\left[ \tilde A_k^{m} (i k_m) e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)} \right]
+\]
+In order for this to be zero, we require that \( \tilde A_k^{m} \cdot k_m = 0 \), or in other words we need
+the \( \mathbf{E} \) field to be perpendicular to the propagation direction. Similarly, we can show that 
+\( \mathbf{B} \) is perpendicular and in phase with \( \mathbf{E} \), by making use of Faraday's law:
+\[
+	\curl \mathbf{E} = -\partial_t \mathbf{B} \implies \mathbf{B} = -\int \curl \mathbf{E} \diff t
+\]
+Therefore, 
+\begin{align*}
+	B^{m}&= -\int \epsilon^{mij} \partial_i \Re\left[ (\tilde A_k)_j e^{i(\mathbf{k} \cdot \mathbf{r} -
+	\omega t)} \right] \diff t \\ 
+	&= -\int \epsilon^{mij} \partial_i (i k_i) \Re\left[ \tilde A_{\mathbf{k}j} e^{i(\mathbf{k} \cdot
+	\mathbf{r} - \omega t)} \right] \diff t \\ 
+	&= \Re\left[ \epsilon^{mij} \frac{-i k_i}{-i \omega}(\tilde A_k)_j e^{i(\mathbf{k} \cdot \mathbf{r} -
+	\omega t )} \right]
+\end{align*}
+So, because we have \( \omega = c |\mathbf{k}| \), then \( B^{m} = \epsilon^{mij}\frac{k_i}{c
+|\mathbf{k}|}E_j \), so 
+\begin{equation}
+	\label{B-wave}
+	\mathbf{B} = \frac{1}{c}\hat{\mathbf{k}} \times \mathbf{E}
+\end{equation}
+and hence \( \mathbf{B} \) is perpendicular and in phase with \( \mathbf{E} \). 
+

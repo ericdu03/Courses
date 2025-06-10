@@ -1,0 +1,221 @@
+\section{Clustering}
+\begin{itemize}
+	\item Recall before, we talked about unsupervised learning, and we talked about dimensionality reduction,
+		and saw PCA (linear) and t-SNE (nonlinear) as ways to do that.
+	\item Intuitively, the idea of clustering is to try to assign points that are obviously part of a cluster
+		to a given label. These labels aren't given to us ahead of time, we're just given the data in high
+		dimensions and are asked to classify them into clusters.   
+		\begin{itemize}
+			\item In terms of biology, this could be useful to identify various different organ cells in a
+				digital scan. 
+			\item You might also want to cluster subtypes of a disease, and cluster people based on their
+				genetic data so you can figure out what particular gene causes a specific condition.
+			\item This is a very old technique that is still being used today.   
+		\end{itemize}
+	\item Clustering is also used for outlier detection, where points which do not fit into a particular
+		cluster can be labeled as noise or outliers.  
+\end{itemize}
+\subsection{Approaches to Clustering}
+\begin{itemize}
+	\item Hierarchical clustering: we have to build a tree representing the distances between two points, and
+		join them together  to form clusters. 
+	\item \textbf{Model based approaches:} We maintain cluster "models" and infer membership from these
+		models.
+\end{itemize}
+
+\subsection{Aside: Distances, metrics}
+\begin{itemize}
+	\item Ultimately, the main property of clustering is that points within a given cluster are close to each
+		other, but points in different clusters end up far away. This is the main feature point of
+		clustering. 
+	\item The clustering also heavily depends on how we interpret the notion of distance! With different
+		distance metrics, the result from clustering can be wildly different! 
+	\item The formal definition of a distance (metric) is:
+		\begin{enumerate}[label=\arabic*.]
+			\item \( j = k \) iff \( d(j, k) = 0 \). 
+			\item \( j \neq k \) iff \( d(j, k) > 0 \)
+			\item symmetry: \( d(j, k) = d(k, j) \)
+			\item triangle inequality: \( d(i, j) + d(j, k) \geq d(i, k) \). 
+		\end{enumerate}
+	\item There's also this other notion of dissimilarity, which does not satisfy metric properties. We
+		sometimes use dissimilarity and similarity instead of distance, and there are reasons we do this. 
+\end{itemize}
+
+\subsection{\( k \)-means}
+\begin{itemize}
+	\item \( k \)-means is an example of centroid based clustering. Within each cluster, we basically define
+		a "representative point" that somehow encapsulates all the features in the data, and acts as the
+		"centroid" of the cluster. As it turns out, the parameters in \( k \)-means is the centroid of each
+		cluster.  
+	\item The hyperparameter is \( k \), and the model parameters are \( \{c_k\} \). We want to choose \(
+		c_k \) such that the distance to each point \( x_i \) to its assigned centroid is minimized.   
+	\item Formally, we have \( X = \{x_i\}_{i = 1}^{n} \), \( x_i \in \R^{d} \), and the parameters are \(\{
+		c_k \in \R^{d}\} \). The optimization problem that defines \( k \)-means is:
+		\[
+			\argmin_{S = \underbrace{C_1 \cup \dots \cup C_K}_{\text{cluster partition}}, \underbrace{\{c_1,
+			\dots, c_K \}}_{\text{cluster centroids}}} \sum_{k} \sum_{x \in C_k}\| x -
+			c_k\|^2
+		\]
+	\item To explain how we arrive at an answer, suppose we knew the partition \( C_1 \cup C_2 \cup \dots C_K
+		\). In other words, we knew which points were red, black, purple, etc. How could you find the
+		clusters? Well, because you know the cluster labels, then for each cluster you'd have to minimize \(
+		c_k\), which comes down to
+		\[
+			\hat{c}_k = \argmin_{c_k} \sum_{x \in C_k} \|x - c_k\|^2
+		\]
+		The answer to this is just to take the mean of the points: \( \hat{c}_k = \frac{1}{N}\sum_{x \in
+		C_k}x \). 
+	\item Now, suppose you only knew \( \{c_k\} \), how would you find \( C_1 \cup \dots \cup C_K \)? Then,
+		for each point you'd just assign each point to the cluster \( c_k \) that is closest to it. So, the
+		label \( z_i \) for each point is just going to be \( z_i = \argmin_k \|x_i - c_k\|^2 \). Then, once
+		you've done that for each point you get the resulting partition \( C_k \). 
+	\item Now for the overall algorithm, called Lloyd's algorithm. 
+		\begin{itemize}
+			\item We start by initializing the cluster centers \( \{c_k\} \). This initialization is random,
+				so we just pick \( k \) random points from our data and set those as our starting \( c_k \).  
+			\item We repeat the following until convergence:  
+				\begin{enumerate}[label=\roman*.]
+					\item Compute partition \( C_1 \cup C_2 \cup \dots \cup C_k \) given the \( \{c_k\} \). 
+					\item Compute the centers \( \{c_k\} \), given \( C_1 \cup \dots \cup C_K \). 
+				\end{enumerate}
+		\end{itemize}
+	
+		The key point in this algorithm is that when we recompute the centers \( \{c_k\} \), these centers
+		will change until we've reached the optimal point. In other words, the objective function always
+		decreases when we change the centers \( \{c_k\} \) or compute \( C_1 \cup \dots
+		C_K \).   
+
+		\comment{You can also initialize the clusters \( C_1 \cup \dots \cup C_K \) as well, there's no
+		reason you need to initialize the centers \( \{c_k\} \) first.}
+\end{itemize}
+
+\subsection{Gradient Descent}
+\begin{itemize}
+	\item We can also use gradient descent here! Note that once we found the clusters \( c_k \), we can also
+		compute the loss function over the \( c_k \) to find the partitions for every point: 
+		\[
+			L(\{c_k\}) = \sum_{i}\min_k \|x_i - c_k\|^2
+		\]
+		Now, all we'll do here is that we'll choose the \( c_k \) that is closest to \( x_i \), and call this
+		point \( z_i \). Then, we can change our loss function slightly:
+		\[
+			L(\{c_k\}) = \sum_i \sum_k \|x_i - c_k\|^2 [z_i = k]
+		\]
+		Then, to minimize this we can take the gradient of \( L(\{c_k\}) \) with respect to \( c_k \):
+		\[
+			\nabla_{c_k}L(\{c_k\}) = -2 \sum_i (x_i - c_k) [z_i = k]
+		\]
+		And now, with the gradient computed, we can do gradient descent! The formula becomes:
+		\[
+			c_k' = c_k  - \eta N_k c_k + \eta \sum_{x_i \mid z_i = k}x_i
+		\]
+		\question{What is \( N_k \)?} If we have a small enough learning rate, this algorithm is also
+		guaranteed to converge. This algorithm converges to a local minimum however, so we'll have to run
+		this a couple times to guarantee that the clustering is optimal. 
+
+		\question{Does the Lloyd algorithm converge to a global minimum?}
+	\item The gradient descent is prone to being caught in local minima. In some cases, the \( k \)-means
+		algorithm will split some clusters down the middle, and also sometimes waste a centroid to split two
+		clusters that are actually supposed to be a single cluster.  
+\end{itemize}
+
+\subsection{Weaknesses of \( k \)-means}
+\begin{itemize}
+	\item This is not a weakness of \( k \) means, but in essence the symmetries that are preserved under
+		some transformation (e.g. length under rotation), then the \( k \)-means algorithm will output
+		clustering independent of rotation. Thus, you can imagine that sometimes desired symmetries we would
+		like to have are not always respected. 
+	\item There are no likelihood functions, so it's hard to understand assumptions. We can't use MLE or the
+		other cool things we determined in lecture. 
+	\item Also, the clusters are implicitly assumed to be of a spherical shape, because we pick a centroid
+		which is effectively the "center" of the cluster when measured with Euclidean distance. 
+	\item There is also no uncertainty in the clustering, even though there really should be -- sometimes
+		it's hard to tell whether a point belongs in one cluster over the other, and this algorithm doesn't
+		do that, it instead just throws the point into one of the two clusters.   
+\end{itemize}
+
+\subsection{Soft \( k \)-means}
+\begin{itemize}
+	\item This is a "softer" version of \( k \)-means, which allows for uncertainties in the clusters.
+		Previously, we had:
+		\[
+			z_i = \argmin_k \|x_i - c_k\|^2
+		\]
+		We're going to convert this to a maximization problem:
+		\[
+			z_i = \argmax_k \exp(- \|x_i - c_k\|^2) = \argmax_k \{v_{ik}\}
+		\]
+		this doesn't change anything; the \( z_i \) that satisfies the earlier relation are the same \( z_i
+		\) that satisfies this maximization. We now normalize \( v_{ik} \) such that \( r_{ik} \equiv
+		\frac{v_{ik}}{\sum_k v_{ik}} \).    
+	\item What we have done here is convert our clustering assignment from a hard "one hot" type of
+		classification to a softer version, through the use of the \( r_{ik} \) normalization process.
+
+		\comment{The \( v_{ik} \) contain information about the distances between \( x_i \) and cluster \(
+			c_k \), so the set \( \{v_{ik}\}  \) for every \( (x_i, c_k) \) pair gives you information about
+			how close \( x_i \) is to each cluster. Taking the softmax is the same as taking the argmax in
+		the sense that \( z_i \) doesn't change, but you do get more information this way.}   
+
+		\question{If this is the case, then what is the point of doing all this? Doesn't this method still
+		just classify \( x_i \) into a designated cluster?}  
+
+		\answer{I think it still does, but the key here is that we never use \( z_i \) anymore, and just use
+		the vector \( r_{ik} \) instead to label. This gives you a probabilistic model.} 
+	\item You can also add a hyperparameter \( \beta \) to the equation, and set:
+		\[
+			r_{ik} = \frac{\beta v_{ik}}{\sum_j \beta v_{ij}}
+		\]
+		You can do MLE on this \( \beta \) later. We don't have a likelihood function yet, but we will. The
+		effect of \( \beta \) is that for small values, it has the effect of looking more uniform, and for
+		large values it is basically a "one hot" function.
+		This is what we call a "temperature" in machine learning, where we scale a distribution by a
+		temperature \( T \). Scaling with \( T \) usually increases the entropy of the distribution, or in
+		other words it makes the distribution more uniform.   
+	\item Now, we can tweak the \( k \)-means algorithm as follows: instead of assigning \( z_i \) to a
+		single \( x_i \), we instead assign \( z_{ik} \) with:
+		\[
+			z_{ik} = \text{softmax}(-\beta \|x_i - c_k\|^2)
+		\]
+		this no longer returns a single label, but instead a vector of distances. Then, we replace \(
+		\hat{c}_k \) as:
+		\[
+			\hat{c}_k = \argmin_{c_k} \sum_{i = 1}^{N} z_{ik} \|x_i - c_k\|^2
+		\]
+		The difference here is now that instead of taking the mean of every point assigned to the cluster \(
+		C_k\), we are now taking the mean over \textit{all} data points, but weighting it with how much we
+		assigned the point to \( C_k \). 
+\end{itemize}
+
+\subsection{Mixture of Gaussians}
+\begin{itemize}
+	\item Even though we've "softened" the \( k \)-means algorithm, it still isn't good enough because it
+		still assumes a spherical distribution as it treats each \( x_i \) with equal weight. So, this
+		motivates the Mixture of Gaussians (MoG) model. 
+	\item This really is just a generalized version of a \( k \)-means algorithm -- we can make it look like
+		a \( k \)-means algorithm by constraining the covariance matrix of our Gaussians to be spherical.  
+		All we have to do is to write down the likelihood and crank through MLE like we've done before. 
+	\item To do this, we will make use of \textit{latent variables}. Let \( z_i = \{1, \dots, K\} \) be an
+		unobserved assignment of \( x_i \) to a cluster. We define this because it will make our calculations
+		easier, but because we don't know its value we will just sum it out first. Therefore, the likelihood
+		is:
+		\[
+			\mathcal{L}_i = p(x_i) = \sum_{k = 1}^{K} p(x_i, z_i = k)
+		\]
+		So the likelihood function here is just a sum over the probability that \( x_i \) is assigned to
+		cluster \( z_i = k \), over all such \( z_i \). Now, we can simplify this using Bayes' rule:
+		\begin{align*}
+			\mathcal{L}_i &= \sum_{k = 1}^{K} p(x_i \mid z_i = k) p(z_i = k) \\ 
+			&= \sum_{k = 1}^{K} N(x_i \mid \mu_k, \Sigma_k) p(z_i = k)
+		\end{align*} 
+		We know that \( p(x_i \mid z_i = k) = N(x_i \mid \mu_k, \Sigma_k) \) by our assumption that we are
+		using Gaussian distributions here. Then, we sum over all possible clusters \( k \). We can then write
+		\( p(z_i = k) = \alpha_k \). Intuitively, \( \alpha_k \) is basically a representation of the
+		proportion of points that belong to that particular cluster. 
+	\item Ultimately, there are three things that we want to learn here: \( \theta = \{\mu_k, \Sigma_k,
+		\alpha_k\} \). We can then use MLE on this, by setting the log likelihood over all the points:
+		\[
+			\mathcal{L} = \log \prod_i \mathcal{L}_i = \sum_i \log \mathcal{L}_i
+		\]
+		You can solve this problem in the same way as before, just cranking through MLE by computing
+		gradients and such.  
+\end{itemize}

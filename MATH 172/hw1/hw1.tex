@@ -1,0 +1,184 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Math 172}
+\newcommand{\classname}{Combinatorics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 01} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by Berkeley EECS Department: \url{https://eecs.berkeley.edu/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+
+	\begin{problem}
+		Show that an \( m \)-by-\( n \) chessboard has a perfect cover by dominoes if and only if at least one of
+		\( m \) and \( n \) is even. 
+	\end{problem}
+
+	\begin{solution}
+		We begin with the forward direction first. If we have a perfect cover, then the number of
+		squares covered must be a multiple of 2, since each domino occupies exactly 2 squares. This would be
+		possible if one of \( m \) or \( n \) is even, but not possible when \( m \) and \( n \) are odd,
+		since \( mn \) would be odd. As such, one of \( m \) or \( n \) must be even. 
+
+		With the reverse direction, suppose WLOG that \( m \) is even. Then, we may lay dominoes along \( m
+		\) perfectly (that is, arrange the long edge along the side with length \( m \)), and then we repeat
+		this tiling for all columns \( n \). This ensures a perfect tiling, as desired. 
+	\end{solution}
+
+	\begin{problem}
+		Imagine a prison consisting of 64 cells arranged like the squares of an 8-by-8 chessboard. There are
+		doors between all adjoining cells. A prisoner in one of the corner cells is told that he will be
+		released, provided he can get into the diagonally opposite corner cell after passing through every
+		other cell exactly once. Can the prisoner obtain his freedom? 
+	\end{problem}
+
+	\begin{solution}
+		This is not possible. Whenever the prisoner moves from one cell to another, the color of the tile he
+		stands on changes. Because he cannot repeat tiles, this means that he must reach the opposite corner
+		cell in a total of 63 moves, which means that he makes an odd number of color changes. However, the
+		opposite tile has the same cell color as the original square, so such a path is impossible.    
+	\end{solution}
+
+	\begin{problem}
+		A game is played between two players, alternating turns as follows: The game starts with an empty
+		pile: When it is his turn, a player may add either 1, 2, 3 or 4 coins to the pile. The person who
+		adds the 100th coin to the pile is the winner. Determine whether it is the first or second player who
+		can guarantee a win in this game. What is the winning strategy?  
+	\end{problem}
+
+	\begin{solution}
+		The strategy is to notice that the player who leaves the pile at either 96, 97, 98, 99 coins will end
+		up losing, since the subsequent player can place up to 4 to reach the 100th coin. As such, this means
+		that the player who reaches 95 coins wins, since the next player is guaranteed to place an amount
+		that lands them on one of 96 through 99. Continuing this logic, we find that the winning strategy is
+		to place an amount of coins that leaves the overall pile at a multiple of 5. This means that player
+		two can guarantee a win, since player 1 starts and can only reach a maximum of 4 coins. 
+	\end{solution}
+
+	\begin{problem}
+		Suppose that in the previous exercise, the player who adds the 100th coin loses. Now who wins, and
+		how? 
+	\end{problem}
+
+	\begin{solution}
+		We can use a similar logic, except now the "key" coin counts are 99, 94, 89, etc., all the way down
+		to 4. Thus, player one now has a guaranteed winning strategy.  
+	\end{solution}
+
+	\begin{problem}
+		Eight people are at a party and pair off to form four teams of two. In how many ways can this be
+		done?
+	\end{problem}
+
+	\begin{solution}
+		Order does not matter here so we just have \( {8 \choose 2}{6 \choose 2}{4 \choose 2}{2 \choose 2} =
+		2520\). Then, the order in which the teams are picked doesn't matter, so we have to divide by \( 4!
+		\) to get rid of the duplicates. Thus, we have 105 ways in total. 
+	\end{solution}
+
+	\begin{problem}
+		For each of the four subsets of the two properties (a) and (b), count the number of four-digit
+		numbers whose digits are either 1, 2, 3, 4 or 5:
+
+		\begin{enumerate}[label=(\alph*)]
+			\item The digits are distinct
+			\item The number is even
+		\end{enumerate}
+
+		\begin{solution}
+			If the digits are distinct, then we have \( 5! = 120 \) different ways. If the number is strictly
+			even, then we only have the restriction that the number must end in 2 or 4. There are \( 5^{4} =
+			625 \) total four-digit numbers that can be made from these digits, and we note that there are an
+			equal number of numbers that must end in 2 and 4, so exactly \( \frac{2}{5} \) of these numbers
+			satisfy condition (b), which gives us 250.
+
+			For numbers that are distinct and even, then we do the same thing as above, except the total
+			space is now \( 5! = 120 \) numbers. Again, an equal number of numbers end in 2 than in 4, so we
+			have \( \frac{2}{5} \times 120 = 48 \) total numbers. 
+
+			To find the number of numbers that are neither distinct nor even, we use principle of
+			inclusion-exclusion. The total space is \( 5^{4} = 625 \) numbers; those that satisfy (a) is \(
+			5! = 120 \), those that satisfy (b) is \( \frac{2}{5} \times 625 = 250 \), and those that satisfy
+			(a) and (b) is \( \frac{2}{5} \times 120 = 48 \), so by PIE:
+			\[
+				N = 625 - 250 - 120 + 48 = 303
+			\]
+		\end{solution}
+	\end{problem}
+
+	\begin{problem}
+		How many orderings are there for a deck of 52 cards if all the cards of the same suit are together? 
+	\end{problem}
+
+	\begin{solution}
+		There are \( 4! \) ways to arrange the suits together, and then within each suit there are \( 13! \)
+		ways of arranging the cards of the same suit. This gives us \( 4! \times (13!)^{4} \) total ways.   
+	\end{solution}
+
+	\begin{problem}
+		How many distinct positive divisors does each of the following numbers have?
+		\begin{enumerate}[label=(\alph*)]
+			\item \( 3^{4} \times 5^2 \times 7^{6} \times 11 \)
+
+				\begin{solution}
+					The prime factorization can be written in general as:
+					\[
+						N = p_1^{\alpha_1} p_2^{\alpha_2} \cdots p_n^{\alpha_n}
+					\]
+					where the number of factors is given by \( \sigma(n) = \prod_{i = 1}^{n}(\alpha_i + 1)
+					\). Thus, we get 210 in this case. 
+				\end{solution}
+			\item 620
+
+				\begin{solution}
+					This factors into \( 2^2 \times 5 \times 31 \), which gives 12 divisors. 
+				\end{solution}
+			\item \( 10^{10} \)
+
+				\begin{solution}
+					This is \( 2^{10} \times 5^{10} \), so this gives 121 divisors. 
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Determine the largest power of 10 that is a factor of the following numbers
+		\begin{enumerate}[label=(\alph*)]
+			\item 50!
+
+				\begin{solution}
+					Here, we count the number of multiples of 10 we can generate by decomposing the numbers
+					in 50!. We first note that there are an abundance of factors of 2, so we need only count
+					the factors of 5. There are 12 factors of 5 here, with 25 contributing 2 and 50 also
+					contributing 2. Thus \( 10^{12} \) is the largest power. 
+				\end{solution}
+			\item 1000!
+
+				\begin{solution}
+					We do the same as the previous problem: there are 200 factors of 5, 40 factors of 25, 8
+					factors of 125, and 1 factor of 625, so in total there are 249 total zeros.
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		In how many ways can four men and eight women be seated at a round table if there are to be two women
+		between consecutive men around the table? 
+	\end{problem}
+
+	\begin{solution}
+		There are \( 4! \) ways to arrange the men, and \( 8! \) ways to arrange the women. There are then
+		three arrangements accounting for the overall arrangement of the table that we consider, so there are 
+		\( 3 \times 4! \times 8! \) total ways. 
+	\end{solution}
+
+	
+\end{document}

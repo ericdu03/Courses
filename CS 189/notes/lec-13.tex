@@ -1,0 +1,90 @@
+\section{t-SNE}
+\begin{itemize}
+	\item So far in PCA, the assumption is that you have a dataset \( \{x_i\} \) that
+		you can find the principal components of. What if you instead are given \(
+		X^{\top}X \)? 
+	\item As a practical example, what if you were just given the pairwise distances
+		between cities \( M \)? The solution is that you can think of \( M = X
+		X^{\top} \) of some unobserved data \( X \). This is slightly different from
+		PCA, where we use \( X^{\top}X \). 
+
+		\question{Why do we assume \( XX^{\top} \) instead of \( X^{\top} X \)?}
+	\item We can still use SVD, except we use the eigenvectors in \( U \) instead of
+		\( V \), which is what we used for PCA. 
+	\item The issue with PCA is that it is a linear mapping (using SVD), but in
+		general this is not true with all the data we get. So, we need something more
+		complex. 
+
+		In particular, we need an \textit{embedding} of what we define to be
+		neighbors in our dimensionality reduction. The idea is to look locally and
+		make sure that things are embedded locally only, and not really care about
+		what happens globally. In the case of PCA, it treats neighbors globally,
+		which is why it fails to dimension-reduce some datasets.   
+\end{itemize}
+\subsection{Neighborhood Embedding (NE)}
+\begin{itemize}
+	\item The idea is basically to define what the neighbors of a point are. You can
+		do this by iterating through each point, and build an "edge" between them,
+		then compute the distances using this new function you've created. 
+	\item Then, once you get all the pairwise distances you can now create \( M \),
+		from which you can do PCA.
+	\item One issue with this though is that the quality of your reduction depends
+		heavily on the nearest neighbor graph you create. So, instead of
+		\textit{telling} you what the neighbors are, we can build a probability
+		distribution instead.  
+\end{itemize}
+\subsection{Stochastic NE (SNE)}
+\begin{itemize}
+	\item Here, we make the event that two samples are neighbors be a random
+		variable. More specifically, the probability that \( x_i \) "chooses" \( x_j
+		\) is proportional to:
+		\[
+			P_{j \leftarrow i} = \frac{\exp\left( -\|x_i - x_j\|^2
+			/2\sigma_i^2\right)}{\sum_{k \neq i} \exp(-\|x_i - x_k\|^2 /2
+			\sigma_i^2)}
+		\]
+		and we also have \( P_{j \leftarrow j} = 0 \). 
+
+		\question{Is this just softmax?}
+	\item We then symmetrize this and renormalize it, so we make \( P =
+		\frac{1}{2n}(P_{j \leftarrow i} + P_{i \leftarrow j}) \). 
+	\item This value of \( \sigma \) tat you pick is that you choose it differently,
+		so that the entropy of anything choosing \( x_i \) is constant. That is:
+		\[
+			\sum_{j \neq i}P_{j \leftarrow i} \log P_{j \leftarrow i} = \text{const.}
+		\]
+	\item We're now going to posit that after the dimensionality reduction, we get a
+		space \( Y \), and the points live in \( Y \) somehow. We can also get the
+		same neighborhoods in \( Y \) in the exact same way, and we can make these \(
+		Q = \{Q_{ij}\}\):
+		\[
+			Q_{ij} = \frac{\exp\left( -\|y_i - y_j\|^2 \right)}{\sum_{l \neq
+			k}\exp\left( -\|y_l - y_k\|^2 \right)}
+		\]
+		Here, we don't have to mess around with \( \sigma \), because \( Y \) is in a
+		space which we learn anyways. \question{what does learn mean in this case?}
+	\item We now want to find a distribution of \( Y \) that best represents the
+		neighborhoods in the original space \( X \), so effectively we want \( Q
+		\approx P \). To do this, we want to minimize the KL-divergence between \( P
+		\) and \( Q \). The KL-divergence is defined as:
+		\[
+			KL(P \parallel Q) = \sum_{i, j} P_{ij} \log \frac{P_{ij}}{Q_{ij}}
+		\]
+		This is not symmetric, so \( KL(P \parallel Q) \neq KL(Q \parallel P) \). 
+	\item One of the problems with dimensionality reduction is that points tend to
+		clump up, so intuitively in order to find better neighbors, the distribution
+		on \( Y \) should be more sparse than the distribution on \( X \). Based on
+		this intuition, we arrive at t-SNE. 
+	\item In reality, t-SNE makes only one change to our approach, which is that
+		instead of using a Gaussian we use a student-t distribution for \( Q_{j
+		\leftarrow i} \), so we have:
+		\[
+			Q_{j \leftarrow i} = \frac{\left( 1 + \|y_i - y_j\|^2
+			\right)^{-1}}{\sum_{i \neq k} (1 + \|y_i - y_k\|^2)^{-1}}
+		\]
+		The student-t distribution has the benefit that along the edges you have more
+		mass, so the probability of points further away in \( Y \) being neighbors is
+		higher. 
+\end{itemize}
+
+

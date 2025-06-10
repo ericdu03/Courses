@@ -1,0 +1,179 @@
+\section{Backpropagation and Gradient Descent II}
+\subsection{Summary of Previous Lecture}
+\begin{itemize}
+	\item Neural Networks. In particular, we said that
+		an \( L \)-layer (feed forward) neural network is described as:
+		\begin{align*}
+			a_j^{(\ell)} &= \sum_{i \in [d_{l - 1}]} \theta_{ji}^{(\ell)} x_i^{(\ell -
+				1)}\\ 
+					x_{j}^{\ell} &= g_\ell(a_j^{(\ell)})\\
+			g_\ell &: \R \to \R
+		\end{align*}
+		\( a \) is usually called the "preactivation". \( g \) is a function that we
+		have a lot of freedom over (linear, nonlinear, etc.). By convention however,
+		we say that \( g_L(z) = z \) is a linear function, and \( g_{\ell} = g \) is
+		typically held fixed. 
+	\item The loss \( \mathcal{L}(\theta) \) is a function which we typically will
+		formulate as the negative log likelihood. 
+		\[
+			\mathcal{L} = -\log p_\theta
+		\]
+		Keep in mind that the loss doesn't have to be defined in terms of the
+		log-likelihood, but we will stick to doing this for now.  
+	\item Gradient-based optimization: we minimize the loss \( \mathcal{L}(\theta) \)
+		using gradient descent:
+		\[
+			\theta_{t + 1} = \theta_t - \epsilon_t \nabla_{\theta_t}
+			\mathcal{L}(\theta_t)
+		\]
+		For neural networks, what is this loss? For 1-layer neural networks, this has 
+		the form:
+		\[
+			\partial_{\theta_{ki}^{(1)}}\mathcal{L} = \partial_{a_k^{(L)}}\mathcal{L}
+			\partial_{\theta_{ki}^{(L)}}a_k^{(L)}
+		\]
+		\question{When you talk about loss in this context, are you talking about the
+		loss at a particular layer, or the loss of the network as a whole?}  
+
+		\answer{The loss of the network as a whole is not well-defined, so this is
+		probably the loss at layer.} 
+\end{itemize}
+\subsection{Loss for \( K \)-classification}
+\begin{itemize}
+	\item If we have more than two classes, how do we compute the loss? We will show
+		that
+		\[
+			\mathcal{L} = -\sum_{k \in [K]} y_k \log \frac{\exp(a_k^{(L)})}{Z}
+		\]
+		where \( Z \) is defined as the normalization:
+		\[
+		Z = \sum_{k \in [K]} \exp(a_k^{(L)})
+		\]
+		This loss \( \mathcal{L} \) should be read as log over the product of \( p_k
+		\), and we "normalize" \( p_k \) using the softmax function. So in its
+		unsimplified form, the following is what we're dealing with: 
+		\[
+			\mathcal{L } = -\log \prod_{k = 1}^{K} p_k^{y_k}
+		\]
+	\item Combining this with what we have for linear regression, you can actually
+		derive the answer. In the linear case, we have:
+		\[
+			\partial a_{1}^{(L)} \mathcal{L} = a_1^{(L)} - y
+		\]
+		so for \( k \) output neurons, we can just generalize this to \( k \):
+		\[
+			\partial_{a_k^{(L)}} \mathcal{L} = p_k - y_k
+		\]
+		\question{He keeps mentioning one-hot encoding, what does this mean again?}
+	\item To convince ourselves further let's actually work through the math for this
+		problem. We are interested in \( \Delta_k = \pdv{L}{a_k^{(L)}} \). We will
+		just write \( a_k^{(L)} \) as \( a_k \) just for ease of notation. Writing
+		out the partial derivative, we hvae:
+		\[
+			\Delta_k = \pdv{\mathcal{L}}{a_k} = -\pdv{a_k} \left( \sum_j y_j \log
+			\frac{e^{a_j}}{Z} \right)
+		\]
+		\( Z \) is the normalization. For the denominator, because it's a sum over
+		all \( e^{a_j} \), then only the \( e^{a_k} \) term survives when we take \(
+		\pdv{Z}{a_k}\). Now, let \( p_j = \frac{e^{a_j}}{Z} \). Then:
+		\[
+			\pdv{p_j}{a_k} = \begin{cases}
+				\frac{e^{a_j}}{Z} - \frac{e^{a_j}e^{a_j}}{Z^2} & j = k\\
+				-\frac{e^{a_j}e^{a_k}}{Z^2} & j \neq k
+			\end{cases}
+		\]
+		we can write this out in a more simplified form:
+		\[
+			\pdv{p_j}{a_k} = p_j(\delta_{jk} p_k)
+		\]
+		where \( \delta_{jk} \) is the kronecker delta. Thus, we have:
+		\begin{align*}
+			\Delta_k &= - \sum_{j} \frac{y_j}{p_j} \pdv{p_j}{a_k}\\
+			&= -\sum_j y_j \frac{1}{p_j}p_j(\delta_{jk} - p_k) \\ 
+			&= -y_k + \left( \sum_j y_j \right) p_k\\
+			&= p_k - y_k
+		\end{align*}
+		The last step we use the fact that \( \sum_j y_j = 1\), which is the case
+		because it's zero for every class except the one we know it belongs to. 
+\end{itemize}
+\subsection{Generalized Loss}
+\begin{itemize}
+	\item We previously defined the error with respect to the last layer, but now
+		let's try to generalize this to all layers. That is, we want to derive:
+		\[
+			\partial_{\theta_{ji}^{(l)}}\mathcal{L}
+		\]
+		for all the weights \( \theta \).  
+	\item There is an algorithm called \textit{backpropagation} that gives us a way
+		to compute the loss at the top layer \( \ell = L \) and propagate it all the
+		way down to \( \ell = 1 \). This algorithm is \( O(m) \), which is better
+		than the naive approach of computing the Taylor expansion which runs in \(
+		O(m^2) \). 
+\end{itemize}
+\subsection{Backpropagation}
+\begin{itemize}
+	\item So our objective is to compute the loss with respect to an arbitrary
+		parameter, or \( \pdv{\mathcal{L}}{\theta_{ji}} \) from a neuron in layer \(
+		\ell \) to \( \ell - 1 \). 
+	\item Recall that the preactivation and the post-activation is written as:
+		\[
+			a_{j}^{(\ell)} = \sum_i \theta_{ji}^{(\ell)} x_i^{(\ell - 1)} \quad 
+			 x_i^{(\ell - 1)} = g(a_i^{(\ell - 1)}) 
+		\]
+		and the loss (depending on the type of model we use) is defined as:
+		\[
+			\mathcal{L} = \begin{cases}
+				\frac{1}{2}( y - a^{(L)})^2 & \text{Gaussian}\\
+				- y \log \sigma(a^{(L)}) - (1 - y) \log(1 - a^{(L)}) &\text{logistic}\\ 
+				-\sum_k y_k \log \frac{a_k^{(L)}}{Z} & \text{multiclass}
+			\end{cases}
+		\]
+		And we also have the general formula from earlier:
+		\[
+			\pdv{\mathcal{L}}{\theta_{ji}^{(\ell)}} = \pdv{\mathcal{L}}{a_j^{(\ell)}}
+			\pdv{a_j^{(\ell)}}{\theta_{ji}^{(\ell)}}
+		\]
+		The second term is very simple because \( a_j^{(\ell)} \) is linear in terms
+		of \( \theta_{ji}^{(\ell)} \), so the partial derivative just gives us \(
+		x_i^{(\ell - 1)} \). For the first term, we can use our single-layer neural
+		network to motivate the form. We know that the last layer is expressed in
+		terms of the layers below, so to generalize this notion we introduce a chain
+		rule because we have an activation function \( g \): 
+		\[
+			\Delta_j^{(\ell)} := \pdv{\mathcal{L}}{a_j^{(\ell)}} = \sum_k
+			\underbrace{\pdv{\mathcal{L}}{a_k^{(\ell + 1)}}}_{\Delta_k^{(\ell + 1)}}
+			\pdv{a_k^{(\ell + 1)}}{a_j^{(\ell)}}
+		\]
+		well we've just abstracted this out to the next layer up since the
+		
+		first term in the sum is just the loss in the previous layer. For the second
+		term in the chain rule, we know that
+		\[
+			a_{k}^{(\ell + 1)} = \sum_i \theta_{ik}^{(\ell+1)} g(a_j^{(\ell)})
+		\]
+		so the derivative is:
+		\[
+			\pdv{a_k^{(\ell + 1)}}{a_j^{(\ell)}} = \theta_{kj}^{(\ell + 1)}
+				g'(a_j^{(\ell)})
+		\]
+		\question{He mentioned something about a kronecker delta, where does it
+		appear?} 
+
+		\answer{We are taking the derivative with respect to a particular \(
+			a_j^{(\ell)} \), so only one of these terms survive. This is why you
+		have a kronecker delta and only one term in the result.} 
+
+		So finally, we can write:
+		\[
+			\Delta_j^{(\ell)} = \left(\sum_{k \in [d_{l + 1}]} \Delta_k^{(\ell +
+			1)}\theta_{kj}^{(\ell + 1)}\right)g'(a_j^{(\ell)})
+		\]
+	\item To interpret this, the error at any particular layer is determined by the
+		accumulation of the errors at the layer above -- this is why we call this
+		"propagating" the errors back through the network. This is a recursive
+		formula, which takes \( O(m) \) time for \( m \) layers.
+	\item In general, if you follow the structure of layer-by-layer computation, then
+		this takes linear time, but if you have skip connections (connections between
+		layer \( \ell \) and \( \ell - 2 \), for example), then this algorithm would
+		take longer. 
+\end{itemize}

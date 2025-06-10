@@ -1,0 +1,94 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 111B}
+\newcommand{\classname}{Experimentation Laboratory II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Prelab 3} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\begin{enumerate}[label=\arabic*.]
+		\item Why are there energy bands in materials? What is a valence band? A
+			conduction band? A band gap?
+
+			\begin{solution}
+				Energy bands are the energies that electrons inside a material
+				occupy. The valence band is defined to be the highest energy level
+				that is occupied by electrons, the conduction band is the lowest
+				energy level that is \textit{not} occupied. The band gap is the
+				difference between these two energies.   
+
+				The conduction band can be thought of as "freely moving" electrons.  
+			\end{solution}
+		\item How do conductors, insulators, and semiconductors differ in their
+			energy-and structures?
+
+			\begin{solution}
+				Conductors have an overlapping conduction and valence band, giving
+				rise to "free" electrons that move with an arbitrarily small voltage. 
+
+				Insulators have a large band gap that is much larger than \( k_BT \),
+				so small voltages don't cause any electrons to excite to the
+				conduction band, hence no current. 
+
+				Semiconductors are by definition also insulators, but where the band
+				gap is on the order of \( k_BT \), so at \( k_BT \) due to the
+				redistribution of electrons there are some electrons that do become
+				promoted to the conduction band. 
+			\end{solution}
+		\item How do we explain the fact that there are free electorons in a metallic
+			conductor? What is an extrinsic semiconductor? 
+
+			\begin{solution}
+				The electrostatic pull between electrons and the other nuclei give
+				rise to free electrons in a metallic ocnductor. An extrinsic
+				semiconductor is one that is "doped" with other atoms, in order to
+				reduce the band gap. 
+				
+				\question{what do the holes do? Can electrons occupy those holes, and
+				thereby we reduce the band gap?}
+			\end{solution}
+		\item What is the Hall effect? 
+
+			\begin{solution}
+				The Hall effect is created as a result of an imbalance in
+				electrostatic charges when a magnetic field is placed across a
+				current.   
+			\end{solution}
+		\item Explain the Van Der Pauw Technique. 
+
+			\begin{solution}
+				Uses four leads and the voltages across them to determine
+				characteristics of the semiconductor.  
+
+				The Hall voltage can be calculated using \( (R_{AC, BD} + R_{BD, AC})
+				/ 2\). Combining this with the measurement of \( B_Z \) gives us the
+				hall coefficient. We can determine it via:
+				\[
+					V_H = -\frac{I_x B_z}{end}
+				\]
+				Then, we get \( E_H = q V_H \), we have:
+				\[
+					R_H = \frac{qV_H}{J_x B_z} = \frac{1}{en}
+				\]
+				The quantity on the right is probably something that'll be given to
+				us, and the one in the middle is the one we will experimentally solve
+				for. 
+			\end{solution}
+		\item What measurements are needed for studying the Hall Effect? 
+
+			\begin{solution}
+				Given by the table, we need measurements \( I, V \) for all four
+				corners. 
+			\end{solution}
+	\end{enumerate}
+\end{document}

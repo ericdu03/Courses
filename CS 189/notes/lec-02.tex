@@ -1,0 +1,238 @@
+\section{Maximum Likelihood Estimation}
+\begin{itemize}
+	\item Recap of last time: we train a neural network by defining a loss function
+		\( \mathcal{ L}(w) \), and continuously update our value of \( w \) via
+		gradient descent.  
+	\item In the equation for \( \mathcal{L} \) that we gave, \( y_i \) represents
+		the true label of the data point, and \( o_i \) represents the output of our
+		model. 
+
+		If \( o_i \) matches exactly the desired output \( y_i \), then the loss
+		function \( \mathcal{L} = 0 \). We only get a positive \( \mathcal{L} \) if
+		there is a mismatch between \( y_i \) and \( o_i \).  
+	\item For a multi-layer neural network, the same thing applies. We compute the
+		gradient with respect too all weights across \textit{all} layers. The
+		difference between multi-layer NNs and single layered ones is that the loss
+		function \( \mathcal{ L} \) is no longer convex, so you might end up at a
+		global optimum instead of a local optimum. 
+	\item Generally, computing this gradient is quadratic in the size of \( w \), but
+		the back propagation algorithm (a DP-based alg) that allows us to do this in
+		linear time instead. This algorithm works for any number of layers.  
+\end{itemize}
+
+\subsection{Optimal Classifier}
+\begin{itemize}
+	\item What is considered the "best" classifier? Theoretically, what is the "best"
+		classifier that could be achieved? 
+
+		Here, it's the classifier that minimizes the probability of
+		misclassification, or in other words it maximizes the probability that you
+		classify correctly. This is called the \textit{Bayes Classifier}. This
+		classifier may not have zero training error. 
+
+		However, this is not practical in practice, since we need to know the
+		probability distribution of the dataset. It's a circular issue almost, since
+		what we want to do anyways is to discover this distribution by looking at our
+		data. 
+\end{itemize}
+
+\subsection{Error, Validation and Cross-Validation}
+\begin{itemize}
+	\item There are two main kinds of error that we really care about:
+
+		\textbf{Training Error:} we train a classifier to minimize the training set
+		error. We want to minimize the probability of success on this dataset. 
+		
+		\question{shouldn't we want to \textit{maximize} the probability of success?} 
+
+		\textbf{Test set error:} This is the error from your classifier on a dataset
+		that you didn't use to train the model, but a dataset in which you do know
+		the true answers for. Part of the game in machine learning is figuring out
+		whether you're fooling yourself by making your model seem better than it
+		actually is. This test set is also called the validation set. 
+	\item So given a dataset, how do we partition the data in such a way that we
+		don't run into these issues? One way to do so is through \( k \)-fold cross
+		validation. The way it works is we split our dataset up into \( k \) equal
+		chunks, and use \( k-1 \) of these to train the model, while the last chunk
+		we use to test/validate the model. 
+\end{itemize}
+
+\subsection{Maximum Likelihood Estimation (MLE)}
+\begin{itemize}
+	\item Remember that we want to maximize the likelihood that our model classifies
+		things properly, so evidently, MLE is useful here. In terms of our loss, we
+		would like to minimize the loss function. 
+	\item In supervised learning, we're going to work with a 
+		training dataset \( D = \{(x_i, y_i)\}_{i
+		= 1}^{N} \). \( x_i \) is a \( d \)-dimensional vector (in the case of our
+		images, it would be a \( 28 \times 1 \) vector, and \( y_i \) is some value
+		dependent on the problem. If we have a classification, then usually \( y_i \)
+		is constrained to two values, \( -1 \) and \( 1 \), but in regression then \(
+		y_i\) can be any number, so \( y_i \in \R \) in that case.  
+
+		The only difference between classification and regression is the kind of
+		output that we want, whether \( y_i \) is a discrete or continuous variable. 
+	\item In unsupervised learning, we lose the notion of \( y_i  \) and instead 
+		work only with a dataset \( D = \{x_i\}_{i = 1}^{N} \). In essence, we no
+		longer know the right answer, but we do have a bunch of data. In some sense
+		it almost feels like a prediction problem, but the model is basically trained
+		to learn what actually comes next. This is what Chat-GPT does. 
+	\item We also have a \textit{Model class}, written as:
+		\[
+			f(x \mid w, b) = w^{\top} x + b
+		\]
+		the model class basically defines the kind of function you are looking for.
+		This is also something that we (the creator) have to define for the model. 
+		For now, we can think of ML as picking out the best possible model function
+		out of this family -- so picking out an optimal \( (w, b) \) in our case --
+		but eventually we'll also get into the notion of picking
+		a \textit{distribution} of models instead. 
+
+	\item Our learning objective is now to compute:
+		\[
+			\argmin_{w, b} \sum_{i = 1}^{N}L\left(y_i, f(x_i \mid w, b)\right)
+		\]
+	\item This only allows us to study statistical models. It means that we treat the
+		thing we are trying to estimate as a RV, and we want to know the probability
+		distribution of that RV. This phrasing allows us to cast many problems as
+		statistical models, which is what makes ML so powerful.   
+\end{itemize}
+
+\subsubsection{Quick aside on RVs}
+\begin{itemize}
+	\item A random variable (RV) is a function \( x \to \R \). Discrete RVs have a
+		probability mass function (PMF), and continuous RVs have a probability
+		density function (PDF) instead. In terms of normalization, the sum of all
+		probabilities in the PMF is 1, and the analogous constraint for PDFs is that
+		the integral over the domain is 1. 
+	\item Just some RVs as examples: 
+		\begin{itemize}
+			\item Bernoulli RV: \( P(\text{heads}) = p \), \( P(\text{tails}) = 1 - p
+				\). 
+			\item Binomial RV: We model \( n \) coin tosses, and count the number of
+				heads \( k \):
+				\[
+					P(x = k) = {n \choose k} p^{k} (1 - p)^{n - k}
+				\]
+			\item Poisson RV: model the number of mutations \( k \), given that it
+				has a mean mutation rate \( \lambda \) over a fixed time interval:
+				\[
+					P(x = k) = \frac{e^{-\lambda \lambda^{k}}}{k!}
+				\]
+			\item Gaussian: a continuous RV:
+				\[
+					p(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(
+					-\frac{1}{2}\frac{(x - \mu)^2}{\sigma^2} \right)
+				\]
+		\end{itemize}
+	\item So far, we've only looked at univariate distributions. With multivariate
+		distributions, the space of outcomes is a vector instead of a scalar. The
+		mean becomes a vector also, and the variance now becomes a matrix of
+		covariances. We will learn more about this next lecture. 
+\end{itemize}
+
+\subsection{MLE Setup}
+\begin{itemize}
+	\item Given a dataset \( D = \{x_i\}_{i = 1}^{N} \), where each \( x_i \in \R^{d}
+		\), and assume a set of distributions on \( \R^{d} \) parametrized by \(
+		\theta \), denoted as \( p_{\theta}(x) \). In the case of a Gaussian, then \(
+		\theta\) could be the mean and the variance. 
+	\item The key assumption we will make is that \( D \) contains sample that
+		belongs to one of these distributions in our family: 
+		\[
+			x_i \sim p_{\hat{\theta}}(x)
+		\]
+		This assumption also requires that each \( x_i \) is distributed i.i.d. from
+		each other. 
+
+		Out goal is to "learn" or estimate the value of \( \theta \) which "pins
+		down" the distribution from which the data came. We will define this optimal
+		\( \theta \) to be \( \theta_\text{MLE} \). That is, \( \theta_\text{MLE} =
+		\argmax_{\theta \in \Theta}p(D \mid \theta) \).   
+	\item Note that we have \( p(D \mid \theta) \) instead of the other way around.
+		Then because \( D \) is i.i.d, then we have the nice simplification 
+		that \( p(\{x_i\}_{i = 1}^{N} \mid \theta) = \prod_{i = 1}^{n} p(x_i \mid
+		\theta) \). This lets us break down \( x_i \) away from a summation into a
+		product. 
+	\item Is there a unique value of \( \theta \) that satisfies MLE? This is not
+		always guaranteed! There may be infinitely many solutions that give you the
+		maximum likelihood, but there are techniques that allow us to deal with this. 
+\end{itemize}
+\subsection{MLE Properteis}
+\begin{itemize}
+	\item \textit{Consistency}: if the data were truly generated by our hypothesis
+		family, then as we get more data we're guaranteed that maximizing the
+		likelihood is equivalent to finding the true parameters. 
+	\item \textit{Statistically efficient}: Given some fixed amount of data, MLE is
+		efficient in getting the information it needs out of it.  
+	\item The value of \( p(D \mid \theta_{\text{MLE}} \) is invariant to
+		reparametrization. Basically, this means that the value of \( p \) doesn't
+		depend on the way we look at the problem (or how we parametrized it). Even
+		though the returned parameters may change in value, the likelihood does not. 
+
+		Suppose you have a dataset generated from \( N(\mu, \sigma) \), then 
+		if you were to draw from \( N(2 + \mu, \sigma) \) instead, then the model
+		would find optimality at \( \mu' = \mu - 2 \), but the likelihood doesn't
+		change.   
+	\item MLE can still yield a parameter estimate even when the data were not
+		generated from that family. Usually it's a Gaussian, but we don't know that
+		for sure obviously. It doesn't matter how bad your hypothesis class is, it
+		will return you a value.  
+\end{itemize}
+\subsection{Univariate Gaussian Example}
+\begin{itemize}
+	\item Assume the data is generated from \( X \sim N(x \mid \mu, \sigma^2) \). 
+		Now, our goal is to find \( \argmax_{\theta \in \Theta}p(D \mid \mu,
+		\sigma^2) \). 
+	\item The first step is always to write down the likelihood function:
+		\[
+			p(D \mid \theta) = p(x_1, \dots, x_N \mid \mu, \sigma^2) = \prod_{i =
+			1}^{N}p(x_i \mid \mu, \sigma^2)
+		\]
+		the product is usually hard to work with, so we'll work with the log
+		likelihood instead: 
+		\[
+			\log p(D \mid \theta) = \sum_{i = 1}^{N}\log p(x_i \mid \mu, \sigma^2) 
+		\]
+		and because the log function is monotonic, then the value of \(
+		\theta_\text{MLE} \) doesn't change when we make this change to the log
+		likelihood. 
+	\item To solve this maximization problem, we look for stationary points in the
+		likelihood, so points where the derivative with respect to \( \mu \) and \(
+		\sigma \) are zero. We then also need to confirm that we have a maximum
+		point, which we can do by computing the Hessian. In the Gaussian case, the
+		Hessian is diagonal, so we can just look at the parameters separately. For
+		the mean:
+		\begin{align*}
+			\pdv{\mu} \sum_{i = 1}^{N}\log p(x_i \mid \mu, \sigma^2) &= \sum_{i}
+			\pdv{\mu} \log \left[ \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(
+			-\frac{1}{2\sigma^2}(x_i - \mu)^2 \right) \right] \\
+			&= \sum_i \pdv{\mu} \left[-\log(\sqrt{2 \pi\sigma^2}) -
+			\frac{1}{2\sigma^2}(x_i- \mu)^2\right] \\ 
+			&= \sum_i \left[ 0 + \frac{1}{\sigma^2}(x_i - \mu) \right] 
+		\end{align*}
+		We now set this to zero, which gives us \( \sum_i x_i = \sum_i \mu \). So
+		this tells us that \( \sum_i x_i = N \mu \), or rather \( \mu = \frac{\sum_i
+		x_i}{N} \), as expected.
+	\item You can do the same thing with the variance, the math is a little more
+		complicated but \( \sigma^2 \) does work out. Just take the derivative with
+		respect to \( \sigma \), set it to zero, and you will find:
+		\[
+			\sigma_\text{MLE}^2 = \frac{1}{N}\sum_{i = 1}^{N} (x_i - \mu)^2 = \sigma
+		\]
+		This is a biased estimate, since the MLE parameter \( \sigma_\text{MLE} \) we
+		estimated depends on \( \mu \), which is something we already estimated. As a
+		result, we need to change the denominator from a \( \frac{1}{N} \) to 
+		a \( \frac{1}{N - 1} \) to account for this loss of a degree of freedom. 
+
+		\question{Truthfully, I don't really understand why changing \( N \) to \( N
+		- 1\) corrects for this.}
+	\item One drawback of MLE is that it only yields a point estimate of our
+		parameter and nothing else. The value of \( \theta \) that maximizes our
+		likelihood may be a very sharp spike, which is generally unwanted since it
+		means that the model is \textit{very} sensitive to changes in the data. In
+		that same vein, a peak which is shorter but doesn't vary as much over a wide
+		range of \( \sigma \) may be a better choice. The former case is much more
+		likely during overfitting, or basically when you try to fit a 50th order
+		polynomial to a function that is represented more by a 4th order.    
+\end{itemize}

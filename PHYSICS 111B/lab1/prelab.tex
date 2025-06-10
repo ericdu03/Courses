@@ -1,0 +1,168 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 111B}
+\newcommand{\classname}{Advanced Experimentation Laboratory}
+\renewcommand{\maketitle}{%
+	\hrule height4pt
+	\large{Eric Du \hfill \classcode}
+	\newline
+	\large{Prelab 1} \Large{\hfill \classname \hfill} \large{\today}
+	\hrule height4pt \vskip .7em
+	\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+	\normalsize
+}
+\linespread{1.2}
+\begin{document}
+\maketitle
+\section*{Prelab Questions}
+\begin{enumerate}[label=\arabic*.]
+	\item What is Non-linear Dynamics (NLD)? Specifically what is it that's 
+		non-linear? 
+
+		\begin{solution}
+			Nonlinear dynamics deals with the dynamics of nonlinear systems. 
+			Namely, this means that the differential equation 
+			that governs the motion of the system has a nonlinear term, so 
+			a power of 2 or above in one of the \( x, \dot x, \ddot x, \dots \)
+			terms. 
+
+			For instance, the equation \( \ddot x + \frac{g}{L}\sin x = 0 \)
+			is a nonlinear dynamical equation. 
+		\end{solution}
+	\item What is chaos? What are the defining characteristics of chaos?
+
+		\begin{solution}
+			The book defines it as follows:
+
+			\textit{Chaos is \textbf{aperiodic long-term behavior} in a 
+				\textbf{deterministic} system that exhibits 
+			\textbf{sensitive dependence on initial conditions.}}
+			Explained:
+			\begin{itemize}
+				\item Aperiodic just means that over the long term the system doesn't
+					settle into a periodic state. 
+				\item Deterministic means that the system doesn't have any 
+					noisy inputs -- the irregular behavior arises as a result of the 
+					equations rather than noise
+				\item Sensitive dependence on initial conditions means that 
+					trajectories which start off very similar diverge exponentially 
+					quickly. 
+			\end{itemize}
+		\end{solution}
+
+	\item Present and solve on the board the problems 9.3.1 and 11.4.2.
+		\begin{enumerate}[label=\arabic*)]
+			\item (Quasiperiodicity \( \neq \) chaos) 
+				The trajectories of the quasiperiodic system 
+				\( \dot \theta_1 = \omega_1, \dot \theta_2 = \omega_2 \) 
+				(\( \omega_1 / \omega_2 \) is irrational) are not periodic. 
+
+				\begin{enumerate}[label=(\alph*)]
+					\item Why isn't this system considered chaotic?
+
+						\begin{solution}
+							This system is not considered chaotic because the distance 
+							\( \|\delta(t)\| \) does not scale exponentially. 
+						\end{solution}
+
+					\item Without using a computer, find the largest Liapunov exponent 
+						for the system. 
+
+						\begin{solution}
+							I imagine if we consider two trajectories separated 
+							by some \( \| \delta\|\), that they won't diverge at all -- 
+							they'll just be parallel to each other. There's no reason 
+							for them to diverge if \(  \omega_1, \omega_2 \) are 
+							identical for both systems. Thus, \( \|\delta(t)\| = 
+							\| \delta_0\|\), so \( \max \lambda = 0 \). 
+						\end{solution}
+				\end{enumerate}
+			\item Find the box dimension of the Sierpinski carpet.
+
+				\begin{solution}
+					The book gives the following definition for the box 
+					dimension:
+					\[
+						d = \lim_{\epsilon \to 0}
+						\frac{\ln N(\epsilon)}{\ln (1 / \epsilon)}
+					\]
+					Here \( N(\epsilon) \) is the number of \( \epsilon \)-sized
+					squares are required to cover the entire carpet.
+
+					Let the carpet have side length 1. Then, \( S_1 \) is covered 
+					by 8 squares with side length \( \frac{1}{3} \). Then, \( S_2 \)
+					is covered by \( 8^2 \) squares with side length 
+					\( \epsilon = \left(\frac{1}{3}\right)^2 \). (this follows the 
+					same process as Example 11.4.2 in the text) Then, we have:
+					\[
+						d = \lim_{\epsilon \to 0}\frac{\ln 8^{n}}{\ln 3^{n}}
+						= \frac{\ln 8 }{\ln 3}
+					\]
+				\end{solution}
+		\end{enumerate}
+	\item What is the Feigenbaum ratio? What does it mean? See the 
+		Wolfram Math World subjects for help. 
+
+		\begin{solution}
+			The Feigenbaum constant is a universal constant for systems which 
+			approach chaos via the process known as \textbf{period 
+			doubling}. Basically, for some chaotic systems where the period 
+			appears to double, we can let \( \mu_n \) denote the point 
+			where the period doubles to \( 2^{n} \), then we can 
+			express the Feigenbaum ratio as:
+			\[
+				\delta = \lim_{n \to \infty} \frac{\mu_{n + 1} - \mu_{n}}{\mu_{n + 2}
+				- \mu_{n + 1}}
+			\]
+			It is known that \( \delta > 1 \), and for a particular 
+			structure called the logistic map, we know \( \delta \approx 4.669 \). 
+
+			Really, it just tells us that we increase our parameter, 
+			the time between subsequent period doublings gets faster and 
+			faster, roughly 4.5x faster every time.  
+
+			What's also interesting about this is that it's considered 
+			\textbf{universal}, meaning that all period doubling systems, when 
+			we perform the calculation above, yields the same constant. 
+		\end{solution}
+	\item What is a return map? What is a Poincare map? 
+
+		\begin{solution}
+			I honestly am not really sure. As for a Poincare section (which I imagine 
+			to be very closely related), it basically a traced version of the 
+			state space as time evolution is applied to the system. 
+
+
+			After reading the textbook a bit more, basically the Poincare map 
+			is a way for us to denote when a system comes back on itself. The textbook 
+			has the following example: let \( \dot{\mathbf{x}} = f(\mathbf{x}) \) be 
+			an \( n \)-dimensional system, and consider the \( n-1 \) dimensional 
+			surface \( S \). Then, the evolution of the dynamical system passes
+			perpendicular to \( S \) always. Now, let \( \mathbf{x}_k \) be the 
+			\( k \)-th intersection, and \( \mathbf{x}_{k + 1} \) be the 
+			\( (k + 1) \)-th intersection through \( S \). Then, the Poincare 
+			map \( P: S \to S \) is definde by \( P(\mathbf{x}_k) = 
+			\mathbf{x}_{k + 1}\)
+
+			The Poincare map is also called the \textbf{first return map}, which 
+			I think is what the first part of this problem is referring to. 
+		\end{solution}
+	\item What is a Fourier Transform? What does the power spectrum of a square 
+		wave look like? What is aliasing?
+
+		\begin{solution}
+			A Fourier transform gives us a way to view a signal in frequency space 
+			instead of temporal space. It's occasionally useful :)
+
+			The Fourier transform is a sinc function, so the 
+			power is a \( \mathrm{sinc}^2 \) function.
+
+			Aliasing is the phenomenon when we undersample our points, and as a result 
+			of our undersampling we get losses in the data. Bascially, the sampling 
+			frequency must be at least half the bandwidth (in frequency space) 
+			in order to prevent aliasing. (This is the Nyquist criterion) 
+		\end{solution}
+\end{enumerate}
+\end{document}

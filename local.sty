@@ -1,9 +1,10 @@
 % NECESSARY PACKAGES 
-% \usepackage[pdftex]{graphicx}
 \usepackage[utf8]{inputenc}
-\usepackage{wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{wrapfig, amssymb, array, mathtools, circuitikz, parskip, physics-patch,
+hyperref}
 \usepackage{enumitem}
-\usepackage{tkz-euclide}
+\usepackage{tkz-euclide, tikz-cd}
 \usepackage{titlesec}
 \usepackage{lipsum}
 \usepackage[english]{babel}
@@ -11,48 +12,70 @@
 \usepackage{fancyhdr}
 \usepackage{xcoffins}
 \usepackage{tcolorbox}
-\usepackage[margin=0.7in]{geometry}
 \usepackage{titling}
 \usepackage{chemformula} % deal with molecules a lot in 112 
 \usepackage{mathrsfs}
+\usepackage{listings}  % code environment
+\usepackage{lstautogobble}  % auto-gobble leading whitespace
+\usepackage{siunitx} % scientific units
 
 %% FONTS
+\newif\ifopt@fourier\opt@fourierfalse
+\DeclareOption{fourier}{\opt@fouriertrue}
 
-%% SANS-SERIF FONTS
-%\usepackage{nunito}
-%\usepackage[sfdefault]{noto}
-%% SERIF FONTS
-\usepackage{libertine}
-%\usepackage{libertinust1math}
-\usepackage{inconsolata}
-\usepackage[T1]{fontenc}
-%\usepackage{bera}
-%\usepackage{crimson}
+\ExecuteOptions{}
+\ProcessOptions*
+
+\ifopt@fourier
+	\RequirePackage{fourier}
+\else 
+	\RequirePackage{libertine}
+\fi
+
+
 % LOCAL SHORTCUTS FOR MATH ENVIRONMENT
 
-\newcommand{\mean}[1]{\langle #1 \rangle}     % Mean <x>
+\newcommand{\mean}[1]{\left\langle #1 \right\rangle}     % Mean <x>
 \newcommand{\iinf}{\int_{-\infty}^{\infty}} % Indefinite integral
 \newcommand{\schrodinger}{Schr\"{o}dinger }   % Schrodinger's name
 \newcommand{\lhopitals}{L'H\^{o}pital's}      % L'Hopital's rule
-\newcommand{\diff}{\ensuremath{\ d}}	% dummy variable with integrals
+\newcommand{\diff}{\ensuremath{\,d}}	% dummy variable with integrals
 \newcommand{\dx}{\ \mathrm d x}
 \newcommand{\R}{\mathbb R}
 \newcommand{\C}{\mathbb C}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\Q}{\mathbb Q}
 \newcommand{\N}{\mathbb N}
-\renewcommand{\curl}{\nabla \times}           % vector curl
+\newcommand{\E}{\mathbb E}
+\renewcommand{\P}{\mathbb P}
+\renewcommand{\curl}{\nabla \times }           % vector curl
 \renewcommand{\div}{\nabla \cdot}             % vector divergence
 \renewcommand{\dd}{\ \mathrm d}
-\renewcommand{\exp}[1]{ \mathrm{exp}\left( #1 \right)} %exponential
-\renewcommand{\Re}{\mathrm{Re}}               % Real part
-\renewcommand{\Im}{\mathrm{Im}}               % Imaginary part
+\let\Re\undefined
+\let\Im\undefined
+\let\exp\undefined
+%\let\null\undefined
+\DeclareMathOperator*{\Re}{Re}
+%\renewcommand{\Re}{\mathrm{Re}}               % Real part
+\DeclareMathOperator*{\Im}{Im}               % Imaginary part
+\DeclareMathOperator*{\exp}{exp}
+\DeclareMathOperator*{\nul}{null}
+\DeclareMathOperator*{\spn}{span}
 \newcommand{\sinc}{\mathrm{sinc}}
-\newcommand{\question}[1]{\textcolor{red}{#1}}
-\newcommand{\answer}[1]{\textcolor{green!80!black!}{#1}}
-\renewcommand{\comment}[1]{\textcolor{blue!50}{#1}}
-\newcommand{\corr}{\mathrm{corr}}
+\newcommand{\question}[1]{\textcolor{deepcarminepink}{#1}}
+\newcommand{\answer}[1]{\textcolor{answergreen}{#1}}
+\renewcommand{\comment}[1]{\textcolor{lightblue}{#1}}
+\DeclareMathOperator*{\corr}{corr}
+\DeclareMathOperator*{\range}{range}
 
+% CS 189 stuff
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\Cov}{Cov}
+\DeclareMathOperator*{\Var}{Var}
+\DeclareMathOperator*{\Corr}{Corr}
+%\newcommand{\Perp}{\perp\!\!\!\perp}
 % NAMES OF COLLABORATORS 
 
 \newcommand{\names}{
@@ -70,15 +93,25 @@
 \definecolor{lightblue}{rgb}{0.25, 0.41, 0.88}
 \definecolor{deepcarminepink}{rgb}{0.94, 0.19, 0.22}
 \definecolor{cadmiumgreen}{rgb}{0.0, 0.42, 0.24}
+\definecolor{darkgreen}{RGB}{66, 199, 73}
+\definecolor{answergreen}{RGB}{57, 195, 61}
 
 % SOLUTION ENVIRONMENT
+
 \newenvironment{solution}{\medskip \textit{Solution:}}{\qed\endtrivlist \medskip \hrule height1pt\medskip\endtrivlist}
-%\newenvironment{solution}{\medskip \textit{Solution:}}{\hfill \qedsymbol \medskip \hrule height1pt \medskip}
+
+\newcounter{problemcounter}[subsection]
+\counterwithin{problemcounter}{subsection}
+\setcounter{problemcounter}{1}
+\newenvironment{problem}{\medskip \textbf{Problem \theproblemcounter:}}{\stepcounter{problemcounter}}
+
 
 
 % Tikz Libraries 
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings, decorations.pathreplacing, graphs, quantikz2, shapes.geometric, patterns}
+\usetikzlibrary{decorations.markings, decorations.pathreplacing, graphs, quantikz2,
+shapes.geometric, patterns, cd}
+\tikzcdset{diagrams={nodes={inner sep=5pt}}}
 \tikzset{
   % style to apply some styles to each segment of a path
   on each segment/.style={
@@ -127,8 +160,72 @@
     }
     {\fractype{\diffd \IfNoValueTF{#2}{}{^{#2}} #3}{\diffd #4\IfNoValueTF{#2}{}{^{#2}}}\IfValueT{#5}{(#5)}}
 }
-% GRIFFITHS EM SCRIPT R
-\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../ScriptR}}$}}}
-\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{../BoldR}}$}}}
-\def\hrcurs{{\mbox{$\hat \brcurs$}}}
 
+% HYPERREF OPTIONS
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+}
+
+% GRIFFITHS EM SCRIPT R
+\newcommand{\genericrcurs}[1]{%
+  \text{%
+    \resizebox{!}{1.1\fontcharht\font`x}{%
+      \includegraphics[trim=20 0 140 0]{#1}%
+    }%
+  }%
+}
+
+\NewDocumentCommand{\rcurs}{}{\mathord{\genericrcurs{../ScriptR}}}
+\NewDocumentCommand{\brcurs}{}{\mathord{\genericrcurs{../BoldR}}}
+
+\def\signature{{\mbox{$\resizebox{1in}{0.3in}{\includegraphics{../signature-1}}$}}}
+
+% CODE LISTINGS
+
+% Code input formatting
+% Atom One Light color scheme (https://github.com/atom/atom/tree/master/packages/one-light-syntax/styles)
+\definecolor{lstfgcolor}{RGB}{56, 58, 66}  % HSL(230, 8%, 24%); black
+\definecolor{lstbgcolor}{RGB}{250, 250, 250}  % HSL(230, 1%, 98%); white
+\definecolor{lstcommentcolor}{RGB}{160, 161, 167}  % HSL(230, 4%, 64%); gray
+\definecolor{lstidentifiercolor}{RGB}{228, 86, 73}  % HSL(5, 74%, 59%); red
+\definecolor{lststringcolor}{RGB}{93, 147, 92}  % HSL(119, 23%, 47%); green
+\definecolor{lstkeywordcolor}{RGB}{166, 38, 164}  % HSL(301, 63%, 40%); purple
+\definecolor{lstlinenumbercolor}{RGB}{157, 157, 159}  % HSL(230, 1%, 62%)
+\lstset{%
+    autogobble,
+	showstringspaces=false,
+    columns=fullflexible,
+    numbers=left,
+    upquote=true,
+    mathescape=true,
+    xleftmargin=3pt,
+    numbersep=7pt,
+    % colors
+    backgroundcolor=\color{lstbgcolor},
+    basicstyle=\color{lstfgcolor}\footnotesize\ttfamily,
+    commentstyle=\color{lstcommentcolor}\itshape,
+    identifierstyle={},%\color{lstidentifiercolor},
+    stringstyle=\color{lststringcolor},
+    keywordstyle=\color{lstkeywordcolor},%\bfseries,
+    numberstyle=\color{lstlinenumbercolor}\ttfamily,
+}
+\lstdefinelanguage{pseudo}{
+    morekeywords={
+        % Python
+        false, true, and, assert, break, class, continue, def, elif, else, for, if, in, is, not, or, pass, return, while,
+        % Lua
+        end, repeat, do, then, function, until,
+        % Other
+        to,
+    },
+    sensitive=false,
+    morestring=[b]",
+    morestring=[b]',
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/}
+}

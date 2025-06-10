@@ -1,0 +1,167 @@
+\section{Linear Regression}
+\begin{itemize}
+	\item Today we will make use of MLE that we've been learning, and also our
+		knowledge about Gaussians.
+\end{itemize}
+\subsection{Regression}
+\begin{itemize}
+	\item It's a form of supervised learning, where we have data pairs \( D = \{(x_i,
+		y_i)\} \) where \( x_i \) may be discrete or continuous. \( x_i \) may also
+		be scalar/vector, but \( y_i \) is always a scalar.  
+	\item Formally, we want to find \( p(y \mid x) \), or essentially the conditional
+		pdf for the data points \( y \) given the values \( x \). 
+	\item We usually think about getting a "point" prediction of a model which is
+		just given by \( \hat{y} = E_y[p(Y \mid X = x)] \). We will explore this for
+		a while, then back out of this and look at the other forms later.
+	\item When you usually think about regression you probably think of a regression
+		line -- one way to think about the regression line is that it also gives us a
+		probability for every given value of \( x \), and the best fit line is the
+		one that maximizes this probability.  
+	\item What are some strategies we could use to estimate \( p(y \mid x) \)? 
+		\begin{enumerate}[label=\arabic*.]
+			\item \textbf{Generative:} Estimate \( p(x, y \mid \theta) \), then we can use the fitted
+				model to compute \( p(y \mid x, \hat{\theta}) \). 
+
+				Basically, we can use what we built earlier with MLEs to calculate \(
+				p(x, y \mid \theta)\), then we can use that to compute \( p(y \mid x)
+				\). 
+
+
+				In particular, we can compute:
+				\[
+					p(y \mid x, \theta) = \frac{p(y, x \mid \hat{\theta})}{p(x,
+					\hat{\theta})} = \frac{p(y, x \mid \hat{\theta})}{\int_y (y,
+				x \mid \hat{\theta}) \diff y}
+				\]
+
+				\question{For MLEs, don't we have \( p(y, x \mid \theta) \) (or
+					rather, we find the \( \theta \) that optimizes the data given the
+					parameter, which is not what we're doing here when we write \( p(x, y
+					\mid \theta) \)?}
+			\item \textbf{Discriminative:} We can assume the inputs to be fixed, and only the output is a
+				random variable. That is, we try to directly model \( p(y \mid x,
+				\hat{\theta}) \). 
+
+				The advantage of this approach versus the previous one is that we
+				don't treat \( x \) as an RV. In some cases, if we
+				\textit{absolutely} don't understand the distribution of \( x \), it
+				may be a bad idea make assumptions about it (e.g. treat it as a
+				Gaussian RV). This is a deep question and we won't go into this
+				further.   
+		\end{enumerate}
+\end{itemize}
+\subsection{Linear Regression}
+\begin{itemize}
+	\item This takes the discriminative approach to generate the prediction. IN
+		particular, the predictions will be a linear function of the parameters --
+		this is what the "linear" in linear regression refers to. For instance:
+		\[
+			\hat{y} = E_y[p(y \mid x)] = w^{\top} x + w_0
+		\]
+		\( w \) is the parameters, \( x \) is the input features, and \( w_0 \) is
+		the "bias". This is considered linear, since \( y \) is linear in terms 
+		of \( x \). 
+	\item One thing we will do is that instead of a bias, we will make an extra
+		features that always equals 1, and instead use \( x' = [x, 1] \). This allows
+		us to basically keep track of the bias without having to write it out
+		explicitly -- we can also write \( \hat{y} = w^{\top} x' \) instead.  
+	\item Linear models are also very useful! Instead of just computing \( \hat{y} =
+		w^{\top} x\), we can also \textit{augment} our feature space, and also track,
+		say, a quadratic term. So, we can also have \( \hat{y} = w^{\top}[x, x^2] \)
+		for instance, and in fact we can augment by any polynomial. This allows our
+		linear regression to "fit" to any polynomial. 
+
+		This process of taking the original input space and "expanding" this out in
+		terms of predetermined functions is called a \textit{basis expansion}.
+		Suppose you had \( x \in \R^{2} = [x_1, x_2] \), then we can basis expand
+		quadratically:
+		\[
+			[1, x_1, x_2, x_1x_2, x_1^2, x_2^2] \in \R^{6}
+		\]
+		this can all come from \( x \)! For \( d = 1 \), then the polynomial
+		expansions is the set \( [1, x, x^2, \dots, x^{n}] \).  
+	\item These are predetermined functions that we always know ahead of time and
+		plug \( x \) into, so this gives us a lot of freedom in what we want to fit
+		to. As a notational thing, we will write \( \hat{y} = w^{\top} \Phi(x) \)
+		instead, where \( \Phi(x) \) is the basis expansion.    
+
+		Note that \( \Phi(x) \) can be \textit{literally anything}! We can pick
+		anything from just the standard polynomial basis to even the Fourier basis
+		for our regression. It's all up to us. 
+	\item As a sneak peek, we can actually \textit{learn} the basis functions, but we
+		won't go into this today. 
+	\item For the rest of this lecture, we will just assume \( \hat{y} =
+		w^{\top} x \) for now. 
+\end{itemize}
+\subsection{Specific Linear Regression}
+\begin{itemize}
+	\item So far, we know that \( \hat{y} = w^{\top} x \). What should we use for \(
+		p(y \mid x)\)? 
+	\item For linear regression, the assumption we will use is that for each \( x \),
+		there is a Gaussian distribution for \( y \), that shares the same variance.
+		So, \( p(y \mid x) = N(y \mid w^{\top} x, \sigma^2) \). This is equivalent to
+		writing \( Y = w^{\top} x + \epsilon \), where \( \epsilon \sim N(0,
+		\sigma^2)\) is a Gaussian. 
+
+		\comment{I don't like the notation here, instead I think it may be better to
+			write \( p(y \mid x) = N(w^{\top} x, \sigma^2) \), the given symbol makes
+		no sense in a distribution definition.} 
+	\item We can then rearrange this to \( Y - w^{\top} x = \epsilon \sim N(0,
+		\sigma^2) \). \( \epsilon \) is also sometimes called the \textit{residuals},
+		which we assume to be normally distributed with equal variance. 
+
+		\comment{As an aside, there are other distributions called heavy-tail
+			distributions, which favor values along the tails much more than the
+			Gaussian. This is just to show that the residuals can realistically be
+		any distribution, we will stick to Gaussians in this lecture.}  
+	\item Now we fit the parameters \( w \). We will use MLE. Here, \(
+		\theta_\text{MLE} = (w_\text{MLE}, \sigma^2_\text{MLE})\). This is very
+		similar to what we did two weeks ago. We will take the log-likelihood, so
+		this is equal to:
+		\[
+			\theta_\text{MLE} = \argmax_{w, \sigma^2} \sum_{i = 1}^{n} \log p(y_i
+			\mid x_i, \theta) = \argmax_{w, \sigma^2} \sum_{i = 1}^{n} \log\left(
+			\frac{1}{\sqrt{2\pi\sigma^2}} \right) - \frac{1}{2\sigma^2} \sum_{i =
+		1}^{n}(y_i - w^{\top} x_i)^2
+		\]
+		This last line comes from the assumption that each \( y_i \) can be modeled
+		by a normal distribution with mean \( w^{\top} x_i \) and variance \(
+		\sigma^2 \).  
+	\item Note that here the estimation of \( w \) doesn't depend on \( \sigma \), so
+		maximizing \( w \) is the same as finding:
+		\[
+			\argmin_w \sum_{i = 1}^{n}(y_i - w^{\top} x_i)^2 = \argmin_w \sum_{i =
+			1}^{n}(y_i - \hat{y}_i)^2
+		\]
+		this is the same least-squares function that you've been taught in previous
+		classes.  
+	\item Now to actually find \( w \). If we vectorize this equation, we can write
+		this as \( y - Aw \), where \( A \) is called the "design matrix" and
+		represents the vector of inputs \( x \). With this in mind, we can then
+		rewrite the loss as \( \argmin_w \|y - Aw\|_2^2 \). 
+
+		The loss can then be written as:
+		\[
+			\mathcal{L} = \|y - Aw\|_2^2 = y^{\top} y - 2w^{\top} A^{\top} y +
+			w^{\top} A^{\top} Aw
+		\] 
+		and we want to set \( \pdv{L}{w} = 0 \). Computing the derivative (using
+		vector calculus, \question{review this}), we have:
+		\[
+			\nabla_w \mathcal{L} = -A^{\top} y + A^{\top} A w \implies w = (A^{\top}
+			A)^{-1}A^{\top} y
+		\]
+		Then, we just need to check that this is a critical point, which we can do by
+		looking at the Hessian. The hessian matrix is \( \nabla_w^2 \mathcal{L} =
+		2A^{\top} A \), and we require that this is positive definite (PD) in order
+		for it to be minimized. This is achieved when \( A \) is full rank.   
+	\item The \( \sigma^2_\text{MLE} \) for this is really just the exact same thing,
+		and we will end up getting 
+		\[
+			\sigma^2 = \frac{1}{n}\sum_i(y_i - w^{\top} x)^2
+		\]
+		exactly as we expect. 
+	\item There is also a geometric viewpoint of this, but this is much more rigid,
+		and overall seems to be a "weaker" interpretation of least squares than the
+		statistical approach. 
+\end{itemize}

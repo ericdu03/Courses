@@ -1,0 +1,134 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{lab-manual}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=8748015bac74126e70105593e2dcfe99}{%
+           family={{Physics 111B: Advanced Experimentation Laboratory}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{fullhash}{8748015bac74126e70105593e2dcfe99}
+      \strng{bibnamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authorbibnamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authornamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authorfullhash}{8748015bac74126e70105593e2dcfe99}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Optical {{Pumping}}}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/7CFRN6XK/OPT_Manual_2024-01-08.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://experimentationlab.berkeley.edu/sites/default/files/writeups/OPT_Manual_2024-01-08.pdf
+      \endverb
+      \verb{url}
+      \verb http://experimentationlab.berkeley.edu/sites/default/files/writeups/OPT_Manual_2024-01-08.pdf
+      \endverb
+    \endentry
+    \entry{ouelletEnergyLevelsRb2010}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=2f4c6225d8bc81922ecde26eba58e1b3}{%
+           family={Ouellet},
+           familyi={O\bibinitperiod},
+           given={Jonathan},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{2f4c6225d8bc81922ecde26eba58e1b3}
+      \strng{fullhash}{2f4c6225d8bc81922ecde26eba58e1b3}
+      \strng{bibnamehash}{2f4c6225d8bc81922ecde26eba58e1b3}
+      \strng{authorbibnamehash}{2f4c6225d8bc81922ecde26eba58e1b3}
+      \strng{authornamehash}{2f4c6225d8bc81922ecde26eba58e1b3}
+      \strng{authorfullhash}{2f4c6225d8bc81922ecde26eba58e1b3}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{day}{13}
+      \field{month}{11}
+      \field{title}{Energy {{Levels}} for {{Rb}}}
+      \field{year}{2010}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/A3XL5LQX/RbEnergyLevels.pdf
+      \endverb
+    \endentry
+    \entry{WorldMagneticModel2020}{dataset}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The World Magnetic Model is the standard model used by the U.S. Department of Defense, the U.K. Ministry of Defence, the North Atlantic Treaty Organization (NATO) and the International Hydrographic Organization (IHO), for navigation, attitude and heading referencing systems using the geomagnetic field. It is also used widely in civilian navigation and heading systems. The model is produced at 5-year intervals, with the current model expiring on December 31, 2024. The current model WMM2020 is produced jointly by the NCEI and the British Geological Survey (BGS). The model, associated software, and documentation are distributed by NCEI on behalf of US National Geospatial-Intelligence Agency and by BGS on behalf of UK Defence Geographic Centre.}
+      \field{day}{14}
+      \field{month}{5}
+      \field{title}{World {{Magnetic Model}}}
+      \field{urlday}{26}
+      \field{urlmonth}{10}
+      \field{urlyear}{2024}
+      \field{version}{2020}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.25921/11v3-da71
+      \endverb
+      \verb{urlraw}
+      \verb https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ngdc%3AWMM2020/html
+      \endverb
+      \verb{url}
+      \verb https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ngdc%3AWMM2020/html
+      \endverb
+    \endentry
+    \entry{hughesMeasurementsTheirUncertainties}{book}{}
+      \name{author}{2}{}{%
+        {{hash=a7f6ea810c92e923e7b12ce8748bc904}{%
+           family={Hughes},
+           familyi={H\bibinitperiod},
+           given={Ifan},
+           giveni={I\bibinitperiod}}}%
+        {{hash=1ae4d38d473221b1dfa3cb416a29ebb5}{%
+           family={Hase},
+           familyi={H\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{e861172396e70b8edde933cbddf791f8}
+      \strng{fullhash}{e861172396e70b8edde933cbddf791f8}
+      \strng{bibnamehash}{e861172396e70b8edde933cbddf791f8}
+      \strng{authorbibnamehash}{e861172396e70b8edde933cbddf791f8}
+      \strng{authornamehash}{e861172396e70b8edde933cbddf791f8}
+      \strng{authorfullhash}{e861172396e70b8edde933cbddf791f8}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{Measurements and Their {{Uncertainties}}: {{A}} Practical Guide to Modern Error Analysis}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/DCSYIHGT/Hughes and Hase - Measurements and their Uncertainties A practical.pdf
+      \endverb
+      \keyw{⛔ No DOI found}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

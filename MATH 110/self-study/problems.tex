@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage{../../local}
+\usepackage[fourier]{../../local}
 \urlstyle{same}
 
 \newcommand{\classcode}{Math 110}
@@ -16,9 +16,6 @@ Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
 \linespread{1.2}
 \renewcommand{\R}{\mathbf R}
 \newcommand{\F}{\mathbf F}
-\newcommand{\range}{\mathrm{range \ }}
-\renewcommand{\null}{\mathrm{null \ }}
-\newenvironment{problem}{\textbf{Problem:}}{}
 \begin{document}
 	\maketitle
 
@@ -821,19 +818,34 @@ Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
 	\end{problem}
 
 	\begin{solution}
-		Suppose \( A_1 \cap A_2 \) is nonempty, and consider an element \( a \in A_1 \cap A_2 \). Then, we can 
-		write \( a = v + u_1 = w + u_2 \) for some \( u_1, u_2 \in U_1, U_2 \), and consider another element 
-		\( b = v + u_1' = w + u_2' \). Then, we conclude that \( u_1 - u_1' = u_2 - u_2' \), and since 
-		\( u_1 - u_1' \in U_1 \) and \( u_2 - u_2' \in U_2 \), then we conclude that 
-		\( u_1 - u_1' \in U_1 - U_2 \). 
-	%	We claim $A_1\cap A_2 = v + (U_1\cap U_2)$, which is an affine subset of $V$.  To see this, suppose $x \in v + (U_1\cap U_2)$.  Then there exists $u\in U_1\cap U_2$ such that $x = v + u$.  Since $u\in U_1$, we have $x \in v + U_1 = A_1$.  And since $u\in U_2$, we have $x\in v + U_2 = A_2$.  Thus $x\in A_1\cap A_2$ and $ v + (U_1\cap U_2) \subseteq A_1\cap A_2$.  Conversely, suppose $y\in A_1\cap A_2$.  Then there exist $u_1\in U_1$ and $u_2\in U_2$ such that $y = v + u_1$ and $y = v + u_2$.  But this implies $u_1= u_2$, and hence $u_1=u_2\in U_1\cap U_2$, thus $y\in v + (U_1\cap U_2)$.  Therefore $A_1\cap A_2\subseteq v + (U_1\cap U_2)$, and hence we have $A_1\cap A_2 = v + (U_1\cap U_2)$, as claimed.
+		Let \( A_1 = \{ v + u_1 : u_1 \in U_1 \} \), and \( A_2 = \{ v + u_2 : u_2 \in U_2 \} \).
+		Then, because \( v \) is common between both sets, then elements in the intersection \( A_1 \cap A_2
+		\) satisfy \( v + u_1 = v + u_2 \), or in other words \( u_1 = u_2 \). Let the set of \( u_i \) that
+		satisfy this be grouped into a new set, \( U_3 \). The zero element is \( U_3 \), since \( v = v \).
+		\( U_3 \) is closed under addition, since the equality \( u_1 = u_2 \) implies that the addition of
+		any two elements would also satisfy \( u_1 = u_2 \), and same goes with scalar multiplication. Thus,
+		\( U_3 \) is a subspace. The set \( A_1 \cap A_2 \) can then be written as \( v + U_3 \), hence it is
+		a translate of a subspace. If the intersection is empty, then \( A_1 \cap A_2 = \varnothing \).   
 	\end{solution}
 
 	\begin{problem}
-		Suppose \( U = \{(x_1, x_2, \dots, ) \in \F^{\infty} \mid x_k \neq 0 \text{ for finitely many \( k \)}\}  \). 
+		Suppose \( U = \{(x_1, x_2, \dots, ) \in \F^{\infty} \mid x_k \neq 0 
+		\text{ for finitely many \( k \)}\}  \). 
 		\begin{enumerate}[label=\alph*)]
 			\item Show that \( U \) is a subspace of \( \F^{\infty} \).
+
+				\begin{solution}
+					\( U \) is a subspace of \( \mathbf{F}^{\infty} \), since addition and scalar
+					multiplication would only affect the nonzero entries, hence the resulting element would
+					still be in \( U \).    
+				\end{solution}
 			\item Prove that \( \F^{\infty} / U \) is infinite-dimensional
+
+				\begin{solution}
+					Well, \( v \in \mathbf{F}^{\infty} \), so the only possible way to write down all the
+					available translates is to use an infinite number of "basis vectors" (essentially
+					infinite \( v \)'s), so \( \mathbf{F}^{\infty} / U \) is indeed infinite-dimensional.    
+				\end{solution}
 		\end{enumerate}
 	\end{problem}
 
@@ -845,9 +857,186 @@ Prof. Edward Frenkel \Large{\hfill \classname \hfill} \large{\today}
 		\] 
 		\begin{enumerate}[label=\alph*)]
 			\item Prove that \( A \) is a translate of some subspace of \( V \). 
+
+				\begin{solution}
+					Here, we leverage a previous result, stating that \( A \) is a translate of some subspace
+					if and only if \( \lambda v + (1 - \lambda) w \in A \) for all \( v, w \in A \) and \(
+					\lambda \in \mathbf{F} \). Let \( v = a_1 v_1 + \dots + a_m v_m \) and \( w = b_1 v_1 +
+					\dots + b_m v_m \). Then, \( \lambda v + (1 - \lambda)w \) is:
+					\begin{align*}
+						\lambda v + (1 - \lambda) w &= \lambda(a_1 v_1 + \dots + a_m v_m) + (1 - \lambda)
+						(b_1 v_1 + \dots + b_m v_m)  \\ 
+													&= [\lambda a_1 + (1 - \lambda) b_1] v_1 + \dots [\lambda
+													a_m + (1 - \lambda) b_{m}] v_m\\ 
+													&= \lambda( a_1 + \dots + a_m) + (1 - \lambda) (b_1 +
+													\dots + b_m) \\
+													&= \lambda + 1 - \lambda = 1 
+					\end{align*}
+					Hence, \( \lambda v + (1 - \lambda) w \in A \), as desired. 
+				\end{solution}
 			\item Prove that if \( B \) is a translate of some subspace of \( V \) and 
 				\( \{v_1, \dots, v_m\}  \subseteq B \), then \( A \subseteq B \). 
+
+				\begin{solution}
+					This is fairly trivial once we notice that all elements in \( A \) are formed from a
+					linear combination of \( v_1, \dots, v_m \), so naturally if \( \{v_1, \dots, v_m \}
+					\subseteq B \), then all elements of \( A \) are contained within \( B \), and hence \( A
+					\subseteq B \). 
+				\end{solution}
 			\item Prove that \( A \) is a translate of some subspace of \( V \) of dimension less than \( m \). 
+
+				\begin{solution}
+					From part (a), we know that \( A = v + U \) for some subspace \( U \). Suppose \( \dim U
+					> m\). Then this means that there is some \( u \in U \) that cannot be expressed as a
+					linear combination of \( m \) vectors, hence \( v + U \) cannot either. But this means it
+					cannot be a part of \( A \), since \( A \) is represented maximally as a linear
+					combination of \( m \) vectors. This is a contradiction. Therefore, the dimension of the
+					subspace must be less than \( m \). 
+				\end{solution}
+		\end{enumerate}
+	\end{problem}
+
+	\begin{problem}
+		Suppose \( U \) is a subspace of \( V \) such that \( V / U \) is finite-dimensional. Prove that \( V
+		\) is isomorphic to \( U \times (V / U) \). 
+	\end{problem}
+
+	\begin{solution}
+		I will assume here that \( V \) is also finite-dimensional (this seems to be true in earlier versions
+		of the book, so I will assume it here too.) Then, \( \dim (V / U) = \dim V - \dim U \) by 3.105, and
+		hence \( \dim (U \times (V / U)) = \dim U + \dim (V / U) = \dim V \). Then, 3.70 tells us that two o
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( \phi \in \mathcal{L}(V, \mathbf{F}) \) and \( \phi \neq 0  \). Prove that \( \dim V /
+		(\null \phi) = 1 \). 
+	\end{problem}
+
+	\begin{solution}
+		By 3.107, we know that \( V / (\null T) \) and \( \range \phi \) are isomorphic vector spaces.
+		Therefore, \( \dim \left[ V / \null \phi \right] = \dim \range \phi \). Then, since \( \phi \) maps
+		onto \( \mathbf{F} \) which has dimension 1, then it follows that \( \dim \left[ V / (\null \phi)
+		\right] = 1 \). 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( T \in \mathcal{L}(V, W) \) and \( U \) is a subspace of \( V \). Let \( \pi \) denote the
+		quotient map from \( V \) onto \( V / U \). Prove that there exists \( S \in \mathcal{L}(V / U, W) \)
+		such that \( T = S \circ \pi \) if and only if \( U \subseteq \null T \). 
+	\end{problem}
+
+	\begin{solution}
+		Suppose \( U \subseteq \null T \). Then, we define \( S \) such that \( S(u) = 0 \) for \( u \in U \)
+		and \( S(v) = T(v) \) otherwise. Therefore, \( (S \circ \pi)(v) = S(v + U) = S(v) + S(U) = T(v) \),
+		as desired. 
+
+		For the other direction, suppose an \( S \) exists such that \( T = S \circ \pi \). Thus, \( T(v) =
+		(S \circ \pi) (v)  \) for all \( v \in V \). Then, expanding this out, it implies \( T(v) = S(v + U)
+		= S(v) + S(U) \), which also must hold for any \( u \in U \) we choose. This necessarily implies
+		that \( S(u) = 0 \) for all \( u \) since otherwise we'd that \( T(v) \) equals two different values.
+		Now, take \( u \in U \). Then, \( T(u) = S(u + U) = S(U) \) since \( U \) is a subspace. But we know
+		from earlier that \( S(U) = 0 \), so \( T(u) = 0 \) for all \( U \) as well, hence \( U \subseteq
+		\null T \). 
+	\end{solution}
+	\subsection{Duality}
+	\begin{problem}
+		Explain why each linear functional is surjective or is the zero map.  
+	\end{problem}
+
+	\begin{solution}
+		Linear functionals are linear maps, hence given \( \phi \in V' \) and \( v \in V \), then \( \phi(v)
+		= x \), and \( \phi(\lambda v) = \lambda \phi(v) \) where \( \lambda \in \mathbf{F} \) is free. Thus,
+		it is either surjective or \( \phi(v) = 0 \) for all \( v \).  
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( V \) is finite-dimensional and \( U \) is a subspace of \( V \) such that \( U \neq V \).
+		Prove that there exists \( \phi \in V' \) such that \( \phi(u) = 0 \) for every \( u \in U \) but \(
+		\phi \neq 0 \). 
+	\end{problem}
+
+	\begin{solution}
+		Let \( u_1, \dots, u_m \) be a basis of \( U \), and extend this to a list of \( u_1, \dots, u_m,
+		\dots u_n \) to be a basis of \( V \). Since \( U \neq V \), this is possible. Then, define a map \(
+		\phi\) such that \( \phi(u_1) = \dots = \phi(u_m) = 0 \), but \( \phi(u_{m + 1}) = \dots = \phi(u_n)
+		= 1\). Then, \( \phi(u) = 0 \) for all \( u \in U \) since every \( u \) is a linear combination of
+		\( u_1, \dots, u_m \), but \( \phi \) is also obviously not the zero map.     
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( T \in \mathcal{L}(V, W) \) and \( w_1, \dots, w_m \) is a basis of range \( T \). Hence
+		for each \( v \in V \), there exist unique numbers \( \phi_1(v), \dots, \phi_m(v) \) such that
+		\[
+			Tv = \phi_1(v)w_1 + \dots + \phi_m(v) w_m
+		\]
+		thus defining functions \( \phi_1, \dots, \phi_m \) from \( V \) to \( \mathbf{F} \). Show that each
+		of the functions \( \phi_1, \dots, \phi_m \) is a linear functional on \( V \). 
+	\end{problem}
+
+	\begin{solution}
+		\( T \) is linear, so \( T(v + w) = T(v) + T(w) \). So, matching coefficients this gives us the
+		relation \( \phi(v + w) = \phi(v) + \phi(w) \), hence each \( \phi_i \) is a linear functional.  
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( v_1, \dots, v_n \) is a basis of \( V \) and \( \phi_1, \dots, \phi_n \) is the dual basis
+		of \( V' \). Define \( \Gamma : V \to \mathbf{F}^{n} \) and \( \Lambda: \mathbf{F}^{n} \to V \) by
+		\[
+			\Gamma(v) = (\phi_1(v), \dots, \phi_n(v)) \quad \text{and} \quad \Lambda(a_1, \dots, a_n) =
+			a_1v_1 + \dots + a_n v_n
+		\]
+		Explain why \( \Gamma \) and \( \Lambda \) are inverses of each other. 
+	\end{problem}
+
+	\begin{solution}
+		By 3.114, \( \Gamma(v) \) gives the coefficients for \( V \). By contrast, \( \Lambda(a_1, \dots,
+		a_n) \) generates a \( v \) based on the input coefficients. So \( \Lambda(\Gamma(v)) = v \) is
+		fairly obvious, hence they are inverses of each other. 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( m \) is a positive integer. Show that the dual basis of the basis \( 1, x, \dots, x^{m}
+		\)of \( \mathcal{P}_m(\mathbf{R}) \) is \( \phi_0, \phi_1, \dots, \phi_m \), where 
+		\[
+			\phi_k(p) = \frac{p^{(k)}(0)}{k!}
+		\]
+		\textit{Here \( p^{(k)} \) denotes the \( k^{\text{th}} \) derivative of \( p \), with the
+		understanding that the \( 0^{\text{th}} \) derivative of \( p \) is \( p \).}
+	\end{problem}
+
+	\begin{solution}
+		This follows directly from the Taylor expansion around \( x = 0  \) of \( p \), which uses \( 1,
+		\dots, x^{m} \) as a basis. Hence, if each \( \phi_k(p) \) is defined as above then
+		\[
+			p(x) = \sum_k \frac{p^{(k)}(0)}{k!} x^{k}
+		\]
+		as desired. 
+	\end{solution}
+
+	\begin{problem}
+		Suppose \( V \) and \( W \) are finite-dimensional. Prove that the map that takes \( T \in
+		\mathcal{L}(V, W) \) to \( T' \in \mathcal{L}(W', V') \) is an isomorphism of \( \mathcal{L}(V, W) \)
+		onto \( \mathcal{L}(W', V') \). 
+	\end{problem}
+
+	\begin{problem}
+		Suppose \( V \) is finite-dimensional and \( \phi_1, \dots, \phi_m \in V' \). Prove that the
+		following three sets are equal to each other. 
+		\begin{enumerate}[label=(\alph*)]
+			\item \( \spn(\phi_1, \dots, \phi_m) \)
+			\item \( \left( (\null \phi_1) \cap \dots \cap (\null \phi_m) \right)^{0} \)
+			\item \( \{\phi \in V' : (\null \phi_1) \cap \dots \cap (\null \phi_m) \subseteq \null \phi \} \)
+		\end{enumerate}
+	\end{problem}
+
+
+	\begin{problem}
+		Suppose \( V \) is finite-dimensional and \( v_1, \dots, v_m \in V \). Define a linear map \( \Gamma
+		: V' \to \mathbf{F}^{m} \) by \( \Gamma(\phi) = (\phi(v_1), \dots, \phi(v_m)) \). 
+		\begin{enumerate}[label=(\alph*)]
+			\item Prove that \( v_1, \dots, v_m \) spans \( V \) if and only if \( \Gamma \) is injective. 
+			\item Prove that \( v_1, \dots, v_m \) is linearly independent if and only if \( \Gamma \) is
+				surjective. 
 		\end{enumerate}
 	\end{problem}
 \end{document}

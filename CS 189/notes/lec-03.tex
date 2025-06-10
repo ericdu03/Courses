@@ -1,0 +1,293 @@
+\section{Multivariate Gaussians}
+\subsection{MLE for Multinomial Distribution}
+\begin{itemize}
+	\item Now suppose we want to do this for the multinomial distribution. Consider
+		flipping a six-sided die, and we want to know the probability of each result.
+		That is, \( \theta \) is now a 6-dimensional vector where \( \theta_i \) is
+		the probability that the value \( i \) is rolled. 
+	\item Given this, we can write \( P(X = k \mid \theta) = \theta_k \). 
+	\item Now, since one side is always face up, then we know that \( \sum_k \theta_k
+		= 1\), by law of total probability.  
+	\item Now, we can write the likelihood:
+		\[
+			P(D \mid \theta) = P(x_1, \dots, x_N \mid \theta) = \prod_{i = 1}^{N}
+			P(x_i \mid \theta) = \prod_{i = 1}^{N}\prod_{k = 1}^{6} \theta_k^{I[x_i =
+			k]}
+		\]
+		the exponent is an indicator variable that tracks whether roll \( i \) is
+		equal to \( k \). Otherwise, the exponent evaluates to \( \theta_k^{0} = 1
+		\). This is just a weird notational thing that will be helpful later. We can
+		then simplify this one more time:
+		\[
+			P(D \mid \theta) = \prod_{k = 1}^{N}\theta_k^{\sum_{i}^{N} I[x_i = k]} =
+			\prod_{k = 1}^{6}\theta_k^{n_k}
+		\]
+		this last step works because exponents add when we multiply them. Now, we
+		take the derivative of this with respect to \( \theta_k \). Now, our MLE
+		becomes:
+		\[
+			\theta_\text{MLE} = \argmax_{\theta \in \Theta} \log p(D \mid \theta) =
+			\argmax_{\theta \in \{\Theta \mid 1 = \sum_k \theta_k\}}\sum_{k =
+			1}^{6}\log \theta_k^{n_k}
+		\]
+	\item Now to go ahead and calculate this optimum point, we will use the method of
+		lagrange multipliers, because we have a constraint in the problem. 
+		We look for \( J(\theta, \lambda) = \log p(D \mid
+		\theta) + \lambda(1 - \sum_k \theta_k) \). 
+
+		The rationale for Lagrange multipliers is to take the function we are trying
+		to optimize, and add a \( \lambda \) term to it, thereby making it
+		"augmented". We now look for stationary points with respect to \( \theta \)
+		and \( \lambda \).  
+		It's really just there so that we can make sure that our parameters match the
+		constraints. It's a way for us to force \( \sum_k \theta_k = 1 \), since
+		otherwise \( J(\theta, \lambda) \) will increase in value. The expression for
+		\( J \) is:
+		\[
+			J(\theta, \lambda) = \log p(D \mid \theta) + \lambda \left( 1 - \sum_k
+			\theta_k \right) = \sum_{k = 1}^{6}\log \theta_k^{n_k} + \lambda \left( 1
+			- \sum_k \theta_k \right)
+		\]
+
+	\item Now we take derivatives with respect to \( \lambda \) and \( \theta \).
+		Taking this with respect to \( \lambda \):
+		\[
+			\pdv{J}{\lambda} = 0 \implies 1 = \sum_k \theta_k
+		\]
+		so we just get our constraint back, not very surprising. 
+	\item Now taking the derivative with respect to \( \theta_k \):
+		\[
+			\pdv{J}{\theta_k} = \pdv{\theta_k} \sum_{k = 1}^{6}\log \theta_k^{n_k} -
+			\pdv{\theta_k} \lambda \theta_k = \frac{n_k}{\theta_k} - \lambda = 0
+			\implies \theta_k = \frac{n_k}{\lambda}
+		\]
+		Plugging this into the first equation, we get:
+		\[
+			1 = \sum_k \theta_k = \sum_k \frac{n_k}{\lambda} \implies \lambda =
+			\sum_k n_k = N
+		\]
+		All together, we have \( \theta_k = \frac{n_k}{N} \). It is also nice (and
+		important) to check that \( \theta_k \) is valid, since it ranges between 0
+		and 1.  
+
+		\question{Review Lagrange multipliers}
+	\item So far, we've been able to use pen and paper to determine what the optimal
+		parameters are. This is not the case in general, as many times we will have
+		optimization problems that have no closed form solution. To solve this, we
+		need something called \textit{iterative optimization}.  
+\end{itemize}
+\subsection{Multivariate Gaussians}
+\begin{itemize}
+	\item Recall the univariate Gaussian:
+		\[
+			p(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}}\exp\left(
+			-\frac{1}{2\sigma^2}(x - \mu)^2 \right)
+		\]
+		The Multivariate Gaussian is just an extension of this, where \( x \in \R^{d}
+		\), \( \mu \in \R^{d} \), and \( \Sigma \in \R^{d \times d} \):
+		\[
+			p(x; \mu, \Sigma) = \frac{1}{(2\pi)^{n / 2} |\Sigma|^{1 / 2}}\exp\left(
+			-\frac{1}{2}(x - \mu)^{\top} \Sigma ^{-1} (x - \mu) \right)
+		\]
+		Despite it looking more complicated, a lot of the things we do with the
+		univariate Gaussian work the same in the multivariate case. \( \mu \) used 
+		to be a scalar, but now it's a \( 1 \times d \) vector, and the variance \(
+		\sigma \) is now this large covariance matrix \( \Sigma \). \( \Sigma \) is a
+		PSD (positive semidefinite) matrix, and its inverse is sometimes called the
+		precision matrix. 
+	\item Why a lecture on MVGs? They are extremely central to modern day ML!
+		For instance:
+		\begin{itemize}
+			\item Classification problems: generative vs. discriminative (we will
+				see this in a later lecture)
+			\item Unsupervised models: Principal Components Analysis \& autoencoders
+				(in a later lecture) 
+			\item Advanced Topics: Gaussian Process Regression (beyond the scope of
+				this class)
+		\end{itemize}
+		Even in the case where they aren't useful, because of the central limit
+		theorem many datasets we deal with will naturally be normal, and therefore we
+		will need to learn how to deal with MVGs. They're also really nice to work
+		with (analytically tractable). 
+	\item As a teaser, MVGs allow us to reduce dimensions, and it's used to derive the
+		steps for Principal Component Analysis (PCA)
+\end{itemize}
+\subsection{Univariate Gaussians}
+\begin{itemize}
+	\item To start, let's analyze the case where we have two normal distributions,
+		say, the height and weight of humans. By CLT with genetics, we can argue that
+		this should be distributed normally, so we have:
+		\[
+			\text{height} = X_h \sim N(\mu_h, \sigma_h^2) \quad \text{weight} = X_w
+			\sim N(\mu_w, \sigma_w^2)
+		\]
+	\item Now, suppose we want to write the \textit{joint distribution}, how would we
+		write this down? One way we can do this is to plot the distribution, and ask
+		questions about it. 
+		\begin{itemize}
+			\item If we computed the mean of the distribution, what would that look
+				like? Well, since the height and weight are different parameters, we
+				may write it as a vector \( u = [\mu_h, \mu_w] \), for the different
+				means. 
+			\item How would we describe the spread of the distribution? The
+				covariance matrix \( \Sigma \) gives us a way to talk about the
+				spread of the distribution when plotted.   
+		\end{itemize}
+		Ideally, we'd want to use something of the form:
+		\[
+			p([x_h, x_w]) = N(x_h; \mu_h, \sigma_h^2) N(x_w; \mu_w, \sigma_w^2)
+		\]
+		\question{At what point have we established that it should even be a product
+		of two Gaussians?} 
+
+		But because height and weight are not immediately independent, we cannot
+		write it in this form. But, in essence we would like to find a way to
+		transform the plot so that we \textit{can} write it in this way.
+	\item The trick is so "rotate" the distribution so that the correlation between
+		the the two parameters is zero, then we can write it as a product. To compute
+		this rotation, we want to multiply by some orthonormal matrix \( Q \) such
+		that:
+		\[
+			\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = Q \begin{bmatrix} x_h \\ x_w \end{bmatrix}
+		\]
+		keep this in mind; we will return to this later. 
+\end{itemize}
+
+\subsection{Understanding the Covariance Matrix}
+
+
+\begin{itemize}
+	\item Suppose we have two independent Gaussian RVs that are 1D, so we have \( X
+		\sim p(x) = N(\mu_1, \sigma_1^2)  \) and \( Y \sim p(y) = N(\mu_2,
+		\sigma_2^2) \). Then, we can write the joint distribution:
+		\[
+			p([x, y]) = \frac{1}{\sqrt{2\pi \sigma_1^2}}\exp\left[
+			-\frac{1}{2\sigma_1^2}(x - \mu_1)^2 \right]
+			\frac{1}{\sqrt{2\pi \sigma_2^2}}
+			\exp\left[ -\frac{1}{2\sigma_2^2}(y - \mu_2)^2 \right]
+		\]
+	\item We can then write this in matrix form:
+		\[
+			P(x, y) = \frac{1}{2\pi \sqrt{\sigma_1^2 \sigma_2^2}} 
+			\exp\left[-\frac{1}{2} 
+				\begin{bmatrix} 
+					x - \mu_1 & y - \mu_2
+				\end{bmatrix} 
+				\begin{bmatrix} 
+					\sigma_1^2 & 0 \\ 0 & \sigma_2^2 
+				\end{bmatrix}^{-1} 
+				\begin{bmatrix} 
+					x - \mu_1 \\ y - \mu_2 
+			\end{bmatrix} \right]
+		\] 
+		The intuition for having the \textit{inverse} covariance matrix in the
+		exponent is that in a univariate Gaussian, the exponent has a 
+		\( \frac{1}{\sigma^2} \) term, so to generalize that we have a 
+		\( \frac{1}{\sigma_i^2} \) term, which is achieved using the 
+		inverse covariance matrix. 
+
+		\question{Why does this also work for non-diagonal matrices?}  
+\end{itemize}
+
+\subsection{Review of Expectations, Variance, Covariance}
+\begin{itemize}
+	\item Recall that an expectation \( E(X) \) of a random variable \( X \) is
+		defined as \( \sum x P(x) \) for discrete and \( \int x P(x) dx \) for
+		continuous random variables.  
+
+		There's also the principle of linearity: 
+		\[
+			E\left(\sum_i \alpha_i x_i\right) = \sum_i \alpha_i E(x_i)
+		\]
+		this is a guaranteed properly regardless of whether \( x_i \) are
+		independent. For products, if \( x_i \) are independent, then we have:
+		\[
+			E \left( \prod_{i = 1}^{n}x_i \right) = \prod_{i = 1}^{n}E(x_i)
+		\]
+	\item The Variance of a \( RV \) with mean \( \mu = E(X) \), then the variance is
+		defined as \( \Var(X) = E[(X - \mu)^2] \). Expanding htis we get the
+		following properties:
+		\begin{itemize}
+			\item \( \Var(x) = E(X^2) - \mu^2 \)
+			\item \( \Var(aX + b) = a^2 \Var(X) \)
+			\item If \( x_1, \dots, x_n \) are independent and \( \alpha_1, \dots,
+				\alpha_n \) are constants:
+				\[
+					\Var\left( \sum_i \alpha_i x_i \right) = \sum \alpha_i^2
+					\Var(x_i)
+				\]
+		\end{itemize}
+	\item The covariance of two random variables is defined as:
+		\[
+			\Cov(X, Y) = E\left( (X - E(X)) (Y - E(Y)) \right) = 
+			E\left((x - \mu_x)(Y - \mu_y)\right) = E(XY) - E(X)E(Y)
+		\]
+		We also have \( \Cov(X, X) = \Var(X) \), and if two RVs are independent, then
+		\( \Cov(X, Y) = 0 \). 
+	\item The correlation is a related parameter, defined as:
+		\[
+			\Corr(X, Y) = \frac{\Cov(X, Y)}{\sqrt{\Var(X) \Var(Y)}}
+		\]
+		It's useful to think of it as a "normalized covariance", since the
+		correlation is restricted over the domain \( [-1, 1] \). -1 is considered the
+		minimum correlation, and 1 is the max correlation, and 0 is no correlation. 
+\end{itemize}
+\subsection{Return to MVG}
+\begin{itemize}
+	\item So now we can go back to the covariance matrix, which is a big matrix whose
+		\( (i, j) \)-th entry is defined as:
+		\[
+			\Sigma_{ij} = \Cov(X_i, X_j)
+		\]
+		From this definition, it's clear that the covariance matrix is always 
+		symmetric, since \( \Cov(X, Y) = \Cov(Y, X) \). For Gaussian RVs, it's true
+		that if \( \Cov(X, Y) = 0 \) iff \( X, Y \) are independent. \textbf{This is
+		not always true, the general case is an "if" case only!}
+	\item Now we return to the MVG that we had earlier. We worked through the "baby"
+		case of independent RVs, and move to the general case where the covariance
+		matrix is not always diagonal. 
+
+		At some fundamental level, the precision matrix is really a descriptor of
+		which way the axes in the scatterplot of the data is pointing, and we will
+		see how to quantify this by decomposing \( \Sigma^{-1} \) into rotation
+		matrices and such. 
+	\item Recall the general form for MVGs:
+		\[
+			p(x; \mu, \Sigma) = \frac{1}{(2\pi)^{n / 2}|\Sigma|} \exp\left(
+			-\frac{1}{2}(x -\mu)^{\top} \Sigma^{-1}(x - \mu) \right)
+		\]
+		the only term we will concern ourselves right now is the quadratic term in
+		the exponent. Intuitively, the quadratic term basically maps out the "level
+		sets" of the probability distribution, or effectively which values of \( x \)
+		give us \( p(x) \) being constant. This is because the equation \( x^{\top}
+		\Sigma^{-1} x = c \) basically defines a \( d \)-dimensional ellipse (the
+		case is quite easy to see with two dimensions) , with
+		which gives us an "orientation" of the Gaussian.  
+
+		\comment{The key takeaway is that the quadratic term defines level sets on
+			the MVG, which are in general ellipses. In particular, this description
+		comes from the elements of the covariance matrix.}
+	\item As an aside, there is a way to transform a general MVG into one whose
+		points lie in a circle -- this process is called "sphering" the MVGs. This
+		has applications in PCA, advanced linear regressions, etc. 
+\end{itemize} 
+\subsection{Diagonalizing a Matrix}
+\begin{itemize}
+	\item The spectral theorem tells us that if we have a symmetric matrix \( A \),
+		then we can write \( A = QDQ^{\top} \), where \( Q \) is orthonormal and \( D
+		\) is diagonal matrix with real eigenvalues. 
+
+		Since the covariance matrix is symmetric, we can diagonalize it too!
+		Moreover, finding the diagonalization is exactly what we need in order to
+		"axis align" the MVG, since a remember that a diagonal covariance matrix
+		is equivalent to axis alignment.  
+	\item There's also another property of MVGs that is important for diagonalization
+		called the \textbf{affine property}, which basically states that if \( X \)
+		is a set of independent RVs, then if \( Y = AX + \mu \sim N(\mu, \Sigma)\).
+		In particular, the covariance matrix of \( Y \) is given by \( A A^{\top}
+		\). 
+
+		We can also go the other way around: if \( Y \sim N(\mu, \Sigma) \), then \(
+		\Sigma^{- 1 / 2}(Y - \mu) \sim N(0, I)\). This is analogous to the that you
+		can always transform a Gaussian to one with zero mean and unit variance.  
+\end{itemize}

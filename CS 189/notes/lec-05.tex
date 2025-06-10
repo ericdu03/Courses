@@ -1,0 +1,179 @@
+\section{Linear Regression II}
+\begin{itemize}
+	\item Recall from last time we talked about Gaussian Linear Regression, where we
+		wanted to estimate \( \hat{y} =- \E_Y[p(y \mid x)] = w^{\top} x \). We
+		assumed that the residuals were Gaussian distributed, and from this math we
+		were able to recover the standard equations of linear regression. 
+
+		We wrote out \( \mathcal{L}_w = (Y - Aw)^{\top} (y - Aw) \), and then set \(
+		\pdv{\mathcal{ L}}{w} = 0\) to solve for \( w^{*} \). From this, we obtained
+		\( w_\text{MLE} = (A^{\top} A)^{-1} A^{\top} y \), and \( \sigma_\text{MLE}^2
+		= \frac{1}{n}\sum_i (y_i - w^{\top} x)^2\)
+	\item However, one major problem in this approach is that \( A^{\top} A \) may
+		not be invertible, which is the case when the features are not linearly
+		independent. For instance, if you have more features than data points, then
+		this will be the case. When it's not invertible, then there are infinitely
+		many good equations for \( w_\text{MLE} \), and this is called an
+		\textit{underdetermined system}. 
+	\item There are two ways for us to fix this: 
+		\begin{enumerate}[label=\arabic*.]
+			\item Remove features (via some type of heuristic) in the problem 
+				until the problem is linearly
+				independent. This is called "feature selection". This is an entire
+				area of ML that people are actively researching. 
+			\item Add constraints to the system to "tighten the system". This is
+				called "regularization". In some sense, we add constraints to limit
+				the number of degrees of freedom from the system. 
+
+				Here, we keep the same number of parameters, but add constraints on
+				the system so that we remove some of the freedom offered by these
+				features. 
+		\end{enumerate}
+\end{itemize}
+
+\subsection{Intuition for infinite solutions}
+\begin{itemize}
+	\item To illustrate this, suppose you have two features that are linearly
+		dependent, so \( \alpha x_1 = x_2 \). 
+	\item Suppose now that you found one \( \hat{w} \). Then, for any training data
+		point, we have \( \hat{y} = x^{\top} \hat{w} \) to be our point prediction.
+		We will now show that there are infinitely many \( \hat{w} \) that give us
+		the same prediction. If we expand this out:
+		\[
+			\hat{y} = \begin{bmatrix} x_1 & x_2  \end{bmatrix} 
+			\begin{bmatrix} \hat{w}_1 \\ \hat{w}_2 \end{bmatrix}
+			= \hat{w}_1 x_1 + \hat{w}_2 (\alpha x_1) = (\hat{w}_1 + \hat{w}_2 \alpha +
+			\beta - \beta)x_1 = (\hat{w}_1 + \beta) x_1 + (\hat{w}_2 \alpha - \beta)
+			\frac{x_2}{\alpha} = 
+			\begin{bmatrix}  x_1 & x_2 \end{bmatrix}
+			\underbrace{\begin{bmatrix} \hat{w}_1 + \beta \\ \frac{\hat{w}_2 \alpha -
+			\beta}{\alpha} \end{bmatrix}}_{\hat{w}'}
+		\]
+		and this gives us a different value of \( \hat{w} = \hat{w}' \) that also gives the same
+		prediction \( \hat{y} \). As a result, there are an infinite number of
+		"optimal" \( \hat{w} \) that gives the same prediction. 
+	\item The one that the Moore-Penrose chooses is the one that has the smallest
+		norm. Why might we want to choose this one? 
+
+		The reason we may want to choose this is because usually, solutions with
+		small norms affect our model in a more "uniform" way, where it is not greatly
+		influenced by small perturbations to our input (imagine adding a little
+		amount \( \delta \) to \( x \), and checking how our model reacts to it). 
+		Keeping the norm small is one
+		way we can ensure that this principle is maintained.  
+	\item What about the case where our design matrix is full rank? Is there any
+		reason we may want to put a constraint on \( \|w\| \)?   
+\end{itemize}
+\subsection{L2 Regularized Linear Regression} 
+\begin{itemize}
+	\item We will learn two systems, today, L2 and L1 regularization. These just
+		refer to the different norms that we will use to choose our optimal \(
+		\hat{w} \). 
+	\item In L2 regression, our loss function is:
+		\[
+			\mathcal{L} = (y - Aw)^{\top}(y - Aw) + \lambda \|w\|_2^2
+		\]
+		This is also sometimes called "ridge" regression, they mean the same thing. 
+	\item In te Bayesian model approach, what we will do is establish a \textit{prior
+		distribution} on the parameters, \( p(\theta)  \). Then, we want to compute
+		the posterior distribution, \( p(\theta \mid D) \). 
+
+		The \( p(\theta) \) is something that we can establish ahead of time (without
+		looking at the data), and then with this we can calculate \( p(\theta \mid D)
+		\). 
+	\item Then, the predictive distribution is given by:
+		\[
+			p(y \mid x) = \int_\theta p(y\mid x, \theta) p(\theta \mid D) \diff \theta
+		\]
+		This is generally done using Bayes rule:
+		\[
+			p(\theta \mid D) = \frac{p(D \mid \theta) p(\theta)}{p(D)}
+		\]
+		This is exceedingly dfficult to do in practice! This is not really something
+		that we will touch on further due to its difficulty. 
+	\item We will be "lazy", so instead of using normalized Bayesian probability (as
+		described here), we will just compute \( \argmax_\theta p(\theta \mid D) \),
+		and that will be our optimal \( \theta \). This is called maximum \textit{a
+		posteriori} (MAP) estimation.  
+
+		\comment{Conceptually, the way we solve this is the exact same as MLE, except
+			we now multiply by a \( p(\theta) \) term. This selects favorably for
+			some probability models over others; you can equivalently think of MLE as
+			the case where there is no preference for any particular model, since \(
+		p(\theta) = 1\).}
+\end{itemize}
+\subsection{MAP Estimation}
+\begin{itemize}
+	\item Again, now we are calculating \( \theta_\text{MAP} = \argmax_\theta
+		p(\theta \mid D) \). By Bayes' rule, we have:
+		\[
+			\argmax_\theta \frac{p(D \mid \theta) p(\theta)}{p(D)} = \argmax_\theta
+			p(D \mid \theta) p(\theta)
+		\]
+		recall that \( p(\theta) \) is our "prior" density for \( \theta \), and \(
+		p(D \mid \theta) \) is the posterior distribution.
+	\item The prior \( p(w) \) that corresponds to L2 regression is \( p(w) = N(w; 0,
+		\lambda I)\). So, using this, let's try to find \( w_\text{MAP} \). First, we
+		take the logarithm, so we have:
+		\begin{align*}
+			w_\text{MAP} &= \argmax_w \log p(D \mid w) p(w)\\
+						 &= \argmax_w \log p(D \mid
+			w) + \log N(w; 0, \lambda I)\\
+			&= \argmax_w \sum_{i = 1}^{N} \log N(y_i \mid w^{\top} x_i, \sigma^2) +
+			\log N(w \mid 0, \lambda I) \\ 
+			&= \argmin_w \frac{1}{2\sigma^2}(y - Aw)^{\top}(y - Aw) - \sum_{i =
+			1}^{d}\log\left[\frac{1}{\sqrt{2 \pi \lambda}} \exp \left( -
+			\frac{w_i^2}{2 \lambda} \right)\right]
+		\end{align*}
+		Note that we haven't taken the logarithm of the second expressino yet so
+		that's why the signs don't match yet. Then, after more simplification we get:
+		\[
+			w_\text{MAP} = \argmin_w (y - Aw)^{\top}(y - Aw) + \lambda' \|w\|_2^2
+		\]
+		for \( \lambda' = \frac{\sigma^2}{\lambda} \). 
+
+	\item You will almost always benefit from doing this as opposed to ordinary
+		linear regression -- this approach helps a lot with numerical stability as
+		well as guaranteeing uniqueness.    
+	\item The MAP solution just involves taking the partial derivative and set it to
+		zero, which we've already done on the homework. Here, we have:
+		\[
+			\nabla_w \mathcal{L}_\text{MAP} = -2A^{\top} y + 2A^{\top} Aw + 2 \lambda
+			I w \implies w^{*} = (A^{\top} A + \lambda I)^{-1} A^{\top} y 
+		\]
+		if \( \lambda > 0 \), then we can always guarantee that the matrix \(
+		A^{\top} A + \lambda I \) is invertible.  
+	\item The effect of \( \lambda \) is also important here. As you increase \(
+		\lambda \), the norm of \( w^{*} \) gets increasingly smaller. Practically,
+		how should we set \( \lambda \)? 
+
+		\question{yeah how do you do this? the slides don't really go into detail
+		about this.}
+\end{itemize}
+
+\subsection{Lasso regression}
+\begin{itemize}
+	\item This is using the L1 norm, which means that:
+		\[
+			w_{L_1} = \argmin_w (y - Aw)^{\top} (y - Aw) + \lambda \|w\|_1
+		\]
+		This penalty tends to choose sparse \( w \) over other ones, because the
+		penalty favors points on the axes compared to other points. L1 regression is
+		more likely to hit a contour on one of the axes, and thus it has a higher
+		chance of setting some parameters to exactly zero. 
+
+		By contrast, the L2 penalty looks like a ball, so there is no such bias. 
+	\item There is also a way for us to derive L1 regression, by using a Laplacian
+		prior:
+		\[
+			p(w) = \exp(-\lambda' \|w\|_1)
+		\]
+	\item There are some advantages to Lasso over ridge. Because of Lasso's tendency
+		to sparsity, sometimes it is best to just turn one of the parameters off,
+		which is sometimes favorable. On the other hand, when you have two parameters
+		that are highly correlated, then Lasso is bad because in choosing an optimum
+		it might just turn one completely off. 
+	\item People have also combined these two together, into a regression called
+		"elastic net regression". This is a middleground between the two regression
+		techniques, but we won't go into the details here. 
+\end{itemize}

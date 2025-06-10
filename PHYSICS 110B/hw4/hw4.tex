@@ -1,0 +1,455 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 110B}
+\newcommand{\classname}{Electromagnetism and Optics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 04} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by Berkeley EECS Department: \url{https://eecs.berkeley.edu/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	In this problem we will consider the reflection and transmission of EM waves in linear medium with the
+	oblique incidence of a monochromatic sinusoidal plane wave and the polarization of the incidence wave to
+	be \textit{perpendicular} to the plane of incidence. The coordinates are set up in a way as shown in the
+	right figure. (You might need to zoom in with the pdf file to see the angle \( \phi_R \) and \( \phi_T
+	\)). In this problem, you can assume that Snell's law holds, and we define the parameters \( \beta \equiv
+	\frac{\mu_1v_1}{\mu_2v_2} \) and \( \alpha \equiv \frac{\cos \theta_2}{\cos \theta_1} \). 
+	\begin{enumerate}[label=(\alph*)]
+		\item Using boundary conditions, show that the reflected and transmitted waves have the same
+			polarization as the incident wave. That is, show that 
+			\[
+				\phi_R = \phi_T = \frac{\pi}{2}
+			\]
+
+			\begin{solution}
+				First, we break each field down via vector decomposition:
+				\begin{align*}
+					\mathbf{E}_I &= E_I \mathbf{\hat{y}}\\
+					\mathbf{E}_R &= E_R \left[\sin \phi_R \mathbf{\hat{y}} + \cos \phi_R \sin \theta_1
+					\mathbf{\hat{z}} + \cos \phi_R \cos \theta_1 \mathbf{\hat{x}} \right]\\
+					\mathbf{E}_T &= E_T \left[ \sin \phi_T \mathbf{\hat{y}} + \cos \phi_T \sin \theta_2
+						\mathbf{\hat{z}} - \cos
+					 \phi_T \cos \theta_2 \mathbf{\hat{x}}\right]
+				\end{align*}
+				The \( \mathbf{B} \) field can also be found, using \( \mathbf{B} = \frac{1}{c}\mathbf{k}
+				\times \mathbf{E} \) to get the direction:
+				\begin{align*}
+					\mathbf{B}_I &=  B_I (\sin \theta_1 \mathbf{\hat{z}} - \cos \theta_1 \mathbf{\hat{x}}) \\ 
+					\mathbf{B}_R &= B_R (\cos \phi_R \mathbf{\hat{y}} + \sin \phi_R \sin \theta_1
+					\mathbf{\hat{z}} + \sin \phi_R \cos \theta_1 \mathbf{\hat{x}}) \\ 
+					\mathbf{B}_T &= B_T(\cos \phi_T \mathbf{\hat{y}} + \sin \phi_T \sin \theta_2
+					\mathbf{\hat{z}} - \sin \phi_T \cos \theta_2 \mathbf{\hat{x}}) 
+				\end{align*}
+				The boundary conditions are imposed just the same as in lecture:
+				\begin{align}
+					\label{cond1}\epsilon_1(\mathbf{E}_I + \mathbf{E}_R)_z &= \epsilon_2 (\mathbf{E}_T)_z\\
+					\label{cond2}(\mathbf{E}_I + \mathbf{E}_R)_{x, y} &= (\mathbf{E}_T)_{x, y} \\ 
+					\label{cond3}(\mathbf{B}_I + \mathbf{B}_R)_z &= (\mathbf{B}_T)_z\\
+					\label{cond4}\frac{1}{\mu_1}(\mathbf{B}_I + \mathbf{B}_r)_{x, y} 
+								&=  \frac{1}{\mu_2}(\mathbf{B}_T)_{x, y} 
+				\end{align}
+				So, imposing all the boundary conditions, we have:
+				\begin{align*}
+					\text{\ref{cond1}:}& \quad \epsilon_1 E_R \cos \phi_R \sin \theta_1 = \epsilon_2 E_T \cos
+					\phi_T \sin \theta_2\\
+					\text{\ref{cond2}:}& \quad \begin{cases}
+						E_R \cos \phi_R \cos \theta_1 = - E_T \cos \phi_T \cos \theta_2 & \text{(x
+						direction)}\\
+						E_I + E_R \sin \phi_R = E_T \sin \phi_T & \text{(y direction)}
+					\end{cases}\\
+					\ref{cond3}:& \quad \frac{1}{v_1}(E_I \sin \theta_1 + E_R \sin \phi_R \sin \theta_1) =
+					\frac{1}{v_2}E_T \sin \phi_T \sin \theta_2\\
+					\ref{cond4}:& \quad \begin{cases}
+						\frac{1}{\mu_1v_1}(-E_I \cos \theta_1 + 
+						E_R \sin \phi_R \cos \theta_1) =
+						-\frac{1}{\mu_2v_2}E_T \sin \phi_T \cos \theta_2 & \text{(x direction)}\\
+						\frac{1}{\mu_1v_1}E_R \cos \phi_R = -\frac{1}{\mu_2v_2}E_T \cos \phi_T & \text{(y
+						direction)}
+					\end{cases}
+				\end{align*}
+				Now, combining the first part of \ref{cond2} and second part of \ref{cond4}, we get:
+				\[
+					-\beta E_T \cos \phi_T \cos \theta_1 = - E_T \cos \phi_T \cos \theta_2 \implies E_T \cos
+					\phi_T(\cos \theta_2 - \beta \cos \theta_1) = 0
+				\]
+				We know that \( \cos \theta_2 - \beta \cos \theta_1 \) is not always zero, so this leaves \(
+				\cos \phi_T = 0 \), which requires \( \phi_T = \frac{\pi}{2} \). Plugging this back into the
+				second part of \ref{cond4}, this also implies \( \phi_R = \frac{\pi}{2} \). 
+			\end{solution}
+		\item Show that the complex amplitudes \( \tilde E_{0I}, \tilde E_{0R} \) and \( \tilde E_{0T} \) are
+			related to each other by 
+			\[
+				\tilde E_{0R} = \left( \frac{1 - \alpha \beta}{1 + \alpha \beta} \right)\tilde E_{0I} \quad
+				\text{and} \quad \tilde E_{0T} = \left( \frac{2}{1 + \alpha \beta} \right)\tilde E_{0I}
+			\]
+			\begin{solution}
+				With the condition on \( \phi_R \) and \( \phi_T \), it helps to simplify the boundary
+				conditions, so \( \sin \phi_R = 1 \) and \( \cos \phi_R = 0 \):
+				\begin{align*}
+					\text{\ref{cond2}:}& \quad E_I + E_R = E_T\\
+					\text{\ref{cond3}:}&\quad \frac{1}{v_1}(E_I \sin \theta_1 + E_R \sin \theta_1) =
+					\frac{1}{v_2}E_T \sin \theta_2\\
+					\text{\ref{cond4}:}& \quad \frac{1}{\mu_1v_1}(-E_I \cos \theta_1 + E_R \cos \theta_1) =
+					-\frac{1}{\mu_2v_2}E_T \cos \theta_2
+				\end{align*}
+				The third equation can be written in terms of \( \alpha \) and \( \beta \):
+				\[
+					-E_I + E_R = - \alpha \beta E_T
+				\]
+				Now substitute in the first equation:
+				\[
+					-E_I + E_R = - \alpha \beta (E_I + E_R) \implies E_R = \left( \frac{1-\alpha \beta}{1 +
+					\alpha \beta} \right)E_I
+				\]
+				as desired. Substituting this back into the first equation, we have:
+				\[
+					E_I + \left( \frac{1 - \alpha \beta}{1 + \alpha \beta} \right)E_I = E_T \implies E_T =
+					\left(\frac{2}{1 + \alpha \beta}\right) E_I
+				\]
+				as desired. 
+			\end{solution}
+		\item In the case where \( \mu_1 \simeq \mu_2 \simeq \mu_0 \), show that the reflected wave has a \(
+			\pi\)-phase shift with respect to the incident wave then \( v_2 < v_1 \). 
+
+			\begin{solution}
+				In this case, then \( \beta \approx \frac{v_1}{v_2} > 1 \), so all we need to show is that \(
+				1 - \alpha \beta < 1\), or in other words \( \alpha > 1 \). We show this by rewriting \( \alpha
+				\) using Snell's law
+				\[
+					\alpha = \frac{\cos \theta_2}{\cos \theta_1} = \frac{\sqrt{1 - \sin^2 \theta_2}}{\cos
+					\theta_1} = \left( \frac{1 - \left( \frac{v_2}{v_1} \right)^2 \sin^2 \theta_1}{1 - \sin^2
+					\theta_1} \right)^{1 / 2}
+				\]
+				Now, take a look at this quantity. We know that \( \frac{v_2}{v_1} < 1 \), so the quantity in
+				the numerator is larger than that in the denominator. Therefore, the fraction is larger than
+				one, so \( \alpha > 1 \). Therefore \( \alpha \beta > 1 \), and as such \( 1 - \alpha \beta <
+				1 \), so that introduces a minus sign:
+				\[
+					E_R = - \frac{|1 - \alpha \beta|}{|1 + \alpha \beta|}E_I 
+				\]
+				which is equivalent to a \( \pi \) phase shift. 
+			\end{solution}
+		\item Is there \textit{Brewster's angle} when the incident wave has a polarization perpendicular to
+			the plane of incidence? That is, is there an incident angle such that \( \tilde E_{0R} = 0 \)?  
+
+			\begin{solution}
+				Continuing the math from the previous section, we know that we can write:
+				\[
+					\alpha = \frac{1}{\beta}\frac{\sqrt{\beta^2 - \sin^2 \theta_1}}{\cos \theta_1}
+				\]
+				For \( \tilde E_{0R} = 0 \), then we require \( 1 -\alpha \beta = 0 \), so we are looking for 
+				an angle \( \theta_1 \) such that:
+				\[
+					1 - \frac{\sqrt{\beta^2 - \sin^2 \theta_1}}{\cos \theta_1} = 0 \implies \cos \theta_1
+					= \sqrt{\beta^2 - \sin^2 \theta_1}
+				\]
+				This eventually simplifies to \( \beta = 1 \), which is the case where the two media are
+				identical (i.e. no boundary exists). Therefore, there is no Brewster's angle. 
+			\end{solution}
+		\item Consider the \( z \)-component of the Poynting vector.
+			\[
+				\mean{|\mathbf{S}_I \cdot \hat{\mathbf{z}}|} = \frac{|\tilde E_{0I}|^2}{2\mu_1v_1}\cos
+				\theta_1, \quad \mean{|\mathbf{S}_R \cdot \hat{\mathbf{z}}|} = \frac{|\tilde
+				E_{0R}|^2}{2\mu_1v_1} \cos \theta_1, \quad \text{and} \quad \mean{|\mathbf{S}_T \cdot
+			\hat{\mathbf{z}}|} = \frac{|\tilde E_{0T}|^2}{2 \mu_2v_2}\cos \theta_2
+			\]
+			where \( \mean{\dots} \) means time average. The reflection and transmission coefficients are
+			defined as
+			\[
+				R\equiv \frac{\mean{|\mathbf{S}_R \cdot \hat{\mathbf{z}}|}}{\mean{|\mathbf{S}_I \cdot
+				\hat{\mathbf{z}}|}} \quad \text{and} \quad T\equiv \frac{\mean{|\mathbf{S}_T \cdot
+				\hat{\mathbf{z}}|}}{\mean{|\mathbf{S}_I \cdot \hat{\mathbf{z}}|}}
+			\]
+			Explicitly check that \( R +T = 1 \). 
+
+			\begin{solution}
+				We use the formulas that we have from part (b):
+				\[
+					R = \frac{\frac{|E_R|^2}{2 \mu_1v_1}\cos \theta_1}{\frac{|E_I|^2}{2 \mu_1v_1}\cos
+					\theta_1} = \frac{|E_R|^2}{|E_I|^2} = \left( \frac{1 - \alpha \beta}{1 + \alpha \beta}
+					\right)^2
+					\quad
+					T = \frac{\frac{|E_T|^2}{2 \mu_2v_2} \cos \theta_2}{\frac{|E_I|^2}{2 \mu_1v_1}\cos
+					\theta_1} = \alpha \beta \frac{|E_T|^2}{|E_I|^2} = \alpha \left( \frac{2}{1 + \alpha
+					\beta} \right)^2
+				\]
+				Adding these two up:
+				\[
+					 R + T = \left( \frac{1 - \alpha \beta}{1 + \alpha \beta} \right)^2 + \alpha \beta \left(
+					 \frac{2}{1 + \alpha \beta}\right)^2 = \frac{(1 - \alpha \beta)^2 + 4 \alpha \beta}{(1 +
+				 \alpha \beta)^2} = \frac{(1 + \alpha \beta)^2}{(1 + \alpha \beta)^2} = 1
+				\]
+				as desired. 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 2} 
+	According to Snell's law, when light passes from an optically dense medium into a less dense one (\( n_1
+	> n_2\)), the propagation vector \( \mathbf{k} \) bends \textit{away} from the normal (Fig. below). In
+	particular, if the light is incident at the \textbf{critical angle}
+	\[
+		\theta_c \equiv \sin^{-1}(n_2 / n_1)
+	\]
+	then \( \theta_T = 90^{\circ} \), and the transmitted ray just grazes the surface. If \( \theta_I
+	\)\textit{exceeds} \( \theta_c \), there is no refracted ray at all, only a reflected one (this is the
+	phenomenon of \textbf{total internal reflection}, on which light pipes and fiber optics are based). But
+	the \textit{fields} are not zero in medium 2; what we get is a so-called \textbf{evanescent wave}, which
+	is rapidly attenuated and transports no energy into medium 2. 
+
+	A quick way to construct the evanescent wave is simply to quote the results of Section 9.3.3, with \( k_T
+	= \omega n_2 / c\) and
+	\[
+		\mathbf{k}_T = k_T (\sin \theta_T \hat{\mathbf{x}} + \cos \theta_T \hat{\mathbf{z}})
+	\]
+	the only change is that
+	\[
+		\sin \theta_T = \frac{n_1}{n_2}\sin \theta_I
+	\]
+	is now greater than 1, and 
+	\[
+		\cos \theta_T = \sqrt{1 - \sin^2 \theta_T} = i\sqrt{\sin^2 \theta_T - 1}
+	\]
+	is imaginary. (Obviously, \( \theta_T \) can no longer be interpreted as an angle!)
+	\begin{enumerate}[label=(\alph*)]
+		\item Show that 
+			\[
+				\mathbf{E}_T(\mathbf{r}, t) = \tilde{\mathbf{E}}_{0_T} e^{-\kappa z}e^{i(kx - \omega t)}
+			\]
+			where 
+			\[
+				\kappa \equiv \frac{\omega}{c} \sqrt{(n_1 \sin \theta_I)^2 - n_2^2} \quad \text{and} \quad
+				k\equiv \frac{\omega n_1}{c}\sin \theta_I
+			\]
+			this is a wave propagating in the \( x \) direction (\textit{parallel} to the interface!), and
+			attenuated in the \( z \) direction. 
+
+			\begin{solution}
+				We did this portion in lecture. Consider first that the transmitted wave can be written as:
+				\[
+					\mathbf{E}_T = \Re\left\{ E_{0T} e^{i(\mathbf{k}_T \cdot \mathbf{r} - \omega t)} \right\}
+				\]
+				Here, we write
+				\[
+					\mathbf{k}_T = k_T \cos \theta_T \mathbf{\hat{z}} + k_T \sin \theta_T \mathbf{\hat{x}}
+				\]
+				From the problem statement, we know that \( \cos \theta_T \) is purely imaginary, so we can
+				write \( i \kappa \) as:
+				\[
+					i \kappa = k_T \cos \theta_T = k_T i\sqrt{\sin^2 \theta_T - 1} = i \frac{k_T}{n_2}
+					\sqrt{(n_1 \sin \theta_I)^2 - n_2^2} = i \frac{\omega}{c}\sqrt{(n_1 \sin \theta_I)^2 -
+					n_2^2}
+				\]
+				Now, we can do the same thing for the \( \mathbf{\hat{x}} \) direction, using Snell's law
+				once again:
+				\[
+					k = k_T \sin \theta_T = k_T \frac{n_1}{n_2} \sin \theta_I = \frac{\omega}{c} n_1 \sin
+					\theta_1
+				\]
+				Combining these two equations, we get the desired result:
+				\[
+					\mathbf{E}_T = \mathbf{E}_{0T}e^{i(i \kappa z+ k x - \omega t)} = \mathbf{E}_{0T}
+					e^{-\kappa z}e^{i (kx - \omega t)}
+				\]
+				as desired. 
+			\end{solution}
+		\item Noting that \( \alpha \) is now imaginary, use Eq. 9.110 to calculate the reflection
+			coefficient for polarization parallel to the plane of incidence. [Notice that you get 100 percent
+			reflection, which is better than a conducting surface (see, for example, prob. 9.23).]
+
+			\begin{solution}
+				Equation 9.110 reads:
+				\[
+					\tilde E_{0R} = \left( \frac{\alpha - \beta}{\alpha + \beta} \right)\tilde E_{0I}
+				\]
+				Now that \( \alpha \) is purely imaginary, then we can write \( \alpha = ia \) for \( a \in
+				\R \), so therefore:
+				\[
+					R = \left| \frac{\alpha - \beta}{\alpha + \beta} \right|^2 = \left| \frac{- \beta +
+					ia}{\beta + ia} \right|^2 = \left| \frac{a^2 +
+					\beta^2}{a^2 + \beta^2} \right| = 1
+				\]
+				as desired.   
+			\end{solution}
+		\item Do the same for polarization perpendicular to the plane of incidence (use the results of Prob.
+			9.17). 
+
+			\begin{solution}
+				We will take the results from problem 1 of the homework. None of the math actually changes
+				except for the fact that now \( \alpha \) is again imaginary, so we have:
+				\[
+					R = \left( \frac{1 - \alpha \beta}{1 + \alpha \beta} \right)E_I,  \quad T = \frac{2}{1 +
+					\alpha \beta} E_I
+				\]
+				Again, let \( \alpha = ia \) where \( a \in \R \), so:
+				\[
+					R = \left| \frac{1 - ia \beta}{1 + ia \beta} \right|^2 = \frac{1 + a^2 \beta^2}{1
+					+ a^2 \beta^2}  = 1	
+				\]
+				so this is the same. 
+			\end{solution}
+		\item In the case of polarization perpendicular to the plane of incidence, show that the (real)
+			evanescent wave fields are
+			\begin{align*}
+				\mathbf{E}(\mathbf{r}, t) &= E_0e^{-\kappa z}\cos(kx - \omega t) \hat{\mathbf{y}}\\
+				\mathbf{B}(\mathbf{r}, t) &=  \frac{E_0}{\omega}e^{-\kappa z}\left[ \kappa \sin (kx - \omega
+				t) \mathbf{ \hat{x}} + k \cos(kx - \omega t) \hat{\mathbf{z}}\right] 
+			\end{align*}
+
+			\begin{solution}
+				From part (a) we know that:
+				\[
+					\mathbf{E}_T = \mathbf{E}_{0T}e^{-\kappa z}e^{i(kx - \omega t)}
+				\]
+				From problem 1, we know that \( \mathbf{E}_{0T} \) points strictly in the \( \mathbf{\hat{y}}
+				\) direction, so taking the real part:
+				\[
+					\mathbf{E}_T = E_{0T}e^{-\kappa z} \cos(kx - \omega t) \mathbf{\hat{y}}
+				\]
+				For the \( \mathbf{B} \) field, we know from problem 1 that:
+				\[
+					\mathbf{B}_T = B_T(\mathbf{r}, t) (\sin \theta_T \mathbf{\hat{z}} 
+					- \cos \theta_T \mathbf{\hat{x}}) = \frac{E_T(\mathbf{r}, t)}{v} (\sin \theta_T
+					\mathbf{\hat{z}} - \cos \theta_T \mathbf{\hat{x}})
+				\]
+				From here, it will be useful to define a new constant \( a \):
+				\[
+					a = \frac{1}{n_2}\sqrt{\sin^2 \theta_T - 1}
+				\]
+				so we may write \( \cos \theta_T = ia \). Likewise, we can substitute \( \sin \theta_T =
+				\frac{n_1}{n_2}\sin \theta_I \). This leaves us with:
+				\[
+					\mathbf{B}_T(\mathbf{r}, t) = \frac{E_{0T}}{v} e^{-\kappa z}\Re\left\{ (\cos (kx - \omega
+					t) + i \sin (kx - \omega t))\left( \frac{n_1}{n_2}\sin \theta_I \mathbf{\hat{x}} - ia
+				\mathbf{ \hat{z}} \right)\right\}
+				\]
+				The real part is given by:
+				\[
+					\mathbf{B}_T(\mathbf{r}, t) = \frac{E_{0T}}{v} e^{-\kappa z}\left( \frac{n_1}{n_2}\sin
+					\theta_I \cos (kx - \omega t) \mathbf{\hat{z}} + a \sin(kx - \omega t) \mathbf{\hat{x}} \right)
+				\]
+				Rewriting \( a \) in terms of \( \kappa \) and other constants, we find that \( a =
+				\frac{\kappa c}{\omega n_2} \). So, we have:
+				\begin{align*}
+					\mathbf{B}_T(\mathbf{r}, t) &= \frac{E_{0T}}{v} e^{-\kappa z}\left( \frac{n_1}{n_2}\sin
+					\theta_I \cos (kx - \omega t) \mathbf{\hat{z}} + \frac{\kappa c}{\omega n_2}
+						\sin(kx - \omega t) \mathbf{\hat{x}} \right)\\
+							&= \frac{E_{0T}}{v_2}e^{-\kappa z}\frac{1}{n_2}\frac{c}{\omega} 
+							\left( n_1 \sin \theta_I \frac{\omega}{c} \cos (kx - \omega t)\mathbf{\hat{z}} 
+							+ \kappa \sin (kx - \omega t)
+							\mathbf{\hat{x}} \right) \\ 
+							&= \frac{E_{0T}}{\omega}e^{-\kappa z}
+							\left( k \cos (kx - \omega t)\mathbf{\hat{z}} + \kappa \sin
+							(kx - \omega t) \mathbf{\hat{x}}\right) 
+				\end{align*}
+				as desired. Note that \( E_{0T} = E_0 \) defined in the problem statement. It took me while
+				to realize that this isn't the incident magnitude, but instead just another way of denoting the
+				magnitude of the transmitted wave.  
+			\end{solution}
+		\item Check that the fields in (d) satisfy all of Maxwell's equations (Eq. 9.68). 
+
+			\begin{solution}
+				We'll check these one by one. Starting with \( \nabla \cdot \mathbf{E} = 0 \):
+				\[
+					\nabla \cdot \mathbf{E} = \pdv{y} E_0e^{-\kappa z}\cos (kx - \omega t) = 0
+				\]
+				Now for \( \nabla \cdot \mathbf{B} = 0 \): 
+				\begin{align*}
+					\nabla \cdot \mathbf{B} &= \frac{E_{0T}}{\omega}\left( \pdv{x} e^{-\kappa z} \kappa \sin
+					(kx - \omega t) + \pdv{z} e^{-\kappa z}\cos(kx - \omega t) \right)\\
+					&= \frac{E_{0T}}{\omega}\left[ e^{-\kappa z}\kappa k \cos(kx - \omega t) - \kappa e^{-\kappa
+					z} k \cos(kx - \omega t) \right] = 0 
+				\end{align*}
+				Now, \( \nabla \times \mathbf{E} = -\partial_t \mathbf{B} \), starting with \( \nabla \times
+				\mathbf{E}\):
+				\[
+					\nabla \times \mathbf{E} = \epsilon^{ijk}\partial_j E_k = \pdv{x} E_y \mathbf{\hat{z}} -
+					\pdv{z} E_y \mathbf{\hat{x}} = E_{0T} \kappa e^{-\kappa z}\cos (kx - \omega t)
+					\mathbf{\hat{x}} - E_{0T} e^{-\kappa z} \kappa \sin(kx - \omega t) \mathbf{\hat{z}}
+				\]
+				Now for \( -\partial_t \mathbf{B} \):
+				\begin{align*}
+					-\partial_t \mathbf{B} &= -\frac{E_{0T}}{\omega} e^{-\kappa z}\left( -\kappa \omega
+					\cos(kx - \omega t) \mathbf{\hat{x}} + k \omega \sin(kx - \omega t) \mathbf{\hat{z}}
+				\right)\\
+				&= E_0 e^{-\kappa z}(\kappa \cos (kx - \omega t) \mathbf{\hat{x}} - k \sin (kx - \omega t)
+				\mathbf{\hat{z}})
+				\end{align*}
+				Indeed they are equal. Finally, for \( \nabla \times \mathbf{B} = \mu \mathbf{J} + \mu
+				\epsilon \partial_t \mathbf{E} \), we first note that \( \mathbf{J} = 0 \) here, so we need
+				to show \( \nabla \times \mathbf{B} = \mu \epsilon \partial_T \mathbf{E} \). Starting with \(
+				\nabla \times \mathbf{B}\):
+				\[
+					\nabla \times \mathbf{B} = \epsilon^{ijk}\partial_j B_k = \pdv{z}B_x \mathbf{\hat{y}} -
+					\pdv{y} B_x \mathbf{\hat{z}} + \pdv{y} B_z \mathbf{\hat{x}} - \pdv{x} B_z \mathbf{\hat{y}}
+				\]
+				Note that neither component of \( \mathbf{B} \) has \( y \)-dependence, so this simplifies
+				to:
+				\begin{multline*}
+					\nabla \times \mathbf{B} = \pdv{z}B_x \mathbf{\hat{y}} - \pdv{x} B_z \mathbf{\hat{y}} =
+					\frac{E_{0T}}{\omega}(-\kappa) e^{-\kappa z}\kappa \sin (kx - \omega t) -
+					\frac{E_{0T}}{\omega} e^{-\kappa z}(-k^2 \sin (kx - \omega t) \\
+					= \frac{E_{0T}}{\omega}
+					e^{-\kappa z} \sin (kx - \omega t) (k^2 - \kappa^2)
+				\end{multline*}
+				Now, we compute \( \mu \epsilon \partial_t \mathbf{E} \):
+				\[
+					\mu \epsilon \partial_T \mathbf{E} = E_{0T}e^{-\kappa z}\omega \sin(kx - \omega t)
+				\]
+				To match these, we simplify \( k^2 - \kappa^2 \), using their definitions listed in the
+				problem outline:
+				\[
+					k^2 - \kappa^2 = \left( \frac{\omega}{c}n_1 \right)\sin^2 \theta_I - \left[ \left(
+					\frac{\omega}{c} \right)^2 (n_1 \sin \theta_I)^2 - \left( \frac{\omega n_2}{c} \right)^2
+					\right]= \left( \frac{\omega n_2}{c} \right)^2
+				\]
+				Therefore:
+				\[
+					\nabla \times \mathbf{B} = \frac{E_{0T}}{\omega}e^{-\kappa z}\sin(kx - \omega t) \left(
+					\frac{\omega n_2}{c} \right)^2 = E_{0T}e^{-\kappa z} \omega \sin (kx - \omega t) \left(
+				\frac{n_2}{c} \right)^2
+				\]
+				Using the fact that \( \frac{n_2}{c} = \frac{1}{v_2} = \sqrt{\mu \epsilon} \), then we get
+				the desired equality:
+				\[
+					\nabla \times \mathbf{B} = \mu \epsilon E_{0T}e^{-\kappa z} \omega \sin(kx - \omega t) =
+					\mu \epsilon \partial_t \mathbf{E}
+				\]
+			\end{solution}
+		\item For the fields in (d), construct the Poynting vector, and show that, on average, no energy is
+			transmitted in the \( z \) direction. 
+
+			\begin{solution}
+				The Poynting vector is defined as:
+				\[
+					\mathbf{S} = \frac{1}{\mu}(\mathbf{E} \times \mathbf{B}) = \frac{1}{\mu}
+					\epsilon^{ijk}E_j B_k = \frac{1}{\mu}(E_y B_z \mathbf{\hat{x}} - E_y B_x
+					\mathbf{\hat{z}}) 
+				\]
+				Expanding this out, we get:
+				\begin{align*}
+					\mathbf{S} &= \frac{1}{\mu}\left( E_{0T} e^{-\kappa z} \cos(kx - \omega t)
+					\frac{E_{0T}}{\omega} e^{-\kappa z} k \cos(kx -\omega t) \mathbf{\hat{x}} -
+				E_{0T}e^{-\kappa z} \cos(kx - \omega t) \frac{E_{0T}}{\omega} e^{-\kappa z} \kappa \sin(kx -
+			\omega t) \mathbf{\hat{z}}\right)\\
+			&= \frac{1}{\mu \omega}\left( E_{0T}e^{-\kappa z} \right)^2 \left( k \cos^2(kx - \omega t)
+			\mathbf{\hat{x}} - \kappa \cos(kx - \omega t) \sin(kx - \omega t) \mathbf{\hat{z}} \right)
+				\end{align*}
+				Averaged over time, we see that the Poynting vector in the \( \mathbf{\hat{z}} \) direction
+				has a \( \sin \theta \cos \theta \) term, and we know that
+				\[
+					\mean{\sin \theta \cos \theta} = \mean{\frac{1}{2} \sin(2 \theta)} = 0
+				\]
+				Therefore, there is no energy transmitted in the \( z \) direction. 
+			\end{solution}
+	\end{enumerate}
+\end{document}

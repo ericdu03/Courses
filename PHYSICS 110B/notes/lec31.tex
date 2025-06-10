@@ -1,0 +1,116 @@
+\section{April 16}
+\subsection{Lienard Formulation}
+Last lecture, we left off with our discussion of a general formula for the power radiated by a particle when
+\( v \neq 0 \). Picking up where we left off, we concluded last that the power emitted and the power received
+at a time \( t_s \) later may be written as:
+\begin{align*}
+	\dv{W}{t} &= \dv{W}{t_s} \left( 1 - \frac{\brcurs \cdot \mathbf{v}}{c} \right)\\
+			  &= \dv{W}{t_s}\left( 1 - \left( c \rcurs - \brcurs \cdot \mathbf{v} \right) \right) \\ 
+			  &= \dv{W}{t_s} \frac{1}{c\rcurs} (\mathbf{u} \cdot \rcurs) 
+\end{align*}
+Now our \( \mathbf{E} \) field is of the form:
+\[
+	\mathbf{E} = \frac{q}{4\pi \epsilon_0} \frac{\rcurs}{(\brcurs \cdot \mathbf{u})}\left[ \brcurs \times (c
+	\mathbf{\hat{r}} \times \mathbf{a})\right]
+\]
+Now, the power emitted by the particle may be written as \( P = \int \mathbf{S} \diff \mathbf{a} \), and the
+infinitesimal area may be decomposed as \( \diff \mathbf{a} = r^2 \diff \Omega \), where \( \Omega \)
+represents the solid angle. Thus, we may write \( \dv{P}{\Omega} \) as:
+\[
+	\dv{P}{\Omega} = \underbrace{\frac{1}{\mu_0c} \left( \frac{q^2}{16 \pi^2 \epsilon_0^2}
+			\frac{\rcurs^2}{(\brcurs \cdot \mathbf{u})^{6}}\left|\brcurs \times (\mathbf{u} \times \mathbf{a})\right|^2 
+	\right)}_{\mathbf{S}} \cdot \rcurs^2
+\]
+Ordinarily this would be fine, but to account for the velocity of the particle, we have to scale this by the
+factor introduced at the beginning of the lecture:
+\[
+	\dv{P}{\Omega} = \frac{1}{\mu_0c} \left( \frac{q^2}{16 \pi^2 \epsilon_0^2} \frac{\rcurs^2}{(\brcurs \cdot
+	\mathbf{u})^{6}}\left|\brcurs \times (\mathbf{u} \times \mathbf{a})\right|^2 \right) \cdot \rcurs^2
+	\left( \frac{\mathbf{u} \cdot \brcurs}{c\rcurs} \right) = \frac{q^2}{16 \pi^2 \epsilon_0} \frac{|\brcurs
+	\times (\mathbf{u} \times \mathbf{a})|^2}{(\hat{\brcurs} \times \mathbf{u})^{5}}
+\]
+The power then, is this this integral over the solid angle:
+\begin{equation}
+	\label{lienard}
+	P = \oint \dv{P}{\Omega} \sin \theta \diff \theta \diff \phi = \frac{\mu_0 q^2 \gamma^{6}}{6 \pi c}\left(
+	a^2 - \left| \frac{\mathbf{v} \times \mathbf{a}}{c} \right|^2 \right)
+\end{equation}
+This is called the \textbf{Lienard generalization} of the Larmor formula. Notice the factor of \( \gamma \)
+present in the numerator, meaning that the added contribution due to the velocity (from the first term) is
+very negligible, until we get to speeds \( v \sim c \).   
+
+
+\subsection{Bremsstrahlung (Braking Radiation)}
+This occurs particularly in the case where \( \mathbf{v} \parallel \mathbf{a} \). So, first we calculate some
+cross products:
+\[
+	\mathbf{u} \times \mathbf{a} = (c \hat{\brcurs} - \mathbf{v}) \times \mathbf{a} = c
+	\mathbf{\hat{\brcurs}} \times \mathbf{a} \implies \hat{\brcurs} \times (\mathbf{u} \times \mathbf{a}) = c
+	\hat{\brcurs} \times (\hat{\brcurs} \times \mathbf{a}) = c \hat{\brcurs} (\hat{\brcurs} \cdot \mathbf{a})
+	- c \mathbf{a}
+\]
+Thus, the numerator \( |\brcurs \times (\mathbf{u} \times \mathbf{a})|^2 \) becomes:
+\[
+	 |\brcurs \times (\mathbf{u} \times \mathbf{a})|^2 = c^2(a^2 + (\mathbf{a} \cdot \hat{\brcurs})^2 -
+	 2(\mathbf{a} \cdot \hat{\brcurs}^2) = a^2 c^2 (1 - \cos^2 \theta) = c^2 a^2 \sin^2 \theta
+\]
+The denominator \( \hat{\brcurs} \cdot \mathbf{u} \) becomes:
+\[
+	\hat{\brcurs} \cdot \mathbf{u} = \hat{\brcurs} \cdot (c \hat{\brcurs} - \mathbf{v}) = c - \mathbf{v}
+	\cdot \hat{\brcurs} = c - v \cos \theta = c(1 - \beta \cos \theta)
+\]
+we define \( \beta = v / c \). Therefore, putting this all together:
+\[
+	\dv{P}{\Omega} = \frac{q^2}{16 \pi^2 \epsilon_0^2} \frac{\left| \hat{\brcurs} \times(\mathbf{u} \times
+	\mathbf{a}) \right|^2}{(\hat{\brcurs} \cdot \mathbf{u})^{5}} = \frac{\mu_0 q^2 a^2}{16 \pi^2 c}
+	\frac{\sin^2 \theta}{(1 - \beta \cos \theta)^{5}}
+\]
+There is also a maximum angle that the radiation is shot out of, which you will do for homework. 
+\begin{example}[Stability of "Classical" Hydrogen Atom]
+	Consider the classical model of a Hydrogen atom, with a proton with \( +e \) charge in the center and an
+	electron orbiting it at a distance of \( R \sim 10^{-10} \) m. Classically, the energy of the particle is
+	given by:
+	\[
+		U = \frac{1}{2}mv^2 - \frac{ke^2}{R}
+	\]
+	According to the formula for centripetal force:
+	\[
+		\frac{ke^2}{R} = m a_c = \frac{mv^2}{R} \implies \frac{1}{2} mv^2 = \frac{ke^2}{2R}
+	\]
+	combining this with the previous equation yields a total energy of:
+	\[
+		E = - \frac{ke^2}{2R}
+	\]
+	This numerically comes out to about -13.6 eV, the well known ground state energy of hydrogen. From this
+	calculation, we can also deduce \( v \), which comes out to roughly \( v \sim 10^{-2}c \), so this motion
+	is still considered non-relativistic. So, we can use the Larmor formula:
+	\[
+		P = \frac{\mu_0 q^2 a^2}{6 \pi c}
+	\]
+	Now that we know accelerating particles give off radiation, so given that the electron radiates energy
+	how long does it take before it loses enough energy to crash onto the proton? Well, we can calculate that
+	now:
+	\[
+		\dv{E}{t} = -P = -\frac{\mu_0 q^2 a^2}{6 \pi c} \quad \dv{t} \left( - \frac{ke^2}{2r} \right) =
+		\frac{\mu_0 q^2}{6 \pi c} \left( \frac{v^2}{r} \right)^2 = - \frac{\mu_0 q^2}{6 \pi c}\left(
+		\frac{ke^2}{mr^2} \right)^2
+	\]
+	equating the two, we now have a differential equation in \( r \):
+	\[
+		\frac{ke^2}{2r^2} \dv{r}{t} = - \frac{\mu_0 q^2}{6 \pi c} \left( \frac{ke^2}{mr^2} \right)^2
+	\]
+	doing separation of variables and integrating to the characteristic time \( \tau \), we get:
+	\[
+		\tau = \frac{4\pi^2 \epsilon_0^2}{e^{4}} m^2 c^3 R_0^3 \sim 10^{-11} \text{ seconds}
+	\]
+	This is \textit{really bad!} Obviously this is not true, and it's one of the many things that motivated
+	quantum mechanics. As you know, quantum mechanics doesn't treat the electron as a physical object around
+	the atom but rather models its position as a wavefunction, resolving this paradox.   
+\end{example}
+
+
+
+
+
+
+

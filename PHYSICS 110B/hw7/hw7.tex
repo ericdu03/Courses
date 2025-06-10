@@ -1,0 +1,210 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 110B}
+\newcommand{\classname}{Eletromagnetism and Optics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 07} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by the Berkeley EECS Department: \url{https://eecs.berkeley.edu/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	In introductory physics courses, Faraday's law is often introduced in the form of
+	\begin{equation}
+		\label{eq1}
+		\oint_\mathcal{C} \mathbf{E} \cdot \diff \boldsymbol{\ell} = -\dv{t} \int_{\mathcal{S}} \mathbf{B}
+		\cdot \diff \mathbf{a}
+	\end{equation}
+	However, one should keep in mind that in this form, the contour \( \mathcal{C} \) and surface \(
+	\mathcal{S} \) is stationary. Thus, for example, one cannot use this to explain how a rotating coil in a
+	constant magnetic field can have an induced current generated in the coil. In fact, for a rotating coil
+	in a constant magnetic field, there is no induced electric field being generated. After all, physical
+	laws, as far as we know, should be local and the most appropriate form of Faraday's law should be the
+	differential form
+	\begin{equation}
+		\nabla \times \mathbf{E} = -\partial_t \mathbf{B}
+	\end{equation}
+	And because the magnetic field is constant, we have \( \nabla \times \mathbf{E} = 0 \) and there must be
+	no induced electric field generated. What force is responsible for the induced current in the rotating
+	coil then? The origin of the induced current is the \textit{motional emf} along the loop due to the
+	magnetic force caused by the rotational motion. The motional emf is given by
+	\begin{equation}
+		\mathcal{E} = \oint_{\mathcal{C}} (\mathbf{v} \times \mathbf{B}) \cdot \diff \boldsymbol{\ell}
+	\end{equation}
+	and in Chap. 7 of Griffiths, he showed that for time-independent magnetic fields, the motional emf due to
+	the motion of the loop is given by
+	\begin{equation}
+		\label{eq4}
+		\oint_{\mathcal{C}}(\mathbf{v} \times \mathbf{B}) \diff \boldsymbol{\ell} = -\dv{t}
+		\int_{\mathcal{S}}\mathbf{B} \cdot \diff \mathbf{a}
+	\end{equation}
+	In his proof, the magnetic field is assumed to be time-independent, which is why the induced electric
+	field does not show up in the left hand side of the equation. 
+
+	Apparently, neither Eq. \ref{eq1} nor Eq. \ref{eq4} are really satisfying, as they either assume the
+	magnetic field is constant over time, or the loop is stationary. But ultimately these assumptions are
+	unnecessary, and both equations can be combined together to form the complete \textit{flux rule}
+	\[
+		\oint_{\mathcal{C}} (\mathbf{E} + \mathbf{v} \times \mathbf{B}) \cdot \diff \boldsymbol{\ell} =
+		-\dv{t} \int_{\mathcal{S}}\mathbf{B} \cdot \diff \mathbf{a}
+	\]
+	In this problem, we will derive this equation by explicitly showing that the magnetic flux changing rate
+	on the right is indeed equal to the line integral on the left. 
+
+	To this end, we first rewrite the magnetic flux \( \int_{\mathcal{S}}\mathbf{B} \cdot \diff \mathbf{a} \)
+	as the line integral of the vector potential \( \mathbf{A} \),
+	\[
+		\int_{\mathcal{S}}\mathbf{B} \cdot \diff \mathbf{a} = \oint_{\mathcal{C}}\mathbf{A} \cdot \diff
+		\boldsymbol{\ell} = \oint_{\mathcal{C}} \mathbf{A} (\mathbf{x}, t) \cdot \diff \mathbf{x}
+	\]
+	Here the position \( \mathbf{x} = (x, y, z) \) of the loop elements can change over time resulting the
+	loop \( \mathcal{C} \) to deform. Not only can the loop move in space, it can also shrink, contract or
+	bend. We can think that we mark the points on the loop with a parameter \( \lambda \), where \( \lambda
+	\in [0, 2\pi) \) and \( \lambda = 0 \) and \( \lambda = 2\pi \) mark the same point. \( x(\lambda, t) \)
+	can then be thought of as a function that maps \( [0, 2\pi) \) to \( \R^3 \) at time \( t \). The line
+	integral can then be written as
+	\[
+		\oint_{\mathcal{C}}\mathbf{A}(\mathbf{x}, t) \cdot \diff \mathbf{x} = \int_{0}^{2\pi}
+		\mathbf{A}(\mathbf{x}(\lambda, t), t) \cdot \pdv{\mathbf{x}}{\lambda} \diff \lambda
+	\]
+	When we now take the time derivative of the integral we need to consider the time changing rate of \(
+	\mathbf{x}(\lambda, t) \) and 
+	\[
+		\mathbf{v} \equiv \pdv{\mathbf{x}}{t}
+	\]
+	is the velocity of the loop element. From here, show that indeed
+	\[
+		-\dv{t}\left( \int_{0}^{2\pi} \mathbf{A}(\mathbf{x}(\lambda, t), t) \cdot \pdv{\mathbf{x}}{\lambda}
+		\diff \lambda \right) = \oint_{\mathcal{C}}(\mathbf{E} + \mathbf{v} \times \mathbf{B}) \cdot \diff
+		\boldsymbol{\ell}
+	\]
+
+	\begin{solution}
+		 First, bring the time derivative into the integral, turning it into a partial derivative, and also
+		 use product rule here:
+		 \[
+			 -\dv{t} \int_{0}^{2\pi} \mathbf{A}(\mathbf{x}(\lambda, t), t) \cdot \pdv{\mathbf{x}}{\lambda}
+			 \diff \lambda = -\int_{0}^{2\pi} \pdv{t} \left( \mathbf{A}(\mathbf{x}(\lambda, t), t) \cdot
+			 \pdv{\mathbf{x}}{\lambda} \right) d \lambda = -\int_{0}^{2\pi} \left(\pdv{\mathbf{A}}{t} \cdot
+		 \pdv{\mathbf{x}}{\lambda} + \mathbf{A} \pdv{\mathbf{x}}{t}{\lambda} \right)d\lambda
+		 \]
+		 From here we focus on the integrand since that's where all the math is going to take place. Here,
+		 we'll use index notation because it's easier than trying to write this in Leibniz notation.
+		 Replacing the above with index notation, we basically have:
+		 \[
+			 (\partial_t A)^{k} \pdv{x_k}{\lambda} + A^{k} \pdv{x_k}{t}{\lambda}
+		 \]
+		 Further, we can simplify the first term:
+		 \[
+			 (\partial_t A)^{k} = (\partial_t x^{k}) \partial_i A^{k} + \partial_t A^{k} = v^{k}\partial_i
+			 A^{k} + \partial_t A^{k}	
+		 \]
+		 The \( \partial_t A^{k} \) term is the explicit time derivative of \( \mathbf{A} \). Now, the \(
+		 \partial_t A^{k} \) is just \( \partial_t \mathbf{A} = -\mathbf{E} - \nabla V \). The 
+		 \( \nabla V \) part is a total derivative, so under the integral it will go to zero. So, for the
+		 second term, we're left with:
+		 \[
+			 -\int_{0}^{2\pi}
+			 - \mathbf{E}\cdot  \pdv{x_k}{\lambda} \diff \lambda = \oint_{\mathcal{C}}\mathbf{E} \cdot \diff
+			 \boldsymbol{\ell}
+		 \]
+		 Then, we have the \( v^{k}\partial_i A^{k} \) term to deal with. This term is supposed to give the
+		 \( \mathbf{v} \times \mathbf{B} \) term, but I couldn't work it out fully. The furthest I got was as
+		 follows: we can rewrite \( v^{k}\partial_i A^{k} \) as:
+		 \[
+		 	v^{k}\epsilon^{kin} \partial_i A_n + v^{k}\delta_n^{m}\delta_m^{i} \partial_n A_m
+		 \]
+		 essentially, now this allows us to write the first term as \( \mathbf{v} \times (\nabla \times \mathbf{A})
+		 \), so that gets us the \( \mathbf{v} \times \mathbf{B} \) term. The second term that we generate is
+		 now supposed to cancel with the \( A^{k}\pdv{x_k}{t}{\lambda} \) term we have from before.  
+	 \end{solution}
+	\pagebreak
+	\section*{Problem 2}
+	The Helmholtz theorem implies that the vector potential \( \mathbf{A} \) can be decomposed into the
+	divergenceless part \( \mathbf{A}_{\perp} \) and the curl-less part \( \mathbf{A}_{\parallel} \). That
+	is, \( \mathbf{A} = \mathbf{A}_{\perp} + \mathbf{A}_{\parallel} \) where \( \nabla \cdot
+	\mathbf{A}_{\perp} = 0 \) and \( \nabla \times \mathbf{A}_{\parallel} = 0 \). Under the gauge
+	transformation \( \mathbf{A} \to \mathbf{A} + \nabla \lambda \), which part of the vector potential
+	transforms? Recall that physical observables should be invariant under gauge transformation. Thus, should
+	physical observables be expressed in terms of \( \mathbf{A}_{\perp} \) or \( \mathbf{A}_{\parallel} \)? 
+
+	\begin{solution}
+		After the transformation \( \mathbf{A} \to \mathbf{A} + \nabla \lambda \), it's still possible to
+		decompose it into its parallel and perpendicular components:
+		\[
+			\mathbf{A}' = (\mathbf{A}_{\perp} + (\nabla \lambda)_{\perp}) + (\mathbf{A}_{\parallel} + (\nabla
+			\lambda)_{\parallel})
+		\]
+		Checking the divergence of the parallel component:
+		\[
+			\nabla \cdot (\mathbf{A}_{\perp} + (\nabla \lambda)_{\perp}) = \nabla \cdot \mathbf{A}_{\perp} +
+			\nabla \cdot (\nabla \lambda)_{\perp} = \nabla \cdot (\nabla \lambda)_{\perp} \neq 0
+		\]
+		This quantity is not necessarily zero depending on the choice of \( \lambda \). However, for the
+		parallel component:
+		\[
+			\nabla \times (\mathbf{A}_{\parallel} + (\nabla \lambda)_{\parallel}) = \nabla \times
+			\mathbf{A}_{\parallel} + \nabla \times (\nabla \lambda) _{\parallel} = 0
+		\]
+		This is equal to zero since \( \nabla \times \mathbf{A}_{\parallel} = 0 \) and \( \nabla \times
+		(\nabla \lambda) = 0 \) because it's a vector identity. Therefore, it's the parallel component that
+		is invariant under the gauge \( \nabla \lambda \). So, physical observables should be expressed in
+		terms of \( \mathbf{A}_{\parallel} \), since that quantity is invariant under the gauge
+		transformation.  
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 3}
+	\begin{enumerate}[label=(\alph*)]
+		\item Find the fields, and the change in current distributions, corresponding to 
+			\[
+				V(\mathbf{r}, t) = 0, \quad \mathbf{A}(\mathbf{r}, t) = -\frac{1}{4\pi \epsilon_0}
+				\frac{qt}{r^2} \mathbf{\hat{r}}
+			\]
+
+			\begin{solution}
+				Using the required formulas:
+				\[
+					\mathbf{E} = -\nabla V - \partial_t \mathbf{A} = \frac{1}{4\pi \epsilon_0} \frac{q}{r^2}
+					\mathbf{\hat{r}}
+				\]
+				For \( \mathbf{B} \), we have \( \mathbf{B} = \nabla \times \mathbf{A} \), but since \(
+				\mathbf{A} \) only has a radial component, its curl is naturally zero therefore \( \mathbf{B}
+				= 0\). 
+			\end{solution}
+		\item Use the gauge function \( \lambda = - (1 / 4 \pi \epsilon_0) (qt / r) \) to transform the
+			potentials, and comment on the result.  
+
+			\begin{solution}
+				Under the gauge transformation, \( V \to V - \partial_t \lambda \), so therefore:
+				\[
+					V' = -\frac{1}{4\pi \epsilon_0}\frac{q}{r}
+				\]
+				and \( \mathbf{A}' \to \mathbf{A} + \nabla \lambda \) so:
+				\[
+					\mathbf{A}' = -\frac{1}{4\pi \epsilon_0} \frac{qt}{r^2}\mathbf{\hat{r}} - \frac{1}{4\pi
+					\epsilon_0}qt \nabla \left( \frac{1}{r} \right)
+				\]
+				Now, we use the relation \( \nabla\left( \frac{1}{r} \right) = -\frac{\mathbf{\hat{r}}}{r^2}
+				\), so thus:
+				\[
+					\mathbf{A}' = -\frac{1}{4\pi \epsilon_0} \frac{qt}{r^2}\mathbf{\hat{r}} + \frac{1}{4\pi
+					\epsilon_0} qt \frac{\hat{r}}{r^2} = \mathbf{0}
+				\]
+				So this gauge transformation turns the potential \( V \) into the potential of a stationary
+				charge, and changes the magnetic potential \( \mathbf{A} \) to be the zero vector. In this
+				sense, this gauge basically just swaps out what is nonzero -- initially it was \( V \), now
+				it's \( \mathbf{A} \). 
+			\end{solution}
+	\end{enumerate}
+\end{document}
+
+

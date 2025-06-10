@@ -1,0 +1,15 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'writeup.blg'
+[28] biber-darwin:340> INFO - === Mon Nov 18, 2024, 21:42:12
+[34] Biber.pm:419> INFO - Reading 'writeup.bcf'
+[59] Biber.pm:976> INFO - Using all citekeys in bib section 0
+[65] Biber.pm:4419> INFO - Processing section 0
+[69] Biber.pm:4610> INFO - Looking for bibtex file 'SHE.bib' for section 0
+[69] bibtex.pm:1713> INFO - LaTeX decoding ...
+[71] bibtex.pm:1519> INFO - Found BibTeX data source 'SHE.bib'
+[95] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[95] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[95] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
+[95] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[98] bbl.pm:660> INFO - Writing 'writeup.bbl' with encoding 'UTF-8'
+[98] bbl.pm:763> INFO - Output to writeup.bbl

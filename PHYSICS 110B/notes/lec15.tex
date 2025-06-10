@@ -1,0 +1,87 @@
+\section{February 26}
+
+With anomalous dispersion out the way, we now turn to the last topic of this section, wave guides. 
+
+\subsection{Wave Guides}
+First, consider the setup of an electromagnetic wave propagating through a conducting pipe (see figure
+below). The idea of this setup is that waves are confined in the \( xy \)-plane, but propagation is allowed
+in the \( \mathbf{\hat{z}} \) direction. With this setup, we naturally think of waves:
+\begin{align*}
+	\mathbf{E}(x, y, z, t) &= \tilde{\mathbf{E}}_0 (x, y) e^{i(kz - \omega t)}\\
+	\mathbf{B}(x, y, z, t) &= \tilde{\mathbf{B}}_0 e^{i(kz - \omega t)} 
+\end{align*}
+The interior of the wave guide is vacuum, so Maxwell's equations in a vacuum (\( \rho = 0, \mathbf{J} = 0
+\))	hold. Now for the boundary conditions. The first boundary condition is given by the properties of a
+conductor. We know that \( \mathbf{E} = 0 \) inside a conductor, so by Faraday's law we have 
+\( \partial_t \mathbf{B} = 0 \) inside, so \( \mathbf{B} \) is constant. For convenience, we will just choose
+the \( \mathbf{B} = 0 \) inside the conductor, since a constant \( \mathbf{B} \) field can always just be
+removed with no issues.\footnote{Technically, this follows from the fact that Maxwell's equations are
+\textit{linear}, so derivatives of constants vanish.} So now, we have the same boundary conditions as we had
+for a conductor:
+\begin{align*}
+	\epsilon_1 E_1^{\perp} - \epsilon_2 E_2^{\perp} &= \sigma_f\\
+	E_1^{\parallel} &= E_2^{\parallel}\\
+	B_1^{\perp} &= B_2^{\perp}\\
+	\frac{1}{\mu_1}B_1^{\parallel} - \frac{1}{\mu_2}B_2^{\parallel} &= \mathbf{K}_f \times \mathbf{\hat{n}}
+\end{align*}
+Because of our boundary conditions of \( \mathbf{E} = 0 \) and \( \mathbf{B} = 0 \) inside the conductor, it
+also makes sense for continuity's sake that \( E^{\parallel} = 0  \) and \( \mathbf{B}^{\perp} = 0 \) inside
+the waveguide. These are actually the only two conditions we care about. The surface currents \( \mathbf{K}_f
+\) and free charges \( \sigma_f \) will arrange themselves in a way such that these boundary conditions are
+true. We can then start with the ansatz of a travelling wave:
+\[
+	\mathbf{E} = \tilde{\mathbf{E}}_0(x, y)e^{i(kz - \omega t)} \quad \mathbf{B} = \tilde{\mathbf{B}}_0(x, y) e^{i(kz
+	- \omega t)}
+\]
+Now, with the ansatz in place, we invoke Faraday's law, using the \( y \) direction as an example:
+\( (\nabla \times \mathbf{E})_y = -\partial_t B_y \), this gives the equations:
+\[
+	ik \tilde E_x - k \partial \tilde E_z = ik \omega \tilde B_y
+\]
+Similarly, Ampere-maxwell also gives us an equation relating the electric and magnetic fields, this time we
+compute \( (\nabla \times \mathbf{B})_x = \frac{1}{c^2}\partial_t E_x \):
+\[
+	\omega \partial_y \tilde B_z - i k \omega \tilde B_y = -i \frac{\omega^2}{c^2}\tilde E_x
+\]
+Combining the two equations, we get:
+\[
+	\omega \partial_y \tilde B_z - (ik^2 \tilde E_x - \partial_x k \tilde E_z) = -i
+	\frac{\omega^2}{c^2}\tilde E_x \implies \tilde E_x = \frac{i}{\left( \frac{\omega}{c} \right)^2 - k^2}(k
+	\partial_x \tilde E_z - \omega \partial_y \tilde B_z)
+\]
+In a similar fashion, we can also extract the other components:
+\begin{align*}
+	\tilde E_y &= \frac{i}{\left( \frac{\omega}{c} \right)^2 - k^2} (k \partial_y \tilde E_z - \omega
+	\partial_x \tilde B_z)\\
+	\tilde B_x &= \frac{i}{\left( \frac{\omega}{c} \right)^2 - k^2}(k \partial_x B_z -
+	\frac{\omega}{c^2}\partial_y \tilde E_z)\\
+	\tilde B_y &= \frac{i}{\left( \frac{\omega}{c} \right)^2 - k^2} (k \partial_y \tilde B_z +
+	\frac{\omega}{c^2}\partial_y \tilde E_z)
+\end{align*}
+The point of these equations is to show that in a wave guide, as long as \( \tilde E_z \) and \( \tilde B_z \) 
+are determined, then the whole field is determined. Further, if you apply Gauss's law to \( \nabla \cdot
+\mathbf{E} = 0 \), then you get \( \partial_x \tilde E_x + \partial_y \tilde E_y + ik \tilde E_z = 0 \).
+Putting these equations together, we get the wave equation:
+\[
+	\left[ \partial_x^2 + \partial_y^2 + \left( \frac{\omega}{c} \right)^2 - k^2 \right]\tilde E_z = 0
+\]
+You can do the same thing for \( \mathbf{B} \) using \( \nabla \cdot \mathbf{B} = 0  \):
+\[
+	\left[ \partial_x^2 + \partial_y^2 + \left( \frac{\omega}{c} \right)^2 - k^2 \right]\tilde B_z = 0
+\]
+\subsection{Wave Modes}
+Since \( E_z \) and \( \tilde B_z \) essentially determine the entire wave, we can classify waves into three
+types:
+\begin{enumerate}[label=\arabic*.]
+	\item TE mode: Transverse \( \mathbf{E} \) wave, so \( \tilde E_z = 0 \)
+	\item TM mode: Transverse \( \mathbf{B} \) wave, so \( \tilde B_z = 0 \)
+	\item TEM mode: \( \tilde E_z = 0 \) and \( \tilde B_z = 0 \). 
+\end{enumerate}
+A comment about the TEM mode though: in a single wave guide like this, a TEM mode cannot exist. This is
+because if \( \tilde E_z = 0 \), then \( \nabla \cdot \mathbf{E} = 0 \) so \( \mathbf{E} \) is
+divergenceless, but by \( (\nabla \times \mathbf{E})_z = -\partial_t B_z = 0 \) we have that 
+\( \mathbf{E} \) must also be curl-less. Combined with the fact that \( \mathbf{E} = - \nabla V \), then this
+implies that the only valid solution to these equations is \( V = 0 \), or basically there is no wave inside
+the wave guide.   
+
+

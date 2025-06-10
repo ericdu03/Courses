@@ -1,0 +1,112 @@
+\section{February 10}
+Today, we will talk about the transmission and reflection of waves in a linear medium. We will find that all
+the properties we know about reflection and transmission: Snell's law, the law of reflection, they all
+follow directly from enforcing the boundary conditions given by Maxwell's equations. 
+
+Recall Maxwell's equations in a linear medium:
+\begin{align*}
+	\div \mathbf{D} &=  0 \\ 
+	\div \mathbf{B} &= 0 \\ 
+	\curl \mathbf{E} &= -\partial \mathbf{B} \\ 
+	\curl \mathbf{H} &= \partial \mathbf{D} 
+\end{align*}
+
+These equations then imply the following boundary conditions:
+\begin{align}
+	\epsilon_1 E_1^{\perp} &= \epsilon_2 E_2^{\perp}\label{a} \\ 
+	E_1^{\parallel} &= E_2^{\parallel}\label{b} \\ 
+	B_1^{\perp} &= B_2^{\perp} \label{c} \\ 
+	\mu_1 B_1^{\parallel} &= \mu_2 B_2^{\parallel} \label{d}
+\end{align}
+
+This is a result of using the relations \( \mathbf{D} = \epsilon \mathbf{E} \) and \( \mathbf{B} = \mu \mathbf{H} \)
+in linear media. Now, with these boundary conditions set, we are ready to consider the transmission and
+reflection of waves in a linear medium.  
+
+\subsection{Normal Incidence}
+First, we will consider the case where the incident wave is perpendicular to the interface. This makes the
+situation easier to analyze. Let the system be described as follows: we have an incident wave from the left,
+and a plane of material at \( z = 0 \). Then, the \( \mathbf{E} \) field over all space is given by:
+\[
+	\mathbf{E} = \begin{cases}
+		\mathbf{E}_I e^{i (k_1 z - \omega t )} + \mathbf{E}_R e^{i(-k_2 z - \omega t)} & z < 0\\
+		\mathbf{E}_T e^{i (k_2 z - \omega t)} & z > 0
+	\end{cases}
+\]
+Technically, we need to take the real part of these equations, but we're going to omit that detail for
+now.\footnote{What this really means is that each bold-faced vector \( \mathbf{E} \) in this equation is a
+\textit{complex-valued} vector, of which you have to take the real part to get the amplitude.}  
+Before we go further, it is important to note that \( \omega \) is the same for all three terms, which we can
+argue to be the case in two different ways. Firstly, if you think of the incident wave as an electric field,
+then it makes sense that the response from the dipoles should also follow the same frequency. Mathematically,
+we also know that \( \omega \) must be the same because when we end up matching the boundary conditions, we
+end up getting an equation of the form:
+\[
+	\mathcal{A}e^{- i \omega_I t} + \mathcal{B} e^{-i \omega_R t} = \mathcal{C}e^{- i \omega_T t}
+\]
+Here, \( \mathcal{A}, \mathcal{B} \) and \( \mathcal{C} \) are arbitrary constants. 
+If we want this equation to hold up for all time \( t \), then the only way is if \( \omega_I = \omega_R =
+\omega_T \). Now, we begin to impose the boundary conditions. The waves here are only in the \( \hat{z} \)
+direction, since \( \mathbf{E} \) and \( \mathbf{B} \) are transverse waves, so \( \mathbf{E}_I, \mathbf{E}_R
+\) and \( \mathbf{E}_T  \) are all in the \( xy \) plane. This immediately means that boundary conditions
+\ref{a} and \ref{c} are trivially satisfied, and hence we only care about \ref{b} and \ref{d}. Starting with
+\ref{b}:
+\[
+	\mathbf{E}_I e^{-i \omega t} + \mathbf{E}_R e^{-i \omega t} = \mathbf{E}_T e^{- i \omega t}
+\]
+so this gives \( \mathbf{E}_I = \mathbf{E}_R = \mathbf{E}_T \). Similarly, we can write down equations for the
+magnetic field:
+\[
+	\mathbf{B} = \begin{cases}
+		\mathbf{B}_I e^{i (k_1z - \omega t)} + \mathbf{B}_R e^{i(k_1 z - \omega t)} & z < 0 \\
+		\mathbf{B}_T = e^{i(k_2 z - \omega t)} & z > 0
+	\end{cases}
+\]
+Boundary condition \ref{d} then says:
+\[
+	\frac{1}{\mu_1} (\mathbf{B}_I + \mathbf{B}_R) = \frac{1}{\mu_2} \mathbf{B}_T
+\]
+We know that the \( \mathbf{B} \) field travels in the \( z \) direction, so using equation \ref{B-wave}, we
+can write:
+\[
+	\mathbf{\hat{z}} \times \mathbf{E}_1 - \mathbf{\hat{z}} \times \mathbf{E}_R = \beta
+	\mathbf{\hat{z}} \times \mathbf{E}_T
+\]
+We absorb all the constants into \( \beta = \frac{\mu_1v_1}{\mu_2v_2} \). Without loss of generality, we can
+also suppose \( \mathbf{E} \) aligns in the \( \mathbf{\hat{x}} \) direction, so then we can write:
+\begin{align*}
+	\mathbf{E}_R &= E_R \mathbf{\hat{n}}_R = E_R (\cos \theta_R \mathbf{\hat{x}} + \sin \theta_r
+	\mathbf{\hat{y}}) \\
+	\mathbf{E}_T &= E_T \mathbf{\hat{n}}_T = E_T\left( \cos \theta_T \mathbf{\hat{x}} + \sin \theta_T
+	\hat{\mathbf{y}} \right)
+\end{align*}
+
+Then, the \( y \)-component of boundary condition \ref{b} gives \( E_R \sin \theta_R = E_T \sin \theta_T \),
+whereas the \( x \)-component of boundary condition \ref{d} gives \( E_R \sin \theta_R = -\beta E_T \sin
+\theta_T \). These two equations must simultaneously be true, and since \( \beta >0 \), this forces \(
+\theta_R = \theta_T = 0 \). So, we find that the reflected and transmitted waves have the same polarization
+as the incident wave! 
+
+Then, comparing the \( x \)-component of \ref{b} we get \( E_I + E_R = E_T \), while the \( y \)-component of
+\ref{d} gives \( E_I - E_R = \beta E_T \). Solving both equations gives:
+\[
+	E_T = \frac{2}{1 + \beta}E_I , \quad E_R = \frac{1-\beta}{2}E_T = \left( \frac{1 - \beta}{1 + \beta}
+	\right)E_I
+\]
+And this solves the boundary conditions for this specific situation! To conclude this lecture, notice that
+for most materials \( \mu_1 \approx \mu_2 \approx \mu_0 \), so in these cases \( \beta \approx
+\frac{v_1}{v_2} \). Further, if we have a medium where \( v_1 > v_2 \) (for example, from air to water), then
+\( \beta > 1 \), so the reflected wave is written as:
+\[
+	\mathbf{E}_R = - \left| \frac{1 - \beta}{1 + \beta} \right|\quad \mathbf{E}_I = \left| \frac{1 - \beta}{1 +
+	\beta} \right|e^{ i \pi} \left(E_1 e^{i \delta_I}\right) 
+	= \left| \frac{1- \beta}{1 + \beta} \right|E_I e^{i(\delta_I
+	+ \pi)}
+\]
+ This result actually is the motivation for why we say that the reflected wave has a \( \pi \) phase shift
+ relative to the incident wave, and all we needed to do was solve some boundary conditions to get it!  
+ 
+
+
+
+

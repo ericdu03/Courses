@@ -1,0 +1,173 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 110B}
+\newcommand{\classname}{Electromagnetism and Optics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 06} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by the Berkeley EECS Department: \url{https://eecs.berkeley.edu/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	Show that the mode \( \text{TE}_{00} \) cannot occur in a rectangular wave guide. [\textit{Hint:} In
+	this case \( \omega / c = k \), so Eqs. 9.182 are indeterminate, and you must go back to Eq. 9.181. show
+	that \( B_z \) is constant, and hence -- applying Faraday's law in integral frorm to a cross section --
+	that \( B_z = 0 \), so this would be a TEM mode.] 
+
+	\begin{solution}
+		Using the hint, we go back to Eq. 9.181, which are the differential equations obtained via Maxwell's
+		equations. TE waves have \( E_z = 0 \), so the equations we are interested in are:
+		\begin{align}
+			\pdv{B_y}{x} - \pdv{B_x}{y} &= 0\\
+			\label{eq1}\pdv{B_z}{y} - ik B_y &= -\frac{i \omega}{c^2} E_x\\
+			\label{eq2}ik B_x - \pdv{B_z}{x} &= -\frac{i \omega}{c^2} E_y
+		\end{align}
+		Further, from equations (i), (ii) and (iii) we also have the relations:
+		\begin{align*}
+			-ik E_y &= i \omega B_x\\
+			ik E_x &= i \omega B_y\\
+			\pdv{E_y}{x} - \pdv{E_x}{y} &= i \omega B_z
+		\end{align*}
+		Finally, using the relation that \( \omega / c = k \), we get:
+		\begin{align*}
+			i \frac{\omega}{c^2}E_x &= i \frac{\omega}{c} B_y\\
+			-i \frac{\omega}{c^2}E_y &=  i \frac{\omega}{c}B_x
+		\end{align*}
+		As such, equations \ref{eq1} and \ref{eq2} become:
+		\begin{align*}
+			\pdv{B_z}{y} &= 0 \\ 
+			\pdv{B_z}{x} &= 0 
+		\end{align*}
+		So along the \( xy \) direction, we have \( B_z = \text{const.} \), so using Faraday's law we indeed
+		get \( B_z = 0 \), and hence this is a TEM mode. Therefore, the \( \text{TE}_{00} \) mode doesn't
+		exist.  
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 2} 
+	Confirm that the energy in the \( \mathrm{TE}_{mn} \) mode travels at the group velocity. [\textit{Hint:}
+	Find the time averaged Poynting vector \( \mean{\mathbf{S}} \) and the energy density \( \mean u \) (use
+	Prob. 9.12 if you wish). Integrate over the cross section of the wave guide to get the energy per unit
+	time and per unit length carried by the wave, and take their ratio.]
+
+	\begin{solution}
+		Problem 9.12 gives us formulas formulas for computing \( \mean{u} \) and \( \mean{\mathbf{S}} \):
+		\[
+			\mean{u} = \frac{1}{4}\Re\left( \epsilon_0 \tilde{\mathbf{E}} \cdot \tilde{\mathbf{E}}^{*} +
+			\frac{1}{\mu_0} \tilde{\mathbf{B}} \cdot \tilde{\mathbf{B}}^{*} \right) \quad \mean{\mathbf{S}} =
+			\frac{1}{2\mu_0} \Re \left( \tilde{\mathbf{E}} \times \tilde{\mathbf{B}}^{*} \right)
+		\]
+		From the book, we know that the equation for \( B_z \) is given as:
+		\[
+			B_z = B_0 \cos\left( \frac{m \pi x}{a} \right) \cos\left( \frac{n \pi y}{b} \right)
+		\]
+		So, for the \( x \) and \( y \) directions of the waves, we know that \( E_z = 0\), so using equation
+		9.180 we have:
+		\begin{align*}
+			E_x &= -\frac{i \omega}{\left( \frac{\omega}{c} \right)^2 - k^2} B_0 \frac{n\pi}{b} \cos \left(
+			\frac{m \pi x}{a} \right) \sin\left( \frac{n \pi y}{b} \right)\\
+			E_y &= \frac{i \omega}{\left( \frac{\omega}{c} \right)^2 - k^2} B_0 \frac{m \pi}{a} \sin\left(
+			\frac{m \pi x}{a} \right) \cos\left( \frac{n \pi y}{b} \right) \\ 
+			B_x &= -\frac{ik}{\left( \frac{\omega}{c} \right)^2 - k^2} B_0 \frac{m \pi}{a} \sin \left(
+			\frac{m \pi x}{a} \right) \cos(\frac{n \pi y}{b})  \\ 
+			B_y &= -\frac{ik}{\left( \frac{\omega}{c} \right)^2 - k^2} B_0 \frac{n \pi}{b} \cos(\frac{m \pi x}{a})
+			\sin(\frac{n \pi y}{b}) 
+		\end{align*}
+		And of course \( E_z = 0 \) because we're dealing with a TE wave. Now, we can compute \( \mean{u} \):
+		\begin{multline*}
+			\mean{u} = -\frac{\epsilon_0 \omega^2 B_0^2}{4\left[ (\omega / c)^2 - k^2 \right]^2}\left( \left( \frac{n
+			\pi}{b} \right)^2 \sin^2\left( \frac{n \pi y}{b} \right)\cos^2\left( \frac{m \pi x}{a} \right) -
+		\left( \frac{m \pi}{a} \right)^2 \sin^2\left( \frac{m \pi x}{a} \right) \cos^2 \left( \frac{n \pi
+	y}{b} \right)\right) \\ 
+	- \frac{k^2 B_0^2}{4\mu_0[(\omega / c)^2 - k^2]^2}\left( \left( \frac{m \pi}{a} \right)^2 \sin^2\left(
+	\frac{m \pi x}{a} \right) \cos^2\left( \frac{n \pi y}{b} \right) + \left( \frac{n \pi}{b} \right)^2
+\cos^2\left( \frac{m \pi x}{a}\right) \sin^2 \left( \frac{n \pi y}{b} \right) \right) + \frac{B_0^2}{\mu_0}
+\cos^2\left( \frac{m \pi x}{a} \right) \sin^2\left( \frac{n \pi y}{b} \right)
+		\end{multline*}
+		Similarly, we can compute \( \mean{\mathbf{S}} \) using these formulas. Before we do that, one
+		simplification we can make: because \( E_z = 0 \), then only the \( z \) component of \( S \)
+		survives, and hence we have:
+		\[
+			\mean{\mathbf{S}} = \frac{k \omega B_0^2}{2\mu_0[(\omega / c)^2 - k^2]^2}\left( \left( \frac{n
+			\pi}{b} \right)^2 \cos^2\left( \frac{m \pi x}{a} \right)\sin^2\left( \frac{n \pi y}{b} \right) +
+		\left(\frac{m \pi}{a} \right)^2 \sin^2\left( \frac{m \pi x}{a} \right) \cos^2\left( \frac{n \pi y}{b} \right)
+	\right) \mathbf{\hat{z}}
+		\]
+		Now, we are ready to compute the integrals. Integrating \( \mean{u} \) first, which I did using a
+		calculator (thank you wolfram), I get:
+		\[
+			\int \mean{u} \diff a = -\frac{\epsilon \omega^2 B_0^2}{4\left[ (\omega / c)^2 - k^2 \right]^2}
+			\frac{(a^2n^2 - b^2m^2)\pi^2}{4ab} - \frac{k^2 B_0^2}{4\mu_0[(\omega / c)^2 - k^2]^2}
+			\frac{(b^2m^2 - a^2n^2)\pi^2}{4ab} + \frac{B_0^2}{4 \mu_0} \frac{ab}{4}
+		\] 
+		For \( \mean{\mathbf{S}} \) (again, wolfram), I get:
+		\[
+			\int \mean{\mathbf{S}} \diff \mathbf{a} = \frac{k \omega B_0^2}{2 \mu_0[(\omega / c)^2 - k^2]^2}
+			\frac{(b^2 m^2 + a^2 n^2) \pi}{4ab}
+		\]
+		For the \( \mean{u} \) integral, we can simplify it using \( c = \frac{\omega}{k} \), which
+		after some algebra gets us:
+		\[
+			\int \mean{u} \diff a = \frac{B_0^2}{4[(\omega / c)^2 - k^2]^2}\frac{-2k^2}{\mu_0} 
+			\frac{(a^2n^2 - b^2m^2)\pi^2}{4ab} + \frac{B_0^2}{4 \mu_0}\left( \frac{ab}{4} \right)
+		\]
+		From here, we're supposed to take the ratio of the energy per unit time versus the energy per unit
+		length, which means to take the integral of \( \mean{\mathbf{S}} \) over the integral of \( \mean{u}
+		\). I couldn't finish the writeup in time though sadly.  
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 3} 
+	Work out the theory of TM modes for a rectangular wave guide. In particular, find the longitudinal
+	electric field, the cutoff frequencies, and the wave and group velocities. Find the ratio of the lowest
+	TM cutoff frequency to the lowest TE cutoff frequency, for a given wave guide. [\textit{Caution:} What is
+	the lowest TM mode?]
+
+	\begin{solution}
+		For TM modes, we have \( B_z = 0 \), but we follow much of the logic from the derivation of the TE
+		waves. We let \( E_z(x, y) = X(x) Y(y) \), and since \( B_z \) satisfies the same wave equation as \(
+		E_z\) in the TE case, then we also get solutions:
+		\[
+			X(x) = A \sin(k_x x) + B \cos(k_x x)
+		\]
+		The boundary condition for conductors requires that \( E_z = 0 \) inside conductors, so first \( B =
+		0 \), so we're left with \( X(x) = A \sin(k_x x) \). The same boundary condition then implies:
+		\[
+			k_x = \frac{m \pi}{a}
+		\]
+		just like the TE case. Here, \( m = 1, 2, 3, \dots \), and the same goes for the \( y \) direction, so we
+		get:
+		\[
+			E_z = E_0 \sin\left( \frac{m\pi x}{a} \right)\sin(\frac{n \pi y}{b})
+		\]
+		with \( m, n = 1, 2, 3, \dots \). Note that we cannot allow either \( m, n = 0 \) because that would
+		mean zero wave, which is a trivial solution. The formula for the wave number is the same as that in the TE
+		wave case:
+		\[
+			k = \sqrt{\left( \frac{\omega}{c} \right)^2 - \pi^2 \left[ \left( \frac{m}{a} \right)^2 + \left(
+			\frac{n}{b}\right)^2 \right]}
+		\]
+		The cutoff frequency then follows the same equation:
+		\[
+			\omega_c = c \pi \sqrt{\left( \frac{m}{a} \right)^2 + \left( \frac{n}{b} \right)^2}
+		\]
+		But here, the lowest cutoff frequency is the lowest value of \( m = n = 1 \), so:
+		\[
+			\omega_c = c \pi \sqrt{\frac{1}{a^2} + \frac{1}{b^2}}
+		\]
+		So the ratio of cutoff frequencies is just the ratio of this to \( \omega_{10} \) in the TE wave
+		case:
+		\[
+			\frac{\omega_c}{\omega_{10}} = a\sqrt{\frac{1}{a^2} + \frac{1}{b^2}}
+		\]
+		and that concludes the problem. 
+	\end{solution}
+\end{document}

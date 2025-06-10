@@ -1,0 +1,145 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{neamen}{book}{}
+      \name{author}{1}{}{%
+        {{hash=ba23b5b50e91c8ffed7d3ba41e95ef9e}{%
+           family={Neamen},
+           familyi={N\bibinitperiod},
+           given={Donald\bibnamedelima A.},
+           giveni={D\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-Hill}%
+      }
+      \strng{namehash}{ba23b5b50e91c8ffed7d3ba41e95ef9e}
+      \strng{fullhash}{ba23b5b50e91c8ffed7d3ba41e95ef9e}
+      \strng{bibnamehash}{ba23b5b50e91c8ffed7d3ba41e95ef9e}
+      \strng{authorbibnamehash}{ba23b5b50e91c8ffed7d3ba41e95ef9e}
+      \strng{authornamehash}{ba23b5b50e91c8ffed7d3ba41e95ef9e}
+      \strng{authorfullhash}{ba23b5b50e91c8ffed7d3ba41e95ef9e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{edition}{4. ed}
+      \field{isbn}{978-0-07-352958-5}
+      \field{langid}{english}
+      \field{pagetotal}{758}
+      \field{shorttitle}{Semiconductor Physics and Devices}
+      \field{title}{Semiconductor Physics and Devices: Basic Principles}
+      \field{year}{2012}
+      \field{dateera}{ce}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/745X8LR4/Neamen - 2012 - Semiconductor physics and devices basic principle.pdf
+      \endverb
+    \endentry
+    \entry{melissinos}{book}{}
+      \name{author}{1}{}{%
+        {{hash=e938d6f551a250f6d2e99b2526c51911}{%
+           family={Melissinos},
+           familyi={M\bibinitperiod},
+           given={Adrian},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{e938d6f551a250f6d2e99b2526c51911}
+      \strng{fullhash}{e938d6f551a250f6d2e99b2526c51911}
+      \strng{bibnamehash}{e938d6f551a250f6d2e99b2526c51911}
+      \strng{authorbibnamehash}{e938d6f551a250f6d2e99b2526c51911}
+      \strng{authornamehash}{e938d6f551a250f6d2e99b2526c51911}
+      \strng{authorfullhash}{e938d6f551a250f6d2e99b2526c51911}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Experiments in {{Modern Physics}}}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/H2JHBWII/SHE_Melissinos_properties_of_semiconductors_pg_80-98_1966.pdf
+      \endverb
+    \endentry
+    \entry{vdp}{article}{}
+      \name{author}{1}{}{%
+        {{useprefix=true,hash=03cca462c2ddacd784ee35fdfddf3f88}{%
+           family={Pauw},
+           familyi={P\bibinitperiod},
+           given={Leo},
+           giveni={L\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \strng{namehash}{03cca462c2ddacd784ee35fdfddf3f88}
+      \strng{fullhash}{03cca462c2ddacd784ee35fdfddf3f88}
+      \strng{bibnamehash}{03cca462c2ddacd784ee35fdfddf3f88}
+      \strng{authorbibnamehash}{03cca462c2ddacd784ee35fdfddf3f88}
+      \strng{authornamehash}{03cca462c2ddacd784ee35fdfddf3f88}
+      \strng{authorfullhash}{03cca462c2ddacd784ee35fdfddf3f88}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Philips Research Report}
+      \field{title}{A {{Method}} of {{Measuring Specific Resistivity}} and {{Hall Effect}} of {{Discs}} of {{Arbitrary Shape}}}
+      \field{volume}{13}
+      \field{year}{1958}
+      \field{dateera}{ce}
+      \field{pages}{1\bibrangedash 9}
+      \range{pages}{9}
+      \verb{urlraw}
+      \verb https://experimentationlab.berkeley.edu/sites/default/files/SHE/References/01-Measuring_Discs.pdf
+      \endverb
+      \verb{url}
+      \verb https://experimentationlab.berkeley.edu/sites/default/files/SHE/References/01-Measuring_Discs.pdf
+      \endverb
+    \endentry
+    \entry{lab-manual}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=8748015bac74126e70105593e2dcfe99}{%
+           family={{Physics 111B: Advanced Experimentation Laboratory}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{fullhash}{8748015bac74126e70105593e2dcfe99}
+      \strng{bibnamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authorbibnamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authornamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authorfullhash}{8748015bac74126e70105593e2dcfe99}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Semiconductor {{Hall Effect}}}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/EGXL7WP2/SHE_Manual_2024-05-03.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://experimentationlab.berkeley.edu/sites/default/files/writeups/SHE_Manual_2024-05-03.pdf
+      \endverb
+      \verb{url}
+      \verb http://experimentationlab.berkeley.edu/sites/default/files/writeups/SHE_Manual_2024-05-03.pdf
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

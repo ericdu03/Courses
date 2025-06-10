@@ -1,0 +1,114 @@
+\section{January 27}
+Last lecture, we derived the Poynting theorem, which gave us a continuity equation for energy. Today, our
+objective will be to derive a similar continuity equation for momentum. Before we do that however, there are
+a couple of remarks we should make about the Poynting vector. From last lecture, we have:
+\[
+	\dv{E_\text{particle}}{t} + \dv{U_\text{EM}}{t} = -\oint_{\partial \mathcal{V}} \left( \frac{\mathbf{E}
+	\times \mathbf{B}}{\mu_0} \right) \diff \mathbf{a} 
+\]
+where we established that the left hand side represents the change in energy density over time within the
+volume \( \mathcal{V} \). The right hand side is the flux integral of the Poynting vector \( \mathbf{S} =
+\frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) \), which has units of energy per unit time per area. 
+
+The first remark we should make is how we should intuitively interpret \( \mathbf{S} \). Consider a simple
+circuit, like the one shown below:
+\begin{center}
+	\begin{circuitikz}
+		\draw(0, -1) to[battery1] (0, 1) to (4, 1) to[bulb] (4, -1) to (0, -1); 
+	\end{circuitikz}
+\end{center}
+Locally on the bulb, it's not hard to derive that \( \mathbf{S} \) points radially inward toward the load (a
+lightbulb). Because energy is being expended by the bulb, the energy must come from \textit{somewhere}, but
+where is it coming from? Initially it might seem like \( \mathbf{S} \) tells us that energy is coming from
+thin air, but what it's really saying is that the energy is being taken away from the \( \mathbf{E}  \) and
+\( \mathbf{B} \) fields, and going into the bulb. In particular, the energy flow is as follows:
+\[
+	\mathbf{S} \rightarrow \text{E-field} \rightarrow \text{particles} \rightarrow \text{bulb}
+\]
+Further, if you work out the math you will find that the \( \mathbf{S} \) field points radially outwards  
+\subsection{Continuity Equation for Momentum}
+To derive the continuity equation for momentum, we will invoke the same kind of logic we used to arrive at
+the conservation of energy equations. First, we will begin with an equation that describes the change in
+momentum over time, which is incidentally the equation for force:
+\[
+	\dv{\mathbf{p}_\text{particle}}{t} = \mathbf{F} = \int (dq) (\mathbf{E} + \mathbf{v} \times \mathbf{B})
+\]
+exchanging \( q \) in favor of \( \rho \), this integral becomes:
+\[
+	\dv{\mathbf{p}_\text{particle}}{t} = \int_{\mathcal{V}} \rho \mathbf{E} + \mathbf{J} \times \mathbf{B}
+	\diff \tau
+\]
+Now, our goal here will be the same as last lecture: we want to massage this equation into one which has a
+boundary term and also a volume term. The former will represent the "flow" of momentum through the surface of
+\( \mathcal{V} \), and the volume term will represent the momentum stored inside the volume \( \mathcal{V}
+\). To begin, we first invoke Gauss's law and the Ampere-Maxwell law to rewrite \( \rho \) and \( \mathbf{J}
+\) in terms of \( \mathbf{E} \) and \( \mathbf{B} \):
+\begin{align*}
+	F^{i} &= \int [\epsilon_0(\partial_m E^{m})E^{i} + \frac{1}{\mu_0}(\curl B)_j B_k - \epsilon_0
+	\epsilon^{ijk}(\partial_t E_j) B_k] \diff \tau\\
+		  &= \int [\underbrace{\epsilon_0 (\partial_m E^{m}) E^{i}}_1 + \underbrace{\frac{1}{\mu_0}\epsilon^{ijk}
+	\epsilon_{jmn}(\partial^{m}B^{n})B_k}_2 - 
+	\underbrace{\epsilon_0 \epsilon^{ijk} (\partial_t E_j)B_k}_3] \diff \tau 
+\end{align*}
+We will deal with these terms separately, starting with the third term. We first rewrite this using the
+product rule as the difference of two terms:
+\[
+	\int \epsilon_0 \epsilon^{ijk}(\partial_t E_j) B_k \diff \tau = -\int \epsilon_0
+	\epsilon^{ijk}\partial_t(E_j B_k) - \epsilon_0 \epsilon^{ijk}E_j (\partial_t B_k) \diff \tau
+\]
+Then by Faraday's law, we have \( \curl E = -\partial_t B_k \), so this allows us to write the second term
+using another Levi-Civita symbol:
+\[
+	-\dv{t} \int (\epsilon_i \epsilon^{ijk} E_j B_k) \diff \tau - \int \epsilon_0 \epsilon^{ijk}
+	E_j(\epsilon_{kmn}\partial^{m} E^{n}) \diff \tau 
+\]
+Now, we have the following identity when we have two Levi-Civita symbols (again, review the index notation if
+you need to): 
+\[
+	\epsilon^{ijk}\epsilon_{mnk} = \delta^{i}_m \delta^{j}_n - \delta^{i}_n \delta^{j}_m
+\]
+We then use \( \epsilon_{kmn} = \epsilon_{mnk} \), and invoke the above rule:
+\[
+	-\dv{t} \int (\epsilon_0 \epsilon^{ijk} E_j B_k) \diff \tau - \int \epsilon_0 (\delta^{i}_m \delta^{j}_n
+	- \delta^{i} _n \delta^{j}_m) E_j \partial^{m} E^{n} \diff \tau 
+\]
+Finally, this term becomes:
+\[
+	-\dv{t} \int \epsilon_0 \epsilon^{ijk} E_j B_k \diff \tau - \int \epsilon_0 [E_n(\partial^{i} E^{n}) -
+	E_m(\partial^{m} E^{i})] \diff \tau 
+\]
+and that's all we can do with the third term. We'll deal with the first term next, which is pretty easy.
+Using the product rule, we get:
+\[
+	\int \epsilon_0 (\partial_m E^{m}) E^{i} \diff \tau = \int[\epsilon_0 \partial_m (E^{m} E^{i}) -
+	\epsilon_0 E^{m} \partial_m E^{i}] \diff \tau
+\]
+Finally, we deal with the second term. We will begin in the same fashion as the previous term, by
+writing this using product rule:
+\begin{align*}
+	-\frac{1}{\mu_0}\int \epsilon^{jik} \epsilon_{jmn}(\partial^{m}B^{n})B_k \diff \tau &=
+	-\frac{1}{\mu_0} \int \epsilon^{jik} \epsilon_{jmn} \left[ \partial^{m}(B^{n}B_k) -
+	B^{n}(\partial^{m}B_k)\right] \diff \tau \\ 
+	&= -\frac{1}{\mu_0} \int \left( \delta^{i}_m \delta^{k}_n - \delta^{i}_n \delta^{k}_m \right)
+	[\partial^{m} (B^{n}B_k) - B^{n}(\partial^{m}B_k)] \diff \tau  \\ 
+	&= -\frac{1}{\mu_0}\int \partial^{i}\partial^{k}B_k - \partial^{k}(B^{i}B_k) - B^{k}(\partial^{i} B_k) +
+	B^{i}(\partial^{k}B_k) \diff \tau
+\end{align*}
+The last term in this integral is \( \div \mathbf{B} \), which is always zero. 
+Now, combining all the terms together, we get:
+\begin{multline*}
+	\dv{\mathbf{p}_\text{particle}^{i}}{t} = \int \diff \tau \left[ \epsilon_0 \partial_m (E^{m}E^{i}) -
+	\epsilon_0 E^{m}(\partial_m E^{i}) - \frac{1}{\mu_0} \partial^{i}(B^{k}B_k) +
+\frac{1}{\mu_0}\partial^{k}(B^{i}B_k) + B_k (\partial^{i} B_k) - \epsilon_0 E_n (\partial^{i} E_n) +
+\epsilon_0 E_m (\partial^{m} E^{i}) \right] \\- \dv{t} \int \epsilon_0 \epsilon^{ijk}E_j B_k \diff \tau
+\end{multline*}
+Moving the time derivative term to the other side, we get:
+\[
+	\dv{\mathbf{p}_\text{particle}^{i}}{t} + \dv{t} \int \epsilon_0 \epsilon^{ijk}E_j B_k \diff \tau = \int
+	\diff \tau \left[ \text{stuff} \right]
+\]
+The "stuff" here is everything in the square brackets, and we will simplify this next time. But, notice that
+there are some things that are already starting to come out of this equation. Namely, the second term in this
+equation is \( \epsilon_0 (\mathbf{E} \times \mathbf{B}) = \epsilon_0 \mu_0 \mathbf{S} \), so this term
+represents the momentum carried by the electromagnetic fields. Next time, we will simplify the right hand
+side into a nicer form.    

@@ -1,0 +1,114 @@
+\section{February 24}
+
+\subsection{Normal Incidence on a Conductor}
+Last time, we stopped by considering EM waves in a conductor, now we will consider reflection and
+transmission on a conductor, in the same way we did this for linear dielectrics. Consider the following case
+of an electromagnetic wave \( \mathbf{E}_I \) on the boundary between a linear dielectric and a linear
+conductor.   
+\begin{center}
+	\begin{tikzpicture}[scale=0.5]
+		\draw[-stealth] (-4, 0) -- (4, 0) node[right] {\( z \)};
+		\draw[-stealth] (0, -4) -- (0, 4) node[above] {\( x \)};
+		\draw[stealth-stealth, orange] (-3, -1) -- (-3, 1) node[above] {\( \mathbf{E}_I \)}; 
+		\draw (-3, 4) node {linear dielectric};
+		\draw (3, 4) node {linear conductor};
+	\end{tikzpicture}
+\end{center}
+By fitting boundary conditions, we can find that the transmitted wave has the same polarization as the
+incident wave, and we also have the following quantities:
+\[
+	\tilde \beta = \left( \frac{\mu_1v_1}{\mu_2 \omega} \right)\tilde k_2 \quad \tilde E_{0R} = \left(
+	\frac{1 - \tilde \beta}{ 1+ \tilde \beta} \right)\tilde E_{0I} \quad E_{0T} = \left( \frac{2}{1 + \tilde
+\beta} \right)\tilde E_{0I}
+\]
+Recall also our value for \( \tilde k \):
+\[
+	k = a + ib = \frac{\omega}{v} \left[\sqrt{\frac{\sqrt{1 + \left( \frac{\sigma}{\epsilon \omega}
+		\right)^2} + 1}{2} }+ i \sqrt{\frac{\sqrt{1 + \left( \frac{\sigma}{\epsilon \omega} \right)^2} -
+1}{2}}\right]
+\]
+Yes it's ugly, but that's what it is. Note also that for a very good conductor (that is, for \( \sigma \to
+\infty \)), then \( |\tilde \beta| \to \infty \) as well. In this case, we see that the ratio 
+\[
+	\lim_{\tilde \beta \to \infty} \frac{1 - \tilde \beta }{1 + \tilde \beta} = -1
+\]
+and this means that we get \( \tilde E_{0R} = - \tilde E_{0I} \), which amounts to picking up a \( \pi \)
+phase shift on reflection. Likewise, we find that \( \tilde E_{0T} \to 0 \).
+
+\subsection{Anomalous Dispersion}
+Previously, we've considered a model where we have an incident electric field \( \mathbf{E} \), which under a
+roughly quadratic potential, oscillates sinusoidally. The equation of motion for such a particle is:
+\[
+	\ddot x = -m \omega_0^2 x + \frac{q E_0}{m}\cos(\omega t)
+\]
+Given this type of motion, our goal in this section is to show that the index of refraction is given by:
+\[
+	n = 1 + \frac{q^2 N}{2 \epsilon_0 m} \frac{1}{\omega_0^2 - \omega^2}
+\]
+Here \( N \) represents the number of charges per volume. This function \( n(\omega) \) explains exactly why
+materials like glass bend blue light more than red light, and is the phenomenon we call \textbf{anomalous
+dispersion}. This phenomenon actually has a fairly simple explanation, and it has to do with absorption and
+damping. By assumption, let's add a damping term to our equation of motion:
+\[
+m \ddot x = - m \omega_0^2 x - m \gamma \dot x + q E_0 \cos(\omega t)
+\]
+And here we will solve this by considering \( x(t) = \Re(\tilde x(t)) \). We will let our ansatz be \( \tilde
+x(t) = \tilde x_0 e^{-i \omega t}\), which yields the equation:
+\[
+	(- m \omega^2 + i m \gamma \omega + m \omega_0^2) \tilde x_0 = q E_0
+\]
+This leads to the equation:
+\[
+	\tilde x_0 = \frac{q E_0}{m(\omega_0^2 - \omega^2) - i m \gamma \omega}
+\]
+so we've solved for the equation of motion. Now, as the charge oscillates, we get a dipole moment:
+\[
+	\mathbf{p} = q \tilde x(t) = \frac{q^2}{m} \frac{1}{(\omega_0^2 - \omega^2) - i \gamma \omega} E_0 e^{-i
+	\omega t}
+\]
+and the total polarization can be written as :
+\[
+	\tilde{\mathbf{P}} = \tilde{\mathbf{p}} N = \frac{q^2N}{m}\frac{1}{(\omega_0^2 0 - \omega^2) - i \gamma
+	\omega} E_0 e^{-i \omega t}
+\]
+For a linear dielectric, we have \( \tilde{\mathbf{P}} = \epsilon \tilde \chi_e \mathbf{E} \), so using the
+above equation, we can deduce the electric susceptibility:
+\[
+	\tilde \chi_e = \frac{q^2 N}{\epsilon_0 m}\frac{1}{(\omega_0^2 - \omega^2) - i \gamma \omega}
+\]
+Then, the permittivity is:
+\[
+	\tilde \epsilon = \epsilon_0\left( 1 + \frac{q^2 N}{\epsilon_0 m} \frac{1}{(\omega_0^2 - \omega^2) - i
+	\gamma \omega} \right)
+\]
+Now with \( \tilde \epsilon \) solved, recall the wave equation we have when \( \mu \approx \mu_0 \) and \(
+\epsilon \approx \epsilon_0 \):
+\[
+	(\nabla^2 - \mu \tilde \epsilon \partial_t^2) \mathbf{E} = 0
+\]
+Now, with the ansatz \( \tilde{\mathbf{E}} = \tilde E_0 e^{-i(\tilde k z - \omega t)} \), we get the equation
+\( -\tilde k^2 + \mu \tilde \epsilon \omega^2 = 0 \) so this implies the solution:
+\[
+	\tilde k = \sqrt{\mu_0 \tilde \epsilon} \omega = \sqrt{\mu_0 \epsilon_0} ( 1 + \chi_e)^{1 / 2} \omega
+\]
+Usually, \( \tilde \chi_e \ll 1  \), so we Taylor expand here using \( (1 + x)^{n} \approx 1 + nx \).
+Therefore, \( \tilde k \) becomes:
+\[
+	\tilde k = \sqrt{\mu_0 \epsilon_0}\left( 1 + \frac{q^2 N}{2 \epsilon_0 m}\frac{1}{(\omega_0^2 - \omega^2)
+	- i \gamma \omega} \right)\omega = \sqrt{\mu_0 \epsilon_0}\left( 1 + \frac{q^2N}{2 \epsilon_0
+	m}\frac{(\omega_0^2 - \omega^2) + i \gamma \omega}{\omega_0^2 - \omega^2 + \gamma^2 \omega^2} \right)
+\]
+This last step then allows you to think of \( \tilde k = k + i \kappa \), as you can split this into a real
+and imaginary part:
+\[
+	\tilde k = \sqrt{\mu_0 \epsilon_0}\omega \left[ \left( 1 + \frac{q^2 N}{2 \epsilon_0 m }\frac{\omega_0^2
+	- \omega^2}{(\omega_0^2 - \omega^2) + \gamma^2 \omega^2} \right) + i \left(\frac{q^2N}{2 \epsilon_0
+m}\frac{\gamma \omega}{(\omega_0^2 - \omega^2) + \gamma^2 \omega^2}\right) \right]
+\]
+So this gives the equation: \( \tilde{\mathbf{E}} = \tilde{\mathbf{E}_0} e^{-\kappa z} e^{-i(kz - \omega t)}
+\). Then, the refractive index \( n = \frac{c}{v} = \frac{c}{\omega} k \), so substituting \( k \):
+\[
+	n = 1 + \frac{q^2N}{2 m \epsilon_0}\frac{\omega_0^2 - \omega^2}{(\omega_0^2 + \omega^2) + \gamma ^2
+	\omega^2}
+\]
+

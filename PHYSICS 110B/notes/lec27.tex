@@ -1,0 +1,112 @@
+\section{April 7}
+Today, we will begin discussing chapter 11, which is about radiation. Specifically, this chapter will deal
+with fields which decay as \( \frac{1}{r} \), as opposed to \( \frac{1}{r^2} \) as we typically see in
+electrostatics. We have to handle these fields with care, because quantities like the power:
+\[
+	P = \oint_{r \to \infty} \frac{1}{\mu_0} (\mathbf{E} \times \mathbf{B}) \diff \mathbf{a} = \text{finite}
+\]
+are finite for such fields even as \( r \to \infty \). In this sense, we sometimes say that the energy is
+able to "detach" away from the sources and propagate all the way to infinity. From Jefimenko's equations, 
+\begin{align*}
+	\mathbf{E} &= \frac{1}{4\pi \epsilon_0} \int \left[ \frac{\rho(t_r, \mathbf{r}')}{\rcurs^2} \hat{\brcurs}
+	+ \frac{\dot \rho (t_r, \mathbf{r}')}{c \rcurs} \hat{\brcurs} - \frac{\dot{\mathbf{J}} (t_r,
+\mathbf{r}')}{c^2 \rcurs} \hat{\brcurs}\right] \diff \tau' \\ 
+\mathbf{B} &= \frac{\mu_0}{4\pi} \int \left[ \frac{\mathbf{J}(t_r, \mathbf{r}')}{\rcurs^2} \times
+\hat{\brcurs} + \frac{\mathbf{J}(t_r, \mathbf{r}')}{c\rcurs} \times \hat{\brcurs}\right] 
+\end{align*}
+Based on these equations, the terms with \( \frac{1}{r} \) dependence are the \( \dot \rho \) and \(
+\dot{\mathbf{J}} \) terms. In order to calculate the radiation field, we will make some approximations:
+\begin{enumerate}[label=\arabic*.]
+	\item \( r \gg d \), where \( d \) is the length scale for the size of the source.   
+	\item \( \lambda \simeq \frac{c}{\omega} \gg d \). This is used to suppress the details concerning the
+		structure of the source itself. 
+	\item \( T \ll \frac{r}{c} \) or \( \frac{1}{\omega} \ll \frac{r}{c} \). This assumption ensures that the
+		time varying changes in the source have a significant impact.  
+\end{enumerate}
+
+\begin{example}[Electric Dipole Radiation]
+	To illustrate a sample calculation, we will use the situation of electric dipole radiation. Consider a
+	positive and negative charge separated by a distance \( d \), oscillating according to \( q(t) = q_0 \cos
+	(\omega t)\).   
+	\begin{center}
+		\begin{tikzpicture}[decoration = {markings, mark=at position 0.5 with {\arrow{>}}}]
+			\filldraw[red] (0, 1) circle (0.02) node[left] {\( +q \)};
+			\filldraw[blue] (0, -1) circle (0.02) node[left] {\( -q \)};
+			\draw[postaction=decorate] (0, 1) -- (0, -1) node[midway, left] {\( \mathbf{I} \)};
+		\end{tikzpicture}
+	\end{center}
+	Given this, the current is \( I = qv = -q_0 \omega \sin(\omega t) \mathbf{\hat{z}} \). We can also
+	calculate the potential very easily, as it is given by:
+	\[
+		V(\mathbf{r}, t) = \frac{1}{4\pi \epsilon_0} \frac{q_0 \cos\left[ \omega \left( t -
+		\frac{\rcurs_+}{c} \right) \right]}{\rcurs_+(t_r)} - \frac{1}{4\pi \epsilon_0} \frac{q_0 \cos\left[
+		\omega\left( t - \frac{\rcurs_-}{c} \right) \right]}{\rcurs_- (t_r)}
+	\]
+	Now, we can calculate the approximations we need separately. First, we will need to approximate \(
+	\rcurs_{\pm} \):
+	\[
+		\rcurs_{\pm} = \sqrt{r^2 + \left(\frac{d}{2}\right)^2 \mp r d \cos \theta} \approx r \left( 1 \mp
+		\frac{d}{2r}\cos \theta \right) \implies \frac{1}{\rcurs_{\pm}} \approx \frac{1}{r}\left( 1 \pm
+	\frac{d}{2r} \cos \theta \right)
+	\]
+	here, we used the approximation that \( (1 + x)^{n} \approx 1 + nx \) when \( x \ll 1 \), suppressing the higher order
+	terms. This uses the first assumption of \( \frac{d}{r} \ll 1 \). Next, we have the approximation of the
+	argument in the cosine:
+	\[
+		\omega \left( t - \frac{\rcurs_{\pm}}{c} \right) = \frac{\omega}{c} \left[ ct - r\left( 1 \mp
+		\frac{d}{2r} \cos \theta \right) \right] \approx \omega t - \frac{\omega r}{c} \pm \frac{d}{2(c /
+	\omega)} \cos \theta + \dots
+	\]
+	Therefore, we can now evaluate the cosine using the addition rule:
+	\begin{multline*}
+		\cos\left[ \omega\left(t - \frac{\rcurs_{\pm}}{c}\right) \right] = \cos\left( \omega t - \frac{\omega
+		\rcurs_{\pm}}{c} \right) \approx \cos\left[ \omega\left( t - \frac{r}{c} \right) \pm \frac{\omega
+d}{2c} \cos \theta \right] 
+\\ = \cos\left[ \omega\left( t - \frac{r}{c} \right) \right] \cos\left[ \frac{\omega d}{2c} \cos \theta
+\right] \mp \sin \left[ \omega\left( t - \frac{r}{c} \right) \right] \sin\left[ \frac{\omega d}{2c}\cos \theta \right]
+	\end{multline*}
+	So now going back to \( V(\mathbf{r}, t) \):
+	\begin{multline*}
+			V(\mathbf{r}, t) = 
+			\frac{q_0}{4\pi \epsilon_0}\frac{1}{r} \bigg\{ \left( 1 + \frac{d}{2r}\cos
+			\theta \right) \left[ \cos \left( \omega\left( t - \frac{r}{c} \right) \right) - \sin\left[
+		\omega\left( t - \frac{r}{c} \right) \right] \frac{wd}{2c}\cos \theta \right]  \\ 
+							 - \left( 1 - \frac{d}{2r}\cos \theta \right) \left[ \cos \left[ \omega \left( t - \frac{r}{c} \right)
+\right] + \sin \left[ \omega\left( t - \frac{r}{c} \right) \right] \frac{\omega d}{2c} \cos \theta
+\right]\bigg\}
+	\end{multline*}
+	Now using the small angle approximation (\( \sin \theta \approx \theta \), \( \cos \theta \approx 1 \)), this simplifies to:
+	\[
+		V(\mathbf{r}, t) \simeq \frac{q_0d}{4 \pi \epsilon_0} \frac{1}{r^2} \cos \theta \cos\left[
+		\omega\left( t - \frac{r}{c} \right) \right] - \frac{1}{4\pi \epsilon_0} \frac{q_0d \cos \theta}{r}
+		\left( \frac{\omega}{c} \right) \sin\left[ \omega \left( t - \frac{r}{c} \right) \right]
+	\]
+	The first term is the dipole potential from electrostatics, and the second term is the radiation term,
+	indicated by its \( \frac{1}{r} \) dependence. A similar approach can be taken to calculate \( \mathbf{A} \):
+	\[
+		\mathbf{A} = \frac{\mu_0}{4\pi} \int \frac{\mathbf{J}(t_r, \mathbf{r})}{\rcurs} \diff \tau' =
+		-\frac{\mu_0}{4\pi} \int_{- d /2}^{d / 2} \frac{q_0 \omega \sin \left[ \omega \left( t - \frac{\rcurs}{c} \right)
+		\right] \mathbf{\hat{z}}}{\left[ r^2 - 2 z' r \cos \theta + (z')^2 \right]^{1 / 2}} \diff z'
+	\]
+	Note that we integrate over \( z' \) here becuase \( \mathbf{J} \) generated by \( \mathbf{I} \) is only
+	in the \( \mathbf{\hat{z}} \) direction. As for the bounds of the integral, this is given by the motion
+	of the two charges. So, the integral becomes:
+	\begin{align*}
+		\mathbf{A} &= -\frac{\mu_0 q_0 \omega \mathbf{\hat{z}}}{4\pi} \int_{- d / 2}^{d / 2} \frac{1}{r}\left( 1 +
+		\frac{z'}{2r}\cos \theta \right) \sin \left[ \omega\left( t - \frac{r}{c} \right) + \frac{\omega
+	z'}{2c} \cos \theta  \right] \diff z'\\
+	&= - \frac{\mu_0 q_0 \omega}{4\pi} \mathbf{\hat{z}} \int_{- d / 2}^{d /2} \frac{1}{r} \left( 1 + \frac{z'}{2r}\cos \theta
+	\right) \left\{ \sin \left[ \omega\left(t - \frac{r}{c}\right) \right] \cos\left( \frac{\omega z'}{2c} \cos
+	\theta\right) + \cos \left[ \omega\left( t - \frac{r}{c} \right) \right] \sin\left( \frac{\omega
+z'}{2c}\cos \theta \right) \right\}  \diff z'
+	\end{align*}
+	Now, we will make some approximations. In particular, the function \( \frac{z'}{2r} \cos \theta \) is
+	odd, so over an even interval it just goes to zero. Secondly, the \( (z')^2 \) terms are on the order of
+	\( d^3 \), which is considered small compared to the length scale of the integral, so we ignore these
+	terms as well. Therefore, the overall integral just simplifies to:
+	\[
+		\mathbf{A} \approx - \frac{\mu_0 q_0 \omega}{4\pi} \frac{d}{r} \sin \left[ \omega\left( t -
+		\frac{r}{c} \right) \right] \mathbf{\hat{z}}
+	\]
+\end{example}	
+

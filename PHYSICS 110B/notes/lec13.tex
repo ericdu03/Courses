@@ -1,0 +1,109 @@
+\section{February 21}
+\subsection{EM Waves in a Conductor}
+Last time we started our discussion of EM waves in a conductor, we will continue that discussion today.
+Recall that we said we wanted \( \rho_f = 0 \), so Maxwell's equations read:
+\begin{align*}
+	\nabla \cdot \mathbf{E} &= 0 \\ 
+	\nabla \cdot \mathbf{B} &= 0 \\ 
+	\nabla \times \mathbf{E} &=  -\partial_t \mathbf{B} \\ 
+	\nabla \times \mathbf{B} &= \mu \mathbf{J}_f + \mu \epsilon \partial_t \mathbf{E}
+\end{align*}
+If we further assume that our conductor is Ohmic, then \( \mathbf{J}_f = \sigma \mathbf{E} \), so taking the
+curl of Faraday's law:
+\begin{align*}
+	\nabla \times(\nabla \times \mathbf{E}) &= -\partial_t (\nabla \times \mathbf{B})\\
+	\nabla (\nabla \cdot \mathbf{E}) - \nabla^2 \mathbf{E} &= - \mu \partial_t \mathbf{J}_f + \mu \epsilon
+	\partial_t^2 \mathbf{E}
+\end{align*}
+So rewriting this a bit, you get the following wave equation for \( \mathbf{E} \):
+\begin{equation}
+	\label{13:damped wave equation}
+	(\nabla^2 - \mu \epsilon \partial_t^2 - \mu \sigma \partial_t) \mathbf{E} = 0
+\end{equation}
+Similarly, if you take the curl of the Ampere-Maxwell law, you get a similar equation for \( \mathbf{B} \):
+\[
+	(\nabla^2 - \mu \epsilon \partial_t^2 - \mu \sigma \partial_t) \mathbf{B} = 0
+\]
+Now, take a look at \ref{13:damped wave equation}. We know that we're dealing with waves, so let's have an
+ansatz of \( \mathbf{E} = \mathbf{E}_0 e^{i(kz - \omega t)} \). Then, the differential equation will read:
+\[
+	\mu \epsilon \ddot{\mathbf{E}} = - k^2 \mathbf{E} - \mu \sigma \dot{\mathbf{E}}
+\]
+This is the same differential equation as that for a damped harmonic oscillator, where the \(
+\dot{\mathbf{E}} \) term supplies the damping. To solve for \( \mathbf{E} \), we will consider a complex
+ansatz, so \( \mathbf{E} = \mathbf{E}_0 e^{i (\tilde k z - \omega t)} \), so \( \tilde k \in \C \). Plugging
+this into the equation of motion and solving for \( \tilde k \), we get:
+\[
+	\tilde k^2 = \mu \epsilon \omega^2\left( 1 + i \frac{\sigma}{\epsilon \omega} \right) = \left(
+	\frac{\omega}{v} \right)^2 \left( 1 + i \frac{\sigma}{\epsilon \omega} \right)
+\]
+Now, let \( \tilde k = \frac{\omega}{v}(a + ib) \). We'll find \( a \) and \( b \) by matching coefficients.
+So, we have:
+\[
+	\tilde k^2 = (a + ib)^2 = a^2 - b^2 + 2iab 
+\]
+Comparing the real and imaginary part we get \( a^2 - b^2 = 1 \) and \( 2ab = \frac{\sigma}{\epsilon \omega}
+\), so solving for \( a \) and \( b \):
+\begin{align*}
+	a^2 - \frac{\sigma^2}{4 a^2 \epsilon^2 \omega^2} &=  1 \\ 
+	a^{4} - a^2 - \frac{\sigma^2}{4 \epsilon^2 \omega^2} &=  0
+\end{align*}
+We can solve this with the quadratic equation:
+\[
+	a^2 = \frac{1 \pm \sqrt{1 + \left( \frac{\sigma}{\epsilon \omega} \right)^2}}{2}
+\]
+We choose the positive solution for \( a \) because \( a \in \R	\) and \( a > 0 \). Plugging this back into
+\( b \), we get the combined solutions:
+\[
+	a = \sqrt{\frac{\sqrt{1 + \left( \frac{\sigma}{\epsilon \omega} \right)^2} + 1}{2}} \quad b =
+	\sqrt{\frac{\sqrt{1 + \left( \frac{\sigma}{\epsilon \omega} \right)^2} - 1}{2}}
+\]
+So, if we define \( \tilde k \equiv k + i \kappa \), so \( k = \frac{\omega}{v}a \) and \( \kappa =
+\frac{\omega}{v} b \), then we see that the electric field \( \mathbf{E}  \) has solutions of the form:
+\[
+	\mathbf{E} = \Re\left\{ \tilde{\mathbf{E}}_0 e^{-\kappa z} e^{i(kz - \omega t)} \right\}
+\]
+The \( e^{-\kappa z} \) term represents the fact that the waves decays as it propagates through the
+conductor, eventually dying out.      
+
+\subsection{Magnetic Phase Shift} 
+In a conductor, the magnetic field propagates in the same direction as \( \mathbf{E} \), but now with a phase
+shift, unlike in a vacuum. To see this, consider a magnetic field wave:
+\[
+	\tilde{\mathbf{B}} = \tilde{\mathbf{B}}_0 e^{i(\tilde{\mathbf{k}} \cdot \mathbf{r} - \omega t)}
+\]
+Here, we let \( \tilde{\mathbf{k}} = \tilde k \cdot \mathbf{\hat{k}} \). Note that this is different than the
+Cartesian parametrization \( \tilde{\mathbf{k}} = \mathbf{k} + i \boldsymbol{\kappa} \), which leads to
+differing mathematical results. The former is a more natural parametrization, because when we think of
+travelling waves the \( \mathbf{\hat{k}} \) vector points in the direction of travel, with frequency
+information encoded in the scalar \( \tilde k \). Applying Faraday's law:
+\begin{align*}
+	\epsilon^{ijk}\partial_j \left(E_{0k}e^{i(\tilde{\mathbf{k}} \cdot \mathbf{r} - \omega t)}\right) &=
+	-\partial_t \left(B_0^{i}e^{i(\tilde{\mathbf{k}} \cdot \mathbf{r} - \omega t)}\right)\\
+	\epsilon^{ijk}(i \tilde k_j) \tilde E_{0k} e^{i(\tilde{\mathbf{k}} \cdot \mathbf{r} - \omega t)} &= (i
+	\omega) \tilde B_0^{i} e^{i(\tilde{\mathbf{k}} \cdot \mathbf{r} - \omega t)}\\ 
+	\therefore \tilde B_0^{i} &= \epsilon^{ijk} \frac{\tilde k_j}{\omega} \tilde E_{0k}
+\end{align*}
+From this, we can see that the amplitude of \( B_0 \) is given by \( \tilde B_0 = (\tilde k / \omega) \tilde
+E_0\). Because \( \tilde k \) is complex from the previous section, then this means we can write \( \tilde k
+= \mathcal{K} e^{i \phi}\),\footnote{Note that this is still fundamentally different than letting 
+	\( \tilde{\mathbf{k}} = \mathbf{k} + i \boldsymbol{\kappa} \), because here the \(
+\mathcal{K} \) is a scalar, whereas in the alternative case we would need a vector.} meaning we have:
+\[
+	B_0 e^{i \delta_B} = \frac{\mathcal{K} e^{i \phi}}{\omega} E_0 e^{i \delta_k }
+\]
+Equating the two phases, we get the equation \( \delta_B = \delta_k + \phi \), implying that the \(
+\mathbf{B} \) field now has a phase which causes it to lag behind the \( \mathbf{E} \) wave.  
+ 
+% there's a small section here about K_f, should I include it? 
+
+
+
+
+
+
+
+
+
+
+

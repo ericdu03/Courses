@@ -1,0 +1,117 @@
+\section{April 14}
+\subsection{Radiation of a Moving Point Charge}
+Recall that at the end of last lecture, we derived the Larmor formula (\cref{Larmor}), which relates the
+radiation of a point charge to its acceleration. While the previous derivation does indeed work, it's not
+exactly very satisfying (at least in my view), since you still make the approximation that a point charge is
+a charge enclosed in a very small volume. We will correct this by deriving the Larmor formula through a
+completely different means, which doesn't involve such an assumption.  
+
+To begin this analysis, we start off with a diagram:
+\begin{center}
+	\begin{tikzpicture}[>=Stealth, scale=3.5]
+
+	  \draw[dotted] (0, 0) circle (0.5);
+
+	  % Red dot representing \vec{r}(t)
+	  \filldraw[red] (0,0) circle (0.02);
+	  \node[below left=-0.1, red] at (0.07,-0.07) {$\vec{w}(t)$};
+
+	  % Blue vector from center to boundary
+	  \coordinate (C) at (0,0);
+	  \coordinate (T) at (30:0.5);
+	  \draw[->, thick, blue] (C) -- (T) node[above right] {\( t_s \)};
+
+	  \draw[dashed] (160:1) .. controls (-0.5, 0.3) and (-0.2, 0.1) .. (0, 0) 
+							.. controls (0.2, -0.1) and (0.5, -0.3) .. (345:1);
+
+	\end{tikzpicture}
+\end{center}
+We regard the particle as having position given by \( \mathbf{w}(t) \), and its signal emitted at time \( t
+\) reaches our sphere at time \( t_s \). In this context, \( t \) is considered the retarded time. Now,
+recall that for a moving particle, we derived earlier that the electric field follows:
+\[
+	\mathbf{E}(r, t_s) = \frac{q}{4\pi \epsilon_0} \frac{\rcurs}{(\brcurs \cdot \mathbf{u})^2} \left[ (c^2 -
+	v^2) \mathbf{u} + \brcurs \times (\mathbf{u} \times \mathbf{a}) \right]
+\]
+Recall that the first term represents the velocity field, and the second represents the acceleration field.
+The \( \mathbf{B} \) field follows \( \mathbf{B} = \frac{1}{c}\mathbf{\hat{r}} \times \mathbf{E} \) as usual.
+Our goal is to derive the Larmor formula, so we want to find an expression for the power \( P(t) \) coming
+out of the particle, which is the same power that arrives to the sphere at time \( t_s \). As usual, the
+power is a surface integral of the Poynting vector \( \mathbf{S} \), so:
+\[
+	\mathbf{S} = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \frac{1}{\mu_0c}(\mathbf{E} \times
+	\hat{\brcurs} \times \mathbf{E}) = \frac{1}{\mu_0c}\left[ |\mathbf{E}|^2 \hat{\brcurs} -
+	\mathbf{E}(\mathbf{E} \cdot \hat{\brcurs}) \right]
+\]
+Because we are only considering the radiation field, we can drop the velocity field since it doesn't go as \(
+\frac{1}{\rcurs}\). Given this assumption, this means that \( \mathbf{E} \) is approximately proportional to
+\( \brcurs \times (\mathbf{u} \times \mathbf{a}) \), and hence the second term which has an \( \mathbf{E}
+\cdot \brcurs \) term will die. Therefore, the final equation for \( \mathbf{S} \) is:
+\[
+	\mathbf{S} = \frac{1}{\mu_0c}|\mathbf{E}|^2 \hat{\brcurs}
+\]
+Now we look to simplify the \( \mathbf{E} \) term from this equation. To do this, we will first assume tat \(
+v = 0\) but \( a \neq 0 \); this may look like a strange assumption at first, but bear with me as we derive
+this and eventually generalize to the \( v \neq 0 \) case. Under these assumptions, then \( \mathbf{u} = c
+\hat{\brcurs} - \mathbf{v} = c \hat{\brcurs}\):
+\begin{align*}
+	\mathbf{E} &= \frac{q^2}{16 \pi^2 \epsilon_0^2} \frac{\rcurs^2}{ (\rcurs^3 c^3)^2} \left| c^3
+	\hat{\brcurs} + c \brcurs \times (\hat{\brcurs} \times \mathbf{a}) \right|^2\\
+			   &= \frac{q^2}{16 \pi^2 \epsilon_0^2} \frac{1}{\rcurs^{4} c^{6}}\left| c^3 \hat{\brcurs} + c
+			   \hat{\brcurs} (\mathbf{a} \cdot \brcurs) - \mathbf{a} \brcurs \right|^2 
+\end{align*}
+From here, we only take terms that are proportional to \( \rcurs^2 \) -- this is so that we get only the \(
+\sim \frac{1}{\rcurs^2} \) terms for \( \mathbf{S} \), and from there when integrating we get out only the \(
+\frac{1}{\rcurs}\) terms. Now, expanding the square:
+\begin{align*}
+	|\mathbf{E}|^2 &= \frac{q^2}{16 \pi^2 \epsilon_0^2} \frac{1}{r^{4}c^{6}} \left( c^2 a^2 \rcurs^2 +
+	c^2(\mathbf{a} \cdot \brcurs)^2 - 2c^2 (\mathbf{a} \cdot \brcurs)^2 \right)\\
+	&= \frac{\mu_0^2 q^2}{16 \pi^2} \frac{1}{\rcurs^{4}} \left( a^2 \rcurs^2 - (\mathbf{a} \cdot \brcurs)^2 \right) 
+\end{align*}
+Now, \( \mathbf{a} \cdot \rcurs \) is the same as \( a \rcurs \cos \theta \) by definition of the dot
+product, so this now simplifies to:
+\[
+	|\mathbf{E}|^2 = \frac{\mu_0^2 q^2}{16 \pi^2} \frac{a^2}{\rcurs^2} \sin^2 \theta
+\]
+So now we have our final expression for \( \mathbf{S} \):
+\[
+	\mathbf{S} = \frac{\mu_0 q^2 a^2}{16 \pi^2 c}\left( \frac{\sin^2 \theta}{\rcurs^2} \right) \hat{\brcurs}
+\]
+Finally, the power:
+\[
+	P = \oint \mathbf{S} \diff \mathbf{a} = \frac{\mu_0 q^2 a^2}{16 \pi^2 c} \int_{0}^{\pi} \sin^2 \theta
+	\sin \theta \diff \theta \int_{0}^{2\pi} \diff \phi = \frac{\mu_0 q^2 a^2}{6 \pi c}
+\]
+which is exactly the Larmor formula, this time derived without the assumption of volume. It should also be
+clear after this derivation that the Larmor formula only works when \( v = 0 \), as that was one of the
+assumptions we made to simplify \( \mathbf{E} \). Generally, this is a pretty good approximation anyways for
+\( v \ll c \), but to be completely formal, when \( v \neq 0 \) we have to consider not only the fact that \(
+\mathbf{E}\) changes but \( \mathbf{S} \) changes too. To see this, consider a moving particle, and think
+about the number of wavefronts emitted over a given time interval, versus the number of wavefronts received
+at a distance away:
+\begin{center}
+	\begin{tikzpicture}
+		\filldraw[red] (0,0) circle (0.1) node[below=0.2] {particle};
+		\draw[dashed] (60:1) arc [start angle = 60, end angle = -60, radius = 1];
+		\draw[dashed] (60:1.5) arc [start angle = 60, end angle = -60, radius = 1.5];
+		\draw[dashed] (60:1.9) arc [start angle = 60, end angle = -60, radius = 1.9];
+		\draw (4, 1) -- (4, -1) node[below] {screen};
+	\end{tikzpicture}
+\end{center}
+Because of this velocity, you can check that the effective wavelength \( \lambda_\text{eff} = (c - v) T \),
+where \( T \) is the period between the wavefronts. 
+The number of wavefronts received \( N_\text{receive} \) is given by:
+\[
+	N_\text{receive} = \frac{(c \Delta t) / \lambda_\text{eff}}{\Delta t} = \frac{c}{(c - v)T} = \left(
+	\frac{c}{c - v} \right)N_\text{emit}
+\]
+Now in the general case only the velocity in the direction of emission matters, so we replace \( v \) with \(
+\mathbf{v} \cdot \brcurs \), giving us the formula:
+\[
+	N_\text{emit} = \left( 1 - \frac{\mathbf{v} \cdot \brcurs}{c} \right)N_\text{receive}
+\]
+We will continue this discussion next time and see how this subtlety affects the power emitted.  
+ 
+ 
+ 
+  

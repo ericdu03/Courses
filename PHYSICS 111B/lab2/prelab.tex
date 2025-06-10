@@ -1,0 +1,45 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 111B}
+\newcommand{\classname}{Instrumentation Laboratory}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Prelab 2} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\begin{enumerate}[label=\arabic*.]
+		\item What is the general principle of optical pumping? Go over your
+			derivation of the Breit-Rabi formula and the values of the Lande
+			g-factors of the hyperfine energy levels of \ch{^{85}RB} and \ch{^{87}RB}
+			showing the fine, hyperfine, and Zeeman splittings. How do the Lande
+			g-factors affect the ordering of the Zeeman levels? Show the transitions
+			between these levels that are important to this experiment. Include these
+			drawings in your write-up. For our rubidium system, what is the pumping
+			process? Where is the pumped level? Where is the RF transition? 
+
+			\begin{solution}
+				The general idea of optical pumping is to observe the transitions
+				between the ground and excited states of atoms, from \( \ket*{F, m_F}
+				\) to \( \ket*{F, m_{F} + 1} \). \question{why are we only
+				considering \( m_F + 1 \)? Why can't the increase be fractional?}
+
+				Because simply exciting the electrons with the magnetic field has no
+				effect on the system, and instead we need to spin polarize everything
+				so that we see a change. 
+			\end{solution}
+		\item Why do we modulate (vary sinusoidally) the external magnetic field? How
+			do we take data if the magnetic field were not modulated?
+		\item In this experiment, how will we determine the resonance frequency? How
+			can we best estimate the error? Will the modulation amplitude affect our
+			result? What data will we take, and what plots will you make? 
+	\end{enumerate}	
+\end{document}

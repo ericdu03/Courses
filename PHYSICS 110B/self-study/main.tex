@@ -1,0 +1,284 @@
+\documentclass[10pt]{article}
+\usepackage{physics}
+\usepackage[tcbtheorems, narrowmargins]{../../preamble}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 110B}
+\newcommand{\classname}{Electrodynamics and Optics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Notes} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\setcounter{section}{7}
+	\section{Conservation Laws}
+	\subsection{Charge and Energy}
+	\subsubsection{The Continuity Equation}
+	Local conservation of charge is derived by starting from the equation for the total charge:
+	\[
+		Q(t) = \int_{\mathcal{V}} \rho(\mathbf{r}, t) \diff \tau
+	\]
+	and the total loss (or gain) of charge through the volume is given by the current density through
+	the surface of \( \mathcal{V} \):
+	\[
+		\dv{Q}{t} = -\oint_{\mathcal{S}} \mathbf{J} \cdot \diff \mathbf{a}
+	\]
+	We can then take the derivative of the first equation:
+	\[
+		\dv{Q}{t} = \dv{t} \int_{\mathcal{V}} \rho(\mathbf{r}, t) \diff \tau = \int_{\rho}
+		\pdv{\rho}{t} \diff \tau = -\int_{\mathcal{V}}\nabla \cdot \mathbf{J} \diff \mathbf{a}
+	\]
+	This allows us to come to the continuity equation:
+	\[
+		\pdv{\rho}{t} = -\nabla \cdot \mathbf{J}
+	\]
+	\subsubsection{Poynting's Theorem}
+	The total energy stored in electromagnetic fields is given by the sum of the integrands to
+	calculate the work required to arrange charges and generate currents:
+	\[
+		W_e = \frac{\epsilon_0}{2} \int E^2 \diff \tau \quad W_m = \frac{1}{2 \mu_0} \int B^2 \diff
+		\tau
+	\]
+	So, the total energy is expressed as:
+	\[
+		U = \frac{1}{2}\left( \epsilon_0 E^2 + \frac{1}{\mu_0}B^2 \right)
+	\]
+	Suppose you have a charge with some fields \( \mathbf{E} \) and \( \mathbf{B} \). How much work
+	are these forces doing on the charges over an interval \( dt \)? The force on a charge \( q \) is
+	given by:
+	\[
+		\mathbf{F} \cdot \mathbf{dl} = q \mathbf{E} \cdot \mathbf{v} \diff t
+	\]
+	so, in terms of densities, we have \( q \to \rho \diff\tau \) and then we combine this with \(
+	\mathbf{v} \) to get \( \rho \mathbf{v} \to \mathbf{J} \), so within a volume \( \mathcal{V} \),
+	we have:
+	\[
+		\dv{W}{t} = \int_{\mathcal{V}} (\mathbf{E} \cdot \mathbf{J}) \diff\tau
+	\]
+	so, the work done per unit time is \( \mathbf{E} \cdot \mathbf{J} \), which we can use Maxwell's
+	equations to eliminate \( \mathbf{J} \) in favor of \( \mathbf{E} \) and \( \mathbf{B} \):
+	\[
+		\mathbf{E} \cdot \mathbf{J} = \frac{1}{\mu_0} \mathbf{E} \cdot (\nabla \times \mathbf{B}) -
+		\epsilon_0 \mathbf{E} \cdot \pdv{\mathbf{E}}{t}
+	\]
+	We can then combine this with Faraday's laws and some product rules, finally giving us:
+	\[
+		\dv{W}{t} = -\dv{t} \int_{\mathcal{V}} \frac{1}{2}\left( \epsilon_0 E^2 + \frac{1}{\mu_0}B^2 \right)
+		\diff \tau - \frac{1}{\mu_0} \oint_{\mathcal{S}} (\mathbf{E} \times \mathbf{B}) \cdot \diff \mathbf{a}
+	\]
+	This is Poynting's theorem, which is essentially the "work energy theorem" of electrodynamics. The first
+	integral represents the energy stored in the fields, and the second integral represents the energy
+	flowing along the boundary of \( \mathcal{V} \) (notice also that it can be rewritten as \( \int u \diff
+	\tau\)). This second term is important, because it tells us of
+	the "flow" of energy in and out of \( \mathcal{V} \), and the direction of this vector tells us the
+	direction of energy flow. This is called the Poynting vector \( \mathbf{S} \equiv
+	\frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) \).        
+
+	In the case where no work is done, then we have: 
+	\[
+		\int_{\mathcal{V}} \pdv{u}{t} \diff \tau = -\oint \mathbf{S} \cdot \diff \mathbf{a} =
+		-\int_{\mathcal{V}} (\nabla \cdot \mathbf{S}) \diff \tau
+	\]
+	so, we have the energy continuity equation coming out:
+	\[
+		\pdv{u}{t} = -\nabla \cdot \mathbf{S}
+	\]
+	\question{There is a remark about "electromagnetic energy" is not conserved, but all of that is captured
+	in \( \mathbf{S} \) right?} 
+	\subsection{Momentum}
+	\subsubsection{Newton's Third Law}
+	In electrodynamics, Newton's third law is not directly conserved when considering charges only. Consider
+	the case of two charges \( q_1, q_2 \) moving along the \( x \) and \( y \) axes respectively, 
+	which are moving toward the origin \((0, 0)\). The electrostatic force is directly repulsive, and pushes
+	the two charges away equally. On \( q_1 \), the magnetic field produced by \( q_2 \) points out of the
+	page, so the force on \( q_1 \) is upward; on \( q_2 \) a similar logic applies, and the force is exerted
+	to the right. While the magnitude of the forces are equal, the direction is not, which is a violation of
+	Newton's third law. In electrodynamics, Newton's third law does \textbf{not} hold.   
+
+	If the third law does not hold, what happens to conservation of momentum? Ordinarily, conservation of
+	momentum is also violated, until you remedy it by allowing the fields to carry momentum, under which we
+	restore the conservation.    
+
+	\subsubsection{Maxwell Stress Tensor}
+	With a volume \( \mathcal{V} \) of charge, it is possible to calculate the total force on the charges:
+	\[
+		\mathbf{F} = \int_{\mathcal{V}}(\rho \mathbf{E} + \mathbf{J} \times \mathbf{B}) \diff \tau
+	\]
+	per unit volume, we can write \( \mathbf{f} = \rho \mathbf{E} + \mathbf{J} \times \mathbf{B} \), which is
+	the integrand. Now, we can write this entirely in terms of the fields, and using clever vector calculus
+	we end up with the equation: 
+	\[
+		\mathbf{f} = \epsilon_0\left[ (\nabla \cdot \mathbf{E}) \mathbf{E} + (\mathbf{E} \cdot \nabla)\mathbf{E}
+		\right]  + \frac{1}{\mu_0}\left[ (\nabla \cdot \mathbf{B})\mathbf{B} + (\mathbf{B} \cdot
+		\nabla)\mathbf{B} \right] - \frac{1}{2}\nabla\left( \epsilon_0 E^2 + \frac{1}{\mu_0}B^2 \right) -
+		\epsilon_0 \pdv{t}(\mathbf{E} \times \mathbf{B})
+	\]
+	This expression can be made simpler by introducing the maxwell stress tensor, which takes care of the
+	first two terms:
+	\[
+		T_{ij} \equiv \epsilon_0 \left( E_i E_j - \frac{1}{2}\delta_{ij}E^2 \right) + \frac{1}{\mu_0}\left(
+		B_iB_j - \frac{1}{2}\delta_{ij}B^2 \right)
+	\]
+	The indices \( i,j  \) refer to the \( x,y \) and \( z \) directions, so:
+	\begin{align*}
+		T_{x x} &= \frac{1}{2}\epsilon_0\left( E_x^2 - E_y^2 - E_z^2 \right) + \frac{1}{2}\mu_0\left( B_x^2 -
+		B_y^2 - B_z^2\right)\\
+		T_{xy} &= \epsilon_0(E_x E_y) + \frac{1}{\mu_0}(B_x B_y)
+	\end{align*}
+	Note that \( T_{x x} \) has the \( E_y \) and \( E_z \) terms because the second term in both parentheses
+	is \( E^2 = E_x^2 + E_y^2 + E_z^2\) and likewise for \( B \). The tensor behaves like a generalized
+	vector, so you can take the dot product with a vector. However, the difference lies in that with a
+	tensor, it is possible to take the dot product on the left and the right:
+	\[
+		\left(\mathbf{a} \cdot \mathbf{T}\right)_j = \sum_{i}a_i T_{ij} \quad \left( \mathbf{T} \cdot
+		\mathbf{a} \right)_j = \sum_i T_{ji}a_i
+	\]
+	These two need not be the same; in fact, most of the time they are not the same, but they are both
+	vectors nonetheless. Because you can take the dot product, you can also take its divergence (and curl
+	too). The divergence of the Maxwell stress tensor equals the first three terms, and we can use the
+	Poynting vector to simplify the last term:
+	\[
+		\mathbf{f} = \nabla \cdot \mathbf{T} - \epsilon_0\mu_0 \pdv{\mathbf{S}}{t}
+	\]
+	Thus, the total electromagnetic force can be written as:
+	\[
+		\mathbf{F} = \oint_{\mathcal{S}} \mathbf{T} \cdot \diff \mathbf{a} - \epsilon_0 \mu_0 \dv{t}
+		\int_{\mathcal{V}}\mathbf{S} \diff \tau
+	\]
+	In statics, there is no flow of charge, so \( \mathbf{F} \) becomes:
+	\[
+		\mathbf{F} = \oint_{\mathcal{S}}\mathbf{T} \cdot \diff \mathbf{a}
+	\]
+	In this case, you can see why we call it a stress tensor: the stress tensor is effectively a
+	representation of the internal forces (or stress) on the current charge configuration. \( T_{ij} \)
+	represents the force in the \( i \)-th direction acting on a surface oriented in the \( j \)th direction;
+	the diagonal elements \( T_{x x}, T_{yy}, T_{zz} \) are pressures, the other elements are shear forces,
+	exactly analogous to the stress tensor in a solid object. 
+
+	\begin{example}
+		Determine the net force on the "northern" hemisphere of a uniformly charged solid sphere of radius \(
+		R\) and charge \( Q \).
+
+		\begin{solution}
+			There are many ways to approach this problem: you can compute the stress tensor using a surface
+			that is the hemisphere itself, but this requires quite a bit of work. Alternatively -- and here's
+			the key point -- \textit{any} volume that encloses all of the charge in the system will work as a
+			volume. Thus, you can also choose the region of \( z > 0 \), which allows for some
+			simplifications since \( E = 0 \) at infinity. Precisely, the only boundary we need to care about
+			is the \( xy \) plane, since all other boundaries are at infinity where there is zero
+			contribution.
+
+			From Gauss's law, we deduce:
+			\[
+				\mathbf{E} = \frac{1}{4 \pi \epsilon_0}\frac{Q}{R^2} \hat{\mathbf{r}}
+			\]
+			There is no \( B \) field (since this is static, and no external fields are present), so we have:
+			\begin{align*}
+				T_{zx} &= \epsilon_0 E_z E_x = \epsilon_0\left( \frac{Q}{4 \pi \epsilon_0 R^2} \right)^2 \sin
+				\theta \cos \theta \cos \phi \\ 
+				T_{zy} &= \epsilon_0 E_z E_y \left( \frac{Q}{4 \pi \epsilon_0 R^2} \right)^2 \sin \theta \cos
+				\theta \sin \phi\\ 
+				T_{zz} &=  \frac{\epsilon_0}{2}\left( E_z^2 - E_x^2 - E_y^2 \right) =
+				\frac{\epsilon_0}{2}\left( \frac{Q}{4 \pi \epsilon_0 R^2} \right)^2(\cos^2 \theta - \sin^2
+				\theta) 
+			\end{align*}
+			Along the \( xy \)-plane, there are two regions we need to consider: within the disk, and outside
+			the disk. In both cases, due to symmetry, the force is in the \( z \) direction, and the Maxwell
+			stress tensor gives:
+			\[
+				T_{zz} = -\frac{\epsilon_0}{2}\left( \frac{Q}{4\pi \epsilon_0} \right)^2 \frac{1}{r^{4}}
+			\]
+			Here, we know it's in the \( z \) direction so we take the previous equation and set \( \theta =
+			\pi / 2\). We then have \( d \mathbf{a} = -r \diff r \diff \phi \mathbf{\hat{z}}\) for a disk, so
+			therefore:
+			\[
+				\left( \mathbf{T} \cdot \diff \mathbf{a} \right)_z = \frac{\epsilon_0}{2}\left( \frac{Q}{4
+				\pi \epsilon_0} \right)^2 \frac{1}{r^3} \diff r \diff \phi
+			\]
+			The contribution is then this integral over the interval \( \phi \in [0, 2\pi] \) and \( R \in
+			[R, \infty) \), so:
+			\[
+				\frac{\epsilon_0}{2}\left( \frac{Q}{4\pi \epsilon_0} \right)^2 2\pi
+				\int_R^{\infty}\frac{1}{r^3} \diff r = \frac{1}{4 \pi \epsilon_0}\frac{Q^2}{8R^2}
+			\]
+			For the interior of the disk, we have the same integral except we have \( R\in [0, R] \), so:
+			\[
+				F_\text{disk} = \frac{1}{4\pi \epsilon_0}\frac{Q^2}{16R^2}
+			\]
+			And therefore the combined force is given by:
+			\[
+				F = \frac{1}{4\pi \epsilon_0}\frac{3Q^2}{16R^2}
+			\]
+			There are two things to take away from this problem: one, even though we were computing the force
+			on a solid object, the stress tensor with a surface integral was able to determine the internal
+			forces without ever having to compute a volume integral. Second, that we don't necessarily need
+			to choose the volume which exactly describes the charge configuration; any volume that encloses
+			all the desired charge will suffice. 
+		\end{solution}
+	\end{example}
+
+	\subsubsection{Conservation of Momentum}
+	From the equation of the total force, from Newton's second law we can write:
+	\begin{equation}\label{pmech}
+		\dv{\mathbf{p}_\text{mech}}{t} = - \epsilon_0 \mu_0 \dv{t} \int_{\mathcal{V}} \mathbf{S} \diff \tau +
+		\oint_{\mathcal{S}} \mathbf{T} \cdot \diff \mathbf{a}
+	\end{equation}
+	Because the left hand side is a representation of the momentum change over time, the right hand side must
+	as well. In particular, the first term can be thought of as the momentum stored in the fields (here we
+	have a derivative because the left hand side has one), and the second term is the momentum flowing in and
+	out from the surface of \( \mathcal{V} \). This statement allows for momentum to be stored inside the
+	fields (the first term), and is what allows the restoration of Newton's third law, as mentioned from
+	earlier. 
+
+	With this equation, it is also possible to write down the momentum density, written as
+	\[
+		\mathbf{g} = \mu_0 \epsilon_0 \mathbf{S} = \epsilon_0(\mathbf{E} \times \mathbf{B})
+	\]
+	and the momentum flux is given by \( \mathbf{T} \cdot \diff \mathbf{a} \). It's the same situation as
+	with all fields. As such, if we were to simply represent the flow in and out of a surface, we may write:
+	\[
+		\pdv{\mathbf{g}}{t} = \nabla \cdot \mathbf{T}
+	\]
+	which is the continuity equation in electrodynamics. 
+
+	\begin{example}
+		A long coaxial cable, of length \( l \), consists of an inner conductor (radius \( a \)) and an outer
+		conductor (radius \( b \)). It is connected to a battery at one end and a resistor at the other. The
+		inner conductor carries a uniform charge per unit length \( \lambda \), and a steady current \( I \)
+		to the right; the outer conductor has the opposite charge and current. What is the electromagnetic
+		momentum stored in the fields?
+
+		\begin{solution}
+			Using Gauss' and Ampere's law, we have:
+			\[
+				\mathbf{E} = \frac{1}{2 \pi \epsilon_0} \frac{\lambda}{s} \hat{\mathbf{s}} \quad 
+				\mathbf{B} = \frac{\mu_0}{2\pi}\frac{I}{s}\hat{\boldsymbol{\phi}}
+			\]
+			The poynting vector \( S = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) \), so:
+			\[
+				\mathbf{S} = \frac{\lambda I}{4 \pi^2 \epsilon_0 s^2}\mathbf{\hat{z}}
+			\]
+			The momentum in the fields, which we can calculate as \( \mathbf{p} = \mu_0 \epsilon_0 \int
+			\mathbf{S} \diff \tau \) (the first integral in eq. \ref{pmech}), gives:
+			\[
+				\mathbf{p} = \mu_0 \epsilon_0 \int \mathbf{S} \diff \tau = \frac{\mu_0 \lambda I}{4\pi^2}
+				\mathbf{\hat{z}}\int_a^b \frac{1}{s^2}l 2\pi s \diff s = \frac{IVl}{c^2}\mathbf{\hat{z}}
+			\]
+			So there is momentum in the fields, even though the fields are static! The momentum here comes
+			purely from the transfer of energy from the battery to the resistor, and the flow of energy,
+			according to relativity, carries momentum. This momentum is then stored in the fields, which is
+			perfectly allowed despite the fields being static.    
+		\end{solution}
+	\end{example}
+\end{document}
+
+
+
+

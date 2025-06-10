@@ -1,0 +1,111 @@
+\section{March 19}
+Today, we will finally solve for Green's function. Last time, we talked about how the \( t < 0 \) case
+integrates to zero by choosing the path that avoids both singularities, and now we choose the path that
+includes both for \( t > 0 \). Recall that the integral we want to solve is:
+\[
+	G(t, \mathbf{r}) = \int \frac{d^{4}k}{(2\pi)^{4}} \frac{e^{i k\cdot x}}{(k^{0})^2 - |\mathbf{k}|^2}
+\]
+and the contour we will integrate over is:
+\begin{center}
+	\begin{tikzpicture}[decoration = {markings, mark=at position 0.7 with {\arrow{>}}}, scale=0.8]
+		\draw (-3, 0) -- (3, 0);
+		\draw (0, -3) -- (0, 3);
+		\filldraw[green!80!black] (-1, 0) circle (0.02) node[below] {\( -|\mathbf{k}| \)};
+		\filldraw[green!80!black] (1, 0) circle (0.02) node[below] {\( |\mathbf{k}| \)};
+		\draw[cyan!80!black, postaction=decorate] (-3, 0) -- (-1.2, 0);
+		\draw[cyan!80!black, postaction=decorate] (-1.2, 0) arc [start angle = 180, end angle = 0, radius = 0.2];
+		\draw[cyan!80!black, postaction=decorate] (-0.8, 0) -- (0.8, 0);
+		\draw [cyan!80!black, postaction=decorate] (0.8, 0) arc [start angle = 180, end angle = 0, radius =
+			0.2];
+		\draw[cyan!80!black, postaction=decorate] (1.2, 0) -- (3, 0);
+		\draw [cyan!80!black, postaction=decorate] (3, 0) arc [start angle = 0, end angle = -180, radius =
+			3];
+	\end{tikzpicture}
+\end{center}
+Remember, we want to include both singularities so this is the only contour that we can choose. 
+First, we will invoke the identity \( \frac{1}{a^2 - b^2} = \frac{1}{2b}\left[ \frac{1}{a - b} - \frac{1}{a +
+b} \right] \), this will allow us to write the integrand as a Laurent series, so we can extract the \( a_{-1}
+\) term directly. So the integral to solve is now:
+\begin{multline*}
+	\frac{1}{(2\pi)^{4}} \int d^{3}k \int dk^{0}\, e^{-i k^{0}t} e^{i \mathbf{k} \cdot \mathbf{r}}
+	\frac{1}{2|\mathbf{k}|} \left[
+	\frac{1}{k^{0} - |\mathbf{k}|} - \frac{1}{k^{0} + |\mathbf{k}|} \right] 
+	\\= \frac{1}{(2\pi)^{4}} \int
+	d^{3}k \int_{\mathcal{C}}dk^{0}\, e^{-i k^{0} t} e^{i \mathbf{k} \cdot
+	\mathbf{r}}\frac{1}{2|\mathbf{k}|}\frac{1}{(k^{0} - |\mathbf{k}|)} - \frac{1}{(2\pi)^{4}}\int d^3k
+	\int_{\mathcal{C}}dk^{0}\, e^{-i k^{0} t} e^{i \mathbf{k} \cdot \mathbf{r}}
+	\frac{1}{2|\mathbf{k}|}\frac{1}{(k^{0} + |\mathbf{k}|)}
+\end{multline*}
+The residue for these two integrals can be found using the limit as \( k^{0} \to \pm |\mathbf{k}| \), so the
+integral becomes:
+\[
+	\frac{1}{(2\pi)^{4}} \int d^3 k\,  e^{i \mathbf{k} \cdot \mathbf{r}} \frac{-2\pi i}{2|\mathbf{k}|} e^{-i
+	|\mathbf{k}|t} - \frac{1}{(2\pi)^{4}} \int d^3k\,e^{i \mathbf{k} \cdot \mathbf{r}}
+	\frac{1}{2|\mathbf{k}|}(-2\pi i) e^{i|\mathbf{k}|t}
+\]
+the negative signs in the \( (-2 \pi i) \) are there because of our choice to evaluate the integral
+clockwise. Now the integral can be combined together, giving:
+\[
+	\frac{i}{(2\pi)^3} \int d^3k \, \frac{e^{i \mathbf{k} \cdot \mathbf{r}}\left( e^{i |\mathbf{k}|t} - e^{-i
+	|\mathbf{k}|t} \right)}{2|\mathbf{k}|}
+\]
+WLOG, we set \( k^3 \) in the direction of \( \mathbf{\hat{r}} \) (recall, this is the vector pointing from
+the origin to the source), therefore the integral becomes:
+\[
+	\frac{i}{(2\pi)^3}\int_{0}^{\infty} d |\mathbf{k}| |\mathbf{k}|^2 \int_{0}^{\pi} 
+	\frac{e^{i |\mathbf{k}|r \cos \theta}\left( e^{i |\mathbf{k}| t} - e^{-i |\mathbf{k}|t}
+	\right)}{2|\mathbf{k}|} \sin \theta \diff \theta \int_{0}^{2\pi} d\phi
+\]
+evaluating the \( \theta \) and \( \phi \) integrals simultaneously:
+\begin{equation*}
+	\frac{i}{(2\pi)^2} \int_{0}^{\infty} d |\mathbf{k}|\, |\mathbf{k}|^2 \frac{1}{i|\mathbf{k}|r}\frac{\left(
+	e^{i |\mathbf{k}| r} - e^{-i |\mathbf{k}|r}\right) \left( e^{i|\mathbf{k}|t} e^{-i|\mathbf{k}|t}
+	\right)}{2|\mathbf{k}|} \\
+	= \frac{1}{(2\pi)^2}\frac{1}{2r} \int_{0}^{\infty}d|\mathbf{k}|\, \left[ \left(
+	e^{i|\mathbf{k}|(t + r)} + e^{-i |\mathbf{k}|(t + r)}\right) - \left( e^{i|\mathbf{k}|(t - r)} +
+	e^{-i|\mathbf{k}|(t - r)} \right) \right]
+\end{equation*}
+Now, doing a change of variables from \( |\mathbf{k}| \to -|\mathbf{k}| \) on the second term in both parenthesis 
+expressions, then:
+\[
+	\int_{0}^{\infty} d|\mathbf{k}|\, e^{-i |\mathbf{k}|(t + r)} = \int_{0}^{-\infty}-d|\mathbf{k}|\,
+	e^{i|\mathbf{k}|(t + r)} = \int_{-\infty}^{0} d|\mathbf{k}|\, e^{i|\mathbf{k}|(t + r)}
+\]
+This allows us to transform the integrals in both parentheses into one integral involving one integrand each,
+and integrating over all space. Therefore, we have:
+\[
+	\frac{1}{(2\pi)^{2}}\frac{1}{2r}\left[ \int_{-\infty}^{\infty}d|\mathbf{k}|\, e^{i|\mathbf{k}|(t + r)} -
+	\int_{-\infty}^{\infty} d|\mathbf{k}|\, e^{i|\mathbf{k}|(t - r)}\right] 
+	= \frac{1}{4\pi r}\left( \delta(t + r) - \delta(t - r) \right) \\ 
+\]
+Since we only consider \( t > 0 \), then the \( \delta(t + r) \) term never matters since we never reach the
+spike at \( t = -r \), so we can remove that term from the expression entirely. Thus, the solution is:
+\[
+	G(t, \mathbf{r}) = \begin{cases}
+		-\frac{1}{4\pi r}\delta(t - r) & t > 0\\
+		0 & t < 0
+	\end{cases}
+\]
+With Green's function solved, we can now proceed to find the potentials \( \phi(t, \mathbf{r}) \) using
+equation \ref{19:potential}:
+\[
+	V(t, \mathbf{r}) = \int d^{4}x' \, \left( -\frac{\rho(t', \mathbf{r}')}{\epsilon_0}G(t - t', r - r')
+	\right) = \int d^{4}x' \left( -\frac{\rho(t', \mathbf{r}')}{\epsilon_0} \right)\left(
+	-\frac{1}{4\pi}\frac{\delta(t - t' - \frac{\rcurs}{c})}{\rcurs} \right)
+\]
+So this gives us
+\begin{equation}
+	\label{22:V}
+	V(t, \mathbf{r}) = \int d^3x' \, \frac{1}{4\pi \epsilon_0}\frac{\rho(t_r, \mathbf{r}')}{\rcurs}
+\end{equation}
+where \( t_r \equiv r - \frac{\rcurs}{c} \) is defined as the \textbf{retarded time}. This should make sense:
+the potential at a given point is determined by what the source was at a prior time \( t_r \), rather than
+the current time, since that would violate causality. Similarly, the magnetic potential \( \mathbf{A} \) is
+now:
+\begin{equation}
+	\label{22:A}
+	\mathbf{A}(t, \mathbf{r}) = \frac{\mu_0}{4\pi}\int d^3 x' \frac{\mathbf{J}(t_r, \mathbf{r})}{\rcurs}
+\end{equation}
+Finally, once we have \( \mathbf{A} \) and \( V \), the we can find \( \mathbf{E} = -\nabla V - \partial_t
+\mathbf{A} \) and \( \mathbf{B} = \nabla \times \mathbf{A} \). 
+ 

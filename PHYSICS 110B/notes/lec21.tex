@@ -1,0 +1,152 @@
+\section{March 17}
+Recall that last time, we talked about analytic functions, and we said that if \( f = f(z) \) is analytic on
+a contour \( \mathcal{C} \) and the region inside \( \mathcal{C} \), then \( \oint_{\mathcal{C}}f(z) \diff z
+= 0 \). Then, if \( f \) has a singularity within \( \mathcal{C} \), then 
+\[
+	\oint_{\mathcal{C}}f\left( z \right) \diff z = 2\pi i a_{-1}
+\]
+where \( a_{-1} \) is the coefficient of the inverse power \( (z - z_0)^{-1} \). Now, even though in the
+previous example we used the contour of a circle, we can generalize this to any contour as well. Consider the
+following contour:
+\begin{center}
+	\begin{tikzpicture}[decoration={markings,mark=at position 0.5 with {\arrow{stealth}}}, scale = 2]
+		\draw[thick,-stealth] (0,-0.25) -- (0,2) node[right] {$\mathbb{C}$};
+		\draw[thick,-stealth] (-0.25,0) -- (2,0);
+		\draw[thick,green!70!blue!50,fill=blue!70!cyan!60,fill opacity=0.25] (1,0.5) circle (0.75cm)
+			node[below,right,yshift=-0.75cm,xshift=1.3cm,opacity=1,scale=0.75] {\( \mathcal{C}_2 \)};
+		\draw[thick,green!70!blue!50,fill=white] (1,0.5) circle (0.25cm) node[above=0.1,scale=0.75]
+			{\( \mathcal{C}_1 \)};
+		\filldraw[white] (1.125,0.45) rectangle (2,0.55);
+		\draw[thick,green!70!blue!50,postaction={decorate}] (1.228,0.55) -- (1.76175,0.55)
+			node[midway,above,scale=0.5] {\( -\mathcal{P} \)};
+		\draw[thick,green!70!blue!50,postaction={decorate}] (1.76175,0.45) -- (1.228,0.45)
+			node[midway,below,scale=0.5] {\( \mathcal{P} \)};
+		\filldraw[green!70!blue!50] (1,0.5) circle (0.025cm);
+\end{tikzpicture}
+\end{center}
+The diagram may be hard to see, but essentially the inner circle is \( \mathcal{C}_1 \), the outer curve is
+\( \mathcal{C}_2 \), and we have a path \( \mathcal{P} \) that enters and exits. Assume that we make the gap
+between \( \mathcal{P} \) and \( -\mathcal{P} \) to be infinitesimally small, so that the entire integral
+approximates the contour \( \mathcal{C} \) as best as possible.
+Here, the enclosed region of \( \mathcal{C} \) does not enclose any singularities, so we know already that \(
+\oint_{\mathcal{C}} f(z) \diff z = 0 \). Now, if we expand the left hand side:
+\[
+	\oint_{\mathcal{C}}f(z) \diff z = \int_{\mathcal{C}_1} f(z) \diff z + \int_{\mathcal{C}_2} f(z) \diff z +
+	\int_{\mathcal{P}} f(z) \diff z + \int_{-\mathcal{P}}f(z) \diff z
+\]
+the integrals over \( \mathcal{P} \) and \( -\mathcal{P} \) of course cancel, so we have:
+\[
+	2\pi i \Res[f(z_0)] = \int_{\mathcal{C}_2}f(z) \diff z
+\]
+In some sense this is actually very similar to Ampere's law. Recall that Ampere's law states \( \oint
+\mathbf{B} \diff \boldsymbol{\ell} = \mu_0 I_{\text{enc}} \), so if we imagine a current going in the 
+\( \mathbf{\hat{z}} \) direction a loop enclosing it in the \( xy \)-plane:
+\begin{center}
+	\begin{tikzpicture}
+		\draw(-1, 0) -- (4, 0);
+		\draw(0, -1) -- (0, 4);
+		\filldraw (2, 2) circle (0.02);
+		\draw (2, 2) circle (0.1) node [above right] {\( I \)};
+		\draw[green!80!black] (2, 2) circle (0.8);
+		\node[green!80!black] at (3, 2.5) {\( \mathcal{C} \)};
+	\end{tikzpicture}
+\end{center}
+We know from 110A that here the \( \mathbf{B} \) field from the wire can be expressed as
+\[
+	B = \frac{\mu_0 I}{2 \pi r}
+\]
+(ignoring the vector comopnent for now), so if we deifne \( \tilde I = \frac{\mu_0 I}{2\pi} \), then we write
+Ampere's law in this case as
+\[
+	\int \mathbf{B} \diff \boldsymbol{\ell} = 2\pi \tilde I
+\]
+So in this sense, we can think of the current flowing perpendicular as a kind of singularity. Of course, you
+could extend this argument to having multiple currents, and likewise there's nothing stopping us from doing
+the same in complex analysis, so in general:
+\[
+	\oint_{\mathcal{C}}f(z) \diff z = \sum_n 2\pi i \Res[f(z_n)]
+\]
+Now, coming back to physics, remember that our goal is to solve for Green's function \( G(t, \mathbf{r}) \)
+for the Klein-Gordon equation \( (\nabla^2 - \partial_t^2)G(t, \mathbf{r}) = \delta^{(4)}(t, \mathbf{r}) \).
+Moreover, we showed that:
+\[
+	G(t, \mathbf{r}) = \int \frac{d^{4}k}{(2\pi)^{4}} \frac{e^{i (-k^{0}t + \mathbf{k} \cdot
+	\mathbf{r}})}{(k^{0})^2 - |\mathbf{k}|^2}
+\]
+Now, we can write the denominator as a difference of squares:
+\[
+	G(t, \mathbf{r}) = \int \frac{d^{4}k}{(2\pi)^{4}} e^{i(-k^{0} t + \mathbf{k} \cdot \mathbf{r})} \left[
+	\frac{1}{((k^{0} - |\mathbf{k}|) (k^{0} + |\mathbf{k}|)} \right]	
+\]
+Clearly, we have singularities at \( k^{0} = \pm |\mathbf{k}| \). Using what we've learned from complex
+analysis, integrating over \( k^{0} \in \R \) is the same as integrating over \( k^{0} \in \C \), 
+but integrating over the real line only. This means we take the integral:
+\begin{center}
+	\begin{tikzpicture}[decoration = {markings, mark=at position 0.5 with {\arrow{>}}}, scale=0.5]
+		\draw (-3, 0) -- (3, 0);
+		\draw (0, -3) -- (0, 3);
+		\filldraw[cyan!80!black] (-1, 0) circle (0.02) node[below] {\( -|\mathbf{k}| \)};
+		\filldraw[cyan!80!black] (1, 0) circle (0.02) node[below] {\( |\mathbf{k}| \)};
+		\draw[green!80!black, postaction=decorate] (-3, 0) -- (-1, 0); 
+		\draw[green!80!black, postaction=decorate] (1, 0) -- (3, 0);
+		\draw[green!80!black, postaction=decorate] (-1, 0) -- (1, 0);
+	\end{tikzpicture}
+\end{center}
+Clearly we can't do this immediately because of the singularities at \( \pm |\mathbf{k}| \). Further, because
+the residue theorem requires a closed loop, we can't immediately apply that either because the line is not
+closed. So, our strategy is to basically integrate over a loop still, but make the extra part we add
+contribute nothing to the overall integral. We can do that as follows: for \( t > 0 \), we can use the loop:
+\begin{center}
+	\begin{tikzpicture}[decoration = {markings, mark=at position 0.5 with {\arrow{>}}}, scale = 0.5]
+		\draw (-3, 0) -- (3, 0);
+		\draw (0, -3) -- (0, 3);
+		\draw[green!80!black, postaction=decorate] (-3, 0) -- (0, 0);
+		\draw[green!80!black, postaction=decorate] (0, 0) -- (3, 0);
+		\draw[green!80!black, postaction=decorate] (3, 0) arc [start angle = 0, end angle = -180, radius = 3];
+	\end{tikzpicture}
+\end{center}
+The idea is basically to close the loop by using a very large semicircular arc, which can be parametrized as:
+\[
+	e^{-i(\Re(k^{0}) + i \Im(k^{0}))t} = e^{-i\Re(k^{0})t} e^{\Im(k^{0})t}
+\]
+when \( \Im(k^{0}) < 0 \) and \( t > 0 \), then the factor from this contour exponentially decays away, due
+to the factor of \( e^{\Im(k^{0})t} \). So, we've successfully create a loop where the extra contribution
+doesn't matter at all. Similarly, for \( t < 0 \), we can use the other half circle with the same purpose:  
+\begin{center}
+	\begin{tikzpicture}[decoration = {markings, mark=at position 0.5 with {\arrow{>}}}, scale = 0.5]
+		\draw (-3, 0) -- (3, 0);
+		\draw (0, -3) -- (0, 3);
+		\draw[green!80!black, postaction=decorate] (-3, 0) -- (0, 0);
+		\draw[green!80!black, postaction=decorate] (0, 0) -- (3, 0);
+		\draw[green!80!black, postaction=decorate] (3, 0) arc [start angle = 0, end angle = 180, radius = 3];
+	\end{tikzpicture}
+\end{center}
+Finally, we can deal with the singularities themselves. Because we aren't allowed to walk over them directly,
+our strategy will basically be to "walk around" them:
+\begin{center}
+	\begin{tikzpicture}[decoration = {markings, mark=at position 0.7 with {\arrow{>}}}]
+		\draw (-3, 0) -- (3, 0);
+		\draw (0, -3) -- (0, 3);
+		\filldraw[green!80!black] (-1, 0) circle (0.02) node[above] {\( -|\mathbf{k}| \)};
+		\filldraw[green!80!black] (1, 0) circle (0.02) node[below] {\( |\mathbf{k}| \)};
+		\draw[cyan!80!black, postaction=decorate] (-3, 0) -- (-1.2, 0);
+		\draw[cyan!80!black, postaction=decorate] (-1.2, 0) arc [start angle = 180, end angle = 360, radius = 0.2];
+		\draw[cyan!80!black, postaction=decorate] (-0.8, 0) -- (0.8, 0);
+		\draw [cyan!80!black, postaction=decorate] (0.8, 0) arc [start angle = 180, end angle = 0, radius =
+			0.2];
+		\draw[cyan!80!black, postaction=decorate] (1.2, 0) -- (3, 0);
+	\end{tikzpicture}
+\end{center}
+so now our integral can be decomposed into three parts: the straight parts, and the two loops, all of which
+are well defined. Introducing these loops also begs another question: how should we go about choosing whether
+we go above or below them? There are 4 ways in total that we can go over both singularities, so how do we
+know the path we've chosen is the "correct" one? The answer to this question depends on the physics of the
+system: in our case, since \( \delta^{(4)}(t, \mathbf{r}) \) has a spike at \( t = 0 \), then we expect that
+for \( t < 0 \), our integral should evaluate to zero and for \( t > 0 \) we expect a nonzero contribution.
+Therefore, for \( t < 0 \), we should choose a method that doesn't enclose the singularities at all.
+By that same token, we should choose the contour that encloses both singularities in the \( t > 0 \) case.   
+
+
+ 
+
+

@@ -1,0 +1,153 @@
+\section{April 18}
+\subsection{Self-Force/Radiation Reaction}
+Recall the Larmor formula for nonrealtivistic particles:
+\[
+	P_\text{rad} = \frac{\mu_0 q_0^2 a^2}{6 \pi c}
+\]
+From this formula, it may be natural to assume that the power, which is also written as \( \mathbf{F} \cdot
+\mathbf{v} = - P_\text{rad} \), but this is \textit{not} true! The reason for this is because the Larmor
+formula only considers radiation that extends to infinity, so the power contributed by the velocity field is
+missing. 
+
+However, because energy continuously flows in and out of the velocity field, it is possible for us to still
+use the above formula, just only when the net velocity of the particle is zero. For periodic motion, this
+would mean that we can consider the motion over a time interval \( \tau \) where the particle returns to the
+same place, at which point the contribution by the velocity field should be zero. Thus:
+\begin{align*}
+	\int_{0}^{T} \mathbf{F} \cdot \mathbf{v} \diff t &= - \int_{0}^{T} \frac{\mu_0 q^2 a^2}{6 \pi c} \diff
+	t\\
+	 &= - \int_{0}^{T} \frac{\mu_0 q^2}{6 \pi c}
+	 \dv{\mathbf{v}}{t} \dv{\mathbf{v}}{t} \diff t \\ 
+	 &= \int_{0}^{T} \frac{\mu_0 q^2}{6 \pi c} \dv[2]{\mathbf{v}}{t} \cdot \mathbf{v} \diff t - 
+	 \int_{0}^{T} \dv{t} \left( \frac{\mu_0 q^2}{6 \pi c} \dv{\mathbf{v}}{t} \mathbf{v} \right) \diff t	
+\end{align*}
+The second term equals zero if the particle returns to the same spot. This leaves us with the equality:
+\[
+	\int_{0}^{T} \mathbf{F} \cdot \mathbf{v} \diff t = \int_{0}^{T} \frac{\mu_0 q^2}{6 \pi c}
+	\dv[2]{\mathbf{v}}{t} \mathbf{v} \diff t
+\]
+comparing the integrands, we get the result:
+\[
+	\mathbf{F}_\text{rad} = \frac{\mu_0 q^2}{6 \pi c} \dv[2]{v}{t}
+\]
+This is known as the \textbf{Abraham-Lorentz} formula. However, this is not a very rigorous way to obtain this
+equation. Firstly, not all motion is periodic, so why does this formula work for nonperiodic motion too?
+Secondly, this only tells you about the self-force for the component \( \mathbf{F}_\text{rad} \) that is
+along the direction of \( \mathbf{v} \), since the integrand is really \( \mathbf{F} \cdot \mathbf{v} \) on
+the left hand side. So we need an alternative method to derive this formula.    
+
+Before we do though, there is something interesting about this formula that we can point out right away. When
+forces have \( \dot{\mathbf{a}} \) dependence, invoking Newton's second law:
+\[
+	\frac{\mu_0^2 q^2}{6 \pi c} \dot{\mathbf{a}} = m \mathbf{a}
+\]
+this is a differential equation for the acceleration, with solution \( a(t) = a_0 e^{t / \tau} \), and \(
+\tau \) is the prefactor on \( \dot{\mathbf{a}} \). The interesting thing is that \( a(t) \) is now increasing
+with increasing time, meaning the acceleration gets faster and faster as you go on. Conversely, if you insist
+that \( a = 0 \), then you will find that if you do try to apply an external force, the particle starts
+responding to that force before you even act on it. Obviously both of these solutions are non-physical, but so
+far there is no mathematical reason why we should reject them. 
+
+\subsection{The Dumbbell Model}
+Now, we move on to finding a better way to derive the Abraham-Lorentz formula. To do so, we use a so-called
+\textit{dumbbell model}, in which we split a charge into a tiny dumbbell with half the charge each:  
+\begin{center}
+	\begin{tikzpicture}
+		\coordinate (positive1) at (1, 2.5);
+		\coordinate (negative1) at (1, 0.8);
+
+		\coordinate[-stealth] (positive2) at (3, 2.5);
+		\coordinate[-stealth] (negative2) at (3, 0.8);
+
+		\draw (-1, 0) -- (4, 0) node[right] {\( x \)};
+		\draw (0, -1) -- (0, 3) node[left] {\( y \)};
+		\filldraw[red] (positive1) circle (0.03) node[left] {\( +q / 2 \)};
+		\filldraw[blue] (negative1) circle (0.03) node[left] {\( -q / 2 \)};
+
+		\draw (positive1) -- node[midway, left] {\( d \)} (negative1);
+
+		\filldraw[red] (positive2) circle (0.03) node[right] {\#1};
+		\filldraw[blue] (negative2) circle (0.03) node[right] {\#2};
+
+		\draw[dashed] (positive1) -- (positive2);
+		\draw[dashed] (negative1) -- node[midway, below] {\( \ell \)} (negative2);
+	\end{tikzpicture}
+\end{center}
+Recall that the equation for the field of moving charges is given by:
+\[
+	\mathbf{E}(\mathbf{r}, t) = \frac{q}{4\pi \epsilon_0} \frac{\rcurs}{\brcurs \cdot \mathbf{u}} \left[ (c^2
+	- v^2) \mathbf{u} + \brcurs \times (\mathbf{u} \times \mathbf{a}) \right]
+\]
+For simplicity of the model, we will assume that \( v(t_r) = 0  \) so that \( \mathbf{u} = c \hat{\brcurs}
+\), and \( \mathbf{a} = a \mathbf{\hat{x}} \). 
+Now, let's consider the force on charge \#1 due to charge \#2. In this case, we have:
+\[
+	\brcurs = \ell \mathbf{\hat{x}} + d \mathbf{\hat{y}}, \quad \hat{\brcurs} = \frac{\ell \mathbf{\hat{x}} +
+	d \mathbf{\hat{y}}}{\sqrt{\ell^2 + d^2}}
+\]
+This makes the triple cross product:
+\[
+	\brcurs \times (\mathbf{u} \times \mathbf{a}) = (\brcurs \cdot \mathbf{a}) \mathbf{u} - (\brcurs \cdot
+	\mathbf{u}) \mathbf{a}
+\]
+Notice that we also only need to consider the \( x \)-component, since the \( y \)-components will cancel
+each other when you add the forces on both charges (due to symmetry). Therefore, the force on 1 may be
+written as:
+\[
+	\mathbf{E}_{1x} = \frac{q / 2}{4\pi \epsilon_0} \frac{\sqrt{\ell^2 + d^2}}{c \sqrt{\ell^2 + d^2}} \left[ c^3
+	\frac{\ell}{\sqrt{\ell^2 + d^2}} + \ell a \frac{c\ell}{\sqrt{\ell^2 + d^2}} - ca\sqrt{\ell^2 + d^2} \right] =
+	\frac{q}{8\pi \epsilon_0} \frac{1}{c^2(\ell^2 + d^2)^{3 /2}} \left( lc^2 - d^2 \right)\mathbf{\hat{x}}
+\]
+By symmetry \( E_{2x} \) is the exact same. Therefore, the self force may be written as:
+\[
+	\mathbf{F}_\text{self} = \left( \frac{q}{2} \right) \mathbf{E}_{1x} + \left( \frac{q}{2} \right)
+	\mathbf{E}_{2x} = \frac{q^2}{8 \pi \epsilon_0 c^2} \frac{\ell c^2 - d^2}{(\ell^2 + d^2) ^{3 /
+	2}}\mathbf{\hat{x}}
+\]
+so far this treatment is exact, but we ultimately want to model the situation in the \( d \to 0 \) limit
+so we need to Taylor expand the above equation in orders of \( d \). We can't immediately Taylor expand this
+just yet, since \( \ell \) also has \( d \) dependence that we need to expand. To begin, we note that \( \ell
+= x(t) - x(t_r) \), so we first Taylor expand \( x(t) \) around \( t = t_r \):
+\[
+	x(t) = x(t_r) + \dot x(t_r) (t - t_r) + \frac{\ddot x(t_r)}{2}(t - t_r)^2
+\]
+Noting that \( t - t_r = T \) and \( \dot x(t_r) = 0 \) so the second term dies, we can write \( \ell \) as:
+\begin{equation}
+	\label{ell}
+	\ell = \frac{1}{2} \ddot x(t_r) T^2 + \frac{1}{6} \dddot x(t_r) T^3 + \dots 
+\end{equation}
+simultaneously, we have a relation for \( \ell \) based on pure geometry:
+\[
+	d = \sqrt{(cT)^2 - \ell^2} = \sqrt{1 - \frac{1}{c^2 T^2} \left( \frac{1}{2} aT^2 + \frac{1}{6} \dot a T^3 +
+	\dots \right)} \approx cT - \frac{a^2 T^3}{8c}
+\]
+reversing this equation and solving for \( T \):
+\[
+	T = \frac{d}{c} + \frac{a^2}{8c^2}\left( \frac{d}{c} \right)^3 + \dots
+\]
+Putting this back into \cref{ell} we finally have \( \ell \) in terms of \( d \):
+\[
+	\ell = \frac{1}{2}a \left( \frac{d}{c} \right)^2 + \frac{1}{6}\dot a \left( \frac{d}{c} \right)^3 +
+	O(d^{4}) 
+\]
+Thus, we now have:
+\[
+	\mathbf{F}_\text{self} = \frac{q^2}{8 \pi \epsilon_0 c^2} \frac{\ell c^2 - ad^2}{(\ell^2 + d^2)^{3 / 2}}
+	\simeq \frac{q^2}{8 \pi \epsilon_0 c^2} \left[ -\frac{a}{2d} + \frac{\dot a}{6c} + O(d^2) \right]
+\]
+Notice that we have a term proportional to \( a \). In some sense, this term can be regarded as an effective
+mass term. To see what this means, consider Newton's second law with \( \mathbf{F}_\text{self} \):
+\[
+	\left( -\frac{q^2}{16 \pi \epsilon_0d}\frac{1}{c^2} \right) a + \frac{q^2 \dot a}{4 \pi \epsilon_0}
+	\frac{1}{3c^2} = m_0a
+\]
+but we can rearrange this equation into:
+\[
+	\frac{q^2 \dot a}{4 \pi \epsilon_0} \frac{1}{3c^2} = \left( m_0 + \frac{q^2}{16 \pi \epsilon_0 d}
+	\frac{1}{c^2} \right)a
+\]
+Notice how the factor of \( \frac{q^2}{16 \pi \epsilon_0 d} \) acts as "extra mass" in addition to \( m_0 \),
+which is why it is sometimes called the effective mass term. Looking at this term in close detail, you can
+see why we can regard it this way. This term denotes the potential energy between the two charges, and as a
+form of energy based on Einstein's equation \( E = mc^2 \) we know that energy and mass are closely
+connected. So, in light of this it does make sense that you can regard this energy as a form of extra mass. 

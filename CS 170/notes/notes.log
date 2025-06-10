@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.10)  25 MAY 2024 04:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.11.10)  11 SEP 2024 18:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -963,7 +963,9 @@ File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: tikzlibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
  (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibrarypatterns.code.tex
 File: pgflibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
+))
+Package hyperref Info: Option `colorlinks' set `true' on input line 148.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count347
 \lst@gtempboxa=\box95
 \lst@token=\toks55
@@ -986,18 +988,6 @@ File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
  (./notes.aux)
-Runaway argument?
-{\contentsline {subsection}{\numberline {24.2}Modified Distinct Eleme\ETC.
-./notes.tex:34: File ended while scanning use of \@writefile.
-<inserted text> 
-                \par 
-l.34 \begin{document}
-                     
-I suspect you have forgotten a `}', causing me
-to read past where you wanted me to stop.
-I'll try to recover; but if the error is serious,
-you'd better type `E' or `X' now and fix your file.
-
 \openout1 = `notes.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
@@ -1018,7 +1008,7 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
 LaTeX Font Info:    ... okay on input line 34.
-(/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count355
 \scratchdimen=\dimen381
@@ -1037,35 +1027,11 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 34.
- (./notes.out)
-Runaway argument?
-{\376\377\000A\000n\000a 
-./notes.tex:34: File ended while scanning use of \@@BOOKMARK.
-<inserted text> 
-                \par 
-l.34 \begin{document}
-                     
-I suspect you have forgotten a `}', causing me
-to read past where you wanted me to stop.
-I'll try to recover; but if the error is serious,
-you'd better type `E' or `X' now and fix your file.
-
-(./notes.out)
-Runaway argument?
-{\376\377\000A\000n\000a 
-./notes.tex:34: File ended while scanning use of \@@BOOKMARK.
-<inserted text> 
-                \par 
-l.34 \begin{document}
-                     
-I suspect you have forgotten a `}', causing me
-to read past where you wanted me to stop.
-I'll try to recover; but if the error is serious,
-you'd better type `E' or `X' now and fix your file.
-
+Package hyperref Info: Link coloring ON on input line 34.
+ (./notes.out) (./notes.out)
 \@outlinefile=\write4
 \openout4 = `notes.out'.
+
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1142,7 +1108,7 @@ LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/n' will be
 (Font)              scaled to size 5.0pt on input line 14.
  [3] [4]) (./lec-3.tex [5]
-<matrix-multiplication.png, id=671, 783.92876pt x 265.99374pt>
+<matrix-multiplication.png, id=727, 783.92876pt x 265.99374pt>
 File: matrix-multiplication.png Graphic file (type png)
 <use matrix-multiplication.png>
 Package pdftex.def Info: matrix-multiplication.png  used on input line 32.
@@ -1151,7 +1117,7 @@ Package pdftex.def Info: matrix-multiplication.png  used on input line 32.
 LaTeX Font Info:    Font shape `T1/LinuxLibertineT-TLF/m/sc' will be
 (Font)              scaled to size 10.0pt on input line 85.
  [7{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/libertine/lbtn_ncsllp.enc}]) (./lec-4.tex [8] [9] [10] [11]) (./lec-5.tex [12] [13] [14]
-<cross-correlation.png, id=713, 747.79375pt x 119.44624pt>
+<cross-correlation.png, id=770, 747.79375pt x 119.44624pt>
 File: cross-correlation.png Graphic file (type png)
 <use cross-correlation.png>
 Package pdftex.def Info: cross-correlation.png  used on input line 172.
@@ -1180,13 +1146,13 @@ File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 10.0pt on input line 80.
  [16]) (./lec-7.tex [17] [18]) (./lec-8.tex [19]
-<dijkstra.png, id=746, 717.68124pt x 208.78pt>
+<dijkstra.png, id=802, 717.68124pt x 208.78pt>
 File: dijkstra.png Graphic file (type png)
 <use dijkstra.png>
 Package pdftex.def Info: dijkstra.png  used on input line 66.
 (pdftex.def)             Requested size: 358.83974pt x 104.38972pt.
  [20]) (./lec-9.tex [21 <./dijkstra.png>] [22]) (./lec-10.tex [23]
-<Huffman.png, id=764, 712.6625pt x 268.00125pt>
+<Huffman.png, id=820, 712.6625pt x 268.00125pt>
 File: Huffman.png Graphic file (type png)
 <use Huffman.png>
 Package pdftex.def Info: Huffman.png  used on input line 41.
@@ -1204,30 +1170,30 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 65.
 
 [28]) (./lec-13.tex [29]
-<alignment.png, id=799, 619.31375pt x 96.36pt>
+<alignment.png, id=856, 619.31375pt x 96.36pt>
 File: alignment.png Graphic file (type png)
 <use alignment.png>
 Package pdftex.def Info: alignment.png  used on input line 92.
 (pdftex.def)             Requested size: 309.65611pt x 48.17987pt.
-<alignment-pseudocode.png, id=800, 418.56375pt x 264.99pt>
+<alignment-pseudocode.png, id=857, 418.56375pt x 264.99pt>
 File: alignment-pseudocode.png Graphic file (type png)
 <use alignment-pseudocode.png>
 Package pdftex.def Info: alignment-pseudocode.png  used on input line 114.
 (pdftex.def)             Requested size: 209.28136pt x 132.49467pt.
  [30 <./alignment.png>]
-<knapsack-repetition.png, id=807, 403.5075pt x 184.69pt>
+<knapsack-repetition.png, id=863, 403.5075pt x 184.69pt>
 File: knapsack-repetition.png Graphic file (type png)
 <use knapsack-repetition.png>
 Package pdftex.def Info: knapsack-repetition.png  used on input line 145.
 (pdftex.def)             Requested size: 201.75325pt x 92.34476pt.
 ) (./lec-14.tex [31 <./alignment-pseudocode.png> <./knapsack-repetition.png>] [32]
-<TSP-code.png, id=819, 425.59pt x 256.96pt>
+<TSP-code.png, id=875, 425.59pt x 256.96pt>
 File: TSP-code.png Graphic file (type png)
 <use TSP-code.png>
 Package pdftex.def Info: TSP-code.png  used on input line 110.
 (pdftex.def)             Requested size: 212.79446pt x 128.47968pt.
  [33 <./TSP-code.png>] [34]) (./lec-15.tex [35]
-<LP-geo.png, id=834, 717.68124pt x 401.5pt>
+<LP-geo.png, id=890, 717.68124pt x 401.5pt>
 File: LP-geo.png Graphic file (type png)
 <use LP-geo.png>
 Package pdftex.def Info: LP-geo.png  used on input line 95.
@@ -1239,7 +1205,7 @@ Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                 on input line 127.
 
 [37 <./LP-geo.png>]) (./lec-16.tex [38]) (./lec-17.tex [39]
-<LP-duality-gap.png, id=853, 562.1pt x 141.52875pt>
+<LP-duality-gap.png, id=909, 562.1pt x 141.52875pt>
 File: LP-duality-gap.png Graphic file (type png)
 <use LP-duality-gap.png>
 Package pdftex.def Info: LP-duality-gap.png  used on input line 102.
@@ -1250,28 +1216,22 @@ Overfull \hbox (23.27841pt too wide) in paragraph at lines 136--139
  []
 
 [41 <./LP-duality-gap.png>]) (./lec-18.tex [42] [43]) (./lec-19.tex [44] [45]) (./lec-20.tex [46] [47]) (./lec-21.tex [48] [49]) (./lec-22.tex [50] [51] [52]) (./lec-23.tex [53] [54]) (./lec-24.tex [55] [56]) (./lec-25.tex [57] [58]) (./lec-26.tex [59] [60]) [61] (./notes.aux)
-
-Package rerunfilecheck Warning: File `notes.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `notes.out':
-(rerunfilecheck)             Before: E15F41B8BC6972421FDA755454952F03;24576
-(rerunfilecheck)             After:  9FB2F0419E7196ED001DDC2E858539DD;26637.
+Package rerunfilecheck Info: File `notes.out' has not changed.
+(rerunfilecheck)             Checksum: 9FB2F0419E7196ED001DDC2E858539DD;26637.
  ) 
 Here is how much of TeX's memory you used:
- 57475 strings out of 476025
- 1336935 string characters out of 5790016
- 2245750 words of memory out of 5000000
- 76695 multiletter control sequences out of 15000+600000
+ 57507 strings out of 476025
+ 1337299 string characters out of 5790016
+ 2246109 words of memory out of 5000000
+ 76727 multiletter control sequences out of 15000+600000
  593858 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  132i,16n,150p,2037b,2430s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineTB.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineTBI.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/libertine/LinLibertineTI.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on notes.pdf (61 pages, 1410423 bytes).
+Output written on notes.pdf (61 pages, 1411924 bytes).
 PDF statistics:
- 1127 PDF objects out of 1200 (max. 8388607)
- 994 compressed objects within 10 object streams
+ 1170 PDF objects out of 1200 (max. 8388607)
+ 1036 compressed objects within 11 object streams
  261 named destinations out of 1000 (max. 500000)
- 1303 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1415 words of extra memory for PDF output out of 10000 (max. 10000000)
 

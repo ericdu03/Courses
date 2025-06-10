@@ -1,0 +1,121 @@
+\section{January 24}
+In this lecture, we will first begin by discussing the classical continuity equation for charge, then use
+this equation to develop equivalent equations for energy and momentum. From a high level standpoint, it is
+clear that the latter two quantities must also have an associated continuity equation, since they are also
+conserved quantities. To begin, let's start with the equation for conservation of charge:
+\begin{equation}
+	\label{cons-charge}
+	\dv{Q}{t} = - \oint_{\partial \mathcal{V}} \mathbf{J} \cdot \diff \mathbf{a} 
+\end{equation}
+Because we can write \( Q \) as a volume integral of the charge density: \( Q = \int_{\mathcal{ V}}\rho \diff
+\tau\), so we can write:
+\[
+	\dv{t} \int_{\mathcal{ V}} \rho \diff \tau = -\oint_{\partial \mathcal{ V}} \mathbf{J} \cdot \diff \mathbf{a}
+\]
+We can invoke the divergence theorem to transform the right hand side into a volume integral, and also move
+the total derivative inside the integral turning it into a partial derivative:
+\[
+	\int_{\mathcal{V}} \pdv{\rho}{t}\diff \tau = -\int_{\mathcal{V}}\mathbf{J} \cdot \diff \mathbf{a}
+\]
+and since these two quantities must be equal at all times, then we arrive at the (local) 
+continuity equation for charge:
+\begin{equation}
+	\label{charge continuity}
+	\pdv{\rho(\mathbf{r}, t)}{t} = - \div \mathbf{J}
+\end{equation}
+
+\subsection{Poynting's Theorem}
+Recall from 110A that we have the following definition for the Poynting vector:
+\begin{equation}
+	\label{poynting}
+	\mathbf{S} = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B})
+\end{equation}
+with units of energy per area per time. Similarly, recall the equations for the energy density stored in the
+electromagnetic field:
+\begin{align*}
+	U_E &= \frac{1}{2}\epsilon_0 |\mathbf{E}|^2\\
+	U_B &= \frac{1}{2\mu_0}|\mathbf{B}|^2 
+\end{align*}
+These two equations will become relevant later in the lecture. First, let's establish our goal: because
+energy is a conserved quantity, we want to find an equation of the same form as the one above, but for
+energy. To do this, we begin by considering the force on a charge \( dq \):
+\[
+	\diff \mathbf{F} = \diff q (\mathbf{E} + \mathbf{v} \times \mathbf{B})
+\]
+Then, the power done by the electromagnetic field (work over time) over some volume \( \mathcal{V} \) is:
+\begin{align*}
+	\dv{W_\text{EM}}{t} &= \int_{\mathcal{V}}(\rho \diff \tau) (\mathbf{E} + \mathbf{v} \times
+	\mathbf{B})\cdot \mathbf{v} \diff \tau\\
+	&= \int_{\mathcal{V}}\rho \mathbf{E} \cdot \mathbf{v} \diff \tau \\ 
+	&= \int_{\mathcal{V}}\mathbf{J} \cdot \mathbf{E} \diff \tau 
+\end{align*}
+Now, we use the Ampere-Maxwell equation (eq. \ref{ampere-maxwell}) to rewrite \( \mathbf{J} \) purely in
+terms of \( \mathbf{B} \) and \( \mathbf{E} \):
+\begin{align*}
+	\dv{W_\text{EM}}{t} &= \int_{\mathcal{V}}\left( \frac{1}{\mu_0}(\curl \mathbf{B}) - \epsilon_0 \partial_t
+	\mathbf{E}\right) \cdot \mathbf{E} \diff \tau \\ 
+	&= \int_{\mathcal{V}}\frac{1}{\mu_0}(\curl \mathbf{B}) \cdot \mathbf{E} \diff \tau -
+	\int_{\mathcal{V}}\epsilon_0 (\partial_t \mathbf{E}) \cdot \mathbf{E} \diff \tau 
+\end{align*}
+Here, we will do the computation of each term separately, starting with the second term. Notice that it's
+actually part of a product rule, namely \( \partial_t(\mathbf{E} \cdot \mathbf{E}) \), and when we expand the
+product rule we get two identical terms. Therefore, we can actually rewrite the second term as:
+\[
+	\int_{\mathcal{V}} \epsilon_0(\partial \mathbf{E}) \cdot \mathbf{E} \diff \tau =
+	\frac{1}{2}\int_{\mathcal{V}} \epsilon_0 \partial_t (\mathbf{E} \cdot \mathbf{E}) \diff \tau =
+	\dv{t} \int_{\mathcal{V}} \frac{\epsilon_0}{2}  |\mathbf{E}|^2 \diff \tau 
+\]
+Now we deal with the first term. To rewrite this term, it's useful to use index notation to simplify the
+math. Review the index notation from 110A if you need to, but the integrand becomes:
+\begin{align*}
+	(\curl \mathbf{B}) \cdot \mathbf{E} &= \epsilon^{ijk}(\partial_j B_k) E_i = \epsilon^{ijk} \partial_j (B_k
+	E_i) - \epsilon^{ijk}B_k (\partial_j E_i)\\
+	&= -\epsilon^{ijk}\partial_j (B_k E_i) - \epsilon^{kij}B_k(\partial_j E_i) \\ 
+	&= -\epsilon^{ijk}\partial_j (B_k E_i) + \epsilon^{kji} B_k (\partial_j E_i) 
+\end{align*}
+Note that the Levi-Civita tensor \( \epsilon^{ijk} \) does not change under cyclic permutations of summation,
+but changes sign when we perform a swap of two adjacent indices. Now, the first term gives \( \div(\mathbf{E}
+\times \mathbf{B})\), and the second term gives \( \mathbf{B} \cdot (\curl \mathbf{E}) \). So, the first
+integral becomes:
+\[
+	-\frac{1}{\mu_0} \int_{\mathcal{V}} \div(\mathbf{E} \times \mathbf{B}) \diff \tau +
+	\frac{1}{\mu_0}\int_{\mathcal{V}} \mathbf{B} \cdot (\curl \mathbf{E}) \diff \tau 
+\]
+Now finally, we can use Faraday's law (eq. \ref{faraday-law}) to write \( \curl \mathbf{E} = -\partial_t
+\mathbf{B} \), which in the second term allows you to write it as \( \frac{1}{2\mu_0}|\mathbf{B}|^2 \).
+Simultaneously, we use divergence theorem on the first term to write it as a surface integral:  
+\[
+	-\frac{1}{\mu_0} \oint_{\partial \mathcal{V}}(\mathbf{E} \times \mathbf{B}) \diff \mathbf{a} +
+	\frac{1}{\mu_0} \int_{\mathcal{V}} \mathbf{B} \cdot (-\partial_t \mathbf{B}) \diff \tau =
+	-\frac{1}{\mu_0}\oint_{\partial \mathcal{ V}}(\mathbf{E} \times \mathbf{B}) \diff \mathbf{a} - \dv{t}
+	\int_{\mathcal{V}}\left( \frac{1}{2\mu_0} |\mathbf{B}|^2\right) \diff \tau 
+\]
+Now, we can put this all together:
+\[
+	\dv{W_\text{EM}}{t} = -\frac{1}{\mu_0} \oint_{\partial \mathcal{V}} (\mathbf{E} \times \mathbf{B}) \diff
+	\mathbf{a} - \dv{t} \int_{\mathcal{V}}\left( \frac{1}{2\mu_0}|\mathbf{B}|^2 +
+	\frac{\epsilon_0}{2}|\mathbf{E}|^2 \right) \diff \tau 
+\]
+Moving the first term to the left hand side:
+\begin{equation}
+	\label{poynting-thm}
+	\dv{W_\text{EM}}{t} + \dv{t} \int_{\mathcal{V}}\left( \frac{1}{2\mu_0}|\mathbf{B}|^2 +
+	\frac{\epsilon_0}{2}|\mathbf{E}|^2 \right)\diff \tau = -\frac{1}{\mu_0}\oint_{\partial
+\mathcal{V}}(\mathbf{E} \times \mathbf{B}) \diff \mathbf{a}
+\end{equation}
+This final equation known as Poynting's theorem. Essentially, you can read it as follows:
+\[
+	\dv{t}(E_\text{particle} + E_\text{electric} + E_\text{magnetic}) = -\frac{1}{\mu_0} \oint_{\partial
+	\mathcal{V}} (\mathbf{E} \times \mathbf{B}) \diff \mathbf{a}
+\]
+So the left hand side represents the change of energy in the volume \( \mathcal{V} \), and the right hand
+side represents the energy flow through the surface of the volume \( \mathcal{V} \). From this equation, it's
+easy to see that \( \mathbf{S} \) represents the energy flux through the volume \( \mathcal{V} \), and
+essentially shows us the direction of energy flow around a surface. 
+   
+
+
+
+
+
+

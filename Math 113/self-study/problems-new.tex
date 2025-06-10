@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage{../../local}
+\usepackage[fourier]{../../local}
 \urlstyle{same}
 
 \newcommand{\classcode}{Math 113}
@@ -14,7 +14,7 @@
 \normalsize
 }
 \linespread{1.2}
-\newenvironment{problem}{\textbf{Problem:}}{}
+%\newenvironment{problem}{\textbf{Problem:}}{}
 \DeclareMathOperator{\im}{im}
 
 \begin{document}
@@ -544,6 +544,13 @@ algebra book.
 	matrices don't commute in general, there are two matrices that come to mind: the 
 	identity and the zero matrix.  
 \end{solution}
+
+\begin{problem}
+	Let \( P \) be a partition of a group \( G \) with the property that for any pair of elements \( A, B \)
+	of the partition, the product set \( AB \) is contained entirely within another element \( C \) of the
+	partition. Let \( N \) be the element of \( P \) that contains 1. Prove that \( N \) is a normal subgroup
+	of \( G \) and that \( P \) is the set of its cosets. 
+\end{problem}
 
 
 \begin{problem}

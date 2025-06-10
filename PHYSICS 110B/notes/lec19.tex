@@ -1,0 +1,132 @@
+\section{March 7}
+
+\question{There was an error in the lecture recording, so the notes for this lecture were pieced together
+	using the provided note and lecture audio.} 
+
+Last time, we talked about the Coulomb gauge, which gave us the equations of motion:
+\begin{align*}
+	\nabla^2 V &= -\frac{\rho}{\epsilon_0} \\ 
+	\left( \nabla^2 - \frac{1}{c^2}\partial_t^2 \right)\mathbf{A} &= -\mu_0 \mathbf{J} + \nabla\left(
+	\frac{1}{c^2}\partial_t V \right)
+\end{align*}
+
+As we've said before, the Coulomb gauge is not very useful in electrodynamics, since the time derivative
+terms are quite a nightmare to deal with. What is worth commenting on is the equation for the static
+potential: the fact that the equation doesn't change even when we introduce time dependence means that the
+electrostatic potential can actually be measured acausally:
+\[
+	V(t, \mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \int \frac{\rho(t', \mathbf{r}')}{\rcurs} \diff \tau'
+\]
+While this may be disturbing at first, it is important to note that \( V \) by itself is not measurable, and
+it is instead the electric field \( \mathbf{E} \) that we measure. To that end, the electric field takes on
+the form \( \mathbf{E} = -\nabla V - \partial_t \mathbf{A} \), which is not instantaneous so there is no real
+causality breaking here. 
+
+\subsection{The Lorentz Gauge}
+Aside from the Coulomb gauge, we also work with the Lorentz gauge, which sets:
+\begin{equation}
+	\label{19:lorentz-gauge}
+	\nabla \cdot \mathbf{A} + \frac{1}{c^2}\partial_t V = 0
+\end{equation}
+To see how this is enforced, suppose we perform the transformation \( (V, \mathbf{A}) \to (A' - \partial_t
+\lambda, A' + \nabla \lambda) \). Then, in order for the above equation to hold:
+\[
+	\nabla(\mathbf{A}' + \nabla \lambda) + \frac{1}{c^2}\partial_t (V' - \partial_t \lambda) = \nabla \cdot
+	\mathbf{A}' + \nabla^2 \lambda + \frac{1}{c^2}\partial_t V' - \frac{1}{c^2}\partial_t^2 \lambda
+\]
+so, enforcing \( \lambda \) to satisfy:
+\[
+	\left( \nabla^2 - \frac{1}{c^2}\partial_t^2 \right)\lambda = -\left( \nabla \cdot \mathbf{A}' +
+	\frac{1}{c^2}\partial_t^2 V' \right)
+\]
+ensures that we get the desired condition. With this condition, the equation of motion now reads:
+\begin{align}
+	\nabla^2 V - \frac{1}{c^2}\partial_t^2 V &= -\frac{\rho}{\epsilon_0} \\ 
+	\nabla^2 \mathbf{A} - \frac{1}{c^2}\partial_t^2 \mathbf{A} &= -\mu_0 \mathbf{J}
+\end{align}
+This is obtained by putting gauge fixing condition into equations \ref{17:potential1} and
+\ref{17:potential2}. These are the wave equations for the potentials \( V \) and \( \mathbf{A} \). However,
+this one gauge fixing condition doesn't completely fix the gauge. You can actually add another gauge \(
+\lambda' \) while still keeping equation \ref{19:lorentz-gauge} intact, as seen below:
+\[
+	\nabla \cdot(\mathbf{A} + \nabla \lambda) + \frac{1}{c^2}\partial_t(V - \partial_t \lambda') = \left(
+	\nabla \cdot \mathbf{A} + \frac{1}{c^2}\partial_t V\right) + \left( \nabla^2 \lambda' -
+\frac{1}{c^2}\partial_t^2 \lambda'\right) = 0 
+\]
+so as long as we choose \( \lambda' \) such that the second term is zero, we are allowed to add this extra
+gauge. The implications of this are as follows: because we modify \( V \) by adding a time derivative to \(
+\partial_t \lambda' \) and we modify \( \mathbf{A} \) by adding a gradient \( \nabla \lambda \) term, it is
+possible to find a \( \lambda' \) that makes both \( V - \partial_t \lambda' \) and \( A + \nabla \lambda' \)
+zero. So, this means that we can always take some nonzero \( (V, \mathbf{A}) \) and use this
+extra gauge symmetry to transform both fields into the zero field \( (0, \mathbf{0}) \). This reduces another
+degree of freedom, and hence we are left with two, consistent with EM waves.    
+
+\subsection{Retarded Potentials and Fields} 
+The benefit of the Lorentz gauge is that it transforms the equations of motion for \( V \) and \( \mathbf{A}
+\) into four copies of the same equation, named the \textbf{Klein-Gordon equation}:
+\[
+	\left( \nabla^2 - \frac{1}{c^2} \pdv[2]{t}\right)\phi(t, \mathbf{r}) = \rho(t, \mathbf{r})
+\]
+Here, \( \phi(t, \mathbf{r}) \) represents the potential and \( \rho(t, \mathbf{r}) \) is a general source
+term. To solve this equation, we can use Green's functions, which first involve solving the equation using a
+delta function as the source:
+\[
+	\left( \nabla^2 - \frac{1}{c^2}\pdv[2]{t} \right)G(t, \mathbf{r}) = \delta^{(4)}(t, \mathbf{r})
+\]
+Then, once the solution to \( G(t, \mathbf{r}) \) is found, we can find the general solution for \( \phi \)
+by simply integrating:
+\begin{equation}
+	\label{19:potential}
+	\phi(t, \mathbf{r}) = \int d^{4}x'\ \rho(t', \mathbf{r}') G(t - t', \mathbf{r} - \mathbf{r}')
+\end{equation}
+You can also check explicitly that this satisfies the Klein-Gordon equation, we'll leave that as an exercise.
+The intuitive idea for why this works is that we first solve the equation for a point potential with the delta
+function \( \delta^{(4)}(t, \mathbf{r}) \), which gives the contribution to the potential \( \phi \) by a
+single point source at \( (t, \mathbf{r}) \). Then, we integrate over all the point sources with the
+integral, which come together to give us the full equation for the potential of all sources in the system,
+and that solves for the field. 
+
+\subsection{Solving the Green's Function Equation}
+One way we can solve for Green's function is to solve it in momentum space, by considering the solution to
+the Fourier transform of the equation. To this end, we can write Green's function as a sum of momentum modes
+\( G_k \):
+\[
+	G(t, \mathbf{r}) = \int d^{4}k \ G_k e^{i k \cdot x}
+\]
+and here we use the four-vector \( k = (k^{0}, \mathbf{k}) \) with \( k \cdot x = -k^{0}t + \mathbf{k} \cdot
+\mathbf{r} \) (we use the \( (-, +, +, +) \) convention here). In momentum space, let's derive the equation
+for Green's function:
+\begin{align*}
+	\left(\nabla^2 - \partial_t^2\right) \frac{1}{(2\pi)^{4}}\int d^{4}k \ G_k e^{i k \cdot x} 
+	&= \frac{1}{(2\pi)^{4}}
+	\int d^{4}k \ e^{ik \cdot x}\\
+	\left(\nabla^2 - \partial_t^2\right) \int d^{4}k \ G_k e^{ik \cdot x} &= \int d^{4}k \ e^{i k \cdot x}\\
+	\left(\nabla^2 - \partial_t^2\right) G_k e^{ik \cdot x} &= e^{ik \cdot x}
+\end{align*}
+Now let's expand the \( k \cdot x \) on the left hand side:
+\[
+	G_k \left( \nabla^2 - \partial_t^2 \right)e^{i(- k^{0}t + \mathbf{k} \cdot \mathbf{r}} = e^{ik \cdot x}
+\]
+Then, computing the derivatives, we have:
+\begin{align*}
+	G_k \left( (k^{0})^2 - \mathbf{k} \cdot \mathbf{k} \right)e^{i k\cdot x} &= e^{i k \cdot x}\\
+	\left( (k^{0})^2 - \mathbf{k} \cdot \mathbf{k} \right)G_k &=  1 \\ 
+	\therefore G_k &=  \frac{1}{\left( (k^{0})^2 - \mathbf{k} \cdot \mathbf{k} \right)} 
+\end{align*}
+With this, we can now write the full integral for \( G(t, \mathbf{r}) \):
+\begin{equation}
+	\label{19:greens-function}
+	G(t, \mathbf{r}) = \frac{1}{(2\pi)^{4}} \int d^{4}k \ \frac{e^{i k \cdot x}}{\left( (k^{0})^2 -
+	\mathbf{k} \cdot \mathbf{k} \right)}
+\end{equation}
+There are some problems with this integral though: firstly, it's not well-defined, especially when \( |k^{0}|
+= \pm \sqrt{\mathbf{k}\cdot \mathbf{k}}\), which will cause the integral to blow up. Therefore, treating this
+integral classically is not the right idea, and we will instead have to borrow some tools from complex
+analysis.    
+ 
+ 
+  
+
+
+
+

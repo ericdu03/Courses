@@ -1,0 +1,145 @@
+\section{April 11}
+\subsection{Radiation for an Arbitrary Source Distribution}
+Now that we've looked at radiation for specific source configurations, we will now look at how to calculate
+the radiation emitted by an arbitrary source distribution. Consider an arbitrary ball of sources, for which
+we want to find the field \( V(\mathbf{r}, t) \) everywhere. Well, the equations don't change, so:
+\[
+	V(\mathbf{r}, t) = \frac{1}{4\pi \epsilon_0} \int \frac{\rho(\mathbf{r}, t_r)}{\rcurs} \diff \tau'
+\]
+Calculating this for a general source is usually hard, so we will make some simplifying approximations.
+First, because the radiation field dominates at large \( r \), we will make the approximation that \( r \gg
+r' \), so that the \( \frac{1}{r^2} \) terms have already died out. With this assumption, we can approximate
+\( \rcurs \):
+\[
+	\rcurs = \sqrt{r^2 + r'^2 + 2 \mathbf{r} \cdot \mathbf{r}'} \simeq r \left( 1 - \frac{\mathbf{r} \cdot
+	\mathbf{r}'}{r^2} \right)
+\]
+Using the approximation that \( (1 + x)^{n} \approx 1 + nx \) when \( x \) is small (and indeed, \(
+\mathbf{r}\cdot \mathbf{r}' / r^2 \) is small since the denominator is quadratic in \( r \)), then we can
+write \( 1 / \rcurs \):
+\[
+	\frac{1}{\rcurs} = \frac{1}{r}\left( 1 + \frac{\mathbf{r} \cdot \mathbf{r}'}{r^2} \right)
+\]
+So, we can now Taylor expand \( \rho \):
+\[
+	\rho(\mathbf{r}, t - \rcurs / c) = \rho\left( \mathbf{r}', t - \frac{r}{c} + \frac{\mathbf{r} \cdot
+	\mathbf{r}'}{c} \right) \approx \rho(\mathbf{r}, t_0) + \dot \rho(\mathbf{r}, t_0) \left(
+	\frac{\mathbf{\hat{r}} \cdot \mathbf{r}'}{c} \right) + \frac{1}{2} \ddot \rho (\mathbf{r}', t_0) \left(
+	\frac{\mathbf{\hat{r}} \cdot \mathbf{r}'}{c} \right)^2
+\]
+Now, we impose our second assumption, this one being on \( \dot \rho \) and the higher derivative terms. We
+will assume that the time variation must be fast enough. This is enforced through the ratios:
+\[
+	\left| \frac{\ddot \rho}{\dot \rho} \right|, \left| \frac{\dddot \rho}{\ddot \rho} \right|, \left|
+	\frac{\rho^{4}}{\dddot \rho} \right|, \dots \ll \frac{c}{r'}
+\]
+You can essentially think of this as requiring that the wavelength of the waves is much larger than the
+structure size, or mathematically \( \mathbf{r}' \ll cT \simeq \lambda \). Intuitively this also makes sense,
+since high frequency waves die out and don't make it very far, and what's left are the low frequency waves
+with large \( \lambda \). Practically speaking, what this approximation does is allow us to keep only the
+first order \( \mathbf{r}' \) terms. Therefore, our \( V(\mathbf{r}, t) \) becomes:
+\begin{align*}
+	V(\mathbf{r}, t) &= \frac{1}{4\pi \epsilon_0} \frac{1}{r}\left[ \int \rho(\mathbf{r}, t_0) \diff \tau' +
+	\frac{\mathbf{\hat{r}}}{r} \int \mathbf{r}' \rho(\mathbf{r}', t_0) \diff \tau' +
+\frac{\mathbf{\hat{r}}}{c} \dv{t} \int \mathbf{r}' \rho(\mathbf{r}', t_0) \diff \tau' \right]\\
+&= \frac{1}{4\pi \epsilon_0}\frac{Q}{r} + \frac{1}{4\pi \epsilon_0} \frac{\hat{\mathbf{r}} \cdot \mathbf{p}(t_0)}{r^2} 
++ \frac{1}{4\pi \epsilon_0} \frac{\hat{\mathbf{r}} \dot{\mathbf{p}}(t_0)}{cr}	
+\end{align*}
+For the second term, we use the fact that the electric dipole moment is defined as
+\( \mathbf{p} = \int \mathbf{r}' \rho(\mathbf{r}') \diff \tau \) to simplify it. The first two terms should
+be familiar: these are the multipole expansion terms, and the third one is due to radiation. The third term
+ends up being the only term we care about, since when we calculate the gradient of the potential the third
+term is the only one that produces a \( \frac{1}{r} \) dependence term. 
+ 
+For the vector potential, we have the equation:
+\[
+	\mathbf{A} = \frac{\mu_0}{4\pi} \int \frac{\mathbf{J}(\mathbf{r}, t_r)}{\rcurs} \diff \tau
+\]
+Since \( J = \rho v \), computing an integral like \( \int \mathbf{J} \diff \tau \) is essentially the same
+as summing over each individual charge:
+\[
+	\int \mathbf{J} \diff \tau \sim \sum_i q_i v_i = \sum_i q_i \dv{\mathbf{r}'_i}{t} = \dv{t} \sum_i q_i
+	\mathbf{r}'_i \sim \dot{\mathbf{p}}(t_0)
+\]
+so we can loosely approximate such an integral as the time derivative of the dipole moment. Then, because \(
+\int \mathbf{J} \diff \tau \) is already on the order of \( \mathbf{r}' \), any other higher order terms will
+be second order corrections, and hence we can just take \( \frac{1}{\rcurs} \simeq \frac{1}{r} \). All in
+all, the relevant potentials are:
+\[
+	V \simeq \frac{1}{4\pi \epsilon_0} \frac{\mathbf{r} \cdot \mathbf{p}(t_0)}{cr} \quad \mathbf{A} \simeq
+	\frac{\mu_0}{4\pi} \frac{\dot{\mathbf{p}}(t_0)}{r}
+\]
+To find the field, we now take \( \mathbf{E} = -\nabla V - \partial_t A \) and \( \mathbf{B} = \nabla
+\times \mathbf{A} \) as usual. Starting with \( \nabla V \), recall that the only term we care about in \( V
+\) is the third term, so:
+\[
+	(\nabla V)_i = \frac{1}{4\pi \epsilon_0} \frac{1}{cr} \nabla \left[ \mathbf{\hat{r}} \cdot
+	\dot{\mathbf{p}}(t_0) \right]
+\]
+Now the gradient:
+\[
+	\partial_i p^{j}(t_0) = (\partial_i t_0) \ddot p^{j}(t_0) = -\frac{1}{c} \hat{r}_i \ddot p^{j}(t_0)
+\]
+where we use \( \partial_j t_0 = -\frac{1}{c} \nabla r \). Now, written in vector form:
+\[
+	(\nabla V)_i = -\frac{1}{4\pi \epsilon_0} \frac{\mathbf{\hat{r}} \cdot \ddot{\mathbf{p}}(t_0)}{rc^2}
+	\mathbf{\hat{r}} 
+\]
+The \( \partial_t \mathbf{A} \) term is easy:
+\[
+	\partial_t \mathbf{A} = \frac{\mu_0}{4\pi} \frac{\ddot{\mathbf{p}}(t_0)}{r}
+\]
+So putting these two together to get \( \mathbf{E} \):
+\[
+	\mathbf{E} = -\frac{1}{4\pi \epsilon_0} \frac{\mathbf{\hat{r}} \cdot
+	\ddot{\mathbf{p}}(t_0)}{rc^2}\mathbf{\hat{r}} - \frac{\mu_0}{4\pi} \frac{\ddot{\mathbf{p}}(t_0)}{r} =
+	\frac{\mu_0}{4\pi} \left[ \mathbf{\hat{r}} \times (\mathbf{\hat{r}} \times \ddot{\mathbf{p}}(t_0) \right]
+\]
+where we've used the vector triple product identity \( \mathbf{a} \times (\mathbf{b} \times \mathbf{c}) =
+\mathbf{b}(\mathbf{a} \cdot \mathbf{c}) - \mathbf{c}(\mathbf{a} \cdot \mathbf{b}) \) to write it in its final
+form. To find \( \mathbf{B} \), we use \( \mathbf{B} = \nabla \times \mathbf{A} \):
+\[
+	\mathbf{B} = \nabla \times \mathbf{A} = \frac{\mu_0}{4\pi} \epsilon^{ijk}\partial_j \dot p_k(t_0) =
+	\frac{\mu_0}{4\pi} \epsilon^{ijk} (\partial_j t_0) \ddot p_k
+\]
+Again using \( \partial_j t_0 = -\frac{1}{c} \nabla r \), we have:
+\[
+	\mathbf{B} = \frac{\mu_0}{4\pi r} \epsilon^{ijk} \left( -\frac{1}{c} \hat{r}_j \right) \ddot p_k =
+	-\frac{\mu_0}{4\pi cr} \left[ \mathbf{\hat{r}} \times \ddot{\mathbf{p}}(t_0) \right]
+\]
+Notice that indeed we have \( \mathbf{B} = \frac{1}{c}\mathbf{\hat{r}} \times \mathbf{E} \), you can check
+this for yourself also if you'd like. 
+
+\begin{example}
+	Under the special case \( \mathbf{p} = p \mathbf{\hat{z}} \), \( \dot{\mathbf{p}} = \dot{p}
+	\mathbf{\hat{z}} \), and \( \ddot{\mathbf{p}} = \ddot{p} \mathbf{\hat{z}} \) (i.e. one-dimensional motion),
+	then the \( \mathbf{E} \) and \( \mathbf{B} \) fields take the form:
+	\begin{align*}
+		\mathbf{E} &= \frac{\mu_0 \ddot p(t_0)}{4\pi}\left( \frac{\sin \theta}{r} \right)
+		\boldsymbol{\hat{\theta}} \\ 
+		\mathbf{B} &= \frac{\mu_0 \ddot p(t_0)}{4\pi c}\left( \frac{\sin \theta}{r} \right)\boldsymbol{\hat{\phi}} 
+	\end{align*}
+	Combined, we can calculate \( \mathbf{S} \):
+	\[
+		\mathbf{S} = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \frac{\mu_0 [\ddot{p}(t_0)]^2}{16 \pi^2
+		c}\left( \frac{\sin \theta}{r} \right)^2 \mathbf{\hat{r}}
+	\]
+	So the power is:
+	\[
+		P = \int \mathbf{S} \cdot \diff \mathbf{a} = \frac{\mu_0 [\ddot{p}(t_0)]^2}{16 \pi^2 c} \int \frac{\sin^2
+		\theta}{r^2} (r^2 \sin \theta) \diff \theta \diff \phi = \frac{\mu_0 [\ddot p(t_0)]^2}{6 \pi c}
+	\]
+	In the case of a point charge, we have \( \mathbf{p} = q \mathbf{d} \), and hence \( \ddot{\mathbf{p}} =
+	q \ddot{\mathbf{a}} = qa \mathbf{\hat{z}} \), so the power becomes:
+	\begin{equation}
+		\label{Larmor}
+		P = \frac{\mu_0 q^2 a^2}{6 \pi c}
+	\end{equation}
+	This is the well-known \textbf{Larmor Formula}, which gives the power radiated by a point charge. Notice
+	that it only radiates power when it is accelerated. We will revisit this formula and derive it from a
+	different perspective next week.
+\end{example}
+
+ 
+ 
+ 

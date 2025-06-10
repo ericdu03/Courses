@@ -1,5 +1,4 @@
-\babel@toc {english}{}
-\babel@toc {english}{}
+\babel@toc {english}{}\relax 
 \contentsline {chapter}{\numberline {0}Introduction}{7}{chapter.0}%
 \contentsline {section}{\numberline {0.1}Basic Syllabus Info}{7}{section.0.1}%
 \contentsline {subsubsection}{Professor and GSI Info}{7}{section.0.1}%

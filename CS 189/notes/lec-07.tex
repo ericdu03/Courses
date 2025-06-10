@@ -1,0 +1,108 @@
+\section{Logistic Regression \& Neural Networks}
+\begin{itemize}
+	\item Last time, we saw how the logistic equation came out of assuming Gaussian
+		class-conditional variables. This lecture, we will continue that exploration,
+		and see how we can use MLE to get the logistic function.
+	\item In summary, we found that the posterior takes the form:
+		\[
+			p(k \mid x) = \frac{1}{1 + e^{-z}}
+		\]
+		where \( z \) is a \textbf{linear} function \( z = \theta^{\top} x + \theta_0
+		\). Here, \( \theta \) is a parameter that depends on \( \{\mu_k\}_{k =
+		1}^{K} \) and \( \Sigma \).  
+		
+		This method of determining \( p(k \mid x) \) is called the
+		\textbf{generative} approach. Now, we will talk about the discriminative
+		approach.  
+
+	\question{My understanding is that there is a generative and discriminative
+	approach to classification problems and regression problems, is that true?}      
+
+	\answer{Probably? This approach probably works for anything where you have data
+	and you want to find parameters that describe the data well.}  
+\end{itemize}
+
+\subsection{Multi-Class Classification}
+\begin{itemize}
+	\item First, we will start by looking at how our two-class classification can be
+		generalized to \( K \) classes. We will start with the generative approach,
+		because that's what we did last time.  
+	\item We first start by writing out the class-conditional probability. This is
+		assumed to be Gaussian (like before), though note that this isn't the only
+		function we could pick.
+		\[
+			p(x \mid k) \sim N(\mu_k, \Sigma)
+		\]
+		Here, \( \mu_k \in \R^{d} \) and \( \Sigma \in \R^{d \times d} \). To find
+		the posterior distribution, we will invoke Bayes' rule:
+		\[
+			p(k \mid x) = \frac{p(x \mid k) p(x)}{p(k)} = \frac{p(x \mid k)
+			p(k)}{\sum_{i = 1}^{k}p(x \mid j) p(j)}
+		\]
+		Here, we will now rewrite this in a "nicer" way, by letting \( a_k = \log p(x
+		\mid k) p(k) \), so we may write:
+		\[
+			p(k \mid x) = \frac{e^{a_k}}{\sum_{j = 1}^{K}e^{a_j}}
+		\]
+		More explicitly, we have:
+		\[
+			a_k = (\Sigma^{-1} \mu_k)^{\top} x - \frac{1}{2}\mu_k^{\top} \Sigma^{-1}
+			\mu_k + \log p(k)
+		\]
+		which you can get just by multiplying it out and collecting the terms
+		appropriately. Here, we will denote \( \theta_k = \Sigma^{-1} \mu_k \), and \(
+		\theta_{0, k} \) is just the remainder of the expression. This then allows us to
+		write \( a_k = \theta_k^{\top} x + \theta_{0, k} \), which is linear as desired. 
+
+		\comment{As an aside, this mapping:
+			\[
+				(a_1, \dots, a_k) \mapsto \left( \frac{e^{a_1}}{\sum e^{a_j}}, \dots,
+				\frac{e^{a_k}}{\sum e^{a_j}}\right)
+			\]
+			is called the \textit{softmax function}. In particular, if we have \( a_k \gg
+			a_j\), then the softmax mapping will basically map this \( n \)-tuple into a
+		basis vector.}
+\end{itemize}
+
+\subsection{Discriminative Learning}
+\begin{itemize}
+	\item We're given this hypothesis that \( p_{\theta}(0 \mid x) \) has the functional
+		form:
+		\[
+			p_{\theta}(0 \mid x) = \frac{1}{1 + e^{-(\theta^{\top} x + \theta_0)}}
+		\]
+		As before, we will use the log-likelihood, and given that we assume i.i.d
+		conditions we have a product which turns into a sum in the logarithm.   
+	\item Given this form, the likelihood is then given by:
+		\[
+			\log\left( p_z^{y} (1 - p_z)^{1 - y} \right)
+		\]
+		\question{work out what \( z \) is in terms of \( \theta, x \) and the other
+		stuff to make it match the form above.} 
+		Here, \( z \) depends on \( \theta \) and \( p \) only depends on \( z \). In
+		order to find the optimal \( \theta \), then this is a quantity we'd like to
+		maximize. At the same time, the loss is something we'd like to minimize, so
+		we can define the loss to be the negative of this. 
+		\[
+			\mathcal{L}(\theta) = -y \log p_z - (1 - y)\log(1 - p_z)
+		\]
+	\item To find the maximum then, we can take \( \nabla_{\theta}\mathcal{L}(\theta)
+		\) and we get:
+		\begin{equation}
+			\label{lec6}
+			\nabla_{\theta}\mathcal{L}(\theta) = \left( -y \frac{p_z(1 - p_z)}{p_z} +
+			(1 - y) \frac{p_z(1 - p_z)}{1 - p_z}\right)\nabla_{\theta}z = (p_z - y)
+			\nabla_{\theta}z
+		\end{equation}
+		To get this form, we note that since \( p_z \) is a sigmoid, then we have:
+		\[
+			\partial_z p_z = \frac{e^{-z}}{(1 + e^{-z})^2} = p_z( 1 - p_z)
+		\]
+		The \( \nabla_{\theta}z \) term is very deep -- in linear this term is just
+		equal to \( x \), but in more complex systems (for instance, in deep
+		learning), it need not be linear. 
+\end{itemize}
+\comment{The rest of this lecture was a \textit{very} light intro to neural nets by
+	talking about neurons and human cells so I didn't feel like writing that stuff
+	down. All you really need to know is that neural networks are just simplified models
+of biological neural nets.} 

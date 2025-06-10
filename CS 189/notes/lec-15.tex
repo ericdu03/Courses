@@ -1,0 +1,165 @@
+\section{Nearest Neighbor and Metric Learning}
+\subsection{Parametric vs. Non-Parametric Models}
+\begin{itemize}
+	\item So far, we've mostly focused on parametric models, where we aim to learn \( p(y \mid x) \), through
+		the use of a parameter \( \theta \):
+		\[
+			p_{\theta}(y \mid x) \approx p(y \mid x)
+		\]
+	\item The parameters are determined through MLE (or some other method), and generally the data is then
+		thrown away. Today, we will look at non-parametric models (i.e. models which don't consider a
+		parameter \( \theta \)). In this case, we will keep the training examples, and in effect the number
+		of training parameters grows with \( n = |\mathcal{D}| \). In some sense, the dataset itself is the
+		parameters. 
+	\item As an aside, we should cover metric spaces first: a metric space is a set \( X \) together with a
+		notion of distance \( d \) between its elements:
+		\begin{enumerate}[label=\arabic*.]
+			\item \( d(x, x) = 0 \).
+			\item \( d(x_1, x_2) > 0 \) if \( x_1 \neq x_2 \).
+			\item \( d(x_1, x_2) = d(x_2, x_1) \).
+			\item Triangle inequality. 
+		\end{enumerate}
+		One metric we commonly see in ML is called the \textit{Mahalanobis distance}, written as:
+		\[
+			d_M(x_1, x_2) = \sqrt{(x_1 - x_2)^{\top} M (x_1 - x_2)}
+		\]
+		this collapses to the Euclidean distance when \( M = I_d \).
+\end{itemize}
+\subsection{KNN Classifier}
+\begin{itemize}
+	\item Suppose you've classified some data into two classes, and now you want to classify a new point \( x
+		\). To do this, we first find the \( K \) closest (using a metric \( d \)) examples in the
+		pre-existing data to inform our decision on what \( x \) should be classified as. We denote this set
+		as \( N_K(x, \mathcal{D}) \). 
+
+		\question{How is the pre-existing data generated?} 
+	\item We then look at the labels \( y_i \) for the points \( N_K(x, \mathcal{D}) \), and use it to
+		estimate what \( p(y \mid x)  \) should be (i.e. what label we assign it):
+		\[
+			p(y = c \mid x, \mathcal{D}) = \frac{1}{K}\sum_{i \in N_k(x, \mathcal{D})} I[Y_i = c]
+		\]
+		note that this probability sums to 1 when we sum over all \( c \), so this is actually a valid
+		probability distribution. In words, this means that the probability a point \( y \) is assigned a
+		label \( c \) is given by the proportion of the nearest \( K \) points that are assigned \( c \).
+	\item The \( k = 1 \) case is special - the partition that you get is called a \textit{Voronoi
+		tessellation}. In this case, if you scatter some points onto the plane, then this division will
+		partition the space up strictly based on distance and all the boundaries are just straight edges
+		between classes.  
+
+		In this special case, the classification of a new point is given by the nearest neighbor, so this is
+		why you get such a special pattern.
+
+		\question{How do you tell the classifier how many classes you should make?} 
+
+		\answer{This is probably something you decide ahead of time; there's probably no way for you to
+		"train" a model to know how many you should make.}
+	\item Visually, you can also compare different \( K \) and \( K' \) nearest neighbor algorithms, and
+		there is a distinction between them. For larger \( K \), the general trend is that the boundary
+		between classes gets finer and not as jagged, as is typically seen in a smaller \( K \).  
+	\item There is also an optimal \( K \) for classification. If \( K \) is too large, then you risk
+		comparing against points that are not near your target point \( y \), and therefore you will get a
+		bad classification from it. 
+
+		This is also a general trend we observe in model training: as the model complexity increases, the
+		training error decreases monotonically, but the test error reaches an optimum somewhere in between.
+		This is because there are two regimes on the extremes: extreme simplicity on one end, and overfitting
+		on the other. 
+\end{itemize}
+
+\subsection{KNN Generative Classifier}
+\begin{itemize}
+	\item Now we move to the \( K \)-nearest neighbors except this time we have a generative classifier. In
+		this case, we essentially define a "ball" around each point \( x \) until we encounter \( K \)
+		points, and the classification is then given by the proportion of points in that ball \( V_K(x) \)
+		that are classified as class \( c \).      
+	\item If you have a \textit{lot} of data, it has been shown that the KNN test error can never be worse
+		than twice the optimal Bayes classifier. This is interesting to note, because the Bayes classifier
+		requires \textit{much} more information about your data (the class conditionals, distribution, etc.),
+		but KNN knows nearly nothing.  
+	\item This is a quick aside, but basically the idea is that the space you need to check increases
+		exponentially with dimension. Because the volume grows exponentially large, it becomes increasingly
+		more impractical to search such a space, and so this makes KNN much worse in higher dimensions.  
+
+		If you want to get \( \epsilon \) close to a target, by increasing the dimension you can only get 
+		\( O(n^{ - 1 / d}) \) closer to the target by increasing the dimension. 
+\end{itemize}
+
+\subsection{Pros and Cons of KNN}
+\begin{itemize}
+	\item Pros:
+		\begin{itemize}
+			\item Fast, no training required.
+			\item Learns complex classification functions easily, because it requires no priors.
+		\end{itemize}
+	\item Cons:
+		\begin{itemize}
+			\item High storage cost
+			\item Slow at computing inference (actually performing the classification)  
+			\item Very bad dimensionality scaling. 
+		\end{itemize}
+\end{itemize}
+
+\subsection{Manifold Hypothesis}
+\begin{itemize}
+	\item The manifold hypothesis basically states that "true" high dimensional data that we care about, like
+		images, videos, etc. lie in a lower dimensional manifold which is embedded in a higher dimensional
+		space.   
+	\item The idea then is that we essentially "embed" the data onto a lower dimensional space using a neural
+		network, learn the
+		space using a Euclidean metric, then you can classify using this Euclidean metric. 
+
+		\question{Is this the approach that t-SNE uses?}
+	\item The challenge then becomes: how do you define an embedding that does exactly what you want?
+		Ideally, you want an embedding that pulls similar objects close to each other and pushes dissimilar
+		ones apart.
+	\item One of the earliest approaches to doing this was based on \textit{contrastive loss}. Basically,
+		define a loss function over two points \( i, j \):
+		\[
+			\mathcal{L}_{ij}(\theta; m) = \mathbb I (y_i = y_j)d(z_{\theta}(x_i), z_{\theta}(x_j))^2
+			+ \mathbb I (y_i \neq y_j) \max(0, m - d(z_{\theta}(x_i), z_{\theta}(x_j))^2)
+		\]
+		(recall that \( z(x) \) is your embedding function). 
+		Essentially, you minimize the loss between similar points, while also defining a "maximum acceptable
+		distance" between two dissimilar points. You require this \( m \) because otherwise, your model will
+		want to push dissimilar points increasingly farther away off to infinity.  
+
+		Tested this on the MNIST dataset and bringing this down to a 2-dimensions from 784 dimensions, and
+		the results look very good.    
+	\item The problem with this approach is that the "pull" and "push" terms don't talk to each other, or in
+		other words this is a very binary way to approach this embedding approach. 
+	\item This leads to the second approach: triplet loss. Here, the loss is given by:
+		\[
+			\mathcal{L}_i(\theta; m) = \max(d(z_\theta(x_i), z_{\theta}(x_i^{+}))^2 - d(z_{\theta}(x_i),
+			z_{\theta}(x_i^{-}))^2 + m, 0)
+		\]
+		In essence this does the exact same thing: you want the first term to decrease while simultaneously
+		wanting the second term to increase, but this is a more clever approach because the terms are
+		combined together. 
+		
+		Here, \( z^{+} \) is a positive (similar) example, and \( z^{-} \) is a dissimilar (negative)
+		example.  
+
+		\question{what is the positive and negative example referring to?} 
+
+		\answer{these are \textit{anchors} in the data, and are given as true points in the dataset.}  
+	\item One issue with the triplet loss is that because there are a lot of negative examples to compare to,
+		you naturally need to perform that computation many many times to get the loss for a single point.
+		This leads to the \( N \)-pair loss, which lets you take a batch of negaitve samples at a time:
+		\[
+			\mathcal{L}(\theta; x, x^{+}, \{x_k^{-}\}_{k = 1}^{N}) = \log\left( 1 + \sum_{k = 1}^{N -
+			1}\exp\left( \hat{z}_\theta(x)^{\top} \hat{z}_\theta(x_k^{-}) - \hat{z}_\theta(x)^{\top}
+			\hat{z}_\theta (x^{+}) \right) \right)
+		\]
+		what this means is that you take a set of predefined dissimilar examples \( \{x_k\} \) and use that
+		as the "push" term. 
+
+		\question{How does this algorithm work in practice? Would you have to define a set of similar and
+		dissimilar classes for every class you're working with?} 
+
+		\comment{The reason you don't need a max function here is because \( \hat{z}_\theta(x) \) is a
+			projection that only projects into a volume of a unit sphere, so there is a predefined limit to
+			how far apart dissimilar points can be apart. You can also convert this interpretation into an
+		equivalent one using softmax.}   
+	\item There's also the world of joint embeddings: where text and images are encoded together and embedded
+		onto a space: OpenAI's CLIP model was trained on an \( N \)-pair loss in a jointly embedded space.  
+\end{itemize}

@@ -1,0 +1,188 @@
+\section{CNNs, ResNets, Batch Normalization}
+\subsection{Summary of Last Lecture}
+\begin{itemize}
+	\item The structure of a neural network: we described the mathematical structure
+		of a neural network and how each neuron behaves at every step:
+		\begin{align*}
+			a_j^{(\ell)} &= \sum_{i \in [d_{\ell - 1}]} \theta_{ji}^{(\ell)}x_i^{(\ell
+			- 1)}\\
+			x_j^{(\ell)} &= g_\ell(a_j^{(\ell)}) 
+		\end{align*}
+	\item For maximum likelihood learning, we denote the total loss as the sum of the
+		individual losses: 
+		\[
+			\mathcal{L}(\theta) = \sum_i \mathcal{L}_i(\theta) = \sum_i
+			\mathcal{L}(f_{\theta}(x_i), y_i)
+		\]
+	\item Stochastic Gradient Descent (SGD): in its purest form, defined by the
+		updates
+		\[
+			\theta_{t + 1} = \theta_t - \epsilon_t
+			\nabla_{\theta_t}\mathcal{L}(\theta_t)
+		\]
+		where we select an \( \epsilon_t \) at random at each iteration \( t \). 
+	\item Backpropagation: we learned of an \( O(m) \) algorithm to calculate the
+		gradient of the loss throughout the neural net:
+		\[
+			\Delta_j^{(\ell)} = \left( \sum_{k \in [d_{\ell + 1}]} \Delta_k^{(\ell +
+			1)} \theta_{kj}^{(\ell + 1)} \right)g'(a_j^{(\ell)})
+		\]
+\end{itemize}
+\subsection{Convolutional Neural Networks (CNN)}
+\begin{itemize}
+	\item Firstly, fully connected neural networks are parameter hungry. Usually,
+		too many parameters leads to overfitting of the data, which we know to be
+		suboptimal.
+	\item The motivation for CNNs comes from our desire to incorporate our "inductive
+		bias" into the neural net. Inductive bias is our desire to force the neural
+		network to learn certain aspects about the data. 
+
+		In our naive approach, if we wanted to forcefully change some parameters \(
+		\theta \), then the network would respond in an unpredictable way because of
+		its complexity. So, in order to control the neural networks in a way, we turn
+		to convolutional neural networks.  
+\end{itemize}
+
+\subsubsection{Invariance and Equivariance}
+\begin{itemize}
+	\item They are both defined with respect to a particular transformation.
+	\item As an example, consider a translation \( T \):
+		\[
+			\begin{tikzcd}[sep = 30]
+				x \arrow[r] \arrow[d, "f_\theta"] & T(x) \arrow[d, "f_\theta"] \\
+				f_{\theta}(x)  &  f_\theta(T(x))	
+			\end{tikzcd}
+		\]
+		the idea is that with our classification, we would like to have \(
+		f_\theta(x) = f_\theta(T(x)) \). In this case, we call this
+		\textbf{invariance.}
+	\item On the other hand, if we have \( f_{\theta}(T(x)) = T(f_{\theta}(x)) \),
+		then this operation is called \textbf{equivariance}. 
+
+		In general, because the spaces (dimensions) in which \( x \) and \( T(x) \)
+		live in may be different, what we really want in general is:
+		\[
+			f_{\theta}(T_x(x)) = T_y(f_{\theta}(x))
+		\]
+		In the case where \( T_x = T_y \) we have the earlier form. 
+\end{itemize}
+\subsubsection{Structure of a CNN}
+\begin{itemize}
+	\item In a CNN, the operation from each layer to the next is a convolution, and
+		no longer a dot product between the vector \( \theta \) at layer \( \ell \)
+		and your weights. That is, 
+		\[
+			a^{(1)}(i_1, i_2) = \sum_{j_1 \in [F]} \sum_{j_2 \in [F]} x^{(0)}(i_1 +
+			j_1, i_2 + j_2) \theta(j_1, j_2)
+		\]
+		so now, \( \theta \) is a 2-dimensional kernel we use to compute the
+		convolution. This also means that each neuron is only connected to the
+		neurons in the previous layer by the size of the convolution only.    
+
+		\question{what does the bias actually mean in this case then? Is it some
+		constant matrix \( \theta_0 \)?}
+
+		\answer{No, you do the convolution as normal, then add a bias \( b \) at the
+		very end.}
+	\item Note that the filter at each layer doesn't have to be the same. If you were
+		processing an image, one filter could be a horizontal gradient, and the other
+		could be a vertical gradient. This is allowed.  
+	\item In the case of image processing, you may also need to take your
+		convolutions channel-wise because your input is RGB.  
+	\item In general, visualizing the first layer of your network is relatively easy,
+		because it's just a collection of the images you've learned.
+
+		\question{Is the first layer the output layer or the first layer through your
+		convolution?}
+	\item Some technical terms related to neural nets: 
+	\begin{itemize}
+		\item \textbf{Padding:} When you do convolution on the edges, you may need to pad
+			the edges with zeros (or some other value) so that the kernel completely
+			overlaps with your matrix. In general, convolving a \( (W \times W) \) matrix
+			with an \( (F \times F) \) filter, then you get a \( (W - F + 1)
+			\)-dimensional matrix. 
+		\item \textbf{Pooling:} You take the elements in a certain window of the matrix
+			(say, the top left), and take the value according to some defined function.
+			In the case of max-pooling, you take the max value, for example. 
+	\end{itemize}
+	\item When we finish training our model using SGD (or other methods), we can then
+		look at the learned model by computing \( \nabla_x a_i^{(\ell)}(x;
+		\hat{\theta}) \). Basically, we are looking for the behavior of the neural
+		net to small changes in the data. 
+	\item One thing we find when training neural networks is that the depth of the
+		neural net doesn't always lead to a better result, and is a result of the
+		vanishing gradient. 
+
+		\question{What is this vanishing gradient really mean here?} 
+
+		\answer{Consider logistic regression, where your activation function is the
+			sigmoid. You want to maximize the probability, which forces you to be in
+		a regime where there are very small gradients. So, you hit a wall.}
+
+
+		\comment{Aside on vanishing gradients:
+			Consider a function:
+			\[
+				f(x) = \left( \prod_{i = 1}^{n}w_i \right)x
+			\]
+			and you have individual gradients:
+			\[
+				\pdv{\mathcal{L}}{w^{(2)}} 
+				= \pdv{\mathcal{L}}{x^{(3)}}
+				\pdv{x^{(3)}}{w^{(2)}}
+		\]
+	The reason vanishing gradients happen is because you multiply many of these terms
+together -- and as a result, you're getting a \textit{really} small term, and this
+leads to vanishing gradients.}
+\end{itemize}
+
+\subsection{ResNets}
+\begin{itemize}
+	\item One way to deal with the limitations of neural networks is to use "skip
+		connections", or basically connect the previous layer directly to the next
+		layer. That is, we have:
+		\[
+			x^{(\ell + 1)} = \mathcal{F}_{\ell + 1}(x^{(\ell)}) + x^{(\ell)}
+		\]
+		compared to what we had before (only the \( \mathcal{F}_{\ell +
+		1}(x^{(\ell)}) \) the residual \( x^{(\ell)} \) term (not sure)
+
+		\question{so what does the residual term do that allows you to bypass the
+		learning barrier?} 
+
+		\answer{It solves the issue of vanishing gradients, because the gradient of
+		the last step directly influences the first step.} 
+	\item As a result, deeper ResNets actually do perform progressively better.    
+\end{itemize}
+
+\subsection{Batch Normalization}
+\begin{itemize}
+	\item When you want to train a neural net, and you don't want inputs from
+		different layers of the network to be in different ranges. Because of the way
+		backpropagation works (each next layer is dependent on the previous one),
+		then you'd like all the gradients and networks to live in similar ranges so
+		that you don't get random spikes for no reason.
+	\item To accomplish this, you normalize each hidden layer in the same way you
+		normalize the input data! That is, in each batch, we can compute the
+		statistics of the batch:
+		\[
+			\mu_B = \frac{1}{n}\sum_{i \in [b]} x_i, \quad \sigma_B = \frac{1}{n}
+			\sum_{i \in [b]}(x_i - \mu)^2
+		\]
+		then normalize each layer based on the statistics of the batch. That is, for
+		each node in the neural network, we then have:
+		\[
+			x^{(\ell)} \leftarrow \frac{x^{(\ell)} - \mu_B}{\sigma_B + \epsilon}
+		\]
+		this normalizes each \( x^{(\ell)} \) in each batch so make sure that the
+		ranges are consistent across each layer. \question{Remember: this is done at
+			\textit{every layer}, so you compute \( \mu_B \) and \( \sigma_B \) for
+		each layer, and normalize it.} 
+	\item You also want to augment \( x^{(\ell)} \) by learned \( \gamma, \beta \):
+		\[
+			x^{(\ell)} \leftarrow \gamma x^{(\ell)}+ \beta
+		\]
+		\question{and why do you do this?}
+
+		\answer{Don't worry about it, it's not important.}
+\end{itemize}

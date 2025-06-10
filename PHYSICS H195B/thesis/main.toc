@@ -1,0 +1,26 @@
+\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.2}%
+\contentsline {section}{\numberline {1.1}History}{5}{section.3}%
+\contentsline {section}{\numberline {1.2}Alternatives to Dark Matter}{6}{section.4}%
+\contentsline {chapter}{\numberline {2}Dark Matter Detection}{7}{chapter.5}%
+\contentsline {section}{\numberline {2.1}Overview}{7}{section.6}%
+\contentsline {section}{\numberline {2.2}Collision based DM Detection}{7}{section.7}%
+\contentsline {section}{\numberline {2.3}Current Technology: TES Detectors}{9}{section.12}%
+\contentsline {subsection}{\numberline {2.3.1}The Proximity Effect}{9}{subsection.15}%
+\contentsline {subsection}{\numberline {2.3.2}Readout}{10}{subsection.16}%
+\contentsline {section}{\numberline {2.4}A "New" Device: KID Detectors}{11}{section.17}%
+\contentsline {subsection}{\numberline {2.4.1}Mechanism}{12}{subsection.19}%
+\contentsline {section}{\numberline {2.5}Focus of Study}{13}{section.21}%
+\contentsline {chapter}{\numberline {3}Feedline Design}{15}{chapter.23}%
+\contentsline {section}{\numberline {3.1}Theory}{15}{section.24}%
+\contentsline {subsection}{\numberline {3.1.1}Impedance}{16}{subsection.26}%
+\contentsline {subsection}{\numberline {3.1.2}Conformal Mapping}{17}{subsection.27}%
+\contentsline {section}{\numberline {3.2}Simulation Setup}{19}{section.30}%
+\contentsline {subsection}{\numberline {3.2.1}Voltage Standing Wave Ratio (VSWR)}{19}{subsection.32}%
+\contentsline {chapter}{\numberline {4}Results}{21}{chapter.33}%
+\contentsline {section}{\numberline {4.1}Straight Waveguide}{21}{section.34}%
+\contentsline {section}{\numberline {4.2}Adding Bends}{23}{section.38}%
+\contentsline {subsection}{\numberline {4.2.1}Sharp Bends}{24}{subsection.39}%
+\contentsline {subsection}{\numberline {4.2.2}Rounded Bends}{25}{subsection.43}%
+\contentsline {subsection}{\numberline {4.2.3}Large Round Bends}{27}{subsection.46}%
+\contentsline {chapter}{\numberline {5}Discussion}{29}{chapter.49}%
+\contentsfinish 

@@ -15,7 +15,7 @@ Eric Du \Large{\hfill \classname \hfill} \large{\today}
 }
 \linespread{1.2}
 
-\newenvironment{problem}{\textbf{Problem:}}{}
+%\newenvironment{problem}{\textbf{Problem:}}{}
 \newenvironment{definition}{\textbf{Definition:}}{}
 \begin{document}
 	\maketitle
@@ -785,10 +785,10 @@ Eric Du \Large{\hfill \classname \hfill} \large{\today}
 
 		Based on the construction of \( W \), we can compute 
 		\[
-			E \cap W = E\cap \left(\bigcup_{\alpha} V_{\alpha}\right) = 
-			\bigcup_{\alpha} \left( E \cap V_{\alpha} \right) 
+			E \cap W = E\cap \left(\bigcup_{\alpha \in \mathcal{A}} V_{\alpha}\right) = 
+			\bigcup_{\alpha \in \mathcal{A}} \left( E \cap V_{\alpha} \right) 
 		\]
-		where \( \alpha \) is an index set of  \( n \) such that \( E \cap V_n \) is countable. This 
+		where \( \mathcal{A} \) is an index set of  \( n \) such that \( E \cap V_n \) is countable. This 
 		implies that \( E \cap W \) is countable, and since \( E \) is uncountable, then \( W \) is countable. 
 		Based on this, it is then impossible for any point \( p \in P \) to exist in \( W \), since we can 
 		define a neighborhood \( N_r(p) \subset W \) that is countable. Thus, every point in \( P \) exists
@@ -798,8 +798,15 @@ Eric Du \Large{\hfill \classname \hfill} \large{\today}
 	\begin{problem}
 		Prove that every closed set in a separable metric space is the union of a (possibly empty) perfect 
 		set and a set which is at most countable. (\textit{Corollary:} Every countable closed 
-		set in \( R^{k} \) has isolated points.) \textit{Hint:} use the preivous part. 
+		set in \( R^{k} \) has isolated points.) \textit{Hint:} use the previous part. 
 	\end{problem}
+
+	\begin{solution}
+		Following the hint, let \( E \subset R^{k} \) be such a closed subset, and let \( P \) be the set of
+		condensation points of \( E \). From the previous part, we know that \( P \) is a perfect set, and
+		there are only countably many points in \( E \) that are not in \( P \). So, \( P \) is perfect and
+		\( P^{c} \) is countable, and \( P \cup P^{c} \) covers \( E \), so we are done.   
+	\end{solution}
 
 	\begin{problem}
 		Imitate the proof of Theorem 2.43 to obtain the following result: 
@@ -817,7 +824,7 @@ Eric Du \Large{\hfill \classname \hfill} \large{\today}
 	\end{problem}
 
 
-	\section{Chapter 3}
+	\section{Numerical Sequences and Series}
 	\begin{problem}
 		Let \( X \) be a metric space.\footnote{Persy wants me to suffer.}
 		\begin{enumerate}[label=\alph*)]
@@ -859,7 +866,50 @@ Eric Du \Large{\hfill \classname \hfill} \large{\today}
 				\( \{p_n\}  \) and \( \{q_n\}  \) are replaced by equivalent sequences, and hence that 
 				\( \Delta \) is a distance function on \( X^{*} \). 
 
+				\begin{solution}
+					Let \( \{r_n\} \) be an equivalent sequence to \( \{p_n\} \). Because of equivalence,
+					then we know that \( \lim_{n \to \infty}d(p_n, r_n) = 0 \), and we are now asked to
+					evaluate \( \lim_{n \to \infty}d(r_n, q_n) \). By the triangle inequality, we have
+					\[
+						d(p_n, q_n) \leq d(p_n, r_n) + d(r_n, q_n)
+					\]
+					Applying limits, we have:
+					\[
+						\lim_{n \to \infty}d(p_n, q_n) \leq \lim_{n \to \infty} d(p_n, r_n) + \lim_{n \to
+						\infty}d(q_n, r_n)
+					\]
+					But since \( \{r_n\} \) and \( \{p_n\} \) are equivalent sequences, then the first term
+					goes to zero, so 
+					\[
+						\lim_{n \to \infty} d(p_n, q_n) \leq \lim_{n \to \infty} d(q_n, r_n)
+					\]
+					But since \( X \) is a metric space, then we also have:
+					\[
+						\lim_{n \to \infty}d(q_n, r_n) \leq \lim_{n \to \infty}d(q_n, p_n) + \lim_{n \to
+						\infty} d(p_n, r_n)
+					\]
+					from which we conclude
+					\[
+						\lim_{n \to \infty}d(q_n, r_n) \leq \lim_{n \to \infty}d(p_n, q_n)
+					\]
+					Combining these two inequalities, we have:
+					\[
+						\Delta(Q, R) \leq \Delta(Q, P) \leq \Delta Q(Q, R)
+					\]
+					so they are in fact equal. We need only show that replacing \( \{p_n\} \) with \( \{
+					r_n\} \) to complete the proof, since the metric respects symmetry.
+				\end{solution}
 			\item Prove that the resulting metric space \( X^{*} \) is complete. 
+
+				\comment{\textit{Note:} A
+					metric space \( M \) is called complete if every Cauchy sequence of points in \( M \) has
+				a limit that is also in \( M \).}
+
+				\begin{solution}
+					The trick is to leverage Theorem 3.11, which says that if \( X \) is compact then any
+					Cauchy sequence converges to a point in \( X \), which is what we aim to show based on
+					definition 3.12. 
+				\end{solution}
 			\item For each \( p\in X \), there is a Cauchy sequence all of whose terms are \( p \); let \( P_p \) 
 				be the element of \( X^{*} \) which contains this sequence. Prove that 
 				\[

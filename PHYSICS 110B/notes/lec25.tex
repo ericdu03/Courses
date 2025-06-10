@@ -1,0 +1,78 @@
+\section{April 2}
+Today, we're going to continue our discussion from last lecture. Recall that there, we calculated the
+following equations for the fields:
+\[
+	V = \frac{1}{4\pi \epsilon_0} \frac{qc}{\rcurs c - \brcurs \cdot \mathbf{v}} \quad \mathbf{A} =
+	\frac{\mu_0}{4\pi} \frac{qc \mathbf{v}}{c \rcurs - \rcurs \cdot \mathbf{v}}
+\]
+One thing to note about this equation is that the scaling factor in the denominator is \textit{not} due to
+length contraction! Although they look similar in form, this factor is a result of the fact that we are no
+longer integrating over the charge distribution because of its motion. With \( V \) and \( \mathbf{A} \), we
+can now calculate \( \mathbf{E} \) and \( \mathbf{B} \) using the standard formulas:
+\[
+	\mathbf{E} = -\nabla V - \partial_t \mathbf{A} \quad \mathbf{B} = \nabla \times \mathbf{A}
+\]
+To begin this process, we start by calculating some gradients we will need. First up, we calculate \( \nabla
+\rcurs \):
+\[
+	\nabla \rcurs = \partial_i \sqrt{(x_k - w_k)(x^{k} - w^{k})} = \frac{2 (x_k - w_k)(\delta_i^{k} -
+	\partial_i w^{k}(t_r))}{2 \rcurs} = \frac{\brcurs}{\rcurs} - \nabla t_r(\hat{\brcurs} \cdot \mathbf{v})
+\]
+Now we need \( \nabla t_r \):
+\[
+	\nabla t_r = \partial_i \left( t - \frac{\rcurs}{c} \right) = -\frac{1}{c} \nabla \rcurs
+\]
+We now combine the two equations together and get:
+\[
+	\nabla \rcurs = \frac{c \hat{\brcurs}}{c \hat{\brcurs} - \brcurs \cdot \mathbf{v}} \quad 
+	\nabla t_r = - \frac{\brcurs}{c \rcurs - \brcurs \cdot \mathbf{v}}
+\] 
+Next up, \( \partial_t \rcurs \):
+\[
+	\partial_t \rcurs = \partial_t \sqrt{\brcurs \cdot \brcurs} = \frac{2 \brcurs \cdot \partial_t \brcurs}{2
+	\sqrt{\brcurs \cdot \brcurs}} = \hat{\brcurs} \cdot \partial_t (\mathbf{r} - \mathbf{w}(t)) =
+	-\hat{\brcurs} \cdot \mathbf{v}(t_r) \left( \pdv{t_r}{t} \right)
+\]
+here we need \( \partial_t t_r \):
+\[
+	\partial_t t_r = \partial_t \left( t - \frac{\rcurs}{c} \right) = 1 - \frac{1}{c}\partial_t \rcurs
+\]
+combine again:
+\[
+	\partial_t \rcurs = -\frac{\hat{\brcurs} \cdot \mathbf{v}}{1 - \frac{\hat{\brcurs} \cdot \mathbf{v}}{c}}
+	\quad 
+	\partial_t t_r = \frac{1}{1 - \frac{\hat{\brcurs} \cdot \mathbf{v}}{c}}
+\]
+Now we come back to the main equation:
+\[
+	-\nabla V = -\partial_i \left( \frac{qc}{4\pi \epsilon_0} \frac{1}{c \rcurs - \brcurs \cdot \mathbf{v}}
+	\right) = \frac{qc}{4\pi \epsilon_0} \frac{1}{(c \rcurs - \brcurs \cdot \mathbf{v})^2}\partial_i (c
+	\brcurs - \brcurs\cdot \mathbf{v}) = \frac{qc}{4\pi \epsilon_0} \frac{1}{(c \rcurs - \brcurs \cdot
+	\mathbf{v})^2} \left[ \frac{c^2 \brcurs}{c \rcurs - \brcurs \cdot \mathbf{v}} - (\partial_i \rcurs^{k})
+	v_k - \rcurs^{k}(\partial_i v_k) \right]
+\]
+Notice that the gradient of the dot product is very nice in index notation -- all you have to do is use
+product rule, as opposed to using the product rule given at the end of Griffiths. Now, \( \partial_i v_k(t_r)
+\) is:
+\[
+	\partial_i v_k(t_r) = \partial_i t_r \dot{v}_k = (\partial_i t_r) a_k
+\]
+So now:
+\[
+	-\nabla V = \frac{qc}{4 \pi \epsilon_0} \frac{1}{(c \rcurs - \brcurs \cdot \mathbf{v})^2}\left[
+	\frac{(c^2 - v^2) \brcurs}{c \rcurs - \brcurs \cdot \mathbf{v}} - \mathbf{v} + \frac{(\mathbf{a} \cdot
+\brcurs) \brcurs}{c \rcurs - \brcurs \cdot \mathbf{v}} \right]
+\]
+As for \( \partial_t \mathbf{A} \):
+\[
+	-\partial_t \mathbf{A} = -\partial_t \left[ \frac{\mu_0}{4\pi} \frac{qc \mathbf{v}(t_r)}{c \rcurs -
+	\brcurs \cdot \mathbf{v}} \right] = \frac{\mu_0 qc}{4 \pi}\left[ \frac{\mathbf{v} \partial_t (c \rcurs -
+	\brcurs\cdot \mathbf{v}) - (\partial_t \mathbf{v}) (c \rcurs - \brcurs \cdot \mathbf{v})}{(c \rcurs - 
+	\brcurs\cdot \mathbf{v})^2} \right] = \frac{q}{4\pi \epsilon_0} \frac{1}{(c \rcurs - \brcurs \cdot
+\mathbf{v})^2} \left[ \frac{\rcurs v^2 - c \brcurs \cdot \mathbf{v} - \rcurs (\mathbf{a} \cdot \brcurs)}{c
+\rcurs - \brcurs \cdot \mathbf{v}} \mathbf{v} - \rcurs \mathbf{a} \right]
+\]
+\question{\textbf{Author's Note:} I will admit that the algebra was done a bit more carefully in lecture than I've
+	typed up here. However, I will also say that the calculations were largely uninteresting -- it's just a
+bunch of chain rule so I didn't bother including it.}
+
