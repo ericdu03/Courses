@@ -1,0 +1,19 @@
+\section{DTFT Properties}
+\begin{itemize}
+	\item Recall the DTFT formulas:
+		\begin{align*}
+			X(e^{j 2 \pi f}) &= \sum_{n=-\infty}^{\infty} x[n] e^{-j 2 \pi f n} & x[n] &= 
+			\int_{-\frac{1}{2}}^{\frac{1}{2}} X(e^{j 2\pi f})e^{j 2 \pi f n}\diff f \\
+			X(e^{j \omega}) &= \sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n} & x[n] &= \frac{1}{2\pi}
+			\int_{-\pi}^{\pi} X(e^{j \omega}) e^{j \omega n}\diff \omega 
+		\end{align*}
+		Note that in this formulation we've chosen the interval \( [-\pi, \pi] \) to take our integral over, but 
+		this need not be the case: any interval of width \( 2\pi \) would suffice.  
+	\item A lot of the properties are actually the same.  
+	\item Linearity: Given \( x[n] \leftrightarrow X(e^{j \omega}) \) and \( y[n] \leftrightarrow 
+		Y(e^{j \omega})\), then 
+		\[
+			ax[n] + by[n] \leftrightarrow aX(e^{j \omega}) + bY(e^{j \omega})
+		\] 
+	\item Time shift: \( x[n - n_0] \leftrightarrow e^{-j \omega n_0}X(e^{j \omega})  \)
+\end{itemize}

@@ -1,0 +1,259 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+\newcommand{\classcode}{Physics 105}
+\newcommand{\classname}{Analytic Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill  \classcode}
+\newline
+\large{HW 04} \Large{\hfill  \classname \hfill } \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Collaborators}
+    \section*{Problem 1}
+    Consider a vertical plane in a constant gravitational field (which is also vertical).
+    A particle of mass $m$ moves on the plane, and it is also under the influence of a force
+    $F = -Ar^{\alpha - 1}$, where $A$ and $\alpha$ are constants ($\alpha \neq 0, 1$). Here, $r$
+	is the distance from the origin, which is some fixed point on the plane. After choosing suitable 
+	generalized coordinates, find the Lagrangian and the equations of motion. Is the angular momentum
+	conserved? Explain.
+	
+	\begin{solution}
+			Since we're given the force, we actually also know the potential: 
+			\[ -\pdv{r} \left( \frac{A}{\alpha} r^{\alpha}\right) = F \implies U = \frac{A}{\alpha} r^{\alpha}\]
+			and so therefore we can write the Lagrangian as: 
+			\[ \mathcal L = \frac 12 m(\dot r^2 + r\dot \theta^2) - mgr \sin \theta - \frac A\alpha r^\alpha\]
+			So we can just solve using the normal method:
+			\begin{align*}
+					\pdv{\mathcal L}{r} - \dv{t} \pdv{\mathcal L}{\dot r} &= 0\\
+					\pdv{\mathcal L}{\theta} - \dv{t} \pdv{\mathcal L}{\dot \theta} &= 0
+			\end{align*}
+			And so solving this system, we get the following two sets of equations:
+			\begin{align*}
+					m\ddot r + Ar^{\alpha -1}-mg \sin \theta &= 0\\
+					r(\ddot \theta + \cos \theta) - \dot r \dot \theta &= 0
+			\end{align*}
+			Angular momentum is written as:
+			\[ \pdv{\mathcal L}{\dot \theta} = mr \dot \theta\] 
+			And since this quantity is not constant, then we know that angular momentum is not conserved 
+			in this model.
+	\end{solution}	
+
+	\pagebreak
+
+	\section*{Problem 2}
+
+	Use the method of Lagrange multipliers to find the tension in the string of the double Atwood machine
+	given in Homework 2 Problem. 
+
+	\begin{solution}
+			Our constraint equation is $f(x_1, x_2, X) = x_1 + x_2 + X = L$, where we 
+			interpret $L$ as the length of the string. From Homework 2, we know that our Lagrangian 
+			is:
+			\[\mathcal L = \frac 12 m\dot x_1^2 + \frac 12 m \dot x_2^2 + \frac 12 m\dot x^2 - m_1gx_1
+			- m_2gx_2 - Mgx\]
+			and so now we can use the modified Lagrange equations with constraints to solve: 
+			\[ \pdv{\mathcal L}{x_i} + \lambda(t) \pdv{f}{x_i} = \dv{t} \pdv{\mathcal L}{\dot x_i}\] 
+			And so therefore we have the equations: 
+			\begin{align*}
+					-m_1g + \lambda(t) &= m_1 \ddot x_1\\
+					m_2g + \lambda(t) &= m_2\ddot x_2\\
+					-Mg + 2\lambda(t) = M\ddot x
+			\end{align*}
+			And so solving the last equation, we get:
+			\[ \lambda(t) = \frac{M}{2}(\ddot x + g)\]
+			Substituting this relation into the first equation, we get: 
+			\begin{align*}
+					m_1 \ddot x_1 + m_1g &= \frac{M}{2} g - \frac{M}{4}\ddot x_1 - \frac{M}{4}\ddot x_2\\
+					\ddot x_1\left(m_1+\frac{M}{4}\right) + \frac{M}{4} \ddot x_2 &= g\left( \frac{M}{2} - 
+							m_1\right)
+			\end{align*}
+			Likewise for the second equation, we can also obtain
+			\begin{align*}
+					m_2\ddot x_2 + m_2g &= \frac{M}{2}(\ddot x + g)\\
+					&= \frac{M}{2}\left( g - \frac{\ddot x_1 + \ddot x_2}{2}\right)\\
+					&= \frac{M}{2}g - \frac{M}{4}\ddot x_1 - \frac{M}{4} \ddot x_2
+			\end{align*}
+			And so therefore we obtain:
+			\[ \ddot x_2\left( m_2 + \frac{M}{4} \right) + \frac{M}{4}\ddot x_1 = g\left( \frac{M}{2} - 
+			m_2\right)\]
+			To find the tension in the rope, we can then use the relation that 
+			\[ \lambda \pdv{f}{y} = F^{cstr} = T\]
+			And so therefore: 
+			\[ T = \frac{M}{2}(\ddot x + g)\]
+
+	\end{solution}
+	\pagebreak
+
+	\section*{Problem 3}
+	Consider a particle of mass $m_2$ constrained to move on the surface of a cone which is placed vertex-up.
+	There is a massless, ideal string of length $\ell$ connecting this mass to another mass $m_1$ which hangs
+	inside the cone, as in the figure below. The cone has an opening angle of $2\alpha$.
+
+	\begin{enumerate}[label=\alph*)]
+			\item Define generalized cylindrical coordinates suitable to this system, and write down the 
+					Lagrangian.
+
+					\begin{solution}
+						$m_1$ is constrained to move in the $\hat{z}$-direction, so we can write the coordinates
+						of $m_1$ in terms of strictly $z_1$. For $m_2$, we can write its position in terms of 
+						$(x_2, \phi, z_2)$, so therefore we can write the kinetic energy as:
+						\begin{align*}
+								T &= \frac 12 m (\dot x_2^2 + x_2^2 \dot \phi^2 + \dot z_2^2) + 
+						\frac 12 m\dot z_1^2\\
+								  &= \frac 12 m z^2 + \frac 12 m \left(\dot x^2 + x^2 \dot \phi^2 + 
+								  \frac{\dot x^2}{\tan^2\alpha}\right)
+						\end{align*}
+						Here, I've dropped the indices since none of the variables interfere with one another.
+						We can also write the potential as:
+						\[ U = mgz + mgx\cos \alpha\]
+						And so our full Lagrangian $\mathcal L$ is:
+						\[ \mathcal L = T - U = \frac 12 m_1 z^2 
+								+ \frac 12 m_2 \left(\dot x^2 + x^2 \dot \phi^2 + 
+						\frac{\dot x^2}{\tan^2\alpha}\right) - m_1gz - m_2g \frac{x}{\tan \alpha}\]
+					\end{solution}
+			\item Find the equations of motion; use the constraint, so that you only have two equations.
+
+				\begin{solution}
+						Right now we have three coordinates: $x$, $z$ and $\phi$. The constraint tells us that 
+						\[ x = (\ell-z)\sin \alpha\]
+						So now we can substitute and get:
+						\begin{align*}
+								\mathcal L &= \frac{1}{2}m_1\dot z^2 + 
+								\frac{1}{2}m_2 \left[\dot z^2 \sin^2 \alpha
+								+ (\ell-z)^2\sin^2 \alpha \dot \phi^2 + \dot z^2 \cos^2\alpha\right]
+								- m_1gz - m_2g(l-z)\cos \alpha\\
+										   &= \frac{1}{2}m_1\dot z^2 + \frac{1}{2}m_2\left[\dot z^2 +
+										   (\ell-z)^2 \sin^2 \alpha \dot \phi^2\right] - m_1gz - 
+										   m_2g(\ell-z)\cos \alpha
+						\end{align*}
+						Now we have an equation in terms of two variables, for which we can solve using 
+						the standard Euler-Lagrange equations, which gives us:
+						\begin{align*}
+								0 &= (\ell- z)^2\ddot \phi - 2(\ell- z)\dot \phi \dot z\\
+								0 &= -2(\ell-z)\sin^2\alpha \dot \phi^2 - m_1g+m_2g\cos \alpha - 
+								\ddot z(m_1 +m_2)
+						\end{align*}
+				\end{solution}
+		 	\item Notice that the equation for $\varphi$ can be separated and integrated to obtain a solution for
+					$\dot \varphi$. Do so, and plug this equation in to the equation for $z$
+
+					\begin{solution}
+							Notice that our equation for $\phi$ can be written as
+							\[ \frac{\ddot \phi}{\dot\phi} = \frac{2 \dot z}{\ell - z}\]
+							which we can integrate to get:
+							\begin{align*}
+									\int \frac{1}{\dot \phi}\dv{\dot \phi}{t} \ dt &= 
+									\int \frac{2\dot z}{\ell -z } \ dt\\
+									\ln \dot \phi &= -2\ln(\ell - z)\\
+									\therefore \dot \phi &= \frac{1}{(\ell - z)^2}
+							\end{align*}
+							So now we can plug this into the equation for $z$: 
+							\begin{align*}
+									0 &= -2(\ell-z) \sin^2 \alpha \left(\frac{1}{(\ell-z)^2}\right)^2 -
+										\ddot z(m_1 + m_2)\\ 
+									&= -\frac{2\sin^2\alpha}{(\ell-z)^3} - m_1g +m_2g \cos \alpha 
+										- \ddot z(m_1 + m_2)
+							\end{align*}
+					\end{solution}
+			\item You should now have a differential equation for $z$ only. Show that this equation of
+					motion corresponds to a potential of the form 
+			\[ U(z) = \frac{A}{(\ell - z)^2} + Bz\]
+
+			\begin{solution}
+					So looking at the potential, we can get the force by taking the derivative:
+					\begin{align*}
+							F &= -\dv{U}{z}\\
+							  &= -\left(\frac{2A}{(\ell-z)^3} + B\right)\\
+							  &= -\frac{2A}{(\ell-z)^3} - B
+					\end{align*}
+					Then by Newton's second law, we can write:
+					\begin{align*}
+							-\frac{2A}{(\ell-z)^3}-B &= (m_1+m_2)\ddot z\\
+							-\frac{2A}{(\ell-z)^3}-(m_1+m_2)\ddot z&= B
+					\end{align*}
+					Comparing this with our solution from above, we can identify: 
+					\begin{align*}
+							A &= \sin^2\alpha & B &= m_1g-m_2g\cos\alpha
+					\end{align*}
+			\end{solution}
+			\item When is $B$ positive or negative? What does this correspond to physically? Analyze 
+					the motion in both cases, $B < 0$ and $B > 0$.
+
+					\begin{solution}
+						From the previous part, we know that $B = m_1g - m_2g\cos \alpha$, so $B$ is positive
+						when $m_1g > m_2g\cos \alpha$ and $B < 0$ when $m_1g < m_2g\cos \alpha$. Physically,
+						from a force perspective, it compares whether the downward force exerted by 
+						$m_1$ is larger or that of $m_2$ or the other way around.
+
+						Therefore, $B$ is positive when the downward force from $m_1$ exceeds that of $m_2$, 
+						and so $m_2$ moves up the cone. Likewise, if $B$ is negative then the force from 
+						$m_2$ exceeds that of $m_1$, and so $m_2$ moves down the cone.
+
+						To analyze the motion, we first make the substitution that $u = \ell - z$, so 
+						therefore we have the equation: 
+						\[ -\frac{2A}{u^3} +(m_1 +m_2)\ddot u = \frac{B}{m_1+m_2}\]
+						And so therefore we can write:
+						\[ \ddot u - \frac{2A}{(m_1 +m_2)u^3} = \frac{B}{m_1+m_2}\]
+						I'm not really sure where to go from here, since this differential equation is nearly 
+						impossible to solve.
+
+					\end{solution}
+			\item Use the method of Lagrange multipliers to determine the tension in the string in 
+					terms of $z$ (and the initial conditions)
+
+					\begin{solution}
+						I wasn't able to carry through the previous part so I couldn't explicitly get an 
+						expression, but what I can do is describe how I would do it. Essentially, we just need
+						to setup the expression for Lagrange multipliers:
+						\[ \pdv{\mathcal L}{x_{i}} + \lambda \pdv{f}{x_i} = \dv{t} \pdv{\mathcal L}{\dot x_{i}}\]
+						And once we solve for $\lambda$, we can then write:
+						\[ F^{cstr} = T  = \lambda \pdv{f}{x_i}\]
+						which would get us the expression for the tension.
+					\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 4}
+	
+	Consider a uniform chain of length $\ell$ and mass $m$ which is free to move without friction on a
+	triangular block as in the figure below. Suppose that at $t = 0$, the chain has length $x_0$ lying over
+	the edge of the side of the prism. Find and solve the equation of motion.
+
+	\begin{solution}
+			First, let $\lambda = \frac{m}{\ell}$. Then we can find the potential. To do so, we split up the 
+			integral based on which side of the block our chain is:
+			\[ U(x) = -\int_0^x (\lambda d\ell) g\ell \sin \alpha - 
+			\int_x^\ell \lambda \ d\ell g \ell \sin \beta = \lambda g \left( \sin \alpha \frac{x^2}{2} - 
+			\sin \beta \left( \frac{l^2 -x^2}{2}\right)\right)\]
+			and so our Lagrangian can be written as:
+			\[ \mathcal L = \frac{1}{2}m\dot x^2 - \lambda g \sin \alpha \frac{x^2}{2} - \lambda g \sin \beta 
+			\left(\frac{\ell^2-x^2}{2}\right)\]
+			And so solving for the equation of motion, we get: 
+			\begin{align*}
+					x(\lambda g\sin \beta - \lambda g \sin \alpha) - m\ddot x &= 0\\
+					\ddot x - \frac{\lambda g(\sin \beta - \sin \alpha)}{m}x &= 0
+			\end{align*}
+			This gives solutions of the form: 
+			\[x(t) = Ae^{kt} + Be^{-kt}, \ \ k = \sqrt{\frac{\lambda g(\sin \beta - \sin \alpha)}{m}} \]
+			We can then solve for the initial condition that $x(0) = x_0$, which gives us
+			\[ x(0) = x_0 = A + B\]
+			We can't really solve for $A$ and $B$ explicitly without knowing more information (such as 
+			knowing $\dot x(0)$, so this is the most general solution that we can have: 
+			\[ x(t) = Ae^{kt}+ Be^{-kt}\]
+			where $k = \sqrt{\dfrac{\lambda g(\sin \beta - \sin \alpha)}{m}}$
+	\end{solution}	
+
+
+
+
+	
+
+	
+\end{document}

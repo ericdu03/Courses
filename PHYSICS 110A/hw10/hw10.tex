@@ -1,0 +1,160 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electromagnetism and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 10} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	An infinite slab of thickness $d$ with a uniform magnetization $\mathbf M = M_x \hat{x} + M_y \hat{y} + 
+	M_z \hat{z}$ ($M_x, M_y, M_z$ are constants) extends along the $xy$-plane. Find the magnetic field 
+	$\mathbf B$ for a point at a distance $L$ from the infinite slab. 
+
+	\begin{solution}
+		From the magnetization $M$, we can calculate the volume and bound currents. Since $M$ is constant,
+		then we know that $J_b = \curl M = 0$. For the surface current, we need $K_b = M \times \hat{n}$. For 
+		the top plate, we have $\hat{n} = \hat{z}$, so therefore: 
+		\[
+			K_{\text{b, top}} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ M_x & M_y & M_z \\ 0 & 0 & 1
+			\end{vmatrix} = M_y \hat{x} - M_x \hat{y}
+		\] 
+		Now, since for the bottom slab we'll get $\hat{n} = -\hat{z}$, then $K_\text{b, bottom}$ will flow
+		in the opposite direction of $K_{\text{b, top}}$, so therefore 
+		\[
+			K_{\text{b, bottom}} = -M_y \hat{x} + M_x \hat{y}
+		\] 
+		This means that we can treat our system essentially as if we had two infinitely large parallel plates,
+		with one plate having current flowing in one direction and the other in the opposite direction. Then, 
+		we can use Example 5.8 from Griffiths to motivate our solution. In that example, we can see that for
+		a single slab with surface current $\vec K$, then we have: 
+		\[
+		\mathbf B = \begin{cases}
+			- \frac{\mu_0}{2}K \hat{y} & \text{above}\\
+			\frac{\mu_0}{2}K \hat{y} & \text{below}
+		\end{cases}
+		\] 
+		Naturally, the signs will be reversed for the bottom plate. Therefore, when summing up the vector 
+		components, we find that the magnetic field outside the slabs is 0 everywhere. Therefore, to answer 
+		the original problem, we get that $B = 0$ everywhere outside the slab. 
+
+		Alternatively, this argument can also be made via Ampere's law. Consider an Amperian loop that runs 
+		through tne entire slab, to a distance $L$ above and below the slab. We know that here, the enclosed
+		current is 0 (since they flow in exact opposite directions), so therefore we require that 
+		\[
+		\oint \mathbf B \cdot dl = 0
+		\] 
+		But in this case, since we expect the $B$ field to be constant in magnitude at a constant distance $L$ 
+		above and below and also that their directions should be opposite of each other, this requires that 
+		$B = 0$ everywhere as well. 
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 2}
+	A long cylinder of radius $R$ carries a magnetization parallel to the axis $\mathbf M = ks^2 \hat{z}$, where
+	$k$ is a constant and $s$ is the distance from the axis. 
+	\begin{enumerate}[label=\alph*)]
+		\item Find the magnetic field inside and outside the cylinder.
+
+			\begin{solution}
+				Just like the previous problem, we calculate the surface and volume currents for this 
+				situation. Here, we have $J_b = \curl M$, so therefore:
+				\[
+				\mathbf J_b = \curl M = -2ks \hat{\phi}
+				\] 
+				Similarly, we can calculate the bound current using $K_b = M \times n$:
+				\[
+				\mathbf K_b = M \times \hat{s} = kR^2 \hat{\phi}
+				\] 
+				These quantities will be
+				useful when computing the $B$ field inside the cylinder. Outside the cylinder, we can draw an 
+				Amperian loop along the vertical axis - here, due to the symmetry in the problem, the $B$ field
+				on opposite sides of the loop are equal. Then, because there is no enclosed current, then 
+				naturally we conclude that $B = 0$ outside the cylinder. To calculate the $B$ field inside the 
+				cylinder, consider an Amperian loop that penetrates the cylinder to a depth $R - s$. 
+
+				Using Ampere's law, we get: 
+				\begin{align*}
+					\mathbf B \cdot dl &= \mu_0 I_{enc}\\
+					\mathbf Bl &= \mu_0\left(\int_s^R \mathbf J_b \cdot da + K_b l\right)\\
+					\mathbf Bl &= \mu_0\left( -\int_s^R 2ks \cdot l ds + K_bl  \right) \\
+					\therefore \mathbf B &= \mu_0\left( -k(R^2 - s^2) + kR^2 \right) \\
+					&= \mu_0 ks^2 
+				\end{align*}
+				From the right hand rule, we can then figure out the direction of the $B$ field must be pointing
+				in the $\hat{z}$ direction, so therefore
+				\[
+				B = \mu_0 ks^2 \hat{z}
+				\] 
+			\end{solution}
+		\item Find $\mathbf H$ inside and outside the cylinder
+
+			\begin{solution}
+				We use the definition of $\mathbf H = \frac{1}{\mu_0}\mathbf B - \mathbf M$. Since $\mathbf B
+				= 0$ outside the cylinder and $\mathbf M = 0$ as well, then we know that outside the cylinder, 
+				$\mathbf H = 0$. Inside the cylinder, we get:
+				\[
+				\mathbf H = \frac{1}{\mu_0}(\mu_0 ks^2 \hat{z}) - ks^2 \hat{z} = 0
+				\] 
+				Therefore, $\mathbf H = 0$ both inside and outside the cylinder. 
+			\end{solution}
+		\item Check that the Ampere's law (6.20) in Griffiths is satisfied
+
+			\begin{solution}
+				Equation 6.20 reads 
+				\[
+					\oint \mathbf H \cdot d\mathbf l = \mu_0 I_{f_{enc}}
+				\] 
+				Since $\mathbf H = 0$ over the entire space, then we know that the left hand side of the equation
+				evaluates to 0. Furthermore, since there is no free current (since the only current is from the 
+				magnetization, which only gives bound currents), then the right hand side also evaluates to 
+				0, regardless of the Amperian loop we choose. 
+			\end{solution}
+	\end{enumerate}
+
+
+	\pagebreak
+	\section*{Problem 3}
+	An infinitely long cylinder of radius $R$ carries a current with a \textit{free} current density 
+	$\mathbf J_f(s) = J_f(s) \hat{z}$ along its axis, within $s < R$. There is no current outside the cylinder.
+	The cylinder is made by linear material with permeability $\mu$, and the magnetic field is found to be 
+	\[
+	\mathbf B = \begin{cases}
+		ks^2 \hat{\phi} & \text{for $s < R$}\\
+		0 & \text{for $s > R$}
+	\end{cases}
+	\] 
+	Find the free current density $\mathbf J_f(s)$ in the bulk of the cylinder, as well as the free current 
+	density $\mathbf K_f$ flowing over the side surface of the cylinder. 
+
+
+	\begin{solution}
+		Since we know that $\mathbf B = \mu \mathbf H$, then we can derive $H$ by dividing both sides by $\mu$:
+		\[
+		\mathbf H = \frac{\mathbf B}{\mu} = \frac{ks^2}{\mu}\hat{\phi}
+		\] 
+		Then, we can determine $\mathbf J_f$ by using $\mathbf J_f = \curl \mathbf H$:
+		\begin{align*}
+			\curl \mathbf H &= \frac{1}{s}\left[\pdv{s}\left(s \frac{ks^2}{\mu}\right)\right]\hat{z}\\
+			\therefore \mathbf J_f &= \frac{3ks}{\mu}\hat{z}
+		\end{align*}
+		To find the surface current, we use the fact that
+		$\mathbf H_{\text{above}} - \mathbf H_{\text{below}} = \mathbf K_f \times \hat{n}$. Since the current outside the 
+		cylinder is 0, then this means that $\mathbf H_{\text{above}} = 0$. Below the cylinder, we have 
+		$\mathbf H_{\text{below}} = \frac{kR^2}{\mu}\hat{\phi}$. Therefore:
+		\begin{align*}
+			-\frac{kR^2}{\mu}\hat{\phi} &= \mathbf K_f \times \hat{r}\\
+			\therefore \mathbf K_f &= \frac{kR^2}{\mu}\hat{z}
+		\end{align*}
+	\end{solution}
+	
+\end{document}

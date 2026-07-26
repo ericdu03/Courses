@@ -1,0 +1,239 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\usepackage{mathrsfs}
+\newcommand{\sinc}{\mathrm{sinc}}
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mecahnics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 07} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder} to complete this assignment.
+
+	\section*{Problem 1}
+
+	A particle of mass $m$ is initially in the ground state of the (one-dimensional) infinite square well. At 
+	time $t=0$ a ``brick'' is dropped into the well, so that the potential becomes
+	\[
+	V(x) = \begin{cases}
+		V_0 & 0 \le x \le a/2\\
+		0 & a/2 \le x \le a\\
+		\infty &\text{otherwise}
+	\end{cases}
+	\] 
+	where $V_0\ll E_1$. After a time $T$, the brick is removed, and the energy of the particle is measured. Find
+	the probability (in first-order perturbation theory) that the result is now $E_2$. 
+
+	\begin{solution}
+		Our job here is to calculate $|c_2(t)|^2$ for this perturbation. To do so, we use the formula for 
+		a constant perturbation (Griffiths 11.120):
+		\[
+			|c_2(t)|^2 = 4|H'_{12}|^2 \frac{\sin^2\left[(E_1 - E_2)T/2\hbar\right]}{(E_1 - E_2)^2}
+		\] 
+		We have $E_1 - E_2 = \frac{-3\pi^2 \hbar^2}{2ma^2}$, so all we need to do now is calculate $H'_{12}$. 
+		Note that the perturbation happens only on $0 \le x \le a/2$, so we actually only need to integrate
+		over that region (more specifically, the integral will evaluate to 0 in the region $a/2 \le x \le a$).
+		\begin{align*}
+			H'_{12} &= \frac{2V_0}{a}\int_0^{a/2} \sin\left( \frac{2\pi x}{a} \right) 
+			\sin\left( \frac{ \pi x}{a} \right) dx\\
+					&= \frac{2V_0}{a} \cdot \frac{2a}{3\pi} \\
+					&= \frac{4V_0}{3\pi}
+		\end{align*}
+		Putting this all together, we get:
+		\[
+			|c_2(t)|^2 = 4 \cdot \left( \frac{4V_0}{3\pi} \right)^2 
+			\sin^2\left( -\frac{3\pi^2 \hbar T}{4ma^2} \right) \left( \frac{2ma^2}{3\pi^2 \hbar^2} \right)^2
+		\] 
+	\end{solution}
+	\pagebreak
+	\section*{Problem 2}
+	A harmonic oscillator of mass $m$, charge $e$and classical frequency $\omega$ is in its ground state. 
+
+	\begin{enumerate}[label=\alph*)]
+		\item A uniform electric field $\mathscr B$ is turned on at $t =0$ and is then turned off at $t = \tau$.
+			Use first-order time dependent perturbation theory to estimate the probability that the system is 
+			excited to the $n$-th state. 
+
+			\begin{solution}
+				Here, we use equation 11.120, since the perturbation is constant:
+				\[
+					P_{N \to M} = 4|H'_{MN}|^2 \frac{\sin^2\left[(E_N - E_M)T/2\hbar\right]}{(E_N- E_M)^2}
+				\] 
+				Now, we have $N=0$ since the particle is in the ground state. Further, calculating $H'_{MN}$:
+				\begin{align*}
+					H'_{MN} &= \mel{M}{H'}{0} \\
+							&= \mel{M}{eEx}{0} \\
+							&= eE\mel{M}{\sqrt{\frac{\hbar}{2m\omega}} (a_+ + a_-)}{0}  \\
+							&= eE\sqrt{\frac{\hbar}{2m\omega}} \braket{M}{1}
+				\end{align*}
+				From this calculation, we actually see that $M=1$ is the only state where probability can flow. 
+				Since $E_0 - E_1 = -\hbar \omega$, we have:
+				\[
+					P_{0 \to 1} = |c_1(t)|^2 = 4 \frac{e^2 E^2 \hbar}{2m\omega} \frac{\sin^2(\omega T/2)}{\hbar^2
+					\omega^2} = \frac{2e^2E^2}{m\omega} \frac{\sin^2(\omega T/2)}{\hbar \omega^2}
+				\] 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 3}
+	Suppose that an electron in a one-dimensional harmonic-oscillator potential $\frac{1}{2}m\omega_0x^2$ is 
+	subjected to an oscillating electric field $\mathscr E = \mathscr E(0) \cos \omega t$ in the $x$ direction.
+
+	\begin{enumerate}[label=\alph*)]
+		\item If the electron is initially in the ground state, what is the probability that the electron will 
+			be the $n$-th excited state at time $t$?
+
+			\begin{solution}
+				For a sinusoidal electric field and a particle originating in the ground state, we have the 
+				equation:
+				\begin{align*}
+					|c_m(t)|^2 &= |H'_{m 0}|^2 \frac{\sin^2\left[(E_m - E_0 - \hbar \omega)t/2\hbar\right]}{
+					(E_m - E_0 - \hbar \omega)^2}\\
+							   &= |H'_{m 0}|^2 \frac{\sin^2((m\omega_0 - \omega)t/2)}{(m \hbar \omega_0 - \hbar
+							   \omega)^2}
+				\end{align*} 
+				Again just like the previous problem, only the first state $(m = 1)$is affected since the
+				electric field 
+				is $H' = eEx$. Therefore, we can calculate: 
+				\[
+					|c_1(t)|^2 = \frac{e^2 \mathscr E(0) \hbar}{2m\omega_0} \frac{\sin^2\left[(\omega_0 - \omega)
+					t/2\right]}{(\omega_0 - \omega)^2}
+				\]
+			\end{solution}
+		\item If $\omega = \omega_0$, perturbation theory will fail at some time $t$. What is the critical time?
+
+			\begin{solution}
+				My interpretation of the ``critical time'' is the time at which perturbation theory fails. We
+				can rewrite $|c_1(t)|^2$ in terms of the sinc function, which is nicer since it doesn't 
+				blow up, so we can focus on $t$:
+				\begin{align*}
+					|c_1(t)|^2 &= \frac{e^2\mathscr E(0)^2 \hbar}{2m\omega_0} \frac{\sin^2\left[(\omega_0 - 
+					\omega) t/2\right]}{(\omega_0 - \omega)^2}\\
+							   &= \frac{e^2 \mathscr E(0)^2 \hbar}{2m\omega_0} \left[ \frac{\sin\left((\omega_0
+							   - \omega) t/2\right)}{(\omega_0 - \omega)t/2}\right]^2 
+							   \left( \frac{t}{2}\right)^2\\
+							   &= \frac{e^2\mathscr E(0)^2 \hbar t^2}{8m\omega_0}\sinc^2\left[(\omega_0 - \omega)
+							   t/2\right]
+				\end{align*}
+				This way, when $\omega_0 = \omega$, the $\sinc$ function goes to 1. The critical time is when 
+				the probability exceeds 1, so calculating the time that this occurs:
+				\begin{align*}
+					\frac{e^2 \mathscr E(0)^2 \hbar t^2}{8m \omega_0} &> 1\\
+					\therefore t > \frac{2}{e\mathscr E(0)}\sqrt{\frac{2m\omega_0}{\hbar}} 
+				\end{align*}
+				Therefore, the critical time is: 
+				\[
+				t = \frac{2}{e\mathscr E(0)}\sqrt{\frac{2m\omega_0}{\hbar}} 
+				\] 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 4}
+	At $t < 0$, an electron is assumed to be in the $n=3$ eigenstate of an infinite square potential well, which 
+	extends from $-a/2< x < a/2$. At $t = 0$, an electric field is applied, with the potential $V = Ex$. The 
+	electric field is then removed at time $\tau$. Determine the probability that the electron is in any other 
+	state at $t > \tau$. 
+
+	\begin{solution}
+		Here, we consider two cases: stimulated absorption and stimulated emission. For absorption, we have 
+		the equation:
+		\[
+			|c_m(t)|^2 = |H'_{m 3}|^2 \frac{\sin^2\left(\frac{\pi^2 \hbar^2}{2ma^2}(m^2 - 9)
+			\tau/2\hbar \right)}{\left( \frac{\pi^2 \hbar^2}{2ma^2}(m^2 - 9)\right)^2}
+		\] 
+		So now we need to calculate $H'_{m 3}$. Recall that the eigenstates for an infinite square well are:
+		\[
+		\psi_n(x) = \begin{cases}
+			\sqrt{\frac{2}{a}} \sin\left( \frac{m \pi x}{a} \right) & \text{$m$ odd}\\
+			\sqrt{\frac{2}{a}} \cos\left(\frac{m \pi x}{a}\right) & \text{m even}
+		\end{cases}
+		\] 
+		Therefore, for odd $m$, we have the integral:
+		\[
+			H'_{m 3} = \frac{2E}{a}\int_{-a/2}^{a/2} \sin\left( \frac{m \pi x}{a} \right) x
+			\sin\left( \frac{3 \pi x}{a} \right) dx
+		\] 
+		And notice that we are taking an integral of an odd function over an even interval, this integral 
+		evaluates to 0 for odd $m$. For even $m$, we have (using WolframAlpha):
+		\[
+			H'_{m 3} = \frac{2E}{a}\int_{-a/2}^{a/2} \cos\left( \frac{m \pi x}{a} \right) x 
+			\sin\left( \frac{3 \pi x}{a} \right) dx = 
+			- \frac{a^2(\pi m (m^2-9)\sin\left( \pi \frac{m}{2} \right) 
+			+ 2(m^2 + 9)\cos\left( \pi \frac{m}{2} \right) )}{\pi^2(m^2-9)^2}
+		\] 	
+		Since $m$ is even, we can simplify this down a bit. First, $\sin\left( \pi \frac{m}{2} \right) = 0$, and
+		$\cos\left( \pi \frac{m}{2} \right) = (-1)^{m/2}$, so we have: 
+		\[
+			H'_{m 3} = -\frac{a^2(2(m^2 + 9)(-1)^{m/2})}{\pi^2 (m^2 - 9)^2}
+		\] 
+		So:
+		\[
+			|H'_{m 3}|^2 = \frac{4a^4 (m^2 + 9)^2}{\pi^4(m^2 - 9)^4}
+		\] 
+		Therefore, for stimulated absorption, we have the following result:
+		\[
+		|c_m(t)|^2 = \begin{cases}
+			0 & \text{$m$ odd}\\
+			\\
+			\dfrac{4a^4 (m^2 + 9)^2}{\pi^4(m^2-9)^4} \cdot \dfrac{\sin^2\left[\frac{\pi^2 \hbar^2}{2ma^2}(m^2 - 9)\tau/2\hbar\right]}{\left( \frac{\pi^2 \hbar^2}{2ma^2}(m^2 - 9)\right)^2} & \text{$m$ even}
+		\end{cases}
+		\] 
+		For stimulated absorption, the integrals are the same so we obtain the same result, but notice that there
+		is only one even number between 1 and 3 (that being 2), so therefore we can get an exact result instead. 
+		Therefore:
+		\begin{align*}
+			H'_{23} &= \frac{2E}{a}\int_{-a/2}^{a/2} \cos\left( \frac{2\pi x}{a} \right) x
+			\sin\left( \frac{3 \pi x}{a} \right) dx\\
+			&= \frac{52Ea}{25 \pi^2}
+		\end{align*}
+		which completes the solution
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 5}
+	Justify the following version of the energy-time uncertainty principle (due to Landau): $\Delta E\Delta t
+	\ge \hbar/2$, where $\Delta t$ is the time it takes to execute a transition involving energy change 
+	$\Delta E$, under the influence of a constant perturbation. Explain more precisely what $\Delta E$ and 
+	$\Delta t$ mean in this context. ($\Delta t$ is the time it takes for $P(t)$ to reach a peak in its 
+	oscillation.)
+
+	\begin{solution}
+		The equation for $P(t)$ is:
+		\[
+			P(t) = 4|H'_{MN}|^2 \frac{\sin^2\left[\Delta E\Delta t/2\hbar\right]}{\Delta E^2}
+		\] 
+		So we are looking for maxima in the $\sin^2$ function. We know that the peaks of this function occur 
+		at $(2n-1)\pi/2$, so therefore: 
+		\[
+			\frac{\Delta E \Delta t}{2\hbar} = \frac{\pi}{2}(2n-1)
+		\] 
+		or equivalently, 
+		\begin{align*}
+			\frac{\Delta E \Delta t}{2\hbar} &\ge \frac{\pi}{2}\\
+			\Delta E \Delta t &\ge \pi \hbar\\
+			\therefore \Delta E \Delta t \ge \frac{h}{2}
+		\end{align*}
+		Here, $\Delta t$ represents the time interval between the peaks in the probability distribution of 
+		$|c_m(t)|^2$ over time, and $\Delta E$ represents the energy difference between the two states in 
+		question. 
+
+		This is as far as I could get with this problem. I'm not sure where the other factor of $2\pi$ comes
+		from to bring the inequality down to $\frac{\hbar}{2}$. With this relation, the best I can do is:
+		\[
+		\Delta E \Delta t > \frac{\hbar}{2}
+		\] 
+		but I cannot prove that an equality condition can exist. 
+	\end{solution}
+\end{document}

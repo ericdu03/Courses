@@ -1,0 +1,151 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Introduction to Analysis}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 10} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section{Problem 1}
+
+	Suppose $f$ is a continuous function on $[a, b]$, and $f(x) \ge 0$ for all $x \in [a, b]$. Prove that if 
+	$\int_a^b f = 0$, then $f(x) = 0$ for all $x \in [a, b]$.
+
+
+	\begin{solution}
+		Let $U(f; P)$ be the upper Riemann sum on a partition $P$ of $[a, b]$. We know that since $\int_a^b f = 
+		0$, then $\int_a^b f = \inf_{P \in \Pi} U(f; P) = \sup_{P \in \Pi} L(f; P)$. Using the definition 
+		of the lower Riemann sum, we have: 
+		\[
+			\sup_{P \in \Pi} \left( \sum_{k = 1}^n (x_k - x_{k-1}) \min_{I_k} f\right) = 0
+		\] 
+		where $I_k$ is the interval $[x_{k-1}, x_k]$ and $P = \{a = x_1 < x_2 < \dots < x_n = b\}$. Using the 
+		definition of a supremum, we get:
+		\[
+			\sum_{k = 1}^n (x_k - x_{k-1}) \min_{I_k} f \le 0
+		\] 
+		Since we know that for any partition $x_k - x_{k-1} >  0$, then for this to be satisfied we must have 
+		that $\min_{I_k} f \le 0$. So this means that on every interval, we have $\min_{I_k} f = 0$.
+		
+		Furthermore, for the same partition, we know that: 
+		\[
+			\inf_{P \in \Pi} \left( \sum_{k = 1}^n (x_k - x_{k-1}) \max_{I_k} f \right) = 0
+		\] 
+		So using the definition of supremum and the same logic as before, we can deduce that
+		$\max_{I_k} f \ge 0$. However, these 
+
+
+	\end{solution}
+
+
+	\pagebreak
+
+	\section*{Problem 2}
+	Construct an example of a function where $f(x)^2$ is integrable on $[0, 1]$ but $f(x)$ is not. 
+
+	\begin{solution}
+		We use the Dirichlet function given in class, with one modification. Let it be defined instead as: 
+		\[
+		f = \begin{cases}
+			1 & \mathbb Q\\
+			-1 & x \in \mathbb R \setminus Q
+		\end{cases}
+		\] 
+		Just like how the Dirichlet function is not integrable (the proof for this follows the same way, except
+		here we have $\inf_{I_k} f = -1$ for all partitions instead of 0, and $\sup_{I_k} f = 1$ remains
+		the same here. However, if we take $f^2$, then this function becomes:
+		\[
+		f = \begin{cases}
+			1 & x \in \mathbb Q\\
+			1 & x \in \mathbb R \setminus Q 
+		\end{cases}
+		\] 
+		In this case, the lower Riemann sum reads:
+		\[
+			L(f; P) = \sum_{k = 1}^n (a_k - a_{k-1}) \inf_{I_k} f = 1
+		\] 
+		and the upper Riemann sum: 
+		\[
+			U(f; P) = \sum_{k = 1}^{n} (a_k - a_{k-1}) \sup_{I_k} f = 1
+		\] 
+		And since they agree, then this function is Riemann integrable. Another way we could have done this was 
+		to notice that $f = 1$ for all $x \in \mathbb R$ in this interval, so clearly this function is Riemann
+		integrable, since $f$ is a constant. 
+	\end{solution}
+
+
+	\pagebreak
+	\section{Problem 3}
+	Let $f$ be a bounded function on $[a, b]$, so there exists $B > 0$ such that $|f(x)| < B$ for all $x \in 
+	[a, b]$.
+	\begin{enumerate}[label=\alph*)]
+		\item Show 
+			\[
+				U(f^2, P) - L(f^2, P) \le 2B[U(f, P) - L(f, P)]
+			\] 
+			For all partitions $P$ of $[a, b]$. \textit{Hint:} $f(x)^2 - f(y)^2 = [f(x) + f(y)][f(x) - f(y)]$
+
+			\begin{solution}
+
+			\end{solution}
+		\item Show that if $f$ is integrable on $[a, b]$, then $f^2$ also is integrable on $[a, b]$. 
+	\end{enumerate}
+
+
+
+
+	\pagebreak
+	\section*{Problem 4}
+	Let $f$ and $g$ be integrable functions on $[a, b]$.
+	\begin{enumerate}[label=\alph*)]
+		\item Show $fg$ is integrable on $[a, b]$. \textit{Hint:} Use exercise 33.7 and $4fg = (f+g)^2 -
+			(f-g)^2$.
+		\item Show $\max(f, g)$ and $\min(f, g)$ are integrable on $[a, b]$. \textit{Hint:} Exercise 17.8.
+	\end{enumerate}
+
+
+	\pagebreak
+	\section*{Problem 5}
+
+	\begin{enumerate}[label=\alph*)]
+		\item For any two numbers $u, v\in \mathbb R$, prove that $uv \le (u^2 + v^2)/2$. Let $f$ and $g$ be two
+			integrable functions on $[a, b]$. Prove that if $\int_a^b f^2 = 1$ and $\int_a^b g^2 = 1$, then \[
+			\int_a^b fg \le 1
+			\] 
+
+			\begin{solution}
+				Rearranging the inequality, we get: 
+				\begin{align*}
+					2uv &\le u^2 + v^2\\
+					\therefore (u-v)^2 &\ge 0
+				\end{align*}
+				which is a true statement for all $u, v$.
+
+				With the integral, we can write the integral of the product as: 
+				\begin{align*}
+					\int_a^b fg &\le \int_a^b \frac{f^2 + g^2}{2}\\
+					&\le \frac{1}{2}\left( \int_a^b f^2 + \int_a^b g^2\right)\\
+					& \le 1
+				\end{align*}
+				as desired. 
+			\end{solution}
+		\item Prove the Schwarz inequality, that for any two integrable functions $f$ and $g$ on the interval
+			$[a, b]$, 
+			\[
+				\left| \int_a^b fg\right| \le \left( \int_a^b f^2\right)^{1/2} \left( \int_a^b g^2 \right)^{1/2}
+			\] 
+
+			\begin{solution}
+				
+			\end{solution}
+	\end{enumerate}
+\end{document}

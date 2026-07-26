@@ -1,0 +1,251 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electromagnetism and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 11} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder, Teja Nivarthi, Nikhil Maserang, Christine Zhang} and \textbf{Nathan
+	Song} to complete this homework assignment.
+
+	\section*{Problem 1}
+	An infinitely large sheet, parallel with the $xy$-plane, lies at $z = +d/2$ and has a uniform current density
+	$\mathbf K = kt\hat{x}$ flowing on it. Another infinitely large sheet, again parallel with the $xy$-plane,
+	lies at $x = -d/2$ and has a uniform current density $\mathbf K = +kt\hat{x}$. In below we consider the 
+	fields in the quasi-static limit.
+
+	\begin{enumerate}[label=\alph*)]
+		\item Find the magnetic field due to the electric currents everywhere in the space.
+
+			\begin{solution}
+				To find the $\mathbf B$ field everywhere, we use an amperian loop to find the contribution from
+				one of the two sheets, then superimpose the two sheets together. From Ampere's law:
+				\[
+				\int B dl = \mu_0 K l
+				\] 
+				We know that the magnitude $|\mathbf B|$ is the same both above and below the plate, so:
+				\[
+				2 Bl = \mu_0 k l \implies B = \frac{\mu_0 k}{2}
+				\] 
+				This is true for any given moment in time, so therefore the $B$ field for the top plate in 
+				this case is:
+				\[
+					\mathbf B_{\text{top}}(t) = \begin{cases}
+					\frac{\mu_0}{2}kt \hat{y} &\text{above}\\
+					-\frac{\mu_0}{2}kt \hat{y} &\text{below}
+				\end{cases}	
+				\] 
+				Below the plate we have the exact opposite situation, so therefore when superimposing, we get:
+				\[
+					\mathbf B_{\text{bottom}} (t) = \begin{cases}
+						-\frac{\mu_0}{2}kt \hat{y} &\text{above}\\
+						\frac{\mu_0}{2}kt \hat{y} &\text{below}
+					\end{cases}
+				\] 
+				Now, we superimpose the fields on top of each other. Above both plates, we take the $\mathbf B$
+				generated above both plates, and we get that $\mathbf B = 0$ above. Below both plates, the 
+				same situation happens: $\mathbf B = 0$. In between the plates, we take the $\mathbf B$ generated
+				below the top plate, and above the bottom plate. This gives us
+				$\mathbf B(t) = -\mu_0 kt \hat{y}$. Therefore, combining both:
+				\[
+				B(t) = \begin{cases}
+					0 & |z| > \frac{d}{2}\\
+					-\mu_0 kt \hat{y} & |z| < \frac{d}{2}
+				\end{cases}
+				\] 
+			\end{solution}
+		\item Find the electric field due to the time-varying magnetic field everywhere in the space.
+
+			\begin{solution}
+				From the symmetry of the problem, we know that $E(-z) = -E(z)$ in terms of magnitude. From this,
+				we can infer that $B(0) = 0$. Now, consider a loop of length $l$ that extends a height $z = a < 
+				\frac{d}{2}$. Then, the flux through this loop is: 
+				\[
+				\Phi_B(t) = B(t) \cdot lz = -\mu_0 kt \cdot lz 
+				\] 
+				Taking the derivative, we get:
+				\[
+					\dv{\Phi_B(t)}{t} = -\mu_0 klz
+				\] 
+				Then, using $\int E \cdot dl$, since $E(0) = 0$, then the only contribution will be from 
+				the segment at height $z$. Thus:
+				\[
+				El = -\mu_0 klz \implies E = -\mu_0 kz
+				\] 
+				If $z > \frac{d}{2}$, then the loop extends outside the sheets, so the flux then becomes: 
+				\[
+					\Phi_B(t) = -\mu_0 kt l \frac{d}{2} \implies \dv{\Phi_B}{t} = -\mu_0 \frac{kld}{2}
+				\] 
+				Solving for $E$, we get: 
+				\begin{align*}
+					El &= -\mu_0 \frac{kld}{2}\\
+					\therefore E &= -\mu_0 \frac{kd}{2}
+				\end{align*}
+				To find the direction of $E$, we use the anti-right hand rule: since $B$ points in the $-\hat{y}$
+				direction, then we know that $E$ above points in the $\hat{x}$ direction, and below it points
+				in the $-\hat{x}$ direction. Therefore: 
+				\[
+					\mathbf E_{\text{above}} = \begin{cases}
+						\mu_0 kz \hat{x} & z < \frac{d}{2}\\
+						\mu_0 \frac{kd}{2}\hat{x}  & z > \frac{d}{2}
+					\end{cases} 
+				\] 
+				And below:
+				\[
+					\mathbf E_{\text{below}} = \begin{cases}
+						-\mu_0kz \hat{x} & |z| < \frac{d}{2}\\
+						\mu_0 \frac{kd}{2}\hat{x}  & |z| > \frac{d}{2}
+					\end{cases}
+				\] 
+			\end{solution}
+	\end{enumerate}
+	
+
+	\pagebreak
+	\section*{Problem 2}
+	A long cylinder of radius $R$ with charge density $\rho(s) = \frac{a}{s}$ rotates around its axis, the
+	$z$-axis, with angular velocity $\omega$. ($a$ is a constant). The permeability of the cylinder is $\mu$.
+	A circular wire of radius $L$ on the $xy$-plane, surrounding the cylinder $(L > R)$, has a constant 
+	line charge density $\lambda$. The circle is initially at rest, and then the angular velocity of 
+	the cylinder is dropped from $\omega$ to 0. Find the angular momentum of the circle after the 
+	cylinder stops rotating, assuming that the circle rotates without friction. 
+
+
+	\begin{solution}
+		First, we find the enclosed current so we can find the magnetic field of the system. To do that, we 
+		first need to find the current density $\mathbf J$. We know that $\mathbf J = \rho \cdot v 
+		= \rho \cdot \omega s$
+		so therefore: 
+		\[
+		\mathbf J(s) = \frac{a}{s} \cdot \omega s = \omega a
+		\] 
+		Now we can use Ampere's law:
+		\[
+			\int B \cdot dl = \mu_0 I_{\text{enc}}	
+		\] 
+		To choose our Amperian loop properly, we note that we can think of this situation as a bunch of 
+		solenoids, which means that we can draw our Amperian loop of height $h$ starting from the outside of the cylinder,
+		then have one of its sides extend some distance $s$ into the cylinder. The contribution from the 
+		horizontal sides of the loop will cancel, so our only contribution the integral will be the portion 
+		of the loop at $r = s$.
+
+		Calculating the enclosed current:
+		\[
+			I_{\text{enc}} = h \cdot \int_s^R J(s) ds = \omega ah (R - s)
+		\] 
+		Since $B$ is constant along $z$, then the left hand side evaluates to $B \cdot h$, so therefore:
+		\[
+		B(s) \cdot h = \mu_0\omega a h (R - s) \implies B(s) = \mu_0 \omega a (R - s)
+		\] 
+		Then, to calculate the flux, we calculate the $B$ field through the cross section of the cylinder:
+		\begin{align*}
+			\Phi &= \int_0^R B(s) \cdot 2 \pi s ds\\
+			&= 2 \pi \mu_0 \omega a \int_0^R s(R -s) ds \\
+			&= \frac{1}{3}\pi \mu_0 \omega a R^3 
+		\end{align*}
+		Then, the change in flux over the total time is equal to the total flux (since we go from having 
+		some current to no current at all), so therefore we have:
+		\begin{align*}
+			\int E \cdot dl &= \dv{\Phi}{t}\\
+			E \cdot 2 \pi L &= \frac{1}{3}\pi \mu_0 \omega a R^3\\
+			\therefore E &= \frac{1}{6}\frac{\mu_0\omega a R^3}{L}
+		\end{align*}
+		Then, the force is given by $F = E \int \lambda L d\phi$, so: 
+		\[
+		F = \frac{1}{6}\frac{\mu_0 \omega a R^3}{L} \cdot \lambda L 2 \pi = \frac{1}{3}\pi \mu_0 \omega a R^3
+		\] 
+		Then, we know that $\Delta L = \tau = \mathbf r \times \mathbf F$, and then using the fact that the ring starts with
+		0 angular momentum, then $\Delta L = L_f$:
+		\[
+		L_f = \mathbf r \times \mathbf F = \frac{1}{3}\pi \mu_0 \omega a R^3 L
+		\] 
+	\end{solution}
+	\pagebreak
+	\section*{Problem 3}
+	Prove Alfven's theorem: In a perfectly conducting fluid (say, a gas of free electrons), the magnetic
+	flux through any closed loop moving with the fluid is constant in time. (The magnetic field lines are, 
+	as it were, ``frozen'' into the fluid.)
+
+	\begin{enumerate}[label=\alph*)]
+		\item Use Ohm's law, in the form of Eq. 7.2, together with Faraday's law to prove that if $\sigma = 
+			\infty$ and $\mathbf J$ is finite, then
+			\[
+				\pdv{B}{t} = \curl(v \times B)
+			\] 
+
+			\begin{solution}
+				Ohm's law states $\mathbf J = \sigma (\mathbf E + \mathbf v \times \mathbf B)$, and Faraday's
+				law states $\curl E = -\pdv{B}{t}$. Taking the curl of the first equation, then, we have: 
+				\[
+					\curl J = \sigma \curl E + \sigma \curl (v \times B)
+				\] 
+				Now, we know that $\mathbf J$ is curlless, so therefore: 
+				\begin{align*}
+					0 &= \sigma \curl E + \sigma \curl (v \times B)\\
+					 - \curl E &= \curl (v \times B)\\
+					 \therefore \pdv{B}{t} &= \curl (v \times B)
+				\end{align*}		
+				In the last step, I've used Faraday's law to convert $\curl E$ into $\pdv{B}{t}$.
+			\end{solution}
+			\pagebreak
+		\item Let $\mathcal S$ be the surface bounded by the loop $\mathcal P$ at time $t$, and $\mathcal S'$ 
+			a surface bounded by the loop in its new position $\mathcal P'$ at time $t + dt$ (see Fig. 7.58).
+			The change in flux is 
+			\[
+				d\Phi = \int_{\mathcal S'} B(t + dt) \cdot da - \int_{\mathcal S} B(t) \cdot da
+			\] 
+			Use $\div B = 0$ to show that
+			\[
+				\int_{\mathcal S'} B(t + dt) \cdot da + \int_{\mathcal R} B(t + dt) \cdot da = \int_{\mathcal S}
+				B(t + dt) \cdot da
+			\] 
+			(where $\mathcal R$ is the ``ribbon'' joining $\mathcal P$ and $\mathcal P'$), and hence that
+			\[
+				d\Phi = dt \int_{\mathcal S} \pdv{B}{t} \cdot da - \int_{\mathcal R} B(t + dt) \cdot da
+			\] 
+			(for infinitesimal $dt$). Use the method of Sect. 7.1.3 to rewrite the second integral as
+			\[
+			dt \oint (B \times V) \cdot dl
+			\] 
+			and invoke Stokes' theorem to conclude that
+			\[
+				\dv{\Phi}{t} = \int_{\mathcal S}\left( \pdv{B}{t} - \curl(v \times B)\right) \cdot da
+			\] 
+			Together with the result in (a), this proves the theorem. 
+			
+			\begin{solution}
+				First, since $\div B = 0$, then we know that $\oint B \cdot da = 0$. Therefore, 
+				choosing the surface to be both volumes plus the ``ribbon'': 
+				\[
+					0 = \oint B  \cdot da = \int_{\mathcal S'} B (t + dt) \cdot da + \int_{\mathcal R}
+					B(t + dt) \cdot da - \int_{\mathcal S} B(t + dt) \cdot da 
+				\] 
+				Moving the last term to the right:
+				\[
+					\int_{\mathcal S'} B(t + dt) \cdot da + \int_{\mathcal R} B(t + dt) \cdot da = \int_{\mathcal S} B(t + dt) \cdot da
+				\] 
+				as desired. The change in flux is given by the first equation, so we can now plug what we just derived into the first term:
+				\begin{align*}
+                    \therefore d\Phi &= \int_{\mathcal{S}}{B}(t+dt)\cdot d{a} - \int_{\mathcal{S}}{B}(t)\cdot da - \int_{\mathcal{R}}B(t+dt)\cdot da\\
+					&= \int_{\mathcal{S}}\pdv{B}{t}dt \cdot da - \int_{\mathcal{R}}B(t+dt)\cdot da\\
+					&= dt\int_{\mathcal{S}}\pdv{B}{t}da - \int_{\mathcal{R}}B(t+dt)\cdot da
+                \end{align*}
+				as desired. Now we consider an infinitesimal area element as $da = (v \times dl) dt$, so therefore, substituting this into the second term, we get:
+				\[ \int_{\mathcal{R}}B(t+dt)\cdot da = \int_{\mathcal{R}}B(t+dt)\cdot(dl\times v)dt = dt\int_{\mathcal{P}}(B\times v)\cdot dl\]
+				note that I have $(dl \times v)$ instead of $v \times dl$, which takes out the negative sign. Finally, invoking Stokes' theorem:
+				\[ \frac{d\Phi}{dt} = \int_{\mathcal{S}}\pdv{B}{t}da - \int_{\mathcal{P}}(B\times v)\cdot dl = \int_{\mathcal{S}}\left(\pdv{B}{t} - \curl(v \times B)\right)\cdot da\]
+				which proves the final statement in the problem.
+			\end{solution}
+	\end{enumerate}
+\end{document}

@@ -1,0 +1,302 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electromagnetism and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 08} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	Consider a parallel capacitor where the plates have area $A$ and are separated by a distance $d$. The gap is
+	filled with a linear dielectric material of electric susceptibility $\chi_e$. Suppose the capacitor is 
+	charged so that the plates carry free charges $\pm Q_f$.
+	\begin{enumerate}[label=\alph*), start]
+		\item Find the bound charge $Q_b$ originated from the polarization in terms of $Q_f$ and $\chi_e$.
+
+			\begin{solution}
+				We can calculate the bound charge from the polarization using $\rho_b = - \div P$ and since 
+				$P = \epsilon_0 \chi_e E = \epsilon_0 \chi_e \frac{D}{\epsilon}$, then we get:
+				\[
+				\rho_b = -\epsilon \chi_e \left( \div \frac{D}{\epsilon} \right) = -\frac{\epsilon_0 \chi_e}{
+				\epsilon_0(1 + \chi_e)}(\div D)
+				\] 
+				Then, since $D$ is related to $Q_f$ via $\div D = \frac{Q_f}{A}$, we get: 
+				\[
+				Q_b = -\frac{\chi_e}{1 + \chi_e}Q_f
+				\] 
+			\end{solution}
+		\item Find the \textit{net} electric field (caused by both the free and bound charges) between the 
+			plates. Express your answer in terms of $Q_f, A$ and $\epsilon$, where $\epsilon = (1 + \chi_e)
+			\epsilon_0$
+
+			\begin{solution}
+				First, we calculate the $D$ field:
+				\[
+				\oint D \cdot da = Q_f = DA \implies D = \frac{Q_f}{A}
+				\] 
+				It's obvious that $D$ points in the $x$ direction, so therefore $\vec D = \frac{Q_f}{A}\hat{x}$.
+				Furthermore, we know that $\vec E = \frac{\vec D}{\epsilon}$, so therefore:
+				\[
+				E = \frac{Q_f}{\epsilon A} \hat{x}
+				\] 
+			\end{solution}
+		\item Compute the work needed to establish the system from zero free charge to a final free charge 
+			$Q_f$ by gradually moving infinitesimal free charges $dq_f$ from the right plate to the left plate,
+			overcoming the electric potential of the net field. Express your answer in terms of $Q_f$, 
+			$\epsilon, A$ and $d$. 
+			
+			\begin{solution}
+				We derive the capacitance of a parallel plate capacitor as: $C = \frac{\epsilon A}{d}$, and 
+				we also know that $C = \frac{Q}{V}$. Since the total charge initially is only due to the bound 
+				charges $q_b$, then can write the potential as: 
+				\[
+				V = \frac{Q_b}{C} = \frac{Q_b d}{\epsilon A}
+				\]
+				Furthermore, at any point, the free charges that are added on also contribute to the total charge
+				on the capacitor, so in fact, we have a general expression for the potential as a function of 
+				the charge $q$ on the capacitor: 
+				\[
+				V(q) = \frac{qd}{\epsilon A}
+				\] 
+				Then, we now just have to integrate over the total charge: 
+				\[
+					W = \int_0^{Q_f} V(q) dq = \int_0^{Q_f} \frac{qd}{\epsilon A} dq = \frac{Q_f^2 d}{2 
+					\epsilon A}
+				\] 
+			\end{solution}
+		\item Calculate $W = \dfrac 12 \int D \cdot E d\tau$ for this system. It should agree with your result 
+			in part (c)
+
+			\begin{solution}
+				We have expressions for $D$ and $E$, so we just have to do the integral:
+				\begin{align*}
+					W &= \frac{1}{2}\int D \cdot E d\tau \\
+					&= \frac{1}{2} \int \frac{Q_f^2}{\epsilon A^2} d\tau \\
+					&= \frac{1}{2}\frac{Q_f^2}{\epsilon A^2}(Ad) \\
+					&= \frac{Q_f^2 d}{2\epsilon A}
+				\end{align*}
+			\end{solution}
+	\end{enumerate}
+	The difference between $W = \dfrac 12 D \cdot E d\tau$ and $W = \dfrac{\epsilon_0}{2}\int E \cdot E d\tau$ 
+	is that the latter only takes into account the energy needed to put the charges in place, while ignoring
+	the potential energy associated with \textit{microscopic} interactions between the molecules, or within the
+	molecules, which is wt we neeed to overcome when we polarize the material. Specifically, consider the 
+	following two-step process. First, we separate the free charges $\pm Q_f$ from each other as shown in 
+	the right figure. 
+
+	\begin{enumerate}[label=\alph*), resume]
+		\item What is the energy needed to separate the $\pm Q_f$ charges at a distance $d$ apart as shown above?
+
+			\begin{solution}
+				To separate just the free charges, we look at the total potential energy of the capacitor with 
+				charges $Q_f$. We know that $U = \frac{1}{2}CV^2$ with $C = \frac{Q_f}{V}$, so therefore: 
+				\begin{align*}
+					U = \frac{1}{2}\frac{Q_F}{V} V^2 &= \frac{1}{2} Q_f V\\
+					&= \frac{1}{2}Q_f \frac{Q_fd}{\epsilon_0A} \\
+					&= \frac{Q_f^2 d}{2 \epsilon_0 A}
+				\end{align*}
+			\end{solution}
+	\end{enumerate}
+
+	We now separate the bound charges by pulling the $\pm Q_b$ apart from each other within the two charged 
+	plates. Along the way, we need to overcome the force between the bound charges, and the force exerted
+	on $+Q_b$ due to $\pm Q_f$
+
+	\begin{enumerate}[label=\alph*),resume]
+		\item What is the energy needed to separate the $\pm Q_b$ charges a distance $d$ apart as shown? 
+
+			\begin{solution}
+				The energy needed is equal to the difference in energy of the final and the initial 
+				configurations. In the initial system, the charges $\pm Q_b$ reside on the same plate, so the 
+				potential energy here is just equal to the potential energy of the configuration with $Q_f$: 
+				\[
+				U_i = \frac{Q_f^2d}{2 \epsilon_0 A}
+				\] 
+				After the charges are moved to their locations, the net charge on each plate is now $Q_f - Q_b$,
+				so the final potential is: 
+				\[
+				U_f = \frac{(Q_f - Q_b)^2d}{2 \epsilon_0 A}
+				\] 
+				Therefore, the energy required is the difference of these two: 
+				\[
+				\Delta U = U_f - U_i = \frac{d}{2\epsilon A}((Q_f - Q_b)^2 - Q_f^2) = \frac{d}{2\epsilon_0A}
+				(Q_b^2 - 2Q_bQ_f)
+				\] 
+			\end{solution}
+		\item Compute the $W = \frac{\epsilon_0}{2}\int E \cdot E d\tau$ for the final configuration. It should
+			equal to the sum of part (e) and (f). 
+
+			\begin{solution}
+				Here, we know the $E$ field is equal to $E = \frac{Q_f - Q_b}{\epsilon_0A}$ since the total 
+				charge on the plates is $Q_f - Q_b$, so therefore: 
+				\begin{align*}
+					W &= \frac{\epsilon_0}{2} \int \frac{(Q_f - Q_b)^2}{\epsilon_0^2A^2}d\tau \\
+					  &= \frac{\epsilon_0}{2} \frac{(Q_f - Q_b)^2}{\epsilon_0^2A^2} Ad \\
+					  &= \frac{(Q_f - Q_b)^2d}{2\epsilon A}
+				\end{align*}
+				Summing up parts (e) and (f), we get: 
+				\[
+				U_i + \Delta U = \frac{Q_f^2d}{2\epsilon_0A} + \frac{(Q_b^2 - 2Q_b Q_f)d}{2\epsilon_0A} = 
+				\frac{(Q_f^2 - 2Q_fQ_b + Q_b^2)d}{2\epsilon_0A} = \frac{(Q_f^2 - Q_b^2)}{2\epsilon_0A}
+				\] 
+				This matches what we get from computing $W = \frac{\epsilon_0}{2} \int E \cdot E d\tau$, as 
+				desired. 
+			\end{solution}
+	\end{enumerate}
+	
+	\pagebreak
+	\section*{Problem 2}
+	A thick spherical shell (inner radius $a$, outer radius $b$) is made of dielectric material with a permanent
+	polarization
+	\[
+		\mathbf{P(r)} = \frac{k}{r}\hat{\mathbf r}
+	\] 
+	where $k$ is a constant and $r$ is the distance from the center. (There is no free charge in the problem.)
+	Find the electric field in all three regions, $r < a$, $a < r < b$, $r > b$. 
+
+
+	\begin{solution}
+		Because there is no free charge in the problem, it's convenient here to use Gauss' law: 
+		\[
+		Q_f = \oint \mathbf D \cdot da = 0
+		\] 
+		Because this integral is zero then, this also implies that $\mathbf D = 0$ everywhere. 
+		Then, since $\mathbf D = \epsilon \mathbf E + \mathbf P$, we can rearrange this to get $\mathbf E =
+		-\frac{\mathbf P}{\epsilon_0}$ within the 
+		region of the spherical shell. Inside the shell, since there is no charge, we know that $\mathbf E = 0$. 
+		Outside
+		the shell, we know that there is no polarization (since there isn't any polarized material), so 
+		$\mathbf E = 0$
+		outside the shell as well. Therefore, combining this together we get: 
+		\[
+		E(r) = \begin{cases}
+			0 & r < a\\
+			-\dfrac{k}{\epsilon_0 r} \hat{\mathbf r}&  a < r < b \\
+			0 & r > b 
+		\end{cases}
+		\] 
+	\end{solution}
+
+	\pagebreak	
+
+	\section*{Problem 3}
+	An uncharged conducting sphere of radius $a$ is coated with a thick insulating shell out to radius $b$. The 
+	insulating shell has a permanent polarization $\mathbf P = P_0 \hat{z}$. Find the electric potential in the 
+	three regions, $r < a$. $a < r < b$, and $r > b$. 
+
+	\begin{solution}
+		Since we are dealing with a spherical conductor (I assume that we have a solid sphere here), then we know
+		that the potential within the conductor must be zero simply due to the properties of a conductor. 
+
+		For the region $a < r < b$, we need to be more careful. Firstly, we can calculate the surface and bound
+		charges:
+		\begin{align*}
+			\rho_b &= \div P = \frac{P_0}{r \sin \theta}\pdv{\theta} (-\sin^2 \theta) + \frac{1}{r^2}\pdv{r}
+			(r^2 \sin \theta)\\
+			&= -\frac{2P_0 \cos \theta}{r} + \frac{2 \cos \theta P_0}{r} \\
+			&= 0 \\
+			\sigma_b &= \vec P \cdot \hat{n} = \vec P \cdot r \\
+			&= P_0 \cos \theta \hat{n}
+		\end{align*}
+		Further, if we consider the surface of the insulating region, we get that the normal vector $\hat{n}$
+		points inwards at $r = a$ and outwards at $r = b$, so at $r = a$, $\sigma_b = -P_0 \cos \theta$ and 
+		at $r = b$, $\sigma_b = P_0 \cos \theta$. Qualitatively speaking, this means that the potential 
+		within this region is the same potential as two concentric shells of bound charges with a distribution
+		of $P_0 \cos \theta$, with the outer shell consisting of positive charges and the inner one consisting
+		of negative charges. To solve this potential, we solve each case separately using the general 
+		solution for $V(r)$, then use the superposition principle to find the total potential. 
+
+		Let's start with the shell of radius $b$, which has charge density $\sigma_b = P_0 \cos \theta$. Recall
+		that the general form for the potential is: 
+		\[
+			V(r) = \sum_{l = 0}^\infty \left( A_l r^l + \frac{B_l}{r^{l+1}} \right) P_l(\cos \theta)
+		\] 
+		where $P_l$ denotes the $l$-th Legendre polynomial. We want to find the coefficients $A_l$ and $B_l$.
+		Inside the shell, we know that the potential cannot blow up to infinity, so none of the $B_l$ terms
+		can exist. Similarly, outside the shell, we require that the potential is 0 at infinity, so the $A_l$
+		terms cannot exist outside. Therefore, the potential is of the form: 
+		\[
+		V(r) = \begin{cases}
+			\displaystyle	\sum_{ l= 0}^\infty \frac{B_l}{r^{l+1}}P_l(\cos \theta) & r > b\\
+			\\
+			\displaystyle \sum_{l = 0}^\infty A_l r^l P_l (\cos \theta) & r < b
+		\end{cases}
+		\] 
+		Now, there are two conditions we need to satisfy with this potential. Firstly, we require that
+		\[
+			\pdv{V}{n}\bigg|_{\text{below}}^{\text{above}} = \frac{\sigma}{\epsilon_0} = \frac{P_0 \cos \theta}{
+			\epsilon_0}
+		\] 
+		So, computing the derivative with respect to $r$ for $V(r)$ at $r = b$ and equating them to each other, 
+		we get:
+		\begin{align*}
+			\pdv{V_{out}}{r} - \pdv{V_{in}}{r} &= \sum_{l = 0}^\infty - \frac{(l + 1)B_l}{b^{l + 2}}P_l (\cos 
+			\theta) - \sum_{l' = 0}^\infty l' A_{l'} b^{l' -1} P_{l'}(\cos \theta)\\
+			\frac{P_0 \cos \theta}{\epsilon_0} &=  \sum_{l = 0}^\infty - \frac{(l + 1)B_l}{b^{l + 2}}P_l
+			(\cos \theta) - \sum_{l' = 0}^\infty l' A_{l'} b^{l' -1} P_{l'}(\cos \theta)
+		\end{align*}
+		The left hand side only has a linear $\cos \theta$ term which corresponds to the first legendre
+		polynomial $P_1(x) = x$, so therefore the right hand simplifies massively, since $l = l' = 1$ is 
+		the only term that is nonzero. Therefore, we're left with the equation:
+		\begin{align*}
+			\frac{P_0 \cos \theta}{\epsilon_0} &=  -\frac{2B_1}{b^3}\cos \theta - A_1 \cos \theta \\
+			\frac{P_0}{\epsilon_0} &= -\frac{2B_1}{b^3} - A_1
+		\end{align*}
+		To solve for $B_1$ and $A_1$, we now use the fact that $V(r)$ must be differentiable at $r = b$, so 
+		at $r = b$, we require that $V_{out}(b) = V_{in}(b)$: 
+		\begin{align*}
+			\frac{B_1}{b^2}\cos \theta &= A_1 b \cos \theta\\
+			\therefore A_1 &= \frac{B_1}{b^3}
+		\end{align*}
+		Substituting this back into the previous expression, we have: 
+		\begin{align*}
+			\frac{P_0}{\epsilon_0} &= -\frac{2B_1}{b^3} - \frac{B_1}{b^3} \\
+			&= -\frac{3B_1}{b^3} \\
+			\therefore B_1 &= -\frac{P_0b^3}{3\epsilon_0}, \ \ A_1 = -\frac{P_0}{3 \epsilon 0}
+		\end{align*}
+		This approach is identical for the shell of radius $r = a$ except we have the opposite charge density, 
+		so from there we get:
+		\begin{align*}
+			A_1 &= \frac{P_0}{3 \epsilon_0} \\
+			B_1 &= \frac{P_0a^3}{3\epsilon_0}
+		\end{align*}
+		Now we can begin the process of joining them together. To do so, notice that for $a < r < b$, we want
+		the solution outside the shell of radius $a$, but inside the shell for radius $b$, Therefore, 
+		\begin{align*}
+			V(r) &= V_{\text{out, a}}(r) + V_{\text{in, b}}(r) \\
+			&= \frac{P_0}{3\epsilon_0}r \cos \theta + \frac{1}{r^2}\left( -\frac{P_0b^3}{3 \epsilon_0} \right) 
+			\cos \theta \\
+			&= \frac{P_0 \cos \theta}{3\epsilon_0}\left( r - \frac{b^3}{r^2} \right)  \\
+			&= \frac{P_0 r \cos \theta }{3\epsilon_0}\left( 1 - \frac{b^3}{r^3} \right) 
+		\end{align*}
+		For the region $r > b$, we want the solution outside both shells:
+		\[
+		 V(r) = \frac{P_0a^3}{3\epsilon 0 r^2}\cos \theta - \frac{P_0b^3}{3\epsilon_0r^2}\cos \theta 
+		 = \frac{P_0 \cos \theta}{3\epsilon_0r^2}(a^3 - b^3)
+		\] 
+		Interestingly enough, since we use the solution inside both shells for $r < a$, we get that in this
+		region: 
+		\[
+		V(r) = -\frac{P_0}{3\epsilon_0}r \cos \theta - \left( -\frac{P_0}{3\epsilon_0} \right) r \cos \theta = 0
+		\] 
+		which matches the result we got earlier. However, we shouldn't use this approach here since at $r < a$
+		we have a conductor rather than empty space, which is what solving for the potential at $r < a$ 
+		in this fashion describes. Finally, we can write:
+		\[
+		V(r) = \begin{cases}
+			 0 & r< a\\
+			 \displaystyle \frac{P_0 r \cos \theta}{3\epsilon_0}\left( 1 - \frac{b^3}{r^3} \right) & a < r < b\\
+			 \displaystyle \frac{P_0 \cos \theta}{3\epsilon_0r^2}(a^3 - b^3) & r > b
+		\end{cases}
+		\] 
+	\end{solution}
+\end{document}

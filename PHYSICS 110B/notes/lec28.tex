@@ -1,0 +1,123 @@
+\section{April 9}
+Last lecture, we found \( V \) and \( \mathbf{A} \), and with these fields determined we can get the \(
+\mathbf{E} \) and \( \mathbf{B} \) fields:
+\begin{align*}
+	\mathbf{E} &= \frac{\mu_0 p_0 \omega^2}{4\pi} \left( \frac{\sin \theta}{r} \right)\cos\left[ \omega\left(
+		t - \frac{r}{c}\right) \right] \boldsymbol{\hat{\theta}}\\
+	\mathbf{B} &= - \frac{\mu_0 p_0 \omega^2}{4\pi c} \left( \frac{\sin \theta}{r} \right) \cos \left[
+		\omega\left( t - \frac{r}{c} \right) \right] \boldsymbol{\hat{\phi}}
+\end{align*}
+here, we denote \( p_0 = qd \) is the polarization and \( q = q_0 \cos (\omega t) \) is an oscillating
+charge. There are a couple things to note about this equation. Firstly, the \( \mathbf{E} \) and \(
+\mathbf{B} \) oscillate in perpendicular directions, which makes sense given what we learned in chapter 9.
+Further, these results are also consistent with our conclusion that the \( \mathbf{E} \) and \( \mathbf{B} \)
+fields are in phase with each other, which is also what we found in chapter 9. With the \( \mathbf{E} \) and
+\( \mathbf{B} \) fields, we can now figure out the Poynting vector:
+\[
+	\mathbf{S} = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \frac{\mu_0}{c}\left\{ \frac{p_0
+	\omega^2}{4\pi}\left( \frac{\sin \theta}{r} \right)\cos\left[ \omega\left( t - \frac{r}{c} \right)
+\right] \right\}^2 \mathbf{\hat{r}}
+\]
+As a time-averaged quantity:
+\[
+	\mean{\mathbf{S}} = \frac{\mu_0 p_0^2 \omega^2}{32 \pi^2 c} \frac{\sin^2 \theta}{r^2}\mathbf{\hat{r}}
+\]
+What's interesting to note about this is that the time averaged \( \mathbf{S} \) is pointing in the \(
+\mathbf{\hat{r}} \) direction, which is exactly perpendicular to the oscillation direction. This is what we
+found in chapter 9, albeit through an intuitive argument back then. Here, we see the explicit mathematical
+derivation.  
+
+\subsection{Rayleigh and Mie Scattering}
+When considering the interaction between light and particles, there are two limits that we can consider. The
+first of which is when the wavelength of light is much larger than the size of the particle. In this limit,
+because the particles are so small, we can essentially view them as vibrating coherently with the incoming
+electric field, and therefore they radiate dipole radiation coherently. 
+
+In this situation, the primary contribution of the waves comes from the dipole radiation, and therefore the
+radiated electromagnetic wave is frequency dependent (you can see this via the \( \omega^2 \) dependence
+above). This dependence explains why the sky is blue -- when the light from the sun scatters off molecules 
+in the atmosphere (\( \mathrm{O_2, N_2, H_2} \)), the light scatters off them via dipole radiation. Further,
+since the power scales proportional to \( \omega^{4} \), this heavily favors large frequencies, which is why
+we see the sky as primarily blue. This phenomenon is known as \textbf{Rayleigh Scattering}. 
+
+The other limit is when we consider the size of the particle to be much larger than the wavelength. In this
+limit, the wave nature of the EM waves is suppressed, and in this case the light bounces off these materials
+just like particles off a mirror. In this case, there is no frequency dependence, and this phenomenon
+explains why clouds are white -- water molecules are on the order of 1mm, whereas light waves have
+wavelengths on the order of 500nm, so all the light bounces off equally, leaving us with white clouds. This
+phenomenon is called \textbf{Mie Scattering}.  
+
+\subsection{Magnetic Dipoles}
+Now, we will consider discussing magnetic dipoles. Consider the following situation, where we have a loop
+with a current \( I = I_0 \cos(\omega t) \) shown in the diagram:
+
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+		\draw[thick,-stealth] (0,0) -- (0,2) node[right] {$z$};
+		\draw[thick,-stealth] (0,0) -- (2,0) node[right] {$y$};
+		\draw[thick,-stealth,rotate=-45] (0,0) -- (0,-2) node[below] {$x$};
+		\draw[densely dashed] (0,1.75) -- (-0.9,0.85) -- (-0.9,-0.9);
+		\draw[thick,-{Stealth[length=3pt]},blue!70!cyan!60] (-0.9,0.85) -- (-0.5,0.85) node[below,scale=0.5] {$\hat{\phi}=\hat{y}$};
+		\filldraw[black] (-0.9,0.85) circle (0.025cm) node[left,scale=0.75] {$P$};
+		\draw[thick,orange!70!white] (0,0) ellipse (0.99cm and 0.33cm);
+		\draw[thick,-stealth,orange!70!white] (0,0) -- (1,0) node[midway,above,scale=0.5] {$b$};
+		\draw[densely dotted] (0,0) -- (0.32,-0.32);
+		\draw[-{Stealth[length=2pt]}] (0.32,-0.32) -- (0.55,-0.28) node[midway,below,scale=0.4] {$d\mathbf{l}'$};
+		\draw[rotate=-45] (0.15,0) arc (0:-90:0.15cm) node[midway,below,scale=0.35] {$\phi$};
+		\node[scale=0.75] at (1,1) (a) {$I = I_0\cos(\omega t)$};
+		\draw[-{Stealth[length=2pt]},red!40!white] (-0.98,-0.08) node[left,scale=0.35] {$d\vec{e}'$} -- (-0.85,-0.27);
+\end{tikzpicture}
+\end{center}
+
+We want to find the electric and magnetic fields over all space.
+As always, the vector potential can be calculated using:
+\[
+	\mathbf{A} = \frac{\mu_0}{4\pi}\int \frac{\mathbf{J}(\mathbf{r}, t - \rcurs / c)}{\rcurs} \diff \tau' =
+	\frac{\mu_0}{4\pi} \int \frac{I(\mathbf{r}, t - \rcurs / c)}{\rcurs} \diff \mathbf{l}'
+\]
+The reason we can write it in this form is because of the following relation for current density:
+\( J \diff \tau = J A \diff l = I \diff l \). Now although \( \diff \mathbf{l} \) has both an \( x \) and \(
+y\)-component, the \( x \) component will eventually cancel due to the symmetry in the system. Thus, we're
+only left with the \( y \)-component. Because we need only care about the \( y \) component, then we may
+write:
+\[
+	\mathbf{A} = \frac{\mu_0}{4\pi} \mathbf{\hat{y}} \int \frac{I(\mathbf{r}, t - \rcurs / c)}{\rcurs} \cos
+	\phi' \diff \mathbf{l}'
+\]
+We will now use the approximations we had from earlier: \( b \ll r \), \( \frac{c}{\omega} \sim \lambda \gg b
+\) and \( r \gg \frac{c}{\omega} \). Making these approximations, we eventually get the formula:
+\[
+	\mathbf{A}(\mathbf{r}, t) \simeq -\frac{\mu_0 m_0}{3\pi}\frac{\omega}{c}\left( \frac{\sin \theta}{r}
+	\right) \sin\left[ \omega\left( t - \frac{r}{c} \right) \right]\boldsymbol{\hat{\phi}}
+\]
+You can verify this by explicitly computing the integral; in the interest of time we won't compute it here.
+Since \( \rho = 0 \), then \( V = 0 \), so the \( \mathbf{B} \) field comes directly out of \( \nabla \times
+\mathbf{A}\):
+\[
+	\mathbf{B} = \nabla \times \mathbf{A} = -\frac{\mu_0 m_0 \omega^2}{4 \pi c^2}\left( \frac{\sin \theta}{r}
+	\right)\cos\left[ \omega\left( t - \frac{r}{c} \right) \right]\boldsymbol{\hat{\theta}}
+\]
+The \( \mathbf{E} \) field can be found using \( -\partial_t \mathbf{A} \):
+\[
+	\mathbf{E} = -\partial_t \mathbf{A} = \frac{\mu_0 m \omega^2}{4\pi c}\left(\frac{\sin \theta}{r}
+	\right)\cos\left[ \omega\left( t - \frac{r}{c} \right) \right]\boldsymbol{\hat{\phi}}
+\]
+With \( \mathbf{B} \) and \( \mathbf{E} \), we may now calculate the power:
+\[
+	P_m = \int \mean{\mathbf{S}} r^2 \sin \theta \diff \theta \diff \Omega = \frac{\mu_0 m_0^2 \omega^{4}}{12
+	\pi c^{3}}
+\]
+Now, with the electric dipole calculated from last lecture, we can now compare the power radiated by both the
+electric and magnetic dipole:
+\[
+	\frac{P_m}{P_e} = \frac{1}{c^2}\left(\frac{m_0^2}{P_0^2}\right) = \frac{1}{c^2}\left( \frac{\pi I_0
+	b^2}{qd} \right)^2 \sim \frac{\omega^2 b^2}{c^2}
+\]
+To get the approximation, we use \( I_0 = q \omega \) and use \( b \sim d \), because we assume the electric
+and magnetic sources are on the same scale. Now, because we've assumed earlier that \( b \ll \frac{c}{\omega}
+\), this implies \( \omega b / c \ll 1 \), hence \( P_m \ll P_e \). This shows that the electric power
+dominates the magnetic power under our assumption, and this explains why we only focused on \( \mathbf{E} \)
+waves in chapter 9.
+
+
+

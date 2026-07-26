@@ -1,0 +1,123 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{dehlinger}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=5525d53aaae0821f5bd53c89b69a0d62}{%
+           family={Dehlinger},
+           familyi={D\bibinitperiod},
+           given={Dietrich},
+           giveni={D\bibinitperiod}}}%
+        {{hash=2af4c894d1f1cedb0c5c6dd40ae7bf07}{%
+           family={Mitchell},
+           familyi={M\bibinitperiod},
+           given={M.\bibnamedelimi W.},
+           giveni={M\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b172492c359af4d9e130673b15ec30d4}
+      \strng{fullhash}{b172492c359af4d9e130673b15ec30d4}
+      \strng{fullhashraw}{b172492c359af4d9e130673b15ec30d4}
+      \strng{bibnamehash}{b172492c359af4d9e130673b15ec30d4}
+      \strng{authorbibnamehash}{b172492c359af4d9e130673b15ec30d4}
+      \strng{authornamehash}{b172492c359af4d9e130673b15ec30d4}
+      \strng{authorfullhash}{b172492c359af4d9e130673b15ec30d4}
+      \strng{authorfullhashraw}{b172492c359af4d9e130673b15ec30d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We use polarization-entangled photon pairs to demonstrate quantum nonlocality in an experiment suitable for advanced undergraduates. The photons are produced by spontaneous parametric downconversion using a violet diode laser and two nonlinear crystals. The polarization state of the photons is tunable. Using an entangled state analogous to that described in the Einstein–Podolsky–Rosen paradox, we demonstrate strong polarization correlations of the entangled photons. Bell’s idea of a hidden variable theory is presented by way of an example and compared to the quantum prediction. A test of the Clauser, Horne, Shimony, and Holt version of the Bell inequality finds S=2.307±0.035, in clear contradiction of hidden variable theories. The experiments described can be performed in an afternoon.}
+      \field{day}{1}
+      \field{issn}{0002-9505, 1943-2909}
+      \field{journaltitle}{American Journal of Physics}
+      \field{langid}{english}
+      \field{month}{9}
+      \field{number}{9}
+      \field{title}{Entangled Photons, Nonlocality, and {{Bell}} Inequalities in the Undergraduate Laboratory}
+      \field{urlday}{17}
+      \field{urlmonth}{12}
+      \field{urlyear}{2024}
+      \field{volume}{70}
+      \field{year}{2002}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{903\bibrangedash 910}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1119/1.1498860
+      \endverb
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/CGKMYYWX/Dehlinger and Mitchell - 2002 - Entangled photons, nonlocality, and Bell inequalit.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://pubs.aip.org/ajp/article/70/9/903/1055905/Entangled-photons-nonlocality-and-Bell
+      \endverb
+      \verb{url}
+      \verb https://pubs.aip.org/ajp/article/70/9/903/1055905/Entangled-photons-nonlocality-and-Bell
+      \endverb
+    \endentry
+    \entry{foptics}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=35210e5ce9ad10cf761d593e7b0b18ef}{%
+           family={{cvimellesgriot}},
+           familyi={c\bibinitperiod}}}%
+      }
+      \strng{namehash}{35210e5ce9ad10cf761d593e7b0b18ef}
+      \strng{fullhash}{35210e5ce9ad10cf761d593e7b0b18ef}
+      \strng{fullhashraw}{35210e5ce9ad10cf761d593e7b0b18ef}
+      \strng{bibnamehash}{35210e5ce9ad10cf761d593e7b0b18ef}
+      \strng{authorbibnamehash}{35210e5ce9ad10cf761d593e7b0b18ef}
+      \strng{authornamehash}{35210e5ce9ad10cf761d593e7b0b18ef}
+      \strng{authorfullhash}{35210e5ce9ad10cf761d593e7b0b18ef}
+      \strng{authorfullhashraw}{35210e5ce9ad10cf761d593e7b0b18ef}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fundamental {{Optics}}}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/7YGPYQVR/fundamental-Optics.pdf
+      \endverb
+    \endentry
+    \entry{manual}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=8748015bac74126e70105593e2dcfe99}{%
+           family={{Physics 111B: Advanced Experimentation Laboratory}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{fullhash}{8748015bac74126e70105593e2dcfe99}
+      \strng{fullhashraw}{8748015bac74126e70105593e2dcfe99}
+      \strng{bibnamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authorbibnamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authornamehash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authorfullhash}{8748015bac74126e70105593e2dcfe99}
+      \strng{authorfullhashraw}{8748015bac74126e70105593e2dcfe99}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Quantum {{Interference}} \& {{Entanglement}}}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{epigraph}
+\usepackage{caption}
+\usepackage{esint}
+
+% Page formatting
+\lhead{Eric Du}
+\chead{Prelab 0}
+\rhead{\today}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\title{Physics 5CL Prelab 0}
+\author{Eric Du}
+\date{\today}
+
+%.sty file handling
+\usepackage[sexy]{evan}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+%Paragraph Formatting
+\setlength{\epigraphwidth}{148pt}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+
+%TikZ special settings
+\usepackage{circuitikz}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{decorations.markings}
+
+\begin{document} 
+\begin{abstract}
+    \textbf{[NOTE:]} Although we have separate prelab submissions, I worked extensively with \textbf{Andrew Binder} to complete this prelab, so that is the reason why our work shares relatively similar styles.
+\end{abstract}
+\section{Problem 1: Brick Geometry}
+
+\textit{Consider the geometry of a ray of light incident on a rectangular brick of thickness t as shown. You may assume that the index of refraction of the surrounding air is 1.}
+\begin{parts}
+\Part \textit{Determine $z$ in terms of the lenghts $t$ and $y$ (you just need geometry for this part - no Snell's law is allowed)}
+
+\Part \textit{Use propagation of errors to determine $\alpha_x$ as a function of $\theta_1$ and $\alpha_\theta_1$. Then determine $\alpha_z$ as a function of $t, y,\alpha_t$ and $\alpha_y$.} 
+
+\Part \textit{Show that the geometry of reflection and refraction implies that $\theta_1 = \theta_3 = \theta_4 = \theta_5$}
+
+\Part \textit{Use Snell's law and your result from (a) to determine the index of refraction of the brick $n_{brick}$ first in terms of $x$ and $z$ and then in terms of $t, y$ and $\theta$.}
+\end{parts}
+\end{document}

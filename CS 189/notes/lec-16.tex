@@ -1,0 +1,170 @@
+\section{Multiway Classification, Decision Theory, Model Evaluation}
+\begin{itemize}
+	\item Recall cross-validation: the process of keeping a "test set" of data hidden
+		to you that you will validate your data on. You can do this with classifiers
+		as well (why wouldn't you be?)
+	\item Then, in order to heuristically evaluate how "good" the classification is,
+		this entire time we've been using the log-likelihood to do this. 
+	\item As it turns out, the log-likelihood is not the best possible heuristic to
+		do this with, we will see different ways to evaluate a classifier here.  
+\end{itemize}
+
+\subsection{Choosing between classifiers}
+\begin{itemize}
+	\item Whenever we train a dataset and it sees a data point, the model is then
+		able to classify, and also give a probability that the data point lies in the
+		returned class. One assumption we've been working with is that the predicted
+		probabilities returned by the model are very close to the "true" probability
+		distribution. 
+
+		This is something that is made easier through the use of a prior, but even so
+		there is the possibility that the model probability is drastically different
+		than the true probability. 
+	\item One thing we could do is use a threshold of \( p = 0.5 \), and count the
+		number of misclassifications the model makes. This would work if the model is
+		\textit{calibrated}, or in other words the distribution of classification
+		reflects the true distribution. In non-calibrated models, you can see that
+		this goes wrong, because the model probability does not reflect the true
+		probability, so picking \( p = 0.5 \) doesn't make sense at all. 
+	\item If the model isn't calibrated, then there's basically another value of \( p
+		\) that does this classification better. For other models like SVMs which
+		don't return a probabilistic model, this approach just doesn't work because
+		they don't work with probabilities at all. 
+	\item Miscalibrated models aren't totally useless either! Even though a model
+		could be miscalibrated, you can treat the probabilities more as a score, so
+		the higher the score the higher probability the object belongs to its class.
+		So, there is still some threshold \( p \) that we can choose (that isnt 0.5)
+		that minimizes error. 
+\end{itemize}
+\subsection{False Positives, False Negatives, etc.}
+\begin{itemize}
+	\item For now, we will only consider binary classifiers for simplicity.
+	\item Now, some terms:
+		\begin{itemize}
+			\item \textbf{True positives:} people who are classified "positive" and
+				are actually "positive". 
+			\item \textbf{False Positive:} people who are classified "positive" but
+				are truly "negative".
+		\end{itemize}
+
+		The notion of true/false negatives are the inverse of this, of course. 
+	\item The intersection between the positive and negative distributions represents
+		the upper limit on the accuracy of the model -- this makes sense, your model
+		can only do as well as the true distribution.
+
+		As an extension of this, it means that if two distributions have any
+		intersection at all, then there is no model you can construct that will
+		classify with 100\% probability.  
+	\item Some more definitions:
+		\begin{itemize}
+			\item TPR: the fraction of true positives/the number of actual positives.
+			\item TNR: the fraction of true negatives/number of negatives. 
+			\item FNR: the fraction of false negatives/actual positives
+			\item FPR: the fraction of false positives/actual negatives .
+		\end{itemize}
+		The rates are in general calculated as the number of instances you classify
+		one way, divided by the total number of things you could have classified that
+		way. 
+	\item It should be obvious, but changing the decision threshold will change the
+		TP, TN, FP, FN rates. 
+	\item As we shift these around, we can plot a ROC curve, which plots one
+		parameter in terms of the other. For instance, you can plot the true positive
+		and false positive rate against each other. 
+
+		Remember, you want to maximize the true positive rate, so for a perfect
+		classifier its ROC curve would just be a point in the top left corner. Then,
+		how close we are to the perfect classifier gives us another way to evaluate
+		how good a classifier is. There is a threshold to this however, since as
+		mentioned before the perfect classifier may not be attainable. 
+	\item It's not true that classifiers always "do better" over the entire 
+		dataset. In the real world, two classifiers can have varying true positive
+		vs. false positive curves, where one "beats" the other at different
+		true/false positive values. 
+
+		So how do you determine which ROC curve is better? You look over the regime
+		that you're interested in. If you're not willing to go above a false positive
+		rate of above 20\%, then you can restrict your analysis to false positive
+		rates between 0-20\%. 
+\end{itemize}
+
+\subsection{Making ROC Curves}
+\begin{itemize}
+	\item To make the ROC curve, we will leverage the fact that anything that is
+		classified as positive using a given thershold will be classified as positive
+		for lower thresholds. 
+	\item First, we sort the data based on the score our model gives. The scores then
+		become the possible thresholds you can take for your data. 
+	\item Another way to compare two classifiers is to use the area under curve (AUC)
+		method to rank classifiers. This gives the probability that the classifier
+		will rank a positive higher than a negative. The bigger the AUC,
+		the better the classifier is. 
+
+		Using this intuition it then makes sense that the random classifier has an
+		AUC of 0.5, since it classifies a random data point correctly with 0.5
+		probability. So, it will classify a positive higher than a negative only half
+		the time. 
+	\item You can either take the integral under the ROC curve, or you could
+		calculate it directly using trapezoidal integration. You can also do the
+		partial AUC, where you restrict your analysis to a limited set of false
+		positive rates.  
+	\item ROC curves have the advantage of being independent of the number of actual
+		positives and negatives in your dataset; this is because the rates are
+		normalized to the total number of positives/negatives in your dataset.   
+
+		This invariance is actually not good, because it means that to find the
+		misclassification rate you actually need information about the ratio of
+		actual positives to actual negatives in the test set. 
+	\item An alternative is to use a precision recall curve, which does take into
+		account the proportion of true positives and negatives. The precision is
+		defined as:
+		\[
+			\text{precision} = \frac{\text{true positive}}{\text{number of predicted
+			positive}} = \frac{\text{TP}}{\text{TP + FP}}
+		\]
+		The recall is just the TPR. Then, you can plot one against the other to get
+		the precision-recall curve. A perfect classifier in this case exists in the
+		top right corner.   
+	\item ROC curves are not useful if you actually care about the true probability
+		distribution, because the ROC curve is invariant with respect to the actual
+		data.
+
+		If you just care about rankings, then ROC is perfect, because you
+		\textit{only} care about the ranking, so the underlying distribution doesn't
+		matter to you.
+\end{itemize}
+
+\subsection{Models with AUC}
+\begin{itemize}
+	\item The question now becomes: why don't we just use the AUC as a loss function
+		to train a model?
+	\item The AUC and losses are not differentiable everywhere, so it's difficult to
+		minimize this function. (Traditional methods like gradient descent and SGD are
+		therefore not possible)
+	\item You also can't use mini-batches anymore, since the AUC requires the entire
+		data set. 
+	\item There are some very niche uses to make these metrics differentiable, but
+		they are rarely used.  
+\end{itemize}
+
+\subsection{Training Classifiers}
+\begin{itemize}
+	\item Similar to how we changed the way we evaluate classifiers, there are also
+		other ways we can train a model to learn from a dataset. 
+	\item Traditionally, we used MLE and minimized the loss function. In doing this,
+		we become blind to the classes themselves, which is bad because
+		classifications are not all held equal. 
+	\item In a more general sense, we should be using a \textit{cost-sensitive}
+		classifiers, where we penalize some errors much more severely than others.
+		For instance, if a model predicts that you don't have cancer while you do,
+		then this is an \textit{extremely} expensive mistake, but the log-likelihood
+		is blind to this fact. 
+	\item To fix this, you can use a weighted sum over the loss:
+		\[
+			\argmin_{w, b} 1000 \sum_{y_i = 1}L(y_i, f(x_i \mid w, b)) + 
+			\sum_{y_i = -1}L(y_i, f(x_i \mid w,b))
+		\]
+		you're basically forcing the model to care about some mistakes more than
+		other mistakes, which gives you a different classifier. The exact ratios of
+		the importance you should place to each class is something that we have to do
+		on our own, and can't be done through machine learning. 
+\end{itemize}

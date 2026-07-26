@@ -1,0 +1,664 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+\usepackage{mathbbol}
+\DeclareSymbolFontAlphabet{\mathbbold}{bbold}						% Blackboard Bold Numbers with \mathbbold
+
+
+\newcommand{\classcode}{Physics W89}
+\newcommand{\classname}{Mathematical Methods in Physics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Midterm} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	\begin{enumerate}[label=\alph*)]
+		\item Expand the energy out to fourth order in the dimensionless parameter $\beta \equiv v/c$ about 
+			the point $\beta = 0$. 
+
+			\begin{solution}
+				We can write this equation as $E(\beta) = mc^2(1 - \beta^2)^{- 1 / 2}$. Then, we can 
+				just do a standard taylor series expansion about $\beta = 0$. The Taylor series is defined
+				as:
+				\[
+					E(\beta) = E(0) + E'(0)\beta + \frac{1}{2}E''(0) \beta^2 + \dots= \sum_{n = 0}^\infty \frac{E^{(n)}(0)\beta^n}{n!}
+				\] 
+				The first term in this series is $E(0) = mc^2(1) = mc^2$. Now, we compute derivatives:
+				\[
+					E'(\beta) = mc^2 \cdot -\frac{1}{2}(1 - \beta^2)^{- 3/2} \cdot (-2\beta) = mc^2\beta(1 - 
+					\beta^2)^{- 3 / 2} \implies E'(0) = 0
+				\] 
+				Now for the second order term:
+				\[
+					E''(\beta) = mc^2\left[ (1 - \beta^2)^{- 3 / 2} + \beta \cdot - \frac{3}{2}(1 - \beta^2)^{- 5 / 2} \cdot (-2\beta)\right] = mc^2\left[(1 - \beta^2)^{- 3/ 2} + 3 \beta^2(1 - \beta^2)^{-5 / 2}\right] 
+				\] 
+				Substituting in $\beta = 0$ gives $E''(0) = mc^2$. The rest of this process is just taking
+				derivatives:
+				\begin{align*}
+					E'''(\beta) &= -\frac{3}{2}(1 - \beta^2)^{- 5/2} (-2\beta) + 3 \left[(2 \beta) (1 - \beta^2)^{- 5 / 2} + \beta^2 \left(-\frac{5}{2}(1 - \beta^2)^{- 7/2}(-2\beta)\right)\right]\\
+								&= 9(1 - \beta^2)^{- 5 / 2} \beta + 15 \beta^3(1 - \beta^2)^{- 7 / 2}
+				\end{align*}
+				Substituting $\beta = 0$, we again get $E'''(0) = 0$. For the fourth-order derivative, 
+				we don't actually have to compute all of it. Notice that the derivative of the second term in 
+				$E'''(0)$ will always have a $\beta$ factor, hence when we substitute zero we will get zero. The
+				only part that contributes to $E'''(0)$ is the term in the first product rule where the 
+				outside factor of $\beta$ is removed:
+				\[
+					E^{(4)}(\beta) = 9(1 - \beta^2)^{- 5 / 2} + \text{stuff that equals zero}
+				\] 
+				Hence, $E^{(4)}(0) = 9$. Now we are ready to put it all together. Recalling the earlier
+				Taylor Expansion:
+				\begin{align*}
+					E(\beta) &\approx mc^2 + \frac{1}{2}mc^2 \beta^2  + \frac{9}{24}\beta^4 mc^2\\
+							 &\approx mc^2 + \frac{1}{2}mc^2\left(\frac{v}{c}\right)^2 + 
+							 \frac{3}{8}mc^2\left(\frac{v}{c}\right)^4\\
+							 &\approx mc^2 + \frac{1}{2}mv^2 + \frac{3}{8}mc^2 v^4
+				\end{align*}
+				As explained by the hint, the first two terms are familiar, and the third nonzero term is the 
+				relativistic correction. 
+			\end{solution}
+		\item What is $z$'s polar form? What is the inverse $z^{-1}$ in Cartesian form? Draw and label 
+			on the complex plane the points representing the complex numbers $z$, $z^*$, $z + z^*$.
+
+			\begin{solution}
+				The number $z$ in polar form is given by $z = |z|e^{i \mathrm{Arg}(z)}$. Computing the magnitude
+				of $z$:
+				\[
+				|z| = \sqrt{8^2 + 6^2} = \sqrt{100}  = 10
+				\] 
+				And now for $\mathrm{Arg}(z)$:
+				\[
+					\mathrm{Arg}(z) = \tan^{-1}\left(\frac{6}{8}\right) = \tan^{-1}\left(\frac{3}{4}\right)
+				\] 
+				therefore, in polar form, we have:
+				\[
+					z = 10e^{i \tan^{-1}(3 / 4)}
+				\] 
+				As for the inverse of $z$ we want to find the number such that $z z^{-1} = 1$. Since $z$ 
+				is just a number, we can take the reciprocal:
+				\[
+					z^{-1} = \frac{1}{8 + 6i}
+				\] 
+				And we can make this look a bit nicer:
+				\begin{align*}
+					z^{-1} &= \frac{8 - 6i}{(8 + 6i)(8 - 6i)} \\
+					&= \frac{8 - 6i}{100} \\
+					&= \frac{4 - 3i}{50}
+				\end{align*}
+				Now for the diagram:
+				\begin{center}
+					\begin{tikzpicture}[scale=0.3]
+						\draw[thick] (-16, 0) -- (20, 0) node[right] {$\Re(z)$};
+						\draw[thick](0, -8) -- (0, 8) node[above] {$\Im(z)$};
+						\draw[-stealth, red] (0, 0) -- (8, 6) node[right] {$z = 8 + 6i$};
+						\draw[-stealth, blue] (0, 0) -- (8, -6) node[right] {$z^* = 8 - 6i$};
+						\draw[-stealth, thick, purple] (0, 0) -- (16, 0) node[above] {$z + z^* = 16$};
+					\end{tikzpicture}
+				\end{center}
+				The purple arrow is a bit hard to see since it lies on the real axis, but it's meant to show 
+				that $z + z^* = 16$. 
+			\end{solution}
+		\item Prove this relationship using index notation using the Kronecker delta, Levi-Civita symbol, and 
+			manipulations.
+
+			\begin{solution}
+				To do this, we first write this down in index notation:
+				\[
+					\div(\vec E \times \vec B) = \partial_i\left[ \epsilon_{ijk} E_j B_k\right]
+				\] 
+				Now, we take note of the fact that this is a derivative, meaning that we have to use product 
+				rule. Specifically, we need to take the $i$-th derivative of $E$ as well as for $B$, which 
+				gives us two terms:
+				\begin{align*}
+					\partial_i[\epsilon_{ijk}E_iB_k] &= \epsilon_{ijk}(\partial_i E_j) B_k + 
+					\epsilon_{ijk}E_j (\partial_i B_k)\\
+					&= B_k \epsilon_{kij} \partial_i E_j + E_j \epsilon_{jki}\partial_i B_k 
+				\end{align*} 
+				The first term we've cyclically permuted $i, j, k$, so the Levi-Civita symbol doesn't change 
+				sign. However, in order for the second term to become the curl, we need to swap $k$ and $i$.  
+				Using the fact that $\epsilon_{jki} = -\epsilon_{jik}$ we have to flip the sign of that term:
+				\[
+					B_k \epsilon_{kij} \partial_i E_j + E_j \epsilon_{jki} \partial_i B_k =	B_k \underbrace{\epsilon_{kij} \partial_i E_j}_{\curl E} - E_j \underbrace{\epsilon_{jik} \partial_i B_k}_{\curl B}
+				\] 
+				Now we can get rid of indices:
+				\[
+					\therefore \div(\vec E \times\vec B) = B_k \epsilon_{kij} \partial_i E_j- E_j \epsilon_{jik} \partial_i B_k = 
+					\vec B \cdot (\curl \vec E) - \vec E \cdot (\curl B)
+				\] 
+				which is exactly the expression we wanted to prove.
+			\end{solution}
+		\item Arrange these vectors into a $3 \times 4$ matrix $D$ and use row reduction to argue that this 
+			set spans the space $\mathbb R^3$ but is not linearly independent. Then, use whatever 
+			method you like to explicitly find $v_4$ as a linear combination of $\vec v_1, \vec v_2$ and 
+			$\vec v_3$. 
+
+			\begin{solution}
+				Given the vectors, we can construct $D$:
+				\[
+					D = \begin{pmatrix} 1 & 9 & 8 & 6\\1 & 0 & 1 & 10\\8 & 9 & 8 & 1 \end{pmatrix} 
+				\] 
+				First, we can subtract row 1 from row 3 ($R_3 - R_1$):
+				\[
+					\begin{pmatrix} 1 & 9 & 8 & 6\\1 &0 & 1 & 10\\7 & 0 & 0 & -7 \end{pmatrix} 
+				\] 
+				Now divide row 3 by 7 and swap rows 1 and 3:
+				\[
+					\begin{pmatrix} 1 & 0 & 0 & -1\\1 & 0 & 1 & 10\\ 1 & 9 & 8 & 6 \end{pmatrix} 
+				\] 
+				Subtract both row 2 and row 3 by row 1:
+				\[
+					\begin{pmatrix} 1 & 0 & 0 & -1 \\ 0 & 0 & 1 & 11\\ 0 & 9 & 8 & 7\end{pmatrix} 
+				\] 
+				Now divide row 3 by 9, and also swap rows 2 and 3:
+				\[
+					\begin{pmatrix} 1 & 0 & 0 & 1\\ 0 & 1 & 8 / 9 & 7 /9\\ 0 & 0 & 1 & 11 \end{pmatrix} 
+				\] 
+				So we see that there are three pivots, meaning that the rank of $D$ is 3. This implies that
+				$\dim(\mathrm{Im}(D)) = 3$, and hence these vectors span $\mathbb R^3$. However, they cannot 
+				be linearly independent, since we can only have at most three vectors that are linearly 
+				independent in $\mathbb R^3$. To find the linear combination of vectors that give us $\vec v_4$,
+				we can set up the system of equations:
+				\begin{align*}
+					a + 9b + 8c &= 6 \\
+					a + c &= 10\\
+					8a + 9b + 8c &= -1
+				\end{align*}
+				Turning this into a matrix and augmenting: 
+				\[
+					\begin{pmatrix} 1 & 9 & 8 & 6\\1 &0&1&10\\8&9&8&-1 \end{pmatrix} 
+				\] 
+				This is exactly $D$ from before, so row reducing this is the exact same, and we get:
+				\[
+					\begin{pmatrix} 1 & 0 & 0 & -1\\ 0 & 1 & 8 / 9& 7 / 9\\0 & 0 & 1 & 11 \end{pmatrix} 
+				\] 
+				So this actually allows us to read off the solutions nicely:
+				\begin{align*}
+					a &= -1 \\
+					c &= 11 \\
+					b &= \frac{7}{9} - \frac{8}{9}c = -9
+				\end{align*}
+				Therefore, the linear combination is:
+				\[
+				\vec v_4 = -\vec v_1 -9 \vec v_2 + 11 \vec v_3
+				\] 
+				Indeed, if we check this:
+				\[
+				-\begin{pmatrix} 1\\1\\8 \end{pmatrix} -9\begin{pmatrix} 9\\0\\9 \end{pmatrix} + 11 \begin{pmatrix} 8 \\1\\8 \end{pmatrix} = \begin{pmatrix} -1 - 81 + 88\\ -1 + 11 \\ -8 - 81 + 88 \end{pmatrix} = \begin{pmatrix} 6 \\ 10 \\ =1 \end{pmatrix} 
+				\] 
+				This actually also serves as a good check of the fact that our row reduction was done properly, 
+				since had there been a mistake we wouldn't be able to find the correct linear combination.
+			\end{solution}
+		\item Write down the matrix representation of $E$ (that is, the matrix that acts on the vector 
+			$\begin{pmatrix} x \\y \end{pmatrix}$ and returns the sheared vector). Make sure to explain
+			your work. What does this transformation do to the vector $\vec v = \begin{pmatrix} 3\\-2 \end{pmatrix} $? Add a sketch showing the original vector $\vec v$ and the sheared vector. 
+
+			\begin{solution}
+				The rectangle in the diagram is formed with two vectors: 
+				\[
+					\vec v_1 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}, \ \vec v_2 = \begin{pmatrix} 2 \\0 \end{pmatrix} 
+				\] 
+				From the diagram after the transformation, we can see that: 
+				\[
+				E \vec v_1 = \vec v_1, \ E \vec v_2 = \begin{pmatrix} 2\\ 1 \end{pmatrix} 
+				\] 
+				We know that $E$ takes in a vector in $\mathbb R^2$ and spits out a vector in $\mathbb R^2$, 
+				so this implies that $E$ must be a $2 \times 2$ matrix. Thus, we can write out the above 
+				two equations in terms of matrix multiplication:
+				\[
+					\begin{pmatrix} E_{11} & E_{12}\\ E_{21} & E_{22} \end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 0\\1 \end{pmatrix} 
+				\] 
+				Multiplying this out, we get:
+				\begin{align*}
+					E_{11}(0) + E_{12}(1) &= 0 \implies E_{12} = 0\\
+					E_{21}(0) + E_{22}(1) &=  1\implies E_{21} = 1 
+				\end{align*}
+				Now for the other vector: 
+				\[
+					\begin{pmatrix} E_{11} & E_{12}\\E_{21} & E_{22} \end{pmatrix} \begin{pmatrix} 2\\ 0 \end{pmatrix} = \begin{pmatrix} 2\\1 \end{pmatrix}  
+				\] 
+				Multiplying:
+				\begin{align*}
+					E_{11}(2) + E_{12}(0) &= 2 \implies E_{11} = 1\\
+					E_{21}(2) + E_{22}(0) &=  1 \implies E_{21} = \frac{1}{2}
+				\end{align*}
+				Therefore, the matrix $E$ is:
+				\[
+					E = \begin{pmatrix} 1 & 0 \\ \frac{1}{2} & 1 \end{pmatrix} 
+				\] 
+				Acting this matrix on the vector $\vec v = \begin{pmatrix} 3 \\ -2 \end{pmatrix}$, we get:
+				\[
+					E \vec v = \begin{pmatrix} 1 & 0 \\ \frac{1}{2} & 1 \end{pmatrix} \begin{pmatrix} 3 \\ -2 \end{pmatrix} = \begin{pmatrix} 3 \\ \frac{3}{2}-2 \end{pmatrix} = \begin{pmatrix} 3 \\ -\frac{1}{2}\end{pmatrix} 
+				\] 
+				As a diagram:
+				\begin{center}
+					\begin{tikzpicture}
+						\draw[thick] (-5, 0) -- (5, 0);
+						\draw[thick] (0, -3) -- (0, 3);
+						\draw[-stealth] (0, 0) -- (3, -2) node[right] {$\vec v$};
+						\draw[-stealth, blue] (0, 0) -- (3, -0.5) node[right] {$\vec v' = E \vec v$};
+					\end{tikzpicture}
+				\end{center}
+			\end{solution}
+		\item Find the antisymmetric part of $F$. Find a pair of constants $\rho$ and $\sigma$ such that 
+			the matrix $F$ is orthogonal?
+
+			\begin{solution}
+				The antisymmetric part of $F$ is given by 
+				\[
+					F_{\text{antisym}} = \frac{F - F^\top}{2}
+				\] 
+				We're given $F$, so we can just throw it into the formula:
+				\begin{align*}
+					F_{\text{antisym}} = \frac{1}{2}(F - F^\top) = \frac{1}{2}\left[\begin{pmatrix} \sqrt{3}  & -1 \\ \rho & \sigma \end{pmatrix} - \begin{pmatrix} \sqrt{3}  & \rho\\-1 & \sigma \end{pmatrix}\right] = \frac{1}{2}\begin{pmatrix}0 & -1 - \rho\\ \rho + 1 & 0   \end{pmatrix} = \frac{1}{2}\begin{pmatrix} 0 & -(\rho+1)\\ \rho+1 & 0 \end{pmatrix} 
+				\end{align*}
+				Now to find the constants $\rho$ and $\sigma$, we can multiply $F F^\top$ and set it equal to 
+				the identity:
+				\begin{align*}
+					F F^\top &= \frac{1}{4}\begin{pmatrix} \sqrt{3}  & -1\\ \rho & \sigma \end{pmatrix} \begin{pmatrix} \sqrt{3} & \rho \\ -1 & \sigma \end{pmatrix}  \\
+							 &= \frac{1}{4}\begin{pmatrix} 4 & \sqrt{3}\rho - \sigma\\ \sqrt{3} \rho - \sigma & \rho^2 + \sigma^2 \end{pmatrix}  
+				\end{align*}
+				If we want this to equal the identity, we require the following conditions:
+				\begin{align*}
+					\frac{\sqrt{3}\rho - \sigma}{4} &= 0 \\
+					\frac{\rho^2 + \sigma^2}{4} &= 1
+				\end{align*}
+				From the first equation we get that $\sqrt{3} \rho = \sigma$ so $3 \rho^2 = \sigma^2$. 
+				Substituting this into the other equation, we get:
+				\[
+				\rho^2 + 3\rho^2 = 4\rho^2 = 4 \implies \rho^2 = 1
+				\] 
+				This gives the solutions $\rho = \pm 1$, and consequently, $\sigma = \pm \sqrt{3}$ from the 
+				equation $\sqrt{3} \rho = \sigma$. Thus, one of the pairs is $(\rho, \sigma) = (1, \sqrt{3})$. 
+			\end{solution}
+		\item Explicitly compute $\det G$ by hand using the Laplace expansion. Be sure to fully explain 
+			your steps and identify which row or column you are using for the expansion. Then, using whatever
+			(by-hand) calculation method you would like, solve for the inverse matrix $G^{-1}$. Again, be sure 
+			to explain your steps. Finally, explicitly verify that you have found the inverse by computing 
+			$GG^{-1}$ or $G^{-1}G$.
+
+			\begin{solution}
+				I'm going to use the first row for the Laplace expansion since we have a zero in the first 
+				row. The determinant is given by taking the dot product between the first row and the first 
+				row of the cofactor matrix, whose entries are the minors of every element. In other words, 
+				the determinant of $G$ can be written as:
+				\[
+					\det(G) = 0\begin{vmatrix} 1 & 0 \\ -1 & 1\end{vmatrix} - 2 \begin{vmatrix} -1 & 0 \\ 1&1\end{vmatrix} - 4 \begin{vmatrix}-1&1\\1&-1\end{vmatrix} = -2(-1) - 4(1 - 1) = 2
+				\] 
+				Now to solve for the inverse matrix. I'll use the cofactor method which first asks us to compute
+				the cofactor matrix:
+				\begin{align*}
+					C_G = \begin{pmatrix}+ \begin{vmatrix} 1 & 0 \\ -1 & 1 \end{vmatrix} &
+					-\begin{vmatrix} -1 & 0 \\ 1 & 1\end{vmatrix} &
+					+\begin{vmatrix} -1&1\\1&-1\end{vmatrix}\\
+					-\begin{vmatrix} 2 & -4\\ -1&1\end{vmatrix} &
+					+\begin{vmatrix} 0 & -4 \\ 1 & 1\end{vmatrix} & 
+					-\begin{vmatrix} 0 & 2 \\ 1& -1\end{vmatrix}\\
+					+\begin{vmatrix} 2& -4\\-1& 1\end{vmatrix} &
+					-\begin{vmatrix} 0 & -4 \\ -1 & 0\end{vmatrix}&
+					+\begin{vmatrix} 0 & 2\\-1 & 1\end{vmatrix}  \end{pmatrix} 
+				\end{align*}
+				A quick description of how this process is done: 
+				The magnitude of each entry is given by the minor of that entry (i.e. finding the determinant of
+				the matrix formed by ignoring the row and column that minor is in), then we go along the matrix
+				and alternatingly multiply by $\pm 1$ along each row or column. Sorry if this explanation is 
+				a bit confusing; it's the best description I can give of this process while still being 
+				relatively concise. Now we recall that to compute a $2 \times 2$ determinant:
+				\[
+					\begin{vmatrix} a & b\\ c& d\end{vmatrix} = ad - bc
+				\] 
+				We can now simplify the cofactor matrix:
+				\[
+					C_G = \begin{pmatrix} 1 & 1 & 0\\ 2 & 4 & 2\\ 4& 4& 2 \end{pmatrix} 
+				\] 
+				The formula for the inverse is:
+				\[
+					G^{-1} = \frac{C_G^\top}{\det(G)}
+				\] 
+				Therefore, computing the transpose of $C_G$:
+				\[
+					C_G^\top = \begin{pmatrix} 1 & 2 & 4\\1 & 4 & 4\\0&2&2 \end{pmatrix} 
+				\] 
+				Thus since $\det(G) = 2$ from earlier:
+				\[
+					G^{-1} = \frac{1}{2}C_G^\top = \begin{pmatrix} \frac{1}{2} & 1 & 2\\ \frac{1}{2}&2 & 2\\0 & 1 & 1 \end{pmatrix} 
+				\] 
+				To verify that this is indeed the inverse, we compute $GG^{-1}$:
+				\begin{align*}
+					GG^{-1} &= \begin{pmatrix} 0 & 2 & -4\\-1 &1 & 0\\ 1& -1 & 1 \end{pmatrix} \begin{pmatrix} \frac{1}{2} & 1 & 2\\ \frac{1}{2} & 2 & 2\\ 0 & 1 & 1 \end{pmatrix}  \\
+							&= \begin{pmatrix} 1 & 4-4 & 4- 4 \\ -\frac{1}{2} + \frac{1}{2} & -1 +2 - 1 & -2 + 2\\\frac{1}{2} - \frac{1}{2} & 1 - 2 + 1 & 2 - 2 +1 \end{pmatrix}  \\
+							&= \begin{pmatrix} 1 & 0&0\\0&1&0\\0&0&1 \end{pmatrix}  = \mathbbold 1
+				\end{align*}
+				And since $GG^{-1} = \mathbbold 1$, then we can safely say that $G^{-1}$ was indeed computed
+				correctly. As per the exam policy, I will also admit that I did use Mathematica to verify
+				this inverse. 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 2}
+	\begin{enumerate}[label=\alph*)]
+		\item Show that the space of periodic functions of period $L$ is a vector subspace of the 
+			vector space of $V$. Show or argue that we need $k = 2 \pi n / L$ with $n = z$ in order for 
+			the vector $\vec h_k = e^{ikx}$ to be an element of this subspace. 
+
+			\begin{solution}
+				To show that this is a vector subspace, we show that it's closed under vector addition and 
+				scalar multiplication. First, we show vector addition. Suppose $f$ and $g$ are two functions
+				with period $L$. That is, $f(x + L) = f(x)$ and $g(x+ L) = g(x)$. Then, we construct 
+				$h(x) = f(x) + g(x)$. Checking periodicity:
+				\[
+					h(x + L) = f(x+L) + g(x + L) = f(x) + g(x) = h(x)
+				\]
+				so since $h(x+L) = h(x)$, this means that $h = f+g$ is also periodic, and thus this space
+				is closed under vector addition. Now under scalar multiplication, let $f$ be defined the same 
+				way, but now consider $h(x) = c f(x)$ for some constant $c$. Then:
+				\[
+				h(x+L) = cf(x+L) = cf(x) = h(x)
+				\] 
+				hence, since $h(x+L) = h(x)$, we conclude that this space is also closed under scalar 
+				multiplication. With these two properties verified, we conclude that it is indeed
+				a vector subspace.
+
+				In order for $\vec h_k$ to belong to $V_L$, we require that $h_k(x) = h_k(x+L)$. There are two 
+				ways this can be true. The first way:
+				\[
+					e^{ikx} = e^{ik(x + L)}
+				\] 
+				However, this is only true when $L = 0$. However, because we're dealing with a complex phase, 
+				we note that adding and subtracting by integer multiples of $2\pi$ doesn't change the 
+				value of $h_k(x)$. Therefore, the following is another way this $h_k(x) = h_k(x+L)$ can 
+				be satisfied:
+				\[
+					e^{ikx} = e^{ik(x + L) + 2\pi n}
+				\] 
+				comparing the exponents directly, we get: 
+				\begin{align*}
+					k(x+L)&= kx + 2\pi n \\
+					kx + kL - kx &= 2 \pi n\\
+					kL &=  2 \pi n \\
+					\therefore k &= \frac{2 \pi n}{L}
+				\end{align*} 
+				Since we deal with nonzero $L$ (a zero $L$ implies the trivial result that $V_L = V$ which
+				is to say, the functions don't have to be periodic), then in
+				order for $\vec h_k
+				\in V_L$, it is a requirement that $k = 2 \pi n / L$. 
+			\end{solution}
+		\item Verify that the vectors $\hat{f_n}$ and $\hat{f_m}$ are orthogonal when $n \neq m$. 
+
+			\begin{solution}
+				To do this, we need to show that $\hat{f_n} \cdot \hat{f_m} = 0$ with respect to the defined
+				inner product. The inner product is:
+				\[
+					\vec f \cdot \vec g = \frac{1}{2\pi}\int_0^{2\pi} f^*(\theta) g(\theta) d\theta	
+				\] 
+				so therefore: 
+				\begin{align*}
+					\hat{f_n}\cdot \hat{f_m} &= \frac{1}{2\pi}\int_0^{2\pi} e^{-in \theta} 
+					e^{im \theta} d\theta\\
+											 &= \frac{1}{2\pi}\int_0^{2\pi} e^{i(m - n)\theta} d\theta \\
+											 &= \frac{1}{2\pi}\left[\frac{1}{i(m-n)}e^{i(m-n)\theta}\right]_0^{2\pi}\\
+											 &= \frac{1}{2\pi i(m-n)}\left[e^{2\pi i(m - n)} - 1\right] \\
+											 &= \frac{1}{2\pi i (m - n)}\left[ \cos(2\pi (m - n)) + i \sin(2\pi(m - n)) - 1\right]
+				\end{align*}
+				Now we use the fact that the sine and cosine functions have a period of 2pi, and also 
+				the fact that $m-n$ is a nonzero integer when $n \neq m$. Because of these two facts, we conclude that $\cos(2\pi k) = 
+				\cos(0) = 1$ for any integer $k$, and $\sin(2\pi k) = \sin(0) = 0$. Thus, the above equation 
+				evaluates to:
+				\[
+					\hat{f_n} \cdot \hat{f_m} = \frac{1}{2\pi i(m - n)}[1 - 1] = 0
+				\] 
+				as desired. Note also that we didn't have to convert the exponnetial into sines and cosines,
+				but could also have argued that it equals 1 from the term $e^{2\pi i(m -n)}$ since this term 
+				means the same thing as rotating around $\theta = 0$ an integer multiple of $2\pi$ times,
+				which would return us 
+				right back to $\theta = 0$. Hence, $e^{2 \pi i(m - n)} = e^0 = 1$, and the rest follows 
+				in the exact same way.
+			\end{solution}
+		\item Find the expansion coefficients $c_0$ and $c_{+1}$. Argue that, since $T(\theta)$ must be a real 
+			function, we must have $c_{-n} = c_n^*$. 
+
+			\begin{solution}
+				To find $c_0$, we dot $\vec f_0$ with $T$:
+				\begin{align*}
+					c_0 = \vec h_0 \cdot \vec T &= \frac{1}{2\pi}\int_0^{2\pi} \underbrace{e^{-i(0)\theta}}_{= 1} T(\theta) d\theta\\
+					&= \frac{1}{2\pi}\left[\int_0^\pi T_0 d\theta + \int_\pi^{2\pi} 0 d\theta\right] \\
+					&= \frac{1}{2\pi}T_0 \pi \\
+					&= \frac{T_0}{2}
+				\end{align*}
+				Now we dot $f_{+1}$ with $\vec T$:
+				\begin{align*}
+					c_{+1} &= \frac{1}{2\pi}\left[\int_0^\pi e^{-i \theta} T(\theta) d\theta + \int_\pi^{2\pi} e^{-i \theta} \underbrace{T(\theta)}_{= 0} d\theta\right]\\
+						   &= \frac{1}{2\pi}\left[T_0 \int_0^\pi e^{-i \theta} d\theta\right] \\
+						   &= \frac{T_0}{2\pi}\left[-ie^{-i \theta}\right]_0^\pi \\
+						   &= \frac{T_0}{2\pi}\left[-i\underbrace{e^{-i \pi}}_{=-1} - i\right] \\
+						   &= \frac{T_0}{2\pi} (-2i)\\
+						   &= -\frac{iT_0}{\pi} 
+				\end{align*}
+				To show that $c_{-n} = c_n^*$, consider how we compute $c_{n}$:
+				\[
+					c_n = \hat{f}_n \cdot \vec T = e^{in \theta} \cdot \vec T
+				\] 
+				Now we take the conjugate of this:
+				\[
+					c_n^* = (e^{in \theta} \cdot \vec T)^* = (e^{in \theta})^* \cdot \vec T^* = e^{-in \theta} \cdot \vec T^*
+				\] 
+				Now, we note that since $T$ must be a real function, then $\vec T^* = \vec T$. Thus:
+				\[
+					c_n^* = e^{- in \theta} \cdot \vec T
+				\] 
+				Writing this in a more suggestive way:
+				\[
+					c_n^* = e^{i(-n)\theta} \cdot \vec T 
+				\] 
+				We can see that the complex exponential here is exactly $\hat{f}_{-n}$ so therefore:
+				\[
+					c_n^* = \hat{f}_{-n} \cdot \vec T = c_{-n} 
+				\] 
+				as desired.
+			\end{solution}
+		\item Give a \textit{brief} (no more than one or two sentences) explanation as to why $G$ is in fact
+			a linear transformation. Then, express the result of acting $G$ on the basis vectors $\hat{c}_3$ 
+			and $\hat{s}_3$ as linear combinations of $\hat{c}_3$ and $\hat{s}_3$. Use this to write down
+			a $(2 \times 2)$ matrix representation of $G$ acting on the subspace spanned by $\{\hat{c}_3,
+			\hat{s_3}\}$
+
+			\begin{solution}
+				Firstly, $G$ does take in a vector $f$ (in our space) and spit out another vector 
+				$\dv{f}{\theta}$, so therefore
+				it satisfies the aspect of it being a transformation. Further, the operation of taking a 
+				derivative is linear with respect to linear combinations of functions, or in other words:
+				\[
+				G(\alpha f(\theta) + \beta h(\theta)) = \alpha G f(\theta) + \beta Gh(\theta)
+				\] 
+				thus satisfying the definition of a linear transformation. Now to find the representation of $G$,
+				we first act $G$ on the basis vectors. Using the definition given above:
+				\begin{align*}
+					G \hat{c}_3 &= \dv{\theta} \frac{1}{\sqrt{2} }\cos(3\theta) = -\frac{3}{\sqrt{2} }\sin(3\theta) = -3 \hat{s}_3\\
+					G \hat{s}_3	&= \dv{\theta} \frac{1}{\sqrt{2} }\sin(3\theta) = \frac{3}{\sqrt{2} }\cos(3\theta) = 3 \hat{c}_3
+				\end{align*} 
+				Now for the matrix representation. Let a vector in the subspace spanned by 
+				$\{\hat{c}_3, \hat{s}_3\}$ be represented as:
+				\[
+				\begin{pmatrix} a\\b \end{pmatrix} \equiv a \hat{c}_3 + b \hat{s}_3
+				\] 
+				Then, the basis vectors $\hat{c}_3$ and $\hat{s}_3$ are represented by 
+				$\begin{pmatrix} 1\\0 \end{pmatrix}$ and $\begin{pmatrix} 0\\1 \end{pmatrix}$ respectively. Then,
+				we can write:
+				\begin{align*}
+					G \begin{pmatrix} 1\\0 \end{pmatrix} &= \begin{pmatrix} 0 \\-3 \end{pmatrix} \\
+					G \begin{pmatrix} 0\\1 \end{pmatrix} &= \begin{pmatrix} 3\\0 \end{pmatrix} 
+				\end{align*}
+				Representing $G$ by the most general $2\times 2$ matrix, the first equation becomes:
+				\[
+					\begin{pmatrix} G_{11} & g_{12} \\ G_{21} & G_{22} \end{pmatrix} \begin{pmatrix} 1\\0 \end{pmatrix} = \begin{pmatrix} 0 \\ -3 \end{pmatrix} 
+				\] 
+				Doing the matrix multiplication on the left hand side yields the following two equations:
+				\begin{align*}
+					G_{11}(1) + G_{12}(0) = 0 \implies G_{11} &= 0\\
+					G_{21}(1) + G_{22}(0) = -3 \implies G_{21} &= -3
+				\end{align*}
+				Now for the second equation:
+				\[
+					\begin{pmatrix} G_{11} & G_{12}\\G_{21} & G_{22} \end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 3\\ 0 \end{pmatrix} 
+				\] 
+				Again, doing the matrix multiplication gives:
+				\begin{align*}
+					G_{11}(0) + G_{12}(1) = 3 \implies G_{12} = 3\\
+					G_{21}(0) + G_{22}(1) = 0 \implies G_{22} = 0
+				\end{align*}
+				Therefore the matrix $G$ is:
+				\[
+					G = \begin{pmatrix} 0 & 3 \\ -3 & 0 \end{pmatrix} 
+				\] 
+				After completing this problem, I now realize that we could've just skipped all this and just 
+				written $G = \begin{pmatrix}  G \hat{c}_3& G \hat{s}_3 \end{pmatrix}$ , but I wasn't entirely
+				sure when this property holds 
+				and when it doesn't \footnote{I remember asking this question in one of the tap-backs, but 
+				I don't think that question was ever answered}, so I decided to do it the long way. 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 3}
+	\begin{enumerate}[label=\alph*)]
+		\item What condition(s) relating the two phase angles $\delta_x$ and $\delta_y$ will give linearly 
+			polarized light? What is the intensity of light described by the Jones vector 
+			$\vec J = \begin{pmatrix} 3E_0\\4iE_0 \end{pmatrix}$?
+
+			\begin{solution}
+				As described in the problem statement, in order for the light to be linearly polarized we 
+				require that $J_x/J_y$ to be a real quantity. Computing this quantity:
+				\[
+					\frac{J_x}{J_y} = \frac{E_{0, x}e^{i \delta_x}}{E_{0, y}e^{i \delta_y}} = \frac{E_{0, x}}{E_{0, y}} 
+					e^{i(\delta_x - \delta_y)}
+				\] 
+				Thus, in order for this quantity to be real, we require the phase to be an integer mutliple of 
+				$\pi$. Therefore, the condition is:
+				\[
+				\delta_x - \delta_y = k\pi, \ k \in \mathbb Z
+				\] 
+				The intensity of light from the vector $\vec J$ is given by $I = \alpha \vec J \cdot \vec J$, so 
+				we just need to compute $\vec J \cdot \vec J$:
+				\begin{align*}
+					I &= \alpha \vec J \cdot \vec J = \alpha J^\dagger J\\
+												   &= \alpha \begin{pmatrix} 3E_0 & -4iE_0 \end{pmatrix}
+												   \begin{pmatrix} 3E_0\\4iE_0 \end{pmatrix}  \\
+												   &= \alpha(9E_0^2 + 16E_0^2)\\
+												   &= 25 \alpha E_0^2 
+				\end{align*}
+			\end{solution}
+		\item Find the rank and nullity of the matrix $P$. Find a general form for an element of the image of 
+			$P$. Then find a general form for an element of the kernel of $P$. In particular, for an element
+			of the kernel, what is the condition on the ratio of amplitudes $E_{0, y} / E_{0, x}$?
+
+			\begin{solution}
+				To find the rank of $P$ first let's row reduce $P$. As a first step, we'll divide the first
+				row by $\cos^2(\theta)$ and divide the second row by $\sin^2(\theta)$. This leaves us 
+				with:
+				\[
+					\begin{pmatrix} 1 & \tan \theta\\ \cot \theta & 1 \end{pmatrix} 
+				\] 
+				Now we do $R_2 - R_1 \cot \theta$, giving:
+				\[
+					\begin{pmatrix} 1 & \tan \theta\\ 0 & 0 \end{pmatrix} 
+				\] 
+				Therefore, the rank of $P$ is 1, since there is only a single pivot. The dimension of $P$ is 2
+				(given by 2 columns), so therefore by the rank nullity theorem, we get that the nullity is:
+				\footnote{In doing this part I had to go into the notes to verify that the proper notation was 
+				indeed $\mathrm{null}(P) = \dim(\ker(P))$. That was all I had to look up though, I did remember
+				the formula correctly.}
+				\[
+				\mathrm{null}(P) = 2 - \rank(P) = 2 - 1 = 1
+				\]
+
+				The general form for an element of the image is just acting $P$ on an arbitrary matrix
+				$\vec J$:
+				\begin{align*}
+					P \vec J &= \begin{pmatrix} \cos^2 \theta & \cos \theta \sin \theta \\ \cos \theta \sin \theta & \sin^2 \theta \end{pmatrix} \begin{pmatrix} E_{0, x} e^{i \delta_x} \\ E_{0, y} e^{i \delta_y} \end{pmatrix}  \\
+							 &= \begin{pmatrix} \cos^2 \theta E_{0, x} e^{i \delta_x} + \cos \theta \sin \theta E_{0, y} e^{i \delta_y} \\ \cos \theta \sin \theta E_{0, x} e^{i \delta_x} + \sin^2 \theta E_{0, y} e^{i \delta_y} \end{pmatrix}  \\
+							 &= \begin{pmatrix} \cos \theta(\cos \theta E_{0, x} e^{i \delta_x} + \sin \theta E_{0, y}e^{i \delta_y})\\ \sin \theta (\cos \theta E_{0, x} e^{i \delta_x} + \sin \theta E_{0, y}e^{i \delta_y}) \end{pmatrix}
+				\end{align*}
+				We can now see that the terms in parentheses are actually the same, so we can factor that out, 
+				giving:
+				\[
+					P \vec J = (\cos \theta E_{0, x} e^{i \delta_x} + \sin \theta E_{0, y} e^{i \delta_y}) 
+					\begin{pmatrix}  \cos \theta \\ \sin \theta \end{pmatrix} 
+				\] 
+				I could also write this in terms of $J_y$ and $J_x$ just to make this expression look a bit more
+				visually appealing. Therefore, vectors in the image of $P$ are of the form:
+				\[
+					\vec w = P \vec J  = (\cos \theta J_x + \sin \theta J_y) \begin{pmatrix}  \cos \theta \\ \sin \theta \end{pmatrix} 
+				\] 
+				As for an element of the kernel, we are looking for a vector $\vec J$ that satisfies:
+				\[
+					\begin{pmatrix} \cos^2 \theta & \cos \theta \sin \theta \\ \cos \theta \sin \theta & \sin^2 \theta \end{pmatrix} \begin{pmatrix} J_x \\ J_y \end{pmatrix}  = \begin{pmatrix}  0\\0 \end{pmatrix} 
+				\] 
+				Augmenting this matrix, we have:
+				\[
+					\tilde P = \begin{pmatrix} \cos^2 \theta & \cos \theta \sin \theta & 0\\
+					\cos \theta \sin \theta & \sin^2 \theta & 0\end{pmatrix} 
+				\] 
+				The zeroes in the third column don't affect our row reduction, and we notice that the other 
+				two columns are exactly just $P$, row reducing $\tilde P$ is the same as row reducing $P$ then 
+				tacking on a oolumn of zeroes as the rightmost column. Therefore, we're allowed to use the 
+				row reduction from earlier:
+				\[
+					\tilde P = \begin{pmatrix} 1 & \tan \theta & 0 \\ 0 &0&0 \end{pmatrix} 
+				\] 
+				From the first row, we get that $J_x + J_y \tan \theta = 0$, or in other words $J_x = -J_y \tan
+				\theta$. If we let $J_y = t$, then we are looking for vectors of the form:
+				\[
+				\vec J = t \begin{pmatrix}  1\\ -\tan \theta \end{pmatrix} 
+				\] 
+				Note that this is a real vector, and thus linearly polarized, as suggested by the 
+				hint. Now recall the general form for $\vec J$:
+				\[
+					J = \begin{pmatrix} E_{0, x}e^{i \delta_x} \\ E_{0, y} e^{i \delta_y} \end{pmatrix} = 
+					\begin{pmatrix}  t \\ - t \tan \theta \end{pmatrix} 
+				\] 
+				Equating the entries gives us the system:
+				\begin{align*}
+					E_{0, x} e^{i \delta_x} &= t \\
+					E_{0, y} e^{i \delta_y} &= -t \tan \theta
+				\end{align*}
+				We know that the complex exponentials don't contribute anything to the magnitude (since they 
+				have magnitude 1, and are there to represent the complex phase), we can drop them from these 
+				two equations, giving us:
+				\begin{align*}
+					E_{0, x} &= t\\
+					E_{0, y} &= -t \tan \theta
+				\end{align*}
+				And thus, the ratio $E_{0, y}/E_{0, x}$ is:
+				\[
+					\frac{E_{0, y}}{E_{0, x}} = \frac{-t \tan \theta}{t} = -\tan \theta 
+				\] 
+			\end{solution}
+		\item Show that $P$ is an idempotent matrix.
+
+			\begin{solution}
+				To show that $P$ is idempotent, we show that $P^2 = PP = P$. Computing $P^2$:
+				\begin{align*}
+					P^2 = P P &= \begin{pmatrix} \cos^2 \theta & \cos \theta \sin \theta \\ \cos \theta \sin \theta & \sin^2 \theta  \end{pmatrix}  \begin{pmatrix} \cos^2 \theta & \cos \theta \sin \theta \\ \cos \theta \sin \theta & \sin^2 \theta  \end{pmatrix} \\
+							  &= \begin{pmatrix} \cos^4 \theta + \cos^2 \theta \sin^2 \theta &
+							  \cos^3 \theta \sin \theta + \cos \theta \sin^3 \theta \\
+						  \cos^3 \theta \sin \theta + \cos \theta \sin^3 \theta &
+					  \cos^2 \theta \sin^2 \theta + \sin^4 \theta\end{pmatrix}  \\
+							  &= \begin{pmatrix} \cos^2 \theta (\cos^2 \theta + \sin^2 \theta) & 
+							  \sin \theta \cos \theta(\cos^2 \theta + \sin^2 \theta) \\
+							  \sin \theta \cos \theta  (\cos^2 \theta + \sin^2 \theta)&
+							  \sin^2 \theta(\sin^2 \theta + \cos^2 \theta)  \end{pmatrix}  \\
+							&= \begin{pmatrix} \cos^2 \theta & \sin \theta \cos \theta\\
+							\cos \theta \sin \theta & \sin^2 \theta \end{pmatrix}\\
+							&= P
+				\end{align*}
+				And with $P^2 = P$ verified, we can conclude that $P$ is indeed idempotent. 
+			\end{solution}
+	\end{enumerate}
+\end{document}

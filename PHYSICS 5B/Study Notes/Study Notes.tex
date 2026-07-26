@@ -1,0 +1,403 @@
+\documentclass{report}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{epigraph}
+\usepackage{caption}
+\usepackage{esint}
+
+%Page formatting
+\lhead{Eric Du}
+\chead{Physics 5B Compilation}
+\rhead{\today}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\title{Midterm 1 Study Notes}
+\author{Eric Du}
+\date{\today}
+
+%.sty file handling
+\usepackage[sexy]{evan}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+%Paragraph Formatting
+\setlength{\epigraphwidth}{148pt}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+
+\begin{document}
+    \maketitle
+
+\section{Introduction}
+    This entire document is intended as a compilation of the notes that I've taken in Andrew Charman's Physics 5B class. 
+
+    Special thanks to Andrew Binder for sending me the Ti\textit{k}Z diagrams and putting up with having to edit my original draft copy, this document literally won't be complete without you. -Eric D
+
+
+\chapter{Electrostatics}
+
+\section{The concept of Charge}
+
+Charge is a concept that we will be exploring a lot of throughout this document. While we usually think of charges in terms of electrons, it's far more correct to define them in terms of the \textit{elementary charge} $e$, which has a value of $1.6 \times 10^{-19}$ coulombs. 
+
+It just so happens that an electron has a charge of $-e$, and a proton has a charge of $+e$. Later in physics we will touch upon quarks which have fractional elemtnary charge $\frac{1}{3}e$ and $\frac{2}{3}e$, but we won't encounter them here.
+
+\section{Continuous Charge Density}
+
+Throughout this document, we will be talking about both discrete and continuous charge distributions. To swap between the two, we have the following relationships:
+
+\[ \begin{cases}
+    \rho(\vec{r}) \  dV = dq\\
+    \sigma \ dA = dq\\
+    \lambda \ dS = dq
+\end{cases}\]
+
+Where $dq$ represents a differential contribution in charge. 
+
+Where $\rho$, $\sigma$ and $\lambda$ denote the volumetric, surface, and lineal charge densities respectively. 
+
+\section{Coulomb's Law}
+
+    One of the fundamental laws of electrostatics, which we will use over and over again. As far as I know, this law is 100\% empirical, but it seems to hold so far.
+
+    \begin{theorem}[Coulomb's Law]
+        If we have two charges $q_1$ and $q_2$, then we have the following:
+
+        \[ F_{12} = \frac{1}{4\pi\varepsilon_0} \frac{q_1q_2}{|r_1 - r_2|^2} \hat R\]
+
+        Where we define $\vec{R} = r_1 - r_2$, the vector connecting the two.
+    \end{theorem}
+
+    It's important to note that by convention, the force is positive if the force vector points radially outward, and negative if it points radially inward. So unlike the gravitational force:
+    
+    \[ F_g = -\frac{Gm_1m_2}{r^2}\]
+
+    which requires the addition of a negative sign in front, electrostatics does not need such a convention because the sign is already taken care of in the sign of the charges.
+
+    As is obvious with the formula, the force will be negative if and only if the charges are of opposite sign. 
+
+\subsection{Properties of Coulomb's Law}
+
+    Note that Coulomb's force is additive, and we can calculate the net force on an object via the principles of superposition. This allows us to calculate the net force on an object simply by summing up the contributions of all the charges surrounding it. To do this with a continuous distribution of charges, we just take an integral. 
+
+    There are some other properties of Coulomb's law, and they are as follows:
+
+    \begin{itemize}
+        \item Proportional to object charge
+        \item Reciprocal
+        \item Central (points along the line joining the charges)
+        \item Conservative (means that our integrals for work are path independent)
+    \end{itemize}
+
+    These properties make Coulomb's law a powerful  to work under, which we will explore more of throughout later chapters. 
+
+    \section{Work, Potential Energy}
+
+    As we've talked about in the earlier section, the equation for force is conservative, meaning that it is path independent. This is an extremely powerful concept, becuase it allows us to take integrals wthout worrying about the path but just the end points. From classical mechanics, we've learned that:
+
+    \[ W = -\int \vec{F} \cdot d\vec{r}\]
+
+    And we can apply that same thing here so we get:
+
+    \[ U = \frac{1}{4\pi\varepsilon_0} \frac{qq'}{R}\]
+
+    This formula inherently assumes that the potential energy of two points charges at infinite separation is zero, since the value goes to zero as $R \to \infty$. 
+
+    \subsection{Electric Potential Energy}
+
+    In a system of particles, the potential energy of the system is equivalent to the sum of all the pairwise potential energies between each of the individual particles. Represented in summation notation, this is equal to:
+
+    \begin{theorem}[Electric Potential Energy]
+    \begin{align*}
+        U_{total} &= \sum_{j = 1}^N \sum_{k = 1}^j \frac{1}{4\pi\varepsilon_0} \frac{q_jq_k}{R_{jk}}\\
+        &= \frac{1}{2} \frac{1}{4\pi\varepsilon_0} \sum_j \sum_{k \neq j} \frac{q_jq_k}{R_{jk}}
+    \end{align*}
+    \end{theorem}
+
+    Notice here that due to the way we've set this summation up, we need that factor of $\dfrac{1}{2}$ is necessary in order to avoid double counting.
+
+    The total potential energy can be thought of as the amount of energy an external force is required to exert on a system to bring a set of charges into the configuration in question. Let's take the example of two charges, just to illustrate. If the two charges are both positive or negative, then the total potential energy is positive. This makes sense because there is a repelling force between the two charges, and it requires energy from the outside force to counteract it. Likewise, if the charges are of opposite sign, then the potential energy is negative. While negative energy doesn't exactly make sense, what the potential energy is really telling us is that for the charges to assume that configuration, the outside force does not have to do any work. This makes sense via Coulomb's law as well, since two particles of opposite charge attract one another, so no external force is needed.
+
+\chapter{Fields}
+
+\section{Electric Fields}
+    So now we've seen the concept of discrete charge, and how those charges can interact with one another via Coulomb's law. Here, we will introduce another way of thinking about charge and the interaction between two charges: Electric Fields. 
+
+    So in this framework, instead of thinking of specific charges interacting with one another, we say instead that these charges are the source of electric fields, and it is the interaction of these fields that give us the force. 
+
+    To calculate theh electric field, we take a test charge with charge $q$, and we place it in the location where we want to measure the electric field. However, we want to take the limit as this charge approaches zero, so that this charge doesn't create any field itself. doing that, we get:
+
+    \[ \vec{E}(\vec{r}, t) = \lim_{q \to 0} \frac{\vec{F_q}}{q}\]
+
+    Simplifying this formula down a bit, we get the following:
+
+    \begin{theorem}[Electric Field]
+        The electric force on any charge in space is given by:
+
+        \[ \vec{F_q} = q\vec{E}\] 
+
+        Where $\vec{E}$ represents the electric vector field at that location, and $q$ represents the electric charge of the charge in question.
+    \end{theorem}
+
+    Note that because electric forces obey the principles of superposition, this means that electric field must also obey these rules. So this means that when we calculate the net force on a particle, we could either find the vector sum of all forces, or we could find the vector sum of all fields. 
+    
+    The signage of the vector, just like in electrostatics, will tell you which way the electric field is pointing, and its direction should be consistent with what we see in electrostatics. We should expect this reuslt, since all we're doing with electric fields is altering the way we view things, but not how those things work themselves. 
+
+\subsection{Properties of Electric Fields}
+
+    There are a couple of properties about electric fields that we must obey by in order for our framework to be consistent:
+
+    \begin{itemize}
+        \item Field lines can only start on a positive charge, and can only end on a negative charge.
+        \item The field cannot form closed loops, and they must either extend to infinity or come from infinity/
+        \item The field strength is proportional to the spacing between the electric field lines.
+        \item The direction of electric force is the same as the direction of the field lines.
+        \item In any system, we must choose a consistent but arbitrary number of field lines to emanate from a positive charge and terminate at a negative charge. This convention must be followed throughout the problem.
+        \item Electric field is a \textit{normalized field}, meaning that everywhere in space the $\vec{E}$ field is defined, and is a unit vector. This is so that the magnitude of the electric force depends only on the charge, and the reason we can write $\vec{F}_q = q\vec{E}$.
+    \end{itemize}
+
+    \section{Gauss' Law}
+
+    Gauss' law is a powerful equation which allows us to calculate the electric fields of complex shapes without much difficulty. As an aside, it is a special case of the generalized Stokes' theorem (the Diverge theorem, specifically), but we won't really get into the specifics here. Essentially, Gauss' law gives us the relationship between the electric field produced by an object and the charge closed within that object. 
+    
+    \begin{theorem}[Gauss' Law]
+        Gauss' law states that:
+
+        \[ \Phi \equiv \oiint_S \vec{E} \cdot d\vec{A} = \frac{Q_{enc}}{\varepsilon_0}\]
+
+        Here, the integral refers to the surface integral over the boundary of a \textit{Gaussian Surface.} A gaussian surface is one which is arbitrary in geometry but must be closed in 3d space, meaning that it cannot have any boundary. 
+
+        The $d\vec{A}$ represents a differential normal vector which points outward from the surface.
+    \end{theorem}
+
+
+    \begin{remark}
+        To derive this formula, we use Divergence theorem along with one of Maxwell's equations:
+
+        \[ \nabla \cdot \vec{E} = \frac{\rho(\vec r)}{\varepsilon_0}\]
+
+        Divergence theorem them says:
+
+        \[ \Phi \equiv \oiint_S \vec{F} \cdot dS = \iiint_E \nabla \cdot \vec{F} \ dV\]
+
+        So now applying Maxwell's equation:
+
+        \[ \Phi \equiv \oiint_S \vec{F} \cdot d\vec{S} = \iiint_E \frac{\rho(\vec{r})}{\varepsilon_0} \ dV\]
+
+        Note that since $\varepsilon_0$ is a constant, then we simply have $\iiint_E \rho(\vec{r}) \ dV$, which is just a sipmle volume integral of the charge density within our surface. Note that while $\rho(\vec{r})$ might depend nontrivially on the position vector, this doesn't matter since we're taking the volume integral over the entire enclosed space, and thus the integral will always give us the enclosed charge. As a result, we get:
+
+
+        \[ \Phi \equiv \oiint_S \vec{F} \cdot d\vec{S} = \frac{Q_{enc}}{\varepsilon_0}\] 
+
+        Which is exactly Gauss' law.
+        
+    \end{remark}
+    There are a couple of very important implications about this theorem. Firstly, this theorem is essentially saying that the electric field generated by a collection of charges is only dependent on the charge enclosed within that object. Even though there may be charge outside your Gaussian surface, Gauss' law states that the electric field created by these charges do not influence the electric field calculated at that location. 
+    
+    One thing to note about Gauss' law is that it is true everywhere in any situation, but it might not always be that simple to calculate. This is because once some symmetries are broken, our normal vector $d\vec{A}$ can no longer be expressed cleanly, meaning that we might have to calculate a nasty integral. As a result, we generally only use Gauss' law in specific circumstances where there is enough symmetry to bypass the integral. Furthermore, Gauss' law also relates this integral to the total flux through a given surface $-$ and by extension of what we've just discussed, if there is no enclosed charge then the flux through that surface must be zero. 
+
+    This actually makes sense - just becuase the net flux is zero doesn't mean that there isn't any flux through that surface. The only thing is that the flux that \textit{enters} the surface is the same as the flux which \textit{exits} the surface, and as a result of this teh net flux is indeed equal to zero. Thus, the only way for there to be a net positive or negative flux, by necessity, has to be due to some enclosed charge. Let's illustrate Gauss' law via an example:
+
+    \begin{example}[Spherical Shell]
+        Imagine a spherical shell with surface charge density $\sigma$ and radius $R$, and we are asked to find the $\vec{E}$ field everywhere. First, we can compute the $\vec{E}$ field at an arbitrary location within the sphere, and call that 
+
+        \[\oiint_S \vec{E} \cdot d\vec{A} = \frac{Q_{enc}}{\varepsilon_0}\]
+        
+        Notice that due to the way we've picked our gaussian surface, there is no charge enclosed within our surface, and thus the $\vec{E}$ field is zero anywhere within the sphere. Just like the last example, this fact is rather counter intuitive but it is indeed true. Now we can compute the $\vec{E}$ field at any point outside the sphere:
+
+        \begin{align*}
+            \oiint_S \vec{E(r)} \cdot d\vec{A} &= \frac{\sigma \cdot 4 \pi R^2}{\varepsilon_0}\\
+            \vec{E(r)} \cdot 4\pi r^2 &= \frac{\sigma \cdot 4\ pi R^2}{\varepsilon_0}\\
+            \vec{E(r)} &= \frac{\sigma R^2}{\varepsilon_0 r^2}
+        \end{align*}
+
+        Notice now that the $\vec{E} \propto \dfrac{1}{r^2}$, which makes sense since if we're really far away from the sphere, it essentially looks like a point charge. 
+
+        Perhaps the most interesting thing about this result is the fact that the $\vec{E}$ field within the spherical shell is zero, despite there being charge surrounding the point which we pick. 
+    \end{example}
+
+    Notice that whenever we have to use Gauss' law, we always pick nice Gaussian surfaces which are geometrically nice and don't require us to calculate some complicated integral. This will remain the case throughout the entire course, so if you find yourself having to actually compute a complicated integral, chances are you're doing something wrong.
+
+    \begin{example}[Infinite Plane of Charge]
+        Suppose we have an infinite plane of charge with charge density $\sigma$, and we are asked to find the electric field at any point on that surface. We could do an integral using the following:
+
+        \[ d\vec{E} = \frac{1}{4\pi\varepsilon_0} \frac{dq}{r^2}\]
+
+        But since we have Gauss' law, we can do that instead. Here, we choose our Gaussian surface to be a cylinder which penetrates the plane on both sides. Notice that because the surface is a plane, there is no electric flux going through the sides of the cylidner, and there is only flux through the top and bottom. As a result, we have the following:
+
+        \begin{align*}
+            \oiint_S E(z) \cdot (2\pi r^2) &= \frac{\sigma \pi r^2}{\varepsilon_0}\\
+            \therefore E(z) &= \frac{\sigma}{2\varepsilon_0}
+        \end{align*}
+
+        Notice that we have to take the area as $2\pi r^2$ because of the fact that we conclude that there is electric flux going through the top and bottom of the gaussian surface we chose. 
+
+        This result is actually rather interesting. Since the electric field is actually independent of $z$, what we've essentially found is that regardless of the distance you are from the plane, the electric field is constant.
+
+        Furthermore, this also means that no matter how close we get to the plane of charge, the electric field is constant too! As surprising as this fact is, it has been experimentally verified.
+
+    \end{example}
+    \section{Electrostatic Potential}
+
+    Just like how we had electric potential energy, we also have the electrostatic potential defined in the context of fields. Just like how we had $\vec{E}$ field which is essentially the normalized field for $\vec{F_e}$, we also have electrostatic potential, which behaves like normalized $U$, per unit test charge. So just like:
+
+    \[ -\int_{P} \vec{F}(r) \ dr = W_{ext} = \Delta u\]
+
+    We have the same thing for electrostaitc potential energy:
+
+    \[ -\int_{P} \vec{E}(r) \ dr = \frac{W_{ext}}{q} = \frac{\Delta u}{q} \equiv \Delta \Phi \ \text{or} \ \Delta V\]
+
+    What's interesting to note about this formula is that the electrostatic potential is never a single value, but it intsead measures the \textit{difference} in electrostatic potential between two points in space. If the potential at one point is \textit{defined} to be zero, then we can derive a formula for the electrostatic potential by taking the integral relative to that point. If no such point exists, then we cannot do this. Matheamtically speaking, the electrostatic potential is written as:
+
+    \begin{theorem}[Electrostatic Potential]
+        \[V(b) - V(a) = -\int_a^b \vec{E}(r) \ dr\]
+
+        Note that in general, we let $b$ be the observation point and $a$ be reference point we are measuring it with respect to. And due to the conservative nature of electric fields, then this integral is path independent, so we generally just choose the simplest path - a straight line connecting $b$ and $a$. 
+    \end{theorem}
+
+    Because of the fact that electrostaitc potential is path independent, we can also claim that the potential drop across a closed loop is zero, since you start and arrive at the same point. This may seem obvious, but it is rather important to remember, and we can write that in the following form: 
+
+    \[ \oint \vec{E} \cdot d\vec{r} = 0\]
+
+    Let's take the example of a point charge centered at the origin, and take $r_0 = \infty$, so that $V(r_0) = 0$. Then we can take the integral:
+    
+    \begin{align*}
+        V(\vec{r}) - V(\vec{r_0}) &= \frac{q}{4\pi\varepsilon_0} \int_r^{r_0} \frac{1}{r^2} \ dr\\
+        &= \frac{q}{4\pi \varepsilon_0}\left[-\frac{1}{r}\right]_r^\infty\\
+        &= \frac{1}{4\pi\varepsilon_0} \frac q r
+    \end{align*}
+
+    Again, we should remember here that the only reason we were able to find a value for $V(r)$ in all of space is because of the fact that we were able to take $V(r_0) = 0$. Otherwise, we would have to define this charge in electrostatic potential as a potential difference relative to $r_0$. 
+
+    Electrostatic potential also follows the superposition principle, so that means that in order to find the total electrostatic potential, we can also sum up the indivudal ones given by individual objects. This will prove useful if we're talking about multiple objects, but it is rather useless when we're talking about a single object. Either way, we define:
+
+    \begin{theorem}[Electrostatic Potential, General case]
+        Given a collection of point charges $q_1, q_2, \dots, q_i$, the total electrostatic potential can be written as:
+
+        \[V_{tot}(\vec{r}) = \sum_N \frac{1}{4\pi\varepsilon_0} \frac{q_i}{\vec{r} - \vec{r_i}}\]
+    \end{theorem}
+
+    Due to the conservative nature of electrostatic potential (and via the work-energy theorem), the change in electrostatic potential also represents the work done by an external force to move a charge from point $a$ to point $b$. 
+
+    So we've looked at the discrete limit of potential energy, but we also have a continuum limit for it as well. Essentially, all we do is take a differential $dV$, and we integrate over whatever space the charges are confined under:
+
+    \begin{align*}
+        dq = \rho(r) d^3r &\implies V(r) = \iiint \dfrac{\rho(r) d^3 r}{4\pi\varepsilon_0|\vec{r} - \vec{r'}|}\\
+        dq = \sigma(r) d^2r &\implies V(r) = \iint \dfrac{\sigma(r) dA}{4\pi\varepsilon_0|\vec{r} - \vec{r'}|}\\
+        dq = \lambda(r) dr &\implies V(r) = \int \dfrac{\lambda(r) ds}{4\pi\varepsilon_0|\vec{r} - \vec{r'}|}
+    \end{align*}
+
+    Note also that these formulas are valid only because electrostatic potential has the property that it obeys the principles of superposition. 
+    
+    \begin{example}[Infinite Line of Charge]
+        Let's imagine an infinitel line of charge going in the vertical $z$ axis, and we are asked to find the electric potential at a location $r$ away from this line. Due to the symmetry of the system, we will choose cylindrical coordinates. 
+
+        First to calculate the $\vec{E}$ field, we need to use Gauss' law. We choose a cylinder of height $h$ around the wire. Analyzing the Gaussian surface, we realize that there cannot be any flux through the top or bottom of the cylinder, so the only flux we need to calculate is the body of the cylinder. Thus:
+
+        \begin{align*}
+            \vec E(r) \cdot 2\pi r \cdot h &= \frac{\lambda h}{\varepsilon_0}\\
+            \therefore \vec{E}(r) &= \frac{\lambda}{2\pi\varepsilon_0 r}
+        \end{align*}
+
+        Now that we have $\vec{E}(r)$, we can compute $V(r)$ by taking the integral. However, we have to be careful here: we need to choose our reference point as well as our measured point, call these two locations $a$ and $r$ along some radial line centered at the wire. From the integration we have:
+
+        \begin{align*}
+            V(r) - V(a) &= \frac{\lambda}{2\pi\varepsilon_0}\left[\ln(a) - \ln(r)\right]\\
+            &= \frac{\lambda}{2\pi\varepsilon_0}\ln\left(\frac{a}{r}\right)
+        \end{align*}
+
+        Normally, we would like to choose a location where $V(a)$ is zero, so we get the potential as a function of radius only. However, this isn't exactly possible in this case, because even when we try to set $a \to \infty$, there is still charge at infinity and thus the electric potential is not zero there either. 
+
+        Another way to see this issue is to consider a \textit{finite} length of charge, and then take the limit as the length of the wire goes to infinity. This problem is left as an exercise to the reader, but it is not unimabiably difficult to get the following:
+
+        \[ V(r) = \frac{\lambda}{4\pi\varepsilon_0}\ln\left|\frac{\sqrt{L^2 + r^2} + L}{\sqrt{L^2 + r^2} - L}\right|\]
+
+        Then what we can do is taylor expand $V(r)$ to get:
+
+        \[V(r) = \frac{\lambda}{4\pi\varepsilon_0}\ln\left|\frac{2L + \dots}{L\left(1 + \frac{r^2}{2L^2} + \dots\right) - L}\right|\]
+
+        And when we take the limit as $L \gg r$, then we get the voltage: 
+
+        \[ V(r) = \frac{\lambda}{4\pi\varepsilon_0}\ln\left|\frac{2L}{r}\right|\]
+
+        Notice here that our formula for potential depends on the length $L$, meaning that we cannot just arbitrariliy choose a location (such as infinity) and claim that the voltage at that location is zero.
+    \end{example}
+
+    \section{Equipotential lines}
+
+    Now that we've seen how potential energy works, it's useful to talk about equipotential lines, and how they play into the framework of E\&M. 
+
+    Equipotential lines are exactly what they refer to - lines where the potential energy difference across it is zero. We will talk a bit more in depth about how to find these lines later, but just note down this property, it'll become useful in a couple pages.
+
+    \section{Differential Forms}
+
+    \subsection{Differential Gauss' Law}
+
+    So far we've been looking at the integral and discrete forms of the relationships we use in electrostatics, but there are also differential forms, which can essentially be boiled down to taking the reverse of the integral forms. 
+
+    Recall that the potential energy formula is defined as follows:
+
+    \[ V(b) - V(a) = -\int_a^b \vec{E}(r) dr\]
+
+    Well what happens if we were given $V$, and asked to find $E(r)$? Naively we would assume that all we need to do is take the derivative with respect to $r$, which would be correct if we were given $\vec{E}$ as a function of $r$. However, in general this is not the case, and instead we we're given $\vec{E}(x, y, z)$. However, there is a way around this. If we do some poking around in calculus, we eventually get the following:
+
+    \begin{theorem}
+        Given a vector field $\vec{E}(r)$, we can relate the vector field and the potentials using the following:
+
+        \[ \vec{E}(r) = -\nabla V(\vec{r})\]
+    \end{theorem}
+
+    Where $\nabla$ denotes the gradient differential operator. If you're not familiar with gradient, it's defind as follows:
+
+    \[ \nabla f(x, y, z) = \hat x \frac{\partial f}{\partial x} + \hat y + \frac{\partial f}{\partial y} + \hat z \frac{\partial f}{\partial z}\]
+
+    If you've taken Math 53, then you should have learned that the gradient vector points in the direction of steepest ascent. With that in mind, it should become relatively obvious why the $\vec{E}$ field lies 
+
+
+    \subsection{Poisson's Equation}
+
+    Similar to the differential form of Gauss' law, Poisson's equation relates the potential energy of a system to the charge density of the system:
+
+    \begin{theorem}[Poisson's Equation]
+        Poisson's equation states that given a function for electrostatic potential $\Phi(r)$, it and the charge density can be related by:
+
+        \[ \nabla^2 \Phi(r) = -\frac{\rho(r)}{\varepsilon_0}\] 
+
+        Where $\nabla^2$ refers to the \textit{laplacian}. This differential operator takes on different forms in different spaces, but in rectangular coordinates it is the sum of all the second order partial derivatives of a function.
+    \end{theorem}
+
+    \subsection{Properties of Electrostatic Potential}
+
+    One of the most important properties of electrostatic potential actually comes from this differential form. Since a system of charges emit an electric field, we can draw curves on that electric field that represent \textit{equipotentials} - in other words, these are curves where the electrostatic potential is constant, and thus the path integral over that path is zero.
+
+    Since gradient always points in the direction of steepest asct, our $\vec{E}$ field must always be perpendicular to the equipotential lines, in other words they are always perpendicular to the level surface defined by that equipotential. Moreover, the spacing between these lines gives us an approximate answer for the magnitude of $\vec{E}$, though the actual calculation requires explicit formulas for $V(r)$.
+
+ƒ    %Insert diagram here for field lines being perpendicular. 
+
+
+    \chapter{Circuits}
+
+    We now move into the next big chapter in the course - circuits and the physics of circuit components. Here, we will analyze how specific components like capacitors, resistors, and inductors work, as well as analyze the general physics of connecting these components togehter to create a working circuit.
+
+    \section{Perfect/Ideal Conductors}
+
+    As with all classical physics, we live in a world where everything is assumed to be ideal, and this notion also applies to conductors. An ideal conductor is one that can hold an arbitrarily large amount of mobile electric charge, which allows the instant transfer of current from one point of the conductor to the other. Furthermore, because these charges are essentlly made to "teleport" across the conductor, there is never any charge within the conductor. As a result of this, we set the restriction that $\vec{E}(r) = 0$ everywhere on the conductor. Thus, by necessity, the charges within the conductor must lie on the boundary of the conductor. 
+
+    A consequence of this property is that the conductor must have $\vec{E}$ fields emanating perpendicular to tis surface, because the conductor is considered an equipotential. This fact, while not appearing very useful at first, actually gives us some powerful ways to solve problems. For instance, we can set any equipotential line in a system to be the surface of a conductor, which is a technique called \textit{conductor filling}, which is a powerful tool, but can only be used in niche situations. 
+
+    
+
+
+\end{document}

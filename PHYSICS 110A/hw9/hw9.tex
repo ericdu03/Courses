@@ -1,0 +1,209 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electromagnetism and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW } \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder, Teja Nivarthi, Nathan Song, Christine Zhang} and \textbf{Nikhil Maserang} to complete this homework assignment.
+	\section*{Problem 1}
+	On the right shows a system where current $I$ flowing upward along the central wire, spreading uniformly at
+	the upper cap in the radial direction, flowing down vertically on the cylindrical wall, and then flowing 
+	radially inward back to the central wire. The radius and height of the system are $R$ and $L$ 
+	respectively.
+
+	\begin{enumerate}[label=\alph*)]
+		\item Argue that the magnetic field everywhere has the form of $\mathbf B = B(s, z) \mathbf{\hat{\phi}}$
+
+			\begin{solution}
+				In terms of the dependences, we see that the only symmetry in the problem is azimuthal symmetry,
+				so we don't expect $\phi$ dependence. No such symmetry exists in the other two coordinates, so 
+				we of course expect $B$ to depend on them. In terms of the direction, if there were an $\hat{s}$
+				or $\hat{z}$ direction, this would imply that the magnetic field wouldn't form closed loops 
+				all the time -- something we know can't happen. Thus, we only expect it to point in the $\hat{
+				\phi}$ direction
+			\end{solution}
+		\item Find $B(s, z)$ at every point in the space. 
+
+			\begin{solution}
+				For the sake of convenience, let the center of the bottom plate denote the origin. Then, we know
+				that for regions $0 < z < L$ and $0 < r < R$, that the magnetic field can be given by 
+				Ampere's law:
+				\[
+				B(2\pi s) = \mu_0I \implies B = \frac{\mu_0 I}{2\pi s}
+				\] 
+				On the other hand, when $0 < z < L$ and $s > R$, we can see that an Amperian loop here would 
+				enclose the current through the center but also the current flowing down the walls. Due to
+				the conservation of current, we know that the currents here must sum up equally. Thus, the 
+				enclosed current is 0, and so $B = 0$ at $s > R$. In the region $z > L$, we see
+				that an Amperian loop drawn here has no current piercing it either, so $B = 0$ as well. Thus,
+				we're left with: 
+				\[
+				B = \begin{cases}
+					\frac{\mu_0 I}{2\pi s} & 0 < z < L \text{ and } 0 < s < R\\
+					0 & \text{otherwise}
+				\end{cases}
+				\] 
+			\end{solution}
+		\item Check that the boundary condition $B_{above} - B_{below} = \mu_0(\mathbf K \times \hat{\mathbf n})$
+			is satsified at the cylindrical wall and upper cap. 
+
+			\begin{solution}
+				Firstly, since the magnetic field above the cap is 0, then we know that $B_{above} - B_{below} =
+				-\frac{\mu_0I}{2\pi s} \hat{\phi}$. Now we need to check the right hand side. Firstly, we check 
+				the direction of $K \times n$. $K$ points in the $\hat{s}$ direction and $\hat{n}$ points in 
+				the $\hat{ z}$ direction, we know that $\hat{s} \times \hat{n} = -\hat{\phi}$, so the direction
+				is verified. 
+
+				In terms of magnitude, we know that we can determine $K$ by looking at an angular width $ r
+				d\theta$, giving us the integral: 
+				\[
+				\int K r d\theta = I \implies K = \frac{I}{2\pi s}
+				\] 
+				so therefore
+				\[
+				\mu_0(K \times \hat{n}) = -\frac{I}{2\pi s}\hat{ \phi}
+				\] 
+				as expected. 
+			\end{solution}
+	\end{enumerate}
+	\pagebreak
+
+	\section*{Problem 2}
+	Show that in a current-free volume of space, a static magnetic field can never have a local maximum by 
+	considering 
+	\[
+		\oint_S \nabla(B \cdot B) da
+	\] 
+	where $\mathcal S$ is the surface of a small volume $\mathcal V$ containing a point $P$ in space. 
+
+	\begin{solution}
+		In order for a local max to occur, we require that $\nabla(\vec B \cdot \vec B) = 0$ and also that
+		$\nabla^2 (\vec B \cdot \vec B) < 0$. We prove that this is an impossible condition to have, given 
+		the fact that $\div B = 0$, and also $\curl B = 0$, given that there is no current.  
+
+		Firstly, we turn this into a volume integral by using the divergence theorem:
+		\[
+			\oint_{\mathcal S} \nabla (\vec B \cdot \vec B) da = \int_{\mathcal V} \nabla^2 (\vec B \cdot \vec B)
+			d\mathcal V
+		\] 
+		Now we focus on the integrand, and rewrite it as:
+		\[
+			\nabla^2(\vec B \cdot \vec B) = 2(\nabla^2 \vec B) B + (\nabla B)^2
+		\] 
+		We also know from an equation in the formula sheet that $\curl(\curl A) = \nabla(\div A) - \nabla^2 A$. 
+		Rearranging for $\nabla^2 A$, we get:
+		\[
+		\nabla^2 A = \nabla(\div A) - \nabla(\curl A)
+		\] 
+		But since $\div A = 0$ and $\curl A = 0$ as mentioned above, then $\nabla^2 A = 0$ as well. Thus, 
+		\[
+		\nabla(\vec B \times \vec B) = (\nabla B)^2
+		\]
+		which is a strictly positive quantity. Therefore, it cannot possibly be true that $\nabla^2 (\vec B 
+		\cdot \vec B) < 0$, so $B$ cannot have a local maximum. 
+
+		Like the others that I worked with, I'm also confused as to why we need the integral to begin with, unless its purpose 
+		was to get us to use the divergence theorem to see that we have to analyze 
+		$\nabla^2 (\vec B \cdot \vec B)$, since we didn't use the integral at all.
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 3}
+
+	A uniformly charged solid sphere of radius $R$ carries a total charge $Q$, and is spinning with an angular
+	velocity $\omega$ about the $z$-axis. 
+
+	\begin{enumerate}[label=\alph*)]
+		\item What is the magnetic dipole moment of the sphere?
+
+			\begin{solution}
+				Griffiths equation 5.90 is of particular use here since it gives an expression of the magnetic
+				dipole moment as a function of the volume current density: 
+				\[
+				\vec m = \frac{1}{2}\int \vec r \times J d\tau
+				\] 
+				We know that the volume current density is $J = \rho (r \times \omega)$, so therefore
+				\[
+				J = \frac{Qr \omega}{\frac{4}{3}\pi R^2}\hat{\phi}
+				\] 
+				Now, we integrate this:
+				\begin{align*}
+					\vec m &= \frac{1}{2}\int (\vec r \times \frac{Qr \omega}{\frac{4}{3}\pi R^2}\hat{ \phi}) 
+					d\tau\\
+						   &= -\frac{3 \hat{ \theta}}{8\pi R^2} \int_0^R \int_0^{2\pi} \int_0^\pi Q r^2 \omega
+						   r^2 \sin \theta d\theta d\phi dr\\
+						   &= -\frac{3Q \omega R^2}{4}\hat{\theta} 
+				\end{align*}
+			\end{solution}
+
+		\item At the large distance limit $r \gg R$, find the approximate vector potential at a point 
+			$(r, \theta)$.
+
+			\begin{solution}
+				Here, we use the fact that the dipole term dominates, and that 
+				\[
+					A_{dip}(r) = \frac{\mu_0}{4\pi}\frac{\vec m \times \vec r}{r^2}
+				\] 
+				Using the value of $m$ that we got from the previous part, we get
+				\begin{align*}
+					A_{dip}(r) &= \frac{\mu_0}{4\pi}\frac{1}{r^2}\left( -\frac{3Q \omega R^2 \hat{ \theta}}{4}
+					\times \vec r\right) \\
+					&= \frac{\mu_0}{4\pi r} \left( -\frac{3Q\omega R^2}{4}\hat{ \phi} \right)
+				\end{align*} 
+				where I've used the fact that $\hat{\theta} \times \hat{r} = \hat{\phi}$ to get the result. 
+			\end{solution}
+
+		\item Find the \textit{exact} vector potential outside the sphere.
+
+			\begin{solution}
+				Here, we use the relation that 
+				\[
+				A(r) = \frac{\mu_0}{4\pi}\int \frac{J(r)}{\rcurs} d\tau'
+				\] 
+				Using the fact that $J = \frac{3Qr \omega}{4\pi R^2}$, we get: 
+				\begin{align*}
+					A(r) &= \frac{\mu_0}{4\pi}\frac{3Q \omega}{4\pi R^2}\int \frac{r}{\rcurs} d\tau'\\
+						 &= \frac{\mu_0}{4\pi}\frac{3Q \omega}{4\pi R^2} \int_0^R \int_0^{2\pi} \int_0^\pi 
+						 \frac{r^3 \sin \theta}{|r - r'|} d\theta d\phi dr\\
+						 &= \frac{3 \mu_0 Q \omega}{4 \pi R^2}\int_0^R \int_0^\pi \frac{r^3 \sin \theta}{
+						 |r - r'|} d\theta dr' 
+				\end{align*}
+				And from here, I'm not really sure how to do the integral. While it is true that we can write  $|r - r'| =
+				\sqrt{r^2 + r'^2 - 2r r' \cos \theta}$, this relation isn't exactly useful since it still gives
+				an awful integral to solve. 
+
+				When I was solving this problem with friends, another approach came up: Griffiths problem 5.11 gives that 
+				for a shell, the vector potential $A(r)$ is given by: 
+				\[
+				A(r) = \begin{cases}
+					\frac{\mu_0 R \omega \sigma r}{3}\sin \theta \hat{ \phi} & r \le R\\
+					\frac{\mu_0 R^4 \omega \sigma}{3}\frac{\sin \theta}{r^2}\hat{ \phi} & r > R
+				\end{cases}
+				\] 
+				so to find the vector potential here, we just superimpose a bunch of these shells of radius $R$
+				on top of each other, in other words we are computing an integral from 0 to $R$ of the shells.
+				Doing so, we get: 
+				\begin{align*}
+					A &= \int dA_{\text{shell}} \\
+						&= \frac{\mu_0 R^4 \omega}{3} \frac{\sin \theta}{r^2} \int_0^R \frac{Q}{4\pi R^3} dr\\
+						&= \frac{\mu_0 R^4 \omega}{3} \frac{\sin \theta}{r^2} \frac{Q}{\frac{4}{3}\pi R^2}\\
+						&= \frac{\mu_0 Q R^2 \omega \sin \theta}{4\pi r^2}\hat{ \phi}
+				\end{align*}
+				While I can't find a direct mistake in this line of reasoning, I can't shake the fact that 
+				it just doesn't seem right, since the integral expression that I derived seems to suggest 
+				that the form of $A(r)$ is much more complicated than the result this approach yields.  
+			\end{solution}
+	\end{enumerate}
+\end{document}

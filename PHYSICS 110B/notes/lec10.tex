@@ -1,0 +1,156 @@
+\section{February 12}
+Last time, we derived the intensity of \( E_R \) and \( E_T \) in terms of \( E_I \), where we have:
+\[
+	E_R = \left( \frac{1 - \beta}{ 1 + \beta} \right)E_I \quad E_T = \frac{2}{1 + \beta}E_I
+\]
+Now, recall that since \( \mathbf{S} = \frac{1}{\mu}\mathbf{E} \times \mathbf{B} \), then in a linear medium,
+because of equation \ref{B-wave}, we can rewrite this as \( \mathbf{S} = \frac{1}{v}\mathbf{E} \times
+(\frac{1}{v} \mathbf{k}\times \mathbf{E}) \), so the time average of \( \mathbf{S} \) is written as:
+\[
+	\mean{\mathbf{S}} = \frac{E^2}{\mu v} \mean{\cos^2(kz - \omega t)} = \frac{E^2}{2 \mu v} \propto E^2
+\]
+So, the average reflection, which is denoted as:
+\[
+	R \equiv \frac{\mean{\mathbf{S}_R}}{\mean{\mathbf{S}_I}} = \frac{\frac{1}{2 \mu_1 v_1}
+	|E_R|^2}{\frac{1}{2\mu_1v_1}|E_I|^2} = \left( \frac{1 - \beta}{1 + \beta} \right)^2
+\]
+Since \( \mu_1 \approx \mu_2 \) for most materials, then \( \beta \approx \frac{v_1}{v_2} \), so most of the
+time, 
+\[
+	R = \left(\frac{v_2 - v_1}{v_2 + v_1}\right)
+\]
+Similarly, we have a transmission coefficient
+\[
+	T \equiv \frac{\frac{1}{2\mu_2v_2}|E_T|^2}{\frac{1}{2\mu_1v_1}|E_I|^2} \approx \frac{v_1}{v_2}\left(
+	\frac{2}{1 + \beta} \right)^2 = \frac{4v_1v_2}{(v_1 + v_2)^2}
+\]
+And as a sanity check, we should get \( R + T = 1 \) because of energy conservation, which is exactly what
+we have:
+\[
+	R + T = \frac{(v_2 - v_1)^2}{(v_2 + v_1)^2} + \frac{4v_2v_1}{(v_1 + v_2)} = 1
+\]
+This, above all else, gives us confidence that the math carried out properly.  
+
+\subsection{Oblique Incidence}
+Now, we will consider the more general case, where the incident wave is no longer perpendicular to the
+boundary. Here, we will see that a simple application of boundary conditions leads to fundamental laws of
+reflection and refraction. Consider the following case of oblique incidence:
+\begin{center}
+	\begin{tikzpicture}[decoration = {markings, mark=at position 0.5 with {\arrow{>}}}]
+		\draw[dashed, -stealth] (-3, 0) -- (3, 0) node[right] {\( z \)};
+		\draw[-stealth] (0, -2) -- (0, 2) node[above] {\( x \)};
+		\draw[cyan, postaction=decorate] (-2, -1) -- node[midway, below right] {\( \mathbf{k}_I \)} (0, 0); 
+		\draw[red, postaction=decorate] (0, 0) -- node[midway, above right] {\( \mathbf{k}_R \)} (-2, 1.5);
+		\draw[orange, postaction=decorate] (0, 0) --node[midway, above left] {\( \mathbf{k}_T \)} (3, 0.5);
+	\end{tikzpicture}
+\end{center}
+the laws of optics don't change when we have oblique incidence, so we will still impose the boundary
+condition that the transition is continuous. Therefore, we should expect the equations on both sides of \( z
+= 0\) to match. Just like the perpendicular incidence, when we match the boundary condition at \( z = 0 \) we
+will get equations of the form:
+\[
+	\left( \phantom{aa} \right) e^{i \mathbf{k}_I \cdot \mathbf{r}}\eval_{z =0} + 
+	\left( \phantom{aa} \right) e^{i \mathbf{k}_R \cdot
+	\mathbf{r}}\eval_{z = 0} = \left( \phantom{aa} \right)e^{i \mathbf{k}_T \cdot \mathbf{r} }\eval_{z = 0}
+\]
+For this equation to be true for all \( t \), then we require that we have the same dependence in the \( xy
+\) plane for all three terms. This implies the conditions:
+\begin{equation}
+	\label{11:k-condition}
+	(\mathbf{k}_I)_x x + (\mathbf{k}_I)_y y = (\mathbf{k}_R)_x x + (\mathbf{k}_R)_y y = (\mathbf{k}_T)_x x +
+	(\mathbf{k}_T)_y y
+\end{equation}
+Now, without loss of generality, we can choose \( \mathbf{k}_I \) to lie in the \( xz \) plane only, so \(
+(\mathbf{k}_I)_y = 0 \). But this must mean that the \( y \) component for the other two terms is also zero!
+Therefore, all the rays lie in the same plane, and therefore our original diagram is accurate.
+
+Further, this also means that from \ref{11:k-condition} we get that \( (\mathbf{k}_I)_x = (\mathbf{k}_I)_y =
+(\mathbf{k}_I)_z \), and hence:
+\[
+	\mathbf{k}_I \sin \theta_I = \mathbf{k}_R \sin \theta_R = \mathbf{k}_T \sin \theta_T
+\]
+But since \( |\mathbf{k}_I| = |\mathbf{k}_R| \) as they travel through the same medium, then the only
+conclusion is that \( \theta_I = \theta_R \), which is the reflection rule. The other condition we then
+becomes 
+\[
+	\frac{\omega_1}{v_1}\sin \theta_I = \frac{\omega}{v_2}\sin \theta_T \implies \frac{1}{v_1} \sin \theta_I
+	= \frac{1}{v_2} \sin \theta_T
+\]
+Given that \( n = \frac{c}{v} \), then we can manipulate this further to get:
+\[
+	n_1 \sin \theta_I = n_2 \sin \theta_T
+\]
+which is Snell's law! 
+
+\subsection{Polarized Light}
+Now, we will consider the case where the light is polarized. First, we will consider light that is polarized
+in the plane of incidence (the case perpendicular will be left as homework):
+
+\begin{center}
+	\begin{tikzpicture}[decoration = {markings, mark=at position 0.5 with {\arrow{>}}}]
+		\draw[dashed, -stealth] (-4, 0) -- (4, 0) node[right] {\( z \)};
+		\draw[-stealth] (0, -2) -- (0, 2) node[above] {\( x \)};
+		\draw[cyan, postaction=decorate] (-2.5, -1.25) -- node[midway, below right] {\( \mathbf{k}_I \)} (0, 0); 
+		\draw[red, postaction=decorate] (0, 0) -- node[midway, above right] {\( \mathbf{k}_R \)} (-2.5, 1.25);
+		\draw[orange, postaction=decorate] (0, 0) --node[midway, above left] {\( \mathbf{k}_T \)} (3, 0.5);
+		\draw (2.3, 0) arc [start angle = 0, end angle = 9, radius = 2.3] 
+			node[midway, right] {\( \theta_\text{out} \)};
+		\draw (-1, 0) arc [start angle = 180, end angle = 205, radius = 1] node[midway, left] {\(
+			\theta_\text{in} \)};
+		\draw (-1, 0) arc [start angle = 180, end angle = 155, radius = 1] node[midway, left] {\(
+			\theta_\text{in} \)};
+		\draw[-stealth]  (-2, -1) -- (-2.15, -0.75) node[above left] {\( \mathbf{E}_I \)};
+		\draw[red!40!white, -stealth]  (-2, 1) -- (-1.9, 2) node[above] {\( \mathbf{E}_R \)};
+		\draw[red!40!white, dashed] (-2, 1) -- (-1.5, 2);
+		\draw[red!40!white] (-1.75, 1.5) arc [start angle = 70, end angle = 93, radius = 0.5];
+		\draw[red!40!white] (-1.8, 1.7) node {\scalebox{.4}{\( \phi_R \)}};
+		\draw[blue!40!white, -stealth] (2, 0.33) -- (2.2, 1) node[above] {\( E_T \)};
+		\draw[blue!40!white, dashed] (2, 0.33) -- (1.85, 1.23);
+		\draw[blue!40!white] (1.95, 0.65) arc [start angle = 100, end angle = 82, radius = 0.5];
+		\draw[blue!40!white] (2.03, 0.85) node {\scalebox{.4}{\( \phi_T \)}};
+	\end{tikzpicture}
+\end{center}
+To begin, we will consider the most general case, so we do not assume here that \( \mathbf{E}_T \) and \(
+\mathbf{E}_R \) lie in the plane of incidence. This is why we have the \( \phi_T \) and \( \phi_R \) angles.
+The boundary conditions don't change despite this though, and applying them here gives us:
+\begin{align}
+	\label{11:cond1}\epsilon_1(\mathbf{E}_I + \mathbf{E}_R)_z &= \epsilon_2 (\mathbf{E}_T)_z\\
+	\label{11:cond2}(\mathbf{E}_I + \mathbf{E}_R)_{x, y} &= (\mathbf{E}_T)_{x, y} \\ 
+	\label{11:cond3}(\mathbf{B}_I + \mathbf{B}_R)_z &= (\mathbf{B}_T)_z\\
+	\label{11:cond4}\frac{1}{\mu_1}(\mathbf{B}_I + \mathbf{B}_r)_{x, y} &=  \frac{1}{\mu_2}(\mathbf{B}_T)_z 
+\end{align}
+From the vector decomposition, we can also get these relations (check these yourself on your own time): 
+\begin{align*}
+	\mathbf{E}_I &= - \mathbf{E}_I \sin \theta_\text{in} \mathbf{\hat{z}} + \mathbf{E}_I \cos
+	\theta_\text{in}\mathbf{\hat{x}}\\
+	\mathbf{E}_R &= \mathbf{E}_R \left[ \cos \phi_R \sin \theta_\text{in}\mathbf{\hat{z}} + \cos \phi_R \cos
+	\theta_\text{in} \mathbf{\hat{y}} + \sin \phi_R \mathbf{\hat{y}}\right]\\
+	\mathbf{E}_T &= \mathbf{E}_T \left[ -\cos \phi_T \sin \theta_\text{out} \mathbf{\hat{z}} + \cos \phi_T
+	\cos \theta_\text{out} \mathbf{\hat{x}} + \sin \phi_R \mathbf{\hat{y}} \right] 
+\end{align*}
+Combining the vector decomposition and the boundary conditions, we get the following set of equations:
+\begin{align}
+	\text{(\ref{11:cond1}):} \quad & \epsilon_1 \sin \theta_\text{in}(E_I + E_R \cos \phi_R) = \epsilon_2 \sin
+	\theta_\text{out}(-E_T \cos \phi_T)\\
+	\label{11:cond5} \text{(\ref{11:cond2}):} \quad & \begin{cases}
+		\cos \theta_\text{in}(E_I + E_R \cos \phi_R) = \cos \theta_\text{out} (E_T \cos \phi_T)\\
+		E_R \sin \phi_R = E_T \sin \phi_T \\ 
+	\end{cases}\\
+	\text{(\ref{11:cond3}):} \quad & \frac{E_R}{v_1} \sin \phi_k \sin \theta_\text{in} = \frac{E_T}{v_2}\sin \theta_T
+	\sin \theta_\text{out}\\
+	\label{11:cond6} \text{(\ref{11:cond4}):} \quad & \begin{cases}
+		\frac{E_R}{v_1}\cos \theta_\text{in} \sin \phi_R = - \frac{E_T}{\mu_2v_2} \cos \theta_\text{out} \sin
+		\theta_T\\
+		\frac{1}{\mu_1v_1}(E_I - E_R \cos \phi_R) = \frac{1}{\mu_2v_2} E_T \cos \phi_T
+	\end{cases}
+\end{align}
+
+Combining the second part of \ref{11:cond5} with the first part of \ref{11:cond6}, we can get:
+\[
+	E_R \sin \phi_T \cos \theta_\text{in} = -\beta E_T \sin\phi_T \cos \theta_\text{out} \implies
+	\sin \phi_T(\cos \theta_\text{in} + \beta \cos \theta_\text{out}) = 0
+\]
+The only way this equation is true for all \( \theta_\text{in} \) is if \( \phi_T = 0 \), which then implies
+that \( \phi_R = 0 \) by the second half of \ref{11:cond5}. So, what we find is that indeed \( E_R \) and \(
+E_T\) do lie in the plane of incidence.  
+

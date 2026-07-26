@@ -1,0 +1,108 @@
+\section{Schor's Algorithm}
+\subsection{Modular Exponentials}
+\begin{itemize}
+	\item A modular exponential is a function of the form \( f(x) = a^{x }\pmod N \), hwere \( a \) and \( N \) are assumed
+		to be coprime (i.e. they only share 1 as a common factor).
+	\item The order of \( f(x) \) is given by the smallest integer \( r \) such that \( f(r) = a^{r}\pmod N = 1 \). 
+		Since \( r \) is defined this way, \( r \) can also be thought of as the period of \( f(x) \). 
+
+		\begin{proof}
+			Since \( f(r) \equiv 1 \pmod N \), we know that \( a^{r} = kN + 1 \), so 
+			\[
+			a^{r + 1} = kN a + a \equiv a \pmod N
+			\] 
+			And as a result, \( a^{r + x} \equiv a^{x} \pmod N \), so in general \( f(r +x) = f(x) \), so 
+			\( r \) is indeed the period. 
+		\end{proof}
+	\item Classically, there are three possible solutions for the value of \( r \): 
+		\begin{enumerate}[label=\roman*)]
+			\item \( r \) is odd. This is not useful for finding nontrivial factors of \( N \). 
+			\item \( r \) is even and \( a^{ r / 2} \pmod N \equiv -1 \). This implies that  \( a^{r / 1} + 1 
+				= kN\); this is considered a "trivial factor" and isn't useful to us for finding factors.  
+			\item \( r \) is even and \( a^{r / 2} \not \equiv 1 \). This implies (from classical number theory) 
+				that at least one of \( N \) or \( a^{r / 2} \pm 1 \) (specifically the gcd of the two) is a 
+				non-trivial factor of  \( N \). 
+		\end{enumerate}
+	\item Therefore, we want to basically find a good value of \( r \), but how do we find one in the first 
+		place?
+		
+		Our strategy will be to evaluate \( f(x) \) at many values in parallel via quantum superposition, and 
+		use QFT (quantum fourier transform) to detect the period in the sequence/distribution of values.   
+\end{itemize}
+\subsection{Quantum Period Finding}
+\begin{itemize}
+	\item We will make use of 2 registers: the first will store \( K \) qubits such that \( Q = 2^{K} \), and 
+		that \( N^2 \le  Q \le  2N^2 \). The second qubit will store at least \( n = \log_2 N \) qubits.
+	\item This is a six step process:
+		\begin{enumerate}[label=\arabic*.]
+			\item \textbf{Initialization:} we start with a state \( \ket*{0}^{\otimes K} \otimes \ket*{0}^{\otimes N} \) 
+			\item \textbf{Transform to equal superposition:} Use the Hadamard gate to make everything into a
+				a superposition: 
+				\[
+				H^{\otimes K}\ket*{0} = \frac{1}{\sqrt{2^{K}} }\sum_y  \ket*{y}  
+				\] 
+				\comment{The same superposition can also be constructed by using the quantum fourier transform:
+					\[
+						\ket*{q} \to \sum_{q = 0}^{Q - 1} \exp{\frac{2 \pi i q q'}{Q}}\ket*{q'}
+					\] 
+					then set \( q = 0 \) to get the same state. This confirms the earlier statement that QFT 
+				and the Hadamard gate are very similar.}
+			\item \textbf{Apply Quantum \( U_a \) that implements modular exponential:} In essence, it takes 
+				\( q \to f(q) = a^{q} \pmod N \), and \( a \) is a random number between \( 1 \) and \( N \). 
+
+				This function is easy to compute classically; it turns out that we can model every reversible 
+				classical computation with a quantum circuit \question{Is this a result of the quantum 
+				church-turing thesis?} 
+
+				Note that all the values \( f(q) \) are distinct for all \( q \in [0, r - 1] \); this is a result 
+				of \(a \) and \( N \) being coprime. 
+				
+				We now apply \( f \) to register 1, and store the result in register \( 2 \).
+				This means our state is of the form: 
+				\[
+				\frac{1}{\sqrt{Q} } = \sum_{q = 0}^{Q - 1}\ket*{q} \ket*{a^{q} \pmod N}
+				\] 
+				So the second state is in the state given by \( f(q) \). 
+			\item \textbf{Measure Register 2:} Note that even though we have \( Q \) values, there are only 
+				\( r \) distinct ones due to the periodicity of \( f(q) \). 
+
+				We'll simplify by assuming that \( Q \) is an integer multiple of \( r \). This tells us that there are 
+				exactly \( m \)  differnet \( q \) with the same value for \( f(q) \).  
+
+				\question{This is not a necesary condition?}. 
+
+				Therefore, there are \( m = \frac{Q}{r} \) different states in register \( 1 \) which contribute 
+				to the state after measuring register 2 (remember that we've collapsed the state into those 
+				that are \( f(q) \equiv m \pmod N \), of which there are \( m \) states in regsiter 1 
+				that contribute to this state. We can write this as:
+				\[
+				\frac{1}{\sqrt{Q / r} }\sum_{j = 0}^{Q - 1}\ket*{jr + q_0}\ket*{f(q_0)}
+				\] 
+				Note now that the periodicity has shifted to register 1, since register 2 now measures a defined 
+				value \( f(q_0) \). At this point, we no longer need register 2, so we'll stop writing it down.  
+			\item \textbf{Periodic Superposition of states in Register 1:} Now we apply the quantum Fourier 
+				transform modulo \( Q \), so we get: 
+				\[
+				\frac{1}{\sqrt{Q / r} }\sum_{j = 0}^{Q - 1}\ket*{jr + q_0} \to \frac{1}{\sqrt{r} }\sum_{k = 0}^{r}
+				\omega^{kq_i}\ket{\frac{kQ}{r}}
+				\] 
+				But now we've reduced the number of states from \( Q / r \) to \( r \) terms:
+				\[
+				\ket*{\Phi_{q_0}} = \frac{1}{\sqrt{Q} }\sum_{a = 0}^{Q - 1}g(a) \ket*{a}
+				\] 
+				where \( g(a) = \sqrt{\frac{r}{Q}}  \) if \( a - q_0 \) is a multiple of \( r \), and 0 otherwise. 
+				Basically, although this looks like a superpositoin of \( Q \) states, it is in reality only 
+				a superposition of \( r \) states, since a lot of them are zero. 
+
+				We apply QFT again and we get: 
+				\[
+					\sum_{c}\frac{\sqrt{r} }{Q}\sum_{j = 0}^{Q / r - 1 }\exp{2 \pi i (jr + q_0)c} \ket*{c} 
+					= \sum_c \frac{\sqrt{r} }{Q} \left[ \sum_{j = 0}^{Q / r - 1}\exp{2 \pi i j \left( \frac{rc}{Q} \right)} \exp{\frac{2 \pi i q_0c}{Q}} \right] \ket*{c}
+				\] 
+				Then, since \( Q = mr \) is measured, then the state is: 
+				\[
+					\sum_{c}\sqrt{\frac{r}{Q}} \frac{Q}{r}\exp{\frac{2 \pi i q_0c}{Q}} \ket*{c}
+				\] 
+				If we then write \( c = \frac{kQ}{r} \)
+		\end{enumerate}
+\end{itemize}

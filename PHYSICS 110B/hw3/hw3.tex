@@ -1,0 +1,311 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 110B}
+\newcommand{\classname}{Electromagnetism and Optics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 03} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by Berkeley EECS Department: \url{https://eecs.berkeley.edu/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	\begin{enumerate}[label=(\alph*)]
+		\item Show explicitly that a standing wave alone in the \( z \)-direction, \( f(z, t) = A \sin(kz)
+			\cos(\omega t) \), satisfies the 1D wave equation \( (\partial_z^2 - \frac{1}{v^2}\partial_t^2) f
+			= 0\). What is the relation between \( \omega \) and \( k \) in order for \( f(z, t) \) to
+			satisfy the wave equation?
+
+			\begin{solution}
+				We can compute the two terms separately:
+				\[
+					\partial_z^2 f(z, t) = -Ak^2 \sin(kz)\cos(\omega t) \quad \frac{1}{v^2}\partial_t^2 f =
+					-\frac{1}{v^2} A \omega^2 \sin(kz) \cos(\omega t)
+				\]
+				Putting these two together, we get the equation:
+				\[
+					0 = -Ak^2 \sin(kz) \cos(\omega t) + \frac{1}{v^2}A \omega^2 \sin(kz) \cos(\omega t) =
+					\frac{\omega^2}{v^2} - k^2 
+				\]
+				So we require that \( \frac{\omega}{v} = k \) or \( \omega = k v \). 
+			\end{solution}
+		\item As discussed in class, it is sometimes mathematically convenient to express a sinusoidal wave
+		\( A \cos(kz - \omega t + \delta) \) as \( \Re\left[\tilde A e^{i(kz - \omega t)}\right] \) where we
+		absorb the phase constant into the amplitude and define the \textit{complex amplitude} \( \tilde A
+		\equiv Ae^{i \delta } \). Using this, show that if we have two sinusoidal waves
+		\[
+			f_1 = A_1\cos(kx - \omega t + \delta_1) \quad \text{and} \quad f_2 = A_2\cos(kx - \omega t +
+			\delta_2)
+		\]
+		the superposition of the two waves still yield a wave of the same frequency and wavelength where
+		\[
+			f_3 = f_1 +f_2 = A_3 \cos(kz - \omega t + \delta_3)
+		\]
+		and find \( A_3 \) and \( \delta_3 \). 
+
+		\begin{solution}
+			Using Euler's formula:
+			\[
+				f_1 + f_2 = \Re\left[ A_1 e^{i(kz - \omega t + \delta_1)} \right]  + \Re\left[ A_2e^{i(kz -
+				\omega t + \delta_2)} \right] = \Re\left[ A_1 e^{i (kz - \omega t + \delta_1)} + A_2e^{i (kz
+				- \omega t + \delta_2)} \right]
+			\]
+			We can then factor out a common factor of \( Ae^{i(kz - \omega t)} \):
+			\[
+				f_1 + f_2 = \Re\left[ e^{i(kz - \omega t)}\left( A_1 e^{i \delta_1} + A_2e^{i\delta_2}
+				\right) \right]
+			\]
+			We will focus on the term in parentheses now, since that will be our \( A_3e^{i \delta_3} \), the
+			new amplitude and phase. Using \( e^{i \theta} = \cos \theta + i \sin \theta
+			\), then we get:
+			\[
+				A_3 e^{i \delta_3} = A_1 e^{i \delta_1} + A_2 e^{i \delta_2} 
+				= A_1 \cos \delta_1 + A_2 \cos \delta_2 + i(A_1 \sin
+				\delta_1 + A_2 \sin \delta_2)
+			\]
+			So then, the amplitude is given by:
+			\[
+				A_3 = \sqrt{(A_1 \sin \delta_1 + A_2 \sin \delta_2)^2 + (A_1 \cos \delta_1 + A_2 \cos
+				\delta_2)^2}
+			\]
+			and the phase is:
+			\[
+				\delta_3 = \tan^{-1}\left( \frac{A_1 \sin \delta_1 + A_2 \cos \delta_2}{A_1 \cos \delta_1 
+				+ A_2 \cos \delta_2} \right) 
+			\]
+			And thus, we can conclude:
+			\[
+				f_1 + f_2 = \Re\left[ A_3e^{i \delta_3} e^{i(kz - \omega t)} \right] = A_3 \cos(kz - \omega t
+				+ \delta_3)
+			\]
+			as required. It's not a very clean solution, but I don't see anything better unfortunately. 
+		\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 2}
+	In Griffiths Chap. 9.1, he reviewed the topic of waves propagating in 1D strings. Consider a string of
+	mass density \( \mu_1 \) connected with a string of mass density \( \mu_2 \). The first string lies in the
+	region \( z < 0 \), while the second string is in region \( z > 0 \). The two strings are connected at \(
+	z = 0\). Since they are tied together, they have the same tension \( T \), resulting in wave speeds of \(
+	v_1 = \sqrt{T / \mu_1}\) and \( v_2 = \sqrt{T / \mu_2} \) in the two strings respectively. Suppose we
+	have a wave \( f(z, t) \) propagating in the strings.
+	\begin{enumerate}[label=(\alph*)]
+		\item What is the physical reason to impose the boundary condition \( f(0^{-}, t) = f(0^{+}, t) \)
+			where the wavefunction is continuous at \( z = 0 \)?
+
+			\begin{solution}
+				The physical reason is that we require the string to be continuous, so the value of \( f \)
+				should approach the same value from both sides at every time \( t \).  
+			\end{solution}
+		\item Suppose the connecting point has negligible mass, what is the physical reason to impose the
+			boundary condition
+			\[
+				\pdv{f}{z}\eval_{0^{-}} = \pdv{f}{z}\eval_{0^{+}}
+			\]
+			\begin{solution}
+				Despite this being technically two strings attached together at \( z = 0 \), we want the
+				entire system to behave like one string with two different mass densities. As such, we
+				require there to be no corners or other discontinuities in the string, and as such we impose
+				that the string be differentiable at \( z = 0 \) from both sides, and we impose that the
+				derivatives are equal so that the connection point does not become a corner.    
+			\end{solution}
+		\item Suppose you send an incident wave from the left \( (z < 0) \) with a specific shape \( g_I(z -
+			v_1t) \). It gives rise to a reflective wave \( h_R(z + v_1t) \) in \( z < 0 \) and a transmitted
+			wave \( g_T(z - v_2t) \) in \( z > 0 \). By imposing the boundary condition in (a) and (b), find
+			\( h_R \) and \( g_T \). 
+
+			\begin{solution}
+				We do the same thing as we did in lecture. The full equation for the wave is:
+				\[
+					f(z, t) = \begin{cases}
+						g_I(z - v_1t) + h_R(z + v_1t) & z < 0\\
+						g_T(z - v_2t) & z > 0
+					\end{cases}
+				\]
+				Now, we impose the first boundary condition, which gives:
+				\[
+					g_I(0^{-} - v_1t) + h_R(0^{-} + v_1t) = g_T(0^{+} - v_2t)
+				\]
+				Given that the wave is continuous, this basically just translates to:
+				\begin{equation}
+					\label{cond1}
+					g_{I}(-v_1t) + h_R(v_1t) = g_T(-v_2t)
+				\end{equation}
+				Now for the second condition. Here, we use the results right after equation 9.4 (I use the
+				fourth edition), we have:
+				\[
+					\pdv{f}{z} = \dv{g}{u} \pdv{u}{z} = \dv{g}{u} \quad \pdv{f}{t} = -v\dv{g}{u}
+				\]
+				So putting these two equations together to eliminate \( \dv{g}{u} \), since we don't have the
+				explicit form of \( g \):
+				\[
+					\pdv{f}{z} = -\frac{1}{v}\pdv{f}{t}
+				\]
+				And as such, we have the relations:
+				\begin{align*}
+					\pdv{g_I}{z} &= -\frac{1}{v_1}\pdv{g_I}{t}\\
+					\pdv{h_R}{z} &= \frac{1}{v_1}\pdv{h_R}{t} \\ 
+					\pdv{h_T}{z} &= -\frac{1}{v_2}\pdv{g_T}{t} \\ 
+				\end{align*}
+				Now, putting the two ends together and evaluating at \( z = 0 \), we have:
+				\[
+					-\frac{1}{v_1}\pdv{g_I(-v_1t)}{t} + \frac{1}{v_1} \pdv{h_R(v_1t)}{t} 
+					= -\frac{1}{v_2}\pdv{g_T(-v_2t)}{t} 
+				\]
+				Now, taking the partial derivative out, we see that this boundary condition basically
+				translates to:
+				\begin{equation}
+					\label{cond2}
+					-\frac{1}{v_1}g_I(-v_1t) + \frac{1}{v_1}h_R(v_1t) = -\frac{1}{v_2} g_T(-v_2t)
+				\end{equation}
+				Multiplying this equation on both sides by \( v_2 \) and adding both gives:
+				\[
+					g_I(-v_1t) \left( 1 - \frac{v_1}{v_2} \right) + 2h_R(v_2t) = 0
+				\]
+				Finally, we get:
+				\[
+					h_R = \frac{g_I}{2}\left( \frac{v_2}{v_1} - 1 \right)
+				\]
+				Notice that I've dropped the evaluations in this final equation. This is allowed, since the
+				form of \( h_R \) is determined by \( g_I \), and it should be determined over all space and
+				time to be consistent. Multiplying \ref{cond2} by \( v_2 \) and subtracting instead gives \(
+				g_T\):
+				\[
+					g_T = \frac{g_I}{2}\left( 1 + \frac{v_1}{v_2} \right)
+				\]
+				and we are done. 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 3}
+	Suppose string 2 is embedded in a viscous medium (such as molasses), which imposes a drag force that is
+	proportional to its (transverse) speed:
+	\[
+		\Delta F_\text{drag}= -\gamma \pdv{f}{t} \Delta z
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item Derive the modified wave equation describing the motion of the drag. 
+
+			\begin{solution}
+				With the drag force, our net force now becomes:
+				\[
+					\Delta F = T \pdv[2]{f}{z} \Delta z - \gamma \pdv{f}{t} \Delta z
+				\]
+				Combining with Newton's second law, then we have:
+				\[
+					\mu (\Delta z) \pdv[2]{f}{t} = (\Delta z) \left( T\pdv[2]{f}{z} - \gamma \pdv{f}{t} \right)
+				\]
+				So we come to the equation :
+				\[
+					\mu \pdv[2]{f}{t} + \gamma \pdv{f}{t} = T \pdv[2]{f}{z}
+				\]
+			\end{solution}
+		\item Solve this equation, assuming the string vibrates at the incident frequency \( \omega \). That
+			is, look for solutions of the form \( \tilde f(z, t) = e^{-i \omega t}\tilde F(z) \).  
+
+			\begin{solution}
+				Evaluating the partial derivatives to the suggested form of \( f \), we get:
+				\begin{align*}
+					\pdv[2]{f}{t} &= -\omega^2 e^{-i \omega t}\tilde F(z)\\
+					\pdv{f}{t} &= - i \omega e^{-i \omega t}\tilde F(z) \\ 
+					\pdv[2]{f}{z} &= e^{-i \omega t}\pdv[2]{\tilde F}{z} 
+				\end{align*}
+				So the differential equation evaluates as:
+				\[
+					\mu (- \omega^2) e^{-i \omega t}\tilde F(z) - \gamma i \omega e^{-i \omega t}\tilde F(z)
+					= T e^{-i \omega t}\pdv{\tilde F}{z}
+				\]
+				so now we're left with:
+				\[
+					T \pdv[2]{\tilde F}{z} = \tilde F(z) \left( -\mu \omega^2 - \gamma i \omega \right)
+					\implies \pdv[2]{\tilde F}{z} + \frac{\gamma i \omega + \mu \omega^2}{T} \tilde F(z) = 0
+				\]
+				I plugged this differential equation into Mathematica (I just didn't want to through all the
+				algebra), we get solutions of the form:
+				\[
+					F(z) = c_1\exp\left(-\frac{(-1)^{3 / 4}z \sqrt{ \omega} \sqrt{\gamma - i
+						\omega}}{\sqrt{T}}\right) + 
+					c_2 \exp\left(\frac{(-1)^{3 / 4}z \sqrt{ \omega} \sqrt{\gamma - i
+						\omega}}{\sqrt{T}}\right)
+				\]
+				Yeah. It's not pretty but those are the solutions. 
+			\end{solution}
+		\item Show that the waves are \textbf{attenuated} (that is, their amplitude decreases with increasing
+			\( z \)). Find the characteristic penetration distance, at which the amplitude is \( 1 / e \) of
+			its original value, in terms of \( \gamma, T, \mu \) and \( \omega \). 
+
+			\begin{solution}
+				From the previous part, we see that \( F(z) \) is comprised of two exponentials, one positive
+				and one negative. We reject the positive one, because this corresponds to a wave which is
+				gaining energy, and is thus nonphysical. As such, we only have one physical solution:
+				\[
+					F(z) = c_1 e^{- \kappa z}
+				\]
+				I've eaten all the constants inside \( \kappa \in \mathbb C\) because I don't want to write
+				it all out. With this, we get the full form of \( \tilde f(z, t) \) inside medium 2:
+				\[
+					\tilde f(z, t) = A_T e^{-i (\omega t - kz)}e^{-\kappa z}
+				\]
+				I've replaced \( c_1 \) with \( A_T \) to match the convention used in the book. Here, we see
+				that the amplitude is does indeed decrease with increasing \( z \), because of the \(
+				e^{-\kappa z} \) term.   
+				The characteristic penetration distance is given by \( \frac{1}{\kappa} \), so 
+				this is equal to:
+				\[
+					\frac{1}{\kappa} = \sqrt{\frac{T}{\omega}} \frac{1}{\sqrt{ \gamma - i \omega}}
+					\frac{1}{(-1)^{\frac{3}{4}}}
+				\]
+			\end{solution}	
+		\item If a wave of amplitude \( A_I \), phase \( \delta_i = 0 \), and frequency \( \omega \) is
+			incident from the left (string 1), find the reflected wave's amplitude and phase.
+
+			\begin{solution}
+				The full form of \( \tilde f(z, t) \) over all space and time is given then as:
+				\[
+					\tilde f(z, t) = \begin{cases}
+						\tilde A_I e^{-i (\omega t - k_1z)} + A_R e^{-i (\omega t + k_1z + \delta_R)} & z < 0\\
+						\tilde A_T e^{-i (\omega t - k_2z - \kappa z)} & z > 0
+					\end{cases}
+				\]
+				We can define a new \( k_2' = k_2 + i\kappa \), so now \( \tilde f(z, t) \) is:
+				\[
+					\tilde f(z, t) = \begin{cases}
+						\tilde A_I e^{-i (\omega t - k_1z)} + \tilde A_R e^{-i (\omega t + k_1z)} & z < 0\\
+						\tilde A_T e^{-i (\omega t - k_2' z)}
+					\end{cases}
+				\]
+				So this is just the same as the standard case, except now \( k_2' \in \mathbb C \), but that
+				doesn't change the form of the answer. We can use Equation 9.29 in the textbook (again,
+				fourth edition numbering), which gives us:
+				\[
+					\tilde A_R = \left( \frac{k_1 - k_2'}{k_1 + k_2'} \right) \tilde A_I
+				\]
+				Next we can use Mathematica to separate the magnitude and phase. To do the magnitude, we
+				can write \( |\tilde A_R| = \sqrt{\tilde A_R \tilde A_R^{*}} \) or basically we square root
+				\( A_R \) times its conjugate. This gives:
+				\[
+					A_R = \sqrt{\frac{k_1 - 2k_1k_2 + k_2^2 + \kappa^2}{k_1 + 2 k_1 k_2 + k_2^2 + \kappa}}
+					A_I
+				\]
+				to find the phase, I ran \texttt{ComplexExpand} on \( A_R \) to get the real and imaginary
+				parts:
+				\[
+					A_R = \frac{k_1^2 - k_2^2 - \kappa^2}{(k_1 + k_2)^2 + \kappa^2} A_I  - \frac{2 i k_1
+					\kappa}{(k_1 + k_2)^2 + \kappa^2} A_I
+				\]
+				So the phase \( \delta_R \) is given by:
+				\[
+					\delta_R = \tan^{-1}\left( \frac{-2 k_1 \kappa}{(k_1 + k_2)^2 + \kappa^2} \right)
+				\]
+			\end{solution}
+	\end{enumerate}
+\end{document}

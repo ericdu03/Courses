@@ -1,0 +1,188 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics C191}
+\newcommand{\classname}{Introduction to Quantum Information}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{Final Project Notes} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\renewcommand{\tilde}{\widetilde}
+\begin{document}
+	\maketitle
+	\section{Poster Outline}
+	\begin{itemize}
+		\item General theme around quantum advantage: 
+
+			\textit{Understanding complexity theory is extremely useful 
+				for gauging possible quantum advantage in optimization, but it is not necessary, nor sufficient 
+			when seeking a practical quantum advantage.}
+			 
+	\end{itemize}
+	\subsection{Background}
+	\subsubsection{Linear Programs (LP)}
+	\begin{itemize}
+		\item Usually phrased in terms of finding the maximum value of an objective function \( f: \R^{n} \to \R \)
+			over all \( x \in \R^{n} \). 
+		\item Linear programs in particular have specific structures: specifically, we want to minimize a linear 
+			function subject to linear inequalities on non-negative vectors. 
+
+			This means we want to minimize a quantity like \( c^{\top}\vec x \) subject to some constraints 
+			\( A \vec x \le  \vec b \). 
+	\end{itemize}
+	\subsubsection{Semidefinite Programming (SDP)}
+	\begin{itemize}
+		\item Is a larger class of problem where we try to maximize:
+			\[
+			\max_{X \succeq 0} \tr(CX)
+			\] 
+			subject to the constraints:
+			\[
+				\tr (A_i X) \le b_i, \ \forall i \in [m]
+			\] 
+			So here, \( C \) is a matrix like the objective function, and \( A_i, \dots, A_m \) are the set of 
+			constraint matrices. These matrices must also be symmetric. 
+
+			\question{What does the \( X \succeq 0\) term refer to? Where did we introduce any ``partial order'' into 
+			the system?}
+
+			\answer{It's essentaially saying that all the \( m \) eigenvalues of \( X \) must be nonnegative.} 
+		\item Linear programs are a specific kind of SDP, where all the given matrices are diagonal. 
+		\item In terms of quantum speedups, they usually trade off between \( n, m \) and the precision \( \epsilon \) 
+			to which we solve the problem. 
+		\item \textbf{First Order Methods:} First order methods are generlly based on the Multiplicative Weights 
+			Update (MWU) algorithms, where we have solutions of the form:
+			\[
+				X \propto \frac{\exp{\sum_{i=1}^{m} y_i A_i}}{\tr(\exp{\sum_{i=1}^{m} y_i A_i})}
+			\] 
+			for some sparse vector \( y \in \R^{m} \). Here, I think sparse refers to the case where most of the 
+			entries in \( y \) are zero. 
+
+			Then, we compute quantities such as \( \tr(A \rho) \) where \( A  \) is either one of the \( A_i \)'s 
+			or \( C \). 
+		\item The best classical algorithms for these problems were on the order of \( \tilde{\mathcal O}
+			\left( mns \left( \frac{Rr}{\epsilon} \right)^{4} + ns \left( \frac{Rr}{\epsilon} \right)^{7} \right) \). We
+			generally write \( \gamma = \frac{Rr}{\epsilon} \) so the runtime is written as 
+			\( \tilde{\mathcal O}\left( mns\gamma^{4} + ns \gamma^{7} \right)  \)
+			but the best quantum algorithms achieve a runtime of \( \tilde{\mathcal O}\left((\sqrt{m} + \sqrt{n} \gamma)
+			s \gamma^{4}\right)\)
+		\item Generally the parameter \( \gamma \) scales poorly with given parameters \( n \) and \( m \).  
+		\item The issue with all the quantum approaches at the moment is that they all rely on something called 
+			QRAM, which is a memory bank (like RAM) but addressed by qubits. The issue with this is that such a 
+			structure is not physically possible at the moment, or at least not without much error. However, 
+			QRAM is very common throughout literature. 
+		\item \textbf{Second Order Methods:} These methods rely on interior point methods (IPMs), which use Newton's 
+			method, starting at a point on the interior of a convex ``feature'' denoted by \( \chi \subset R^{n} \)
+			to solve a problem of the form:
+			\[
+			\min_{x \in \R^{n}} \eta \cdot \langle c, x \rangle + f(x)
+			\] 
+			where \( f : \mathrm{int}(\chi) \to \R \) is a constraint function that essentially defines the boundary 
+			of the feasible set \( \chi \). This process is then repeated until we find a minimum point.  
+		\item Quantum speedups are inspired by a quantum state tomography algorithm, which basically optimizes
+			the computation to figure out the direction in which we need to iterate. The issue with this is that 
+			there is a \( \frac{1}{\epsilon} \) dependence on the runtime, where \( \epsilon \) is the 
+			precision to which we want to calculate. Overall, because of the mixed dependence on other parameters, 
+			it's hard to say whether quantum algorithms have an overall speedup over classical ones. 
+
+			There has been a recent advancement that speedsup the Newton step in computation, that is 
+			worth looking at.  
+	\end{itemize}
+	\subsubsection{Extension into Mixed Integer Programming (MIP)}
+	\begin{itemize}
+		\item A class of optimization problem where some of the varaibles are constrained 
+			to being integers. These problems are at least as hard as either discrete or continuous optimization.  
+		\item There are multiple approaches to solving these problems, some of which guarantee speedup. 
+
+			Branch-and-Bound-and-Cut is the main way these problems are solved classcally. Essentially, this approach
+			branches based on the discrete variables, and finds solutions to the continuous ones by 
+			building around it. The other variables are then solved through convex optimization, which we already 
+			know has seen much speedup recently. 
+		\item A lot of these approaches basically aim to reformulate the problem in terms of other problems
+			that are equally as hard to solve, but have recently seen progress in finding speedups.  
+		\item There aren't any general provable advantages for MIP. Most quanutm algorithms known use a classical 
+			approach
+		\item As of last week, MILP has seen an advancement by showing that we can transform any MILP into two problems:
+			an Integer Master problem and a linear subproblem, the latter of which is solved using classical 
+			techniques. Altogether, this is what the authors call a ``quantum-classical'' approach. 
+	\end{itemize}
+	\subsection{Literature Review, look at what's been done}
+
+	\begin{itemize}
+		\item Here, we investigate well-known demonstrations of quantum advantage. From the very basics, we look at 
+			concrete examples (Shor's algorithm and order-finding), but also I think it's useful to look at 
+			currently, how far do we think we can take this.  
+	\end{itemize}
+	\subsection{Two quantum optimizations over classical algorithms}
+	\begin{itemize}
+		\item Specifically we will look at the quantum advantage regarding semidefinite programming (SDP) problems. 
+	\end{itemize}
+	\subsection{Theoretical Applications} 
+
+	\section{Quantum speedups for Interior Point Method (IPM)}
+	\textbf{Focus on the paper by Apers, Gribling}
+	\subsection{Interior Point Method}
+	\begin{itemize}
+		\item Reformulates the LP by asking to find the minimum of a function \( f_{\eta}(x)  \), where 
+			\( f_{\eta}(x) = \eta c^{\top}x + f(x)  \). Here, \( f(x) \) characterizes the constraints, and 
+			\( \eta \) characterizes the step size. 
+		\item The overall runtime of the algorithm is based on the size of \( \eta \), and it's been shown that we can 
+			iteratively change \( \eta \) to some \( \eta' \) while still guaranteeing that we reach the 
+			optimal solution. So, the challenge comes down to figuring out how much we can change \( \eta \to \eta' \)
+		\item The number of times we need to increase  \( \eta \) scales roughly as \( \widetilde O(\sqrt{\vartheta_f} 
+			\log(1 / \epsilon)\).
+		\item Best classical algorithm: runtime of \( \widetilde  O(nd + d^3) \) whereas the best quantum algorithms:
+			\begin{itemize}
+				\item Logarithmic Barrier: \( \tilde O(nd) \) queries, for a runtime of \( \widetilde O(nd^2 r + 
+					\sqrt{n} d ^{\omega}) \)
+				\item Volumetric Barrier: \( \tilde O(\sqrt{\vartheta_f} \log(1 / \epsilon) \) queries, 
+					with runtime \( \tilde O(n^{1 / 4}d^{1/4} (\sqrt{n} d^2 r + d^{\omega + 1})) \) 
+				\item 
+			\end{itemize}
+		\item Basically, the speedup comes from modifying the form of \( f(x) \), in order to generate a speedup. 
+			Essentially, \( f(x) \) is a function that goes to infinity as we approach the boundary of a feasible 
+			region.
+	\end{itemize}
+	\subsection{Spectral Approximation}
+	\begin{itemize}
+		\item Utilizes a repeated halving algorithm in order to compute the spectral approximation.   
+		\item To do this, they use a combination of  
+	\end{itemize}
+	\subsection{Approximating Matrix-Vector Product} 
+	\subsection{Approximating Hessians and Gradients}
+	\begin{itemize}
+		\item As the solution using IPMs are heavily dependent on the speed of the Newton step, one way that 
+			this new algorithm demonstrates this is by approximating Hessian matrices and gradients to lighten up 
+			the Newton step. 
+		\item The paper calls this ``approximate Newton steps''. Essentially, from a feasible point 
+			\( x \in \R^{d} \), they compute approximations \( Q(x) \) and \( g(x) \) satisfying
+			\[
+				Q(x) \preceq H(x) \preceq C Q(x) \quad \text{and} \quad \|\tilde g(x) - g(x)\|_{H(x)^{-1}} \le \zeta
+			\] 
+			for some parameters \( C \) and \( \zeta \) such that \( C, \zeta^{-1} \in \tilde O(1) \). These 
+			parameters are basically just constants that dictate how good we want our approximation to be.      
+
+			\comment{We say that \( A \preceq B \) if and only if \( 0 \preceq B - A \), and \( 0 \preceq M \) 
+				 is the notation to say that \( M \) is positive semidefinite. Positive semidefinite means that 
+			 the matrix product \( x^{\top} M x \ge  0\) for every vector \( x \).}
+		 \item The Hessians are all the form \( A^{T} S_x^{-1} W S_x^{-1} A \), and the only difference between the 
+			 barriers is the form of \( W \). 
+			 \begin{itemize}
+			 	\item For the log-barrier, \( W \) is the identity
+				\item For the volumetric barrier, \( W \) is the diagonal matrix of leverage scores \( S_x^{-1} A \) 
+				\item For the Lewis barrier, \( W \) is the diagonal matrix of lewis weights \( S_x^{-1}A \). 
+			 \end{itemize}
+			 \question{Does this mean that the volumetric barrier and Lewis barrier have the same form for \( W \)?}  
+		 \item To approximate the gradient, the quantum algorithm for approximate vector products is used. We use 
+			 the fact that \( g(x) = -A^{T} S_x^{-1} W \mathbf 1 \), where \( \mathbf 1 \) denoting the
+			 all-ones vector. Then, you can write this as the vector product between \( \sqrt{W} S_x^{-1} A \) 
+			 and \( v = \sqrt{W}\mathbf 1  \), which can then be computed using the approximation algorithm. 
+	\end{itemize}
+\end{document}

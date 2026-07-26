@@ -1,0 +1,427 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 110B}
+\newcommand{\classname}{Electromagnetism and Optics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 09} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by the Berkeley EECS Department: \url{https://eecs.berkeley.edu/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Teja Nivarthi} on this assignment. He was particularly helpful in solving problem
+	3b and onwards.  
+
+	\section*{Problem 1}
+	A current \( I(t) \) flows around the circular ring in Fig. 11.8. Derive the general formula for the
+	power radiated (analogous to Eq. 11.60), expressing your answer in terms of the magnetic dipole moment \(
+	m(t)\), of the loop. [Answer \( P = \mu_0 \ddot m^2 / 6\pi c^3 \).]
+
+	\begin{solution}
+		The first steps of my solution follow what's been done in lecture. The vector potential is given by:
+		\[
+			\mathbf{A} = \frac{\mu_0}{4\pi}\int \frac{\mathbf{J}(t_r, \mathbf{r}')}{\rcurs} \diff \tau
+		\]
+		Here, we use the same approximations as we derived in lecture:
+		\[
+			\rcurs = \sqrt{r^2 + b^2 - 2rb \sin \theta \cos \phi} \approx r\left( 1 - \frac{b}{r}\sin \theta
+			\cos \phi\right)
+		\]
+		so:
+		\[
+			\frac{1}{\rcurs} = \frac{1}{r}\left(1 + \frac{b}{r} \sin \theta \cos \phi\right) 
+		\]
+		So now the vector potential reads:
+		\[
+			\mathbf{A} = \frac{\mu_0}{4\pi} \oint_{\mathcal{C}} I\left( t - \frac{\rcurs}{c} \right)
+			\frac{1}{r}\left( 1 + \frac{b}{r}\sin \theta \cos \phi \right) \diff \mathbf{l}
+		\]
+		Firstly, we can integrate over \( \phi \), while setting \( \diff \mathbf{l} = \cos \phi
+		\hat{{\boldsymbol{\phi}}} \) (we also ignore the \( \mathbf{\hat{x}} \) terms since they cancel, just
+		like in lecture.) Since \( \frac{\rcurs}{c} \) is small, we can Taylor expand the current
+		term around \( t - \frac{\rcurs}{c} \), which gives us:
+		\[
+			I(t) = I\left( t - \frac{\rcurs}{c} \right) + \dot I\left( t -
+			\frac{\rcurs}{c} \right)\left( \frac{b}{c}\sin \theta \cos \phi \right)
+		\]
+		For notational purposes I will denote \( t' = t - \frac{\rcurs}{c} \). So, the integral is:
+		\[
+			I(t) = \frac{\mu_0b}{4\pi r} \hat{\boldsymbol{\phi}} \int_{0}^{2\pi}\left[ I(t') + \dot I(t')
+			\left( \frac{b}{c} \sin \theta \cos \phi \right)\right] \left( 1 + \frac{b}{r}\sin \theta \cos
+		\phi \right) \cos \phi \diff \phi
+		\]
+		Now, the \( \int_{0}^{2\pi}\cos \phi \diff \phi \) and the \( \int_{0}^{2\pi} \cos^3\phi \diff \phi
+		\) terms all go to zero, so there are only two terms that survive. Those are:
+		\[
+			\frac{\mu_0b \boldsymbol{\hat{\phi}}}{4\pi r} \int_{0}^{2\pi}I(t') \frac{b}{r}\sin \theta \cos^2
+			\phi + \dot I(t') \frac{b}{c}\sin \theta \cos^2 \phi \diff \phi
+		\]
+		The integral evaluates to \( \pi \), so the vector potential is written as (from this point onward,
+		\( \dot I = \dot I(t') \) and likewise, \( \ddot I = \ddot I(t') \)):
+		\[
+			\mathbf{A} = \frac{\mu_0b^2}{4r}\left( \frac{I}{r} + \frac{\dot I}{c} \right) \sin \theta
+			\boldsymbol{\hat{\phi}}
+		\]
+		Now, with \( \mathbf{A} \) determined, we can calculate \( \mathbf{E} \) and \( \mathbf{B} \):
+		\begin{align*}
+			\mathbf{E} &= -\pdv{A}{t} = -\frac{\mu_0b^2}{4r}\left( \frac{\dot I}{r} + \frac{\ddot I}{c}
+			\right)\sin \theta \boldsymbol{\hat{\phi}}\\
+				\mathbf{B} &= \nabla \times \mathbf{A} = 
+				\frac{1}{r\sin \theta} \pdv{\theta}
+				(\mathbf{A}_{\phi} \sin \theta) - \pdv{r} (r \mathbf{A}_{\phi})\\  
+				&= \frac{1}{r\sin \theta} \frac{\mu_0b^2}{4r} 
+				\left( \frac{\dot I}{r} + \frac{\ddot I}{c} \right)(2 \sin \theta \cos
+				\phi) \mathbf{\hat{r}} - \frac{1}{r}\left( \frac{\mu_0b^2}{4}\left( \frac{\dot I}{r}\sin
+				\theta \right) - \frac{\mu_0b^2}{4}\left( \frac{\ddot I}{c^2} \right)\sin \theta
+			\right)\boldsymbol{\hat{\theta}}
+		\end{align*}
+		The extra factor of \( -\frac{1}{c} \) comes from the chain rule, since \( t' \) has \( r \)
+		dependence. Now, we get rid of all the terms with greater than \( \frac{1}{r^2} \) dependence, since
+		we are interested in the radiation zone, so therefore \( \mathbf{B} \) simplifies to only the last
+		term:
+		\[
+			\mathbf{B} = \frac{\mu_0b^2}{4rc^2} \ddot I \sin \theta \boldsymbol{\hat{\theta}}
+		\]
+		Similarly, we drop the first term in \( \mathbf{E} \):
+		\[
+			\mathbf{E} = -\frac{\mu_0b^2}{4r} \frac{\ddot I}{c} \sin \theta \boldsymbol{\hat{\phi}}
+		\]
+		The Poynting vector is then calculated as:
+		\[
+			\mathbf{S} = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \frac{\mu_0^2 b^{4}}{16r^2 c^3}
+			\ddot I^2 \sin^2 \theta \mathbf{\hat{r}}
+		\]
+		The power is then:
+		\[
+			P = \oint \mathbf{S} \diff \mathbf{a} = \frac{\mu_0^2 b^{4}}{16c^3} \ddot I^2
+			\int_{0}^{\pi}\int_{0}^{2\pi} \frac{\sin^2 \theta}{r^2} r^2 \diff \theta \diff \phi
+		\]
+		The \( \theta \) integral integrates to \( 4 / 3 \)
+	and the \( \phi \) integral integrates to \( 2\pi \). So, we have:
+	\[
+		P = \frac{\mu_0b^2\pi}{6c^3}\ddot I^2
+	\]
+	Now, \( m = \pi b^2 I \), so \( \ddot m = \pi b^2 \ddot I \), and hence:
+	\[
+		P = \frac{\mu_0\ddot m^2}{6\pi c^3}
+	\]
+	\end{solution}
+	\pagebreak
+	\section*{Problem 2}
+	An ideal electric dipole is situated at the origin; its dipole moment points in the \( \mathbf{\hat{z}}
+	\) direction, and is quadratic in time:
+	\[
+		\mathbf{p}(t) = \frac{1}{2}\ddot p_0 t^2 \mathbf{\hat{z}} \quad (-\infty < t < \infty)
+	\]
+	where \( \ddot p_0 \) is a constant. 
+
+	\begin{enumerate}[label=(\alph*)]
+		\item Use the method of Section 11.1.2 to determine the (exact) electric and magnetic fields, for all
+			\( r > 0 \) (there's also a delta-function term at the origin, but we're not concerned with
+			that). [\textit{Partial answer: \( V = (\mu_0 \ddot p_0 / 8\pi) \cos \theta [(ct / r)^2 - 1] \),
+			\( \mathbf{A} = (\mu_0 \ddot p / 4 \pi c) [(ct / r) - 1] \mathbf{\hat{z}} \).}]
+
+			\begin{solution}
+				In section 11.1.2, we have \( \mathbf{p}(t) = p_0 \cos(\omega t) \mathbf{\hat{z}} \). The
+				retarded potential is then:
+				\[
+					V(\mathbf{r}, t) = \frac{1}{4\pi \epsilon_0d} \left[ \frac{\ddot p_0 \left( t - \rcurs_+ /
+					c \right)^2}{2 \rcurs_+} - \frac{\ddot p_0 \left( t - \rcurs_- / c \right)^2}{2\rcurs_-} \right]
+				\]
+				Applying the same approximations as we did in lecture (I don't want to write them all out),
+				the vector potential is given by:
+				\[
+					V = \frac{1}{4\pi \epsilon_0 d} \left[ \frac{\ddot p_0}{2}\left( t - \frac{\rcurs_+}{c}
+					\right)^2 \frac{1}{r}\left( 1 + \frac{d}{2r}\cos \theta \right) - \frac{\ddot p_0}{2}
+				\left( t - \frac{\rcurs_-}{c} \right)^2 \frac{1}{r}\left( 1 - \frac{d}{2r}\cos \theta \right) \right]
+				\]
+				Now, we can expand the \( \rcurs \) term:
+				\[
+					t - \frac{\rcurs_{\pm}}{c} = t - \frac{r}{c} \pm \frac{d}{2c}\cos \theta
+				\]	
+				Since we've already approximated \( \frac{d}{r} \ll 1 \), it is also reasonable to assume
+				that \( \frac{d}{c} \ll 1 \), and so we drop these \( \frac{d}{c} \) terms. Therefore, the
+				potential is:
+				\[
+					\frac{1}{4\pi \epsilon_0 d} \frac{\ddot p_0}{2}\left( t - \frac{r}{c} \right)^2 \frac{1}{r}
+					\left( \frac{d}{r}\cos \theta \right) = \frac{\ddot p_0}{8 \pi \epsilon_0} \left(
+					\frac{r}{c} \right)^2 \left( \frac{ct}{r} - 1 \right)^2 \frac{\cos \theta}{r^2}	
+				\]
+				Finally, we make the following simplification:
+				\[
+					\left( \frac{ct}{r} - 1 \right)^2 \approx \left( \frac{ct}{r} \right)^2 - 1
+				\]
+				And after this we arrive at the partial answer provided:
+				\[
+					V = \frac{\ddot p_0 \mu_0}{8\pi}\left[ \left( \frac{ct}{r} \right)^2 - 1 \right] \cos
+					\theta
+				\]
+				The current is given by:
+				\[
+					\mathbf{I}(t) = \dv{q}{t} \mathbf{\hat{z}} = \ddot p_0 t \mathbf{\hat{z}}
+				\]
+				So the vector potential is:
+				\[
+					\mathbf{A} = \frac{\mu_0}{4\pi} \int_{-d / 2}^{d / 2} \frac{\ddot p_0 \left( t -
+					\frac{\rcurs}{c} \right)}{\rcurs}\mathbf{\hat{z}} \diff z
+				\]
+				Using the same method in the textbook, we just replace this by the value at the center:
+				\[
+					\mathbf{A} = \frac{\mu_0}{4\pi}\frac{\ddot p_0(t - r / c)}{r}\mathbf{\hat{z}} =
+					\frac{\mu_0\ddot p_0}{4\pi c} \left( \frac{ct}{r} - 1 \right) \mathbf{\hat{z}}
+				\] 
+				Now, to find the fields we use \( \mathbf{E} = -\nabla V - \partial_t \mathbf{A} \) and \(
+				\mathbf{B} = \nabla \times \mathbf{A} \). So computing the gradient for spherical
+				coordinates, we have:
+				\begin{equation*}
+					\mathbf{E} = -\frac{\ddot p_0 \mu_0}{8\pi} \cos \theta \left[ - \frac{2(ct)^2}{r^3}
+					\right]\mathbf{\hat{r}} + \frac{1}{r}\frac{\mu_0 \ddot p_0}{8\pi} \sin \theta \left[
+					\left( \frac{ct}{r} \right)^2 - 1 \right] \boldsymbol{\hat{ \theta}} - \frac{\mu_0 \ddot
+				p_0}{4 \pi c}\left( \frac{c}{r} \right) \mathbf{\hat{z}}
+				\end{equation*}
+				We can convert \( \mathbf{\hat{z}} = \cos \theta \mathbf{\hat{r}} - \sin \theta
+				\boldsymbol{\hat{\theta}} \), and doing some simplification we get:
+				\[
+					\mathbf{E} = \frac{\ddot p_0}{4\pi} \cos \theta \left[ \frac{(ct)^2}{r^3} - \frac{1}{r}
+					\right]\mathbf{\hat{r}} + \frac{\mu_0 \ddot p_0}{8 \pi r} \left[ \left( \frac{ct}{r}
+					\right)^2 + 1 \right]\boldsymbol{\hat{\theta}}
+				\]
+				As for the magnetic field, we get:
+				\begin{align*}
+					\nabla \times \mathbf{A} &= \nabla \times \left[ \frac{\mu_0 \ddot p_0}{4 \pi c}\left(
+					\frac{ct}{r} - 1 \right)(\cos \theta \mathbf{\hat{r}} - \sin \theta
+				\boldsymbol{\hat{\theta}} \right]\\
+				&= \frac{1}{r} \left[ \frac{\mu_0 \ddot p_0}{4\pi c} \sin \theta \boldsymbol{\hat{\theta}} -
+				\frac{\mu_0 \ddot p_0}{4 \pi c} \left( \frac{ct}{r} - 1 \right)(- \sin \theta)
+			\right]\boldsymbol{\hat{\phi}} \\ 
+			&= \frac{\mu_0 \ddot p_0}{4 \pi} \frac{t}{r^2} \sin \theta \boldsymbol{\hat{\phi}} 
+				\end{align*}
+			\end{solution}
+		\item Calculate the power \( P(r, t) \), passing through a sphere of radius \( r \). [\textit{Answer:
+			\( (\ddot p_0^2 / 12 \pi \epsilon_0 r^3) t [t^2 + (r / c)^2] \).}]
+
+			\begin{solution}
+				The power is calculated as 
+				\[
+					P = \int \mathbf{S} \cdot d\mathbf{a}
+				\]
+				so our first goal is to find \( \mathbf{S} \):
+				\[
+					\mathbf{S} = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = \left( \frac{\mu_0^2 \ddot
+					p_0^2}{16 \pi^2} \right)^2 \frac{t}{r^2} \sin \theta \cos \theta \left[ \frac{(ct)^2}{r^3} -
+					\frac{1}{r} \right] (-\boldsymbol{\hat{\theta}}) + \left( \frac{\mu_0^2 \ddot p_0^2t}{16
+					\pi^2 r^3}
+					\sin \theta \cdot \frac{1}{2}\left[ \left( \frac{ct}{r} \right)^2 + 1 \right] \right)\mathbf{\hat{r}}
+				\]
+				The unit vector \( \mathbf{a} \) through a sphere of radius \( r \) is in the \(
+				\mathbf{\hat{r}} \) direction, so only the second term survives. Therefore, we have:
+				\[
+					P = \frac{\mu_0^2 \ddot p_0^2 t}{16 \pi^2 r^3} \frac{1}{2}\left[ \left( \frac{ct}{r} \right)^2 -
+					1\right] r^2 \int_{0}^{\pi}\int_{0}^{2\pi} \sin^3 \theta \diff \theta \diff \phi =
+					\frac{\mu_0^2 \ddot p_0^2 t}{16 \pi^2 r^3} \cdot \frac{1}{2} \left[ \left( \frac{ct}{r} \right)^2 + 1
+					\right]r^2 \int \sin^3 \diff \theta \diff \phi = \frac{\mu_0^2 \ddot p_0^2 t}{12 \pi r}
+					\left[ \left( \frac{ct}{r} \right)^2 + 1 \right]
+				\]
+				This is equivalent to the answer in the prompt. 
+			\end{solution}
+		\item Find the total power radiated (Eq. 11.2), and check that your answer is consistent with Eq.
+			11.60.
+
+			\begin{solution}
+				The total power radiated is given by:
+				\[
+					P_\text{rad}(t_0) = \lim_{r \to \infty} P\left( r, t_0 + \frac{r}{c} \right)
+				\]
+				We just take the limit as \( r \to \infty \) of the previous answer, I just plugged this into
+				mathematica and I got:
+				\[
+					P_\text{rad}(t_0) = \frac{ \mu_0 \ddot p_0^2}{4 c \pi}
+				\]
+				which is exactly consistent with Eq. 11.60.
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 3}
+	Suppose the (electrically neutral) \( yz \) plane carries a time-dependent but uniform surface current \(
+	K(t) \mathbf{\hat{z}}\). 
+	\begin{enumerate}[label=(\alph*)]
+		\item Find the electric and magnetic fields at a height \( x \) above the plane if
+			\begin{enumerate}[label=(\roman*)]
+				\item a constant current is turned on at \( t = 0 \):
+					\[
+						K(t) = \begin{cases}
+							0 & t \leq 0\\
+							K_0 & t > 0
+						\end{cases}
+					\]
+					\begin{solution}
+						The plane is electrically neutral, so the scalar potential is zero, and we only have
+						the vector potential. Because we have a surface current, the integral for the vector
+						potential becomes:
+						\[
+							\mathbf{A} = \frac{\mu_0}{4\pi}\int \frac{K(t_r)}{\rcurs} \diff a
+						\]
+						To compute this integral, we use polar coordinates. Let \( r \) define the radial
+						distance from the origin on the plane, then we can calculate this as :
+						\[
+							\mathbf{A} = \frac{\mu_0}{4\pi}\int \frac{K(t_r)}{\rcurs} r \diff r \diff \theta
+						\]
+						Due to \( K \) being a constant, we only need to integrate over a finite \( r \),
+						just like we did in the previous homework:
+						\[
+							r_c = \sqrt{(ct)^2 - x^2}
+						\]
+						Therefore, we have:
+						\[
+							\mathbf{A} = \frac{\mu_0 K_0}{4\pi} \int_{0}^{2\pi} \int_{0}^{r_c}
+							\frac{r}{\sqrt{r^2 + x^2}} \diff r \diff \theta
+						\]
+						Using Mathematica:
+						\[
+							\mathbf{A} = \frac{\mu_0K_0}{4\pi} (2\pi) (-x + \sqrt{x^2 + r_c^2}) =
+							\frac{\mu_0K_0}{2} (ct - x) \mathbf{\hat{z}}
+						\]
+						Then, \( \mathbf{E} \) and \( \mathbf{B} \) are easy:
+						\[
+							\mathbf{E} = -\partial_t \mathbf{A} = \frac{\mu_0 K_0c}{2} \mathbf{\hat{z}} \quad
+							\mathbf{B} = \nabla \times \mathbf{A} = \frac{\mu_0 K_0}{2} \mathbf{\hat{y}}
+						\]
+					\end{solution}
+				\item a linearly increasing current is turned on at \( t = 0 \):
+					\[
+						K(t) = \begin{cases}
+							0 & t \leq 0\\
+							\alpha t & t > 0
+						\end{cases}
+					\]
+
+					\begin{solution}
+						Again, we follow the same thing as the previous problem, except now we have \( t
+						\) dependence (or implicitly, we get \( r \) dependence). Now, the integral becomes:
+						\[
+							\mathbf{A} = \frac{\mu_0 \alpha \mathbf{\hat{z}}}{4\pi} \int_{0}^{2\pi} \int_{0}^{r_c} \frac{t -
+							\rcurs / c}{\rcurs} \diff a = \frac{\mu_0 \alpha \mathbf{\hat{z}}}{2} \left[\int_{0}^{r_c}
+							\frac{rt}{\rcurs} \diff r - \int_{0}^{r_c} \frac{r}{c} \diff r \right]
+						\]
+						so this is just equal to:
+						\[
+							\mathbf{A} = \frac{\mu_0 \alpha \mathbf{\hat{z}}}{2} \left[ t (ct - x) - \frac{r_c^2}{2c} \right]
+						\]
+						I don't want to expand \( r_c \) out so I will leave it in this form. From here, \(
+						\mathbf{E} \) follows pretty quickly (I am skipping the algebra
+						in the interest of clarity):
+						\[
+							\mathbf{E} = -\partial_t \mathbf{A} =  - \frac{\mu_0 \alpha}{2} \left[ (ct - x) +
+							ct - \frac{1}{2c}(2c^2 t)\right] = - \frac{\mu_0 \alpha}{2}\left[ ct - x \right]
+						\]
+						The magnetic field also follows:
+						\[
+							\mathbf{B} = \nabla \times \mathbf{A} = -\pdv{A_z}{x} \mathbf{\hat{y}} 
+							= - \frac{\mu_0 \alpha}{2} \left[ -t - \frac{1}{2c}(-2x) \right] = 
+							-\frac{\mu_0\alpha}{2} \left[ \frac{x}{c} - t \right]
+						\]
+					\end{solution}
+			\end{enumerate}
+		\item Show that the retarded vector potential can be written in the form:
+			\[
+				\mathbf{A}(x, t) = \frac{\mu_0c}{2} \mathbf{\hat{z}} \int_{0}^{\infty} K\left( t -
+				\frac{x}{c} - u \right) \diff u
+			\]
+			and from this determine \( \mathbf{E} \) and \( \mathbf{B} \).
+
+			\begin{solution}
+				To begin, the integral is:
+				\[
+					\mathbf{A}(x, t) = \frac{\mu_0}{4\pi} \int \frac{K(t_r)}{\rcurs} \diff a
+				\]
+				We've seen the radial symmetry here, so the \( 4\pi \) in the denominator will become just a
+				2. Then, what we are integrating is:
+				\[
+					\mathbf{A}(x, t) = \frac{\mu_0}{2} \mathbf{\hat{z}} \int \frac{K(t - \rcurs / c)}{\rcurs} \diff a
+				\]
+				Writing this out in terms of \( \rcurs = \sqrt{r^2 + x^2} \):
+				\[
+					\mathbf{A}(x, t) = \frac{\mu_0}{2} \mathbf{\hat{z}}\int_{0}^{\infty} \frac{K\left( t - \sqrt{r^2 + x^2} /
+					c \right)}{\sqrt{r^2 + x^2}} r \diff r 
+				\]
+				Now, we make the \( u \)-substitution such that:
+				\[
+					t - \frac{\sqrt{r^2 + x^2}}{c} = t - \frac{x}{c} - u
+				\]
+				so from here, we calculate:
+				\[
+					u = \frac{1}{c}\left[ \sqrt{r^2 + x^2} - x \right] \implies 
+					du = \frac{1}{c}\left[\frac{1}{2} \frac{2r}{\sqrt{r^2 + x^2}} \diff r\right]
+				\]
+				So now, the integral becomes:
+				\[
+					\mathbf{A}(x, t) = \frac{\mu_0}{2}\mathbf{\hat{z}} \int_{0}^{\infty} K\left(t - \frac{x}{c} -
+					u\right) \cdot \frac{r}{\sqrt{r^2 + x^2}} \cdot \frac{c \sqrt{r^2 + x^2}}{r} \diff u =
+					\frac{\mu_0c}{2} \mathbf{\hat{z}} \int_{0}^{\infty}K\left( t - \frac{x}{c} - u \right)
+					\diff u
+				\]
+				From here, we can determine \( \mathbf{E} \) and \( \mathbf{B} \):
+				\[
+					\mathbf{E} = -\partial_t \mathbf{A} = -\frac{\mu_0c}{2} \mathbf{\hat{z}}
+					\int_{0}^{\infty}\pdv{t} K\left( t - \frac{x}{c} - u \right) \diff u
+				\]
+				And we can make a change of variables \( u \to t \) which costs us a negative sign, so:
+				\[
+					\mathbf{E} = -\frac{\mu_0c}{2}\mathbf{\hat{z}} \int_{0}^{\infty}-\pdv{u} K\left( t -
+					\frac{x}{c} - u \right) \diff u = \frac{\mu_0c}{2} \left[ K(-\infty) - K\left( t -
+				\frac{x}{c} \right) \right] \mathbf{\hat{z}}
+				\]
+				Likewise we can do the same with \( \mathbf{B} \):
+				\[
+					\mathbf{B} = \nabla \times \mathbf{A} = -\pdv{A_z}{x} \mathbf{\hat{y}} =
+					-\frac{\mu_0c}{2} \mathbf{\hat{y}} 
+					\int_{0}^{\infty}\pdv{x} K \left( t - \frac{x}{c} - u \right) \diff u
+				\]
+				We do the same trick as with \( \mathbf{E} \), except now it costs us a factor of \(
+				\frac{1}{c} \), so we have:
+				\[
+					\mathbf{B} = -\frac{\mu_0c}{2}\int_{0}^{\infty}\frac{1}{c}\pdv{u} K\left( t - \frac{x}{c}
+					- u \right)\diff u = -\frac{\mu_0}{2}\left[ K(-\infty) - K\left( t - \frac{x}{c} \right)
+					\right] \mathbf{\hat{y}}
+				\]
+			\end{solution}	
+		\item Show that the total power radiated per unit area of surface is 
+			\[
+				\frac{\mu_0c}{2}[K(t)]^2
+			\]
+			Explain what you mean by "radiation", in this case, given that the source is not localized. 
+
+			\begin{solution}
+				The Poynting vector is given by 
+				\[
+					\mathbf{S} = \frac{1}{\mu_0}(\mathbf{E} \times \mathbf{B}) = -\frac{1}{\mu_0} \left(
+					\frac{\mu_0}{2} \right)^2 c \left[ K(-\infty) - K\left( t - \frac{x}{c} \right) \right]^2
+					(- \mathbf{\hat{x}})
+				\]
+				If we allow \( K(-\infty) \to 0 \), then this equation simplifies to:
+				\[
+					\mathbf{S} = \frac{\mu_0c}{2}\left[ K\left( t - \frac{x}{c} \right) \right]^2
+					\mathbf{\hat{x}}
+				\]
+				Therefore, at any moment in time, the total power radiated should not be calculated relative
+				to point \( x \) but instead calculated absolutely, in which case we replace the argument to
+				\( K \) by \( K(t) \). Therefore, we have the total power per unit area:
+				\[
+					\mathbf{S} = \frac{\mu_0c}{2}\left[ K(t) \right]^2 \mathbf{\hat{x}}
+				\]
+				Here, radiation still means the same thing -- basically the portion of
+				the EM field that has a \( \frac{1}{r} \) dependence, which decays slowly enough that it is
+				nonzero even at infinity. We can see this in the fact that the vector potential we integrated 
+				always has an \( \frac{1}{\rcurs} \) dependence. 
+			\end{solution}
+	\end{enumerate}
+\end{document}

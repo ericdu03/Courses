@@ -1,0 +1,435 @@
+\chapter{Introduction and Overview}
+
+\section{Perspectives}
+\begin{itemize}
+	\item One thing that we've always wanted to do was to obtain a \textit{complete control single 
+		quantum systems}. Particle accelerators and superconductivity have gotten us close to doing so, but 
+		even then those systems are often very hard to control. 
+	\item Over decades, we've gotten better at doing this: we've been able to trap atoms 
+		using lasers, and now are able to actually talk about the quantum behavior of certain objects.
+	\item At the same time, computer science was also an emerging field, with the help of Turing. 
+	\item Failure of Moore's law in recent years: we can no longer get smaller! One way out 
+		is to explore the world of quantum computation.  
+\end{itemize}
+\section{Quantum Bits}
+\begin{itemize}
+	\item A bit is the fundamental concept that we'll talk about, specifically in the quantum world they are 
+		called qubits. 
+	\item Qubits are classified by their state \( \ket 0  \) and \( \ket 1 \), and they can also exist 
+		in a linear combination of states: 
+		\[
+		\ket \psi = \alpha \ket 0 + \beta \ket 1
+		\] 
+		\( \alpha \) and \( \beta \) are generally complex numbers, and the probability of 
+		measuring \( \ket 0 \) is \( |\alpha|^2 \), and similarly for \( \ket 1 \). 
+	\item By the law of total  
+		probability, we have that \( |\alpha|^2 + |\beta|^2 = 1 \). 
+	\item It's important to remember that a qubit can exist in a continuum of states between \( \ket 0 \) and 
+		\( \ket 1   \). A common state is the \( \ket + \) state:
+		\[
+		\frac{1}{\sqrt{2} }\ket 0 + \frac{1}{\sqrt{2} }\ket 1
+		\] 
+	\item A useful interpretation of \( \ket \psi \) is the following simplification:
+		\begin{align*}
+			\ket \psi &=  e^{i \gamma} \left( \cos \frac{\theta}{2}\ket 0 + e^{i\phi} \sin \frac{\theta}{2} \ket 1 \right) \\
+			&= \cos \frac{\theta}{2} \ket 0  + e^{i\phi}\sin \frac{\theta}{2} \ket 1
+		\end{align*}
+		The \( e^{i\gamma} \) in front can be ignored, since some initial phase doesn't really matter. This is 
+		known as the \textbf{Bloch Interpretation} of a quantum state. Here, states appear on a 
+		\textit{Bloch Sphere}, and it diagramatically shows a quantum state. That said, there is 
+		no interpretation like a bloch sphere for multiple qubits. 
+	\item The amount of information represented by one qubit is actually the same as that of a classical 
+		bit, due to the fundamental postulates of quantum mechanics.
+\end{itemize}
+\subsection{Multiple Qubits}
+\begin{itemize}
+	\item Suppose we have two qubits. Because they're quantum, then they have basis states: \( \ket{00}, \ket{01} 
+		\ket{10}, \ket{11}\). Then, we can model its quantum state as:
+		\[
+		\ket{\psi} = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}
+		\] 
+		Note that the state collapses with probability \( |\alpha_x|^2 \), and the state after measurement is 
+		\( \ket{x} \).
+	\item If we just measure a subset of the qubits (say, bit 0), then we're left with the post-measurement
+		state:
+		\[
+		\ket{\psi'} = \frac{\alpha_{00} \ket{00} + \alpha_{01}\ket{01}}{\sqrt{|\alpha_{00}|^2 + |\alpha_{01}|^2} }
+		\] 
+		Note the renormalization factor of \( \sqrt{|\alpha_{00}|^2 + |\alpha_{01}|^2}  \) in the denominator,
+		which ensures that normalization is still satisfied. 
+	\item An important state we'll constantly come back to is the \textit{Bell State} or \textit{EPR Pair}:
+		\begin{equation}\label{EPR}
+			\frac{\ket{00} + \ket{11}}{\sqrt{2} }	
+		\end{equation}
+		This state is special because measuring the first qubit also gives you information about the state of the 
+		second qubit automatically, without measurement. 
+	\item In general, an \( n \) bit system is modeled by a state with \( 2^n \) amplitudes, meaning that 
+		\( n = 500 \) already gives us a value larger than the number of atoms in the universe. 
+\end{itemize}
+\section{Quantum Computation}
+\subsection{Single Qubit States}
+\begin{itemize}
+	\item Recall the classical implementation of the NOT gate, which basically inverts a circuit from 
+		\( 0 \to 1 \) or \( 1 \to 0 \). There is also a quantum analogue, if we're given 
+		a state \( \alpha\ket{0} + \beta\ket{1} \) then the corresponding state that the NOT operation 
+		should return is \( \alpha \ket{1} + \beta\ket{0} \). (In other words, we flip the probability 
+		of the inputs.)
+	\item One way to represent the NOT gate is to use a matrix (Note: this is only possible because 
+		quantum gates are linear):
+		\( X \equiv \begin{bmatrix} 0 & 1\\ 1& 0  \end{bmatrix}  \)
+
+		\question{Why are quantum gates linear? How is it possible that the gate does not collapse the quantum 
+		state, and even if it doesn't how do we show linearity?}
+
+		\answer{It's linear in the bits because we can apply the gate individually onto each bit.} 
+	\item The only constraint we have on a gate \( U \) is that it must be unitary: that is, \( U^\dagger U = I\) 
+	\item Some important quantum gates to know about: 
+		\[
+			Z \equiv \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix} 
+		\] 
+		this leaves \( \ket{0} \) unchanged, but flips the sign of \( \ket{1}  \) to \( -\ket{1} \). The 
+		other is the Hadamard gate:
+		\[
+			H \equiv \frac{1}{\sqrt{2} }\begin{bmatrix} 1 & 1 \\1 & -1 \end{bmatrix} 
+		\] 
+		It turns both states ``halfway'' between one another:
+		\begin{align*}
+			\alpha \ket{0} &\to \alpha \frac{\ket{0} + \ket{1}}{\sqrt{2} } \\
+			\beta \ket{1} &\to \beta\frac{\ket{0} - \ket{1}}{\sqrt{2} }
+		\end{align*} 
+		Pictorally, this is equivalent to rotating about the \( \hat{y} \) axis by \( 90^\circ \), and 
+		then rotating about the \( \hat{x} \) axis by \( 180^\circ \).
+	\item Any arbitrary gate can be decomposed into a product:
+		\[
+			e^{i\alpha}\begin{bmatrix} \cos \frac{\gamma}{2}  & - \sin \frac{\gamma}{2} \\ \sin \frac{\gamma}{2}
+			& \cos \frac{\gamma}{2}\end{bmatrix} \begin{bmatrix} e^{-i \beta / 2} & 0 \\
+			0 & e^{i\beta / 2}\end{bmatrix} 
+		\] 
+	\item This means that we have an infinite number of single qubit gates! However, we don't actually need 
+		an infinite number of gates -- for special values of \( \alpha, \beta, \gamma \), there is a way 
+		to build very good approximations for any kind of gate we come across.  
+\end{itemize}
+\subsection{Multiple Qubit Gates}
+\begin{itemize}
+	\item The simplest quantum gate is the controlled-NOT, also called a CNOT gate, which takes a 
+		control bit and a target bit, and does (or doesn't) do things based on the value of the control bit.  
+		\begin{center}
+			\begin{quantikz}
+				\lstick{\( \ket{A} \) } & \ctrl{1} & \rstick{\( \ket{A} \) }\\
+				\lstick{\( \ket{B} \)} & \targ{} & \rstick{$\ket{B \oplus A}$}
+			\end{quantikz}
+		\end{center}
+		What it does is read off the control qubit, and if it's 0, then the target is unchanged. Otherwise, 
+		we flip the target:
+		\begin{align*}
+			\ket{00} &\to \ket{00}\\
+			\ket{01} & \to \ket{01}\\
+			\ket{10} &\to \ket{11}\\
+			\ket{11} &\to \ket{10}
+		\end{align*}
+		Given this representation, we can also write it as an operation of 
+		\( \ket{A, B} \to \ket{A, B\oplus A} \), 
+		where the \( \oplus \) signifies addition mod 2. 
+		It's also possible to write CNOT in matrix form, which is:
+		\[
+			U_{CN} = \begin{bmatrix} 1 & 0&0&0\\0&1&0&0\\0&0&0&1\\0&0&1&0 \end{bmatrix} 
+		\] 
+		it's also possible to verify that \( U_{CN}^\dagger U_{CN} = I\).
+	\item Other classical gates like the NAND and XOR gates cannot be implemented this way, because there 
+		is a fundamental loss of information when information is passed through them -- for instance, 
+		given \( A \oplus B \) from an XOR gate, it's impossible to tell (with certainty) what \( A \) and 
+		\( B \) were. 
+
+		One requirement of our quantum gates is that they must be unitary and hence reversible, so these other 
+		gates cannot be implemented quantumly.
+	\item It also turns out that any multiple qubit logic gate can be implemented by using only CNOT and single 
+		qubit gates: this is the quantum analogue to the NAND universality found in classical 
+		computation.
+\end{itemize}
+\subsection{Measurements in Bases other than the computational basis}
+\begin{itemize}
+	\item There are many basis states one could pick for a qubit. In general, given any two \( \ket{a} \) 
+		and \( \ket{b} \) (provided they are not the same) for a qubit it is possible to use these as a basis 
+		for any arbitrary state. 
+	\item If they are orthonormal, they have the added benefit that performing a measurement will give 
+		state \( \ket{a} \) and \( \ket{b} \) with a known probability.
+\end{itemize}
+\subsection{Quantum Circuits}
+\begin{itemize}
+	\item Circuits are read left to right, and each line represents a wire in a quantum circuit. One of the 
+		most common is the swap circuit, which swaps the states of two qubits. This is implemented
+		using three CNOT gates:
+		\begin{center}
+			\begin{quantikz}[row sep = 1cm]
+				& \ctrl{1} & \targ{} & \ctrl{1} & \\
+				& \targ{} & \ctrl{-1} & \targ{}& 
+			\end{quantikz}
+			\( \equiv \)
+			\begin{quantikz}[row sep = 1cm]
+				& \swap{1} & \\
+				& \targX{} &
+			\end{quantikz}
+		\end{center}
+	\item Loops, joining, and separation of wires are \textbf{not} allowed in quantum circuits.
+	\item Any unitary matrix \( U \) that acts on \( n \) qubits can be represented as some arbitrary 
+		gate, and we can also add control to it:
+		\begin{center}
+			\begin{quantikz}
+				& \ctrl{1} & \\
+				& \gate[3]{U} & \\
+				&&\\
+				&&\\
+			\end{quantikz}
+		\end{center}
+		Here, the \( U \) gate would be controlled by whatever the state of the first bit is. 
+	\item Measurement is also important, which changes a quantum wire into a classical one, through a 
+		meter symbol:
+		\begin{center}
+			\begin{quantikz}
+				\lstick{\( \ket{\psi} \) } & \meter{} &\setwiretype{c} &\\
+			\end{quantikz}
+		\end{center}
+		The classical wire is represented as a double wire.
+\end{itemize}
+\subsection{No Cloning}
+\begin{itemize}
+	\item Classically, it's easy to copy a qubit by using a CNOT gate, but this is not always possible for 
+		quantum circuits. 
+	\item In the case where \( \ket{\psi} = \ket{0} \) or \( \ket{\psi} = \ket{1} \), then a CNOT gate is 
+		able to copy the state \( \ket{\psi} \) onto a second qubit. However, for a general state 
+		\( \ket{\psi} \), the equation for the output state (after copying) is:
+		\[
+		\ket{\psi}\ket{\psi} = a^2\ket{00} + ab\ket{01} + ab\ket{10} + b^2\ket{11}
+		\] 
+		If we want to copy the bit, then we'd want only the \( \ket{00} \) or \( \ket{11} \) states. This 
+		means that \( ab = 0 \), which only occurs when \( a \) or \( b \) are zero, so this copying 
+		process is impossible for general states. 
+	\item More succinctly, a quantum cloning device can only clone orthogonal states, and a general cloning 
+		device is not possible. There is a detailed proof of this later on in the textbook that we'll get to.  
+\end{itemize}
+
+\subsection{Bell States}
+Consider a slightly more complicated circuit:
+\begin{center}
+	\begin{quantikz}
+		\lstick{x} & \gate{H}& \ctrl{1} & \rstick[2]{\( \ket{\beta_{xy}} \) } \\
+		\lstick{y} &  & \targ{} & 	\end{quantikz}
+\end{center}
+Recall what the Hadamard gate does: it takes a state \( \ket{00} \) and transforms it into 
+\( (\ket{0} + \ket{1}) \ket{0} / \sqrt{2}  \), then the CNOT then gives the output state \( (\ket{00} +\ket{11}) / \sqrt{2} \). 
+Note the reason that this happens is because the CNOT gate is conditioned on the first bit, hence it flips the 
+product state \( \ket{10} \) into \( \ket{11} \). Therefore, the output states are:
+\begin{align*}
+	\ket{\beta_{00}} &= \frac{\ket{00} + \ket{11}}{\sqrt{2} } \\
+	\ket{\beta_{01}} &= \frac{\ket{01} + \ket{10}}{\sqrt{2} } \\
+	\ket{\beta_{10}} &=  \frac{\ket{00} - \ket{11}}{\sqrt{2} } \\
+	\ket{\beta_{11}} &=  \frac{\ket{01} - \ket{10}}{\sqrt{2} } 
+\end{align*}
+\question{What is the purpose of such a circuit? Doesn't the Hadamard gate on its own do this already?} 
+
+\answer{The Hadamard gate does something similar but not identical: it takes a single bit state and superimposes it, but here 
+we're placing \textit{two} states in superposition with each other.}   
+
+These states are called the \textit{Bell states} (or also the \textit{EPR States}), which exhibit some strange 
+properties. 
+
+\subsection{Quantum Teleportation}
+Suppose we have two people, Alice and Bob, who create an EPR and they each take one qubit and move very far from each 
+other. Now, suppose Alice wanted to deliver a qubit  \( \ket{\psi} \) to Bob. Is this possible? The answer to that is suprisingly, 
+yes! 
+
+On the surface it looks impossible, since firstly, we don't know what the state \( \ket{\psi} \) is, and even if we did, 
+because the values \( \alpha, \beta \) that are used to encode \( \ket{\psi} = \alpha \ket{1} + \beta \ket{0} \) are \textit{complex
+valued}, this requires an infinite number of information to encode! However, here we utilize \textbf{quantum teleportation} 
+in order to solve the problem. 
+
+Basically, the idea is that Alice first interacts \( \ket{\psi} \) with her half of the EPR pair, and then measures the 
+two qubits. Based on the results (either 00, 01, 10, 11), she sends this information to Bob, 
+and Bob can recover the \( \ket{\psi} \) this way. The circuit is as follows: 
+
+\begin{center} 
+	\begin{quantikz}
+		\lstick{\( \ket{\psi} \)} \slice{\(\ket{\psi_0}\)} & \ctrl{1} \slice{\( \ket{\psi_1} \) } & \gate{H} 
+		\slice{\( \ket{\psi_2} \) } & 
+		\meter{M_1} \slice{\( \ket{\psi_3} \) }& \setwiretype{c} & & \phase{} \wire[d][2]{c}  \\
+		\lstick[2]{\( \ket{\beta_{00}} \)} & \targ{} & & \meter{M_2} & \setwiretype{c} & \phase{} \wire[d][1]{c}\\
+										   & & & & & \gate{X^{M_2}}& \gate{Z^{M_1}} &  \rstick{\( \ket{\psi} \) }
+	\end{quantikz}
+\end{center}
+To read this circuit, the first two lines correspond to Alice's state, and the third line corresponds to Bob's state, 
+where he's recovered \( \ket{\psi} \). Specifically, alice has \( \ket{\psi} \) and the \textit{first} of the EPR state 
+\( \ket{\beta_{00}} \).
+The basic idea is this: we send in the state \( \ket{\psi}\ket{\beta_{00}} \) as indicated on the left. Remember that 
+\( \ket{\psi} = \alpha\ket{0} + \beta\ket{1}\) and \( \ket{\beta_{00}} = (\ket{00} + \ket{11}) / \sqrt{2}  \), so 
+the product state is expressed as: 
+\[
+\ket{\psi_0} = \ket{\psi}\ket{\beta_{00}} = \frac{1}{\sqrt{2} }\left[ \alpha\ket{0}(\ket{00} + \ket{11}) + \beta\ket{1}(\ket{00} + \ket{11}) \right] 
+\]
+Then, as the state goes through the CNOT gate, we get:
+\[
+\ket{\psi_1} = \frac{1}{\sqrt{2} }\left[ \alpha\ket{0}(\ket{00} + \ket{11}) + \beta\ket{1}(\ket{10} + \ket{01}) \right] 
+\] 
+The CNOT gate flips the \textit{first} qubit when the state \( \ket{\psi} = \ket{1}\), which is why the second term 
+has the first bits inverted compared to \( \ket{\psi_0} \). We then send the first qubit through a Hadamard gate, which rotates 
+the first qubit:
+\[
+\ket{\psi_2} = \frac{1}{\sqrt{2} }\left[ \alpha \frac{\ket{0} + \ket{1}}{\sqrt{2} }(\ket{00} + \ket{11}) 
+ + \beta \frac{\ket{0} - \ket{1}}{\sqrt{2} }(\ket{10} + \ket{01}\right] = \frac{1}{2}l\left[ \alpha(\ket{0} + \ket{1}
+(\ket{00} + \ket{11}) + \beta(\ket{0} - \ket{1}) (\ket{10} + \ket{01})\right] 
+\] 
+We can regroup terms and that gives us the following:
+\[
+\ket{\psi_2} = \frac{1}{2}\left[ \ket{00}(\alpha\ket{0} + \beta\ket{1}) + \ket{01}(\alpha\ket{1} + \beta\ket{0})
++ \ket{10}(\alpha\ket{0} - \beta\ket{1}) + \ket{11}(\alpha\ket{1} - \beta\ket{0})\right] 
+\] 
+Now, we look at these four terms. The first term is Alice's qubits in the state \( \ket{00} \), and Bob's in the state 
+\( \alpha\ket{0} + \beta\ket{1} \), which is \( \ket{\psi} \). Therefore, if Alice measures her qubits and finds them in 
+the state \( \ket{00} \), then we know that Bob's system is in the state \( \ket{\psi} \). On the other hand, if she measures
+\( 01 \), then we know that Bob's state is \( \alpha\ket{1} + \beta\ket{0} \). Effectively, if Alice could communicate her 
+measurement result to Bob, then Bob would know his state. Once she does communicate, then in order to recover \( \ket{\psi} \), 
+Bob could use the \( Z \) and \( X \) gates in order to recover \( \ket{\psi} \). Specifically, he needs 
+to apply \( Z^{M_1}X^{M_2} \) to his state, notice the matrix product goes from right to left, but the circuit is written
+from left to right. 
+
+\question{How is it that the first two qubits now belong to Alice? Initially she had \( \ket{\psi} \), and one half of 
+\( \ket{\beta_{00}} \), not the whole thing, so how did she suddenly become in possession of the entire \( \ket{00} \)?
+Alternatively, she coudln't possibly have measured the entire state \( \ket{00} \), since she only has possession 
+of one of these qubits?} 
+
+Another thing to note is that Alice needs to communicate her result (classically) to Bob in order for him to
+recover the result. Because 
+this cannot be done faster than light, this is what prevents information from being transported faster than light. 
+
+
+\section{Quantum Algorithms}
+\subsection{Classical computations on a quantum computer}
+Not surprisingly, any classical logic circuit can be implemented using a quantum circuit. However, they cannot be used to 
+\textit{directly} simulate a classical circuit, because classical circuits can contain reversible elements whereas 
+quantum circuits cannot. However, we can build \textit{equivalent} circuits, using the Toffoli gate:
+\begin{center}
+	\begin{quantikz}
+		\lstick{\( a \)} & \ctrl{2} & \rstick{\( a \)}\\
+		\lstick{\( b \)} & \ctrl{1} & \rstick{\( b \)}\\
+		\lstick{\( c \)} & \targ{} & \rstick{\( c\oplus ab \) }
+	\end{quantikz}
+\end{center}
+This gate flips the state of \( c \) if both  \( a \) and \( b \) are set to 1, otherwise \( c \) is left alone. Because 
+the inverse of the Toffoli gate is itself (applying the gate twice on a state \( c \) returns it back to its original state), 
+this gate is reversible. We can then use this to simulate gates such as \textsc{NAND} and \textsc{FANOUT}. 
+
+One can write down the \( 8\times 8 \) matrix \( U \) that represents the quantum Toffoli gate and check that it is indeed 
+unitary, but that's too much work. However, the principle that it can be done ensures that we can simulate all 
+classical logic on a quantum circuit if we'd like. Randomness is also easy to simulate on a quantum computer -- for instance, 
+if we wanted to generate a fair coin toss, we'd just generate the state \( (\ket{0} + \ket{1}) / \sqrt{2}  \) and measure it, 
+which would give us either state with equal probability. 
+
+\subsection{Quantum Parallelism}
+In essence, this is the idea that quantum computers have the ability to evaluate a function \( f(x) \) on many different 
+inputs of \( x \) simultaneously. For simplicity, we'll let \( f(x) : \{0, 1\}  \to \{0, 1\}  \) for now. To compute 
+this function, we can start with a 2-qubit state \( \ket{x, y} \), and we can transform this 
+into the state \( \ket{x, y \oplus f(x)} \) (here, the \( \oplus \) refers to addition modulo 2). 
+We'll call the transformation \( U_f \), which maps \( \ket{x, y} \to 
+\ket{x, y \oplus f(x)}\). We won't concern ourselves with the exact implementation of \( U_f \) for now, but we know that 
+it can be done, because it is reversible (check this). 
+
+Now, we want to compute \( U_f \) on the states \( x = (\ket{0} + \ket{1}) / \sqrt{2}  \) and \( y = \ket{0} \) :
+\begin{center}
+	\begin{quantikz}
+		\lstick{\( \frac{\ket{0} + \ket{1}}{\sqrt{2} } \) } & \gate[2]{U_f  } & \rstick{x}\\
+		\lstick{\( \ket{0} \) } & & \rstick{\( y \oplus f(x) \) }
+	\end{quantikz}
+\end{center}
+
+Applying \( U_f \) on this states gives the result:
+\[
+\ket{\psi} = \frac{\ket{0, f(0)} + \ket{1, f(1)}}{\sqrt{2} }
+\] 
+\question{As I understand it, \( U_f \) outputs the following on the inputs:
+	\[
+		\ket{\psi} = \ket{\frac{\ket{0} + \ket{1}}{\sqrt{2} }, \ket{0} \oplus f\left( \frac{\ket{0} + \ket{1}}{\sqrt{2} } \right) }
+	\] 
+How is \( f \) evaluated here? How does it equal the resulting state?} 
+
+\answer{Firstly, since \( y = \ket{0}\), then the resulting second value in the state is just \( f(x) \). Then, because
+\( x  \) is a superposition of the states \( \ket{0} \) and \( \ket{1} \), then we get the states \( \ket{0, f(0)} \) and 
+\( \ket{1, f(1)} \) with equal probability, which is why we can express \( \ket{\psi} \) as the state written in 
+the book.} 
+
+This state is remarkable, since it implies that we've computed \( f(0) \) and \( f(1) \)  simultaneously, without the need to 
+build multiple circuits. This procedure is generalized in what's known as the \textbf{Hadamard Transform}, which is basically 
+the product state of \( n \) Hadamard gates acted on the state \( \ket{0} \). On \( n \) qubits, the resulting state 
+is:
+\[
+H^{\otimes n} = \frac{1}{\sqrt{2^{n}} } \sum_x \ket{x} 
+\] 
+Then, in order to evaluate a function \( f(x) \), we can prepare a state \( \ket{0}^{\otimes n} \ket{0} \), where the first 
+\( n \) qubits are sent through \( n \) Hadamard gates, and when this state is passed through \( U_f \), we get:
+\[
+\ket{\psi} = \frac{1}{\sqrt{2^{n}} } \sum_x \ket{x}\ket{f(x)}
+\] 
+This is not immediately useful however: upon measurement, we still only get one value of \( f(x) \) as an output. The real 
+power of quantum parallelism is the ability to extract information about more than one value of \( f(x) \) with superposition. 
+\subsection{Deutsch's Algorithm}
+Deutsch's algorithm combines quantum parallelism (what we just saw) with interference. First, we'll set up 
+two bits in the states \( (\ket{0} + \ket{1}) / \sqrt{2}  \) and \( (\ket{0} - \ket{1}) / \sqrt{2}  \), by acting 
+the Hadamard gate on the states \( \ket{0} \) and \( \ket{1} \) respectively. Then, we'll apply \( U_f \), then 
+apply one final Hadamard gate to the result of \( x \):
+\begin{center}
+	\begin{quantikz}
+		\lstick{\( \ket{0} \) } \slice{\( \ket{\psi_0} \) } & \gate{H} \slice{\( \ket{\psi_1} \) } & \gate[2]{U_f} 
+		\slice{\( \ket{\psi_2} \) }	& \gate{H} \slice{\( \ket{\psi_3} \) }  & &\\
+		\lstick{\( \ket{1} \)} & \gate{H} & & & 
+	\end{quantikz}
+\end{center}
+Again, these states are sent through the Hadamard gate, so we have 
+\[
+\ket{\psi_1} = \left[ \frac{\ket{0} + \ket{1}}{\sqrt{2} } \right] \left[ \frac{\ket{0} - \ket{1}}{\sqrt{2} } \right] 
+\] 
+If we apply \( U_F \) to this state, this gives us the state \( (-1)^{f(x)}\ket{ x}(\ket{0} - \ket{1}) / \sqrt{2}  \). Therefore, 
+if we were to apply \( U_F \) to \( \ket{\psi_1} \), we get:
+\[
+\ket{\psi_2} = \begin{cases}
+	\pm \left[ \dfrac{\ket{0} + \ket{1}}{\sqrt{2} } \right] \left[ \dfrac{\ket{0} - \ket{1}}{\sqrt{2} } \right] & f(0) = f(1) \\
+	\\
+	\pm \left[ \dfrac{\ket{0} - \ket{1}}{\sqrt{2} } \right] \left[ \dfrac{\ket{0} - \ket{1}}{\sqrt{2} } \right] & f(0) \neq f(1) 
+\end{cases}
+\] 
+Then, passing the first bit through the Hadamard gate again reverses the rotation, so we get:
+\[
+\ket{\psi_3}= \begin{cases}
+	\pm \ket{0}\left[ \dfrac{\ket{0} - \ket{1}}{\sqrt{2} } \right] & f(0) = f(1)\\
+	\\
+	\pm\ket{1}\left[ \dfrac{\ket{0} - \ket{1}}{\sqrt{2} } \right] & f(0) \neq f(1)
+\end{cases}
+\]  
+Then, since \( f(0) \oplus f(1) \) is 0 if \( f(0) = f(1) \) and \( 1 \) otherwise (because if \( f(0) \neq f(1) \) then 
+one of \( f(0) \) or \( f(1) \) must be 1), then we can rewrite 
+this as:
+\[
+\ket{\psi_3} = \pm \ket{f(0) \oplus f(1)}\left[ \frac{\ket{0} - \ket{1}}{\sqrt{2} } \right] 
+\] 
+The power of this resulting state is that by measuring the first qubit alone, we can determine \( f(0) \oplus f(1) \), 
+meaning that we can determine both \( f(0) \) and \( f(1) \) with a \textit{single} evaluation! The reason this works 
+is becuase here, we've created a state where the result of \( f(0) \) affects \( f(1) \), so we are able to determine the 
+identities of \( f(0) \) and \( f(1) \) with a single evaluation. 
+
+\subsection{The Deutsch-Jozsa Algorithm}
+This is the algorithm that solves Deutsch's problem, which is phrased as follows: Given \( f(x) \), it is one 
+of two kinds: either \( f(x) \) is constant for all \( x \), or \( f(x) =1 \)  for half the inputs and \( f(x) = 0 \) 
+for the other half. 
+
+In the classical case, we'd require at least \( 2^{n-1} + 1 \) values in order to determine the identity of \( f \). However, 
+if we were to do this with a quantum computer, we can accomplish this much faster, using only \( O(n) \) time. 
+
+To solve this, we'll use Deutsch's algorithm, except this time on \( n \) bits. We start with the state  
+\[
+\ket{\psi_0} = \ket{0}^{\otimes n}\ket{1}
+\] 
+Then, when we perform a Hadmard transform on these first \( n \) qubits, we get:
+\[
+	\ket{\psi_1} = \sum_{x \in \{0, 1\} ^{n}} \frac{\ket{x}}{\sqrt{2^{n}} }\left[ \frac{\ket{0} - \ket{1}}{\sqrt{2} } \right] 
+\] 
+Then, using \( U_f \) we get:
+\[
+\ket{\psi_2} = \sum_x \frac{(-1)^{f(x)} \ket{x}}{\sqrt{2^{n}} }\left[ \frac{\ket{0} - \ket{1}}{\sqrt{2} } \right] 
+\] 

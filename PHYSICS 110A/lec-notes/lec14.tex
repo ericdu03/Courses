@@ -1,0 +1,121 @@
+\chapter{Lecture 14}
+Lecture 14 was held on \textbf{Wednesday Feb 22nd, 2022}. It finished the example problem that we started last
+lecture and also covered the \textbf{Laplace Equation in Spherical Coordinates}
+
+\section{Last Time: Two Planes}
+Recall from last time that we have the solution 
+\[ V(x, y) = \sum_n c_n e^{-\frac{n \pi x}{a}} \sin \left( \frac{n \pi y}{a} \right) \] 
+which we've obtained by imposing the following conditions:
+\begin{enumerate}
+		\item $V = 0$ at $y = 0$, getting rid of the cosine term
+		\item $V =0$ at $y =a$, giving us the quantization of the wavelength
+		\item $V \to 0$ as $x \to \infty$, giving us no exponential growth.
+\end{enumerate}
+Now we will impose our final boundary condition: at $x = 0$, we have $V = V_0(y)$. So plugging in $x = 0$, we see
+that: 
+\[ V(0, y) = \sum_n c_n \sin\left( \frac{n \pi y}{a} \right) \]
+\begin{insight*}{}
+	Note that this is actually only possible because the set of functions form a complete basis, and they are 
+	orthonormal, so the sum of sines can represent any arbitrary function $V_0(y)$. Again, recall the 
+	orthonormality condition: 
+	\[ \braket{\sin\left( \frac{n \pi y}{a} \right)}{\sin\left( \frac{m \pi y}{a} \right) } \equiv \int_0^a
+	dy \sin\left( \frac{n \pi y}{a} \right) \sin\left( \frac{m \pi y}{a} \right) = \begin{cases}
+			0 & n \neq m\\
+	\frac{a}{2} & n = m
+\end{cases}\]
+\end{insight*}
+and so we can see from this that we can grab each coefficient by writing: 
+\[ c_n = \frac{2}{a}\braket{\sin\left( \frac{n \pi y}{a} \right) }{V_0(y)} = \frac{2}{a}\int_0^a c_n 
+e^{-\frac{n\pi x}{a}} \sin\left( \frac{n \pi y}{a} \right) \]
+\begin{insight*}{}
+		We also see this sinusoidal behavior with other partial differential equations as well: 
+		\begin{align*}
+				\left(\partial_x^2 - \frac{1}{v^2}\partial_t^2\right) \phi &= 0 & \text{(Wave Equation)}\\
+				\partial_t \phi &= \laplace \phi & \text{(Flow Equation)}
+		\end{align*}
+		These equations all share the property that they have a second order differential which equals itself, 
+		which generally means that the solution is some form of complex exponential ($e^{ikx}$ of some kind). This
+		is also useful because  we know that $e^{ikx}$ terms form a complete orthonormal basis, so we can model any
+		arbitrary function with these exponentials as well.  
+\end{insight*}
+\section{Laplace's Equation in Spherical Coordinates}
+Here, the differential form of Laplace's equation remains the same $\laplace \phi = 0$, but the Laplacian is 
+different since we're now working in spherical coordinates:
+\[ \laplace V = \frac{1}{r}\pdv{r}\left( r^2 \pdv{V}{r} \right) + \frac{1}{r^2 \sin \theta}\pdv{\theta}
+\left( \sin \theta \pdv{V}{\theta} \right)  + \frac{1}{r^2 \sin \theta}\pdv[2]{V}{\phi}\]
+For simplicity, we assume azimuthal symmetry, so $V$ does not depend on the $\phi$ coordinate. If it did, then 
+we'd have to impose the boundary condition that $\phi(0) = \phi(2\pi)$, which would imply a solution of the form
+$e^{in\phi}$. Because there is no $\phi$ coordinate, then we know that $\pdv{V}{\phi} =0$. Writing out the other
+two terms: 
+\[ \frac{1}{r^2} \pdv{r} \left( r^2 \pdv{V}{r} \right) + \frac{1}{r^2 \sin \theta}\pdv{\theta}
+\left( \sin \theta \pdv{V}{\theta} \right) \]
+We now consider the separable solution  $V(r, \theta) = R(r) \Theta(\theta)$. Plug this ansatz back into the 
+the equation and multiplying by $r^2/R\Theta$, we get: 
+\[ \frac{1}{R}\pdv{r}\left(r^2 \pdv{R}{r}\right) + \frac{1}{\sin^2 \theta \Theta}\pdv{\theta}
+\left( \sin \theta \pdv{\Theta}{\theta} \right) = 0\]
+And so just like last time, each one of these terms must be constant, otherwise we can fix one and vary the other
+which wouldn't give us 0 in general. For later convenience, we will define the constant as $l (l+1)$, so we write:
+\begin{align*}
+		\frac{1}{R}\pdv{r}\left( r^2 \pdv{R}{r} \right) &= l(l+1)\\
+		\frac{1}{\sin^2 \theta}\pdv{\theta}\left( \sin \theta \pdv{\Theta}{\theta} \right) &= -l(l+1)
+\end{align*}
+Looking at the radial equation, we have:
+\[ \dv{r}\left( r^2 \dv{R}{r} \right) = l(l+1)R\]
+This differential equation asks us to take the function $R$ and take the derivative twice, multiply by $r^2$ and 
+it's supposed to give us $R$ back. This hints at a solution of the form $R = r^m$, since the exponent is returned
+after differentiating twice. So plugging this back in: 
+\[ \dv{r}\left( r^2 \dv{r} r^m \right) = m(m+1)r^m\] 
+Giving us 
+\begin{align*}
+		m(m+1)r^m &= l(l+1)r^m\\
+		m^2 + m - l(l+1)&= 0\\
+		(m-l)(m+(l+1)) = 0 \implies m &= l \text{ or } m = -(l+1)
+\end{align*}
+And so therefore we can write $R$ as a linear combination of these two values for $m$: 
+\[ R(r) = \sum_l \left( A_l r^l + B_l \frac{1}{r^{l+1}} \right) \]
+\begin{insight*}{}
+		So far, $l$ could still take on any value, so even though this is a summation notation we haven't set any
+		restriction on $l$. It's the angular equation that will set the restriction on $l$.
+\end{insight*}
+So now let's look at the angular equation:
+\[ \dv{\theta} \left( \sin \theta \dv{\Theta}{\theta} \right) = -l(l+1) \sin \theta \Theta \]
+This differential equation, unlike the previous one, is highly nontrivial to solve. However, this differential 
+equation has been solved previously and is well known as the Legendre equation, which has the form: 
+\[ \dv{x}\left[(1-x^2) \dv{P_n(x)}{x}\right] + n(n+1)P_n(x) = 0\]
+the solution to this is given by Rodrigues' formula, where 
+\[ P_n(x) = \frac{1}{2^n n!}\left( \dv{x} \right)^n (x^2-1)^n\]
+\begin{notation*}{Legendre Polynomials}
+		We denote $P_n(x)$ as the $n$-th Legendre polynoimal.
+\end{notation*}
+In our case, we have $x = \cos \theta$ and $\dv{\theta}{x} = \frac{1}{-\sin \theta}$, so therefore the Legendre
+equation reads:
+\[ \frac{1}{\sin \theta}\dv{\theta} \left[ \sin \theta \dv{P_n(\cos \theta)}{\theta}\right] + n(n+1)P_n(\cos
+\theta) = 0\] 
+which is exactly what our original differential equation looks like! Therefore, we now know that $\Theta(\theta) =
+P_l(\cos \theta)$. 
+\begin{insight*}{}
+		As we can see, it is merely the fact that we would like non-singular solutions (i.e. non-constant) 
+		solutions between $\theta =0$ and $\theta = \pi$ that constrains $l$ to be a nonnegative integer. Note 
+		that $0$ is allowable in this case because the Rodrigues' formula allows us to generate $P_0(x)$.
+\end{insight*}
+Combining this with our solution to the radial equation, we get the full solution as:
+\[ V(r, \theta) = \sum_{l = 0}^\infty \left(A_lr^l + B_l \frac{1}{r^{l+1}}\right) P_l(\cos \theta)\]
+This is the solution to the electrostatic potential of a charge distribution, given azimuthal symmetry. As
+a recap of Legendre polynomials, we have:
+\begin{definition*}{}
+		The Legendre polynomials are solutions to the Legendre equation, and are given by the formula:
+		\[ P_l(x) = \frac{1}{2^ll!}\left( \dv{x} \right)^l (x^2 - 1)^l\]
+		The first few Legendre polynomials are: 
+		\begin{align*}
+				P_0(x) &= 1\\
+				P_1(x) &= x\\
+				P_2(x) &= \frac{1}{2}(3x^2 -1)\\
+				P_3(x) &= \frac{1}{2}(5x^3 - 3x)\\
+				P_4(x) &= \frac{1}{8}(35x^4 - 30x^2 + 3)
+		\end{align*}
+		A cool thing to note is that when $l$ is odd, we only get odd exponents and we also only get even ones 
+		when $l$ is even. This means that odd values of $l$ correspond to antisymmetric solutions and even ones
+		correspond to symmetric solutions, a property we will explore further in next lecture.
+\end{definition*}
+
+

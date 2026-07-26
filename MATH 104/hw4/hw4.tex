@@ -1,0 +1,209 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Introduction to Analysis}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 04} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+		\maketitle
+		\section*{Problem 1}
+		Prove the following proposition:
+		\begin{prop}
+			A series $\sum a_n$ with positive terms $a_n \ge 0$ converges if and only if its partial sums 
+			\[
+					\sum_{k = 1}^n a_k \le M 
+			\] 
+			are bounded from above, otherwise, it diverges to $\infty$. 
+		\end{prop}
+
+		\begin{solution}
+			First, we prove the reverse direction: if $\sum_{k = 1}^n a_k \le M$ then we prove that 
+			$\sum a_n$ converges. Consider the sequence $s_k$ defined as the partial sums of $a_n$. That is, 
+			\[
+				s_k = \sum_{n = 1}^k a_n
+			\] 
+			Since $s_k \le M$ by definition, we know that $s_k$ is bounded above by $M$. Furthermore, since 
+			$a_n$ only contains positive terms, the partial sums $s_k$ must be monotonically increasing. 
+			Therefore, $s_k$ is a monotonically increasing sequence which is bounded above by $M$, which 
+			implies that $s_k$ converges, and so $\sum a_n$ converges. Otherwise, if no such $M$ exists, then 
+			the sequence of partial sums is unbounded, implying that $\sum a_n$ also diverges.
+
+			For the forward direction: we prove that if $\sum a_n$ converges, then $s_k$ is bounded. Let $L \in 
+			\mathbb R$ be defined as: 
+			\[
+				L = \sum_{n=1}^\infty a_n = \lim s_k
+			\] 
+			Since the limit of $s_k$ exists, then it is a bounded sequence, therefore $\sum_{k = 1}^n a_k$ is 
+			also bounded from above, as desired. If $\sum a_n$ diverges, then we know that 
+			\[
+				\sum_{n = 1}^\infty a_n = \lim s_k = \infty
+			\] 
+			which implies that the partial sums are unbounded. 
+		\end{solution}
+
+		\pagebreak
+		\section*{Problem 2} 
+		Prove $\sum_{n =1}^\infty \frac{1}{(n+1)(\log(n+1))^p}$ converges for $p > 1$ and diverges for $p \le 1$.
+		
+		\begin{solution}
+			We use the integral test. This series converges if and only if:
+			\[
+			\int_0^\infty  \frac{1}{(n+1)(\log(x+1))^p} dx
+			\] 
+			converges. We let $u = \log(x+1)$ so $du = \frac{1}{x+1} \ dx$. This turns our integral into: 
+			\[
+				\int_1^t \frac{1}{u^p} du
+			\] 
+			and this integral converges if and only if the series 
+			\[
+				\sum_{n = 1}^\infty \frac{1}{n^p}
+			\] 
+			converges. As we know, this series only converges when $p > 1$ and diverges when $p \le 1$, meaning 
+			that our original series also converges and diverges under these values for $p$.
+		\end{solution}
+		\pagebreak
+
+
+		\section*{Problem 3} 
+		Given two sequences $(a_n)$ and $(b_n)$. Assume there exists $N$ such that for any $n > N$, $a_n = b_n$.
+		Prove: 
+		
+		$\sum_{n = 1}^\infty a_n$ converges if and only if $\sum_{n = 1}^\infty b_n$ converges.
+
+		\begin{solution}
+			We prove only one direction since the argument is entirely symmetric in the other direction. Consider
+			the sums: 
+			\begin{align*}
+				x_N &= \sum_{k = N}^\infty a_n & y_N &= \sum_{k = N}^\infty b_n
+			\end{align*}
+			Since $a_n=b_n$ when $n > N$, then $x_N = y_N$. If $\sum a_n$ is convergent, then its 
+			partial sum $x_N$ must also be convergent, and thus $y_N$ is also convergent. Now we break up $\sum
+			b_n$ into two portions:
+			\[
+				\sum_{n = 1}^\infty b_n = \sum_{n=1}^{N-1} b_n + \sum_{k = N}^\infty b_n 
+			\] 
+			The second term is just $y_N$, which we know converges to a real value. The first term only contains
+			a finite number of elements, so that sum also converges. Therefore, since both of these two terms
+			are convergent, then their sum is convergent, and thus $\sum b_n$ is also convergent. 
+
+			As mentioned already, the argument is exactly the same in the other direction, since $a_n = b_n$.
+		\end{solution}
+		\pagebreak
+		\section*{Problem 4}
+		Determine the convergence or divergence of each of the following series defined for $n \in \mathbb N$:
+		\begin{enumerate}[label=(\alph*)]
+				\item $\sum_n \frac{n^3}{2^n}$
+
+					\begin{solution}
+						By the ratio test:
+						\begin{align*}
+							\left|\frac{\frac{(n+1)^3}{2^{n+1}}}{\frac{n^3}{2^n}}\right|  
+							&= \frac{1}{2}\left|\frac{(n+1)^3}{n^3}\right| \\
+						\end{align*}
+						This converges to $\frac{1}{2} < 1$, so therefore the original series converges.  
+					\end{solution}
+				\item $\sum_n \sqrt{n+1} - \sqrt{n}$
+
+					\begin{solution}
+						By telescoping, we can see that for any finite $n$, this sequence is equal to:
+						\[
+							\sqrt{n+1} - \sqrt{n} = \sqrt{2} - \sqrt{1} + (\sqrt{3} - \sqrt{2}) \dots +
+							(\sqrt{n+1} - \sqrt{n}) = \sqrt{n+1} -1 
+						\] 
+						So this sequence diverges. 
+					\end{solution}
+				\item $\sum_n \frac{1}{\sqrt{n!} }$
+
+					\begin{solution}
+						For all $n > 7$, we see that 
+						\[
+							\frac{1}{\sqrt{n!}} < \frac{1}{n^2}
+						\] 
+						And the series $\sum \frac{1}{n^2}$ converges by the p-series, so by the comparison test,
+						the original series also converges. 
+					\end{solution}
+				\item $\sum_n 2^{-3n + (-1)^n}$
+
+					\begin{solution}
+						By the root test:
+						\[
+							\limsup \left| 2^{-3n + (-1)^n}|^{\frac{1}{n}}\right = 
+								\left|2^{-3 + \frac{(-1)^n}{n}}\right| = \frac{1}{8}
+						\] 
+						And since $0 \le \limsup |a_n|^{\frac{1}{n}} = \frac{1}{8} < 1$, our original series 
+						converges. 
+					\end{solution}
+				\item $\sum_n \frac{n!}{n^n}$
+
+					\begin{solution}
+						Expanding this out, we see that: 
+						\[
+							\frac{n!}{n^n} = \left( \frac{1}{n} \right) \left( \frac{2}{n} \right) \dots 
+							\left( \frac{n}{n} \right) < \frac{2}{n^2}
+						\] 
+						Since the series $\frac{2}{n^2}$ converges as it is a p-series, then our original series
+						converges also. 
+					
+
+					\end{solution}
+		\end{enumerate}
+		\pagebreak
+		\section*{Problem 5}
+		Let $(a_n)_{n \in \mathbb N}$ be a sequence such that $\liminf |a_n| = 0$. Prove that there is a 
+		subsequence $(a_{n_k})_{k \in \mathbb N}$ such that $\sum_{k = 1}^\infty a_{n_k}$ converges.
+
+		\begin{solution}
+			Since $\liminf |a_n| = 0$, then we know that for any $\epsilon > 0$, there exists $N \in \mathbb N$
+			such that:
+			\begin{align*}
+				|\inf \{| a_n|,  n > N\}| < \epsilon
+			\end{align*}
+			Or equivalently, within the sequence $\{ a_n | n > N\}$, there exists an element $a_{n_k}$ such that
+			$|a_{n_k}| < \epsilon$ for any choice of $\epsilon > 0$. Notice that this is equivalent to writing
+			\[
+				\lim a_{n_k} = 0
+			\]
+			so there exists a subsequence $a_{n_k}$ which has a limit of 0. This is useful, because we can now
+			write that for any $\epsilon > 0$, there exists an $n_K \in \mathbb N$ such that for all $n_k > n_K$:
+			\[
+				a_{n_k} < \epsilon
+			\]
+			We can define $\epsilon$ however we'd like, so we can choose $\epsilon = \frac{1}{m^2}$, and select
+			any $a_{n_k}$ that satisfies $a_{n_k} < \frac{1}{m^2}$. Since the series
+			$\sum_{m = 1}^\infty \frac{1}{m^2}$ converges, then $\sum_{k = 1}^\infty  a_{n_k}$ also converges,
+			as desired. 
+		\end{solution}
+
+		\pagebreak
+		\section*{Problem 6}
+		Find a sequence $(a_n)$ such that $\sum_{n = 1}^{2N} a_n$ and $\sum_{n = 1}^{2N + 1} a_n$ both converge
+		as $N \to \infty$, but $\sum a_n$ is divergent.
+
+		\begin{solution}
+			Consider the sequence $a_n = (-1)^n$. Then, the sequence of partial sums
+			\[
+				\sum_{n = 1}^{2N} a_n = 0
+			\]
+			for all $N$, so this sequence of partial sums converges to 0. On the other hand,
+			\[
+				\sum_{n = 1}^{2N+1} a_n = -1 
+			\] 
+			for all $N$, so this sequence converges to $-1$. Therefore, both partial sums $\sum_{n = 1}
+			^{2N} a_n$ and $\sum_{n =1}^{2N+1} a_n$ both converge, but we know that 
+			\[
+				\sum_{n = 1}^\infty a_n = \sum_{n=1}^\infty (-1)^n
+			\] 
+			diverges. 
+		\end{solution}
+
+		
+\end{document}

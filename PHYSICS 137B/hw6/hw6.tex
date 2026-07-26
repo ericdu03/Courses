@@ -1,0 +1,273 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mechanics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 06} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder} to complete this assignment.
+
+
+	\section*{Problem 1}
+	Let $\mathbf a$, and $\mathbf b$ be two constant vectors. Show that 
+	\[
+		\int(\mathbf a \cdot \hat{r})(\mathbf b \cdot \hat{r}) \sin \theta d \theta d \phi =
+		\frac{4\pi}{3}(\mathbf{a \cdot b})
+	\] 
+	(the integration is over the usual range: $0 < \theta < \pi, 0 < \phi< 2\pi$). Use this result to demonstrate
+	that 
+	\[
+		\left\langle \frac{3(\mathbf S_p \cdot r)(\mathbf S_e \cdot r) - \mathbf S_p \mathbf S_e}{r^3}
+			\right\rangle= 0
+	\] 
+	for states with $l = 0$. \textit{Hint:} $\hat{r} = \sin \theta \cos \phi \hat{i} + \sin \theta \sin \phi
+	\hat{j} + \cos \theta \hat{k}$. Do the angular integrals first. 
+
+	\begin{solution}
+		To do this, we write our vectors in spherical coordinates. After some algebra, we get that the integral
+		is the same as evaluating: 
+		\[
+		\int (\mathbf a \cdot \hat{r}) (\mathbf b \cdot \hat{r}) \sin \theta d \theta d\phi = \int (a_x b_x
+		\sin^2 \theta \cos^2 \phi + a_y b_y \sin^2 \theta \sin^2 \phi + a_z b_z \cos^2 \theta) \cdot \sin \theta
+		d \theta d \phi
+		\] 
+		(Note that here I've already killed the terms which give us 0 when integrating from $0$ to $2\pi$.)
+		This final integral is independent of $\phi$, so the integral $\int d\phi = 2\pi$. Therefore, we integrate from $0 < \theta < \pi$: 
+		\begin{align*}
+			\int (\mathbf a \cdot \hat r)(\mathbf b \cdot \hat r) \sin \theta d\theta d\phi &= \int_0^\pi a_xb_x\pi \sin^3 \theta + a_y b_y \pi \sin^3 \theta + 2\pi a_zb_z \cos^2 \theta \sin 
+			\theta d \theta\\
+			&= \pi a_x b_x \int_0^\pi \sin^3 \theta d\theta + \pi a_yb_y \int_0^\pi \sin^3 \theta d\theta + 2\pi a_z b_z \int_0^\pi \cos^2 \theta \sin \theta d\theta\\
+			&= \frac{4\pi}{3} a_xb_x + \frac{4\pi}{3} a_yb_y + \frac{4\pi}{3}a_zb_z = \frac{4\pi}{3} (\mathbf{a \cdot b})
+		\end{align*}
+		as desired. Now evaluating the expectation value, we first notice that the spin components are independent of $r$, so this is actually the product of two separate integrals. Also, $Y_{00} = \frac{1}{\sqrt{4\pi}}$ which is a constant, so combining these two we get:
+		\[ \left\langle \frac{3(\mathbf S_p \cdot r)(\mathbf S_e \cdot r) - \mathbf S_p \mathbf S_e}{r^3}
+		\right\rangle = \int \frac{1}{r^3}R_{n0} dr \cdot \frac{1}{4\pi} \int 3(\mathbf S_p \cdot r) (\mathbf S_e \cdot r) - \mathbf S_p \mathbf S_e d\theta d\phi \]
+		Now using the identity we just derived, we get: 
+		\begin{align*}
+			\int \frac{1}{r^3}R_{n0} dr \cdot \frac{1}{4\pi} \int 3(\mathbf S_p \cdot r) (\mathbf S_e \cdot r) - \mathbf S_p \mathbf S_e d\theta d\phi &= \int \frac{R_{n0}}{r^3} dr \cdot \frac{1}{4\pi} \int \left(3 (\mathbf S_p \cdot r)(\mathbf S_e \cdot r) - \mathbf S_p \mathbf S_e \right)\sin \theta d\theta d\phi
+		\end{align*}
+		Now we focus on the angular integral. The first term can be calculated using our identity: 
+		\[ \frac{1}{4\pi} \int 3(\mathbf S_p \cdot r)(\mathbf S_e \cdot r) = \frac{3}{4\pi} \frac{4\pi}{3} \mathbf S_p \mathbf S_e = \mathbf S_p\mathbf S_e\]
+		Then, since the proton and electron spin are constant, then we can pull $\mathbf S_p \mathbf S_e$ out of the integral, giving us: 
+		\begin{align*}
+			\frac{1}{4\pi} \int \mathbf S_p \mathbf S_e \sin \theta d\theta d\phi &= \mathbf S_p \mathbf S_e \int \sin \theta d\theta d\phi\\
+			&= \frac{1}{4\pi} \mathbf{S_p}{\mathbf S_e} (4\pi)\\
+			&= \mathbf S_p \mathbf S_e
+		\end{align*}
+		So combining these two terms, we get: 
+		\[ \frac{1}{4\pi} \int \left( 3(\mathbf S_p \cdot r)(\mathbf S_e \cdot r) - \mathbf S_p \mathbf S_e\right) \sin \theta d\theta d\phi = \mathbf S_p \mathbf S_e - \mathbf S_p \mathbf S_e = 0\] 
+		as desired.
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 2}
+	When an atom is placed in a uniform external electric field $\mathbf E_{ext}$, the energy levels are shifted -- a phenomenon known as the \textbf{Stark effect} (it is the electrical analog to the Zeeman effect). In this problem we analyze the Stark effect for the $n=1$ and $n=2$ states of hydrogen. Let the field point in the $z$ direction, so the potential energy of the electron is
+	\[ H_s' = eE_{ext} z = eE_{ext} r \cos \theta\]
+	Treat this as a phemonenon as a perturbation of the Bohr Hamiltonian (Equation 7.43). (Spin is irrelevant to this problem, so ignore it, and neglect the fine structure.)
+	\begin{enumerate}[label=(\alph*)]
+		\item Show that the ground state energy is not affected by this perturbation, in first order. 
+		
+		\begin{solution}
+			The integral to first order is: 
+			\[ \expval{z}{nlm}\] 
+			which is an integral over an even interval of an odd function, so therefore it's zero.
+		\end{solution}
+		\item Show that the ground state is four-fold degenerate: $\psi_{200}, \psi_{211}, \psi_{210}, \psi_{21-1}$. Using degenerate perturbation theory, determine the first-order corrections to the energy. Into how many levels does $E_2$ split?
+		
+		\begin{solution}
+			The energy in this case is only a function of $n$, and since these four states (which are also the only allowable states for $n=2$) share the same value of $n$, they are degenerate. Calculating the diagonal matrix elements (and skipping the algebra), we get:
+			\begin{align*}
+				\expval{H}{200} &= 0\\
+				\expval{H}{211} &= 0\\
+				\expval{H}{210} &= 0\\
+				\expval{H}{21-1} &= 0
+			\end{align*}
+			Now for the off-diagonal terms, I abuse symmetry so I only compute half of them: 
+			\begin{align*}
+				\mel{200}{H}{211} &= 0\\
+				\mel{200}{H}{210} &= -3a_0\\
+				\mel{200}{H}{21-1} &= 0\\
+				\mel{211}{H}{210} &= 0\\
+				\mel{211}{H}{21-1} &= 0\\
+				\mel{210}{H}{21-1} &= 0\\
+			\end{align*}
+			So constructing the full $H'$ we have: 
+			\[ H' = eE \begin{pmatrix}
+				0 & 0 & -3a_0 & 0\\
+				0 & 0 & 0 & 0\\
+				-3a_0 & 0 & 0 & 0\\
+				0 & 0 & 0 & 0
+			\end{pmatrix}\]
+			The eigenvalues of this matrix (which i did via a computer, I'm lazy, and I don't want to type it out) are $\lambda = 0, \pm 3a_0$, with eiegenvectors $\ket{211}, \ket{21-1}, \frac{1}{\sqrt{2}}(\ket{200} \pm \ket{210})$. The first two states have an energy correction of 0, and the last two are split by a difference of $6eEa_0$. Therefore, the perturbation splits the degeneracy into three energy levels, with two states in $E = E_2$ and the other two with $E = E_2 \pm 3eE a_0$.
+		\end{solution}
+		\item What are the ``good'' wave functions for part (b)? Find the expectation value of the electric dipole moment ($\mathbf p_e = -e\mathbf r$), in each of these ``good'' states. Notice that the results are independent of the applied field -- evidently hydrogen in its first excited state can carry a \textit{permanent} electric dipole moment.
+		
+		\begin{solution}
+			As mentioned in the previous problem, the ``good'' wave functions are: $\ket{211}, \ket{21-1}$, $\frac{1}{\sqrt{2}}(\ket{200} \pm \ket{210})$. To calcute the electric dipole moment, we notice that $\mean{\mathbf p} = -e\mean{r}$. For the two unchanged states $\ket{211}$ and $\ket{21-1}$, we have $\mean{r} = 0$, so we have $\mean{\mathbf p} = 0$ for those states too. Calculating the expectation value for the other term, we have: 
+			\begin{align*}
+				\mean{r} &= \int \frac 12 (R^*_{20}Y_{00} \pm R^*_{21}\sqrt{3} \cos \theta Y^*_{00})(R_{20}Y_{00} \pm R_{21}\sqrt{3}\cos \theta Y_{00})
+			\end{align*}
+			Expanding this out, we get that the non-cross terms evaluate to 0, so this integral becomes: 
+			\[ \mean{r} = \frac 12 \left[\int R_{20}R^*_{21}|Y_{00}|^2 \cdot 3\cdot \cos^2 \theta r^3 \sin \theta dr d\theta d\phi \pm \int R^*_{20}R_{21}|Y_{00}|^2 \cdot 3\cdot  \cos^2 \theta r^3 \sin \theta d\theta d\phi\right]\]
+			And since $R_{20}$ and $R_{21}$ are real quantities, then this integral simplifies even further: 
+			\[ \mean{r} = \pm \frac{3}{4\pi} \int R_{20}R_{21} \cos^2 \theta \sin \theta r^3 dr d\theta d\phi\]
+			The $\theta$ integral gives $2/3$ and the $\phi$ integral gives $2\pi$, so therefore: 
+			\begin{align*}
+				\mean{r} &= \pm \int_0^\infty R_{21}R_{20}r^3 dr d\theta d\phi \\
+				&= \pm \frac{a^{-3}}{2\sqrt{12}}\int_0^\infty r^2\left( \frac ra - \frac{r^2}{2a^2}\right) e^{-r/a} dr\\
+				&= \pm \frac{a^{-3}}{2\sqrt{12}}\left( 24 a^4 - 60 a^4\right)\\
+				&= \pm\frac{36a}{2\sqrt{12}}\\
+				&= 3\sqrt{3}a
+			\end{align*}
+			So therefore, the expectation value of the dipole moment that we get is $\mean{\mathbf p} = 3\sqrt{3}ea$.
+		\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 3}
+	Calculate the wavelength, in centimeters, of the photon emitted uner a hyperfine transition in the ground state $(n=1)$ of \textbf{deuterium}. Deuterium is ``heavy'' hydrogen, with an extra neutron in the nucleus; the proton and neutron bind together to form a \textbf{deuteron}, with spin 1 and magnetic moment 
+	\[ \mathbf{\mu}_d = \frac{g_d e}{2m_d} \mathbf S_d\]
+	the deutron $g$-factor is 1.71.
+
+	\begin{solution}
+		We use the same formulas, except we replace $\mathbf S_p$ wiht $\mathbf S_d$. Writing out the Hyperfine correction, we have:
+		\[ H'_{hf} = \frac{\mu_0 g_de^2}{2m_dm_e}\mean{\mathbf S_d \cdot \mathbf S_e} = \frac{\mu_0g_de^2}{3m_dm_e} \cdot \frac 12 (S_T^2 - S_e^2 - S_d^2)\]
+		The electron has spin $1/2$, so therefore $S_e^2 = 3/4 \hbar^2$. The deuteron has spin 1, so $S_d^2 = (1)(2) \hbar^2 = 2\hbar^2$. There are two possible cases for the total spin: $S_T = 1/2$ and $S_T = 3/2$. This gives the values $S_T^2 = 3/4 \hbar^2$ or $S_T^2 = 15/4\hbar^2$ respectively. Since $S_d$ and $S_e$ are the same for both energy states, the energy difference really just comes from the difference in the $S_T$ term. Therefore: 
+		\begin{align*}
+			\Delta E &= \frac{\mu_0 g_d e^2}{3\pi m_d m_e a^3 \pi} \cdot \frac12 \left( \frac{15}{4} - \frac 34\right) \hbar^2\\
+			&= \frac{\mu_0 g_d e^2}{2m_dm_ea^3 \pi} \cdot \frac32 \hbar^2\\
+			&= \frac{\mu_0 g_de^2\hbar^2}{2m_dm_ea^3\pi}
+		\end{align*}
+		Finally, the wavelength can be calculated as $\lambda = c/v = hc/\Delta E$, so plugging what we have in, we get: 
+		\[ \lambda = \frac{4\pi m_dm_ea^3}{\mu_0 g_de^2\hbar} \approx 91.88 \text{ cm}\]
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 4}
+	\begin{enumerate}[label=(\alph*)]
+		\item Prove the following corollary to the variational principle: If $\braket{\psi}{\psi_{gs}} = 0$, then $\mean H \ge E_{fe}$, where $E_{fe}$ is the energy of the first excited state. \textit{Comment:} If we can find a trial function that is orthogonal to the exact ground state, we can get an upper bound on the \textit{first excited state}. In general, it's difficult to be sure that $\psi$ is orthogonal to $\psi_{gs}$, since (presumably) we don't \textit{know} the latter. However, if the potential $V(x)$ is a fnction of $x$, then the ground state is likewise even, and hence any \textit{odd} trial function will automatically meet the condition for the corollary. 
+		
+		\begin{solution}
+			Consider the representation of $\psi$ in its basis expansion:
+			\[ \psi = \sum_{n = 0}^\infty c_n \psi_n\]
+			where
+			\[ c_n = \braket{\psi_n}{\psi}\]
+			If $\braket{\psi}{\psi_{gs}} = 0$, then this means that $c_0 = 0$, so we can rewrite our sum as: 
+			\[ \psi = \sum_{n = 1}^\infty c_n \psi_n\]
+			The minimum possible energy for a state written in this form is obviously $E_{fe}$ (this is done by setting all but $c_1$ equal to zero), which proves the corollary. More explicilty, we can write $\mean H$ as: 
+			\[ \mean{H} = \sum_{n = 1}^\infty E_n |c_n|^2 \ge \sum_{n = 1}^\infty E_{fe} |c_n|^2\]
+			And since $E_{fe}$ is a constant, then we can pull it out, which gives: 
+			\[ \mean H \ge E_{fe} \sum_{n = 1}^\infty |c_n|^2 = E_{fe}\] 
+			as desired.
+		\end{solution}
+		\item Find the best bound on the first excited state of the one-dimensional harmonic oscillator using the trial function 
+		\[ \psi(x) = Axe^{-bx^2}\]
+
+		\begin{solution}
+			First, we can find $A$ by normalization: 
+			\[ 1 = |A|^2 \int_{-\infty}^\infty x^2 e^{-2bx^2} dx\]
+			which we can do with the help of a computer: 
+			\[ |A|^2 = \sqrt{\frac{32 b^3}{\pi}} \implies A = \sqrt[4]{\frac{32 b^3}{\pi}}\]
+			With this determined, we can calculate $\mean H$: 
+
+			\begin{align*}
+				\mean H &= \int_{-\infty}^\infty Ax e^{-bx^2} \left( -\frac{\hbar}{2m} \pdv[2]{x} + \frac 12 m\omega^2 x^2\right) Axe^{-bx^2} dx\\
+				&= -\frac{|A|^2 \hbar}{2m} \int_{-\infty}^\infty xe^{-bx^2} (2bxe^{-bx^2} + 4b^2x^3e^{-bx^2}) dx + \frac{m\omega^2 |A|^2}{2} \int_{-\infty}^\infty x^2 e^{-2bx^2} \cdot x^2 dx
+			\end{align*}
+			Now abusing the power of WolframAlpha, we get: 
+			\[ \mean H = \frac{3\hbar^2 b}{2m} + \frac{3m\omega^2}{8b} \]
+			To find the best bound, we take $\pdv{\mean{H}}{b}$, which gives: 
+			\begin{align*}
+				\pdv{\mean{H}}{b}= 0  &= \frac{3\hbar^2}{2m} - \frac{3m\omega^2}{8b^2}\\
+				\therefore b^2 = \frac{m^2 \omega^2}{4\hbar^2} \implies b = \frac{m\omega}{2\hbar}
+			\end{align*}
+			Plugging this value of $b$ back: 
+			\[ \mean{H}_{min} = \frac{3\hbar^2}{2m} \left( \frac{m\omega}{2\hbar}\right) + \frac{3m \omega^2}{8\left( \frac{m\omega}{2\hbar}\right)} = \frac32 \hbar \omega\]
+		\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 5}
+	Find the lowest bound on the ground state of hydrogen you can get using a gaussian trial wave function 
+	\[ \psi(r) = Ae^{-br^2}\] 
+	where $A$ is determined by normalization and $b$ is an adjustable parameter. \textit{Answer:} -11.5 eV.
+
+	\begin{solution}
+		Computing the normalization constant first:
+		\[ 1 = |A|^2 \int_{-\infty}^\infty e^{-2br^2}r^2 \sin \theta dr d\theta d\phi\]
+		Again abusing Wolfram:
+		\[ 1 = |A|^2 \left( \frac{\pi}{2b}\right)^{3/2} \implies A = \left( \frac{2b}{\pi}\right)^{3/4}\]
+		Now calculating $\mean H$:
+		\begin{align*}
+			\mean H &= \int Ae^{-br^2} \left( \frac{-\hbar^2}{2m}\nabla^2 - \frac{e^2}{4\pi \epsilon_0 r}\right) Ae^{-br^2} dV\\
+			&= \frac{|A|^2\hbar^2}{2m} \int Ae^{-br^2}\left( \nabla^2 e^{-br^2}\right) - \frac{|A|^2e^2}{4\pi \epsilon_0} \int e^{-br^2}\frac 1r e^{-br^2} dV\\
+			&= \frac{|A|^2 \hbar^2}{2m} \int e^{-br^2} \frac{1}{r^2} \pdv{r}\left( r^2 \cdot -2br e^{-br^2}\right) dV - \frac{|A|^2e^2}{4\pi \epsilon_0} \int \frac 1r e^{-2br^2} dV
+		\end{align*}
+		The integral over $\theta$ gives us 2, and the integral over $\phi$ gives us $2\pi$. Thus, we're left only with the radial portion, which after evaluating the Laplacian is: 
+		\[ \mean H = \frac{A^2\hbar^2}{m}(4\pi)\int_0^\infty e^{-br^2}\left(-6br^2 e^{-br^2} + 4r^4 b^2 e^{-br^2}\right) dr - \frac{|A|^2e^2}{\epsilon_0}\int_0^\infty re^{-2br^2} dr\] 
+		Again, using the power of WolframAlpha we get: 
+		\[ \mean{H} = \frac{3\hbar^2b}{2m} - \frac{e^2}{2\pi \epsilon_0} \sqrt{\frac{2b}{\pi}}\]
+		Taking the derivative with respect to $b$, we get: 
+		\[ \pdv{\mean{H}}{b}= 0 = \frac{3\hbar^2}{2m} - \frac{e^2}{4\pi \epsilon_0} \sqrt{\frac{2}{\pi}} \frac{1}{2\sqrt{b}} \implies b = \frac{e^4m^2}{18\pi^3\epsilon_0^2 \hbar^4}\]
+		Plugging this back in, we get: 
+		\[ \mean{H}_{min} = \frac{3\hbar^2}{2m}\left( \frac{e^4m^2}{18 \pi^3 \epsilon_0^2\hbar^4}\right) - \frac{e^2}{2\pi \epsilon_0} \sqrt{\frac{2}{\pi}}\left( \frac{me^2}{\epsilon_0 \hbar^2} \sqrt{\frac{1}{18\pi^3}}\right) \approx -11.5 \text{ eV}\]
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 6}
+	Apply the Rayleigh-Ritz variational method to a particle in a box of width $L$ to find the ground state energy using a second degree polynomial as a trial wave function.
+
+	\begin{solution}
+		We need to select our trial wavefunction to satisfy the condition that $\psi(0) = 0$ and $\psi(L) = 0$, so then we must have: 
+		\[ \psi = Ax(L-x)\] 
+		as our second-degree trial function. Computing the normalization constant, we have: 
+		\[ 1 = |A|^2 \int_0^L x^2(L - x)^2 dx\] 
+		which through the power of a computer we get:
+		\[ 1 = A^2 \frac{L^5}{30} \implies A = \sqrt{\frac{30}{L^5}}\]
+		Now we can find $\mean{H}$:
+		\begin{align*}
+			\mean{H} &= -\frac{\hbar^2}{2m} A^2 \int_0^L x(L - x) \pdv[2]{x} \left( x(L - x)\right) dx\\
+			&= A^2 \int_0^L x(L - x) (-2) dx\\
+			&= -\frac{\hbar^2 A^2}{2m} \left( -\frac{L^3}{3}\right)\\
+			&= -\frac{\hbar^2}{2m} \left( -\frac{L^3}{3}\right) \frac{30}{L^5}\\
+			&= \frac{5\hbar^2}{mL^2}
+		\end{align*}
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 7}
+	In Chapter VI we showed that an attractive square well has at least one bound state no matter how weak the potential. Use the Rayleigh-Ritz variational method to prove that this is a general property of \textit{any} potential which is purely attractive. Do this by using the trial function 
+	\[ \psi = e^{-\alpha x^2}\]
+	and showing that $\alpha$ can always be chosen so that $E'(\alpha)$ is negative. (Why does this constitute a proof?)
+
+	\begin{solution}
+		The expectation value for any Hamiltonian using this trial wavefunction is: 
+		\[ \mean{H} = E(\alpha) = \int e^{-\alpha x^2}\left( \frac{\hbar^2}{2m}\pdv[2]{x} + V(x)\right) e^{-\alpha x^2} dx = \frac{\hbar^2}{2m}\sqrt{\frac{\alpha \pi}{2}} + \int_{-\infty}^\infty e^{-2\alpha x^2}V(x) dx\]
+		For any $V(x)$, we can choose the minimum point of $V(x)$ to equal zero, so that $V(x) > 0$ for all $x$. Now, we find $E'(\alpha)$: 
+		\begin{align*}
+			E'(\alpha) &= \frac{\hbar^2}{2m} \sqrt{\frac \pi 2} \cdot \frac{1}{2\sqrt \alpha} + \pdv{\alpha} \int_{-\infty}^\infty e^{-2\alpha x^2}V(x) dx\\
+			&= \frac{\hbar^2}{4m}\sqrt{\frac{\pi}{2\alpha}} + \int_{-\infty}^\infty \pdv{\alpha}e^{-2\alpha x^2} V(x) dx\\
+			&= \frac{\hbar^2}{4m}\sqrt{\frac{\pi}{2\alpha}} - \int_{-\infty}^\infty 2x^2 V(x) e^{-2\alpha x^2} dx
+		\end{align*}
+		Now we ask what happens when we vary $\alpha$. As $\alpha$ gets large, the first term becomes smaller, and at the same time, the second term becomes larger. This is because we can think of the $e^{-2\alpha x^2}$ term almost like a ``weight'' attached to $2x^2V(x)$, so by increasing the value of $\alpha$ we are increasing the weight of each term, thereby increasing the total value of the integral. Using this logic, we can imagine a point where we've increased $\alpha$ enough such that the second term is larger in magnitude than the first term, which causes $E'(\alpha)$ to become negative. This also works in general, since $\alpha$ can be as large as we want. 
+	\end{solution}
+	
+
+\end{document}

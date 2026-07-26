@@ -1,0 +1,218 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Introduction to Analysis}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 07} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	Let $f(x) = x^2 \sin \frac{1}{x}$ for $x \neq 0$ and $f(0) = 0$.
+
+	\begin{enumerate}[label=\alph*)]
+		\item Use Theorems 28.3 and 28.4 to show $f$ is differentiable at each $a \neq 0$ and calculate $f'(a)$.
+			Use, without proof, the fact that $\sin x$ is differentiable and that $\cos x$ is its derivative. 
+
+			\begin{solution}
+				At $a \neq 0$, we know that $x^2$ is differentiable at $a \neq 0$, and so is $\sin \frac{1}{x}$,
+				so the composition (the product) of the two functions is also differentiable at $a \neq 0$. 
+				Computing the derivative using regular product rule:
+				\[
+				f'(a) = 2a \sin \frac{1}{a} - a^2 \cos \frac{1}{a} \frac{1}{a^2} = 2a \sin \frac{1}{a} - \cos
+				\frac{1}{a}
+				\] 
+
+			\end{solution}
+		\item Use the definition to show that $f$ is differentiable at $x = 0$ and $f'(0) = 0$. 
+
+			\begin{solution}
+				At $x = 0$, the definition of differentiability is:
+				\[
+					\lim_{x \to c} \frac{f(x) - f(c)}{x - c} = f'(c)
+				\] 
+				So when approaching $x = 0$, we get:
+				\[
+					f'(0) = \lim_{x \to 0} \frac{f(x) - f(0)}{x - 0} = \lim_{x \to 0} \frac{f(x)}{x} = 
+					\lim_{x \to 0} x \sin \frac{1}{x} = 0
+				\] 
+				The conclusion that it equals zero immediately follows from the fact that the sine function 
+				oscillates between $-1$ and $1$, so therefore $\lim_{x \to 0} x$ dominates and gives us 0.  
+
+			\end{solution}
+		\item Show $f'$ is not continuous at $x = 0$
+
+			\begin{solution}
+				Looking at the function for the derivative:
+				\[
+				f'(a) = 2a \sin \frac{1}{a} - \cos \frac{1}{a}
+				\]
+				Using a result from a previous homework, we can switch the limit from $x \to 0$ to $x \to \infty$
+				by making the substitution $x \to \frac{1}{x}$. Therefore, we are now looking for the limit: 
+				\[
+					\lim_{a \to \infty} \frac{2}{a} \sin a - \cos a
+				\] 
+				Now, we can choose two subsequences: first, choose the sequences at $a = 2n\pi$, giving us the
+				sequence $a_n = -1$, we can then choose a second sequence at $a = n\pi$ which gives the sequence
+				$b_n = (-1)^{n+1}$. Since these two sequences are different, then this limit does not converge,
+				and thus the limit does not exist. As a result, this means that $f'$ cannot be continuous at
+				$x = 0$, since the limit doesn't exist.  
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 2}
+
+	Let $f$ and $g$ be differentiable on an open interval $I$ and consider $a \in I$. Define $h$ on $I$ by 
+	the rules: $h(x) = f(x)$ for $x <a$, and $h(x) = g(x)$ for $x \ge a$. Prove $h$ is differentiable at $a$
+	if and only if both $f(a) = g(a)$ and $f'(a) = g'(a)$ hold. \textit{Suggestion:} Draw a picture to see 
+	what is going on.
+
+	\begin{solution}
+		We prove the forward direction: $h$ is differentiable if $f(a) = g(a)$ and $f'(a) = g'(a)$. To do this, 
+		note first that $h$ must be continuous at $a$, meaning: 
+		\[
+			\lim_{x \to a^-} h(x) = \lim_{x \to a^+} h(x) = h(a)
+		\] 
+		Since $h = f$ for $x < a$ and $h = g$ for $h \ge a$, we note that
+		\[
+			\lim_{x \to a^-} h(x) = \lim_{x \to a^-} f(x) = f(a)
+		\] 
+		Similarly, 
+		\[
+			\lim_{x \to a^+} h(x)  \lim_{x \to a^+} f(x) = g(a)
+		\]
+		If $f(a) = g(a)$, then $h(a)$ is continuous. Similarly, if $h$ is continuous then both these
+		conditions must hold.  The derivative must also satisfy similar conditions:
+		\[
+			\lim_{x \to a^-} h'(x) = \lim_{x \to a^+} h'(x) = h'(a)
+		\] 
+		Again, since $h = f$ for $x < a$, then we have the following two equations:
+		\begin{align*}
+			\lim_{x\to a^+} h'(x) &= \lim_{x \to a^+} f'(x) = f'(a)\\
+			\lim_{x \to a^-} h'(x) &= \lim_{x \to a^-} g'(x) = g'(a)
+		\end{align*}
+		Again, the left and right limits must equal, which is only true if $f'(a) = g'(a)$. Just like the proof
+		of continuity, if $h'(a)$ were to exist, then $f'(a) = g'(a)$ must also hold by this equation. Here, 
+		we've essentially proven both sides of the argument at the same time, by showing that both conditions
+		result in if and only if conditions. 
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 3}
+	Let $f$ be differentiable on $\mathbb R$ with $a = \sup \{|f'(x)|: x \in \mathbb R\} < 1$. 
+
+	\begin{enumerate}[label=\alph*)]
+		\item Select $s_0 \in \mathbb R$ and define $s_n = f(s_{n-1})$ for $n \ge 1$. Thus $s_1 = f(s_0)$, 
+			$s_2 = f(s_1)$, etc. Prove $(s_n)$ is a convergence sequence. \textit{Hint:} To show that $(s_n)$ is
+			Cauchy, first show $|s_{n+1} - s_n| \le a|s_n - s_{n-1}|$ for $n \ge 1$. 
+
+			\begin{solution}
+				To prove a sequence is Cauchy, we need to prove that for all $\epsilon > 0$, there exists some
+				$N \in \mathbb N$ such that for all $n, m > N$,
+				\[
+				|s_m - s_n| < \epsilon
+				\] 
+				Without loss of generality, let $s_m > s_n$ in our case. Then by the mean value theorem, we 
+				know that there exists some $c$ on the interval $(s_n, s_m)$ such that:
+				\[
+					|f'(c)| = \frac{|f(s_m) - f(s_n)}{|s_m - s_n|} = \frac{|s_{m+1} - s_{n+1}|}{s_m - s_n}
+				\] 
+				This implies that $|s_{m+1} - s_{n+1}| = |f'(c)| |s_m - s_n|$, and now using $a$ as defined 
+				in the problem statement, then we derive the inequality:
+				\[
+					|s_{m+1} - s_{n+1}| \le a|s_m - s_n| < |s_m - s_n|
+				\] 
+				From this equation, we can see that $|s_m - s_n|$ is a strictly decreasing sequence which is
+				bounded below by 0 (due to the absolute value), so therefore there will be some $N \in \mathbb N$
+				that satisfies our Cauchy condition. Therefore, $s_n$ is a convergent sequence. 
+			\end{solution}
+		\item Show $f$ has a \textit{fixed point}, i.e., $f(s) = s$ for some $s$ in $\mathbb R$
+
+			\begin{solution}
+				We proved earlier that $s_n$ is a convergent sequence. Notice that by definition of the sequence,
+				$s_n = f(f(f(\cdots f(s_0))))$ which I will notate as $s_n = f^{(n)}(s_0)$. Then as $n \to 
+				\infty$ we know that $f(s_n) = s$ for some $s$. Then, recall that we can write $s_n$ recursively:
+				\[
+					s = f(f^{(n-1)}(s_0))
+				\] 
+				and as $n \to \infty$, then we have $f^{(n-1)}(s_0) = f^{(n)}(s_0) = s$. Therefore:
+				\[
+				s = f(s)
+				\] 
+				in the limit, therefore proving that $f$ has some fixed point. 
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 4}
+
+	Let $f : \mathbb R \to \mathbb R$ be a twice differentiable function, where $f(0) = 0$ and $f''(x) \ge 0$ 
+	for all $x > 0$. Prove that $f(x)/x$ is increasing for $x > 0$. 
+
+	\begin{solution}
+		Let $g(x) = \frac{f(x)}{x}$. Then, we know that: 
+		\[
+		g'(x) = \frac{xf'(x) - f(x)}{x^2}
+		\] 
+		Our goal is to show that $g'(x) \ge 0$. Firstly, notice that since we are only looking at $x > 0$, then
+		showing this amounts to showing that $xf'(x) - f(x) \ge 0$, or more explicitly $f'(x) \ge f(x)/x$. By 
+		the mean value theorem, we know that for all $x$, there exists some value $c$ in $0 < c < x$ such that:
+		\[
+		f'(c) = \frac{f(x) - f(0)}{x-0} = \frac{f(x)}{x}
+		\] 
+		Now, we use the relation that $f''(x) \ge 0$, so therefore $f'(x)$ is increasing. Since $c < x$, then 
+		we know that $f'(x) \ge f'(c)$, so by extension we have: $f'(x) \ge f(x)/x$, which is the statement we
+		were seeking to prove. 
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 5}
+	Prove: 
+
+	\begin{theorem}
+		Let $f$ be a differentiable function on $(a, b)$. If $a < x_1 < x_2< b$, and if $c$ lies between 
+		$f'(x_1)$ and $f'(x_2)$, there exists [at least one] $x$ in $(x_1, x_2)$ such that $f'(x) = c$
+	\end{theorem}
+
+	Hint: consider $g(x)= f(x) -cx$
+
+	\begin{solution}
+		Following the hint, consider $g(x) = f(x) - cx$. Then, $g'(x) = f'(x) - c$. Without loss of generality, 
+		we can assume that $f'(x_1) < f'(x_2)$, this means that $g'(x_1) < 0$, and $g'(x_2) > 0$. If we can 
+		prove that there exists some $x$ such that $g'(x) = 0$, then we are done. Consider the mean value
+		theorem for $g'$:
+		\[
+		g'(c) = \frac{g(x) - g(x_1)}{x - x_1}
+		\] 
+		Therefore, proving that $g'(c) = 0$ amounts to proving there exists some $x$ such that $g(x) = g(x_1)$. 
+		We prove this must be the case that by contradiction. Suppose that this point $x$ does not exist. 
+		Then, this means that $g(x)$ is either strictly increasing or decreasing. If $g(x)$ is increasing, then
+		this contradicts $g'(x_1) = 0$, since when approaching $x_1$ from the right, we have:
+		\[
+			\lim_{x \to x_1^+} \frac{g(x) - g(x_1)}{x - x_1} < 0
+		\] 
+		But since $x > x_1$, then this implies that $g(x) - g(x_1) < 0$, which is impossible if $g(x)$ is 
+		strictly increasing. Similarly, if $g(x)$ is strictly decreasing, then this would violate $g'(x_2) > 0$,
+		when we analyze the limit approaching from the left:
+		\[
+			\lim_{x \to x_2^-} \frac{g(x) - g(x_2)}{x - x_2} < 0
+		\] 
+		Here, since $x < x_2$, then we require that $g(x) - g(x_2) < 0$ or equivalently that $g(x) < g(x_2)$. 
+		Again, this is impossible if $g(x)$ were strictly decreasing. Therefore, $g(x)$ is neither strictly 
+		increasing or decreasing, implying that there must be some $x$ such that $g(x) = g(x_1)$, completing
+		the proof. 
+	\end{solution}
+\end{document}

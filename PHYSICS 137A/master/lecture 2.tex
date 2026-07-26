@@ -1,0 +1,96 @@
+The second lecture of Physics 137A was held on  \textbf{Friday, August 26}. It picked up where the previous lecture left off on the black body model and explained why quantum mechanics is needed.
+
+      \section{Last Time: Modeling the Black Body}
+        Quickly recapping what happened last time: we modeled a black body in a cube of side length $L$ and are trying to understand where the Rayleigh-Jeans law comes from, as well as understanding how to reconcile it with the Ultraviolet Catastrophe.
+
+      \section{Energy Density}
+        Last lecture, we threw in electrons into the black body and saw that those electrons would bounce off the wall, creating an oscillating electric field. This means there must be some energy $\vec{E}$ contained in our box from this. Now, we want to calculate energy density. How do we do this? The Poynting vector. In order to compute the energy density, we will need the number of modes and the energy per mode of this oscillation:
+
+        \begin{insight*}{}{}
+          Energy Density $=$ \# of N (modes) $\times$ Energy per mode
+        \end{insight*}
+
+      Let's think about modes in a cube. We know that we must satisfy the wave equation:
+      $$\nabla^2\psi(\vec{r},t) = \frac{1}{c^2}\frac{\partial^2}{\partial t^2}\psi(\vec{r},t)$$
+      We also know that we hacve a solution of the following form (given our boundary conditions that $\psi$ must vanish at the edges):
+      $$\psi(\vec{r},t) = A(t)\sin(k_xx)\sin(k_yy)\sin(k_zz) = A(t)B(x,y,z)\text{, where } k_i \frac{n_i\pi}{L}$$
+      We have an equation and a solution to that equation: let's plug it in!
+
+      \subsection{Solving for the Dispersion Relation}
+        Plugging in, we get:
+
+        \[  -(n_x^2 + n_y^2 + n_z^2) \frac{\pi^2}{L^3} A(t) B(x, y, z) = \frac{1}{c^2} B(x,y, z)\frac{\partial^2}{\partial t^2} A(t) = -\omega^2t\]
+
+        Notice that this differential equation is in the same form as an oscillator, and we know that a solution to this such an equation is in the form $A(t) = A_0 \cos(\omega t) + \varphi$, which gives us
+
+        \[ \omega^2 = \frac{c^2\pi^2}{L^2}(n_x^2 + n_y^2 + n_z^2) \]
+
+        Remember that $n_i \in \mathbb Z$, so this means that $\omega$ also takes on discrete values. Therefore, note that for large values of $\omega$ we see that there are many different ways to write $n_i$, which is also known as the dispersion relation.
+
+        Now, let's circle back to the first question that we asked: how many nodes are in the box? Well, let's break it down.
+
+      \subsection{Many Nodes}
+        Our lowest-order node occurs at $n=1$, and the only way to achieve this is to have one of $n_x,n_y,$ or $n_z$ be equal to $1$. Then, as we increase $n$, we have more and more possible combinations of $n_x,n_y,$ and $n_z$ values.
+
+      \subsection{Density of States}
+        For simplicity, let $g(\omega)$ denote the number of nodes per unit frequency $\omega$.  In other words,
+        $$g(\omega) = \frac{dN(\omega)}{d\omega}$$
+        This m,eans, therefore, that the number of nodes from $0$ to $\omega$ frequency (denoted $N(\omega)$ is $$N(\omega) = \int_0^{\omega}g(\omega)d\omega$$
+        If we recall our previous equation and rearrange the terms:
+        $$n_x^2 + n_y^2 + n_z^2 \leq \frac{\omega^2L^2}{c^2\pi^2}$$
+        we see that this is simply modeling the equation of a sphere centered at the origin with radius $\frac{\omega L}{c\pi}$! And so, to calculate $N(\omega)$, we need only to calculate the volume of this sphere. It's important to remember, however, that this sphere will cross into quadrants of negative $n_i$s, so we need to only compute the volume of the sphere where all $n_i$s are positive: namely, one eighth of the sphere:
+        $$N(\omega) = \frac18\left(\frac43\pi\frac{\omega^3L^3}{c^3\pi^3}\right)$$
+        As we can see, the volume of the cube $L^3$ has popped up here. Let's denote it $V$ for simplicity moving forward. Now, let's convert our angular frequency to regular frequency, using the conversion $\omega = 2\pi f$:
+        \begin{align*}
+          N(f) &= \frac{8\pi^3f^3V}{6c^3\pi^2}\\
+          \therefore g(f) = \frac{dN(f)}{df} &= \frac{4\pi f^2V}{c^2}
+        \end{align*}
+        However, we need to account for the polarization of our waves,so we actually need to multiply everything by $2$ (for each of the possible wave polarizations), giving us:
+        $$\fbox{$g(f) = \frac{8\pi f^2}{c^3}V$}$$
+        This is correct both classically and for the quantum scale.
+
+      \section{Quantum Mechanics is Needed}
+        The previous equation we derived is true both for the classical model and the quantum model, since all we really invoked was some basic geometry. However, we are now about to see exactly where these two worlds bifurcate and our classical models fall apart.
+
+        \subsection{Classical Calculation}
+          In our classical model, each mode is excited with $k_BT$ energy (from Thermodynamics). Do, the energy density between frequencies $f$ and $f+df$ is $$\fbox{$g(f)dfk_BT$}$$
+          Now, let's plug this into our equation:
+          $$g(f) = \frac{8\pi}{c^3}fVk_BTdf$$
+          For simplicity, let's introduce an energy density per volume (call it $\rho$):
+          $$\rho(f,t) = \frac{8\pi}{c^3}f^2k_BT$$
+          Now, let's convert to wavelengths, using the conversions $f = \frac{c}{\lambda}$ and $df = -\frac{c}{\lambda^2}d\lambda$. This negative sign is important to remember, because it will flip the limits of our integral. Plugging in, we get:
+          $$\rho(\lambda) = \frac{8\pi}{c^3}\frac{c^2}{\lambda^2}\frac{c}{\lambda^2}k_Bt = \fbox{$\frac{8\pi k_BT}{\lambda^4}$}$$
+          And so, we've attained our Rayleigh-Jeans law as desired! But, there's one important problem that we will need to fix with quantum mechanics:
+          \begin{insight*}{}{}
+            Some modes at some energies are not excited. In other words, this means that \underline{not all states are allowed}, and \underline{not all energies are allowed}.
+          \end{insight*}
+          This comes from Max Planck. Because not all energies or states are allowed, there needs to be some minimum energy. This is where quantum mechanics comes in.
+
+        \subsection{Quantum Calculation}
+        It's now time to fix the issue of not all energies being allowed with quantum mechanics. Planck tells us that we need a minimum energy. More notably, he also tells us that this energy is quantized, and so the energy per node is then $E_n = nhf$. Som our average energy is
+        $$\bar{E} = \sum_{n=0}^{\infty}nhf\frac{e^{-\frac{nhf}{k_BT}}}{\sum_{n=0}^{\infty}e^{-\frac{nhf}{k_BT}}}$$
+        We need that fraction to normalize the probability. Also, some may recall the exponent as our Boltzmann factor. For simplicity, let $x = e^{-\frac{hf}{k_BT}}$. Now, we plug into all of our equations:
+        \begin{align*}
+          \bar{E} &= hf\sum_{n=0}^{\infty}n\frac{x^n}{\sum_{n=0}^{\infty}x^n} = hf\frac{x}{1-x} = \frac{hfe^{-\frac{hf}{k_BT}}}{1 - e^{-\frac{hf}{k_BT}}} = \fbox{$hf\frac{1}{e^{\frac{hf}{k_BT}} - 1}$}\\
+          \therefore \rho(f,t) &= \frac{g(f)}{V}\bar{E} = \frac{8\pi hf^3}{c^3}\frac{1}{e^{\frac{hf}{k_BT}} - 1}\\
+          &\therefore \fbox{$\rho(\lambda) = \frac{8\pi hc}{\lambda^5}\frac{1}{e^{\frac{hc}{\lambda k_BT}} -1}$}
+        \end{align*}
+        Many will recognize that last equation as the \underline{Plack Radiation Formula}. Now, this is correct. How does this solve the ultraviolet catastrophe we discovered in the first lecture? Well, in the limit, this equation will reduce to the correct formula, especially taking into account the quantization of energies.
+
+      \section{The Bohr Atom}
+        Now that we've reconciled this, let's take a look at the atom. More specifically, the Bohr model of the atom.\\\\
+
+        As Planck solved the ultraviolet catastrophe, he introduced the idea that energy is quantized, and thus only some energies are allowed. Another big issue in modern physics at the time was that the classical framework for the structure of an atom was completely unstable.
+
+        \subsection{The Electron Dies}
+          An electron orbiting the nucleus of an atom that is positively charged is bound to collapse into the nucleus, and if this were true, then the lifetime of the universe would be incredibly short. This needed to be fixed.
+
+        \subsection{Matter is a Wave}
+          Thus, Bohr theorized that, just like the quantum calculation for the allowed energies, atoms must have quantized angular momenta. That is,
+
+          \[ L = m_e v_e r\]
+
+          where $L$ is a quantized value. The only way this configuration is stable is if the electrons are \textit{standing waves}, and as a result, \textbf{all particles are waves}. So instead of the electron orbiting the nucleus as if it were a circle, it looks like a wave instead. This is the problem de Broglie solved when he derived the relation that $\lambda = \frac{h}{p}$. This important fact, combined with the derivation we saw previously, is exactly why we need quantum mechanics.
+
+      \section{How Do we Gain Intuition?}
+        All of the calculations and approximations that we did involve a bunch of guesses for values and equations that do not at all appear intuitive in the classical sense. So, where do these guesses come from, and how can we make our own when the time comes? Quantum mechanics is designed to equip us with the tools necessary to understand such approximations, and as we delve deeper, we will gain a different type of intuition for the scale of the very small. In the next lecture, we will formally begin our quantum mechanical study.

@@ -1,0 +1,561 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+
+\newcommand{\classcode}{Physics 137A}
+\newcommand{\classname}{Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 06} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Problem 1}
+
+    Find $\mean x$, $\mean p$, $\mean{x^2}$, $\mean {p^2}$ and $\mean T$ for the $n$-th stationary state of the harmonic oscillator, using the method of Example 2.5. Check that the uncertainty relation is satisfied. 
+
+    \begin{solution}
+        We know the following operator relations: 
+
+        \[\hat x = \sqrt{\frac{\hbar}{2m \omega}} (a_+ + a_-) \phantom{aaa} \hat p = \sqrt{\frac{\hbar m \omega}{2}}(a_+ - a_-)\]
+
+        So therefore, computing $\mean{x}$: 
+
+        \[\mean{x} = \sqrt{\frac{\hbar}{2m\omega}} \braket{\psi}{(\ap + \am)\psi}\]
+
+        Now notice that since $\psi_n(x)$ is an energy eigenstate, then the raising and lowering operators will raise $\psi(x)$ to $\psi_{n+1}(x)$ or $\psi_{n-1}(x)$. Since energy eigenfunctions are an orthonormal basis, then $\braket{\psi_n}{\psi_m} = 0$ whenever $n \neq m$. Therefore, the whole expression will actually evaluate to 0. Therefore, 
+
+        \[\boxed{ \mean{x} = 0}\] 
+
+        A basically identical argument exists for $p$, since it is also a combination of $\ap$ and $\am$, so
+
+        \[\boxed{\mean{p} = 0}\] 
+
+        as well. For $\mean{x^2}$, we have a slightly different relation. We know that 
+
+        \[\hat x^2 = \frac{\hbar}{2m \omega} (\ap^2 + 2\ap \am + 1 + \am^2)\]
+
+        This relation is obtained by squaring $\hat x$, then applying the relation of the commutator:
+
+        \[ [\am, \ap] = 1 \implies \am \ap = 1 + \ap \am\]
+
+        Therefore, our expectation value expression becomes: 
+
+        \[ \mean{x^2} = \frac{\hbar}{2m \omega} \braket{\psi_n}{(\ap^2 + 2\ap \am + 1 + \am^2)\psi_n}\]
+
+        Now let's look at $(\ap^2 + 2\ap \am + 1+ \am^2) \psi_n$ more closely, and consider what the product of it with $\psi_n^\star(x)$ looks like. For terms like $\ap^2\psi_n(x)$ and $\am^2\psi_n(x)$, we know that they will be orthogonal to $\psi_n^\star(x)$, so therefore they will vanish. Thus, we only care about the terms which give us back $\psi_n(x)$, namely the terms which contain an equal number of raising and lowering operators. Now, we use the relation that 
+
+        \[ \ap \psi_n = \sqrt{n+1} \psi_{n+1}\phantom{aaa} \am \psi_n = \sqrt n \psi_{n-1}\]
+
+        This gives us the relation 
+
+        \[ \ap \am \psi_n = 2\ap \sqrt{n} \psi_{n - 1} = 2\sqrt{n} \sqrt{n} \psi_{n - 1} = 2n \psi_n\]
+
+        Therefore, we have: 
+
+        \[ \boxed{\mean{x^2} = \frac{\hbar}{2m \omega} \braket{\psi_n}{(2n + 1) \psi_n} =  \frac{\hbar}{2m \omega} (2n + 1)}\]
+
+        Similarly for $\mean{p^2}$, we have 
+
+        \[ \hat p^2 = -\frac{\hbar m \omega}{2} (\ap^2 - 2\ap \am -1 + \am^2)\] 
+
+        and so just like before, the terms with $\ap^2$ and $\am^2$ cancel. Therefore, 
+
+
+        \[ \boxed{\mean{p^2} = -\frac{\hbar m \omega}{2} \braket{\psi_n}{-(2n + 1)\psi_n} = \frac{\hbar m \omega}{2} (2n +1)}\]
+
+        Therefore
+
+        \[ \boxed{\mean{T} = \frac{\mean{p^2}}{2m} = \frac{1}{2m} \frac{\hbar m \omega}{2}(2n + 1) = \frac{\hbar \omega}{4} (2n + 1)}\]
+        
+        Now we can verify the uncertainty principle: 
+
+        \begin{align*}
+            \sigma_x &= \mean{x^2} - \mean{x}^2 = \sqrt{\frac{\hbar}{2m \omega}(2n + 1)}\\
+            \sigma_p &= \mean{p^2} - \mean{p}^2 = \sqrt{\frac{\hbar m \omega}{2}(2n + 1)}
+        \end{align*}
+
+        Therefore:
+
+        \[ \sigma_x\sigma_p = (2n + 1)\hbar = \left(n + \frac 12\right) \frac{\hbar}{2}\] 
+
+
+        And since $n = 0, 1, 2, \dots$, then 
+
+        \[ \left(n + \frac 12\right) \frac{\hbar}{2} \ge \frac{\hbar}{2}\] 
+
+        And so the uncertainty relation is satisfied.
+    \end{solution}
+
+    \pagebreak
+    \section*{Problem 2}
+    A particle in the harmonic oscillator potential starts out in the state
+
+    \[ \Psi(x, 0) = A[3\psi_0(x) + 4 \psi_1(x)]\]
+
+    \begin{enumerate}[(a)]
+        \item Find $A$. 
+        
+        \begin{solution}
+            To find $A$, we need that $\int |\Psi(x, 0)| = 1$, so therefore: 
+
+            \begin{align*}
+                1 &= \int A^2 (9 |\psi_0(x)|^2 + 16 |\psi_1(x)|^2) dx\\
+                &= 25A^2
+            \end{align*}
+
+            So $A = \frac 15$. 
+        \end{solution}
+        \item Construct $\Psi(x, t)$ and $|\Psi(x, t)|^2$
+        
+        \begin{solution}
+            Adding in time dependence means adding a phase to each corresponding energy: 
+
+            \begin{align*}
+                \Psi(x, t) &= \frac 35 \psi_0(x) e^{iE_0t/\hbar} + \frac 45 \psi_1(x) e^{iE_1t/\hbar}\\
+                &= \frac 35 \psi_0(x) e^{i\omega t/2} + \frac 45 \psi_1(x) e^{3i\omega t/2}
+            \end{align*}
+
+            And now we can calculate $|\Psi(x, t)|^2$: 
+
+            \begin{align*}
+                |\Psi(x, t)|^2 &= \left(\frac 35 \psi_0^\star e^{-i\omega t/2} + \frac 45 \psi_1^\star e^{-3i\omega t/2}\right) \left(\frac 35 \psi_0 e^{i\omega t/2} + \frac 45 e^{3i\omega t/2}\right)\\
+                &= \frac{9}{25} \psi_0^2 + \frac{12}{25} \psi_0 \psi_1 (e^{i\omega t} + e^{-i\omega t})+ \frac{16}{25}\psi_1^2\\
+                &= \frac{9}{25} \psi_0^2 + \frac{24}{25} \psi_0 \psi_1 \cos(\omega t)+ \frac{16}{25}\psi_1^2
+            \end{align*}
+
+        \end{solution}
+        \item Find $\mean x$ and $\mean p$. Don't get too excited if they oscillate at the classical frequency; what would it have been had I specified $\psi_2(x)$, instead of $\psi_1(x)$? Check that Ehrenfest's theorem (Equation 1.38) holds for this wave function.
+        
+        \begin{solution}
+            We have the following operator relations\footnote{operators are the best thing ever}: 
+
+            \[\hat x = \sqrt{\frac{\hbar}{2m \omega}} (a_+ + a_-) \phantom{aaa} \hat p = \sqrt{\frac{\hbar m \omega}{2}}(a_+ - a_-)\]
+
+            So therefore, 
+
+            \[ \mean{x} = \braket{\Psi}{\hat x \Psi}\]
+
+            So this means we have: 
+
+            \[ \mean{x} = \sqrt{\frac{\hbar}{2m\omega}} \braket{\Psi}{(\ap + \am) \Psi}\]
+
+            Now let's take a look at $(\ap + \am) \Psi$ closely. Since $\Psi(x, t) = \frac 35 \psi_0(x) e^{iE_0t/\hbar} + \frac 45 \psi_1(x) e^{iE_1t/\hbar}$, then notice the following: if we act the raising operator on $\psi_1(x)$, then we get $\psi_2(x)$. But since no other term here has $\psi_2(x)$, then by orthogonality all terms containing $\psi_2(x)$ must be zero! Furthermore, acting the lowering operator on $\psi_0(x) = 0$, so the only real terms we care about are when we act the raising operator $\psi_0(x)$ and the lowering operator on $\psi_1(x)$, getting us $\ap \psi_0(x) = \psi_1(x)$ and $\am \psi_1(x) = \psi_0(x)$ respectively. Therefore: 
+
+            \begin{align*}
+                \mean{x} &= \sqrt{\frac{\hbar}{2m\omega}} \int \left( \frac 35 e^{i \omega t/2} \psi_0^\star(x)  + \frac 45 e^{3i\omega t/2} \psi_1^\star(x)\right) \left(\frac 45 e^{3i\omega t/2}\psi_0(x) + \frac 35 e^{i\omega t/2}\psi_1(x)\right) dx\\
+                &= \sqrt{\frac{\hbar}{2m\omega}} \int \frac{12}{25} e^{i\omega t} |\psi_0(x)|^2 + \frac{12}{25}e^{-i\omega t}|\psi_1(x)|^2 dx\\
+                &=\frac{12}{25} \sqrt{\frac{\hbar}{2m\omega}}  \left(e^{i\omega t} + e^{-i\omega t}\right)\\
+                &= \frac{24}{25} \sqrt{\frac{\hbar}{2m\omega}}\cos(\omega t)
+            \end{align*}
+
+            Similarly, we have 
+
+            \[ \mean{p} = i \sqrt{\frac{\hbar m \omega}{2}} \braket{\Psi}{(\ap - \am) \Psi}\] 
+
+            And the same rule applies here when we evaluate $(\ap + \am)\Psi$. We only care about the terms when we act the raising operator on $\psi_0(x)$ and the lowering operator on $\psi_1(x)$, other terms will evaluate to 0. Therefore: 
+
+            \begin{align*}
+                \mean{p} &= i \sqrt{\frac{\hbar m \omega}{2}} \int \left(\frac 35 e^{-i\omega t/2} \psi_0^\star(x) + \frac 45 e^{-3i\omega t/2}\psi_1^\star(x)\right)\left(\frac 45 e^{3i\omega t/2}\psi_0(x) - \frac 35 e^{i\omega t/2}\psi_1(x)\right) dx \\
+                &= i \sqrt{\frac{\hbar m \omega}{2}} \int \frac{12}{25} e^{i\omega t} |\psi_0(x)|^2 + \frac{12}{25} |\psi_1(x)|^2 dx\\
+                &= i \sqrt{\frac{\hbar m \omega}{2}} \frac{12}{25} (e^{i\omega t} - e^{-i\omega t})\\
+                &=i \sqrt{\frac{\hbar m \omega}{2}} \cdot  \frac{24}{25} i \sin (\omega t)\\
+                &= - \sqrt{\frac{\hbar m \omega}{2}} \cdot  \frac{24}{25}  \sin (\omega t)
+            \end{align*}
+
+            Ehrenfest's theorem says that 
+
+            \[ \frac{d\mean p}{dt} = -\mean{\frac{\partial V}{\partial x}}\] 
+
+            This is a harmmonic oscillator, so 
+
+            \[ -\mean{\frac{\partial V}{\partial x}} = -m \omega^2 x\]
+
+            Now calculating the left hand side: 
+
+            \begin{align*}
+                \frac{d\mean p}{dt} &= \frac{d}{dt} \left(m \frac{d\mean{x}}{dt}\right)\\
+                &= \frac{d}{dt}\left(m \frac{d}{dt} \left(\frac{24}{25} \sqrt{\frac{\hbar}{2m\omega}} \cos (\omega t)\right)\right)\\
+                &=  \frac{d}{dt}\left( -\frac{24m}{25} \sqrt{\frac{\hbar}{2m\omega}}\omega \sin (\omega t) \right)\\
+                &= -m\omega^2 \left(\frac{24}{25} \sqrt{\frac{\hbar}{2m\omega}} \cos(\omega t)\right)
+            \end{align*}
+
+            Notice that $\frac{24}{25} \sqrt{\frac{\hbar}{2m\omega}} \cos(\omega t) = x$, so therefore 
+
+            \[ \frac{d\mean p}{dt} = -m\omega^2 x\] 
+
+            And so Ehrenfest's theorem is verified. 
+        \end{solution}
+        \item If you measured the energy of this particle, what values might you get, and with what probabilities? 
+        
+        \begin{solution}
+            We know that the probability associated with each energy is $|c_n|^2$, where $c_n$ refers to the coefficient associated with $\psi_n$, and thus an energy $E_n$. In our wavefunction $\Psi(x)$, we only have it in terms of $\psi_0(x)$ and $\psi_1(x)$, so we only have probabiliy of measuring $E_0$ and $E_1$. Therefore, we have:
+
+            \begin{align*}
+                c_0 &= \frac{3}{5} e^{i\omega t/2} \ \ \text{for } E_0 = \frac{\hbar \omega}{2}\\
+                c_1 &= \frac{4}{5} e^{3i\omega t/2} \ \ \text{for } E_1 = \frac{3\hbar \omega}{2}\\
+            \end{align*}
+
+            Therefore, we get: 
+
+            \begin{align*}
+                P(E_0) &= \left| \frac 35 e^{i\omega t/2}\right|^2 = \frac{9}{25}\\
+                P(E_1) &= \left| \frac 45 e^{3i\omega t/2}\right|^2 = \frac{16}{25}
+            \end{align*}
+
+            Therefore, the probability of measuring $E_0 = \frac{\hbar \omega}{2}$ is $\frac{9}{25}$, and for $E_1 = \frac{3\hbar \omega}{2}$ is $\frac{16}{25}$. 
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 3}
+
+    Among the stationary states of the harmonic oscillator ($\ket n = \psi_n(x)$, Equation 2.67) only $n = 0$ hits the uncertainty limit ($\sigma_x \sigma_p = \hbar/2$); in general, $\sigma_x\sigma_p = (2n +1)\hbar/2$, as you found in Problem 2.12. But certain \textit{linear combination} (known as \textbf{coherent states}) also minimize the uncertianty product. They are (as it turns out) \textit{eigenfunctions of the lowering operator}
+
+    \[ a_- \ket \alpha = \alpha \ket \alpha\]
+
+    (the eigenvalue can be any complex number)
+
+    \begin{enumerate}[(a)]
+        \item Calculate $\mean x$, $\mean {x^2}$, $\mean p$, $\mean {p^2}$ in the state $\ket \alpha$. \textit{Hint:} Use the technique in Example 2.5, and remember that $a_+$ is the hermitian conjugate of $a_-$. Do \textit{not} assume $\alpha$ is real.
+        
+        \begin{solution}
+            We first use the fact that we have the following two relations: 
+
+            \[\hat x = \sqrt{\frac{\hbar}{2m \omega}} (a_+ + a_-) \phantom{aaa} \hat p = \sqrt{\frac{\hbar m \omega}{2}}(a_+ - a_-)\]
+
+            I'm going to drop the operator symbols here because there's too many of them. First, let's calculate $\mean{x}$:
+
+            \begin{align*}
+                \mean{x} &= \braket{\alpha}{\hat x \alpha}\\
+                &= \sqrt{\frac{\hbar}{2m\omega}} \braket{\alpha}{(a_+ + a_-)\alpha}
+            \end{align*}
+
+            Now we act $a_+ + a_-$ on $\alpha$: 
+
+            \begin{align*}
+                (a_+ + a_-) \ket{\alpha} &= a_+ \ket \alpha + a_- \ket \alpha\\
+                &= a_+\ket \alpha + \alpha \ket \alpha
+            \end{align*}
+
+            To calculate $a_+\ket \alpha$ we, make use of the fact that $a_+ \ket \alpha = \left(a_- \bra{\alpha}\right)^\dagger = (a_- \ket \alpha)^\dagger$ since $\ket \alpha$ can be taken to be real. Now we have $(\alpha \ket \alpha)^\dagger = \alpha^\star \ket \alpha$, so we've derived the relation:
+
+            \[ a_+ \ket \alpha = \alpha^\star \ket \alpha\] 
+
+            This is a useful relation that we will use over and over again to calculate the remaining values. Now returning to our expression we have to evaluate: 
+
+            \[  a_+\ket \alpha + \alpha \ket \alpha = (\alpha^\star + \alpha) \ket \alpha\] 
+
+            And so now the expectation value becomes:
+
+            \begin{align*}
+                \mean{x} &= \sqrt{\frac{\hbar}{2m \omega}}(\alpha^\star + \alpha) \underbrace{\braket{\alpha}{\alpha}}_{= 1}\\
+                &= \sqrt{\frac{\hbar}{2m \omega}}(\alpha^\star + \alpha) 
+            \end{align*}
+
+            Similarly, we calculate $\mean{p}$
+
+            \begin{align*}
+                \mean{p} &= i\sqrt{\frac{\hbar m \omega}{2}}\braket{\alpha}{ (a_+ - a_-)\alpha}\\
+                &= i\sqrt{\frac{\hbar m \omega}{2}}\braket{\alpha}{(a_+ - a_-)\alpha}\\
+                &= i\sqrt{\frac{\hbar m \omega}{2}}(\alpha^\star - \alpha)
+            \end{align*}
+
+            Now $\mean{x^2}$, we need to expand out the operator first:
+
+            \begin{align*}
+                \hat x^2 &= \frac{\hbar}{2m \omega} (a_+ + a_-)^2\\
+                &= \frac{\hbar}{2m\omega}(a_+^2 + \ap \am + \am \ap + \am^2)
+            \end{align*}
+
+            Now to make our lives a bit easier, we can use the commutator relation
+
+            \[ [\am, \ap] = 1 \implies \am \ap = 1 + \ap \am\]
+
+            So therefore
+
+            \[ \hat x^2 = \frac{\hbar}{2m \omega} (\ap^2 + 2\ap \am +1 + \am^2)\]
+
+            Now we can calculate $\mean{x^2}$. Note that $\ap^2 \ket \alpha = (\alpha^\star)^2 \ket \alpha$ and $\am^2 \ket \alpha = \alpha^2 \ket \alpha$, so therefore: 
+
+            \begin{align*}
+                \mean{x^2} &= \frac{\hbar}{2m\omega}\braket{\alpha}{(\ap^2 + 2\ap \am + 1 + \am^2)\alpha}\\
+                &= \frac{\hbar}{2m\omega}\braket{\alpha}{((\alpha^\star)^2 + 2 \alpha^\star \alpha \ket \alpha + 1 + \alpha^2 \ket \alpha)}\\
+                &= \frac{\hbar}{2m\omega}\braket{\alpha}{((\alpha^\star + \alpha)^2 +1 )\alpha}\\
+                &= \frac{\hbar}{2m\omega}((\alpha^\star + \alpha)^2 + 1) \braket{\alpha}{\alpha}\\
+                &= \frac{\hbar}{2m\omega}\left[(\alpha^\star + \alpha)^2 + 1\right]
+            \end{align*}
+
+
+            And we use a very similar approach for $\mean{p^2}$. Here, squaring the commutator gives: 
+
+            \begin{align*}
+                \mean{p^2} &= -\frac{\hbar m \omega}{2}(\ap - \am)^2\\
+                &= -\frac{\hbar m \omega}{2}(\ap^2 - \ap \am - \am \ap + \am^2)\\
+                &= -\frac{\hbar m \omega}{2}(\ap^2 - 2\ap \am - 1 + \am^2)
+            \end{align*}
+
+            So therefore: 
+
+            \begin{align*}
+                \mean{p^2} &= -\frac{\hbar m \omega}{2}\braket{\alpha}{(\ap^2 - 2\ap \am -1 + \am^2)\alpha}\\
+                &= -\frac{\hbar m \omega}{2}\braket{\alpha}{((\alpha^\star)^2 - 2\alpha^\star \alpha + \alpha^2 \alpha - 1) \alpha}\\
+                &= -\frac{\hbar m \omega}{2}\left[(\alpha^\star - \alpha)^2 - 1\right]
+            \end{align*} 
+        \end{solution}
+
+
+        \item Find $\sigma_x$ and $\sigma_p$; show that $\sigma_x\sigma_p = \hbar/2$. 
+        
+        \begin{solution}
+            Now to check that the uncertainty relation is satisfied, we can write:
+
+            \begin{align*}
+                \sigma_x^2 &= \mean{x^2} - \mean{x}^2\\
+                &= \frac{\hbar}{2 m \omega} \left[ 1 + (\alpha + \alpha^\star)^2\right] - \frac{\hbar}{2m \omega} (\alpha^\star + \alpha)^2 \\
+                &= \frac{\hbar}{2m \omega} \implies \sigma_x = \sqrt{\frac{\hbar}{2m\omega}}
+            \end{align*}
+
+            And similarly, 
+
+            \begin{align*}
+                \sigma_p^2 &= \mean{p^2} - \mean{p}^2\\
+                &= -\frac{\hbar m \omega}{2} \left[(\alpha^\star -\alpha)^2 - 1\right] + \frac{\hbar m \omega}{2}(\alpha^\star - \alpha)^2\\
+                &= \frac{\hbar m \omega}{2} \implies \sigma_p = \sqrt{\frac{\hbar m \omega}{2}}
+            \end{align*}
+
+            So now we can calculate $\sigma_x\sigma_p$: 
+
+            \begin{align*}
+                \sigma_x \sigma_p &= \sqrt{\frac{\hbar}{2m \omega}} \cdot \sqrt{\frac{\hbar m \omega}{2}}\\
+                &= \frac{\hbar}{2}
+            \end{align*}
+
+            And so the uncertainty relation is satsified.
+        \end{solution}
+        \item Like any other wave function, a coherent state can be expanded in terms of energy eigenstates:
+        \[ \ket \alpha = \sum_{n = 0}^\infty c_n \ket n\] 
+
+        Show that the expansion coefficients are
+
+        \[ c_n = \frac{\alpha^n}{\sqrt{n!}} c_0\]
+
+        \begin{solution}
+            Here, we can use the relation that $\alpha$ is an eigenfunction of the lowering operator, so $\am \ket \alpha = \alpha \ket \alpha$. Writing this in terms of the expansion: 
+
+            \[ \am \sum_{n = 0}^\infty c_n \ket n = \alpha \sum_{n = 0}^\infty c_n \ket n\]
+
+            We also know that the lowering operator has the following relation: 
+
+            \[ \am \ket n = \sqrt{n} \ket{n-1}\]
+
+            So therefore, 
+
+            \[ \sum_{n = 1}^\infty c_n \sqrt{n} \ket n = \alpha \sum_{n = 0}^\infty \alpha c_n \ket n\]
+
+            So now our expansion becomes (I dropped the bounds here becuase all we care about is the summation terms themselves): 
+
+            \[ \sum c_n \sqrt{n} \ket{n -1} = \sum \alpha c_n \ket n\]
+
+            Now, since the eigenstates $\ket n$ are an orthonormal basis, we can compare coefficients of the same eigenfunction with each other to obtain the following relation: 
+
+            \[ c_n \sqrt{n} = \alpha c_{n-1} \]
+
+            And so 
+
+            \[ c_n = \frac{\alpha}{\sqrt{n}} c_{n-1} = \frac{\alpha^2}{\sqrt{n(n-1)}} c_{n - 2}\]
+
+            Notice we can continue this recurrence relation all the way down to $c_0$. We can do this $n$ times, so therefore our final relation becomes:
+
+            \[ c_n = \frac{\alpha^n}{\sqrt{n!}} c_0\]
+
+            As desired.
+        \end{solution}
+
+        \item Determine $c_0$ by normalizing $\ket \alpha$ 
+        
+        \begin{solution}
+            To normalize, we want 
+
+            \begin{align*}
+                1 &= \sum_n |c_n|^2 \\
+                &= \sum_{n = 0}^\infty \frac{\alpha^n}{\sqrt{n!}}c_0 \\
+                &= |c_0|^2 \left(\alpha + \frac{(\alpha^2)^2}{\sqrt{2}} + \frac{(\alpha^2)^3}{2} + \cdots\right)
+            \end{align*}
+
+            Note that this is in fact the taylor expansion of $e^{\alpha^2/2}$, so therefore 
+
+            \begin{align*}
+                |c_0| &= \left(\frac{1}{e^{\alpha^2}}\right)^{1/2}\\
+                &= e^{-\alpha^2/2}
+            \end{align*}
+
+            And since we have $\alpha^2$ then it's guaranteed to be positive, so we can put absolute value around $\alpha$:
+
+            \[ c_0 = e^{-|\alpha|^2/2}\]
+        \end{solution}
+        \item Now put in the time dependence:
+        \[ \ket n \to e^{-iE_nt/\hbar} \ket n\]
+
+        and show that $\ket{\alpha(t)}$ remains an eigenstate of $a_-$, but the \textit{eigenvalue} evolves in time
+
+        \[ \alpha(t) = e^{-i\omega t}\alpha\]
+
+        So a coherent state \textit{stays} coherent, and continues to minimize the uncertainty product. 
+
+        \begin{solution}
+            Adding the time dependence means adding a phase, as suggested by the question. Therefore, 
+
+            \[ \ket \alpha = \sum \frac{\alpha^n}{\sqrt{n!}} e^{-iE_nt/\hbar} \ket n\]
+
+            To find the eigenvalues, we act the lowering operator: 
+            \begin{align*}
+                \am \ket \alpha &= \sum \frac{\alpha^n}{\sqrt{n!}} e^{-iE_nt/\hbar} \ket n\\
+                &= e^{-iE_nt/\hbar}  \am \sum c_n \ket n\\
+                &= e^{-iE_nt/\hbar}\alpha \ket \alpha
+            \end{align*}
+
+            And so therefore we have the expression: 
+
+            \[ \alpha(t) = e^{-iE_nt}\alpha\] 
+
+            The energies do not evolve in time at all, so therefore the only time-dependent term is the $t$ in the exponent.
+
+            % We have $E_n = \left(n + \frac{1}{2}\right)\hbar \omega$ so 
+
+            % \[ \alpha(t) = e^{-i(n + 1/2) \omega t}\alpha\]
+
+            % We can bring the $e^{n + 1/2}$
+        \end{solution}
+        \item Is the ground state $(\ket {n = 0})$ itself a coherent state? If so, what is the eigenvalue?
+
+        \begin{solution}
+            $\ket 0$ is a coherent state, since acting the lowering operator on it: 
+
+            \[ \am \ket 0 = 0 \ket 0\] 
+
+            And so it's eigenvalue is 0. 
+        \end{solution}
+        \item Are the coherent state orthogonal? Compute $\braket{\alpha}{\beta}$. 
+        
+        \begin{solution}
+            Suppose that $\alpha$ and $\beta$ are two coherent states. Then, if we compute the product: 
+
+            \begin{align*}
+                \braket{\alpha}{\beta} &= \int \sum_{n} c_n^\star \bra{n} \cdot \sum_m c_m \ket m dx\\
+                &= \int \sum c_n^\star c_m \braket{n}{m}
+            \end{align*}
+            
+            Since $\ket m$ and $\ket n$ are an orthonormal basis, then $\int \braket{n}{m}$ is the dirac delta function, or in other words: 
+
+            \[ \braket{\alpha}{\beta} = \sum c_n^\star c_m \delta(n - m)\]
+
+            And so therefore $\braket{\alpha}{\beta}$ are orthogonal.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 4}
+
+    \begin{enumerate}[(a)]
+        \item For a function $f(x)$ that can be expaned in a Taylor series, show that 
+        \[ f(x + x_0) = e^{i \hat p x_0/\hbar}f(x) \]
+
+        (where $x_0$ is any constant distance). For this reason, $\hat p/\hbar$ is called the \textbf{generator of translations in space}. \textit{Note:} The exponential of an \textit{operator} is defined by the power series expansion: $e^{\hat Q} \equiv 1 + \hat Q + (1/2)Q^2 + \cdots$. 
+
+        \begin{solution}
+            First we can write out the Taylor expansion for the right hand side centered at $x = x_0$: 
+
+            \[ f(x + x_0) = \sum \frac{1}{n!} f^n(x) x_0^n = \sum \frac{1}{n!} \frac{d^nf(x)}{dx^n} x_0^n\]
+
+            Recall that we have: $\hat p = - i\hbar \frac{\partial}{\partial x}$, so:
+
+
+            \[ f(x + x_0) = \sum \frac{x_0^n\hat p^n}{n!}\frac{1}{(-i\hbar)^n} f(x)\]
+
+            Note that the exponentiated terms are just the taylor series of $e^{\hat p x_0/(-i\hbar)}$ so therefore: 
+
+            \[ f(x + x_0) = e^{\hat p x_0/(-i\hbar)} f(x) = e^{i \hat p x_0/\hbar}\] 
+
+            As desired.  
+        \end{solution}
+        \item If $\Psi(x, t)$ satisfies the (time-independent) \schrodinger equation, show that 
+        \[ \Psi(x, t + t_0) = e^{-i\hat H t_0/\hbar}\Psi(x, t)\]
+
+        \begin{solution}
+            We do the same thing as the previous problem, Taylor expand $\Psi(x, t + t_0)$: 
+
+            \[\Psi(x, t + t_0) = \sum \frac{1}{n} \frac{\partial^n}{\partial t^n} \Psi(x, t) t_0^n\]
+
+            Since we know that $\hat H = i\hbar \frac{\partial}{\partial t}$ in the time-dependent \schrodinger equation, then 
+
+            \[\Psi(x, t + t_0) = \sum \frac{1}{n!} \hat H^n \Psi(x, t) \cdot \frac{t_0^n}{(i\hbar)^n}\]
+
+            Just like the previous part, the terms which are exponentiated give us $e^{\frac{\hat Ht_0}{i\hbar}} = e^{-i\hat H t_0/\hbar}$ so therefore
+
+            \[ \Psi(x, t + t_0) = e^{-i\hat H t_0/\hbar} \Psi(x, t)\]
+
+
+            As desired.  
+        \end{solution}
+
+        (where $t_0$ is any constant time); $-\hat H/\hbar$ is called the \textbf{generator of translations in time}
+        \item Show that the expectation value of a dynamical variable $Q(x, p, t)$ at time $t + t_0$ can be written
+        \[ \mean{Q}_{t + t_0} = \bra{\Psi(x, t)}e^{i\hat H t_0/\hbar} \hat Q(\hat x, \hat p, t + t_0) e^{-i\hat H t_0/\hbar}\ket{\Psi(x, t)}\]
+
+        Use this to recover Equation 3.71. \textit{Hint:} Let $t_0 = dt$, and expand to first order in $dt$.
+
+        \begin{solution}
+            Let's consider the form of this equation. From the previous problem, we know that 
+
+            \[ \ket {\Psi(x, t + t_0)} = e^{-i\hat H t_0/\hbar}\ket {\Psi(x, t)}\]
+
+            Therefore, the adjoint operation would be:
+
+            \[ \bra{\Psi(x, t + t_0)} = \bra{\Psi(x, t)} (e^{-i\hat H t_0/\hbar})^\dagger = \bra{\Psi(x, t)} e^{i\hat H t_0/\hbar}\] 
+
+            Knowing these two relations, we can rewrite the expectation value as: 
+
+            \[ \mean{Q}_{t + t_0} = \bra{\Psi(x, t + t_0)} \hat Q(\hat x, \hat p, t + t_0) \ket{\Psi(x, t + t_0)}\] 
+
+            which is the standard relation for the expectation value at $t + t_0$. To derive Equation 3.71, we use the product rule to derive the following expression (I omitted what $\Psi$ and $Q$ are functions of becuase otherwise there would be too many parentheses): 
+
+            \begin{align*}
+                \frac{\partial \mean{Q}}{\partial t} &= \frac{\partial}{\partial t}\bra{\Psi} \hat Q \ket{\Psi}\\
+                &= \left(\frac{\partial}{\partial t}\bra{\Psi}\right) \hat Q\ket{\Psi} + \bra{\Psi} \frac{\partial \hat Q}{\partial t}\ket {\Psi} + \bra{\Psi} \hat Q \left(\frac{\partial}{\partial t} \ket {\Psi}\right)
+            \end{align*}
+
+            The term in the middle evaluates to $\mean{\frac{\partial \hat Q}{\partial t}}$. Now let's since $\hat H = i \hbar \frac{\partial}{\partial t} = -\frac{\hbar}{i}\frac{\partial}{\partial t}$ from the time-dependent \schrodinger equation, then we have: 
+
+            \begin{align*}
+                \frac{\partial \mean{Q}}{\partial t} &= \mean{\frac{\partial \hat Q}{\partial t}} + \bra{\Psi}\frac{i}{\hbar}\hat H\hat Q\ket \Psi + \bra{\Psi}-\frac{i}{\hbar}\hat Q\hat H \ket \Psi\\
+                &= \mean{\frac{\partial \hat Q}{\partial t}} + \frac{i}{\hbar}\left(\hat H \hat Q - \hat Q \hat H\right) \braket{\Psi}{\Psi}\\
+                &= \mean{\frac{\partial \hat Q}{\partial t}} + \frac{i}{\hbar}\mean{[\hat H, \hat Q]}
+            \end{align*}
+
+            As desired.  
+
+        \end{solution}
+    \end{enumerate}
+\end{document}

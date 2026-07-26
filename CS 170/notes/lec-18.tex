@@ -1,0 +1,137 @@
+\section{Zero Sum Games}
+\subsection{Game 1}
+\begin{itemize}
+	\item We saw last time that given a ZSG structured like this:
+		\begin{center}
+			\begin{tabular}{c|c|c}
+				& P1& P2\\
+				\hline 
+				P1 & 3 & -1\\
+				\hline
+				P2 & -2 & 1
+			\end{tabular}
+		\end{center}
+		then we can calculate that the payoff for column 1 is \(3p_1 - 2p_2\), and the payoff for column 
+		2 is \(-p_1 + p_2\).
+	\item This meant that the column player's best strategy was to look at these two values, and minimize this.  
+	\item The row player will then pick \(p_1, p_2\) in order to maximize what the column player tries to 
+		minimize. Therefore, the row player wants to calculate:
+		\[
+			\max_{\text{mixed strategies \(p\)}} \{\min \{3p_1 - 2p_2, -p_1 + p_2\} \} 
+		\] 
+	\item As we said last lecture, this can be solved using LP! We'll also see that the row player going 
+		first doesn't hurt them. 
+	\item So we can formulate our LP as follows:
+
+		Maximize a quantity \(z\), subject to the constraints:
+		\begin{align*}
+			z & \le 3p_1 - 2p_2\\
+			z &\le -p_1 + p_2\\
+			1 &= p_1 + p_2\\
+			0 &\le p_1, p_2
+		\end{align*}
+		Note that \(z = \min \{3p_1 - 2p_2, -p_1 + p_2\} \), so by maximizing \(z\) subject to these two 
+		constraints means that \(z\) is constrained to the smaller of these two. 
+\end{itemize}
+\subsection{Game 2}
+\begin{itemize}
+	\item The exact same game board, except we allow the column player to go first and the row player goes 
+		second. 
+		\begin{center}
+			\begin{tabular}{c|c|c}
+				& P1& P2\\
+				\hline 
+				P1 & 3 & -1\\
+				\hline
+				P2 & -2 & 1
+			\end{tabular}
+		\end{center}
+	\item We do the exact same thing, by considering the possibilities from the row player's perspective. This
+		is the same as looking from the column player's perspective in the previous problem. 
+		\begin{itemize} 
+			\item From the row player's perspective, payoff of row 1 is \(3q_1 - q_2\), and row 2 is: 
+				\(q_2 - 2q_1\). So we want to choose the max of these two, i.e.:
+				\[
+				\max \{3q_1 - q_2, -2q_1 + q_2\} 
+				\] 
+			\item The column player will try to minimize this score, so they'll want to choose:
+				\[
+					\min_{\text{mixed strategies \( q\)}} \{ \max \{3q_1 - q_2, -2q_1 + q_2\} \} 
+				\] 
+		\end{itemize}
+	\item This is another linear program! Here, we want to minimize \(z\), subject to:
+		\begin{align*}
+			3a_1 - a_2 &\le  z\\
+			-2q_1 + q_2 &\le z\\
+			q_1 + q_2 &=  1 \\
+			q_1, q_2 &\ge 0
+		\end{align*}
+		Again, note that \(z\) is equal to the larger of the two inequalities, using the same logic as 
+		before.
+	\item Now we compare the two problems, and compare the final quantities that we wanted to compute. 
+		\begin{itemize}
+			\item In game 1, we wanted to find \(\max_p \{\min_q \{S(p, q)\} \} \) 
+			\item In game 2, we wanted to find \(\min_q \{\max_p \{S(p, q)\} \} \)
+		\end{itemize}
+	\item Given this construction, we have the inequality
+		\[
+		\max_p \{\min_q \{S(p, q)\} \} \le \min_q \{\max_p \{S(p, q)\} \} 
+		\] 
+		
+		\question{If the dual of the dual is the original, doesn't this mean that we get a situation like 
+		\(x \le  y \le  x\)?}
+
+		\answer{No, becuase the inequality flips again, so we get \( x \le y \ge  x \), a valid inequality.}     
+
+		The best way to see that this is true is that it's always better to be the player that 
+		goes second. Therefore, finding the minimum over \(q\) is better because they're able to ``react'' to 
+		the column player's moves.
+	\item It turns out that these two LPs are actually duals of each other (the proof is to construct 
+		the second LP from the first one). Now, recall the property of strong duality, which holds for any LP
+		that is bounded. This game is clearly bounded, so we know that there is an optimal value of the game 
+		(denoted by $\mathrm{Value}(\text{game})$) is the same for both games!  
+
+		This is called the \textbf{min-max theorem.}
+	\item This tells us that the order of play doesn't change the value of the game, and there is an optimal 
+		probability distribution that the row player can choose without caring about what the column player 
+		does. 
+		
+		\comment{Note that this is a zero sum game not by the game table, but because the gain of one player 
+		is an equal loss in the other player. So the numbers in the table can be anything!} 
+	\item This also says that all zero sum games are strongly dual.
+\end{itemize}
+\subsection{P vs. NP}
+\begin{itemize}
+	\item So far, we've seen a lot of algorithms: polynomial multiplication, MSTs, APSP, etc.
+	\item In theoretical CS, we consider all these problems to be ``efficiently solvable,'' We define 
+		this to be the case when a problem can be solved in \textbf{polynomial time.}
+
+		\comment{This is only in theoretical CS. In practice, we'd want to get everything down to 
+		\(O(n)\) time, if possible. Even \(O(n^2)\) is quite bad, since given an input of size 
+		\(10^9\) (as is the case with the facebook graph), then the computation is on the 
+		order of \(10^{18}\) (very bad)!}
+	\item We define P (stands for polynomial) to be a set of computational problems that are considered to be
+		efficiently solvable.  
+	\item We define NP (stands for non-polynomial) to be another complexity class that aren't 
+		efficiently solvable themselves, but whose 
+		solutions can be efficiently checked. 
+		\begin{itemize}
+			\item Example: 3-coloring problem. We want to find a 3-coloring on this graph. Naively, 
+				we can brute-force and try all possible combinations, which would correspond to checking 
+				\(3^{n}\) possible graphs. 
+			\item The best known algorithm for this solves the problem in \(1.3289^{n}\) time.  
+			\item So this algorithm is not in P, but it is in NP, since any solution can be verified in 
+				polynomial time (by checking all edges)
+			\item Example 2: Factorization. Given an \(n\)-bit integer \(N\), we want to factorize it into 
+				two numbers \(p, q >1\) such that $pq = N$. 
+			\item Naively, we can divide \(N\) by every number from \(1\) to \(\sqrt{N} \). In terms of 
+				time complexity, this is \(O(\sqrt{N} )\), which we can simplify this to \(O(2^{n /2}\) due to 
+				the way numbers are represented as bitstrings. 
+
+				The best algorithm runs in time \(C^{n^{1/3}} \log(n)^{2/3}\), so this is not a problem 
+				that's known to be in P. 
+
+				However, the problme is in NP, because we can just verify any solution by multiplying them 
+				together, which takes at most \(O(n^2)\) time. 
+		\end{itemize}
+\end{itemize}

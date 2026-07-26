@@ -1,0 +1,137 @@
+\section{Greedy Algorithms}
+
+	\begin{itemize}
+		\item Are algorithms that build their solution piece by piece, and always takes the piece that 
+			offers the \textbf{most obvious and immediate benefit}.
+		\item Some applications of where Greedy algorithms do work: Scheduling, satisfiability, Huffman Coding
+			MSTs. 
+	\end{itemize}
+	\subsection{Scheduling}
+	\begin{itemize}
+		\item Input: collection of jobs specified by their time intervals $[s_1, e_1], \dots, [s_n, e_n]$. We
+			want to find the largest subset of jobs that have no time conflicts.
+		\item To do this, after choosing an interval, we'd want to choose the next interval that 
+			has the \textit{earliest end time}. Jobs that finish earlier give us more opportunities to 
+			slot in more jobs later in the day. 
+			\begin{itemize}
+				\item This is not achieved by selecting the shortest job, because it does not give us freedom 
+					in where $s_i$ and $e_i$ are. 
+				\item This is also not achieved by selecting the earliest job, since we don't know where $e_i$
+					is. 
+			\end{itemize}
+		\item So our code is as follows:
+
+			While set of intervals is not empty: \\
+			Add interval $j$ with the earliest finish time $e_j$. \\
+			Remove any conflicted interval $i$ from the set, i.e. $[s_j, e_j] \cap [s_i, e_i] \neq 
+				\emptyset$.
+		\item The runtime of this algorithm is $O(n)$ if the intervals are already sorted by the end time,
+				otherwise, we'd need $O(n \log n)$ time since we'd need to sort the intervals first.
+		\item To show that the greedy algorithm works, we need to show that this algorithm doesn't rule out 
+			an optimal solution.
+		\item Induction is very nice to prove these algorithms, since we'd just need to prove that 
+			the algorithm selects optimally at every time step! Let's try this for our scheduler: 
+
+			Claim: For any $m \le k$ there is an optimal schedule OPT that agrees with the Greedy solution 
+			$G$ on the first $m$ intervals. More formally, if the OPT can be labelled as a list of $i_1, \dots
+			i_m$ and $G$ has a list of $j_1, \dots, j_m$, then we require that $i_1 = j_1, \dots, i_m = j_m$.
+
+			Base case: $m = 0$, this is fairly trivial. Any two schedules agree on 0 things.
+
+			Inductive Hypothesis: This claim holds true for $m$. Now we show $m+1$. 
+
+			Inductive Step: There are two cases we need to consider:
+			\begin{itemize}
+				\item Case 1: when $i_{m+1} = j_{m+1}$, in which case we are done.
+				\item Case 2: $i_{m+1} \neq j_{m+1}$. Then let's define another schedule OPT' which is 
+					the same as $OPT$ except for the fact that $i_{m+1}$ is replaced with $j_{m+1}$. 
+
+					Note that $j_{m+1}$ does not conflict with $j_1, \dots, j_m$, since the greedy algorithm does
+					not produce time conflicts. 
+					Also, $j_{m+1}$ does not conflict with 
+					$i_{m+2}$ since $j_{m+1}$ ends earlier than $i_{m+1}$ (by the greedy algorithm). Hence, 
+					placing $j_{m+1}$ into this algorithm instead of $i_{m+1}$ produces an \textit{equally 
+					valid solution} for the schedule, since the size of OPT' is the same as that of OPT. 
+					Therefore, OPT' is also optimal, completing the proof.
+			\end{itemize}
+			\question{Does this proof by induction assume that the Greedy solution gives a correct 
+			schedule?}
+		\item In essence, the proof is showing that there is no choice that the Greedy algorithm makes which 
+			rules out an optimal solution. 
+	\end{itemize}
+	\subsection{Horn Formulas}
+	\begin{itemize}
+		\item Variables $x_1, \dots, x_n$ are either true or false.  
+		\item Clauses: 
+			\begin{itemize}
+				\item ``Implication clause'' where $(x_i \land x_j \land \dots) \implies x_k$. This is 
+					equivalent to $\overline x_i \lor \overline x_j \lor \dots \lor x_k$.
+				\item ``Pure Negative Clauses'' where $(\overline x_i \lor \overline x_j \lor \dots )$
+			\end{itemize}
+		\item A Horn formula is an AND of all Horn clauses, which are either implication or pure negative.
+		\item There is a problem called Horn-SAT which asks us to find an assignment of variables that makes
+			all Horn formulas to be true, if an assignment exists.
+		\item Greedy Algorithm: 
+			\begin{itemize}
+				\item For all $i$, set $x_i$ to be false. 
+				\item While there exists an implication $(x_i \land \dots \land x_j) \implies x_k$ being 
+					set to false, set $x_k$ to be true. 
+				\item If every pure negative clause $(\overline x_i \lor \dots \lor \overline x_j)$ is 
+					set to true, we return $(x_1, \dots, x_n)$. 
+				\item Otherwise, return ``not satisfiable.''
+			\end{itemize}
+	\end{itemize}
+	\subsubsection{Proof of Correctness}
+	\begin{itemize}
+		\item We want to show that whenever the greedy algorithm sets a variable $x_i$ to true, it does not 
+			ruin a satisfying assignment. In other words, whenever a satsifying assignment exists, 
+			then Greedy will output one.
+		\item We can show a stronger statement: the set of variables set to True by the greedy algorithm 
+			has to be set to true in any other assignment. We prove this by induction 
+
+			Base case: In the 0th iteration of the while loop, nothing is set to true, so we're fine.
+
+			Inductive Hypothesis: The first $m$ variables set to true by Greedy are also true in every satisfying
+			solution.
+
+			Inductive Step: Let $x_{m+1}$ be the next variable set to True by the greedy algorithm.
+			This means that there was an unsatisfied implication $(x_i \land \dots \land x_j) \implies x_k$ 
+			where the LHS was true, and $x_{m+1}$ is false. This only happens when $x_i, \dots x_j$ are all 
+			set to True, by the greedy algorithm on $m$ steps (which we know to match the optimal solution by 
+			inductive hypothesis).
+
+			Then the only way to satisfy this condition MUST have $x_{m+1}$ set to true as well, and that 
+			completes the proof.
+		\item Now we have to prove correctness. If Greedy outputs a solution, then it must be satisfiable --
+			this is fairly obvious, since the while loop and if condition makes sure that all clauses are 
+			satisfied. 
+		\item We also want to 
+	\end{itemize}
+	\subsection{Codes}
+	\begin{itemize}
+		\item Usually (things like ASCII) encode English characters using a fixed length of bits per character.
+		\item If our goal is to save space, then we probably don't want that. Particularly, there are letters
+			 that appear more often than other characters, so if we were to use the same space for every 
+			 character that'd be fairly wasteful.
+		 \item Assume that we have four letters with varying frequencies:
+			 \begin{center}
+				 \begin{tabular}{cc|c|c|c}
+					 \multicolumn{1}{c|}{\textbf{Frequency}} & \textbf{Letter} & \textbf{Encoding 1} &
+					 \textbf{Encoding 2} & 
+					\textbf{ Encoding 3}\\
+					 \multicolumn{1}{c|}{0.4} & A & 00 & 0 & 0 \\
+					 \multicolumn{1}{c|}{0.2} & B & 01 & 00 & 110 \\
+					 \multicolumn{1}{c|}{0.3} & C & 10 & 1 &10 \\
+					 \multicolumn{1}{c|}{0.4} & D & 11 & 01 &111 \\
+					\hline 
+					   & & & \\
+					 Total Cost:  & & $2N$ & $\begin{aligned} N(0.4 + 0.3) &+ 2N(0.1 + 0.2)\\& = 1.3N
+						 \end{aligned} $& $\begin{aligned} 0.4N + 2N(0.3) & + 3N(0.2 + 0.4)\\
+										&= 1.9N \end{aligned}$
+			 	\end{tabular}
+			 \end{center}
+		 \item There are issues with encoding 2: it's lossy in the sense that AB is encoded in the same way that 
+			 BA is coded.
+		 \item These issues are solved in encoding 3, and we found that we can still do better than the $2N$ 
+			 from our naive application where every letter gets the same number of bits.
+	\end{itemize}

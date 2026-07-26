@@ -1,0 +1,242 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Math 113}
+\newcommand{\classname}{Selected Problems for Abstract Algebra}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{\phantom{a} \hfill \classcode}
+\newline
+\Large{Eric Du}\Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.2}
+\newenvironment{problem}{\textbf{Problem:}}{}
+
+\begin{document}
+	\maketitle
+	\section{Introduction}
+	A collection of selected problems from the abstract algebra books by Dummit \& Foote, Artin, and 
+	Hungerford. 
+
+	\section{Introduction to Groups}
+
+	\subsection{Basic Axioms and Examples}
+	\begin{problem}
+		Determine which of the following binary operations are associative:
+			\begin{enumerate}[label=\alph*)]
+				\item the operation \( * \) on \( \Z \) defined by \( a * b = a - b \).
+
+					\begin{solution}
+						In all these problems, assosiativity means that \( (a * b) * c = a * (b * c) \). This is 
+						not guaranteed by this operation, as \( (a - b) - c \neq a - (b - c) \), it's not hard 
+						to find a counterexample.
+					\end{solution}
+				\item the operation \( * \) on \( \R \) defined by \( a * b = a + b + ab \).
+
+					\begin{solution}
+						So here we have \( (a * b) * c = (a + b + ab) * c = a + b + ab + c + c(a + b + ab) 
+						= a + b + ab + c + ac + bc + abc\). 
+						On the other hand, we have \( a * (b * c) = a * (b + c + bc) = a + b + c + bc + a(b + c + bc) 
+						= a + b + c + bc + ab + ac + abc\). These two are in fact equal, so this operation 
+						is associative. 
+					\end{solution}
+				\item the operation \( * \) on \( \Q \) defined by \( a * b = \frac{a + b}{5} \).
+
+					\begin{solution}
+						Here, we have \( (a * b) * c = \frac{a + b}{5} * c = \frac{\frac{a + b}{5} + c}{5} = 
+						\frac{a + b + 5c}{25}\), and on the other side we have \( a * (b * c) = a * \frac{b + c}{5} 
+						= \frac{5a + b + c}{25}\). These two are not equal, so this operation is not associtative.  
+					\end{solution}
+			\end{enumerate}
+	\end{problem}
+
+
+	\begin{problem}
+		Prove for all \( n > 1 \) that \( \Z / n\Z \) is not a group under multiplication of residue classes. 
+	\end{problem}
+
+	\begin{solution}
+		The requirements of a group are that the operation must be associative, there must exist an identity, and an 
+		inverse must also exist. These conditions are satisfied, except for the residue class \( 0 \), for which 
+		there exists no inverse. Therefore, \( \Z / n\Z  \) is not a group under multiplication. 
+	\end{solution}
+
+	\begin{problem}
+		Prove that a finite group is abelian if and only if its group table is a symmetric matrix. 
+	\end{problem}
+
+	\begin{solution}
+		A finite group is abelian if \( a * b = b* a \) for all \( a, b \in G\), and the group table is the 
+		\( n \times n \) matrix such that the entry in \( (i, j) \) is the group element \( g_i g_j \). Therefore, 
+		the group table must be a symmetric matrix, since we require \( g_i g_j= g_j g_i \). The if and only if is 
+		easy from here. 
+	\end{solution}
+
+	\begin{problem}
+		For an element \( x \) in \( G \) show that \( x \) and \( x^{-1} \) have the same order. 
+	\end{problem}
+
+	\begin{solution}
+		The order of an element \( x \) is defined as the value of \( n \) such that \( x^{n} = 1 \). So, given 
+		that the order of \( x \) is \( n \), now let's raise \( x^{-1} \) to the \( n \)-th power. Then, we 
+		have:
+		\[
+			(x^{-1})^{n} = x^{-n} = (x^{n})^{-1} = 1^{-1} = 1
+		\] 
+		Now, we need to show that \( n \) is the smallest exponent we can raise \( x^{-1} \) by. Suppose there's 
+		a smaller \( n' < n \) such that \( x^{-n'} = 1 \). Then, multiplying through by \( x^{n'} \), we get
+		\( x^{n'} = x^{0} = 1 \), which is a contradiction since \( n \) is the order of \( x \). Therefore, \( n \)
+		is indeed the order of \( x^{-1} \). 
+	\end{solution}
+
+	\begin{problem}
+		Let \( G \) be a finite group and let \( x \) be an element of \( G \) of order \( n \). Prove that 
+		if \( n \) is odd, then \( x = (x^2)^{k} \) for some \( k \). 
+	\end{problem}
+
+	\begin{solution}
+		Since \( x \) has order \( n \), then we know that \( x^{n} = 1 \). Now, if \( n \) is odd, 
+		we may write \( n = 2k + 1 \), then we may write \( x^{2k + 1} = 1 \), so 
+		\( x^{2k + 1} \cdot x = x^{2(k + 2)} = (x^2)^{k + 2} = x \), which is of the desired form. 
+	\end{solution}
+
+	\begin{problem}
+		If \( a \) and \( b \) are \textit{commuting} elements of \( G \), prove that \( (ab)^{n} = a^{n}b^{n} \) 
+		for all \( n \in \Z \). [Do this by induction for positive \( n \) first.]
+	\end{problem}
+
+	\begin{solution}
+		Since \( a \) and \( b \) are commuting elements, it means that \( a * b = b * a \), whatever the \( * \) 
+		operation is. We first prove this by induction for positive \( n \), with a base case of \( n = 0 \):
+		
+		By definition, at \( n = 0 \) we have \( (ab)^{0} = a^{0}b^{0} = 1\), which is verified. Now, assume that 
+		for some \( k \), we have \( (ab)^{k} = a^{k}b^{k} \), and we prove the claim for \( k + 1 \), where 
+		we have \( (ab)^{k + 1} = (ab)^{k} * ab = a^{k}b^{k} * a * b\). Now, because \( a, b \) commute, then 
+		we may write \( a^{k}* b^{k} * a * b = a^{k} * a * b^{k} * b = a^{k + 1}b^{k + 1}\), as desired. 
+
+		Now we handle the negative integers, also starting at a base case of \( n = 0 \). Now for our 
+		inductive hypothesis we have that for some negative \( k \), we have \( (ab)^{-k} = a^{-k}b^{-k} \), and 
+		we prove this for \( (ab)^{-k - 1} \) now. Using the inductive hypothesis, we may write 
+		\( (ab)^{-k - 1} = (ab)^{-k} (ab)^{-1} = a^{-k}b^{-k} (ab)^{-1} = a^{-k}b^{-k} * a^{-1} * b^{-1}\) (by 
+		Proposition 1). Then, since \( a, b \) commute then the approach is the same as the positive
+		integers, where we recover \( (ab)^{-k - 1} = a^{-k -1}b^{-k-1}\), as desired. Combining these two parts 
+		we recover all \( n \in \Z \). 
+	\end{solution}
+
+	\begin{problem}
+		Prove that if \( x^2 = 1 \) for all \( x \in G \) then \( G \) is abelian. 
+	\end{problem}
+
+	\begin{solution}
+		We need to prove that \( a * b = b * a \) for all \( a, b \). Since \( x^2 = 1 \) for all elements, then 
+		we know that \( a^2 = 1 \) and \( b^2 = 1 \), so \( a = a^{-1} \) and \( b = b^{-1} \), and by extension 
+		we know that \( ab = a^{-1}b^{-1} \). Further, we also know that \( (ab)^{-1} = b^{-1} a^{-1} = ab \), so 
+		therefore we have \( a^{-1} b^{-1} = b^{-1} a^{-1} \), and therefore \( ab = ba \), as desired. 
+	\end{solution}
+
+	\begin{problem}
+		Assume \( H \) is a nonempty subset of \( (G, *) \) which is closed under the binary operation 
+		on \( G \) and is closed under inverses, i.e., for all \( h \) and \( k \in H \), \( hk \) and 
+		\( h^{-1} \in H \). Prove that \( H \) is a group under the operation \( * \) restricted to \( H \) (such 
+		a subset \( H \) is called a \textit{subgroup} of \( G \)).
+	\end{problem}
+
+	\begin{solution}
+		To prove that \( H \) is a group, we need to prove the group axioms; namely, that \( H \) is 
+		associative, the identity of \( G \) exists in \( H \), and every element also contains its 
+		inverse. The point about inverses is already guaranteed by the construction of \( H \), since \( H \) 
+		is closed under inverses.
+
+		We first prove that \( H \) is associative, so we need to prove that given \( a, b, c \in H \), we 
+		have \( (ab)c = a(bc) \). Since \( G \) is a group, we know that they are indeed equal, so all we need to 
+		really show is that \( (ab)c \in H \). This is also guaranteed, since \( ab \in H \), and since 
+		 \( c \in H \), then \( (ab)c \in H \), so \( a(bc) \in H \) as well. 
+
+		Now we prove the identity element must also exist in \( H \). For any element \( a \in H \), 
+		since \( a^{-1} \in H \) and \( a a^{-1} = 1 \) by definition, then the identity element 
+		must exist in \( H \) also. 
+	\end{solution}
+
+	\begin{problem}
+		Prove that if \( x \) is an element of the group \( G \) then \( \{x^{n} \mid n \in \Z\}  \) is a 
+		subgroup (cf. the preceding exercise) of \( G \) (called the \textit{cyclic subgroup} of \( G \) generated
+		by \( x \)). 
+	\end{problem}
+
+	\begin{solution}
+		Let \( S \) be the set in question.
+		Clearly, the set is associative, and the identity also exists as \( x^{0} \in S \). The inverse 
+		also exists, since \( x^{-1} \in S \). So, all we need to show is that this is closed, but this is also 
+		obvious, since given two elements in \( S \), we have \( x^{k}x^{m} = x^{k + m} \in S \). 
+	\end{solution}
+
+
+	\begin{problem}
+		Prove that any finite group \( G \) of even order contains an element of order 2. [Let 
+		\( t(G) \) be the set \( \{g \in G \mid g \neq g^{-1}\}  \). Show that \( t(G) \) has an 
+		even number of elements and every nonidentity element of \( G - t(G) \) has order 2.]
+	\end{problem}
+
+	\begin{solution}
+		Following the hint, let \( t(G) \) be as defined, and we want to show that \( t(G) \) has 
+		an even number of elements. Consider an element \( g \in t(G) \), with order 
+		\( 2k \) (that is, \( g^{2k} = 1 \)). Then, \( g^2 \in t(G) \) as well, since the order of 
+		\( g^2  \) must be \( k \). So, for every element in \( g \), there are actually two elements, meaning 
+		that there are an even number of elements in \( t(G) \). Further, by definition of \( t(G) \), 
+		we know that every nonidentity element of \( G - t(G) \) has order 2, and \( t(G) \) cannot equal 
+		the set \( G \) itself since the identity element must exist in \( G \). Therefore, \( G \) 
+		must have an element of order 2. 
+
+		\question{verify this solution.}
+	\end{solution}
+
+	\begin{problem}
+		If \( x \) is an element of infinite order in \( G \), prove that the elements \( x^{n}, n \in \Z \) 
+		are all distinct. 
+	\end{problem}
+
+	\begin{solution}
+		Since \( x \) is an element of infinite order, then we know that there is no value of \( n \) such that 
+		\( x^{n} = 1 \). Further, suppose for the sake of contradiction that there are two values \( n_1 < n_2 \) 
+		(WLOG) such that \( x^{n_1} = x^{n_2} \). Then, we can write \( x^{n_2} = x^{n_1 + n_2 - n_1} = 
+		x^{n_1} x^{n_2 - n_1}\), but the fact that \( x^{n_1} = x^{n_2} \) implies that \( x^{n_2 - n_1} = 1 \) 
+		meaning there was an inverse somewhere in this multiplication. 
+		Therefore, all values \( x^{n} \) must be distinct. 
+	\end{solution}
+	\section{Subgroups}
+	\subsection{Definition and Examples}
+
+	\begin{problem}
+		Give an explicit example of a group \( G \) and an infinite subset \( H \) of \( G \) that is 
+		closed under the group operation but is not a subgroup of \( G \). 
+	\end{problem}
+
+	\begin{solution}
+		Consider the vector space \( \R \), and now consider the infinite subset formed by the set of points 
+		\( \{(x, 0) \mid x \in \R_+\}  \), and consider the operation of addition on this set defined as 
+		\( (x_1, y_1) + (x_2, y_2) = (x_1 + y_1, x_2 + y_2) \). This set is certainly closed under the group 
+		operation, but given any identity element \( (x_0, 0) \), then for any other element \( (x, 0) \) its 
+		inverse is \( (x_0 - x, 0) \), but since \( x_0 - x \) could be negative, this inverse element does not 
+		necessarily exist within the set. Thus, this subset is not a subgroup. 
+	\end{solution}
+
+	\begin{problem}
+		Prove that \( G \) cannot have a subgroup \( H \) with \( |H| = n - 1 \), where \( n = |G| > 2 \). 
+	\end{problem}
+
+	\begin{problem}
+		Let \( G \) be an abelian group. Prove that \( \{g \in G \mid |g| < \infty\}  \) is a subgroup of \( G \) 
+		(called the \textit{torsion subgroup} of \( G \)). 
+		Give an explicit example where this set is not a subgroup when 
+		\( G \) is non-abelian.
+	\end{problem}
+
+	\begin{problem}
+		Let \( H \) and \( K \) be subgroups of \( G \). Prove that \( H \cup K \) is a subgroup if and only if 
+		either \( H \subseteq K \) or \( K \subseteq H \). 
+	\end{problem}
+\end{document}

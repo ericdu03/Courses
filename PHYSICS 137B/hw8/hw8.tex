@@ -1,0 +1,269 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\usepackage{mathrsfs}
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mecahnics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 08} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder} to complete this assignment.
+	\section*{Problem 1} 
+	From the commutators of $L_z$ with $x$, $y$ and $z$ (Equation 4.122): 
+	\[ [L_z, x] = i\hbar y, \phantom{aaa} [L_z, y] = -i\hbar x, \phantom{aaa} [L_z, z] = 0\]
+	obtain the selection rule for $\Delta m$ and Equation 11.76. \textit{Hint:} Sandwich each commutator between $\bra{n'l'm'}$ and $\ket{nlm}$
+
+
+	\begin{solution}
+		Following the hint, we'll sandwich each commutator between two states $\ket{n'l'm'}$ and $\ket{nlm}$. Starting with $[L_z, x]$:
+		\begin{align*}
+			\mel{n'l'm'}{[L_z, x]}{nlm} &= \mel{n'l'm'}{L_zx - xL_z}{nlm}\\
+			&= \mel{n'l'm'}{(m'\hbar)x - (m\hbar)x}{nlm}\\
+			&= (m'-m)\hbar\mel{n'l'm'}{x}{nlm}
+		\end{align*}
+		Substituting in the expresion given in the problem statement, we also have: 
+		\[ \mel{n'l'm'}{[L_z, y]}{nlm} = i\hbar \mel{n'l'm'}{y}{nlm}\]
+		Similarly, for $[L_z, y]$, we can obtain the expression: 
+		\begin{align*}
+			\mel{n'l'm'}{[L_z, y]}{nlm} &= \mel{n'l'm'}{L_zy - yL_z}{nlm}\\
+			&=\mel{n'l'm'}{-i\hbar x}{nlm} \\
+			&= (m'\hbar - m\hbar)\mel{n'l'm'}{y}{nlm}\\
+			&= (m'-m)\hbar\mel{n'l'm'}{y}{nlm}
+		\end{align*}
+		Again, plugging in the expression given in the problem statement, we also get the relation: 
+		\[ \mel{n'l'm'}{[L_z, y]}{nlm} = -i\hbar\mel{n'l'm'}{x}{nlm}\]
+		Therefore, combining these two expresions we get: 
+        \begin{align*}
+            (m'-m)\mel{n'l'm'}{x}{nlm} &= i\mel{n'l'm'}{y}{nlm}\\
+            (m'-m)\mel{n'l'm'}{y}{nlm} &= -i\mel{n'l'm'}{x}{nlm}
+        \end{align*}
+		Combining the two equations, we get:
+		\[ \mel{n'l'm'}{x}{nlm} = (m'-m)(m'-m)\mel{n'l'm'}{x}{nlm} = (m'-m)^2\mel{n'l'm'}{x}{nlm} \implies (m' - m)^2 = 1\]
+		Therefore, we get $\Delta m = \pm 1$ is allowed. Furthermore, from the relation that $[L_z, z] = 0$, we get (also done in discussion a couple weeks back): 
+		\[  0=\mel{nl m}{[L_z,z]}{n'l'm'} = (m-m') \mel{nl m}{z}{n'l'm'}\]
+		For this equation to be true, we also get the relation that $\Delta m = 0$ is a possibility. Therefore, combining these two possibilities, we get that the only allowable transitions are: 
+		\[\Delta m = 0, \pm 1\]
+		which is waht equation 11.76 is saying.
+	\end{solution}
+	\pagebreak
+	\section*{Problem 2}
+	An electron in the $n = 3$, $l = 0$, $m = 0$ state of hydrogen decays by a sequence of (electric dipole) transitions to the ground state. 
+	\begin{enumerate}[label=(\alph*)]
+		\item What decay routes are open to it? Specify them in the following way: 
+		\[ \ket{300} \to \ket{nlm} \to \ket{n'l'm'} \to \dots \to {100}\]
+
+		\begin{solution}
+			Due to the selection rule that says $\Delta l = \pm 1$, there are three allowable transitions:
+			\begin{align*}
+				\ket{300} &\to \ket{2 1 -1} \to \ket{100}\\
+				\ket{300} &\to \ket{2 1 0} \to \ket{100}\\
+				\ket{300} &\to \ket{2 1 1} \to \ket{100}
+			\end{align*}
+		\end{solution}
+		\item If you had a bottle full of atoms in this state, what fraction of them would decay via each route?
+		
+		\begin{solution}
+			To do this problem, we have to calculate the matrix elements
+			\[ \mel{n'l'm'}{\mathbf r}{nlm}\]
+			for each state. We only need to calculate the rate of the first transition, since the second an electron chooses a route it must follow that route down to $\ket{100}$. For the final states $\ket{211}$ and $\ket{21-1}$, the integrals are very similar, and from problem 5 we know that the $z$ integral in those cases are 0. For the state $\ket{210}$, we know that the integral vanishes for $x$ and $y$, leaving us with only a $z$ component to calculate (again, this is from problem 5). 
+
+			First, we can calculate $\mel{210}{z}{300}$:
+			\[ \mel{210}{z}{300} = \int R_{21}^* Y_{10}^* r\cos \theta R_{30}Y_{00} r^2 \sin \theta d\theta d\phi dr\]
+			Notice that the form of all these integrals is actually the same: an integral over $r$ using the same functions ($R_{30}$ and $R_{21}$), then some angular integral that is changing. Therefore, it suffices to calculate only the angular portions of the integral, and forget the radial part. Proceeding with only the angular portion of this matrix element, we get:
+			\[ \mel{210}{z}{300} = \left( \frac{3}{4\pi}\right)^{1/2} \left(\frac{1}{4\pi}\right)^{1/2}\int_0^{2\pi}\int_0^\pi \cos^2 \theta \sin \theta d\theta = \frac{1}{\sqrt{3}}\]
+			Likewise, for the other two states:
+			\[ \mel{211}{x}{300} = -\left( \frac{3}{8\pi}\right)^{1/2} \left( \frac{1}{4\pi}\right)^{1/2} \int_0^{2\pi} \int_0^\pi \sin^3\theta \cos \phi e^{-i\phi} d\theta d\phi = \frac{1}{\sqrt{6}}\]
+			Similarly for the $y$ component:
+			\[ \mel{211}{y}{300} = -\left( \frac{3}{8\pi}\right)^{1/2} \left( \frac{1}{4\pi}\right)^{1/2} \int_0^{2\pi} \int_0^\pi \sin^3\theta \sin \phi e^{-i\phi} d\theta d\phi = \frac{i}{\sqrt{6}}\]
+			Now for the final state:
+			\[ \mel{21-1}{x}{300} = \left( \frac{3}{8\pi}\right)^{1/2} \left( \frac{1}{4\pi}\right)^{1/2} \int_0^{2\pi} \int_0^\pi \sin^3\theta \cos \phi e^{i\phi} d\theta d\phi = \frac{1}{\sqrt{6}}\]
+			and:
+			\[ \mel{21-1}{y}{300} = \left( \frac{3}{8\pi}\right)^{1/2} \left( \frac{1}{4\pi}\right)^{1/2} \int_0^{2\pi} \int_0^\pi \sin^3\theta \sin \phi e^{i\phi} d\theta d\phi = \frac{-i}{\sqrt{6}}\]
+			Therefore, the transition probabilities are: 
+			\begin{align*}
+				|\mel{210}{z}{300}|^2 &= \left( \frac{1}{\sqrt{3}}\right)^2 = \frac13\\
+				|\mel{211}{x}{300} + \mel{211}{y}{300}|^2 &= \left( \frac{1}{\sqrt{6}} + \frac{i}{\sqrt{6}}\right)\left( \frac{1}{\sqrt{6}} - \frac{i}{\sqrt{6}}\right) = \frac{1}{3}\\
+				|\mel{21-1}{x}{300} + \mel{21-1}{y}{300}|^2 &= \left( \frac{1}{\sqrt{6}} - \frac{i}{\sqrt{6}}\right)\left( \frac{1}{\sqrt{6}} + \frac{i}{\sqrt{6}}\right) = \frac{1}{3}
+			\end{align*}
+			So we actually get that each path has an equal fraction of particles decaying, so in other words $\frac 13$ of the particles would follow each path.
+		\end{solution}
+	\end{enumerate}
+	
+	\pagebreak
+	\section*{Problem 3}
+
+	A hydrogen atom is placed in the ground state is placed in a uniforn electric field in the $z$ direction, 
+	\[ \mathcal E = \mathcal E_0e^{-t/\tau}\]
+	which is turned on at $t = 0$. What is the probability that the atom is excited to the 2P state at $t \gg 
+	\tau$?
+
+	\begin{solution}
+		Recall the expression: 
+		\[
+			c_m(t) = -\frac{i}{\hbar}\int_0^t H'_{mN}(t') e^{i(E_m - E_N)t'/\hbar} dt'
+		\] 
+		This equation works for any perturbation, so we can use it for our perturbation $H' = \mathcal E_0 
+		e^{-t/\tau} z$. Unfortunately selection rules don't really help us out too much here, since we still
+		have to check all states $\ket{210}, \ket{211}, \ket{21-1}$. However, for the states $\ket{211}$ and
+		$\ket{21-1}$, we have:
+		\[
+			Y_{1, \pm 1} = \mp \left(  \frac{3}{8\pi}\right)^{\frac{1}{2}} \sin \theta e^{\pm i\phi}
+		\] 
+		And it turns out that this is the only term with $\phi$ dependence. Therefore, when we compute the 
+		spatial integral, we will have a term with: 
+		\[
+			\int_0^{2\pi} e^{\pm i\phi} d\phi = 0
+		\] 
+		Therefore, the matrix element for these two states is actually 0 -- this implies that it is impossible
+		for the atom to enter these states. As for $\ket{210}$ we have no such shortcut, so we're forced to 
+		compute the integral. We can split this up into an angular and a radial integral, starting with 
+		the angular integral:
+		\begin{align*}
+			\int_0^{2\pi}\int_0^\pi Y_{10}^* \cos \theta Y_{00} \sin \theta d\theta d\phi
+			&= \int_0^{2\pi}
+			\int_0^\pi \left( \frac{3}{4\pi} \right)^{\frac{1}{2}}\cos^2 \theta 
+			\left( \frac{1}{4\pi} \right)^{\frac{1}{2}} \sin \theta d\theta d\phi  \\
+			&= \left( \frac{3}{4\pi} \right) ^{\frac{1}{2}}\left( \frac{1}{4\pi} \right) ^{\frac{1}{2}} 
+			\frac{4\pi}{3} \\
+			&= \frac{1}{\sqrt{3} }
+		\end{align*}
+		The radial integral gives:
+		\begin{align*}
+			\int_0^\infty R_{21}^* r^3 R_{10} dr &= \int_0^\infty \frac{1}{2\sqrt{6} }a^{-3/2} 
+			\left( \frac{r}{a} \right) e^{-r/2a} r^3 \cdot 2a^{-3/2} e^{-r/a} dr\\
+												 &= \frac{1}{\sqrt{6} a^4}\int_0^\infty e^{-3r/2a} r^4 dr\\
+												 &= \frac{1}{\sqrt{6} a^4}\cdot \frac{256}{81a^5}
+		\end{align*}
+		Therefore, putting it all together, we get 
+		\[
+			H'_{mN} = \mathcal E_0 e^{-t/\tau} \frac{1}{\sqrt{6} a^4} \cdot \frac{256}{81a^5} 
+			\frac{1}{\sqrt{3} } = \gamma e^{-t/\tau}
+		\]
+		Here, I use the constant $\gamma$ to denote all the constants. Now, we can proceed to the second
+		integral: 
+		\begin{align*}
+			c_m(t) &= -\frac{i\gamma}{\hbar}\int_0^\tau  e^{-t'/\tau} e^{i(E_2 - E_1)t'/\hbar} dt'\\
+				   &= -\frac{i\gamma}{\hbar} \int_0^\tau e^{-t'((E_2 - E_1)/\hbar - 1/\tau)} dt'\\
+				   &= -\frac{i\gamma}{\hbar} \frac{1 - e^{-(E_2 - E_1)\tau/\hbar - 1}}{\frac{E_2 - E_1}{\hbar} -
+				   \frac{1}{\tau}}
+		\end{align*}
+		The transition probability is then $|c_m|^2$, so this is equal to (after some rearrangements and 
+		simplifications that I'm omitting):
+		\[
+			|c_m|^2= \gamma^2 \tau^2 \left( \frac{1 - e^{-(E_2 - E_1)\tau/\hbar - 1}}{(E_2 - E_1)\tau - 
+			\hbar} \right)^2
+		\] 
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 4}
+	Suppose that a hydrogen atom, initially in the ground state, is placed in an oscillating electric field
+	$\mathcal E_0 \cos \omega t$ in the $z$ direction, with $\hbar \omega \gg 13.6$eV. Calculate the rate of 
+	transition to the continuum, assume that the electrons are ejected in the $z$-direction and that the rate of
+	emission into other directions is equivalent to this. 
+
+	\begin{solution}
+		Here, we use Fermi's golden rule. Fermi's golden rule says:
+		\[
+			R = \rho(E_f) \cdot \frac{2\pi}{\hbar}\left|\frac{V_{fi}}{2}\right|^2
+		\] 
+		So first, we $H'_{fk}$. Firstly, the final state is a free particle, so it's wavefunction is: 
+		\[
+			\psi_f = \frac{1}{L^{3/2}} e^{i\vec k \cdot \vec r}
+		\] 
+		The initial state is a hydrogen atom in its ground state, so
+		\[
+			\psi_i = R_{10} Y_{00} 
+		\] 
+		Therefore, we can write:
+		\begin{align*}
+			V_{fk} &= e\mathcal E_0\int \frac{1}{L^{3/2}}e^{-i \vec k \cdot \vec r} z R_{10}Y_{00}
+			r^2 \sin \theta d \theta d\phi dr\\
+					&= \frac{e\mathcal E_0}{\sqrt{4\pi L^3} } \int e^{-i \vec k \cdot \vec r}
+					z R_{10} r^2 \sin \theta d\theta d\phi dr\\
+		\end{align*}
+		Now, substituting in $R_{10} = 2a^{-3/2} e^{-r/a}$, we get:
+		\[
+			V_{fk} = e\frac{2\mathcal E_0 a^{-3/2}}{\sqrt{4\pi L^3}} \int e^{-i \vec k \cdot
+			\vec r} z e^{-r/a} r^2 \sin \theta d \theta d\phi dr
+		\] 
+		Here, we use the relation:
+		\[
+			ze^{i \vec k \cdot \vec r} = -i \dv{k_z} e^{i\vec k \cdot \vec r}
+		\] 
+		Applying this trick to our integral, we eventually get:
+		\[
+			V_{fk} =e \frac{2\mathcal E_0}{ \sqrt{4\pi L^3 a^3} } 
+			\left(-i \dv{k_z}\right)\int e^{-i \vec k \cdot \vec r} e^{-r/a} r^2 \sin \theta d\theta d\phi dr\\
+		\]
+		Furthermore, now we use the assumption that the particle is only ejected into the $z$ direction, so 
+		here $\vec k \cdot \vec r = k_z z = k_z r \cos \theta$. Furthermore, none of the terms have $\phi$ 
+		dependence, so the $\phi$ integral comes out to $2\pi$. Putting this all together, we now have:
+		\[
+			V_{fk} = \frac{-2 ie \mathcal E_0}{\sqrt{\pi a^3 L^3} }(2\pi)\dv{k_z} \int_0^\infty \int_0^\pi
+			e^{-ik_z r \cos \theta} e^{-r/a} r^2 \sin \theta d\theta dr 
+		\] 
+		The rest of this was computed largely by a computer, and after a couple simplifications, we eventually 
+		get:
+		\[ V_{fk} = -\frac{4\pi i\mathcal E_0}{\sqrt{\pi a^3L^3}} \frac{16 a^6 k_z (a^2 k_z^2 - 5)}{(a^2 k_z^2 + 1)^4}\]
+		Finally, we can calculate the density of states:
+		\[ \rho(E_f) = \left( \frac{L}{2\pi}\right)^3 \frac{\sqrt{2m \frac{\hbar^2 k^2}{2m}}}{\hbar^3} d\Omega = \left( \frac{L}{2\pi}\right)^3\frac{mk}{\hbar^2} d\Omega \]
+		Putting it all together, we get:
+		\[ R = \frac{\pi}{2\hbar} \left( \frac{L}{2\pi}\right)^3\frac{mk}{\hbar^2} \cdot \frac{32^2 \mathcal E_0^2 \pi}{a^3 L^3} \cdot \left( \frac{a^6 k_z (a^2 k_z^2 - 5)}{(a^2 k^2 + 1)^4}\right)^2\]
+		
+
+	\end{solution}
+
+
+	\pagebreak
+	\section*{Problem 5}
+	Suppose ``white'' light with a constant energy density $u(\omega) = u_0$ is shined on a Hydrogen atom 
+	in its ground state. What is the total rate of transitions that the atom will make to higher $n=2$ states
+	due to the light?
+
+	\begin{solution}
+		We know that the rate of transitions due to white light is given by: 
+		\[ R = \frac{\pi}{3 \epsilon_0 \hbar^2} |p_{fi}|^2 u_0\]
+		Therefore, all we really need to calculate here is $p_{fi}$. By selection rules, we only need to consider the $l = 1$ state, since we require that $\Delta l = 1$. Therefore, we need to calculate the matrix elements for $e \vec r$ for the states $\ket{210}, \ket{211}$ and $\ket{21-1}$. This amounts to calcualting the matrix element for $x$, $y$ and $z$. I'll do $\ket{211}$ and $\ket{21-1}$ first, since they are very similar integrals. I'll also be skipping most of the algebra because the equations are simply too long to write
+
+		Starting with the $x$ component, we have:
+		\begin{align*}
+			\mel{211}{x}{100} &= \int R_{21}^* Y_{11}^* r \sin \theta \cos \phi R_{10} Y_{00} dr d\theta d\phi\\
+			&= -\frac{1}{a^3 \sqrt 6} \left( \frac{3}{8\pi}\right)^{1/2} \left( \frac{1}{4\pi}\right)^{1/2} \frac{4\pi}{3a} \frac{256}{81a^5}
+		\end{align*}
+		For the $y$ component, the only part that changes about the integral is the $phi$ integral, where for $x$ we had: 
+		\[ \int_0^{2\pi} e^{i\phi}\cos \phi d\phi = \pi \]
+		we now have: 
+		\[ \int_0^{2pi} e^{i\phi} \sin \phi d\phi = i\pi\]
+		Therefore, we get: 
+		\[ \mel{211}{y}{100} = -\frac{1}{a^3 \sqrt 6} \left( \frac{3}{8\pi}\right)^{1/2} \left( \frac{1}{4\pi}\right)^{1/2} \frac{4i\pi}{3a} \frac{256}{81a^5}\]
+		For the $z$ component, notice that $z = r\cos \theta$, so there is no $\phi$ component. Therefore, the $\phi$ integral in this case is just: 
+		\[ \int_0^{2\pi} e^{i\phi} d\phi = 0\] 
+		So $\mel{211}{z}{100} = 0$. The story is the same for the state $\ket{21-1}$, which gives us: 
+		\begin{align*}
+			\mel{21-1}{x}{100} &= \mel{211}{x}{100}\\
+			\mel{21-1}{y}{100} &= -\mel{211}{y}{100}
+		\end{align*}
+		Now for the final state $\ket{210}$. Here, $Y_{10}$ has no $\phi$ component, so our $\phi$ for $x$ becomes: 
+		\[ \int_0^{2\pi} \cos \phi d\phi = 0\] 
+		And for $y$, it's: 
+		\[ \int_0^{2\pi} \sin \phi d\phi = 0\] 
+		Therefore, $\mel{210}{x}{100} = \mel{210}{y}{100} = 0$. For the $z$ direction:
+		\[ \mel{210}{z}{100} = \frac{256}{81 \sqrt 2 a^9}\]
+		Now, we need to add up the $x, y$ and $z$ components of each transition, then sum them up all together. Again, this is just a lot of algebra, and from that I get:
+		\[ R_{211} = R_{21-1} = \frac{512}{729 a^{13}} \frac{\pi}{3\epsilon_0 \hbar^2} u_0\]
+		and 
+		\[ R_{210} = \left( \frac{256}{81 \sqrt 2}\right)^2 \cdot \frac{\pi}{3\epsilon_0 \hbar^2} u_0\]
+		So now, we just have to sum them:
+		\[ R_T = \frac{\pi u_0}{3\epsilon_0 \hbar^2} \left( \frac{512}{729a^{13}} + \left( \frac{256}{81 \sqrt{2}a^9}\right)^2\right)\]
+	\end{solution}
+\end{document}

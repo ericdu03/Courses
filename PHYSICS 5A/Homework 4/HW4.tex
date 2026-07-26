@@ -1,0 +1,144 @@
+\documentclass{article}
+\title{Physics 5A Homework}
+\author{Eric Du}
+\date{\today}
+\usepackage[cm]{sfmath}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\usepackage{float}
+\lhead{Eric Du}
+\chead{Physics 5A Homework}
+\rhead{\today}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{148pt}
+\usepackage{color}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[sexy]{evan}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\usepackage{caption}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\section{Problem 1}
+	
+	Drawing the free body diagram:
+	
+	%insert image here
+	
+	If we consider the free body diagram of the block, we get $F_{a} - F_{f1}  = \sum F$. (We want this value to be greater than zero so that the block may be pushed). Since friction is initially static for the block, we have $F_{f1} = \mu_s mg$. We want to conside the maximum of the frictional force since we want to see if we can move the block at all. Since Matt is also supposed to be stationary, then it means that Matt's free body diagram must be static. In other words, $F_{a} - F_{f2} = 0$. Combining the two equations:
+	
+	\begin{align*}
+		F_{f2} - F_{f1} &= \sum{F}\\
+		F_{f2} - F_{f1} &= \sum F\\
+		\mu_s m_2g - \mu_s m_1g &= \sum F\\
+		\mu_sg(m_2 - m_1) &= \sum F
+	\end{align*}
+
+
+	Since $m_1 > m_2$ as given in the problem, it means that $m_2-m_1$ is always negative, meaning that the block can never be pushed. 
+	
+	\section{Problem 2}
+	
+	%INSET IMAGE
+	Looking at the initial case, we can write Newton's second law for both masses:
+	
+	\begin{align*}
+		F_f &= m_1\ddot{x_1}\\
+		F_a - F_f &= m_2 \ddot x_2
+	\end{align*}
+
+	From the problem, we want that the relative accelerations of the two masses to be the same; in other words, we have the constraint that $\ddot x_1 = \ddot x_2$. Thus, we can solve:
+	
+	\begin{align*}
+		F_f &= m\ddot x \implies \ddot x = \frac{F_f}{m}\\
+		F_a - F_f &= m_2 \ddot x \\
+		F_a - F_f = m_2\frac{F_f}{m_1}\\
+		\therefore F_f\left(1 + \frac{m_2}{m_1}\right) = F_a
+	\end{align*}
+
+	And in this case we have $F_a = 27$ N, as given in the problem. Thus, we also have that $F_f = 12$ N based upon rearrangement. Now we can look at the second case:
+	
+	
+	%INSERT IMAGE
+	
+	We set up the equations the same way, via free body diagrams. We also have the same constriant that $\ddot x_1 = \ddot x_2$. 
+	\begin{align*}
+		F_f = m_2\ddot x \implies x &= \frac{F_f}{m_2}\\
+		F_a - F_f &= m_1 \ddot x\\
+		F_a - F_f &= m_1\frac{F_f}{m_2}\\
+		F_a &= F_f\left(1 + \frac{m_1}{m_2}\right)\\
+	\end{align*}
+
+	Giving a value of 21.6 N.
+	
+	\section{Problem 3}
+	\subsection{Part a}
+	
+	%DIGRAM
+	
+	\subsection{Part b}
+	
+	From the force diagram, we have:
+	
+	\[\vec{W} + \vec{T_{up}} + \vec{T_{low}} = m \ddot{\vec{r}}\]
+	
+	So in the $\hat \i$ and $\hat \j$ directions, we have:
+	
+	\begin{align*}
+		\hat \i &: T_{up} \sin 45^\circ + T_{low}\sin 45^\circ = m \dot \omega^2 r\\
+		\hat \j &: T_{up} \cos 45^\circ - mg - T_{low}\cos 45^\circ = m\ddot y = 0 \implies \frac{1}{\sqrt{2}}(T_up - T_{low}) = mg
+	\end{align*}
+
+	A few things: the radius $r = l\sin45^\circ = \frac{l}{\sqrt{2}}$ from geometry. So we have these two equations to solve:
+	
+	\begin{align*}
+		\frac{1}{\sqrt{2}} (T_{up} + T_{low}) &= m\omega^2 \frac{l}{\sqrt{2}}\\
+		T_{up} - T_{low} &= mg \implies T_{low} = m \omega^2 l - T_{up}\\
+	\end{align*}
+
+	Solving these is a simple task of algebra, so the answers are:
+	
+	\begin{align*}
+		T_{up} &= \frac{m(g+\omega^2l)}{2}\\
+		T_{low} &= \frac{m(\omega^2l-g)}{2} 
+	\end{align*}
+	%MAYBE YOU MIGHT WANT TO CHECK THESE
+	\section{Problem 3.17} %FIX THESE NAMES
+	
+	%fbd here
+	
+	From the FBD, we can write $\sum \vec{F} = m\vec a = m [(\ddot r - r\dot \theta^2) \hat r + (2 \dot r \dot \theta) \hat \theta + \dot z \hat k]$. Splitting these into components via the dot product, we get:
+	
+	
+	\begin{align*}
+		\hat z&: \ N \cos \theta  - mg - F_f \sin \theta = m\ddot z\\
+		\hat r&: \ -N\sin\theta - F_f\cos\theta = m (\ddot r - r\dot \theta^2)
+	\end{align*}
+
+	Applying the constraints: $r(t) = R, \dot r = 0, \ddot r = 0$ and $\ddot z = 0$. The equations then:
+	
+	\begin{align*}
+		N (\cos \theta - \mu \sin \theta) &= mg \implies N = \frac{mg}{\sin \theta -\mu \sin \theta}\\
+		-N(\sin \theta + \mu \cos \theta) &= m(-r \dot \theta^2) = -m\frac{v^2}{R}\\
+		m\frac{v^2}{r} &= \frac{mg(\sin \theta + \mu \cos \theta)}{\cos \theta - \mu \sin \theta}\\ 
+		\therefore & \boxed{v = \sqrt{\frac{Rg(\sin \theta + \mu \cos \theta)}{\cos \theta - \mu \sin \theta)}}}
+	\end{align*}
+	
+	
+\end{document}

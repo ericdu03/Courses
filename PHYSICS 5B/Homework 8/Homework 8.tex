@@ -1,0 +1,346 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{epigraph}
+\usepackage{caption}
+\usepackage{esint}
+
+%Page formatting
+\lhead{Eric Du}
+\chead{Homework 5}
+\rhead{\today}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\title{Homework 5}
+\author{Eric Du}
+\date{\today}
+
+%.sty file handling
+\usepackage[sexy]{evan}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+%Paragraph Formatting
+\setlength{\epigraphwidth}{148pt}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+
+%TikZ special settings
+\usepackage{circuitikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{decorations.markings}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+\noindent To complete this homework, I worked with \textbf{Andrew Binder} and \textbf{Aren Martinian}.
+\end{abstract}
+\section{Problem 1}
+
+
+\subsection*{Part a}
+
+We verify that this new combination of functions is a solution by plugging this new function into the partial differential equation:
+
+\begin{align*}
+    0 &= \frac{\partial^2}{\partial x^2} (\alpha_1 f_1(x,t) + \alpha_2 f_2(x, t)) - \frac{1}{v^2} \frac{\partial^2}{\partial t^2}(\alpha_1f_1(x, t) + \alpha_2f_2(x, t))\\
+    &= \alpha_1\frac{\partial^2}{\partial x^2} f_1(x, t) + \alpha_2\frac{\partial^2}{\partial x^2}f_2(x, t) - \frac{\alpha_1}{v} \frac{\partial^2}{\partial t^2}f_1(x, t) - \frac{\alpha_2}{v^2} \frac{\partial^2}{\partial t^2} f_2(x, t)\\
+    &= \alpha_1\left[\frac{\partial^2}{\partial x^2} f_1(x, t) - \frac{1}{v^2}\frac{\partial^2}{\partial t^2} f_1(x, t)\right] + \alpha_2\left[\frac{\partial^2}{\partial x^2}f_2(x, t) - \frac{1}{v^2}\frac{\partial^2}{\partial t^2} f_2(x, t)\right]
+\end{align*}
+
+Note that the individual terms are zero because they are solutions to the differential equations themselves, and thus the left hand side is equal to zero. Since it's equal to zero, then we've verified that this combiation is also a solution to the differental equation.
+
+\subsection*{Part b}
+
+To verify that this is a solution, we take the individual partial derivatives. Note that we can do this because the derviatives are distributed under addition, so when we take the derivative of the combination of functions we can instead just add the derivatives of the functions components:
+\begin{align*}
+    \frac{\partial^2}{\partial x^2} f(x - vt) &= f''(x - vt)\\
+    \frac{\partial^2}{\partial t^2} f(x - vt) &= f''(x - vt) \cdot v^2 && \text{via chain rule}\\
+    \frac{\partial^2}{\partial x^2} g(x + vt) &= g''(x + vt)\\
+    \frac{\partial^2}{\partial t^2} g(x + vt) &= g''(x + vt) \cdot v^2 && \text{Same logic as $f$}
+\end{align*}
+
+Now we plug all of these into the differnetial equation:
+
+\begin{align*}
+    f''(x - vt) + g''(x + vt) - \frac{1}{v^2}(f''(x - vt) \cdot v^2 + g''(x - vt) \cdot v^2) &= 0
+\end{align*}
+
+It's easy to see from here that both the $f''(x - vt)$ and the $g''(x - vt)$ terms cancel and thus both sides of the equation equal zero, meaning that we've verified this equation as a solution. 
+
+\subsection*{Part c}
+
+We first prove the forward direction of the claim, showing that if $A \sin(kx - \omega t + \phi)$ is a solution to the differential equation then it must satisfy $\omega^2 = v^2k^2$. We do so by taking the partial derivatives and plugging them into the differerential equation, which we know to be true:
+
+\[-Ak^2\sin(kx - \omega t + \phi) + \frac{1}{v^2}A\omega^2 \sin (kx - \omega t + \phi) = 0\]
+
+Note that even though there will be points where $\sin(kx - \omega t + \phi) = 0$, these are trivial solutions to the differential equation. Instead, we care more about the points where this value is nonzero:
+
+\[   A\sin(kx - \omega t + \phi)\left(-k^2 + \frac{\omega^2}{v^2}\right) = 0\]
+
+Now note that $A$ is also nonzero, so the only way this condition is true is $-k^2 + \frac{\omega^2}{v^2} = 0 \implies \omega^2 = v^2k^2$. $\blacksquare$
+
+\medskip
+
+To prove the reverse direction, we start with the original differential equation:
+
+\[ \frac{\partial^2}{\partial x^2} A\sin(kx - \omega t + \phi) - \frac{1}{v^2}\frac{\partial^2}{\partial t^2}A \sin(kx - \omega t + \phi)\]
+
+Now notice that if $\omega^2 = v^2k^2$ then we also get that $\omega = v|k|$, which we can then substitute into the differential equation. 
+
+\begin{align*}
+    \frac{\partial^2}{\partial x^2} A \sin (kx - v|k|t + \phi) - \frac{1}{v^2} \frac{\partial^2}{\partial x^2} \sin (kx - v|k|t + \phi) &= 0\\
+    A\left[k^2 \sin (kx - v|k|t + \phi) - \frac{1}{v^2} \cdot v^2k^2\sin(kx - v|k|t + \phi)\right] &= 0\\
+    A\left[k^2 \sin (kx - v|k|t + \phi) - k^2 \sin (kx - v|k|t + \phi)\right] &= 0
+\end{align*}
+
+Note that the terms inside the parentheses on the left hand side go to zero, and thus the equation is satisfied. Therefore, if we satisfy the equation $\omega^2 = v^2k^2$ then the sine wave is a solution to the differential equation. With this proven, the biconditional is proven and thus we are done. $\blacksquare$
+
+\subsection*{Part d}
+
+We have the phase velocity equal to $v_p = \frac{\omega}{k} = \frac{v|k|}{k} = \sign(k) \cdot v$. We care only about the speed, so we're only concerned about the magnitude, and thus the sign term drops out. Thus, the phase speed is $v$. 
+
+\medskip
+
+The group velocity is $v_g = \frac{d\omega}{dk} = v \frac{d}{dk} |k|$. Note again here that since we only care about the magnitude, we can drop the absolute value:
+
+\[ |v_g| = v \frac{dk}{dk} = v\]
+
+Thus, both the phase and group speed are both $v$.
+
+\subsection*{Part e}
+
+Let $f(x, t) = A\sin(kx + \theta) \cos (\omega t + \phi)$. Just like the previous couple of problems, we take the partial derivatives:
+
+\begin{align*}
+    \frac{\partial^2f}{\partial x^2} &= -Ak^2\sin(kx + \theta) \cos (\omega t + \phi)\\
+    \frac{\partial^2f}{\partial t^2} &= -A\omega^2 \sin (kx + \theta) \cos (\omega t + \phi)
+\end{align*}
+
+Now we plug these into the wave equation:
+
+\begin{align*}
+    -Ak^2\sin(kx + \phi) \cos (\omega t + \theta) + \frac{1}{v^2}A\omega^2\sin (kx + \theta)\cos(\omega t + \phi) &= 0\\
+    -Ak^2 \sin (kx + \phi) \cos(\omega t + \theta) + \frac{Av^2k^2}{v^2} \sin (kx + \theta) \cos (\omega t + \phi) &= 0 && \text{since $\omega = v|k| \implies \omega^2 = v^2k^2$}\\
+    -Ak^2\sin(kx + \theta)\cos(\omega t + \phi) + k^2\sin(kx + \theta) \cos(\omega t + \phi) &= 0
+\end{align*}
+
+The left hand side cancels nicely and thus we've shown that $0 = 0$, so $f(x, t)$ is a solution to the wave equation.
+
+
+\subsection*{Part f}
+
+We can use the complex definitions for $\sin$ and $\cos$:
+
+\[ \sin x = \frac{e^{ix} - e^{-ix}}{2i} \ \cos x = \frac{e^{ix} + e^{-ix}}{2}\]
+
+So doing that with our equation, we get: 
+
+\begin{align*}
+    A \sin (kx + \theta) \cos (\omega t + \phi) &= A \left[\frac{e^{i(kx + \theta)} - e^{-i(kx + \theta)}}{2i} \cdot \frac{e^{i(\omega t + \phi)} + e^{-i(\omega t + \phi)}}{2}\right]\\
+    &= \frac{A}{4i}(e^{i(kx + \theta) + i(\omega t + \phi)} + e^{i (kx + \theta) - i(\omega t + \phi)} - e^{-i(kx + \theta) + i(\omega t + \phi)} - e^{-i(kx + \theta) - i(\omega t + \phi)})\\
+    &= \frac{A}{4i}(e^{i(kx + \theta + \omega t + \phi)} - e^{-i(kx + \theta + \omega t + \phi)} + e^{i(kx + \theta - \omega t - \phi)} - e^{i(kx + \theta - \omega t - \phi)})\\
+    &= \frac{A}{2}\left(\frac{e^{i(kx + \theta + \omega t + \phi)} - e^{-i(kx + \theta + \omega t + \phi)}}{2i} + \frac{e^{i(kx + \theta - \omega t - \phi)} - e^{i(kx + \theta - \omega t - \phi)}}{2i}\right)\\
+    &= \frac{A}{2}\left(\sin (kx + \theta + \omega t + \phi) + \sin (kx + \theta - \omega t - \phi)\right)
+\end{align*}
+
+Since the wave velocity is determined by $\omega$, then both sine waves have the same speed but travelling in different directions (due to the opposing sign on $\omega$), but otherwise have all other parameters constant.
+
+\subsection*{Part g}
+
+\subsubsection*{Part i}
+
+Plug this into our wave equation:
+    \[ \frac{\partial^2}{\partial x^2}Ae^{b(x-vt)^2} - \frac{1}{v^2}\frac{\partial^2}{\partial t^2}Ae^{b(x-vt)^2} \xrightarrow{\text{Symbolab}} 0\] 
+It works. 
+
+\medskip
+
+Aside from confirming the solution via a calcualtor, we have also seen that in part b, a function in the form of $f(x - vt)$ is a solution to the wave equation, and thus this is also a solution since it's in that form. Since here $v$ is negative, then we can say that the wave is travelling in the negtaive direction.
+
+\subsubsection*{Part ii}
+Plug this in:
+    \[\frac{\partial^2}{\partial x^2}A\sin[b(x+vt)] - \frac{1}{v^2}\frac{\partial^2}{\partial t^2}A\sin[b(x+vt)] \xrightarrow{\text{Symbolab}} 0\]
+Symbolab is really on a roll.
+
+\medskip
+
+However, Just like the prevoius part, we can see that this function is in the form of $g(x + vt)$, meaning that it is a solution to the wave equation. Here, $v$ is positive so the wave is travelling to the right. 
+
+\subsubsection*{Part iii}
+
+This function is not in the form of $f(x - vt)$ or $g(x + vt)$, and thus it is not a solution to the differnetial equation.
+
+\subsubsection*{Part iv}
+
+This function is in the form of $f(x - vt)$, so therefore it is a solution to the differential equation. 
+
+\subsubsection*{Part v}
+
+
+
+\section{Problem 2}
+
+\subsection*{Part a}
+
+The power dissipated by the resistor is equal to $P = \frac{V^2}{R}$. The resistance of a resistor can be calculated as $R = \frac{L}{\sigma A}$, where $L$ is the length of the resistor and $A$ is the cross-sectional area. Therefore, $R = \frac{L}{\sigma \pi a^2}$. Thus, we have:
+
+\[ P = \frac{V^2 \sigma \pi a^2}{L}\]
+
+\subsection*{Part b}
+
+The electric field of the resistor can be calculated using $\vec{J} = \sigma \vec{E}$, so our entire job right now is to calculate $\vec{J}$. From the lecture notes, we also have that $\vec{J} = \frac{I}{A_\perp}$, so this gives us: 
+
+\[ \vec J = \frac{I}{A_\perp} = \frac{V}{R\pi a^2} = \frac{V\sigma}{L}\]
+
+Since $\vec J = \sigma E$, then we get:
+
+\[ \vec E = \frac{V}{L} \hat z\]
+
+
+\subsection*{Part c}
+
+To find the $B(r)$ field we can use Ampere's law. Let's take a circular amperian loop centered about the long axis of the resistor. That means we solve:
+
+
+\[ \oint_C B \cdot dr = \mu_0 I_{enc}\]
+
+Since there is radial symmetry around the axis of the resistor, we know that the $B$ field is constant around this ring, meaning that we can take $B$ out of the integral here. As a result of this, we get:
+
+\begin{align*}
+    B (2\pi r) &= \mu_0 I_{enc} \\
+    B(2\pi r) &= \mu_0 J(\pi r^2)\\
+    \therefore B &= \frac{\mu_0 J r}{2}\\
+    &= \frac{\mu_0 r V\sigma}{2L} \hat \theta
+\end{align*}
+
+We also have $\vec{S} = \vec{E} \times \vec{H}$, and we can consider the fact that the $B$ field just outside the resistor is the same as the $B$ field on the boundary of the resistor. On the boundary, we get:
+
+\[ B(a) = \frac{\mu_0 a V\sigma}{2L} \hat \theta, \ E(a) = \frac{V}{L} \hat z\]
+
+Thus, we can compute the cross product:
+
+\begin{align*}
+    \vec S &= \frac{\vec E \times \vec B}{\mu_0}\\
+    &= \frac{V}{L} \cdot \frac{\mu_0 a V\sigma}{2\mu_0L}\\
+    &= -\frac{a V^2 \sigma}{2L^2} \hat r
+\end{align*}
+
+
+\subsection*{Part d}
+
+Note that the poynting vector is constant, so we just need to integrate this vector over the surface that it pierces. Since the vector is pointing in the $-\hat r$ direction, we only integrate over the region that the vector pierces. Thus, we compute:
+
+\begin{align*}
+    U &= \iint S dA \\
+    &= S \iint dA\\
+    &= \frac{aV^2 \sigma}{2L^2} \cdot 2\pi a L\\
+    &= -\frac{\pi a^2 V^2 \sigma}{L}
+\end{align*}
+
+Which is exactly the same in magnitude to the power dissipated by the resistor. Note that this value is negative because our poynting vector is in the $-\hat r$ direction, so if we switch it to $\hat r$ then we shoudl expect this value to match exactly in magnitude and sign. 
+
+This makes sense intuitively since the power from the resistor directs energy from the current \textit{outward} towards its surroundings, and by flipping the sign on $\hat r$ we get the proper direction of energy flow.
+
+% rewrite this section
+
+\section{Problem 3}
+
+
+We have the following two formulas for the energy density:
+
+\[ U_e = \frac{\varepsilon_0}{2}|E|^2, \ U_B = \frac{1}{2\mu_0} |B|^2 \]
+From the example problem referenced in the problem statement, we have 
+
+\[ B = \frac{\varepsilon_0\mu_0 r}{2} \cdot \frac{\partial E}{\partial t}\]
+
+Thus, we can compute the time derivative of the $\vec{E}$ field, and we plug this into our equation for $B$ to find the $B$ field as a function of time. Thus, we get the following two relationships:
+
+\begin{align*}
+    U_E &= \frac{\varepsilon_0}{2} | E_0 \cos (\omega t)|^2\\
+    &= \frac{\varepsilon_0 E_0^2 \cos^2 (\omega t)}{2}\\
+    U_B &= \frac{1}{2\mu_0}\left|\frac{\varepsilon_0 \mu_0 r}{2} \cdot -E_0 \omega \sin (\omega t)\right|^2\\
+    &= \frac{E_0^2 \omega^2 \sin^2(\omega t)\varepsilon_0^2 r^2 \mu_0}{8}\\
+\end{align*}
+
+To show that the $U_E$ is much greater than $U_B$, we can just take the ratio $\frac{U_B}{U_E}$. Doing this just involves dividing the above two terms out, so I will skip the algebra here. The final result we get is:
+
+\[ \frac{U_B}{U_E} = \frac{\varepsilon_0 r^2 \mu_0 \omega^2 \tan^2(\omega t)}{4}\]
+
+From here, we can see that since $\varepsilon_0 \mu_0$ is an exceedingly small number: $1.1 \times 10^{-17}$ to be exact, then this ratio is going to be incredibly small, therefore concluding that $U_B \ll U_E$.
+
+
+\section{Problem 4}
+
+\subsection*{Part a}
+
+As per the hint, we can treat this as two capacitors connected in parallel. Then, we essentially have one capacitor with equivalent capcitance: 
+
+\begin{align*}
+    C_{eq} &= C_1 + C_2 \\
+    &= \frac{\varepsilon_0 a(b-x)}{s} + \frac{\varepsilon_0 \kappa ax}{s}\\
+    &= \frac{\varepsilon_0 a}{s}(b - (1-\kappa) x)
+\end{align*}
+
+We're given $Q$ from the problem, and since the total capacitance is $\frac{Q^2}{2C}$ then we have:
+
+\begin{align*}
+    U_{tot} &= \frac{Q^2}{ \frac{2\varepsilon_0 a}{s}(b - (1-\kappa) x)}\\
+    &= \frac{Q^2 s}{2\varepsilon_0 a (b + (\kappa - 1) x)}
+\end{align*}
+
+
+\subsection*{Part b}
+
+To find the force on the dielectic, we take $F = -\frac{dU}{dx}$, so we get:
+
+\begin{align*}
+    F &= -\frac{dU}{dx}\\
+    &= -\frac{Q^2s(\kappa - 1)}{2\varepsilon_0 a(b + (\kappa - 1)x)^2}
+\end{align*}
+
+This force points to the left, meaning that the dielectric is being pulled into the capacitor. This makes sense becuase the force points in the direction of decreasing energy, and in our case the energy decreases as $x$ increases, thus causing the dielectric to be pulled into the capacitor.
+
+\section{Problem 5}
+
+For the third capacitor, we follow the same method as we have in problem 4 - we split it up into two separate capacitors connected in parallel. Taking our results from problem 4:
+
+\[ C_3 = \frac{\varepsilon_0 A}{2d} + \frac{\varepsilon_0 \kappa A}{2d}\]
+
+Where $A$ is the area of the plate. Since $C_0 = \frac{\varepsilon_0 A}{d}$, then we get: 
+
+\[ C_3 = \frac{C_0}{2} + \frac{\kappa C_0}{2} = \frac{C_0}{2}(1 + \kappa)\] 
+
+For the second capacitor, we treat this as two capacitors in series, where one of them is filled with a dielectric and the other is not filled at all. This works because we can split the upper layer of the dielectric into two plates, effectively creating two capacitors. 
+
+Treating these capacitors separately, let's first calculate the capacitance of the one that has no dielectric at all:
+
+\[ C_a = \frac{\varepsilon_0 A}{\frac{d}{2}} = \frac{2\varepsilon_0 A}{d} = 2C_0\]
+
+Now we consider the capacitor that has dielectric:
+
+\[ C_b = \frac{\varepsilon_0 \kappa A}{\frac{d}{2}} = \frac{2\varepsilon_0 \kappa A}{d} = 2\kappa C_0\]
+
+And we also have the formula for equivalent capacitance:
+
+\begin{align*}
+    C_{eq} &= \frac{C_aC_b}{C_a + C_b}\\
+    &= \frac{(2C_0)(2\kappa C_0)}{2C_0 + 2\kappa C_0}\\
+    &= \frac{2\kappa C_0}{1 + \kappa}
+\end{align*}
+
+
+\end{document}

@@ -1,0 +1,142 @@
+\chapter{Lecture 18}
+
+The eighteenth lecture of Phyics 137B was held on \textbf{Tuesday, March 21}. It completed our discussion on \textbf{scattering.}
+
+Before we continue our discussion about scattering, let's first do a small math review. Consider a circle of radius $R$:
+
+[insert tikz here]
+
+We know that if we were to move along the circle by a distance $ds$, then we can write $ds/R = d\theta$, and $\int_0^{2\pi} d\theta = 2\pi$. In three dimensions, we look at a small ``patch'' of area on the surface of a sphere: 
+
+[insert tikz here]
+
+Here, we can write a small area element $da = r^2 \sin \theta d\theta d\phi$, or in other words $da/r^2 = \sin \theta d\theta d\phi$, which we define as $d\Omega$. Similarly, note that $\int d\Omega = 4\pi$. 
+
+\section{Last time: 3D Scattering} 
+
+Now let's continue our discussion from last time of optical scattering. Recall that in our setup, we are sending a beam of particles with a given luminoisty $\mathcal L$ at a potential $V(r)$, and as the particle is ``deflected'' from this potential. Generally, we are concerned only with how the particles within an annulus of radius $b$ are affected, this is called the ``impact parameter'', and the range of angles our particle can scatter to is called the ``solid angle''. 
+
+If we place a detector at the solid angle, then we will be measuring the proportion of particles that are scattered by a specific angle $\theta$. We saw last time that the relationship between the number of particles is related to the luminosity by: 
+\[ dN = \mathcal L d\sigma\]
+which implies $N = \mathcal L \sigma$. If we consider the number of particles or in other words, we have: 
+\[ \dv{N}{\Omega} = \mathcal L \dv{\sigma}{\Omega}\]
+Experimentally however, we care about the quantity $\frac{d\sigma}{d\Omega}$, so rearranging for this value we get: 
+\[ \dv{\sigma}{\Omega} = \frac{1}{\mathcal L} \dv{N}{\Omega}\]
+Integrating across the total space $\Omega$, we get:
+\[
+	\sigma = \int_0^{2\pi} \int_0^\pi \left( \dv{\sigma}{\Omega} \right) d\Omega
+\] 
+So that covers what we already know about scattering. Let's think about how we can model this system quantum 
+mechanically. To do this, let's revisit our classical system one more time: 
+
+\section{The Quantum Picture}
+Clasically, we have a beam of particles with luminosity $\mathcal L$ and momentum $\vec k_i$ that points to the
+right. When the particle is deflected, it now has a new momentum vector $\vec k_f$. Translating this into the
+quantum world, this is the same as modelling our particle as a plane wave with an initial state $\psi_i$ with 
+momentum $\vec k_i$ to one with momentum $\vec k_f$, due to the potential $V(r)$. In other words, we went from a state: 
+\[
+	\psi_i = \frac{1}{L^{\frac{3}{2}}}e^{i\vec k_i \cdot \vec r}
+\] 
+to a final state 
+\[
+	\psi_f = \frac{1}{L^{\frac{3}{2}}}e^{i \vec k_f \cdot \vec r}
+\] 
+when we introduced a perturbation $V(r)$ to our Hamiltonian.
+[insert tikz here with the squiggles]
+\begin{insight*}{}{}
+	We could have done this same analysis with wave packets, but those are really annoying to deal with, so 
+	we'll use plane waves instead. After all, since wave packets are superpositions of plane waves, then 
+	abusing the linearity of physics should intuitively tell you that the same analysis can be done with 
+	wave packets. 
+\end{insight*}
+Now with that out of the way, let's think about what our quantum analogue for the luminosity might be. 
+Classically, the luminosity refers to the number of particles per time area, so intuitively speaking, we should
+look for a quantity that represents a moving density. In other words, we are looking for the \textit{probability
+current}. Remember that one formula we saw in 137A for the probability current:
+\[
+J = \frac{\hbar}{2mi}\left( \psi^*\nabla \psi - \psi \nabla\psi* \right) 
+\] 
+Well, this seemingly useless formula we learned is going to come in very handy in scattering. Correspondingly, 
+then, the $N$ that we measure will not be an actual \textit{particle count}, but instead a measure of the 
+\textit{rate} at which the particle scatters. Therefore, the quantum mechanical analogue of our initial 
+scattering expression is: 
+\[
+	\left( \dv{\sigma}{\Omega}\right) = \frac{1}{|J|}\dv{R}{\Omega} 
+\] 
+\section{Calculating the scattering} 
+The rest of this lecture will be devoted to calculating this quantity. First off, let's get $J$ out of the way
+because it's easy. Given a plane wave, recall that $\nabla(e^{i\vec k \cdot vec r}) =
+ike^{i \vec k \cdot \vec r}$, so putting both terms together (and skipping the algebra) we get: 
+\[
+	J_{inc} = \frac{\hbar k_{inc}}{mL^3}
+\] 
+\begin{insight*}{}{}
+	Notice that dimensionally, $J$ actually makes sense. Since the rate is calculated as the velocity per 
+	unit volume, we see that the velocity is represented by $\hbar k/m$, and the volume is $\frac{1}{L^3}$.
+	This is a good way to check that we've done our algebra correctly, and the quantities we're deriving have 
+	physical meaning.
+\end{insight*}
+Moving on, let's calculate the scattering rate $R$. To do this, we notice that the system we're trying to 
+solve is actually the same as that we saw last time, with Fermi's golden rule! To see this, remember that 
+initially, our particles are in a \textit{singular} state of momentum $k_i$. Then, since we are measuring 
+over some range $d\Omega$, we are actually measuring the rate at which particles scatter into a \textit{
+continuum} of states defined by a cone (see image below), so Fermi's golden rule applies. 
+[insert tikz here]
+Recall that the formula for Fermi's golden rule we derived was: 
+\[
+	R = \frac{\pi}{2\hbar}|\mel{\psi_f}{H'}{\psi_i}|^2 \rho(E_i)
+\] 
+But this rate was for a sinusoidal perturbation $H'$. It turns out that for a constant perturbation, the 
+formula for rate is: 
+\[
+	R = \frac{2\pi}{\hbar}|\mel{\psi_f}{H'}{\psi_i}|^2 \rho(E_i)
+\] 
+So now we calculate the matrix element:
+\begin{align*}
+	\mel{k_f}{V(r)}{k_i} &= \int d^3r \frac{1}{L^{\frac{3}{2}}} e^{-i \vec k_f \cdot \vec r} V(r) \frac{1}{L^{\frac{3}{2}}} e^{i\vec k_i \cdot \vec r}\\
+						 &= \frac{1}{L^3} \int d^3r e^{-i\vec k_f \cdot \vec r} V(r) 
+						 e^{i\vec k_i \cdot \vec r} \\
+\end{align*}
+We will leave it in this integral form for now. Now we calculate the density of states, recall that the density 
+of states is calculated as: 
+\[
+\rho(E) dE = D_3(k) \cdot 4\pi k^2 dk
+\]
+First, let's calculate $D_3(k)$.  
+Recall that for a line, the total volume is calculated as $\frac{2\pi}{L}$, so
+in three dimensions, we just cube this result, meaning the total volume we consider is going to be $\left( \frac{2\pi}{L} \right)^3$. Furthermore, in momentum space, we are considering momenta of the form:
+\[
+k = \frac{\sqrt{2mE}}{\hbar}
+\]
+Calculating $\dv{E}{k}$ (which is done by rearranging the above equation for $E$), we get: 
+\[
+	\dv{E}{k} = \frac{\hbar^2 k}{m} \implies \dv{k}{E} = \frac{m}{\hbar^2 k}
+\] 
+Putting this all together, we get the density of states: 
+\[
+\rho(E) = \frac{mL^3k}{2\pi^2 \hbar^2}
+\] 
+Now putting the two terms together, we get: 
+\begin{align*}
+	\dv{\sigma}{\Omega} &= \frac{1}{|J|}\dv{R}{\Omega}\\
+						 &= \frac{mL^3}{\hbar k} \frac{km}{L^3 4\pi^2 \hbar^3}\left|\int e^{-i \vec k_f \cdot 
+						 \vec r} V(r) e^{i\vec k_i \cdot \vec r} d^3r \right|^2\\
+						 &= \frac{m^2}{4\pi^2 \hbar^4}\left|\mel{\tilde k_f}{V(r)}{\tilde k_i}\right|^2 \\
+\end{align*}
+This is called the \textbf{Born approximation}.  
+Here, we use $\tilde k_i$ to denote the \textit{unnormalized} wave function. We can do this because as we see
+in the algebra, the normalization we imposed $|1/L^{3/2}$ actually cancels. 
+Also, take a look at what this term is saying: the matrix element $\mel{k_f}{V(r)}{k_i}$ tells us precisely the probability of scattering!
+\section{The Matrix element and the Fourier Transform}
+Now let's take a closer look at the matrix element. Combining the exponents, we can write that term as: 
+\[ \mel{\tilde k_f}{V(r)}{\tilde k_i} = \int d^3r e^{-i(\vec k_f - \vec k_i) \cdot r} V(r) = \int e^{i\vec{q} \cdot \vec r} d^3r \]
+This looks suspiciously like a Fourier transform, with $\vec q = \vec k_f - \vec k_i$. Moreover, since $V(r)$ is a continuous potential, we can write it also as a fourier transform: 
+\[ V(r) = \sum_{q'} V(q')e^{i \vec{q'} \cdot \vec r}\]
+Putting these two together, it means that we are basically evaluating the integral 
+\[ \int d^3r \sum_{q'} e^{i(\vec q - \vec q') \cdot r}\]
+This integral equals zero for all $q$ except when $q = q'$. This is because roughly speaking, integrating a sine wave adds up an equal amounts of positives and negatives, so therefore we expect them all to cancel. This doesn't happen in the case where $\vec q = \vec q'$, since the exponential becomes a constant. 
+
+This statement is actually a hint to a deeper statement: the scattering is only nonzero, when \textit{the potential V(r) has a fourier component whose momentum $\vec{q'} = \vec q = \vec{k_f} - \vec{k_i}$}. Believe it or not, this statement is the quantum mechanical analogue of conservation of momentum.  
+
+This is where we're going to stop for now, next lecture we're going to dive deeper into this conservation statement. 
+

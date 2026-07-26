@@ -1,0 +1,518 @@
+%----------------------- EXAMPLE -----------------------%
+%~~~~~~~~~~~~~~ FIGURE ~~~~~~~~~~~~~~%
+%.............................. QUESTION ..............................%
+%:::::::::::::::::::::::::::::::::: TABLE ::::::::::::::::::::::::::::::::::%
+%%%%%%%%%%%% SUBSECTION %%%%%%%%%%%%
+%,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, LECTURE NOTE ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%		PACKAGES		%%%%%%%%%%%%%%%%%%
+
+
+\newcommand{\usehyperstuff}{\usepackage{hyperref}					%	Hyperlinks
+	\definecolor{darkblue}{rgb}{0.0,0.0,0.3}
+	\hypersetup{colorlinks,breaklinks,
+				linkcolor=blue,urlcolor=blue,
+				anchorcolor=blue,citecolor=blue}
+	\renewcommand{\t}{\dagger}}									%	Redefine dagger command
+
+\def\addcopyright{\null\hfill\noindent Copyright \copyright\ \the\year\ by Austin J. Hedeman\bigskip}		%	Add Copyright Notice
+\def\addfooter{\vspace*{\fill}
+
+\small\emph{\color{darkblue}This content is protected and may not be shared, uploaded or distributed.}}
+
+
+\usepackage[pdftex]{graphicx}
+\usepackage{amsmath}											%	Standard AMS Math package
+\usepackage{amssymb}											%	Standard AMS Symbol package
+\usepackage{amsthm}											%	Standard AMS Symbol package
+\usepackage{enumitem}
+\usepackage{framed}											%	Frame package
+\usepackage{cancel}												%	Cancel slashes for equations
+\usepackage[margin=1cm]{caption}									%	Caption package
+\usepackage[bottom]{footmisc}										%	Controls footnotes
+\usepackage{soul}												%	Better underline tool \ul
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[usenames,dvipsnames]{color}							%	Adds colors!
+\usepackage{hhline}
+\usepackage{needspace}											%	Lets you control how much space is needed before a page break
+\usepackage{tablefootnote}										%	Footnotes in tables!
+%\usepackage{kbordermatrix}
+\usepackage{environ}% http://ctan.org/pkg/environ
+
+
+\definecolor{purple}{rgb}{0.5,0,0.5}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{medgreen}{rgb}{0,0.75,0}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{orange}{rgb}{1,0.5,0}
+
+
+%%%%%%%%%%%%%%%%%%		CHAPTER PREFIXES		%%%%%%%%%%%%%%%%%%
+\newcommand{\chapterdef}[1]{%
+	\renewcommand{\thesection}{#1.\arabic{section}}					%	Section numbering includes Chapter
+	\renewcommand{\theequation}{#1.\arabic{equation}}					%	Equation numbering includes Chapter
+	\renewcommand{\thefigure}{#1.\arabic{figure}}						%	Figure numbering includes Chapter
+	\renewcommand{\thetable}{#1.\arabic{table}}						%	Table numbering includes Chapter
+	\renewcommand{\thequestion}{#1.\arabic{question}}					%	Question numbering includes Chapter
+	\renewcommand{\theanswer}{#1.\arabic{answer}}					%	Answer numbering includes Chapter
+	\renewcommand{\theexamp}{#1.\arabic{examp}}					%	Example numbering includes Chapter
+	\renewcommand{\theclaimpf}{#1.\arabic{claimpf}}				%	Claim numbering includes Chapter
+}
+
+
+
+%%%%%%%%%%%%%%%%%%		THEOREMS AND ENVIRONMANETS		%%%%%%%%%%%%%%%%%%
+
+% 	HELPERS
+\def\whitedot{{\color{white}.}}										%	Trick Latex into ending a line.
+\def\endexampleline{\vspace{-2.25\baselineskip}\\ {\whitedot}				%	Obsolete - Replace with \fracexp
+	\PackageWarning{austin137}{Replace 'endexampleline'}}
+
+%	CONDITIONALS
+\newif\ifendsymb												%	Conditional - Has the example been ended with an equation?
+\def\exampeq{\tag*{$\blacklozenge$}\global\endsymbtrue}					%	End the example with this equation.
+\def\proofeq{\tag*{$\blacksquare$}\global\endsymbtrue}					%	End the proof with this equation.
+
+%	EXAMPLES
+\newtheorem{examp}{Example}										%	Example numbering
+\newenvironment{example}[1]										% 	(In example environment, #1 contains the title)
+	{\needspace{3\baselineskip}\begin{examp} #1 \end{examp}\begin{quote}}{\ifendsymb 
+		\else \hfill$\blacklozenge$\fi \end{quote}\global\endsymbfalse}
+
+%	QUESTIONS
+\def\qhline{\noindent\makebox[\linewidth]{\rule{\textwidth}{0.4pt}}}			%	Horizontal Line for Questions
+\def\chline{\noindent\makebox[\linewidth]{\rule{0.5\textwidth}{0.4pt}}}
+\def\phline{\qhline\vspace{-0.5\baselineskip}}							%	Horizontal Line for Questions
+\def\dphline{\phline\\ \phline}
+\def\endofhomework{\hfill$\blacklozenge$}
+
+\newtheorem{question}{Question}									%	Question numbering
+\newenvironment{Quest}[1]										%	Multiple Choice question environment (#1 contains question, body contains choices)
+	{\noindent\begin{minipage}[t]{\textwidth}\qhline\begin{question}#1\end{question}\begin{center}}
+	{\vspace{-0.2cm}\end{center}\qhline\end{minipage}}
+\newenvironment{ShortQuest}										%	Short Answer question environment
+	{\noindent\begin{minipage}[t]{\textwidth}\qhline\begin{question}}
+	{\vspace{-0.2cm}\end{question}\qhline\end{minipage}}
+
+%	ANSWERS
+\newtheorem{answer}{Answer}										%	Answer numbering/environment
+\newcommand{\ans}[1]{\textbf{\textit{#1}}}								%	Mark the correct answer choice
+
+\newenvironment{AnswerSection}{\newpage\section{Answers}}{}
+\newenvironment{AnswerSectionB}{\section{Answers}}{}
+
+%	POSTULATES
+\newtheorem{postulate}{Postulate}									%	Postulate numbering - DoesnÕt include Chapter
+\newenvironment{Post}											%	Postulate environment
+	{\begin{leftbar}\begin{postulate}}{\end{postulate}\end{leftbar}}		
+
+%	RULES
+\newenvironment{matrep}[1]										%	Rules for Matrix Representations
+	{\begin{samepage}\begin{framed}\noindent\textbf{Matrix Representation (#1)}:\ }{\end{framed}\end{samepage}}
+\newenvironment{dirac}[1]											%	Rules for Dirac Notation
+	{\begin{samepage}\begin{framed}\noindent\textbf{Dirac Notation (#1)}:\ }{\end{framed}\end{samepage}}
+	
+%%	ASIDES
+%\makeatletter
+%\newenvironment{aside}[1][1.5em]
+%  {\newline\newline\list{}{\noindent\textbf{Aside:}    
+%  	\leftmargin4em \vspace{-1.65\baselineskip}
+%    \parsep\z@\@plus\p@}%
+%    \item\relax}
+%  {\endlist}
+%\makeatother
+
+%	ASIDES
+\makeatletter
+\newenvironment{aside}[1][1.5em]
+  {\paragraph{}\list{}{\noindent  
+  	\leftmargin4em \hspace{-1em}\textbf{Aside:}\vspace{-1.65\baselineskip}
+    \parsep\z@\@plus\p@}%
+    \item\relax}
+  {\endlist}
+\makeatother
+
+
+%\newenvironment{aside}{\needspace{3\baselineskip}\textbf{Aside:}\begin{adjustwidth}{3em}{0em}}{\end{adjustwidth}}
+		
+%	CLAIMS, PROOFS, AND DEFINITIONS
+\def\endofproof{\hfill$\blacklozenge$}								%	End of Proof Diamond
+
+\newtheorem*{definition*}{Definition}									%	Definition numbering/environment - DoesnÕt include Chapter
+\newtheorem{definition}{Definition}									%	Definition numbering/environment - DoesnÕt include Chapter
+
+%\newenvironment{claim}										
+%	{\begin{quote}\textbf{Claim}:\ }{\end{quote}}
+%\renewenvironment{proof}											%	Prove that Claim!
+%	{\needspace{3\baselineskip}\begin{quote}\textbf{Proof:}\ }{\ifendsymb 
+%		\else \hfill$\blacksquare$\fi \end{quote}\global\endsymbfalse}
+
+\newenvironment{claim}										
+	{\begin{leftbar}\textbf{Claim}:\ }{\end{leftbar}}
+\renewenvironment{proof}											%	Prove that Claim!
+	{\needspace{3\baselineskip}\begin{leftbar}\textbf{Proof:}\ }{\ifendsymb 
+		\else \hfill$\blacksquare$\fi \end{leftbar}\global\endsymbfalse}
+
+\newtheorem{claimpf}{Claim}										%	Example numbering
+\newtheorem*{claimpf*}{Claim}										
+\newenvironment{claimproof}[1]										% 	(In example environment, #1 contains the title)
+	{\begin{claimpf} \begin{leftbar}\textup{#1}\end{leftbar} \end{claimpf}\vspace{-0.75\baselineskip}
+	\needspace{3\baselineskip}\begin{leftbar}\noindent\textbf{Proof:}\ }{\ifendsymb 
+		\else \hfill$\blacksquare$\fi \end{leftbar}\global\endsymbfalse}
+\newenvironment*{claimproof*}[1]										% 	(In example environment, #1 contains the title)
+	{\begin{claimpf*} \begin{leftbar}\textup{#1}\end{leftbar} \end{claimpf*}\vspace{-0.75\baselineskip}
+	\needspace{3\baselineskip}\begin{leftbar}\noindent\textbf{Proof:}\ }{\ifendsymb 
+		\else \hfill$\blacksquare$\fi \end{leftbar}\global\endsymbfalse}
+
+
+%	LECTURE NOTES
+\newif\iflecturer													%	Conditional - Are these notes for my lecture or for students?
+\global\lecturerfalse												%	Default is Student
+
+\newcommand{\lecturenote}[1]{\iflecturer \begin{center}{\color{red}#1}\end{center} 					
+							\else {} \fi}							%	Comments for the Lecture Version Only
+\newcommand{\studentonly}[2]{\iflecturer {\color{red}{\vspace{\baselineskip}#1\vspace{\baselineskip}}} 	
+							\else #2 \fi}						%	Content for the Student Version Only (#2), with a Lecture Note (#1)
+
+\newcommand{\turnlectureON}{%									%	Turn Questions Offf when Lecturing is turned on.
+	\global\lecturertrue
+
+	\renewenvironment{Quest}[1]{}{\begin{question}\hrulefill\end{question}}	
+	\renewenvironment{ShortQuest}{}{\begin{question}\hrulefill\end{question}}
+	\renewenvironment{AnswerSection}{}{}
+	\renewenvironment{AnswerSectionB}{}{}
+	
+	\usepackage{comment}
+	\excludecomment{Quest}
+	\excludecomment{ShortQuest}
+	\excludecomment{AnswerSection}
+	\excludecomment{AnswerSectionB}
+}		
+
+
+%%%%%%%%%%%%%%%%%%		COLUMN STYLES		%%%%%%%%%%%%%%%%%%
+
+\usepackage[math]{cellspace}										%	Lets us define custom column styles
+
+\newcolumntype{C}[1]{ >{\centering\arraybackslash} m{#1} }
+\newcolumntype{D}{ >{\centering\arraybackslash} m{0cm} }				%	A Null column.  Use hhline{~---~} to avoid hlines through these.
+\newcolumntype{M}{ >{$}Sc<{$}}									%	A Text-Style Math column Center-Aligned
+\newcolumntype{N}{ >{$\displaystyle}Sc<{$}}							%	A Display-Style Math column Center-Aligned
+\newcolumntype{Q}{ >{$}Sl<{$}}									%	A Text-Style Math column Left-Aligned
+
+
+%%%%%%%%%%%%%%%%%%		EXAMS, PROBLEM SETS, AND SOLUTIONS SETS		%%%%%%%%%%%%%%%%%%
+
+\def\extrapart{\textbf{Extra Part} (\emph{Not for Credit})\ \ }				%	Extra Part on Questions
+\newcommand{\pnts}[1]{[\emph{#1 points}]\ \ }	 						%	Point Values
+\def\checkeq{\tag*{\checkmark}}									%	Checkmark at end
+\newcommand{\extrasubpart}[1]{\newline\noindent [\emph{Supplementary Part (Not for Credit): #1}]}	% Supplementary Part of a Subpart
+\newcommand{\ssec}[1]{\S{\bf#1}}	 								%	Point Values
+
+
+%%%%%%%%%%%%%%%%%%		FRACTIONS		%%%%%%%%%%%%%%%%%%
+\newcommand{\scalemath}[2]{\scalebox{#1}{$\displaystyle #2$}}			%	Scales an expression down
+
+\newcommand{\fracsm}[2]{\scalemath{0.8}{\frac{#1}{#2}}}					%	Smaller Display-Style Fraction
+\newcommand{\fracexp}[2]{\scalemath{0.6}{\frac{#1}{#2}}}					%	Fraction in an Exponent
+
+\newcommand{\sqrtf}[2]{\sqrt{\frac{#1}{#2}}}							%	Square Root of a Fraction
+\newcommand{\sqrtfsm}[2]{\scalemath{0.8}{\sqrtf{#1}{#2}}}				%	Smaller Square Root of a Fraction
+\newcommand{\sqrtfinv}[1]{\scalemath{0.8}{\frac{1}{\sqrt{#1}}}}				%	Inverse Square Root
+
+\newcommand{\tdiff}[2]{\frac{d{#1}}{d{#2}}}							% 	Total Derivative
+\newcommand{\odiff}[2]{\frac{d{#1}}{d{#2}}}							% 	Ordinary Derivative
+\newcommand{\oodiff}[2]{\frac{d^{2}{#1}}{d{#2}^{2}}}						% 	Ordinary Second Derivative
+\newcommand{\pdiff}[2]{\frac{\partial{#1}}{\partial{#2}}}	 				% 	Partial Derivative
+\newcommand{\pdiffsm}[2]{\scalemath{0.9}{\frac{\partial{#1}}{\partial{#2}}}}	% 	Smaller Partial Derivative
+\newcommand{\dpdiff}[2]{\displaystyle\frac{\partial{#1}}{\partial{#2}}}	 				% 	Partial Derivative
+\newcommand{\dpdiffsm}[2]{\scalemath{0.9}{\displaystyle\frac{\partial{#1}}{\partial{#2}}}}	% 	Smaller Partial Derivative
+
+\newcommand{\pdiffb}[2]{{\partial{#1}}/{\partial{#2}}}						% Partial Derivative
+\newcommand{\ppdiff}[2]{\frac{\partial^{2}{#1}}{\partial{#2}^{2}}} 			% Second Partial Derivative
+
+
+\newcommand{\efrac}[2]{\scalebox{0.6}{$\dfrac{#1}{#2}$}					%	Obsolete - Replace with \fracexp
+	\PackageWarning{austin137}{`efrac' should be replaced by `fracexp'}} 
+\newcommand{\sqrtfb}[2]{\scalemath{0.8}{\sqrtf{#1}{#2}}					%	Obsolete - Replace with \sqrtfsm
+	\PackageWarning{austin137}{`sqrtfb' should be replaced by `sqrtfsm'}}	
+\newcommand{\sqrtfc}[1]{\scalemath{0.8}{\frac{1}{\sqrt{#1}}}				%	Obsolete - Replace with \sqrtfinv
+	\PackageWarning{austin137}{`sqrtfc' should be replaced by `sqrtfinv'}}	
+\newcommand{\sqrtfd}[2]{\scalemath{0.8}{\frac{\sqrt{#1}}{#2}}				%	Obsolete - Replace with \fracsm and \sqrt
+	\PackageWarning{austin137}{`sqrtfd' should be replaced by `fracsm' and 'sqrt'}}	
+\newcommand{\sqrtfe}[2]{\scalemath{0.8}{\frac{#1}{\sqrt{#2}}}				%	Obsolete - Replace with \fracsm and \sqrt
+	\PackageWarning{austin137}{`sqrtfe' should be replaced by `fracsm' and 'sqrt'}}	
+
+
+%%%%%%%%%%%%%%%%%%		DEFINITIONS AND SPECIAL STRINGS		%%%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator\nullity{null}									% Nullity
+\def\arg{\textrm{arg}}												% argument
+\DeclareMathOperator\Arg{Arg}										% Argument
+\DeclareMathOperator\Tr{tr}										% trace
+\DeclareMathOperator\tr{tr}										% trace
+\DeclareMathOperator\Span{span}									% Span
+\DeclareMathOperator\sgn{sgn}									% Sign
+
+\DeclareSymbolFont{bbold}{U}{bbold}{m}{n}
+\DeclareSymbolFontAlphabet{\mathbbold}{bbold}						% Blackboard Bold Numbers with \mathbbold
+
+\let\Re\relax \DeclareMathOperator\Re{Re}							% Real Part
+\let\Im\relax \DeclareMathOperator\Im{Im}								% Imaginary Part
+\def\im{\Im}													% Lowercase Imaginary typo
+
+\newcommand{\hatvec}[1]{\skew{3}{\hat}{\vec{#1}}}						% Putting a Hat on a Vector
+
+\def\delt{\nabla}													% Del=Nabla
+\def\iinf{\int_{-\infty}^{\infty}}										% Integral from -infty to +infty
+\def\schr{Schr\"{o}dinger~}										% Schrodinger
+\def\schrs{Schr\"{o}dinger's~}										% Schrodinger's
+\def\idop{\hat{\mathbbold{1}}}											% Identity Operator
+\def\eqimplies{\quad \Longrightarrow \quad}							% Implies Arrow with Space
+\def\implies{\Longrightarrow}										% Implies Arrow
+\def\simplies{\ \Rightarrow\ }										% Short Implies Arrow
+\def\eqimpliesb{\quad \Longleftrightarrow \quad}						% Long Double Implies Arrow with Space
+\def\st{\textrm{ s.t. }}												% "such that"
+\def\vu{\nu}													% \nu typo
+\def\simga{\sigma}												% \sigma typo
+\def\Simga{\Sigma}			 									% \Sigma typo
+\def\wedged{\wedge d}											% Differential Form wedge-d Typo
+\def\conj{\cong}													% Equals with Squiggle on Top
+\def\nvec{\mathbf{n}}												% Unit vector n
+\def\zvec{\mathbf{z}}				 								% z-unit vector
+\def\zerovec{\mathbf{0}}			 								% Zero vector
+\def\sigmavec{\boldsymbol{\sigma}}	 								% Pauli matrix vector
+\def\union{\cup}					 								% Union
+\def\intersect{\cap}												% Intersection
+\def\superset{\supset} 											% Superset
+\def\cross{\times}			 									% Cross product
+\def\varsig{\varsigma}		 									% Sigma variant
+\def\vareps{\varepsilon}			 								% Epsilon variant
+\renewcommand{\t}{\dagger}										% Hermitian Conjugate
+\def\T{\top}													% Transpose
+\def\HS{{\mathcal H}}											% Hilbert Space
+\def\eff{\textrm{eff}}												% Effective
+\def\esquare{\frac{e^{2}}{4\pi\epsilon_{0}}}								% e^{2} with Constants
+\def\tabdash{\mbox{--}}											% Dashes for Empty Table Cells
+\def\neg{\scriptstyle{\!-}}											% Small negative sign
+\def\pos{\scriptstyle{\!+}}											% Small positive sign
+\def\EMF{\mathcal{E}}											% Electromotive Force
+\def\bcdot{\boldsymbol{\cdot}}										% Bold CentralDot
+\def\rr{\textrm{R}}												% Row Reduction
+
+\def\phen{\phantom{n}}											% Phantom en for indices
+\def\phem{\phantom{m}}											% Phantom em for indices
+
+\def\eqnarrayset{\setlength\arraycolsep{2pt}}							% Obsolete - Used in EQNARRAY
+
+\newcommand{\bff}[1]{{\bf{#1}}}
+
+\newcommand{\heavydef}[1]{\textbf{\textit{#1}}}							% Defining Something
+\newcommand{\heavydefB}[1]{\textbf{\textup{#1}}}						% Defining Something
+
+\newcommand{\abs}[1]{\left|{#1}\right|}								% Absolute Value
+\newcommand{\absv}[1]{\big|{#1}\big|}								% Absolute Value
+\newcommand{\norm}[1]{\abs{\abs{#1}}}								% The Norm
+\newcommand{\dual}[1]{\underline{#1}}								% 	Dual vector
+
+\newcommand{\hint}[1]{[\emph{Hint: #1}]}								% Hints!
+\newcommand{\note}[1]{[\emph{Note: #1}]}							% Notes
+\definecolor{spoilerwhite}{rgb}{0.92,0.92,0.92}							% Spoiler Text
+\newcommand{\spoiler}[1]{\newline\noindent [\emph{Spoilers!} 	% Spoilers!
+\textrm{\textcolor{spoilerwhite}{#1}}]}
+\newcommand{\spoilers}[1]{\spoiler{#1}}								% Spoilers!
+\newcommand{\spoilerans}[1]{\newline\noindent \emph{Answer (highlight to reveal):} 	% Spoiler Answers!
+[\textrm{\textcolor{spoilerwhite}{#1}}]}\newcommand{\spoilertext}[1]{\textcolor{spoilerwhite}{#1}}
+\newcommand{\spoileranspart}[1]{\newline\noindent \emph{Partial Answer (highlight to reveal):} 	% Spoiler Answers!
+[\textrm{\textcolor{spoilerwhite}{#1}}]}
+\newcommand{\relevid}[1]{\emph{Relevant Videos: #1}}					% Revelant Videos
+
+
+
+%%%%%%%%%%%%%%%%%%%%   BRAS and KETS  %%%%%%%%%%%%%%%%%%%%
+\newcommand{\ket}[1]{\vert{#1}\rangle}								% Standard Ket
+\newcommand{\bigket}[1]{\left| #1 \right>}								% Large Ket
+\newcommand{\bra}[1]{\langle{#1}\vert}								% Standard Bra
+\newcommand{\bigbra}[1]{\left< #1 \right|}								% Large Bra (for levsets)
+\newcommand{\expect}[1]{\langle #1 \rangle}							% Expectation Value
+\newcommand{\bigexpect}[1]{\left\langle #1 \right\rangle}					% Large Expectation Value
+\newcommand{\braket}[2]{\langle #1 \vert #2 \rangle}						% Dirac Braket (Inner Product)
+\newcommand{\bigbraket}[2]{\left< #1 \vphantom{#2} \right| 				% Large Braket
+	\left.\!#2 \vphantom{#1} \right>}									
+\newcommand{\ketbra}[2]{\vert #1 \rangle \langle #2 \vert}					% Dirac Ketbra (Outer Product)
+\newcommand{\bigketbra}[2]{\left| #1 \vphantom{#2} \right>\!\!				% Large Ketbra
+	\left< #2 \vphantom{#1} \right|}
+\newcommand{\oketbra}[2]{\ket{#1}\!\otimes\!\bra{#2}}					% Ketbra with Explicit Tensor Symbol
+\newcommand{\bigoketbra}[2]{\left| #1 \vphantom{#2} \right>\!				% Large Ketbra with Explicit Tensor Symbol
+	\otimes\!\left< #2 \vphantom{#1} \right|}
+\newcommand{\oper}[1]{\hat{#1}}									% Operator
+\newcommand{\matel}[3]{\bra{#1}{#2}\ket{#3}}							% Matrix Element
+\newcommand{\bigmatel}[3]{\left< #1 \vphantom{#2#3} \right|				% Large Matrix Element
+	#2 \left| #3 \vphantom{#1#2} \right>}
+\newcommand{\commutator}[2]{[{#1}, {#2}]}							% Commutator
+\newcommand{\bigcommutator}[2]{\left[{#1},{#2}\right]}					% Large Commutator
+
+
+%%%%%%%%%%%%%%%%%%%%		SPECIAL BRAS, KETS, and PRODUCTS		%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\threejket}{j_{1}j_{2}j_{3}m_{1}m_{2}m_{3}}				%	3jm labels
+\newcommand{\wignerket}{j_{1}j_{2}j_{3}\mathbf{0}}						% 	Wigner labels
+\newcommand{\CG}[6]{\braket{#1#2;#3#4}{#5#6}}						% 	Clebsch-Gordan Symbol - Braket form
+\newcommand{\CGstd}{\CG{j_{1}}{j_{2}}{m_{1}}{m_{2}}{J}{M}}				%	Clebsch-Gordan Symbol - Braket form with standard labeling
+\newcommand{\CGd}[6]{\braket{#5#6}{#1#2;#3#4}}						% 	Clebsch-Gordan Symbol - Braket form
+\newcommand{\CGdstd}{\CGd{j_{1}}{j_{2}}{m_{1}}{m_{2}}{J}{M}}			% 	Clebsch-Gordan Symbol - Braket form with standard labeling
+\newcommand{\CGtypeb}[3]{\mathcal{C}_{{#1}{#2}}^{#3}}					% 	Clebsch-Gordan Symbol - C form
+\newcommand{\CGtypebstd}{\CGtypeb{j_{1}j_{2}}{m_{1}m_{2}}{JM}}			% 	Clebsch-Gordan Symbol - C form with standard labeling
+
+
+
+%%%%%%%%%%%%%%%%%%%%		SPINORS, VECTORS, AND MATRICES		%%%%%%%%%%%%%%%%%%%%
+\newcommand{\twovect}[2]{\begin{pmatrix} #1\\ #2 \end{pmatrix}}									% Two-Component Vector
+\newcommand{\tworowv}[2]{\begin{pmatrix} #1& #2 \end{pmatrix}}									% Two-Component Vector
+\newcommand{\threevect}[3]{\begin{pmatrix} 	#1\\ #2\\ #3 \end{pmatrix}}								% Three-Component Vecotr
+\newcommand{\threerowv}[3]{\begin{pmatrix} #1& #2 & #3\end{pmatrix}}								% Two-Component Vector
+\newcommand{\twotwomat}[4]{\begin{pmatrix} 	#1 & #2\\ #3 & #4 \end{pmatrix}}						% Two-by-two Matrix
+\newcommand{\smtwotwomat}[4]{\scalebox{0.8}{$\begin{pmatrix} 	#1 & #2\\ #3 & #4 \end{pmatrix}$}}						% Two-by-two Matrix
+\def\dotmatrix{\begin{pmatrix}\cdot & \cdot & \cdot\\ \cdot & \cdot & \cdot\\ \cdot & \cdot & \cdot \end{pmatrix}}	% A Three-by-three Matrix of Dots
+\newcommand{\smtwovect}[2]{\scalebox{0.8}{$\begin{pmatrix} #1\\ #2 \end{pmatrix}$}}					% Two-Component Vector
+\newcommand{\smthreevect}[3]{\scalebox{0.8}{$\begin{pmatrix} #1\\ #2 \\#3 \end{pmatrix}$}}				% Two-Component Vector
+\newcommand{\smmatrix}[2]{\scalebox{#1}{$\begin{pmatrix} #2 \end{pmatrix}$}}
+\newcommand{\smmatrixb}[2]{\scalebox{#1}{$\begin{matrix} #2 \end{matrix}$}}
+\newcommand{\smmatrixa}[3]{\scalebox{#1}{$\begin{amatrix}{#2} #3 \end{amatrix}$}}
+
+\NewEnviron{smpmatrix}[1]{\scalebox{#1}{$\begin{pmatrix} \BODY\end{pmatrix}$}}
+\NewEnviron{smamatrix}[2]{\scalebox{#1}{$\begin{amatrix}{#2} \BODY\end{amatrix}$}}
+\NewEnviron{smNmatrix}[1]{\scalebox{#1}{$\begin{matrix} \BODY\end{matrix}$}}
+\NewEnviron{smvmatrix}[1]{\scalebox{#1}{$\begin{vmatrix} \BODY\end{vmatrix}$}}
+\NewEnviron{smAmatrix}[3]{\scalebox{#1}{$\begin{Amatrix}{#2}{#3} \BODY\end{Amatrix}$}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%   OTHERS   %%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\setdef}[2]{\left\{#1\mid  \ #2\right\}}
+\newcommand{\setdefbig}[2]{\left\{ #1 \vphantom{#2} \right| \left.\!#2 \vphantom{#1} \right\}}
+\newcommand{\units}[1]{\textrm{#1}}
+
+\newenvironment{amatrix}[1]{%
+ 	\left(\begin{array}{@{}*{#1}{c}|c@{}}
+	}{%
+	\end{array}\right)
+	}
+
+\newenvironment{Amatrix}[2]{%
+	\left(\begin{array}{@{}*{#1}{c}|@{\ \,}@{}*{#2}{c} @{}}
+	}{%
+	\end{array}\right)
+}
+
+
+%%----------------------- EXAMPLE -----------------------%
+%\begin{example}{\label{label}title}
+%	Example
+%\end{example}
+%%----------------------- EXAMPLE -----------------------%
+
+%%~~~~~~~~~~~~~~ FIGURE ~~~~~~~~~~~~~~%
+%	\begin{figure}[!hb]
+%	\centering
+%	\includegraphics[width = .4\textwidth]{Figs/N10-spherical}
+%	\caption{Spherical and Cartesian coordinates.}
+%	\label{coords}
+%	\end{figure}
+%%~~~~~~~~~~~~~~ FIGURE ~~~~~~~~~~~~~~%
+%%~~~~~~~~~~~~~~ FIGURE ~~~~~~~~~~~~~~%
+%	\begin{figure}[t]
+%	\centering
+%	\includegraphics[width = .8\textwidth]{Figs/N10-Ylm2}
+%	\caption[]{Graphs of the real parts of the first few spherical harmonics\footnotemark.  This is a way of graphing 
+%	functions on the sphere where the value of the function $\Re Y_{\ell}^{m}$ is represented by the distance from the origin,
+%	 so $r(\theta,\varphi) = Y_{\ell}^{m}(\theta,\varphi)$.  Positive values are represented in green and negative values in blue.  The pair $(\ell,m)$ below each
+%	 figure shows the two relevant quantum numbers.}
+%	\label{SphericalHarmonicspic}
+%	\end{figure}
+%	\footnotetext{Adapted from ``Spherical harmonics lobes" via 
+%	Wikimedia Commons - \url{http://commons.wikimedia.org/wiki/File:Spherical_harmonics_lobes.jpg\#/media/File:Spherical_harmonics_lobes.jpg}}
+%%~~~~~~~~~~~~~~ FIGURE ~~~~~~~~~~~~~~%
+
+%%.............................. QUESTION ..............................%
+%\begin{ShortQuest} Use Eq.~\ref{sphericalharmoniceqn} to find $Y_{3}^{0}(\theta,\varphi)$.\end{ShortQuest}
+%
+%\begin{Quest}{What else does the boundary condition $\Phi_{m}(\varphi+2\pi) = \Phi_{m}(\varphi)$ imply about $m$?}
+%	\begin{enumerate}[label=(\alph*)]
+%		\item $m$ can only be a non-negative integer.
+%		\item $m$ can only be an integer.
+%		\item $m$ can only be an integer or a half-integer.
+%		\item There is no other implication for $m$.
+%	\end{enumerate}
+%\end{Quest}\vspace{0.5\baselineskip}
+%
+%\begin{Quest}{Which of the following expressions are correct?}
+%	\begin{tabular}{llcllcll}
+%		(a) & $\commutator{\hat{x}}{\hat{p}_{x}} = i\hbar$. &\quad & 
+%		(b) & $\commutator{\hat{x}}{\hat{p}_{y}} = i\hbar$.  &\quad &
+%		(c) &  $\commutator{\hat{y}}{\hat{x}} = 0$.\\
+%		(d) & $\commutator{\hat{p}_{y}}{\hat{p}_{x}} = -i\hbar$. &\quad&
+%		(e) & $\commutator{\hat{p}_{y}}{\hat{x}} = -i\hbar$.
+%	\end{tabular}\vspace{0.2cm}
+%\end{Quest}
+%%.............................. QUESTION ..............................%
+
+%%:::::::::::::::::::::::::::::::::: TABLE ::::::::::::::::::::::::::::::::::%
+%	\cellspacetoplimit5pt
+%	\cellspacebottomlimit5pt
+%	\begin{table}[t]
+%		\centering
+%		\scalebox{0.9}{
+%			$\begin{array}{|c|M||M|M|M|M|}
+%			\hline
+%				\multirow{2}{*}{$\ell$} & \multirow{2}{*}{\scalebox{1.1}{$P_{\ell}$}} 
+%				& \multicolumn{4}{Sc|}{\scalebox{1.1}{$P_{\ell}^{m}(\cos\theta)$}}\\
+%		 		\cline{3-6} && m=0 & m=\pm 1 & m=\pm 2 & m=\pm 3\\
+%			\hline \hline
+%				0	& 1 	
+%				& 1 		
+%				& \tabdash 	& \tabdash 	& \tabdash \\
+%			\hline
+%				1	& x 	
+%				& \cos\theta 	& \sin\theta 	
+%				& \tabdash 	& \tabdash \\
+%			\hline
+%				2	& \frac{1}{2}(3x^{2} - 1) 	
+%				& \frac{1}{2}(3\cos^{2}\theta - 1) 	& 3\sin\theta\cos\theta 	& 3\sin^{2}\theta 	
+%				& \tabdash \\
+%			\hline
+%				3 	& \frac{1}{2}(5x^{3} - 3x) 		
+%				& \frac{1}{2}(5\cos^{3}\theta - 3\cos\theta) 		& \frac{3}{2}\sin\theta(5\cos^{2}\theta - 1)		& 15\sin^{2}\theta\cos\theta 	& 15\sin^{3}\theta\\
+%			\hline			
+%		\end{array}$}
+%	\caption{The first few Legendre polynomials $P_{\ell}(x)$ and associated Legendre functions $P_{\ell}^{m}(\cos\theta)$.}
+%	\label{Legendre}
+%	\end{table}
+%	\cellspacetoplimit0pt
+%	\cellspacebottomlimit0pt
+%%:::::::::::::::::::::::::::::::::: TABLE ::::::::::::::::::::::::::::::::::%
+
+
+%LABELED MATRIX!
+
+%\renewcommand{\kbldelim}{(}% Left delimiter
+%\renewcommand{\kbrdelim}{)}% Right delimiter
+%\begin{equation*}
+%  \text{Mat}_{\varphi\text{ to }M} = \kbordermatrix{
+%    & c_1 & c_2 & c_3 & c_4 & c_5 \\
+%    r_1 & 1 & 1 & 1 & \cancel{1} & 1 \\
+%    r_2 & 0 & 1 & 0 & 0 & 1 \\
+%    r_3 & 0 & 0 & 1 & 0 & 1 \\
+%    r_4 & 0 & 0 & 0 & 1 & 1 \\
+%    r_5 & 0 & 0 & 0 & 0 & 1
+% }
+%\end{equation*}
+
+%\def\Tr{\mathrm{Tr}\ }											% Trace - tr
+%\def\tr{\mathrm{Tr}\ \!}											% Trace with Less Space
+
+

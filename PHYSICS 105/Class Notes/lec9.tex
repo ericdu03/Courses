@@ -1,0 +1,161 @@
+\chapter{Lecture 9}
+
+Lecture 9 was held on [INSERT DATE HERE], and it covered [INSERT TOPIC HERE]
+
+\section{Orbital Motion Revisited}
+Let's look back at our expression for the path of a particle $\phi(r)$:
+\[ \phi(r) = \int \frac{\frac{\ell}{r^2} dr}{\sqrt{2\mu\left( E - U - \frac{\ell^2}{2\mu r^2} \right) } }\]
+If we assume that we're talking about the gravitational force here, the we can write $U = -\frac{Gm_1m_2}{r} 
+\equiv - \frac{\gamma}{r}$. And so we instead just have to solve the integral:
+\[ \phi(r) = \int \frac{\frac{\ell}{r^2} dr}{\sqrt{2\mu\left( E + 
+\frac{\gamma}{r}-\frac{\ell^2}{2\mu r^2} \right) } }\]
+To make this integral easier, we perform a u-substitution of $u = \frac{1}{r}$ and $du = -\frac{1}{r^2}$ so we 
+have:
+\[ \phi(r) = -\int \frac{du}{\sqrt{\frac{2 \mu E}{\ell^2} + \frac{2 \mu \gamma}{\ell^2}u - u^2} }\]
+The solution to this integral can be calculated using an integral table: 
+\[ \int \frac{dx}{\sqrt{ax^2 + bx + c} } = -\frac{1}{\sqrt{-a} }\sin^{-1}
+\left[ \frac{2ax+b}{\sqrt{b^2 - 4ac} }\right] + C\]
+\begin{insight*}{}
+		Here, it's important to note that since $a = -1$ in our original equation, so that the fraction
+		$\frac{1}{-\sqrt{a} }$ is a real quantity. Since we need to enforce that $\phi(r)$ must also be real 
+		then we also require that $2ax + b < \sqrt{b^2 - 4ac}$, otherwise the $\sin^{-1}$ term would also return
+		a complex value.
+\end{insight*}
+
+Using this solution, we then have: 
+\[ \phi + C = \sin^{-1}\left[\frac{-\frac{2}{r} + 
+\frac{2\mu \gamma}{\ell^2}}{\sqrt{\left[\frac{2\mu\gamma}{\ell^2}\right]^2+ 8 \frac{\mu E}{\ell^2}}}\right]\] 
+Taking the sine now, we can get: 
+\[ \sin(\phi + C) = \frac{-\frac{2}{r} + 
+\frac{2\mu \gamma}{\ell^2}}{\sqrt{\left[\frac{2\mu\gamma}{\ell^2}\right]^2 + 8 \frac{\mu E}{\ell^2}} }\]
+Then we can cancel the constant by allowing our $\phi$ to start at a moment where $C = \frac{\pi}{2}$, and so we
+get instead: 
+\[ \cos \phi = \frac{\frac{\ell^2}{\mu \gamma}\frac{1}{r}-1}{1 + \frac{2E\ell^2}{\mu \gamma^2}}\]
+Here, we can define the constants: 
+\[ c \equiv \frac{\ell^2}{\gamma \mu} \ \ \ \ \epsilon \equiv \sqrt{1 + \frac{2E\ell^2}{\mu \gamma^2}} \]
+so we get the simple looking equation: %include a colorbox here
+\begin{theorem*}{}
+		For two particles moving in orbit with one another under a force that varies with $\frac{1}{r^2}$, the 
+		orbit of one particle in terms of the center of mass frame is:
+
+		\[ r(\phi) = \frac{c}{1+\epsilon \cos \phi}\]
+		
+\end{theorem*}
+This gives us an equation for $r$ in terms of the angle $\phi$, which is measured as the angle between the x axis
+and the line connecting the focus to the orbiting body. This equation also happens to be the equation of a conic
+section with one focus at the origin, directly implying that planetary motion always traces out conic sections. 
+\begin{insight*}{}
+		There is nothing really special about the gravitational force either -- any central force that varies like
+		$\frac{1}{r^2}$ will naturally give us these orbit equations, since we didn't really assume anything 
+		besides substituting $U = -\frac{\gamma}{r}$.
+\end{insight*}
+\section{Alternate Method} 
+Alternatively, we could have also determined $r(\phi)$ by analyzing forces, by using the equation:
+\[ \dv[2]{u}{\phi} + u = -\frac{u}{\ell^2}\frac{1}{u^2}F(u)\] 
+If we assume that $F$ follows an inverse-square relation, then we ge;
+\[ F(r) = -\gamma u^2\]
+(here $\gamma$ eats up all the constants), and so we get the differential equation: 
+\[ u''(\phi) = -u(\phi) + \frac{\gamma \mu}{\ell^2}\]
+Note that here, we have a differential equation that almost looks like simple harmonic motion, but we have a 
+constant term now. To get rid of this, we introduce the substitution
+\[ w(\phi) = u(\phi) - \frac{\gamma \mu}{\ell^2}\]
+so we get:
+\[ w''(\phi) = -w(\phi)\] 
+which has a solution: 
+\[ w(\phi) = A \cos(\phi - \delta)\]
+We can then cancel $\delta$ with ah appropriate choice for $\phi = 0$, so therefore our general solution $u(\phi)$
+is:
+\[ u(\phi) = \frac{\gamma \mu}{\ell^2} + A \cos \phi = \frac{\gamma \mu}{\ell^2}(1 + \epsilon \cos \phi)\]
+So finally: 
+\[ r(\phi) = \frac{c}{1 + \epsilon \cos \phi}\]
+which is the same equation we've recovered before. This derivation using forces and solving the differential 
+equation is what Taylor goes through, but either method is obviously valid. To find $\epsilon$, we can also notice
+that $E = U_{eff}(r_{min})$ to derive an expression for $\epsilon$ in terms of the constants we had before. The 
+expression for $E$ then becomes: 
+\[ E = U(r_{min}) + \frac{\ell^2}{2 \mu r_{min}^2} = \frac{1}{2r_{min}}\left( \frac{\ell^2}{\mu r_{min}} 
+- 2\gamma \right) \]
+We also know that $r = r_{min}$ when $\cos \phi = 1$, so therefore $r_{min} = \frac{c}{1 + \epsilon}$. Plugging
+this in, we get:
+\begin{align*}
+		E &= \frac{1}{2\left( \frac{c}{1 + \epsilon} \right) }\left( \frac{\ell^2}{\mu\left( \frac{c}{1 +
+			\epsilon} \right) }- 2 \gamma\right)\\
+			&= \frac{1}{2\left( \frac{\ell^2/\gamma \mu}{1 +
+			\epsilon}\right)}\left( \frac{\ell^2}{\mu\left( \frac{\ell^2/ \gamma \mu}{1 +
+			\epsilon}\right) } - 2 \gamma \right) \\
+			&= \frac{\gamma \mu (1 + \epsilon)}{2\ell^2}[\gamma(1 + \epsilon) - 2 \gamma] \\
+			&= \frac{\gamma^2\mu}{2\ell^2}(\epsilon^2 - 1)
+\end{align*}
+So this then gives us the relation that we're looking for:
+\[ \epsilon = \sqrt{1 + \frac{2E\ell^2}{\mu \gamma^2}} \]
+\begin{notation*}{Eccentricity}
+		The quantity $\epsilon$ is also called the \textit{eccentricity} of orbit, and roughly translates to how
+		``squashed" the orbit looks.
+\end{notation*}
+This equation actually has very profound consequences. For one, it tells us that if $E < 0$ then we have $\epsilon
+< 1$, so this corresponds to bound orbits. Otherwise, if $E > 0$, then this corresponds instead to unbound 
+orbits.
+\begin{insight*}{}
+		This result also matches our previous intuition about bounded orbits. Recall the potential energy curve:
+
+		\begin{center}
+				\begin{tikzpicture}[yscale=0.3, xscale = 0.9]
+                    \draw[domain=0.34:10, samples=500, color=red] plot (\x, {-6/\x + 3/(\x^2)});
+                    \draw[very thick, -stealth] (0, 0) -- (11, 0) node[right] {$r$};
+                    \draw[very thick, -stealth](0, -5) -- (0, 10) node[above]{$V(r)$};
+					\draw[dashed, blue] (11, 3) node[right] {$E > 0$} -- (0, 3);
+					\draw[dashed, blue] (11, -1) node[right] {$E < 0$} -- (0, -1);
+					\draw[dashed] (5.4495, -4) node[below] {$r_{max}$} -- (5.4495, -1) -- (5.4495, 0);
+					\draw[dashed] (0.550, -4) node[below] {$r_{min}$} -- (0.550, -1) -- (0.550, 0);
+                \end{tikzpicture}
+            \end{center}
+		Notice that for $E < 0$, then our energy intersects our curve at 2 locations, giving us
+		an $r_{min}$ and $r_{max}$ matching the fact that the orbit is bounded. But, for $E > 0$, notice that we
+		only have one intersection $r_{min}$, matching the fact that the orbit is unbounded. 
+\end{insight*}
+Looking back at our equation $r(\phi)$, 
+\[ r(\phi) = \frac{c}{1 + \epsilon \cos \phi}\] 
+notice that if $\epsilon < 1$, then the denominator in this expression never vanishes, so $r(\phi)$ is bounded for
+all $\phi$. On the other hand, if $\epsilon \ge 1$, then the denominator vanishes for some angle and $r(\phi)$ 
+approaches infinity as $\phi$ approaches that angle, corresponding to an unbounded orbit.
+\section{Bounded Orbits}
+Let's now consider the case where $\epsilon < 1$. Then, our denominator oscillates between: 
+\[ r_{min} = \frac{c}{1 + \epsilon} \ \ \text{and} \ \ r_{max} = \frac{c}{1 - \epsilon}\] 
+Since this is a bounded orbit, then $r(\phi)$ clearly must be periodic with a period of $2\pi$, and the orbit 
+should close on itself after one revolution. If we then perform a change of variables and write $r = \sqrt{x^2 + 
+y^2} $ and $\cos \phi = x/r$, then we get:
+\begin{align*}
+		r &= \frac{c}{1 + \epsilon cos \phi} \\
+		r\left( 1 + \frac{\epsilon x}{r} \right) &=  c \\
+		\therefore r &=  c - \epsilon x \\
+\end{align*}
+And so now completing the square and setting $r^2 = x^2 + y^2$: 
+\begin{align*}
+		r^2 = (c - \epsilon x)^2 &=  x^2 + y^2 \\
+		c^2+ \epsilon^2 x^2 -2c\epsilon x &=  x^2 + y^2 \\
+		(1 - \epsilon^2) x^2 + 2c\epsilon x + y^2 &=  c^2 \\
+		(x + d)^2 + \frac{y^2}{1 - \epsilon^2} &= \frac{c^2}{(1 - \epsilon^2)} + d^2\\
+		(x + d)^2 + \frac{y^2}{1 - \epsilon^2} &=  \frac{c^2}{(1 - \epsilon^2)} +
+		\frac{c^2\epsilon^2}{(1 - \epsilon^2)^2} \\
+		(x + d)^2 + \frac{y^2}{1 - \epsilon^2} &=  \frac{c^2 - c^2 \epsilon^2 + c^2 \epsilon^2}{(1 -
+		\epsilon^2)^2} \\
+		(x + d)^2 + \frac{y^2}{1 - \epsilon^2} &=  \frac{c^2}{1 - \epsilon^2} \\
+		\frac{(x+d)^2}{a^2} + \frac{y^2}{b^2} &= 1
+\end{align*}
+This is the equation for an ellipse, with $a = \frac{c}{1 - \epsilon^2}$, $b = \frac{c}{\sqrt{1 - \epsilon^2} }$ 
+and $d = \frac{c \epsilon}{1 - \epsilon^2} = a\epsilon$. The center of the ellipse is offset from the origin by 
+$d$ along the $x$-axis, and the ratio of major and minor axes is: 
+\[ \frac{b}{a}= \sqrt{1 - \epsilon^2} \]
+This leads us to Kepler's first law: 
+\begin{theorem*}{}
+	Planets and bound comets follow orbits that are ellipses with the sun at one focus.	
+\end{theorem*}
+Further, plugging in $c = \frac{\ell^2}{\gamma \mu}$ and $\epsilon = \sqrt{1 + \frac{2 E \ell^2}{\mu \gamma^2}}$
+then we can also see that: 
+\begin{align*}
+		a &= \frac{c}{1 - \epsilon^2} = \frac{\gamma}{2|E|}\\
+		b &=  \frac{c}{\sqrt{1 - \epsilon^2} } = \frac{\ell}{2\mu |E|} \\
+\end{align*}
+And so we can see that the major axis $2a$ depends only on the energy, while the minor axis depends on both the 
+energy and the momentum.
+
+

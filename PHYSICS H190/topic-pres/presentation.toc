@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Overview}{2}{0}{1}
+\beamer@sectionintoc {2}{Origins of SNO}{3}{0}{2}
+\beamer@sectionintoc {3}{Instrumentation, Experiments}{5}{0}{3}
+\beamer@sectionintoc {4}{Accomplishments, Future}{8}{0}{4}

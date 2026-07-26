@@ -1,0 +1,251 @@
+\section{May 2}
+
+\subsection{Natural Units}
+In this lecture, we should mention that from here on out we will be using natural units, where \( c = \hbar = 1
+\). This is so that we don't have to carry the constants everywhere we go, and it also has some beneifts in
+the way of dimensional analysis. In particular, since \( c = 1 \), then the dimension for length is the same
+as time:
+\[
+	[L] = [T]
+\]
+which is particularly natural especially in relativity since length and time can be interchanged with each
+other. Setting \( \hbar = 1 \), which usually carries the units of \( [E][T] \), means that we now regard
+energy and time as inverses:
+\[
+	[E] = [T]^{-1}
+\]
+From \( E = mc^2 \), because \( c = 1 \), then this implies that \( [E] = [M] \) and combining this with the
+previous relations we get the big chain:
+\[
+	[L] = [T] = [E]^{-1} = [M]^{-1}
+\]
+\subsection{Action of a Free scalar field}
+Consider a scalar field \( \phi = \phi(x) = \phi(t, \mathbf{x}) \). Our goal is to find an action that
+satisfies the three criteria:
+\begin{enumerate}[label=\arabic*.]
+	\item Quadratic in \( \phi \). We want this because we want the equations of motion to be linear in \(
+		\phi \), and hence we want the action to be quadratic in \( \phi \). 
+	\item Lorentz invariant. We want this because the action gives us the equations of motion, through the
+		stationary action principle, and obviously we want them to be the same in all inertial frames.   
+	\item Involve \( \partial_\mu \phi \). We want this because we want a time evolution \( \dot \phi \)
+		term. We don't want to just use \( \partial_t \phi \) since in relativity time and space are
+		interchangeable, so we use the general derivative \( \partial_\mu \phi \) instead. 
+\end{enumerate}
+
+It turns out, the action that satisfies these three is:
+\[
+	S = -\frac{1}{2}\int d^{4}x \left[ \eta^{\mu \nu}\partial_\mu \phi \partial_\nu \phi + m^2 \phi^2 \right]
+\]
+In natural units, \( S \) should be dimensionless, and you can check that the right hand side has units of \(
+[E][T] \) so the equation is correct. Now, just like any other action, we first vary the field by introducing
+\( \phi(x) \to \phi(x) + \delta \phi(x) \): 
+\[
+	\delta S = -\frac{1}{2}\int d^{4}x \, \delta \left[ \eta^{\mu \nu}\partial_\mu \phi \partial_\nu \phi 
+	+ m^2 \phi^2 \right] = -\frac{1}{2}\int d^{4}x  \, \left[ 2 \eta^{\mu \nu} \partial_\mu \phi
+	\, \delta(\partial_\nu \phi) + 2m^2 \phi\,  \delta \phi \right]
+\]
+Now, in the first term the variation of the derivative, \( \delta(\partial_\nu \phi) \) can be written as:
+\[
+	\delta (\partial_\nu \phi) = \partial_\nu (\phi + \delta \phi) - \partial_\nu \phi = \partial_\nu (\delta
+	\phi)
+\]
+So we can write the entire integral as:
+\[
+	- \int d^{4}x \, \left[ \partial_\nu \left( \eta^{\mu \nu}\partial_\mu \phi \partial_\nu \phi \right) -
+	\partial_\nu \left( \eta^{\mu \nu} \partial_\nu \phi \right) \delta \phi + m^2 \phi \, \delta \phi \right]
+\]
+Now we will take integration by parts. We will assume that we only vary the field locally, so at the extremes
+\( \delta \phi = 0 \), allowing us to drop the boundary term. So, this gives us:
+\[
+	\int d^{4} x \, \left[ \eta^{\mu \nu} \partial_\mu \partial_\nu \phi - m^2 \phi \right] \delta \phi
+\]
+If we require \( \delta S = 0 \) for any variation in the field, then the term in square brackets must be
+zero. Removing the index notation, the equation reads:
+\[
+	(-\partial_t^2 + \nabla^2 - m^2) \phi = 0
+\]
+This is known as the \textbf{Klein-Gordon Equation}. Notice that it looks like a wave equation, except it
+has a mass term. The other thing of note is that this equation is linear in \( \phi \), 
+which explains why we wanted our action that is quadratic in \( \phi \) from earlier. 
+If we had more higher order terms in the action, then they'd contribute
+to the right hand side effectively acting as source terms just like how they appeared in the wave equations
+for the fields \( V \) and \( \mathbf{A} \).   
+
+For equations of motion without a source, then our solutions are plane waves:
+\[
+	\phi = A e^{i(Et - \mathbf{p} \cdot \mathbf{x})} = Ae^{-i p^{\mu}p_{\mu}}
+\]
+Substituting this back into the equation, we get:
+\[
+	(E^2 - |\mathbf{p}|^2 - m^2) A e^{i (Et - \mathbf{p} \cdot \mathbf{x})} = 0 \implies E^2 - |\mathbf{p}|^2
+	- m^2 = 0
+\]
+This is exactly the relativistic equation for energy: \( E^2 = p^2 c^2 + m^2 c^{4} \). 
+
+\subsection{Action of Massless 4-Vector Fields}
+The above section takes care of scalar fields, but as we've studied in electromagnetism, the electric and
+magnetic fields are vector fields, so this section will be dedicated to writing its action and the resulting
+equations of motion. As we will see, Maxwell's equations will come right out at the end. 
+
+We will consider a "free" field at first, then add source terms later. Because we are working in a
+relativistic context, we should use the 4-vector field \( A^{\mu} \) instead of the standard 3-vector. This
+allows us to impose the following conditions:
+\begin{enumerate}[label=\arabic*.]
+	\item Quadratic in \( A_\mu \) because we want an equation of motion that is linear in \( A_\mu \).    
+	\item Lorentz invariance. We want Lorentz invariance here for the same reason as the scalar field.  
+	\item Need to involve \( \partial_\nu A_\nu \), just like we involved \( \partial_\mu \phi \) from
+		before. 
+	\item The action should be massless. We want this in particular because we want to match
+		electromagnetism, which has no mass terms. As such, we will drop the \( \frac{1}{2}m^2 A^{\mu}A_\mu
+		\) term from the action.  
+\end{enumerate}
+So what kind of action can we write? If we want Lorentz invariance, that also satisfies the third condition,
+then one thing we can do is write something like:
+\[
+	(\partial_\rho A_\sigma) (\partial_\mu A_\nu)
+\]
+but we can't just leave it as is, since the action must be dimensionless. So, we need to find a way to
+contract these indices, of which there are two ways:
+\begin{enumerate}[label=\arabic*.]
+	\item \( (\partial^{\mu}A^{\nu})(\partial_\mu A_\nu) \)
+	\item \( (\partial_\mu A^{\mu})(\partial_\nu A^{\nu}) \)
+\end{enumerate}
+Note there is a third way \( A^{\mu}(\partial^2 A_\mu) \), but if we expand this out:
+\[
+	A^{\mu}(\partial^2 A_\mu) = A^{\mu}(\partial^{\nu} \partial_\nu A_\mu) = \partial^{\nu}(A^{\mu}
+	\partial_\nu A_\mu) - (\partial^{\nu} A^{\mu})(\partial_\nu A_\mu)
+\]
+We've now written this in the form of a total derivative term and the same equation as in method 1. Because
+we eventually get rid of total derivative terms anyways, this way of contracting ends up being the same as
+the first, so there are really only two unique ways to contract these indices. Our action can now be written
+as a combination of the two ways:
+\[
+	S = -\frac{1}{2}\int d^{4}x \, \left[ a \left( \partial_\mu A_\nu \right)\left( \partial^{\mu}A^{\nu}
+	\right) + b \left( \partial_\mu A^{\mu} \right) \left( \partial_\nu A^{\nu} \right) \right]
+\]
+Now, we vary the action:
+\[
+	\delta S = -\frac{1}{2}\int d^{4}x \, \left[ a (\partial_\mu A_\nu) \delta(\partial^{\mu}A^{\nu}) + b
+	(\partial_\mu A^{\mu}) \delta(\partial_\nu A^{\nu}) \right] 
+\]
+Now we do integration by parts and remove the total derivative:
+\begin{align*}
+	\delta S &= \int d^{4}x \, \left[ a \partial^{\mu} (\partial_\mu A_\nu) \delta A^{\nu} + b
+	\partial_\nu(\partial_\mu A^{\mu}) \delta A^{\nu} \right] \\ 
+	&= \int d^{4}x \, \left[ a \partial^{\mu}\partial_\mu A_\nu + b \partial_\nu \left( \partial_\mu A^{\mu}
+	\right) \right] \delta A^{\nu} 
+\end{align*}
+Now, requiring that \( \delta S = 0 \) for any \( \delta A^{\nu} \) means we get:
+\[
+	\partial^{\mu} \partial_\mu A_\nu + b \partial_\nu (\partial_\mu A^{\mu}) = 0
+\]
+The free equation of motion is then (we raised the free index \( \nu \) here, it does nothing except makes
+the equation a bit nicer to look at):
+\[
+	a \partial^{\mu} \partial_\mu A^{\nu} + b \partial^{\nu}(\partial_\mu A^{\mu}) = 0
+\]
+So this is the free equation. Now, we want to add the effect of sources, which we will do by adding them to
+the right side of this equation. Because the left hand side is a 4-vector, then the thing we add on the right
+must also be a 4-vector:
+\begin{equation}
+	\label{vector-action}
+	a \partial^{\mu} \partial_\mu A^{\nu} + b \partial^{\nu} (\partial_\mu A^{\mu}) = J^{\nu}
+\end{equation}
+Adding \( J^{\nu} \) here is analogous to what we had with the Lorentz gauge back in chapter 10: 
+\begin{align*}
+	(\partial_t^2 - \nabla^2) \phi &= \rho\\
+	(\partial_t^2 - \nabla^2) \mathbf{A} &= \mathbf{J}
+\end{align*}
+where terms like the charge and current density can be regarded as "sources".  We will also require \( J^{\nu} \)
+to be conserved, such that:
+\[
+	\partial_\nu J^{\nu} = 0
+\]
+One way to argue that we need this constraint is to think about charges and currents: we want these
+quantities to be conserves, so its generalized version \( J^{\nu} \) should also be conserved. The above
+equation for conservation also has a nice meaning if we allow \( J^{\nu} = (\rho, \mathbf{J}) \) when we
+expand out the summation notation:
+\[
+	\partial_t \rho + \nabla \cdot \mathbf{J} = 0
+\]
+this is the standard continuity equation! Hopefully this small demonstration shows why we need this constraint, and
+that it is indeed a well-motivated result. Now, for consistency, if we take \( \partial_\nu \) of both sides
+of \cref{vector-action}:
+\[
+	\partial_\nu \left( a \partial^{\mu}\partial_\mu A^{\nu} + b \partial^{\nu}\left( \partial_\mu A^{\mu}
+	\right) \right) = \partial_\nu J^{\nu} = 0
+\]
+So this gives us the relation:
+\[
+	a \partial^2 (\partial_\nu A^{\nu}) + b \partial^2 (\partial_\mu A^{\mu}) = 0
+\]
+both terms here \( \partial_\nu A^{\nu} \) and \( \partial_\mu A^{\mu} \) are of the same form, so the only
+combination of \( a, b \) that makes this zero is \( a = -b \). By convention, we will let \( a = 1 \) and \(
+b = -1\). So in summary, the action with the conserved current reads:
+\[
+	S = -\frac{1}{2}\int d^{4} \, \left( \partial_\mu A_\nu \partial^{\mu} A^{\nu} - (\partial_\mu A^{\mu})
+	(\partial_\nu A^{\nu}) \right) + \int d^{4}x \, A_\mu J^{\mu}
+\]
+Now, we define \( F_{\mu \nu} \equiv \partial_\mu A_\nu - \partial_\nu A_\mu \). Then, \( F^{\mu \nu} F_{\mu
+\nu} \) gives:
+\begin{align*}
+	F^{\mu \nu} F_{\mu \nu} &= \left( \partial_\mu A_\nu - \partial_\nu A_\mu \right)\left(
+	\partial^{\mu}A^{\nu} - \partial^{\nu} A^{\mu} \right)\\
+	&= 2(\partial_\mu A_\nu)(\partial^{\mu}A^{\nu}) - 2(\partial_\nu A_\mu)(\partial^{\nu}A^{\mu}) \\ 
+	&= 2(\partial_\mu A_\nu) (\partial^{\mu}A^{\nu}) - 2(\partial^{\mu}A_\mu) (\partial_\nu A^{\nu}) 
+\end{align*}
+This is exactly twice the first integral, so we can rewrite the action as:
+\[
+	S = -\frac{1}{4}\int d^{4}x \, F_{\mu \nu} F^{\mu \nu} + \int d^{4}x \, A_\mu J^{\mu}
+\]
+Now, forcing \( \delta S = 0 \) eventually gets us:\footnote{we skipped the algebra in class in the interest
+of time.}
+\begin{equation}
+	\label{maxwell-1}
+	\partial_\mu F^{\mu \nu} = J^{\mu}
+\end{equation}
+In addition, because of the antisymmetry of \( F^{\mu \nu} \) (which you can see from its definition), we
+have the relation:
+\begin{equation}
+	\label{maxwell-2}
+	\partial_\lambda F_{\mu \nu} + \partial_\nu F_{\lambda \mu} + \partial_\mu F_{\nu \lambda} = 0
+\end{equation}
+As it turns out, \cref{maxwell-1,maxwell-2} are exactly Maxwell's equations in index notation! In particular,
+\cref{maxwell-1} gives Gauss's and the Ampere-Maxwell law, since these two equations deal with source terms.
+The other two are given by \cref{maxwell-2}. To see this worked out 
+explicitly, let \( A^{\mu} = (V, \mathbf{A}) \) and \( A_\mu = (-V, \mathbf{A}) \), then from
+\cref{maxwell-1} we have:
+\begin{align}
+	\label{f0i}F_{0i} &= \partial_0 A_i - \partial_i A_0 = \partial_t A_i - \partial_i V = \partial_t A_i - \nabla V =
+	E_i\\
+	\label{fij}F_{ij} &= \partial_i A_j - \partial_j A_i = \epsilon_{ijk}B^{k}
+\end{align}
+So, putting \cref{f0i} into \cref{maxwell-1} gives us:
+\[
+	\partial_0 F^{00} + \partial_i F^{0i} = \rho \implies \partial_i E_i = \nabla \cdot \mathbf{E} = \rho
+\]
+Working this out with the other indices gives you Ampere-Maxwell too. For \cref{maxwell-2}, if you let \(
+\lambda \mu \nu = 0ij \) and iterate, then you get:
+\[
+	\partial_0 F_{ij} + \partial_j F_{0i} + \partial_{i}F_{i0}
+\]
+Then, using \cref{f0i,fij}, then this becomes:
+\[
+	-\partial_t \left( \epsilon_{ijk}B^{k} \right) + \partial_j E_i - \partial_i E_j = 0
+\]
+Contracting with \( \epsilon^{ijm} \epsilon_{ijk} \), then this becomes:
+\[
+	-2 \partial_t B^{m} - \epsilon^{ijm}\left( \partial_i E_j - \partial_j E_i \right)	
+\]
+Finally, \( \partial_i E_j - \partial_j E_i = 2 \partial_i E_j \), so we indeed get Faraday's law:
+\[
+	\nabla \times \mathbf{E} = -\partial_t \mathbf{B}
+\]
+likewise, \( \nabla \cdot \mathbf{B} = 0 \) follows as well from the other indices. And that concludes our
+derivation of Maxwell's equations! It's nice that we've essentially come full circle from the beginning: we
+started with Maxwell's equations, and finished by deriving them. What is truly remarkable is that these
+equations naturally fall out as a result of our two constraints on the action and the current, where neither
+of them directly reference the equations at all -- they are simply a product of these two constraints. If
+that's not beautiful, I don't know what is. 
+ 
+ 

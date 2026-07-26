@@ -1,0 +1,219 @@
+\section{Laplace Transform}
+\begin{itemize}
+	\item Laplace transforms concern the equation:
+		\[:tabn
+		X(s) = \int_{-\infty}^{\infty} x(t) e^{-st} \diff t
+		\] 
+		The basic idea is that instead of solving for \( x(t) \), we solve instead for \( X(s) \), which is 
+		much easier to do sometimes than \( x(t) \). 
+	\item Suppose you have an LTI system with impulse response \( h(t) \), and we input a harmonic 
+		exponential \( e^{j 2\pi ft} \), then we get an output \( y(t) = H(f) e^{j 2 \pi ft}
+		= H(\omega) e^{j \omega t}\). (this is the 
+		eigenfunction property.)
+	\item What about an input \( e^{st} \)? Then, we can express this as a convolution, which 
+		happens to be written as: \( y(t) = H(s) e^{st} \), where  \( H(s) \) is the Laplace transform of 
+		\( h(t) \). 
+	\item Consider an input \( x(t) = e^{st} \), and since \( s \in \C \), then we can write 
+		\( s = \sigma + j \omega \). Then we convolve:
+		\[
+		y(t) = \int_{-\infty}^{\infty} h(t) e^{s(t - \tau)}\diff \tau = \int_{-\infty}^{\infty} 
+		h(t) e^{st} e^{-s \tau}\diff \tau = e^{st}\underbrace{\int_{-\infty}^{\infty} h(\tau) e^{-s \tau}\diff \tau}
+		_{H(s)}
+		\] 
+		where the integral we defined earlier as the Laplace transform \( H(s) \). Here, we call it 
+		specifically the bilateral Laplace transform of \( h(t) \). This distinction just has to do with the 
+		integration bounds; a unilateral Laplace transform is defined as 
+		\[
+		H_{\text{uni}}(s) = \int_{0}^{\infty} h(\tau)e^{-s \tau}\diff \tau 
+		\] 
+		but we will normally consider bilateral Laplace transforms in this class.  
+	\item Note also that the Laplace transform is also the more general case of the Fourier transform: the Fourier
+		transform occurs when \( \Re(s) = 0 \). 
+\end{itemize}
+\subsection{Notation, Terms}
+\begin{itemize}
+	\item With Laplace transforms, we say that they transform between the time domain and the \( s \)-domain, and 
+		it's written as:
+		\[
+		\mathcal L \{x(t)\}  = X(s) = \int_{-\infty}^{\infty} x(t) e^{-st}\diff t 
+		\] 
+		Because \( s \) is a complex number, the Laplace transform takes our 1-dimensional signal 
+		\( x(t) \) and turns it into a two-dimensional signal in  \( s\)-space. 
+%		\begin{center}
+%			\begin{tikzpicture}
+%				\draw (-3, 0) -- node[right] {\( t \) } (3, 0);
+%			\end{tikzpicture}
+%			\( \rightarrow \) 
+%			\begin{tikzpicture}
+%				\draw(-3, 0) -- (3, 0) node[right] {Real};
+%				\draw (0, -3) -- (0, 3) node[left] {Imaginary};
+%				\draw[red] (0, 0) -- node[right] {\( X(s) \) } (1, 2);
+%			\end{tikzpicture}
+%		\end{center}
+\end{itemize}
+\subsection{Laplace Transform Pairs}
+\begin{itemize}
+	\item Given a signal \( x(t) = \delta(t) \), then the Laplace transform \( X(s) = 1 \). This is seen easily 
+		from the integral itself:
+		\[
+		X(s) = \int_{-\infty}^{\infty} \delta(t) e^{- st}\diff t = 1 
+		\] 
+		As a 2D diagram, we can imagine that over the entire complex plane, \( X(s) \) takes on a value 
+		of 1. 
+	\item Given a unit step function \( x(t) = u(t) \), then the Laplace transform \( X(s) = \frac{1}{s} \). 
+		Again, just do the integral:
+		\[
+		X(s) = \int_{-\infty}^{\infty} u(t) e^{-st}\diff t = \int_{0}^{\infty} e^{-st}\diff t = \frac{1}{s} 
+		\] 
+		Note that this only works if \( \Re(s) > 0 \), otherwise we have an unbounded integral. This condition 
+		is also called the \textit{region of convergence} for the integral. This actually means that 
+		the Laplace transform may not be defined for all values of \( s \)!
+
+		\comment{Note that \( \Im(s) \) doesn't matter here, since all it does is give us an overall phase 
+		factor of \( e^{j \omega t} \) that has magnitude 1 all the time.}
+	\item Let \( x(t) = e^{-at}u(t) \). Then, let's look at its Laplace transform:
+		\[
+		X(s) = \int_{-\infty}^{\infty} e^{-at}u(t) e^{-st}\diff t = 
+		\int_{0}^{\infty} e^{-(a + s)t}\diff t  = \frac{1}{a + s}
+		\] 
+		which again, only holds true when \( \Re(a +s) > 0 \). Since \( a \) is real, then the condition 
+		simplifies to \( \Re(s) > -a \), so this is our region of convergence.  
+		
+		\comment{We could be a little more specific with the integration:
+			\[
+			X(s) = \int_{0}^{\infty} e^{-(a + \sigma)t} e^{- j \omega t} \diff t = \frac{1}{j \omega ( + a + \sigma)}
+			 = \frac{1}{s + a}
+			\] 
+			but this simplifies in the same way.  
+		}
+
+		\question{If we didn't have the \( u(t) \), then would the integral still converge?}
+	\item Now consider \( x(t) = -e^{-at}u(-t) \). This is just the time-flipped version of the previous signal. 
+		Visually, for different values of \( a \), this is what it looks like:
+		\begin{center}
+			\begin{tikzpicture}[scale=0.2]
+				\draw (-10, 0) -- (10, 0);
+				\draw (0, -10) -- (0, 10);
+				\draw[thick, color=red, domain=0:-2]  plot (\x, {-exp(-\x)}) node[left] {\( a > 0 \) };
+				\draw[thick, color=blue, domain=0:-8] plot (\x, {-exp(\x)}) node[above left] {\( a < 0 \) };
+			\end{tikzpicture}
+		\end{center}
+		Doing the Laplace transform:
+		\[
+		X(s) = -\int_{-\infty}^{\infty} e^{-at}u(-t)e^{-st}\diff t  = \int_{-\infty}^{0} e^{-(a + s)t}\diff t
+		= \frac{1}{a + s}
+		\] 
+		As before, this only holds when \( \Re(a + s) > 0 \). 
+
+		\question{Mathematica gives \( -\frac{1}{a + s} \), why?}
+\end{itemize}
+\subsection{Why Laplace Transform?}
+\begin{itemize}
+	\item Laplace transform has many of the same properties as the Fourier transform, and due to its 
+		wider scaope (i.e. having \( X(s) \) be a two-dimensional function), it allows us to take the transform of 
+		functions that the Fourier transform cannot handle. 
+	\item It's also useful for integral differential equations. Consider the following circuit:
+		% tikz here
+		The voltage readout is given by:
+		\[
+		Ri(t) + \left[ \frac{1}{\mathcal L }\int_{0^{-}}^{t} i(t') \diff t' + v_c(0^{-})  \right] 
+		\] 
+		we will see later on how the Laplace transform simplifies the calculation of this integral.  
+\end{itemize}
+
+\subsection{Region of Convergence}
+\begin{itemize}
+	\item The Laplace transform is also related to the Fourier transform, by a multiplication of a 
+		decaying exponential:
+		\[
+		\mathcal L \{x(t)\}  = \mathcal F \{x(t) e^{-\sigma t}\} 
+		\] 
+		This also tells us why the Laplace transform is more general -- by multiplying by an 
+		\( e^{-\sigma t} \), we can actually modify what \( x(t) \) is. This gives us more control, and makes 
+		it a more powerful tool. 
+		
+		The region of convergence is defined as the set of \( s \in \C \) suhc that 
+		\( x(t) e^{-st} \) has a Fourier transform. Mathematically:
+		\[
+		\mathcal L \{x(t) \}  = \int_{-\infty}^{\infty} x(t) e^{-at} e^{- j \omega t}\diff t  < \infty
+		\] 
+		We've already talked a lot about the region of convergence in the previous section, so just refer to that 
+		instead. 
+	\item Consider the signal \( x(t) = 3d^{-2t}u(t) - 2e^{-t}u(t) \). What is its region of convergence? Since the 
+		Laplace transform is linear, we can basically just find the region of convergence for both these 
+		terms, and find the common ROC to get the ROC for \( X(s) \). Doing so, we get:
+		\[
+		X(s) = \frac{3}{s + 2} - \frac{2}{s + 1} = \frac{s - 1}{(s + 2)(s + 1)}
+		\] 
+		Therefore, the region of convergence is \( \Re(s) > -1 \). 
+\end{itemize}
+
+\subsection{Properties of Laplace Transform}
+\begin{itemize}
+	\item These are very similar to the Fourier transform properties. We will denote the relationships 
+		as \( x(t) \overset{\mathcal L}{\leftrightarrow} X(s) \). 
+	\item \textbf{Linearity:} Given  \( ax_1(t) + bx_2(t) \), then the Laplace transform gives \( aX_1(s) + bX_2(s) \).
+		The region of convergence contains \( R_1 \cap R_2 \), but it can be larger. For example, if you take 
+		a signal with some limited ROC and consider  \( x_1(t) - x_1(t) \), then the ROC would now turn into the 
+		entire plane!
+	\item \textbf{Time shift:} Given \( x(t - t_0) \), then we have \( e^{-st_0}X(s) \). Very similar to 
+		the Fourier transform! The proof is relatively easy, just do a change of variables. 
+	\item \textbf{S-domain shift:} Given \( e^{s_0 t} x(t) \), then this gives  \( X(s - s_0) \). Again, just 
+		do the integral via a change of variables. The ROC will be shifted by \( \Re(s_0) \). 
+
+		More formally, if we let \( s' = s - s_0 \) and it has a ROC of \( R \), then the ROC of \( s \) is 
+		going to be \( R + \Re(s_0) \). 
+	\item \textbf{Time scaling:} For a signal \( x(at) \), then the Laplace transform gives  \( \frac{1}{a}X(s) \).
+		So if we shrink in time domain, then we expand in the \( s \)-domain, just like the Fourier transform.
+		The new ROC is now \( a \cdot R \). As for the proof:
+		\begin{align*}
+			\int_{-\infty}^{\infty} x(at) e^{-st} \diff t  &=  \int_{-\infty}^{\infty} x(\tau) 
+			e^{-s \tau / a} \frac{1}{a} \diff \tau \\
+			&= \frac{1}{|a|}\int_{-\infty}^{\infty} x(\tau) e^{-s \tau / a} \diff \tau = \frac{1}{|a|}
+			X\left( \frac{s}{a} \right) 
+		\end{align*}
+		\question{study this proof later.}
+		
+		There is also the case where \( a = -1 \), in which case we have \( x(-t) \overset{\mathcal L}
+		{\leftrightarrow} X(-s)\). 
+	\item Given a signal \( \cos(\omega_0 t) u(t) \), then we get \( X(s) = \frac{s}{s^2 + \omega_0^2} \). The strategy
+		is basically the same thing as the Fourier transform, where we split the cosine into 
+		complex exponential form. The region of convergence is \( \Re(s) > 0 \).
+
+		For \( \cos(- \omega_0 t) u(-t) \), then we have \( X(s) = -\frac{s}{s^2 + \omega_0^2} \). 
+
+		\question{check this.}
+	\item \textbf{Conjugation:} Suppose we have \( x(t) \) and take the complex conjugate \( x^{*}(t) \), 
+		then just like the Fourier transform where \( x^{*}(t) \) corresponds to \( X^{*}(-\omega) \), here 
+		we it gives us \( X^{*}(s^{*}) \).  
+
+		This doesn't change the ROC, since the ROC only depends on the real component. 
+
+		\question{Isn't this different from the Fourier property, where the input is not conjugated?} 
+
+		\answer{Because the Fourier transform deals with a purely imaginary \( s \), then swapping to a negative 
+		is the same as conjugating a general complex value \( s \in \C \).}
+	\item \textbf{Convolution Theorem:} We have \( x_1(t) * x_2(t)  \) transforms as \( X_1(s) X_2(s) \). The region
+		of convergence here is \( R_1 \cap R_2 \), since we need a place where the Laplace transform 
+		always exists. 
+
+		The mathematical steps to prove this are nearly identitcal to what we had for the Fourier transform.
+	\item \textbf{Differentiation:} The derivative \( \dv{x(t)}{t} \) transforms as \( s X(s) \). This makes 
+		solving differential equations to be much more approachable. The ROC will contain \( R \), but 
+		can sometimes include more than just \( R \). An example where \( R \) increases 
+		is the signal \( x(t) = \sin(\omega_0 t) u(t) \). 
+
+		We know that \( x(t) \) transforms to \( X(s) = \frac{\omega_0}{s^2 + \omega_0^2} \), then 
+		\( \dv{x(t)}{t}  \) will transform as \( \frac{\omega_0s}{s^2 + \omega_0^2} \). 
+	\item \textbf{Differentiation in s-domain:} The function \( -t x(t) \) transforms as 
+		\( \dv{X(s)}{s} \), and the region of convergence does not change. In general, for a 
+		signal \( t^n e^{-at} u(t)\), this will transform as 
+		\[
+		X(s) = \frac{(-1)^{n} n!}{(s + a)^{n}}
+		\] 
+\end{itemize}
+
+
+
+
+

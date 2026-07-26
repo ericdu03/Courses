@@ -1,0 +1,264 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{epigraph}
+\usepackage{caption}
+\usepackage{esint}
+
+%Page formatting
+\lhead{Eric Du}
+\chead{Homework 5}
+\rhead{\today}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\title{Homework 5}
+\author{Eric Du}
+\date{\today}
+
+%.sty file handling
+\usepackage[sexy]{evan}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+%Paragraph Formatting
+\setlength{\epigraphwidth}{148pt}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+
+%TikZ special settings
+\usepackage{circuitikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{decorations.markings}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent To complete this homework, I worked with \textbf{Andrew Binder} and \textbf{Aren Martinian}
+\end{abstract}
+
+\section{Problem 1}
+
+From lecture, we have the following relationsihps for impedances in circuit elements: 
+
+\begin{align*}
+\text{Inductors:}& \ Z_L = i\omega L\\
+\text{Resistors:}& \ Z_R = R\\
+\text{Capacitors:}& \ Z_C = \frac{i}{\omega C}
+\end{align*}
+
+We also have a relationship bewteen the impedances of circuit elements in series and parallel:
+
+\begin{align*}
+\text{Series:}& \ Z_{eq} = Z_1 + Z_2\\
+\text{Parallel:}& \ Z_{eq} = \frac{Z_1Z_2}{Z_1 + Z_2} 
+\end{align*}
+
+Combining these two we get:
+
+\[\begin{cases}
+Z_{top} &= i\omega L + R \\
+Z_{bottom} &= \frac{i}{\omega C}
+\end{cases}\]
+
+And since both the top and bottom are connected in parallel we have: 
+
+\begin{align*}
+    Z_{eq}(\omega) &= \frac{\frac{i}{\omega C}(i\omega L + R)}{i\omega L + R + \frac{i}{\omega C}}\\
+    &= \frac{iR - \omega L}{i(\omega^2 LC + 1) + R\omega C}
+\end{align*}
+
+Analyzing the limits of this function as $\omega$ goes to infinity, we see that constant terms don't really matter, so we look only at the terms that depend on $\omega$. Eliminating the non $\omega$-dependent terms, we get: 
+
+
+\begin{align*}
+    Z_{eq}(\omega) &= \frac{-\omega L}{\omega (i\omega LC + RC)}\\
+    &= \frac{-L}{i\omega LC + RC}\\
+    &= \frac{-L}{i\omega LC}\\
+    &= \frac{i}{\omega C}
+\end{align*}
+
+This expression for $Z_{eq}(\omega)$ is the same as the impedance of a capacitor. This makes sense intuitively, since at very high frequencies, the electrons that move around the cirucit cannot move, and thus the impedance should drop to zero, just like a capacitor. We could have also deduced this fact by taking the $\lim_{\omega \to \infty} Z_{eq}(\omega)$ and showing that this limit also goes to zero. On the other hand, we notice that:
+
+\[ \lim_{\omega \to 0} Z_{eq}(\omega) = \frac{iR}{i} = R\]
+
+This limit also makes sense intuitively becuase an AC power supply that has zero frequency is essentilally a steady-state DC current. Since the current is steady-state, then the back $\varepsilon$ from the inductor is zero (as a result of $\dot I = 0$), leading to the impedance from the inductor to be zero. Simultaneously, since the current is steady-state, then the capacitor acts like a break in the circuit, and thus there is no current going through that section of wire, also leading to a zero impedance. As a result, the only element that has the ability to impede the current is the resistor, which has an impedance of $R$, as we expected.
+
+
+The approximation $Z_{eq}(\omega) \approx R + iX_L(\omega)$ is valid whenever the capacitance is very small compared to $R$ and $L$. This will cause the impedance through the capacitor to be larger than that through the resistor and inductor, causing the circuit to approximately be an RL circuit. Thus, we aim to solve:
+
+\begin{align*}
+    Z_c &\ll Z_R + Z_L\\
+    \frac{i}{\omega C} &\ll R + i\omega L\\
+    C &\ll \frac{i}{\omega (R + i\omega L)}\\
+    C &\ll \frac{i(\omega R - i\omega^2 L)}{\omega^2R^2 + \omega^4 L^2}\\
+    C &\ll \frac{\omega^2 L}{\omega^2 R^2 + \omega^4 L^2} + \frac{i\omega R}{\omega^2R^2 + \omega^4L^2} 
+\end{align*}
+
+Taking the real part of this, we get:
+
+\[ C \ll \frac{L}{R^2 + L^2 \omega^2}\]
+
+\section{Problem 2}
+
+Assume that the circuit is connected to a voltage $V_T$. From Kirchhoff's loop rule, we have: \
+
+\[ \begin{cases}
+    V - I_1Z_1 - MI_2 = 0\\
+    V - I_2Z_2 - MI_1 = 0
+\end{cases}\]
+
+We can subtract these two equations, and here's the algebra: 
+
+\begin{align*}
+    I_2Z_2 - I_1Z_1 + MI_1 - M I_2 &= 0\\
+    I_1Z_2 - (I_T - I_2)Z_1 + M(I_T - 2I_2) &= 0 && I_T = I_1 + I_2 \text{ from Kirchhoff}\\
+    I_2Z_2 - I_TZ_1 + I_2Z_1 + MI_T - 2MI_2 &= 0\\
+    I_2(Z_2 + Z_1 - 2M) &= I_T(Z_1 - M)\\
+    I_2(Z_2 + Z_1 - 2M) &= \frac{V_T}{Z_T}(Z_1 - M) && \text{Use } V_T = I_TZ_T\\
+    \therefore Z_T &= \frac{V_T}{I_2} \frac{Z_1 - M}{Z_2 + Z_1 - 2M} && \frac{V_T}{I_2} = Z_2 \text{ since they are in parallel}\\
+    &= \frac{Z_2(Z_1 - M)}{Z_2 + Z_1 - 2M}
+\end{align*}
+Which is the equivalent impedance. 
+
+\section{Problem 3}
+
+First, we calculate $Z_{out}$, since the system is slightly simpler:
+
+\[Z_{out} = \frac{R_2 \frac{i}{\omega C_2}}{R_2 + \frac{i}{\omega C_2}} = \frac{R_2i}{R_2 \omega C_2 + i}\]
+
+Now we calculate $Z_{in}$, in a similar fashion to how we calculated $Z_{out}$:
+
+\[Z_{in} = \frac{R_1i}{R_1\omega C_1} + \frac{R_2i}{R_2\omega C_2 + i}\]
+
+We also have $V_{out} = IZ_{out}$ and $V_{in} = IZ_{in}$ for both circuits. Notice that the current is the same in both loops, because of Kirchhoff's junction rules - there are paths for the current to flow in that aren't considered by both systems, so the current for both should be the same. Now, we calculate $\frac{V_{in}}{V_{out}}$ for convenience:
+
+\begin{align*}
+    \frac{V_{in}}{V_{out}} = \frac{Z_{in}}{Z_{out}} &= \frac{\frac{R_1i}{R_1\omega C_1 + i} + \frac{R_2i}{R_2\omega C_2 +i}}{\frac{R_2i}{R_2\omega C_2 + i}}\\
+    &= \frac{\frac{R_1i}{R_1\omega C_1 + i}}{\frac{R_2i}{R_2\omega C_2 + i}} + 1\\
+    &= \frac{R_1}{R_1 \omega C_1 + i} \cdot \frac{R_2 \omega C_2 + i}{R_2} + 1 
+\end{align*}
+
+Now notice that if we introduce $R_1C_1 = R_2C_2$, then $R_1 \omega C_1 + i= R_2\omega C_2 + i$, since $\omega$ is the same across both circuits, so those terms cancel out. Thus, we get:
+
+\[ \frac{V_{in}}{V_{out}} = \frac{R_1}{R_2} + 1 = \frac{R_1 + R_2}{R_2}\]
+
+If we recirprocate this so that it's in the form of the problem statement, we get:
+
+\[ \frac{V_{out}}{V_{in}} = \frac{R_2}{R_1 + R_2}\]
+
+As desired. 
+
+This final equation for $\frac{V_{out}}{V_{in}}$ makes sense to only depend on $R$, since our goal from the beinning was to make this voltage divider independent of the frequency, thus meaning that our voltage divider is now compensated.
+
+\section{Problem 4}
+
+Calculating the equivalent impedances for both circuits:
+
+\begin{align*}
+    Z_{left} &= \frac{Z_RZ_L}{Z_R + Z_L} = \frac{iR^2\omega L + R\omega^2 L^2}{R^2 + \omega^2 L}\\
+    Z_{right} &= Z_R + Z_C = R + \frac{i}{\omega C}\\
+\end{align*}
+
+Thus, for them to be equal, we set $Z_{left} = Z_{right}$:
+
+\begin{align*}
+    R + \frac{i}{\omega C} &= \frac{iR^2\omega L + R\omega^2 L^2}{R^2 + \omega^2 L}\\
+    R + \frac{i}{\omega C} &= \frac{R\omega^2L^2}{R^2 + \omega^2 L} + \frac{iR^2\omega L}{R^2 + \omega^2L}
+\end{align*}
+
+To find equivalence, we need to solve the equivalences: 
+
+\[\begin{cases}
+    R &= \dfrac{R \omega^2 L^2}{R^2 + \omega^2 L}\\
+    \dfrac{i}{\omega C} &= \dfrac{iR^2\omega L}{R^2 + \omega^2 L}
+\end{cases}\]
+
+The only way that these values are equivalent to one another is if both sides equal zero (i.e. there is no other real, simultaneous solution for $R$, $L$ and $C$ that satisfies both equations). Taking the case for equating the real values, we have $R = 0$, or $L = \infty$ (while $R \neq 0$). In the case that $R = 0$, then we get $C = \infty$, and in the case that $L = \infty$, then we get $C = \frac{1}{\omega}$. 
+
+In both these cases, we took the value of some element in the circuit to be infinity. This implies that there are no real solutions for $R$, $L$, $C$ that causes the equivalent impedances to be exactly equal. However, we can often get a good approximate equivalence for them by setting the relative sizes of $R$, $L$ and $C$ to be as described.
+
+\section{Problem 5}
+
+We have $\overline{P} = \frac{1}{2} \varepsilon_0 I_0 \cos \phi$. Here, we will work with admittances instead of inductances, simply becuase admittances add in parallel and it's easier for us here becuase all three circuit elements are in parallel. 
+
+\begin{align*}
+    I_0 = \left| \tilde{I}\right| &= \varepsilon_0 \sqrt{\left(\frac{1}{R}\right)^2 + \left(\omega C - \frac{1}{\omega L}\right)^2}
+\end{align*}
+For the phase angle, we're looking at $\cos \phi = \frac{\Re{I_0}}{|\tilde I|}$. Computing this value we get:
+
+\[ \cos \phi = \frac{\frac{1}{R}}{\sqrt{\left(\frac{1}{R}\right)^2 + \left(\omega C - \frac{1}{\omega L}\right)^2}}\]
+
+So calculating the power:
+
+\begin{align*}
+\overline P &= \frac{1}{2}\sqrt{\left(\frac{1}{R}\right)^2 + \left(\omega C - \frac{1}{\omega L}\right)^2} \cdot \frac{\frac{1}{R}}{\sqrt{\left(\frac{1}{R}\right)^2 + \left(\omega C - \frac{1}{\omega L}\right)^2}}\\
+&= \frac{\varepsilon_0^2}{2R}
+\end{align*}
+
+We also have the power through the resistor as: $\overline P_R = \frac{1}{2}\frac{V_0^2}{R} = \overline P$ as desired. This result should make sense intuitively as well. The resistor is the only circuit element that dissipates energy over time, since both inductors and capacitors store energy in magnetic and electric fields respectively. As a result, the power dissipated through the circuit will have to be through the only circuit element that \textit{can} dissipate energy, that being the resistor. Thus, we should expect the average power across the whole circuit to equal that of the resistor.
+\section{Problem 6}
+
+\subsection{Part a}
+Finding the equivalent impedance: 
+
+\begin{align*}
+    Z_{eq} &= \frac{R\left(R + \frac{i}{\omega C}\right)}{R + R + \frac{i}{\omega C}}\\
+    &= \frac{\left(R^2 + \frac{iR}{\omega C}\right) \left(2R - \frac{i}{\omega C}\right)}{4R^2 + \frac{1}{\omega C}}
+\end{align*}
+
+Taking the imaginary component of this, we get:
+
+\begin{align*}
+    \Im(z) &= \frac{\frac{iR^2}{\omega C}}{4R^2 + \frac{1}{\omega C}}\\
+    &= \frac{R^2}{4R^2 \omega C + 1}
+\end{align*}
+
+Since we choose $\omega = \frac{1}{RC}$ then we have:
+
+\[ \Im(z) = \frac{R^2}{4R + 1}\]
+
+\subsection{Part b}
+
+We have $I_0 = \frac{\varepsilon_0}{\Re(z)}$. From the previous part where we solved $Z_{eq}(\omega)$, we get:
+
+\begin{align*}
+    \Re(Z_{eq}) &= \frac{2R^3 + \frac{R}{\omega^2C^2}}{4R^2 + \frac{1}{\omega C}}\\
+    &= \frac{2R^3\omega^2C^2 + R}{\omega C(4R^2\omega C + 1)}
+\end{align*}
+
+Again, we note down the fact that $\omega = \frac{1}{RC}$, so our equation above massively simplifies to:
+
+\[ \Re(Z_{eq}) = \frac{3R^2}{4R+1}\]
+
+Now, $\varepsilon_0$ is given in the problem, so we have:
+
+\[ I_0 = \frac{\varepsilon_0}{\Re(Z_{eq})} = \frac{\varepsilon_0(4R+1)}{3R^2}\]
+
+From the textbook, the phase angle can be calculated as $\phi = \tan^{-1}\left(\frac{\Im(Z)}{\Re(Z)}\right)$, so we get: 
+
+\[\phi = \tan^{-1}\left(\frac{\frac{R^2}{4R+1}}{\frac{3R^2}{4R+1}}\right) = \tan^{-1}\left(\frac{1}{3}\right) \approx 18.43^\circ\]
+
+In regards to the current, it should make sense that we take $\Re{Z_{eq}}$ here because we are considering a \textit{physical} current, and thus we should not consider its imaginary components. An interesting reuslt of this value is the fact that the current does not depend on the capacitor at all, but this is simply because we've set $\omega = \frac{1}{RC}$ to perfectly cancel out the capaictor. 
+
+In the general case, it should make sense that the current through the circuit should depend on all three circuit elements, and in fact, if we take $\Re(Z_{eq})$ without performing the substitution of $\omega = \frac{1}{RC}$, then this is exactly the result we get. 
+
+\subsection{Part c}
+
+From the textbook (equation 8.84), we have $\overline{P} = \frac{1}{2}\varepsilon_0I_0 \cos \phi$, so substituting our values:
+
+\[ \overline{P} = \frac{\varepsilon_0^2(4R+1)}{6R^2}\cos \left(\tan^{-1}\left(\frac{1}{3}\right)\right)\] 
+
+\end{document}

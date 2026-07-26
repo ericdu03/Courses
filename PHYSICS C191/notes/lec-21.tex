@@ -1,0 +1,114 @@
+\section{Quantum Computing Platforms}
+\begin{itemize}
+	\item Trapped ions: qubits are single atoms, but we've removed one of the electrons so they're positively charged.
+		We do this so that we have better control over them. This is the platform that's pursued by Honeywell/
+		Quantinuum, AQT, among other companies.  
+
+		\textbf{Pros:}
+		\begin{itemize}
+			\item These have long coherence times \( T_2 \sim 1 \) minute
+			\item They operate at room temperature -- basically it's just a big vaccuum chamber sitting in a room 
+				without the need for cryogenics. Nothing about the qubits require low temperature, we just happen 
+				to involve cryogenics in order to achieve a better vaccuum. 
+			\item Highest fidelity gates so far, and have been one of the first to discover quantum gates.  
+		\end{itemize}
+
+		\textbf{Cons:}
+		\begin{itemize}
+			\item Gates operate typically at 50 microseconds.  
+			\item Requires lasers, optics
+			\item The coulomb interaction between ions makes scaling more difficult
+		\end{itemize}
+	\item Neutral Ions: basically the same trapping techniques, except the atoms are neutral instead of 
+		charged. We can't trap them using fields because they are neutrally charged. 
+
+		\textbf{Pros:}
+		\begin{itemize}
+			\item Long qubit coherence times
+			\item Room temperature operation 
+			\item Inherently somewhat scalable, since neutral atoms don't interact
+			\item Optical interface. 
+		\end{itemize}
+		\textbf{Cons:}
+		\begin{itemize}
+			\item Experiments usually looks like a mess (requires a lots of lasers), and much of the effort goes into 
+				managing the lasers
+			\item Requires an ultrahigh vaccuum (so we need cryogenics basically)
+			\item Trapping is inherently more difficult and requires high laser power 
+		\end{itemize}
+	\item Superconducting qubits: these are man-made qubits instead of atoms. 
+
+		\textbf{Pros}
+		\begin{itemize}
+			\item Chip-based architecture. It's something that we can imagine scaling up to a chip, and we interact 
+				with it electronically
+			\item Fast gate times (on the order of 50 nanoseconds)
+			\item Previously leading the field commercially, but starting to recognize that superconducting 
+				qubits might not be the way. (some comapnies are starting to invest in atomic-based approaches)  
+		\end{itemize}
+
+		\textbf{Cons:}
+		\begin{itemize}
+			\item Requires dilution refrigerators, so need cryogenic temperatures 
+			\item Short coherence times, though this is getting much better 
+			\item Control lines needed for every individual qubit -- every single qubit you want to add means an 
+				extra set of lines you need to connect to your system. 
+			\item Not very anharmonic. 
+		\end{itemize}
+	\item Quantum Dots: creating a 2D electron gas, and is possibly the most similar to the structure that we studied 
+		in the previous lecture. 
+		
+		\textbf{Pros:}
+		\begin{itemize}
+			\item Semiconductor chip based architecture
+			\item High fidelity, fast-qubit and two qubit gates. 
+			\item Controlled by microwaves and electronics, there are no lasers required in this process. 
+		\end{itemize}
+		
+		\textbf{Cons:}
+		\begin{itemize}
+			\item Requires cryogenic temperatures
+			\item Short coherence times 
+			\item Lots of tuning required for each device -- very sensitive architecture
+			\item Scaling up to many qubits is still an open problem. We can do 2-qubit gates, but it's not clear 
+				how we would scale up beyond that. 
+		\end{itemize}
+	\item Photonics: none of the stuff that we've talked about so far really applies here. States are single 
+		photons, where the information is either stored in the polarization or which rail the photon 
+		lives on. 
+		
+		\textbf{Pros:}
+		\begin{itemize}
+			\item Silicon chip based architecture
+			\item Room temperature operation, what this basically means is that in principle we can do this 
+				at room temperature, but the best photon detectors still require cryogenics. 
+			\item Fairly easy to scale up, since photons naturally fly around
+			\item "Measurement" based -- some of the gates are very easy to physically implement. For instance, 
+				if you wanted to change the polarization then all you'd do is just introduce a wave plate
+		\end{itemize}
+		
+		\textbf{Cons:}
+		\begin{itemize}
+			\item Gate operations are very difficult to achieve, and are inherently probabilistic. Preparing 
+				the state itself is a challenge (trying again and figuring out when you succeed), then performing 
+				the desired computation afterwards. 
+			\item Requires identical photonic states and photonic elements
+			\item Low gate fidelities
+		\end{itemize}
+\end{itemize}
+\subsection{Trapped Ions}
+\begin{itemize}
+	\item Ideally we'd like to use the simplest atom possible, which in our case would be hydrogen-like 
+		atoms. We can't use hydrogen itself, because transitions for hydrogen are in the UV spectrum, which poses 
+		some challenges (what specifically?)
+	\item Commercially, we normally use alkaline earth metals and then strip one electron off so that we end up with 
+		a hydrogen-like atom. 
+	\item Hydrogen-like atoms have a principal quantum number \( n \), whose energy scales with:
+		\[
+		E_n = -\frac{z^2 \frac{\mu}{m} E_H}{2n^2}
+		\] 
+		\( E_H \) is a physical constant, which is written as \( E_H = mc^2 \alpha^2 \)
+	\item We also have angular momentum \( \ell \), which has possibilties between \( 0 \) to \( n - 1 \). 
+	\item Transitions between these obey selection rules, which tells us that \( \Delta \ell = \pm 1 \) and 
+		\( \Delta m = \pm 1 \). 
+\end{itemize}

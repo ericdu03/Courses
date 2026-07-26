@@ -1,0 +1,100 @@
+\section{Introduction}
+This is a compilation of my notes for CS170 during Fall 2023. The class was taught by Nika Haghtalab and John Wright.  
+
+\subsection{Goals}
+\begin{itemize}
+	\item The goal of this class is to design and analyze algorithms:
+		\begin{itemize}
+			\item Design: Acquire an algorithmic toolkit
+			\item Analysis: Learn to think analytically and undersatnd what our algorithm is doing.
+			\item Understand limitations: There are some some problems that are \textit{very hard}, and it's important to think about 
+				what these limitations are. For instance, the fact that encryption is secure is a \textit{scientific fact}
+				that was proven by computer scientists. 
+			\item Communication: Learn to formalize and communicate clearly about algorithms.   
+		\end{itemize}
+	\item There are going to be 3 fundamental questions we will ask when analyzing algorithms: Does it work? Is it fast? 
+		and can we do better?
+\end{itemize}
+\subsection{Addition}
+\begin{itemize}
+	\item Let's go back to the addition of integers for instance. How fast is the algorithm that we learned in 
+		grade school? 
+	\item To answer this, we need to ask how many operations there are, how many computations there are, and stuff like that. In 
+		our case, there are at most \( n \) computations we have to take (we won't really care about carry over because that only 
+		adds a constant factor overhead, which we'll talk about later.) At the end of the day, there are about 
+		\( 2n \) to \( 3n \) computations. 
+\end{itemize}
+\subsection{Asymptotic Behavior}
+\begin{itemize}
+	\item In most cases, we only care about asymptotic behavior (i.e. what happens when \( n \) grows large). There will be 
+		"better" algorithms that work much better for large \( n \), but are slower than some "worse" algorithms for small 
+		values of \( n \). 
+	\item Formally, we define a function \( R(N) \in O(f(N)) \) means that there exists a positive constant \( k_2 \) such that 
+		\( R(N) \le k_2f(N) \) for all \( N \) larger than some \( N_0 \). This is also why in the earlier example, 
+		we don't really argue between \( 2n \) and \( 3n \). So we'd say that addition runs in \( O(n) \). 
+\end{itemize}
+\subsection{Multiplication} 
+\begin{itemize}
+	\item Now let's look at multiplication. How many operations do we have here? Well, there are \( n^2 \) mulcipliations, with 
+		at most \( n \) carries, so it runs in \( O(n^2) \). 
+	\item Now the question is, can we do better than this? This might be a hard question to answer, but we \textit{can} show 
+		easily that we can't do better than \( O(n) \). This is because we need at least \( n \) computations to see all the 
+		numbers, so our runtime must be \textit{at least} \( O(n) \). 
+	\item Another fun algorithm for multiplication is the \textit{Egyptian/Russian Peasant Algorithm}, which goes like this:
+		\begin{enumerate}[label=\arabic*)]
+			\item Halve the first number (floor divide) and double the second number until the first number is 0
+			\item Remove any rows where the first column is even
+			\item Add all remaining rows
+		\end{enumerate}
+
+		At home: try to prove that this is correct!
+	\item There have been improvements!
+		\begin{itemize}
+			\item Karatsuba (1960): \( O(n^{1.6}) \) (we will do this!)
+			\item Toom-3/Toom-Cook (1963): \( O(n^{1.465}) \) 
+			\item Sch\"onhage-Strassen (1971): \( O(n \log(n) \log\log(n)) \). 
+			\item Furer (2007): \( O(n \log n \cdot 2^{O(\log^*(n))}) \) 
+			\item Harvey and Van der Hoeven (2019): \( O(n \log n) \)
+		\end{itemize}
+\end{itemize}
+
+\subsection{Divide and Conquer}
+\begin{itemize}
+	\item The idea here is that instead of solving a big problem, we can break up a big problem into smaller subproblems recursively.
+		Eventually, we'll get to a point where the problem becomes trivial, at which point we're going to recurse back up. 
+	\item For multiplication, one way we can divide is by breaking up multiplication of two integers with \( n \) digits into 
+		multiplication of digits with \( n/2 \) digits. For instance:
+		\[
+		1234 \times 5678 = (12 \times 100 + 34) \times (56 \times 100 + 78) = (12 \times 56) \cdot 10^{4} + 
+		(12 \times 78 + 34 \times 56) \cdot 10^2 + 34 \times 78
+		\] 
+		Here, we've already divided our problems! Notice that now all we have to compute is the products 
+		\( 12 \times 56 \), \( 12 \times 78 \), \( 34 \times 56 \) and \( 34 \times 78 \)! We don't really care about 
+		the \( 10^{4} \) and \( 10^2 \) terms, since those are equivalent to a left-shift by some number of digits.    
+	\item For any \( n \) digit number, we can then break it up as follows:
+		\[
+		x_1x_2\cdots x_n = (x_1x_2 \cdots x_{n / 2}) \times 10^{n / 2} + x_{n / 2 + 1}x_{n / 2 + 2} \cdots x_n
+		\] 
+		So for two products, we can split as follows:
+		\[
+		x \times y = (a \times 10^{n / 2} + b)(c \times 10^{n /2} + d) = (a \times c) 10^{n} + (a \times d + c \times b) 10^{n /2}
+		 + b\times d
+		\] 
+	\item With this, all we have to do now is repeatedly recurse until we get down to 1-digit numbers!
+	\item Unfortunately, this algorithm is also \( O(n^2) \) ! At every step, because we're doubling the number of computations, 
+		we are creating \( O(n^2) \) 1-digit operations, so this algorithm takes \( O(n^2) \) time to run. Next lecture, we'll 
+		look at how to improve this.
+	\item How do we prove that this is \( O(n^2) \)? This can be shown using what's called the "tree method." The approach 
+		is to look at the subproblem size, and see how many layers we have until we get down to a problem of size 1. In our 
+		case, we see that for a problem of size \( n \), we split it into four subproblems of size \( n / 2 \) every time. 
+
+		Since we halve the subproblem size at each layer, then we'll have \( \log_2 n \) layers in total. Then, since each 
+		subproblem generates 4 more subproblems, then the number of subproblems in a layer \( t \) is given by \( 4^{t} \).  
+		Therefore, the number of leaves is:
+		\[
+			4^{\log_2 n} = n ^{\log_2 4} = n^2
+		\]
+		This is how we get our \( O(n^2) \) bound. 
+
+		\question{Is it always true that \( a^{\log_b c} = c^{\log_b a} \)?}
+\end{itemize}

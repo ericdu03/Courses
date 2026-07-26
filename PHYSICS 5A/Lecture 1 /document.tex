@@ -1,0 +1,192 @@
+\documentclass{article}
+\title{Physics 5A: Lecture 1}
+\author{Eric Du}
+\date{\today}
+\usepackage[cm]{sfmath}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\usepackage{float}
+\lhead{Eric Du}
+\chead{Physics 5A: Lecture 1}
+\rhead{\today}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{148pt}
+\usepackage{color}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[sexy]{evan}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\usepackage{caption}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	
+	"Think of physics as a story"
+	\medskip
+	
+	Aristotle postulated that specific objects had specific ``tendencies", i.e. Earth and Water tend to fall, air and fir tend to rise. That's how he came to the conclusion that Earth has a layer of air surrounding it. 
+	
+	\section{Introduction}
+	
+	Newtonian mechanics matches most experiments (how and why do tings move), with two major exceptions:
+	
+	\begin{enumerate}
+		\item when $v \to c$, the speed of light (relativity)
+		\item when things are really small (quanutm mechanics)
+	\end{enumerate}
+
+	\subsection{Why do we study Newtonian Mechanics}
+	
+	\begin{enumerate}
+		\item Purely for utilitarian reasons 
+		\item It has some beautiful symmetry (in topics such as conservation of energies and momenta)
+		\item Even complex systems like dark matter can be undestood using classical mechanics
+		\end{enumerate}
+	
+	\subsection{Physics Easy/Hard}
+	
+	There are a small number of concepts that you really need to know. You can combine these concepts together with math to explain a large amount of why the universe works the way it does. That said, if you don't understand many of these concpets, then things quickly become very difficult to understand. If you don't have a mastery of these basic concepts, it's very difficult to build things.
+	
+	\medskip
+	
+	\subsubsection{How to succeed?}
+	
+	Ponder on the concepts. Take things slow and steady, but constant. This means reading assignments and quizzes every class, and homeworks every week. Moral: it's easier to spread things out over a large period of time. You also learn more from those around you than from the professor. As you ponder about these questions you can form discucsions and learn off each other. \footnote{Physics study hall: Physics 375, 6-9 pm on Tuesdays}
+	
+	
+	\medskip
+	
+	\subsection{5A and 7A: whats the difference?}
+	
+	\small{You don't have to worry about this, you're doing 5A no matter what LOL}
+	
+	\medskip
+	
+	5A goes deeper into math than the 7A course, and there's more derivations in 5A than 7A. This is at the cost of brain power. Ask yourself: ``is it helpful, or hurtful, to have this math in our description of physics?"
+	
+	\medskip
+	
+	Small note about labs: 5A is more focused on creativity than anything else. 
+	
+	
+	\section{Lecture 1: Kinematics and Vectors}
+	
+	Essentially the language of quantitatively describing the motion of particles thorugh space. Some core concepts:
+	
+	\begin{itemize}
+		\item Displacement: has a magnitude and a direction $\rightarrow$ vector [directed line segment (physics), directed numbers + rules to transform (math)]
+		\begin{itemize}
+			\item For the purposes of 5A, we will not really touch the math side of vectors
+			\item Displacement vector is the distance from the reference point to a given point on a path
+		\end{itemize}
+	\end{itemize}
+
+\subsection{Properties of Vectors}
+
+Given a vector $\vec{a}$, $\vec{b}$:
+
+\begin{enumerate}
+	\item If $|\vec{a}| = |\vec{b}|$, then we have $\vec{a} = \vec{b}$
+	\item \textbf{Scalar Multiplication:} Given vector $\vec{a}$, we can construct new vectors by mullplying them by a scalar, like so: $\vec{e} = f \vec{a}$, $f \in \mathbb{R}$
+	\begin{enumerate}
+		\item This vector has magnitude $f|a|$, and direction in the same direction as $\vec{a}$ originally (we can also denote it as $\hat{a}$).
+		\item If $f > 0$, then the resulting vector is scaled but the direction of $\vec{e}$ is the same as $\hat{a}$.
+		\item If $f < 0$, then the resulting vector is scaled and the direction of $\vec{e}$ is opposite that of $\hat{a}$ (in other words, $-\hat{a}$).
+	\end{enumerate}
+	\item \textbf{Unit Vectors:} Vectors that point in any direction, but have a magnitude of 1. We can define unit vectors in the following way: $\hat{a} = \frac{\vec{a}}{|a|}$
+	\item Consider $\vec{a}$ and $\vec{e}$, even though they have different magnitudes we have the property that $\hat{a} = \hat{e}$, becuase they point in the same direction.
+	\item \textbf{Vector Addition:} ``Head-Tail" technique to find the sum of two vectors. We usually use $\vec{R}$ to denote the sum of two vectors.
+	\begin{enumerate}
+		\item Translation of a vector thorugh space doesn't change its identity
+		\item We can think of $\vec{a} - \vec{b}$ as the same thing as $\vec{a} + (-\vec{b})$.
+		\item \textbf{Vector addition is commutative.} Basically meaning $\vec{a} + \vec{b} = \vec{b} + \vec{a}$. (you can prove this using the parallelogram argument
+		\item \textbf{Vector addition is associative.} $(\vec{a} + \vec{b}) + \vec{c} = \vec{a} + (\vec{b} + \vec{c})$ 
+		\begin{itemize}
+		\item	\begin{proof}
+				Literally just draw it out and you'll find that it's the same.
+			\end{proof}
+			\end{itemize}
+		
+		\item \textbf{Vector addition is distributive.} $c(\vec{a} + \vec{b}) = c\vec{a} + c\vec{b}$.
+	\end{enumerate}
+
+	\item \textbf{Vector Multiplication}
+	\begin{enumerate}
+		\item \textbf{Dot Product:} We can find the dot product of $\vec{a}$ and $\vec{b}$ as $\vec{a} \cdot \vec{b} = ab \cos(\theta)$, where $\theta$ denotes the angle bewteen the two vectors.
+		\begin{itemize}
+			\item The geometric definition is the projection of one vector onto another. Doing this for both ways (using $\vec{a} \cos(\theta)$ and $\vec{b} \cos(\theta)$ will give you the proof that dot product commutes.)
+			\item \textbf{Special case:} $\vec{a}$ and $\vec{b}$ are perpendicular to each other. In this case, the $\vec{a} \cdot \vec{b} = 0$ since $\cos(90^\circ)= 0$. 
+			\item \textbf{Special case 2:} $\vec{a}$ and $\vec{b}$ are conicident, then the dot product $\vec{a} \cdot \vec{b} = ab$. 
+			\item \textbf{Special case 3:} If $\vec{a} = \vec{b}$ then we have $\vec{a} \cdot \vec{b} = a^2 \implies |a| = a = \sqrt{\vec{a} \cdot \vec{a}}$. 
+		\end{itemize}
+	\end{enumerate}
+\end{enumerate}
+
+\subsection{Mathematical laws using vectors}
+
+We can prove the law of cosines using vectors. See Denis Auroux's MIT 18.02 lecture (multivariable calculus) if you want more information on this.
+
+\medskip
+
+Put simply, given $\vec{a}, \vec{b}$ and angle $\theta$, we can construct $\vec{a} + \vec{b}$. We calculate the magnitude of $\vec{c} = \vec{a} + \vec{b}$:
+
+\[ c^2 = a^2 + 2ab \cos(\theta) + b^2\]
+
+Note that this angle $\theta$ does not describe the interior angle of the triangle but rather the angle between the two vectors. Rather, we need $\pi - \theta$ to describe the interior, which we can rearrange to $-\cos(\theta)$, giving us the formula:
+
+\begin{equation}
+	c^2 = a^2 + b^2 - 2ab\cos(\theta)
+\end{equation}
+
+\begin{example}
+	
+	Show that if $|\vec{a} - \vec{b}| = |\vec{a} + \vec{b}|$, then $\vec{a}$ and $\vec{b}$ are perpendicular.
+
+\end{example}
+
+\begin{solution}
+	It suffices to square both sides to evaluate dot product of both sides: 
+	
+	\[ (\vec{a} - \vec{b}) \cdot (\vec{a} - \vec{b}) = (\vec{a} + \vec{b})\cdot (\vec{a} + \vec{b})\]
+	
+	Expanding both sides: 
+	
+	\[ a^2 - 2 \vec{a} \cdot \vec{b} + b^2 = a^2 + 2\vec{a} \cdot \vec{b} + b^2\]
+	
+	The $a^2$ and $b^2$ terms cancel to yield $4\vec{a} \cdot \vec{b} = 0$, implying that $\vec{a} \cdot \vec{b} = 0$, hence the two vectors must be perpendicular.
+\end{solution}
+	
+	\subsection{Coordinate systems/Orthonormal Basis}
+	
+	Given vector $\vec{a}$ and coordinate axes $x$ and $y$, we can write vector 
+	
+	\[\vec{a} = \vec{a_x} + \vec{a_y} = a_x \hat{\i} + a_y\hat{\j}\]
+	
+	We can multiply $\hat{\i}$ to both sides:
+	
+	\[ \hat{\i} \vec{a} = \hat{\i}\left[a_x \hat{\i} + a_y \hat{\j}\right] = a_x[\hat{\i} \cdot \hat{\i} ] + a_y[\hat{\j} \cdot \hat{\j}] = (a_x, a_y)\]
+		
+	We can generalize this to three dimensions:
+	
+	\[ \hat{\i} \vec{a} = \hat{\i} \left[a_x \hat{\i} + a_y \hat{\j} + a_z \hat{k}\right] = (a_x, a_y, a_z)\] 
+		
+	
+	This is just to say that the representation $(a_x, a_y, a_z)$ has the $\hat{\i}, \hat{\j}, \hat{k}$ notation built into it. Another thing to note is that while we can introduce any given set of coordinate axes, it is much simpler to choose a  set which is orthonormal, meaning that each vector is perpendicular to the two others.  
+		
+		
+	
+	\end{document}

@@ -1,0 +1,275 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mechanics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 03} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+    \section*{Collaborators}
+    I worked with \textbf{Andrew Binder} to complete this assignment. Apologies for handing it in so late; this week I just happened to have more work than usual, and I'll make sure that this doesn't happen again. 
+
+    \section*{Problem 1}
+    Suppose we put a delta-function bump in the center of the infinite square well:
+    \[ H' = \alpha \delta(x - a/2)\]
+    where $\alpha$ is constant. 
+    \begin{enumerate}[label=(\alph*)]
+        \item Find the first-order correction to the allowed energies. Explain why the energies are not perturbed for even $n$.
+        
+        \begin{solution}
+            We know that the energies can just be calculated as:
+            \[ E_n = E_n^0 + \expval{H'}{\psi_{n^0}}\]
+            And so therefore: 
+            \begin{align*}
+                E_1 &= \frac{2}{a} \int \sin^2 \left(\frac{n \pi x}{a}\right) \alpha \delta(x - a/2) \\
+                &= \frac{2}{a} \sin^2 \left( \frac{n\pi}{2}\right)
+            \end{align*}
+            For even $n$, the sine term evaluates to zero, so we get no perturbation.
+        \end{solution}
+        \item Find the first three nonzero terms in the expansion (Equation 7.13) of the correction to the ground state $\psi_1^1$.
+        
+        \begin{solution}
+            The formula to find the perturbation is: 
+            \[ \ket{\psi_1} = \ket{\psi_1^0} + \sum_{m \neq 1} \frac{\mel{\psi_m}{H'}{\psi_1}}{E_1^0 - E_m^0} \psi_m^0\]
+            For the denominator, we have
+            \[ E_1^0 - E_m^0 = \frac{\pi^2 \hbar^2}{2ma^2}(1 - m^2)\]
+            And the numerator is 
+            \begin{align*}
+                \mel{\psi_m}{H'}{\psi_1} &= \frac{2}{a} \int \sin\left( \frac{m \pi x}{a}\right) \alpha \delta(x - a/2) \sin \left( \frac{\pi x}{a}\right)\\
+                &= \frac{2\alpha}{a} \sin \left( \frac{m\pi}{2}\right) \sin\left( \frac{\pi}{2}\right)
+            \end{align*}
+            The first three terms will be the first three odd terms, those being $m = 3, 5, 7$, and so therefore: 
+            \begin{align*}
+                \psi_1 &= \frac{2\alpha}{a} \frac{2ma^2}{\pi^2 \hbar^2}\left[ \frac{-1}{-9} \psi_3^0 + \frac{1}{-24} \psi_5^0 + \frac{-1}{-48} \psi_7^0\right]\\
+                &= \frac{2\alpha}{a} \frac{2ma^2}{\pi^2 \hbar^2}\left[ \frac 19 \psi_3^0 - \frac{1}{24} \psi_5^0 + \frac{1}{48} \psi_7^0\right]
+            \end{align*}
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak 
+    \section*{Problem 2}
+    For the harmonic oscillator $[V(x) = (1/2)kx^2]$, the allowed energies are 
+    \[ E_n = (n + 1/2)\hbar \omega, \phantom{aaaa} (n = 0, 1, 2, \dots)\]
+    were $\omega = \sqrt{k/m}$ is the classical frequency. Now suppose the spring constant increases slightly: $k \to (1 + \epsilon) k$. (Perhaps we cool the spring, so it becomes less flexible.)
+    \begin{enumerate}[label=(\alph*)]
+        \item Find the \textit{exact} new energies (trivial, in this case). Expand your formula as a power series of $\epsilon$, up to second order
+        
+        \begin{solution}
+            The new energies will be slightly shifted by the $1 + \epsilon$ term. In other words, we can replace $\omega$ with $\omega' = \sqrt{\frac{(1 + \epsilon)k}{m}}$, and so therefore: 
+            \begin{align*}
+                E_n = (n + 1/2) \hbar \omega' &= (n + 1/2) \hbar \sqrt{\frac{k(1 + \epsilon)}{m}}\\
+                &=(n + 1/2)\hbar \omega \sqrt{1 + \epsilon}\\
+                &= (n + 1/2) \hbar \omega \left( 1 + \frac \epsilon 2 - \frac{\epsilon^2}{8} + \cdots\right)
+            \end{align*}
+            So up to the second order, we have:
+            \[ E_n = \left(n + \frac 12\right) \hbar \omega(1 + \frac \epsilon 2 - \frac{\epsilon^2}{8})\]
+        \end{solution}
+        \item Now calculate the first-order perturbation in the energy, using Equation 7.9. What is $H'$ here? Compare your result with part (a). \textit{Hint:} It is not necessary $-$ in fact it is not \textit{permitted} $-$ to calculate a single integral in doing this problem.
+        
+        \begin{solution}
+            Moving $k \to (1 + \epsilon)k$, then our Hamiltonian becomes: 
+            \[ V(x) = \frac 12 (1 + \epsilon)kx^2 = \frac 12 kx^2 + \frac 12 \epsilon k x^2\]
+            And so our perturbation is 
+            \[ H' = \frac 12 \epsilon kx^2 = \epsilon V_0\]
+            Now, we calculate the first order perturbation in energy, using the equation: 
+            \begin{align*}
+                E_n^1 = \expval{H'}{\psi_n^0} &= \expval{\epsilon V_0}{\psi_n^0}\\
+                &= \epsilon \expval{V_0}{\psi_n^0}\\
+                &= \epsilon \cdot \frac{E_n^0}{2}\\
+                &= \frac{\epsilon}{2} \left( n + \frac 12 \right) \hbar \omega
+            \end{align*}
+            Comparing this with our results from part (a), this works out perfectly, because our calculated $E_1$ is the linear correction term.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+    \section*{Problem 3}
+    Two identical spin-zero bosons are placed in an infinite square well (Equation 2.22). They interact weakly with one another, via the potential
+    \[ V(x_1, x_2) = -aV_0 \delta(x_1 - x_2)\]
+    (where $V_0$ is a constant with the dimensions of energy, and $a$ is the width of the well). 
+    \begin{enumerate}[label=(\alph*)]
+        \item First, ignoring the interaction between the particles, find the ground state and the first excited state $-$ both the wave functions and the associated enegies.
+        
+        \begin{solution}
+            Since both bosons are in the ground state, then we can express the wavefunction as a product state: 
+            \[ \psi(x_1, x_2) = \psi_1(x_1) \psi_1(x_2) = \frac{2}{a} \sin\left( \frac{\pi x_1}{a}\right) \sin \left( \frac{\pi x_2}{a}\right)\]
+            The energy is
+            \[ E = 2E_1 = 2 \frac{\pi^2 \hbar^2}{2ma^2} = \frac{\pi^2 \hbar^2}{ma^2}\]
+            In the first excited state, now we require a linear combination since the particles are identical: 
+
+            \begin{align*}
+                \psi(x_1, x_2) &= \frac{1}{\sqrt{2}} \left[ \psi_1(x_1) \psi_2(x_2) + \psi_1(x_2) \psi_2(x_1)\right]\\
+                &= \frac{\sqrt 2}{a} \left[\sin \left( \frac{\pi x_1}{a}\right) \sin \left( \frac{2\pi x_2}{a}\right) + \sin \left(\frac{\pi x_2}{a}\right) \sin \left( \frac{2\pi x_1}{a}\right) \right]
+            \end{align*}
+            Their energies are then 
+            \[ E = E_1 + E_2 = \frac{5 \pi^2 \hbar^2}{ma^2}\]
+        \end{solution}
+        \item Use first-order perturbation theory to estimate the effect of the particle-particle interaction on the energies of the ground state and the first excited state.
+        
+        \begin{solution}
+            Here our perturbation is just 
+            
+            \[H' = V = -aV_0\delta(x_1 - x_2)\]
+            since the infinite square well has no potential. From here, we can calcluate the ground state:
+
+            \begin{align*}
+                E_1 = \expval{H'}{\psi_1^0} &= -aV_0 \left( \frac 2a\right)^2 \int_0^a \int_0^a \sin^2 \left(\frac{\pi x_1}{a}\right) \sin^2 \left( \frac{\pi x_2}{a}\right) \delta(x_1 - x_2) \ dx_1 dx_2\\
+                &= \frac{-4V_0}{a} \int_0^a \sin^4 \left( \frac{\pi x}{a}\right) \\
+                &= -\frac{4V_0}{a} \left( \frac{3\pi }{8}\right) \\
+                &= -\frac{3}{2} V_0
+            \end{align*}
+            For the first excited state, now we have to compute the expectation value using the linear combination of states:
+
+            \begin{align*}
+                \expval{H'}{\psi_2^0} &= -aV_0\frac{2}{a^2}\int_{0}^{a}\int_{0}^{a}\left(\sin\left(\frac{\pi x_1}{a}\right)\sin\left(\frac{2\pi x_2}{a}\right) + \sin\left(\frac{2\pi x_1}{a}\right)\sin\left(\frac{\pi x_2}{a}\right)\right)^2\delta(x_1-x_2)dx_1dx_2\\
+                &= -\frac{2V_0}{a} \int_0^a \left[\sin\left(\frac{\pi x}{a}\right)\sin\left(\frac{2\pi x}{a}\right) + \sin\left(\frac{2\pi x}{a}\right)\sin\left(\frac{\pi x}{a}\right)\right]^2 \ dx\\
+                &= -\frac{2V_0}{a} \int_0^a 4 \cdot \sin^2 \left( \frac{\pi x}{a}\right) \sin^2 \left( \frac{2\pi x}{a}\right) dx\\
+                &= -\frac{8V_0}{a} \cdot \frac{a}{4}\\
+                &= -2V_0
+            \end{align*}
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+    \section*{Problem 4} 
+    \begin{enumerate}[label=(\alph*)]
+        \item Find the second-order correction to the energies $(E_n^2)$ for the potential in Problem 7.1. \textit{Comment:} You can sum the series explicitly, obtaining $-2m(a/\pi \hbar n)^2$ for odd $n$.
+        
+        \begin{solution}
+            To calculate the second order correction, we use the equation: 
+            \[E_n^2 = \sum_{m\neq n}\frac{\left|\bra{\psi_m^0}H'\ket{\psi_n^0}\right|^2}{E_n^0 - E_m^0}\]
+            So starting with the numerator, we basically do the same thing as problem 1: 
+            \begin{align*}
+                \bra{\psi_k^0}H'\ket{\psi_n^0} &= \frac{2\alpha}{a}\int_{0}^{a}\sin\left(\frac{k\pi x}{a}\right)\delta\left(x - \frac{a}{2}\right)\sin\left(\frac{n\pi x}{a}\right)dx = \frac{2\alpha}{a}\sin\left(\frac{k\pi}{2}\right)\sin\left(\frac{n\pi}{2}\right)
+            \end{align*}
+            Note that this equation will yield $\frac{2\alpha}{a}$ when both $k$, $n$ are odd, and 0 otherwise. This will be useful later when we put everything together. We also know that the differce in energies in an infinite square well can be expressed as:
+            \[ E_n^0 - E_k^0 = (n^2 -k^2) \frac{\pi^2\hbar^2}{2ma^2}\]
+            So therefore, the total energy correction can be written as: 
+            \begin{align*}
+                E_n^2 &= \left(\frac{2\alpha}{a}\right)^2 \cdot \sum_{k \neq n} \frac{2ma^2}{\pi^2 \hbar^2}\frac{1}{n^2 - k^2}\\
+                &= \frac{8m\alpha}{\pi^2 \hbar^2} \sum_{k \neq n, \ k, n \text{ odd}} \frac{1}{n^2 - k^2}
+            \end{align*}
+            The comment implies that we can actually find this series explicitly, which we can do via telescoping. If we look at just the summation term: 
+            \[ \sum_{k \neq n, \ k, n \text{ odd}} \frac{1}{n^2 - k^2} = \frac{1}{2n} \sum_{k \neq n, \ k, n \text{ odd}} \frac{1}{k+n} - \frac{1}{k-n}\] 
+            Consecutive terms will cancel each other out, so therefore: 
+            \[ \frac{1}{2n} \sum_{k \neq n, \ k, n \text{ odd}}\frac{1}{k+n} - \frac{1}{k-n} = \frac{1}{2n} \left( - \frac{1}{2n}\right) = -\frac{1}{4n^2}\] And so therefore when $n$ is odd, we can now write: 
+            \[ E_n^2 = -\frac{2m\alpha^2}{\pi^2 \hbar^2n^2}\]
+            and when $n$ is even, we have 
+            \[ E_n^2 = 0\]
+        \end{solution}
+        \item Calculate the second order correction to the ground state energy $(E_0^2)$ for the potential in problem 7.2. Check that your result is consistent with the exact solution.
+        
+        \begin{solution}
+            With our perturbation, we now calculate the matrix element: 
+
+            \begin{align*}
+                \bra{\psi_m^0}H'\ket{\psi_n^0} &= \frac{\epsilon}{2}k\bra{m}x^2\ket{n}\\
+                &= \frac{\epsilon k}{2} \frac{\hbar}{2m\omega} \mel{m}{a_+^2 + a_+a_- + a_-a_+ + a_-^2}{n}\\
+                &= \frac{\epsilon \hbar k}{4m\omega} \left( \sqrt{(n+1)(n+2)}\braket{m}{n+2} + n\braket{m}{n} + (n+1) \braket{m}{n} + \sqrt{n(n-1)}\braket{m}{n-2}\right)\\
+                &= \frac{\epsilon \hbar (m\omega^2)}{4m\omega} \left( \sqrt{(n+1)(n+2)} \delta_{m, n+2} + \sqrt{n(n-1)}\delta_{m, n-2}\right)\\
+                &= \frac{\epsilon \hbar \omega}{4} \left( \sqrt{(n+1)(n+2)} \delta_{m, n+2} + \sqrt{n(n-1)}\delta_{m, n-2}\right)
+            \end{align*}
+            Now we can compute the second order correction: 
+            \begin{align*}
+                E_n^2 &= \left( \frac{\epsilon \hbar omega}{4}\right)^2 \sum_{m \neq n} \frac{\left( \sqrt{(n+1)(n+2)} \delta_{m, n+2} + \sqrt{n(n-1)}\delta_{m, n-2}\right)^2}{\hbar\omega(n - m)}\\
+                &= \frac{\epsilon^2 \hbar \omega}{16} \sum_{m \neq n} \frac{(n+1)(n+2) \delta_{m, n+2} + n(n-1)\delta_{m, n-2}}{n -m}\\
+                &= \frac{\epsilon^2 \hbar \omega}{16} \left( \frac{(n+1)(n+2)}{n - n-2} + \frac{n(n-1)}{n-(n-2)}\right)\\
+                &= \frac{\epsilon^2 \hbar \omega}{16} \left(\frac{ n(n-1) - (n+1)(n+2)}{2}\right)\\
+                &= -\frac{\epsilon^2}{8}\left(n + \frac 12\right)\hbar \omega
+            \end{align*}
+            This corresponds exactly to the term that we calculated in Problem 7.2, indicating that this method is consistent.
+            \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+    \section*{Problem 5}
+    A particle is confined to a one-dimensional infinite square potential well that extends from $x = 0$ to $x = L$. The energy eigenvalues for the (nonrelativistic) Hamiltonian are (see Section 3.2)
+    \[ E_n = \frac{n^2 \pi^2 \hbar^2}{2mL^2}\] 
+    If the mass of the particle is small or if the length $L$ is small, the energy eigenvalues will be large, and the particle may become relativistic (this happens if the energy is comaprable or larger than $mc^2$). The relativistic Hamiltonian is
+    \[ H = \sqrt{p^2 c^2 + m^2 c^4} - mc^2\]
+    \begin{enumerate}[label=(\alph*)]
+        \item Use first-order perturbation theory to find the new energy eigenvalues that correspond to this relativistic Hamiltonian
+
+        \begin{solution}
+            Since the potential is zero within the infinite square well, then our perturbation is:
+            \[ H' = H = \sqrt{p^2 c^2 + m^2 c^4} - mc^2 - \frac{p^2}{2m}\]
+            Therefore, we can calculate the first order correction using the expectation value: 
+            \begin{align*}
+                E_n^1& = \expval{\sqrt{p^2 c^2 + m^2 c^4} - mc^2}{\psi_n^0} - \expval{H_0}{\psi_n^0}\\
+                &= \expval{mc^2 \left(\sqrt{1 + \left( \frac{p}{mc}\right)^2} - 1\right)}{\psi_n^0} - E_0\\
+                &= mc^2 \expval{\left[1 + \frac{1}{2} \left( \frac{p}{mc}\right)^2 - \frac{1}{8} \left( \frac{p}{mc}\right)^4 + \frac{1}{16} \left( \frac{p}{mc}\right)^6 \cdots \right]}{\psi_n^0} - E_0\\
+                &= \expval{\frac{p^2}{2m} - \frac{p^4}{8m^3c^2} + \cdots}{\psi_n^0} - E_0\\
+                &= \expval{H_0 - H_0^2 \frac{1}{2mc^2}+ \cdots }{\psi_n^0} - E_0\\
+                &= \expval{H_0 - \frac{1}{2} \sum_n \left(\frac{H_0}{(mc^2)}\right)^n}{\psi_n^0} - E_0\\
+                &= -\frac{1}{2} \sum_n \frac{E_0^n}{m^n c^{2n}}
+            \end{align*}
+            Therefore, finally we get: 
+            \[ E_n = \frac{n^2 \pi^2 \hbar^2}{2ma^2} - \frac{1}{2} \sum_k \frac{E_k^0}{(mc^2)^k} = \frac{\pi^2 \hbar^2}{2ma^2}\left( n^2 - \frac{1}{2} \sum_k \frac{k^2}{(mc^2)^k}\right)\]
+        \end{solution}
+        \item The energy eigenvalues obtained by first-order perturbation theory are actually the \textit{exact} values for the relativistic Hamiltonian. Explain carefully why this is so.
+        
+        \begin{solution}
+            These values would only be exact if the higher order terms somehow were all equal to zero, or they all ended up cancelling each other. Alternatively, it could just be an indication that the terms are so small that they can be effectively neglected. This is especially true if we consider the fact that when the mass is small, then we have:
+            \[ \frac{n^2 \pi^2 \hbar^2}{2ma^2} \gg \frac{k^2}{(mc^2)^k}\]
+            meaning that the perturbation term, which is already small in the first order, is significantly smaller in the higher orders and can be neglected. 
+
+            To me, this answer doesn't really seem that satisfying, but I couldn't come up with a more profound reasoning here. I do suspect that if we were to compute some higher order terms, that we'd actually see them cancel out, but I couldn't figure out the algebra.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 6}
+    Suppose that the electron in a hydrogen atom is perturbed by a repulsive potential concentrated at the origin. Assume that the potential has the form of a delta function, so the perturbed Hamlitonian is
+    \[ H = \frac{p^2}{2m} - \frac{1}{4\pi \epsilon_0} \frac{e^2}{r} + A\delta(r)\] 
+    where $A$ is a constant. 
+    \begin{enumerate}[label=(\alph*)]
+        \item To first order in $A$, find the change in the energy of the state with quantum numbers $n \ge 1$, $l = 0$. [Hint: $\psi_{n00} = 2/\sqrt{4\pi}(na_0)^{3/2}$]
+        
+        \begin{solution}
+            The perturbation, as hinted by the problem, is $H' = A\delta(r)$. We know that the first order energy correction is:
+            \[ E_n^1 = \expval{H'}{n\ 0 \ 0}\]
+            Using the hint, we know that 
+            \[ \psi_{n00} = \frac{2}{\sqrt{4\pi}} (na_0)^{3/2}\]
+            So therefore: 
+            \begin{align*}
+                E_n^1 &= A\expval{\delta(r)}{\psi_n^0}\\
+                &= \frac{A(na_0)^3}{\pi} \underbrace{\int_{-\infty}^\infty \delta(r) \ dr}_{= 1} \\
+                &= \frac{A(na_0)^3}{\pi}
+            \end{align*}
+            And so therefore: 
+            \[ E_n = E_n^0 + E_n^1 = -\frac{13.6}{n^2} + \frac{A(na_0)^3}{\pi}\]
+        \end{solution}
+        \item Find the change in the wavefunction.
+
+        \begin{solution}
+            We know that the perturbation is given by the formula: 
+            \[ \ket{\psi_n} = \ket{\psi_n^0} + \sum_{k \neq n}\frac{\mel{\psi_k^1}{H'}{\psi_n^1}}{E_n^0 - E_k^0} \ket{\psi_{k}^0}\]
+            Or in more concise notation: 
+            \[ \psi_{n00} = \psi_{n00}^0 + \sum_{nlm \neq 100} \frac{\mel{nlm}{A\delta(r)}{100}}{E_1^0 - E_k^0} \ket{nlm}\]
+            And so now computing the numerator: 
+            \begin{align*}
+                \mel{nlm}{A\delta(r)}{100} &= \int (R_{nl}^* Y_{lm}^*)A\delta(r) R_{10} Y_{00} \ dr d\Omega\\
+                &= A \delta_{l, 0} \delta_{m, 0} \int \delta(r) R_{nl}R_{10} Y_{lm} Y_{00} \ dr d\Omega\\
+                &= A \int  \delta(r) R_{n0}^* R_{10} \ dr
+            \end{align*}
+            And since $R_{n0}(0) = 1$ and $R_{10}(0) = 1$ (this result follows from writing out the full expression for $R$ and recognizing that the associated Laguerre polynomial $L_q(0) = 1$), we get that 
+            \[ \mel{nlm}{A\delta(r)}{100} = A\]
+            Now to compute the difference in energies. We know that 
+            \[ E_k = \frac{E_1}{k^2}\]
+            So therefore: 
+            \[ E_1 - E_k = E_1 \left( 1 - \frac{1}{k^2}\right)\]
+            Finally, we can combine all the terms: 
+            \[ \ket{\psi_n^1} = \ket{\psi_n^0} + \sum_{n} \frac{A}{E_1\left(1 - \frac{1}{k^2}\right)}\ket{\psi_{k}^0} = \frac{2}{\sqrt{4\pi}} (na_0)^{3/2} + \sum_{k \neq n} \frac{A}{E_1\left( 1 - \frac{1}{k^2}\right)} \frac{2}{4\pi}(ka_0)^{3/2}\]
+        \end{solution}
+    \end{enumerate}
+\end{document}

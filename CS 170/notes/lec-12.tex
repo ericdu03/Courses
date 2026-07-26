@@ -1,0 +1,102 @@
+\section{Dynamic Programming I}
+
+	\subsection{Fibonacci Numbers, revisited}
+	\begin{itemize}
+		\item Imagine computing Fibonacci numbers; there's a lot of repeated calculations! For instance, 
+			$F(1)$ is computed $2^n$ times when we're looking for $F(n)$!
+		\item To optimize this, store each successive computation of $F(n)$ into an array that we access, 
+			so that we only need to compute each $F(k)$ exactly once.
+		\item This is called \textbf{memoization}, where we store things in a ``memo,'' to be accessed by our 
+			algorithm later on. 
+	\end{itemize}
+	\subsection{Elements of Dynamic Programming}
+	\begin{itemize}
+		\item There are a couple hallmarks of DP:
+			\begin{enumerate}
+				\item Subproblems, or ``optimal substructure''. Refers to the fact that large problems 
+					can be broken up into smaller subproblems. For Fibonacci, this means that 
+					$F(n)$ is recursively expressed in terms of smaller subproblems.
+				\item Overlapping subproblems: A lot of subproblems overlap with one another. We recurse to 
+					smaller subproblems, and in doing so we see that a lot of computation 
+					is repeated. The solution to this is to use memoization, so that 
+					each computation is done only once.
+		\item There are two ways to do DP:
+			\begin{itemize}
+				\item Top-Down: start from the largest subproblem and recurse to smaller subproblems. 
+					This often involves recursion.    
+				\item Bottom-up: start from the smallest subproblems then work to larger subproblems.
+					Memoization still happens; we just fill the table from the small to 
+					largest problems. In this method, this doesn't need a recursive call. 
+			\end{itemize}
+		\end{enumerate}
+		\item The mathematical runtime of top-down and bottom-up are the same.
+		\item The computation structure for DP actually looks awfully similar to a DAG. 
+		\item If we view every subproblem as a node in the graph: construct it in such a way that 
+			an edge $i \to j$ exists if the solution to subproblem $j$ directly depends on the solution to of 
+			subproblem $i$. 
+		\item Consider a topological sort on this DAG: then the bottom-up solution directly follows the 
+			conputation of this DAG! 
+			\begin{itemize}
+				\item In the top-down framework, we are filling up the memo table in topological sort order, 
+					since that table is still being filled from bottom up.
+			\end{itemize}
+	\end{itemize}
+	\subsection{Shortest Paths on DAGs}
+	\begin{itemize}
+		\item We're given a DAG with a source $s$. We want to find the cost of the shortest path from 
+			$s$ to $u$ for all $u \in V$. We also want to do this in linear time, 
+			$O(n + m)$.
+		\item We can always run a topological sort on this DAG in $O(n + m)$ time. Our subproblems 
+			are the distances from $s$ to $u$ for every node $u$.
+		\item After ordering in topological sort, we can just go down this graph \textit{in topological 
+			order!} This means that the structure of the DP tree is the same as that of the topological sort.
+		\item In terms of our recurrence relation, $\dist(u) = \dist(v) + \ell(u, v)$. Here, 
+			$\dist(v)$ is implied to be memoized, since it's already a solved problem.
+		\item This is an $O(n +m)$ solution to this problem!
+	\end{itemize}
+	\subsection{DP Recipe}
+	\begin{enumerate}[label=\alph*)]
+		\item Identify the subproblems (i.e. find the optimal substructure)
+		\item Find a recursive formulation for the subproblems: just try to solve it via recursion and 
+			see where it gets you.
+		\item Design the DP algorithm -- fill in a table, starting with the smallest sub-problems and 
+			building up. 
+	\end{enumerate}
+	\subsection{Shortest Paths with $k$}
+	\begin{itemize}
+		\item Here we consider the same problem of finding shortest path, but we're restricted to use at most 
+			$k$ edges. 
+
+			\question{Fill this out from lecture recordings}
+	\end{itemize}
+	\subsection{All-Pair Shortest Paths}
+	\begin{itemize}
+		\item Here, instead of finding the shortest path from a singular source node, we want to find 
+			it for all pairs of nodes. 
+		\item Input: again a graph with no negative cycles.
+		\item Naively, we can run Bellman-Ford on all nodes, but this would take $O(nm)$ a total 
+			of $n^2$ times, so our total runtime could be as large as $O(n^4)$ for dense graphs.
+			Therefore, we're looking for a better algorithm.
+		\item Identify the subproblem: subproblem $k$: for all pairs, find the shortest $u \to v$ path 
+			whose internal vertices (so the path they take) only use nodes $\{1, 2, \dots, k\}$.
+			\begin{itemize}
+				\item In other words, there's a collection of $k$ nodes, and the path from $u \to v$ 
+					\textit{only} uses these nodes.
+			\end{itemize}
+		\item Recursion: When we have the set from $\{1, \dots, k\}$, we want to find the relation between 
+			this set and how to expand this set. There are a couple ways that the new 
+			node can be added:
+			\begin{itemize}
+				\item Case 1: The new node added does not lie on the path: then nothing really changes, so 
+					$\dist_{k +1}(u, v) = \dist_k(u, v)$.
+				\item Case 2: The shortest path uses the added node: this path can be broken into two 
+					parts: the shortest $u \to (k+1)$ path and then the shortest $(k+1) \to v$ path. 
+					Both of these paths are already computed (by definition of them only using 
+					the set $\{1, \dots, k\} $), so we just have to add these two up. 
+				\item To combine these two, we find the minimum of these two to find whether the 
+					path from $u$ to $v$ has changed or not.  
+			\end{itemize}
+		\item Runtime: Each update is $O(1)$ time, and we have to loop over $u, v$ a total of $k$ times, 
+			so overall $O(n^3)$ runtime. 
+		\item This is called the \textbf{Floyd-Washall Algorithm.}
+	\end{itemize}

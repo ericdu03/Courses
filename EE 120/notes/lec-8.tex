@@ -1,0 +1,99 @@
+\section{Fourier Transforms}
+\subsection{Discrete Fourier Transform}
+\begin{itemize}
+	\item Recall the Shah function: \( x(t) = \text{III}(t) = \sum_{k = -\infty}^{\infty}\delta(t - k) \). Its 
+		fourier transform in ordinary frequency is: 
+		\[
+		X(f) = \int_{-\infty}^{\infty} \sum_{k = -\infty}^{\infty} \delta(t - k) e^{-j 2 \pi f t}\diff t
+		= \sum_{n = -\infty}^{\infty} \delta(f - n) = III(f)
+		\] 
+		So the Fourier transform of a Shah function is itself a shah function, in frequency space.  
+	\item In Angular frequency (\( \omega \) ), then it's writtne as: 
+		\[
+		X(\omega) = X(f) = 2\pi \sum_{n = -\infty}^{\infty} \delta(2 \pi f - 2\pi n) = 2\pi \sum_{n = -\infty}^{\infty}
+		\delta(\omega - 2 \pi n)
+		\] 
+\end{itemize}
+\subsection{Convolutions and Fourier Transform} 
+\begin{itemize}
+	\item There is an identity between the Fourier transform and convolution, called the convolution theorem: 
+		\[
+		x_1(t) * x_2(t) \leftrightarrow X_1(f) X_2(f)
+		\] 
+		The right hand side can also be replaced by \( X_1(\omega) X_2(\omega) \), up to a normalization factor. 
+		This equation basically says that the Fourier transform of the convolution of two function is also equal to the
+		pointwise product of the Fourier transforms of \( x_1 \) and \( x_2 \). 
+
+		\begin{proof}
+			Start with the Fourier transform of \( x_1(t) * x_2(t) \) :
+			\[
+			\int_{-\infty}^{\infty} (x_1(t) * x_2(t)) e^{-j 2 \pi ft}\diff t = \int_{-\infty}^{\infty} \left( 
+			\int_{-\infty}^{\infty} x_1(\tau) x_2(t - \tau) \diff \tau \right) e^{-j 2 \pi ft}\diff t 
+			\] 
+			Now, we take the \( t \) integral first becuase it's easier: 
+			\[
+			\int_{-\infty}^{\infty} x_1(\tau) \int_{-\infty}^{\infty} x_2(t - \tau) e^{-j 2 \pi ft}\diff t  \diff \tau
+			= \int_{-\infty}^{\infty} x_1(\tau) e^{-j 2 \pi f\tau}X_2(f) \diff \tau = X_1(f) X_2(f) 
+			\] 
+		\end{proof}
+	\item For example, consider the rect function \( \sqcap(t) \) that is 1 on the interval \( [-1 / 2, 1/2] \). 
+		If we do the Fourier transform of this, we get a sinc function. At \( f = 0 \), we have 
+		\( \sinc(f) = 1 \). 
+
+		If we wanted to take the FT of the convolution of two rect functions, then we can use the convolution theorem 
+		to conclude that \( \mathcal F(\sqcap(t)) = \sinc^2(f) \). Conversely, we know that the inverse Fourier 
+		transform of \( \sinc^2(f) \) would be the triangular function, becuase we know that it's the convolution 
+		of two rect functions.
+\end{itemize}
+\subsection{Fourier Series}
+\begin{itemize}
+	\item Consider a periodic function, where \( x(t) = x(t + nT) \). One way to write \( x(t) \) and also to 
+		reflect its period, we can write it as a sum of delta functions: 
+		\[
+		x(t) = \sum_{n=-\infty}^{\infty} \left( x(t) \sqcap\left( \frac{t}{T} \right)  \right) * \delta(t - nT) 
+		\] 
+		Basically the rect function restricts the domain to only one period of \( x(t) \), and we convolve this with 
+		a series of Delta functions in order to generate the roiginal fnction back. We can also do some simplifications
+		on this: 
+		\[
+		x(t) = \left( x(t) \sqcap\left( \frac{t}{T} \right)  \right) * \sum_{n=-\infty}^{\infty} \delta(t - nT) 
+		\] 
+		Then we can use an identity to get: 
+		\[
+		x(t) = \left( x(t) \sqcap\left( \frac{t}{T} \right)  \right) \frac{1}{T}\text{III}\left( \frac{t}{T} \right) 
+		\] 
+		\question{How did we get the simplification of the delta sum into the Shah function?} 
+	\item Turns out, if we perform a Fourier transform of \( x(t) \), then we get a discrete set of values, 
+		also called a Fourier series. Taking the Fourier transform of the above function, and defining 
+		\( g(t) = x(t) \sqcap(t / T) \), then we can write: 
+		\begin{align*}
+			\mathcal F \{x(t)\} &= \mathcal F \left\{g(t) * \frac{1}{T}\text{III}\left( \frac{t}{T} \right) \right\}  \\
+								&= \mathbf G(f) \text{\textbf{III}} (Tf)
+		\end{align*}
+		where \( \mathbf G(f) \) is the Fourier transform of \( g(t) \).  Expanding the Shah function out, we 
+		have: 
+		\[
+		\frac{1}{T}\sum_{n=-\infty}^{\infty} \mathbf G(f) \delta\left( f - \frac{n}{T} \right) 
+		\] 
+		The delta function will select \( f = \frac{n}{T} = nf_0\), so we get: 
+		\[
+		\frac{1}{T}\sum_{n=-\infty}^{\infty} G(nf_0) \delta\left(f - \frac{n}{T}\right)
+		\] 
+	\item So, from here we can conclude that the Fourier transform of a periodic function is just a series over that 
+		function. 
+	\item The inverse Fourier transform used to be:
+		\[
+		x(t) = \int_{-\infty}^{\infty} \mathbf X(f) e^{j 2 \pi ft}\diff f 
+		\] 
+		Where \( \mathbf X(f) \) is the (continuous-time) Fourier transform of \( x(t) \). Since \( x \) is periodic, 
+		then we can write
+		\begin{align*}
+			x(T) &= \int_{-\infty}^{\infty} \sum_{n=-\infty}^{\infty} \mathbf G(n) \delta\left( f - \frac{n}{T} \right) 
+		e^{j 2 \pi ft }\diff  f\\
+		&= \frac{1}{T}\sum_{n=-\infty}^{\infty} \mathbf G(n) \int_{-\infty}^{\infty} \delta\left( f - \frac{n}{T} \right) e^{j 2 \pi ft} \diff  f  \\
+		&= \frac{1}{T}\sum_{n=-\infty}^{\infty} \mathbf G(n) e^{2 \pi \frac{n}{T}t}\\
+		&= \frac{1}{T}\sum_{n=-\infty}^{\infty} \mathbf G(n) e^{j 2 \pi n f_0 t} 
+		\end{align*} 
+		Note that the delta function only picks out the frequency \( \frac{n}{T} \), which allows us to get a discrete
+		sum of frequencies. This is called the Discrete Fourier Series. 
+\end{itemize}

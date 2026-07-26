@@ -1,0 +1,213 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Introduction to Real Analysis}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 05} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	Given $f: \mathbb R \in \R$, prove 
+	\[
+		\lim_{x \to \infty} f(x) = \lim_{t \to 0^+} f\left( \frac{1}{t} \right) , \ \ \lim_{x \to -\infty} f(x) =
+		\lim_{t \to 0^-} f\left( \frac{1}{t} \right) 
+	\] 
+	(assume all the limits exist)
+
+	\begin{solution}
+		This problem boils down to showing that
+		\[
+			\lim_{t \to 0^+} \frac{1}{t} = \lim_{x \to \infty} x
+		\] 
+		since if this is true, then the limits are true as well. To do this, we show that there is no upper 
+		bound $M$ for the left hand side. So our goal is this: for all  $\epsilon > 0$, we want to find a
+		$\delta$ such that $0 < |t - 0| < \delta$, $t \in A$. 
+
+		From this last condition we get $|t| < \delta$, and since $t \to 0^+$, then we know that $t$ is always
+		positive so we can drop the absolute value: $0 < t < \delta$. Since this is true, then we also know that
+		\[
+		\frac{1}{t} > \frac{1}{\delta}
+		\] 
+		so we can choose $M = \left\lfloor \frac{1}{\delta} \right\rfloor$, giving the inequality:
+		\[
+		\frac{1}{t} > M
+		\] 
+		for all $M$. Therefore, there is no $M$ that bounds our limit, and thus the limit is $\infty$. The same
+		approach exists for the second case, except we choose $M = \left\lceil \frac{1}{\delta} \right\rceil$ 
+		giving us 
+		\[
+		\frac{1}{t} < M
+		\] 
+		for all $M$, so the limit there would be $-\infty$.
+	\end{solution}
+	\pagebreak
+
+	\section*{Problem 2}
+	Prove the following theorem:
+	\begin{theorem}
+		Suppose that $f, g, h: A \to \R$ and $c$ is an accumulation point of $A$. If
+		\[
+			f(x) \le g(x) \le h(x) \text{   for all $x \in A$}
+		\] 
+		and 
+		\[
+			\lim_{x \to c}f(x) = \lim_{x \to c} h(x) = L
+		\] 
+		then the limit of $g(x)$ as $x \to c$ exists and 
+		\[
+			\lim_{x \to c} g(x) = L
+		\] 
+	\end{theorem}
+
+	\begin{solution}
+		From Theorem 3.1 in note 4, we know that if $f(x) \le h(x)$ for all $x$ and the limit as $x \to c$ 
+		exists, then 
+		\[
+			\lim_{x \to c} f(x) \le \lim_{x \to c} h(x)
+		\] 
+		Therefore, from the left side of the inequality, we have: 
+		\[
+			\lim_{x \to c} f(x) \le \lim_{x \to c} g(x) \implies L \le \lim_{x \to c} g(x)
+		\] 
+		And from the right hand side:
+		\[
+			\lim_{x \to c} g(x) \le \lim_{x \to c} h(x) \implies \lim_{x \to c} g(x) \le L
+		\] 
+		Combining both these conditions together, we get: 
+		\[
+			L \le \lim_{x \to c} g(x) \le L
+		\] 
+		which implies $\displaystyle \lim_{x \to c} g(x) = L$.
+	\end{solution}
+
+	\pagebreak
+
+	\section*{Problem 3}
+	Prove the following theorem:
+	\begin{theorem}
+		If $f: A \to \R$ and $c \in A$ is an accumulation point of $A$, then $f$ if continuous at c if and only
+		if 
+		\[
+			\lim_{n \to \infty} f(x_n) = f(c)
+		\] 
+		for every sequence $(x_n)$ in $A$ such that $x_n \to c$ as $n \to \infty$.
+
+	\end{theorem}
+		\begin{solution}
+			We prove the forward case: $f$ is continuous if $\lim_{n \to \infty} f(x_n) = f(c)$ for every 
+			sequence $x_n$ such that $x_n \to c$ as $n \to \infty$. 
+
+			This result follows directly from Theorem 1.1 in the notes. Since $x_n \to c$, then we can always 
+			define some $\delta> 0$ such that $|x_n - c| = \delta$, meaning that $x_n \neq c$ for all $x_n$. 
+			Therefore, the conclusion in Theorem 1.1 holds for our case. 
+
+			For the reverse case, we need to show that $f$ being continuous means that we can always choose a 
+			subsequence that satisfies the property shown above. Since $f$ is continuous, then we know the 
+			definition of continuity holds: for all $\epsilon > 0$, we can find some $\delta > 0$ such that 
+			$|x - c| < \delta$ implies $|f(x) - f(c)| < \epsilon$. 
+
+			Using this definition, define a monotonically
+			decreasing sequence $\epsilon_n$ which approaches 0 as $n \to \infty$.
+			Now suppose $x - c > 0$ for all $x$ (this simply
+			means approaching $c$ from the right), then for every $\epsilon_n$ we can find an according 
+			$\delta_n$ and $x_n$ satisfying $x_n - c < \delta_n \implies x_n < \delta_n + c$, so we can choose, 
+			for instance, $x_n = \frac{\delta_n + c}{2}$. Since the $\epsilon$ sequence is an arbitrary but 
+			strictly decreasing sequence, then this sequence $x_n$ is also arbitrary, meaning that this condition
+			actually holds for \textit{all} sequences $x_n$ where $x_n \to c$ as $n \to \infty$.\footnote{I'm 
+				curious: is it possible to just state that both sides of Theorem 1.1 hold for this problem and
+			leave it at that? It feels too simple so I devised this way of showing the reverse case.}
+		\end{solution}
+	\pagebreak
+
+	\section*{Problem 4}
+
+	Prove each of the following functions is continuous at $x_0$ by verifying the $\epsilon-\delta$ property
+	of Theorem 17.2.
+	\begin{enumerate}[label=\alph*)]
+		\item $f(x) = x^2$, $x_0 = 2$
+
+			\begin{solution}
+				We want to show that for any $\epsilon > 0$, we can find a $\delta$ such that $0 < |x - 2| < 
+				\delta$ implies that $|f(x) - f(2)| = |x^2 - 4| < \epsilon$. Then we need to consider two cases:
+				$x^2 - 4 > 0$ and $x^2 - 4 < 0$. 
+
+				\textbf{Case 1:} Suppose $x^2 - 4 > 0$. Then, we can drop the absolute value symbols so we have
+				$x^2 - 4 < \epsilon$, so we can then write $x < \sqrt{\epsilon +4}$ for any $\epsilon$ we choose.
+				Intuitively, this statement means that for any $\epsilon$, if we choose $x < \sqrt{\epsilon +4}$
+				then $|f(x) - f(2)|$ is satisfied. Given this knowledge, then, we can choose $\delta > \sqrt{
+				\epsilon +4} -2$ to satisfy the $\delta$ condition. Since this condition holds for all $\delta$,
+				then we're done.
+
+				\textbf{Case 2:} Suppose $x^2 - 4 < 0$. In this case, we get the inequality that $x > \sqrt{4 + 
+				\epsilon}$. Here, we will use $\epsilon < 4$\footnote{This is actually a general statement: if we
+					have some $\epsilon' > 4$, then the $\delta$ we find from $\epsilon < 4$ would hold
+					for this $\epsilon'$ as well, so choosing $\epsilon < 4$ can be made basically without loss
+				of generality.}
+				Note that for the condition of $x^2 - 4$ to hold, it must also be true that $x < 2$, so we have
+				the inequality $\sqrt{4 - \epsilon} < x < 2$, so we can choose $\delta = 2 - \sqrt{4 - 
+				\epsilon}$ to satisfy the $\delta$ condition.
+				\footnote{Sorry if this solution is very word heavy -- I did this solution intuitively instead of following
+				what was done in the textbook, this is the only way $\epsilon-\delta$ proofs make sense to me.}
+			\end{solution}
+		\item $f(x) = \sqrt{x}$, $x_0 = 0$
+
+			\begin{solution}
+				We take a very similar approach to the previous problem: if we have $|f(x) - f(0)| < \epsilon$ 
+				then we can simplify it to $\sqrt{x} < \epsilon$ so $x < \epsilon^2$. Therefore, if we choose
+				$\delta = \epsilon^2$, then we have satisfied the $\delta$ condition. 
+			\end{solution}
+		\item $f(x) = x \sin\left(\frac{1}{x}\right)$ for $x \neq 0$ and $f(0) = 0$, $x_0 = 0$
+
+			\begin{solution}
+				Here, $|f(x) - f(0)| < \epsilon$ means $|x \sin (\frac{1}{x})| < \epsilon$. Here, if we choose 
+				some
+				$|x| < \delta$, then we derive the equation:
+				\[
+				\left|x \sin \left( \frac{1}{x} \right) \right| < \left|\delta \sin(\frac{1}{x})\right| <
+				\delta < \epsilon
+				\] 
+				This confirms that for any arbitrary $\epsilon$, we can set $\delta$ to be some value less than
+				$\epsilon$
+			\end{solution}
+		\item $g(x) = x^3$, $x_0$ is arbitrary. 
+	\end{enumerate}
+	\textit{Hint for (d): $x^3 - x_0^3 = (x - x_0)(x^2 + x_0x + x_0^2)$}
+	\pagebreak
+	\section*{Problem 5}
+	Consider the function 
+	\[
+	h(x) = \begin{cases}
+		x, & x \in \mathbb Q\\
+		0 & x \in \mathbb R \setminus \mathbb Q 
+	\end{cases}
+	\] 
+	Show that $h$ is continuous at 0 but at no other point.
+
+	\begin{solution}
+		We do this in three cases: if $x \in \mathbb Q$, $x \in \mathbb R \setminus Q$ and $x = 0$.
+
+		\textbf{Case 1:} if $x \in \mathbb Q \setminus \{ 0\} $, then $h(x) = x > 0$, so for any $\delta$ we
+		choose there will be
+		irrational points $y$ such that $|h(y) - h(x)| = x$ since $h(y) = 0$, so there does not exist a $\delta$ 
+		for every $\epsilon > 0$. Therefore, the function is discontinuous at the rationals.
+
+		\textbf{Case 2:} if $x \in \mathbb R \setminus \mathbb Q$, then $h(x) = 0$. Since the rationals are dense
+		(I shall take this as an axiom), then just like the previous part, for any $\delta$ we choose we can 
+		always find a rational $y$ such that $h(y) = y$ so $|h(x) - h(y)| = y$, meaning we also can't find a 
+		$\delta$ for every $\epsilon > 0$. Therefore, the function is discontinuous at the irrationals.
+
+		\textbf{Case 3:} if $x = 0$, then for any $\delta > 0$, we can find an irrational point $y$ such that
+		$h(y) = 0$, so we can always find a delta such that $|h(y) - h(x)| = 0 < \epsilon$, therefore $h$ is 
+		continuous at $x = 0$
+	\end{solution}
+
+\end{document}

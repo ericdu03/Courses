@@ -1,0 +1,179 @@
+\section{April 30}
+\subsection{4-Velocity}
+Earlier, we saw that \( \tilde u = \dv{x^{\mu}}{t} \) is not a valid 4-vector, as it does not transform like
+\( x^{\mu} \) under Lorentz transforms.
+A better alternative is to use the proper time instead: \( u^{\mu} = \dv{x^{\mu}}{\tau} \). 
+This is guaranteed to be a valid 4-vector, since the numerator is a
+4-vector and the proper time is Lorentz invariant. Thus, \( U^{\mu} \) transforms as \( U^{\mu} \to
+\Lambda^{\mu}_\nu V^{\nu} \).
+
+In component form, \( u \) can be written as:
+\[
+	u = \begin{pmatrix} c \dv{t}{\tau} \\ \dv{x^{i}}{\tau} \end{pmatrix} = \begin{pmatrix} \gamma c \\
+\dv{t}{\tau} \dv{x^{i}}{\tau} \end{pmatrix} = \begin{pmatrix} \gamma c \\ \gamma v \end{pmatrix}
+\]
+Now here's the trick with 4-velocity: if we move together with the particle, then our relative speed with it
+will be zero, so the 4-velocity vector is:
+\[
+	u^{\mu} = \begin{pmatrix} c \\ \mathbf{0} \end{pmatrix}
+\]
+Now, if we take the dot product \( U^{\mu}U_{\mu} = \eta_{\mu \nu}U^{\mu}U^{\nu} = \eta_{00} U^{0}U^{0} =
+-c^2 \). But using the property that the dot product is Lorentz invariant, it means that the inner product \(
+U^{\mu}U_{\mu} = -c^2\)	in \textit{all} frames, even when the velocity vector is not zero! This gives us an
+important rule to remember when calculating dot products: we want to always choose a frame in which it is
+easiest to calculate dot products, and leverage Lorentz invariance. 
+
+\subsection{4-Momentum}
+With the 4-velocity defined, it is then natural to define also the 4-momentum: \( P^{\mu} = m U^{\mu} \).
+This is particularly a natural form to choose since it is a natural extension of our classical momentum \( p
+= mv \). Like 4-velocity, we need to ensure that momentum is conserved, so we want the 4-momentum to also
+behave as a 4-vector -- this is easy to guarantee since we've already established \( U^{\mu} \) as a
+4-vector. 
+
+The fact that \( P^{\mu} \) transforms linearly under Lorentz transformations actually guarantees
+conservation of momentum! To see this, consider a collision between two particles, that generates two other
+ones:
+\begin{center}
+	\begin{tikzpicture}
+		\draw[-stealth] (-1, 1) node[left] {\( 1 \)} -- (0, 0.5);
+		\draw[-stealth] (-1, -1) node[left] {\( 2 \)} -- (0, -0.5);
+		\draw[-stealth] (1, 0.5) -- (2, 1) node[right] {\( 3 \)};
+		\draw[-stealth] (1, -0.5) -- (2, -1) node[right] {\( 4 \)};
+	\end{tikzpicture}
+\end{center}
+Suppose in the \( \mathcal{S} \) frame, the 4-momentum \( P_1^{\mu} + P_2^{\mu} = P_3^{\mu} + P_4^{\mu} \).
+Then, in the \( \mathcal{S}' \) frame, we have:
+\[
+	P_1' + P_2' = \Lambda(P_1) + \Lambda(P_2) = \Lambda(P_1 + P_2) = \Lambda(P_3 + P_4) = P_3' + P_4'
+\]
+so the momentum is automatically conserved! The explicit form of \( P^{\mu} \) is more or less the 
+same as \( U^{\mu} \):
+\[
+	P^{\mu} = \begin{pmatrix} mv^{0} \\ m U^{i} \end{pmatrix} = \begin{pmatrix} \gamma mc \\ \gamma
+	m \mathbf{v} \end{pmatrix} = \begin{pmatrix} E / c \\ \mathbf{p} \end{pmatrix}
+\]
+Here, we define \( E = \gamma mc^2 \) to be the relativistic energy and \( \mathbf{p} = \gamma mv \) to be
+the relativistic momentum. Notice how naturally these formulas come out simply from our constraint that we
+want our vectors to transform linearly under the Lorentz transform; hopefully this gives more insight into
+how these formulas came to be, and that they're not as contrived as they appear to be in your introductory
+classes. 
+
+Now's also a good place to note that when \( v \ll c \), the classical formulas come out. When \(  v\ll c \),
+then \( \gamma \approx 1 \), so \( \mathbf{p} \approx m \mathbf{v} \). Likewise, if we Taylor expand \( E \):
+\[
+	E = \left( 1 + \frac{1}{2} \frac{v^2}{c^2} \right) mc^2 = mc^2 + \frac{1}{2}mv^2
+\]
+the first term represents the rest mass energy and is the formula \( E = mc^2 \), and the second term 
+is exactly the kinetic energy term we're all familiar with. 
+
+We can also write the speed of a particle in terms of \( E \) and \( \mathbf{p} \):
+\[
+	\frac{pc}{E} = \frac{\gamma mv c}{\gamma mc^2} = \frac{v}{c} \implies v = \frac{pc^2}{E}
+\]
+Another thing: if we take \( p_{\mu}p^{\mu} \):
+\[
+	p_{\mu}p^{\mu} = \eta_{\mu \nu}p^{\mu}p^{\nu} = -\frac{E^2}{c^2} + |\mathbf{p}|^2
+\]
+On the other hand, we know that since \( p^{\mu} = m U^{\mu} \), then the inner product is also equal to:
+\[
+	p_{\mu}p^{\mu} = m U_{\mu}(m U^{\mu}) = m^2 U_{\mu}U^{\mu} = -m^2 c^2
+\]	
+So we can combine these two equations together:
+\begin{equation}
+	\label{relativistic-energy}
+	-\frac{E^2}{c^2} + |\mathbf{p}|^2 = -m^2 c^2 \implies E^2 = |\mathbf{p}|^2 c^2 + m^2 c^{4}
+\end{equation}
+this should also be a familiar equation. One property about this equation is that because it is a result of
+equating two dot products, this identity is \textit{Lorentz invariant}, and holds true for any object in any
+frame. 
+
+So far, the above equations for particles with mass, but without mass, what happens? Well,
+\cref{relativistic-energy} tells us that when \( m = 0 \), then \( E = |\mathbf{p}|c \), so its velocity:
+\[
+	v = \frac{pc^2}{pc} = c
+\]
+so massless particles travel at the speed of light!   
+
+\subsection{4-Forces}
+With 4-momentum established, it is now natural for us to go even further, and generalize forces into a
+4-vector. We call this \( f^{\mu} \), which we will define as:
+\[
+	f^{\mu} = \dv{p^{\mu}}{\tau}
+\]
+again, as a classical generalization of Newton's second law \( F = \dv{p}{t} \). In component form:
+\[
+	\dv{p^{\mu}}{\tau} = \begin{pmatrix} \frac{1}{c} \dv{E}{\tau} \\ \dv{\mathbf{p}}{\tau} \end{pmatrix} =
+\begin{pmatrix} \frac{1}{c} \dv{t}{\tau} \dv{E}{t} \\ \dv{t}{\tau} \dv{\mathbf{p}}{\tau} \end{pmatrix} = 
+\begin{pmatrix} \frac{\gamma}{c} \dv{E}{t} \\ \gamma \dv{\mathbf{p}}{t} \end{pmatrix}
+\]
+If there is no 4-force acting on our particle, then we expect that \( \dv{p^{\mu}}{\tau} = 0 \), which is the
+equation of motion of a free particle.
+
+\subsection{Action of Free Relativistic Particles}
+According to the stationary action principle, the evolution of any physical system should be one such that
+the action is stationary. That is, we require \( \delta S = 0 \). Note that we only require the derivative to
+be zero, not that it is minimized or maximized.\footnote{The Lagrangian is always convex, so we can always
+guarantee minima or maxima, there won't be any "saddle points".} According to special relativity, because
+physics should behave the same in all inertial frames, then the action should also be Lorentz invariant. 
+
+When a particle travels through space, the path it traces out is called its \textbf{worldline}. Because it
+describes how the particle moves, a natural candidate for the action would be the spacetime interval of its
+worldline:
+\[
+	S_\text{particle} = -mc \int dS
+\]
+here we have a prefactor of \( mc \) for historical reasons, we don't need to care about these prefactors
+very much. If we now parametrize our action by \( \lambda \), then the action may be written as:
+\[
+	S_\text{particle} = -mc \int \sqrt{\eta_{\mu \nu} \dv{x^{\mu}}{\lambda} \dv{x^{\nu}}{\lambda}} \diff\lambda
+\]
+Then, when we vary the action using \( x^{\mu}(\lambda) \to x^{\mu} + \delta x^{\mu} \), then we have:
+\begin{align*}
+	\delta S &= -mc \int \delta\sqrt{-\eta_{\rho \sigma} \dv{x^{\rho}}{\lambda} \dv{x^{\sigma}}{\lambda}}
+	\diff \lambda \\ 
+			 &= -mc \int \frac{\delta\left( -\eta_{\mu \nu} \dv{x^{\mu}}{\lambda} \dv{x^{\nu}}{\lambda}
+			 \right)}{2 \sqrt{-\eta_{\rho \sigma} \dv{x^{\rho}}{\lambda} \dv{x^{\sigma}}{\lambda}}} \\ 
+			 &= -mc \int \frac{-2 \eta_{\mu \nu} \dv{x^{\mu}}{\lambda} \dv{(\delta x^{\nu})}{\lambda}}{2
+			 \sqrt{-\eta_{\rho \sigma} \dv{x^{\rho}}{\lambda} \dv{x^{\sigma}}{\lambda}}} 
+\end{align*}
+Now we do integration by parts, which means we slap a differential around everything but the \( \dv{(\delta
+x^{\nu}}{\lambda} \) term, giving us:
+\[
+	\delta S = mc \int \dv{\lambda} \left( \frac{\eta_{\mu \nu} \dv{x^{\mu}}{\lambda}}{\sqrt{-\eta_{\rho
+	\sigma} \dv{x^{\rho}}{\lambda} \dv{x^{\sigma}}{\lambda}}} \right) \delta x^{\nu}
+\]
+If we then require that \( \delta S = 0 \) for any \( \delta x^{\nu} \), then the requirement is that
+everything else must equal to zero:
+\[
+	-mc \left( \frac{\eta_{\mu \nu} \dv{x^{\mu}}{\lambda}}{\sqrt{-\eta_{\rho \sigma} 
+	\dv{x^{\rho}}{\lambda} \dv{x^{\sigma}}{\lambda}}} \right) = 0
+\]
+This equation may look ugly at first, but it is only written as such because we haven't specified how we want
+to parametrize the worldline. If we choose a simple parametrization like the proper time (i.e. \( \lambda =
+\tau \)), then we get:
+\[
+	-mc \dv{\tau} \left( \frac{\eta_{\mu \nu} \dv{x^{\mu}}{\tau}}{\sqrt{-\eta_{\rho \sigma}
+	U^{\rho}U^{\sigma}}} \right) = -m \dv{p_{\nu}}{\tau} = 0 \implies \dv{p_{\mu}}{\tau} = 0
+\]
+so what comes out is a very natural equation: the statement that the net force on a free particle is zero.  
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

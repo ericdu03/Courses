@@ -1,0 +1,147 @@
+The fourth lecture of Physics 137A was held on \textbf{Wednesday, August 31}. It covered wave packets and reviewed the mathematics of the Fourier transform.
+\section{Last Time: Wave Description of Nature}
+    Last lecture, we explained how everything in the world, in the context of quantum mechanics, can be described as a wave and by a wave function. We started with a standard plane wave, described by the expression $e^{i(kx - \omega t)}$, where $k$ is the spatial frequency and $\omega$ is the temporal frequency. [INSERT TIKZ] Furthermore, we were given the de Broglie relations, which describe the momentum and energy of such a wave:
+    \begin{align*}
+        p &= \hbar k &&k = \frac{2\pi}{\lambda}\\
+        E &= \hbar\omega &&\omega = 2\pi f
+    \end{align*}
+    From this, we see that a large $k$ will imply more momentum, and a large $\omega$ will imply more energy.\\\\
+    While this is all well and good, we found that a plane wave doesn't really help us in describing localized phenomena, since it exists everywhere in space and time and we need the integral over all of space to come out to $1$. And so, for this, we will need to understand \textit{wave packets}, and this is our goal today: \underline{move from plane waves to wave packets}.
+
+\section{Wave Packets}
+    We currently have a plane wave permeating all of space: [INSERT TIKZ]
+    We saw that this plane wave $e^{i(k_1x - \omega t)}$ is pretty OK at describing the wave at the specific location of interest, but as soon as we move away from it, it becomes exceedingly unhelpful. So, our target is a localized wave packet:
+    [INSERT TIKZ]
+    How can we get this? Well, let's add some more plane waves to our initial one:
+    [INSERT TIKZ]
+    As we can see, we can kill a lot of the terms past our desired localized region with the proper choices of $k_n$, since the waves will interfere with each other there. So, after adding together a bunch of $e^{i(k_m - \omega t)}$ waves, we get something that's pretty darn close to what we want:
+    [INSERT TIKZ]
+    But, we can't just add these waves together blindly: some waves will. have more of an effect in the sum than others. Because of this, we need to properly weight them. How do we do this? Through \textit{amplitudes}! And so, our sum becomes something more like this:
+    $$A_0e^{i(k_1x - \omega t)} + A_1e^{i(k_2x - \omega t)} + A_2e^{i(k_3x - \omega t)} + A_3e^{i(k_4x - \omega t)} + \dots$$
+    This as some have already no-doubt guessed, is exactly the beginning of a \fbox{Fourier Transform}.
+
+    %maybe put this subsection into an example environment?
+    \subsection{1D Wave Packet}
+        Let's apply this to our simple 1D wave packet. To do this, let's throw in $p$ and $E$, so that we can deal with a wave function. So, our wave will look like $e^{i\frac{p_xx - E(p_x)t}{\hbar}}$. Summing over many plane waves gives us our new expression for $\Psi$:
+        $$\Psi(x,t) = \frac{1}{\sqrt{2\pi\hbar}}\int e^{i\frac{P_xx - Et}{\hbar}}\phi(p_x)dp_x$$
+        Here, it's important to realize that we are \textbf{integrating over momentum, not space or time}! This is because we are considering snapshots in space and time, for which the momentum will be changing. In this expression, notice that $\phi(p_x)$ is the weight parameter, which plays the role of the amplitudes $A_m$ we saw in the first sum we attempted to construct. Finally, the coefficient in front of the integral is our normalization, since we only want to deal with normalized wave functions.\\\\
+        Now, a small 137A gift: we are going to work through the math of the Fourier transform and review everything necessary to move forward with our study of quantum mechanics.
+
+  \section{Review of Fourier Transforms}
+      Here, we are going to cover all of the mathematics of the Fourier transform that is important for our purposes. We won't be delving into too much specific detail; for that, consult some other reading materials from other courses. Now, let's cover all of the pieces of the transform.
+
+      \subsection{Discrete Fourier Transform}
+        Starting with the simplest form, we have the discrete Fourier transform, which can model the behavior of a period function $f(x) = f(x+2\pi)$, with $x \in [-\pi,\pi]$, as an example. From this, we get our first equation for the transform:
+        $$f(x) = \frac12 A_0 + \sum_{n=1}^{\infty}[A_n\cos(nx) + B_n\sin(nx)]$$
+        Writing this down is no big deal, but the hard part is figuring out these coefficients $A_n$ and $B_n$. This would be akin to being told the ingredients of coffee and being asked to make a perfect latte: you need the proper proportions of ingredients, not just the ingredients themselves. How do we do this?
+        \begin{example}{Finding Components of Vectors}{}
+          Consider a vector $\vec{v} = a\hat{x} + b\hat{y} + c\hat{z}$. How can we find the coefficients $a$, $b$, and $c$? Easy: take the dot product:
+          \begin{align*}
+            a &= \vec{v}\dot\hat{x}\\
+            b &= \vec{v}\dot\hat{y}\\
+            c &= \vec{v}\dot\hat{z}
+          \end{align*}
+          We can now apply this to our situation.
+        \end{example}
+        As we can see, taking the dot product can give us the components, so why don't we try something similar? This time, instead of taking a dot product, we can integrate. Remember, we hace to pick our \say{basis vectors} accordingly and normalize the integral. Doing so and putting everything together gives us the full expression with all of the components for the discrete Fourier Transform:
+        \newpage
+        \begin{definition}{Fourier Transform: Discrete Case}{}
+            Given periodic function $f(x) = f(x+2\pi)$ with $x \in [-\pi,\pi]$:
+              \begin{align*}
+                f(x) &= \frac12A_0 + \sum_{n=1}^{\infty}[A_n\cos(nx) + B_n\sin(nx)]\\
+                A_n &= \frac{1}{\pi}\int f(x)\cos(nx)dx\\
+                B_n &= \frac{1}{\pi}\int f(x)\sin(nx)dx
+            \end{align*}
+        \end{definition}
+        That's it for the discrete Fourier transform. Now, let's write it in terms of exponents.
+
+      \subsection{Discrete Case: Exponential Form}
+        Having written out the Fourier transform in terms of $\sin$ and $\cos$, let's write it out in terms of exponents, since we will be dealing with functions of this form a lot more. Converting everything gives us the following expression:
+        \begin{definition}{Fourier Transform: Discrete Case with Exponents}{}
+          Given the same periodic function:
+          \begin{align*}
+            f(x) &= \frac{1}{\sqrt{2\pi}}\sum_{n=-\infty}^{\infty}C_ne^{inx}\\
+            C_n &= \frac{1}{\sqrt{2\pi}}\int_{-\pi}^{\pi}f(x)e^{-inx}dx
+          \end{align*}
+        \end{definition}
+        It's at this point where we need to introduce a new tool: the \textit{Kronecker delta}.
+
+      \subsection{Kronecker Delta}
+        For the future, we will define this new function, which looks like this:
+        \begin{definition}{Kronecker Delta}{}
+          Denoted $\delta_{mn}$: $\frac{1}{\sqrt{2\pi}}\int_{-\pi}^{\pi}e^{i(n-m)x}dx = \fbox{$\delta_{mn} = \begin{cases}1 & \text{if } m = n\\ 0 & \text{if } m \neq n\end{cases}$}$
+        \end{definition}
+        This Kronecker delta establishes \textit{orthonormality}, since we want our vectors to be orthonormal. With that, we have finished with discrete Fourier transforms, and we can move on to understand the generalized continuous case.
+
+      \subsection{Continuous Fourier Transform}
+        In the continuum limit, the sums will become integrals, so our expressions will look like this:
+        \begin{definition}{Fourier Transform: Continuous Case}{}
+          Given the same period function:
+          $$f(x) = \frac{1}{\sqrt{2\pi}}\int_{0\infty}^{\infty}g(k)e^{ikx}dk$$
+          Here, $g(k)$ is defined as the \textbf{Fourier transform} of $f(x)$.
+        \end{definition}
+        How do we find the transform $g(k)$? Well, we can then take the \textit{inverse Fourier transform}:
+        \begin{definition}{Inverse Fourier Transform}{}
+          Given $g(k)$:
+          $$g(k) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-ikx}dx$$
+          Then, $f$ is defined as the \textbf{inverse Fourier transform} of $g(k)$.
+        \end{definition}
+        These integrals we just saw are commonly referred to as \textbf{Fourier integrals}, and we will later learn that these are a special case of a \textit{unitary transform}.\\\\
+        Similarly, we need to understand how the Kronecker delta behaves in the continuum limit.
+
+      \subsection{Dirac Delta}
+        As was probably surmised, in the continuum limit, the Kronecker delta becomes the much-feared \textit{Dirac delta function}. Let's expand out our integral to see where it comes from:
+        $$f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty}f(x')e^{-ikx'}dx'\right]e^{ikx}dk$$
+        Manipulating this:
+        $$g = \int_{-\infty}^{\infty}f(x')\delta(x-x')dx$$
+        And so, we get our Dirac delta function:
+        \begin{definition}{Dirac Delta}{}
+          Denoted $\delta(x-x')$: $\delta(x-x') = \frac{1}{2\pi}\int_{\infty}^{\infty}e^{ik(x-x')}dx$
+        \end{definition}
+        Now, this function is very odd and has some pretty weird properties, so let's explore them a bit here.\\\\
+        Since $f(x)$ and $f(x')$ are arbitrary and independent, $\delta(x-x')$ must be $0$ if $x\neq x'$, and $\int \delta = 1$ otherwise. These properties need to hold in order for our integral to not fall apart, but these are still difficult to understand. To better comprehend just how a delta function behaves, let's illustrate this with a diagram:
+          [INSERT TIKZ with descriptions]
+        Here, we see that $g(k)$ must be infinitely sharp at exactly one point: $k_0$. Similarly, this implies that the Fourier transform for a single plane wave will be precisely the $\delta$ function. What happens if we add more waves?
+          [INSERT TIKZ]
+        As we can see, the function gains width, and decreases in sharpness. This will lead us nicely into the Uncertainty Principle later on.\\\\
+        This marks the end of the mathematical review. Back to physics!
+
+    \section{Back to Wave Packets}
+      Recall our 1D wave packet: $$\Psi(x,t) = \frac{1}{\sqrt{2\pi\hbar}}\int_{-\infty}^{\infty}e^{i\frac{p_xx - E(p_x)t}{\hbar}}\phi(p_x)dp_x$$
+      Now that we have our mathematical tools in place, let's expand this. Suppose $\phi(p_x)$ is a sharp function, but not quite as sharp as a delta function:
+        [INSERT YET ANOTHER TIKZ]
+      As we can see, the added width at the bottom will correspond precisely to increased uncertainty in the measurement of $p_x$.
+
+      \subsection{Stationary Phase Condition}
+        For added simplicity, let $\beta{p_x} = p_xx - E(p_x)t$. Then, our equation simplifies:
+        $$\Psi(x,t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{i\frac{\beta(p_x)}{\hbar}}\phi(p_x)dp_x$$
+        Now, let's release the inner mathematician and try to see what is going on. If $\beta(p_x)$ varies, then the exponential component will rapidly oscillate. And, outside $p_0$, the weight $\phi(p_x)$ goes to $0$. The oscillation in the exponent will disappear when $\beta$ goes to $0$. This is referred to as the \textbf{stationary phase condition}. Let's try to look for it.
+
+      \subsection{Group Velocity}
+        The stationary phase condition, by definition, will be an inflection point, so we need to set the derivative to $0$:
+        $$\frac{d\beta(p_x)}{dp_x}\Biggr|_{p_x = p_0} = 0$$
+        Computing this gives:
+        $$x - \left(\frac{d}{dp_x}E(p_x)\right)t = 0 \implies \frac{x}{t} = \frac{dE(p_x)}{dp_x}\Biggr|_{p_{x=0}}$$
+        Many will recognize that last expression as the \textit{group velocity}:
+        \begin{definition}{Group Velocity}{}
+          Denoted $v_g$: $$v_g = \frac{dE(p_x)}{dp_x}\Biggr|_{p_{x=0}}$$
+          Group velocity refers to \textbf{how fast the center of the wave packet moves}.
+        \end{definition}
+        Even though all of the individual waves will most likely be traveling at different speeds, the whole wave packet group will travel at one velocity, which we just derived.
+
+      \subsection{Phase Velocity}
+        Now, if group velocity is the velocity of the group wave packet, then we also want to find the velocity of any individual wave. To do this, we can find the stationary phase condition for an individual plane wave:
+        \begin{align*}
+          e^{i(k_0x - \omega(k_0)t)}\\
+          \therefore k_0x - \omega(k_0)t &= 0 &&\text{(set phase to $0$ for SPC)}\\
+          \therefore \frac{x}{t} \frac{\omega(k_0)}{k_0} = \frac{E(p_0)}{p_0}
+        \end{align*}
+        That last expression is precisely our phase velocity:
+        \begin{definition}{Phase Velocity}{}
+          Denoted $v_p$: $$v_p = \frac{\omega(k_0)}{k_0} = \frac{E(p_0)}{p_0}$$
+          The phase velocity refers to \textbf{how fast any individual plane wave is traveling}.
+        \end{definition}
+        It'll be super crucial to remember the difference between these two different velocity types!
+
+    \section{Next Time: Dispersion}
+      Now, because of these differences between phase and group velocity, we actually find that, with time, the wave packets will \textit{disperse}. We will build on this next time.

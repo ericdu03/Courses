@@ -1,0 +1,289 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 110B}
+\newcommand{\classname}{Electromagnetism and Optics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 11} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by the Berkeley EECS Department: \url{https://eecs.berkeley.edu/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\section*{Problem 1}
+	Consider the four-component object \( \tilde u^{\mu} \) where
+	\[
+		\tilde u^{\mu} \equiv \dv{x^{\mu}}{t} = \begin{bmatrix} c \\ \dv{x^{i}}{t} \end{bmatrix}	
+	\]
+	Note that if \( x^{\mu} \) is the spacetime coordinate of a particle, then the spatial components of \(
+	\tilde u^{\mu} \) is the 3-velocity.
+	\begin{enumerate}[label=(\alph*)]
+		\item Consider the Lorentz boost transformation in the \( x \)-direction, show that \( \tilde u^{\mu}
+			\) is transformed to 
+			\[
+				\tilde u^{\mu} \to \tilde u'^{\mu} = \dv{x'^{\mu}}{t'} =
+				\begin{bmatrix} c \dv{t'}{t'} \\ \dv{\mathbf{x}}{t'} \end{bmatrix}
+				= 
+				\begin{bmatrix} c \\ 
+					\\
+					\dfrac{u_x - v}{1 - \dfrac{v u_x}{c^2}} \\ 
+					\\
+					\dfrac{u_y}{\gamma\left( 1 - \dfrac{v u_x}{c^2} \right)}\\ 
+					\\
+					\dfrac{u_z}{\gamma\left( 1 - \dfrac{v u_x}{c^2} \right)}\end{bmatrix}
+			\]
+
+			\begin{solution}
+				We do this by considering a Lorentz boost in the \( x \)-direction:
+				\[
+					\tilde u'^{\mu} = \begin{bmatrix} \dv{(ct')}{t}\\ \dv{x'}{t'} \\ \dv{y'}{t'} \\
+					\dv{z'}{t'} \end{bmatrix} = \begin{bmatrix} c \\ \frac{\gamma(dx - v \diff t)}{\gamma
+				(\diff t - \frac{v}{c^2} \diff x)}\\ \frac{dy}{\gamma(dt - \frac{v}{c^2} \diff x)} \\
+			\frac{dz}{\gamma(dt - \frac{v}{c^2} \diff x)} \end{bmatrix} = 
+				\begin{bmatrix} c \\ 
+					\\
+					\dfrac{u_x - v}{1 - \dfrac{v u_x}{c^2}} \\ 
+					\\
+					\dfrac{u_y}{\gamma\left( 1 - \dfrac{v u_x}{c^2} \right)}\\ 
+					\\
+					\dfrac{u_z}{\gamma\left( 1 - \dfrac{v u_x}{c^2} \right)}\end{bmatrix}
+				\]
+			\end{solution}
+		\item Suppose we have another similar 4-component object \( \tilde w^{\mu} \) for another particle,
+			which under the Lorentz boost transformed to \( \tilde w^{\mu} \). Write down \( \tilde u^{\mu} +
+			\tilde w^{\mu}\). 
+
+			\begin{solution}
+				We take two vectors of the form expressed in (a) and add them together. We'll do this by
+				component because it looks nicer that way:
+				\[
+					\frac{u_x - v}{1 - \frac{v u_x}{c^2}} + \frac{w_x - v}{1 - \frac{v w_x}{c^2}} =
+					\frac{(u_x - v) \left( 1 - \frac{v w_x}{c^2} \right) + (w_x - v) \left( 1 - \frac{v
+					u_x}{c^2} \right)}{\left( 1 - \frac{v u_x}{c^2} \right)\left( 1 - \frac{v w_x}{c^2}
+			\right)} = \frac{(u_x - v)(c^2 - v w_x) + (w_x - v)(c^2 - v u_x)}{(c^2 - v u_x)(c^2 - vw_x)}
+				\]
+				For the component that isn't boosted:
+				\[
+					\frac{u_y}{\gamma\left( 1 - \frac{v u_x}{c^2} \right)} + \frac{w_y}{\gamma\left( 1 -
+					\frac{v w_x}{c^2} \right)} = \frac{1}{\gamma}\left[ \frac{u_y(c^2 - vw_x) + w_y (c^2 -
+			vu_x)}{(c^2 - vu_x)(c^2 - vw_x)}\right]
+				\]
+				so the full vector is:
+				\[
+					\tilde u^{\mu} + \tilde w^{\mu} = \begin{bmatrix} 2c\\ 
+						\\
+					\dfrac{(u_x - v)(c^2 - v w_x) + (w_x - v)(c^2 - v u_x)}{(c^2 - v u_x)(c^2 - vw_x)}\\
+					\\
+					\dfrac{1}{\gamma}\left[ \dfrac{u_y(c^2 - vw_x) + w_y (c^2 -
+					vu_x)}{(c^2 - vu_x)(c^2 - vw_x)}\right]\\
+					\\
+					\dfrac{1}{\gamma}\left[ \dfrac{u_z(c^2 - vw_x) + w_z (c^2 -
+					vu_x)}{(c^2 - vu_x)(c^2 - vw_x)}\right]
+					\end{bmatrix}
+				\]
+			\end{solution}
+		\item If instead we first add the two 4-component objects together to get \( \tilde b^{\mu} \equiv
+			\tilde u ^{\mu} + \tilde w^{\mu} \). Calculate \( \tilde b'^{\mu} \), i.e. the transformation of
+			\( \tilde b^{\mu} \) under the Lorentz boost in the \( x \)-direction. Is \( \tilde b'^{\mu} \)
+			equal to \( \tilde u^{\mu} + \tilde w^{\mu} \). 
+
+			\begin{solution}
+				If we add them up beforehand, we can just take the answer from part (a) but treat each \( u
+				\) as \( \tilde u + \tilde w \), so the vector becomes:
+				\[
+				\begin{bmatrix} c \\ \dfrac{u_x + w_x - v}{1 - \dfrac{v (u_x + w_x)}{c^2}} \\
+					\\
+					\dfrac{u_y + w_y}{\gamma\left( 1 - \dfrac{v (u_x + w_x)}{c^2} \right)}\\ 
+					\\
+					\dfrac{u_z + w_z}{\gamma\left( 1 - \dfrac{v (u_x + w_x)}{c^2} \right)}\end{bmatrix}
+				\]
+				Obviously, this is not equal to the result in part (b); this is also what we discussed in
+				class, that the velocity 4-vector does not transform linearly under Lorentz transformation. 
+			\end{solution}
+	\end{enumerate}
+	\textit{Note:} The purpose of this problem is twofold. Firstly, just because an object has four
+	components, it does not mean that it transforms as 4-vectors, which are required to transform in the same
+	way as the 4-position vector \( x^{\mu} \) under Lorentz transformation. Secondly, when objects do not
+	transform like vectors, oftentimes the linearity of addition is not preserved under Lorentz
+	transformation. But preserving the linearity is important if we want 4-momentum conservation to hold true
+	in different inertial reference frames. 
+	\begin{enumerate}[label=(\alph*), resume]
+		\item Consider a \( 2\to 2 \) particle scattering, where particle \( A \) and \( B \) collide and
+			come out with particle \( C \) and \( D \). Suppose that in the \( \mathcal{S} \)-frame the
+			4-momentum is conserved, i.e.
+			\[
+				\mathbf{P}_1 + \mathbf{P}_2 = \mathbf{P}_3 + \mathbf{P}_4
+			\]
+			Show that if the 4-momentums \( \mathbf{P}_i \) transforms linearly under Lorentz transformation,
+			that is 
+			\[
+				\Lambda(a \mathbf{P}_i + b \mathbf{P}_j) = a\Lambda(\mathbf{P}_i) + b \Lambda(\mathbf{P}_j)
+			\]
+			for any real numbers \( a \) and \( b \) and 4-momentums \( \mathbf{P}_i \) and \( \mathbf{P}_j
+			\), then the 4-momentum conservation also holds true in other inertial reference frames, i.e. 
+			\[
+				\mathbf{P}'_1 + \mathbf{P}'_2 = \mathbf{P}'_3 + \mathbf{P}'_4
+			\]
+
+			\begin{solution}
+				Because the Lorentz transformation acts linearly:
+				\[
+					\mathbf{P}_1' + \mathbf{P}_2' = \Lambda(\mathbf{P}_1) + \Lambda(\mathbf{P}_2) =
+					\Lambda(\mathbf{P}_1 + \mathbf{P}_2) = \Lambda(\mathbf{P}_3 + \mathbf{P}_4) =
+					\mathbf{P}_3' + \mathbf{P}_4'
+				\]
+				so the momentum is also conserved in any \( \mathcal{S}' \) frame. 
+			\end{solution}
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 2}
+	For a particle of mass \( m \) moving in the \( \mathcal{S} \)-frame whose spacetime coordinate is
+	described by \( x^{\mu} = (ct, \mathbf{x}(t)) \), its 4-momentum is defined as \( p^{\mu} \equiv m
+	U^{\mu} \), where \( U^{\mu} \) is the particle's 4-velocity, 
+	\[
+		U^{\mu} \equiv \dv{x^{\mu}}{\tau}
+	\]
+	and \( \tau \) is the proper time measured by the clock moving with the particle. (It's the time measured
+	in the particle's comoving frame). The 4-momentum of the particle is defined as \( p^{\mu} = m U^{\mu}
+	\), while the relativistic energy \( E \) and the relativistic 3-momentum \( \mathbf{p} \) of the
+	particle is defined via the temporal and spatial components of the 4-momentum where 
+	\[
+		E \equiv p^{0}c \quad \text{ and } \quad \mathbf{p} = p^{i}
+	\]
+	\begin{enumerate}[label=(\alph*)]
+		\item Show explicitly that the relativistic energy and 3-momentum can be expressed as
+			\[
+				E = \gamma mc^2, \quad p^{i} = \gamma mv^{i}
+			\]
+			where \( v \equiv |\mathbf{v}| = |dx^{i} / dt| \) and \( \gamma \equiv 1 / \sqrt{1 - v^2 / c^2} \). 
+
+			\begin{solution}
+				We know that \( p^{\mu} = mU^{\mu} \), and since \( U \) is expressed as:
+				\[
+					\mathbf{U} = \begin{pmatrix} \gamma c \\ \gamma \mathbf{v} \end{pmatrix}
+				\]
+				The explicit reason for this is because we can write:
+				\[
+					U^{\mu} = \dv{x^{\mu}}{\tau} = \dv{x^{\mu}}{t}\dv{t}{\tau}  = \gamma v^{\mu}
+				\]
+				the zeroth index is just \( c \), and the other indices are the velocity in the \( x, y \)
+				and
+				\( z \) direction. Therefore, we know that:
+				\[
+					p = \begin{pmatrix} \gamma mc \\ \gamma m \mathbf{v} \end{pmatrix}
+				\]
+				and from there, we see that \( E = p^{0}c = (\gamma mc) c = \gamma mc^2 \). Likewise, \(
+				p^{i} = \gamma m v^{i} \) drops out immediately. 
+			\end{solution}
+		\item The dot products of 4-vectors are Lorentz invariant. Express the dot product \( p^{\mu}p_\mu \)
+			in terms of the particle's mass \( m \) and \( c \). 
+
+			\begin{solution}
+				We know that \( p = mU^{\mu} \), so we can write:
+				\[
+					p^{\mu}p_{\mu} = m^2 U^{\mu}U_{\mu}
+				\]
+				Now, to get an explicit relation, we compute:
+				\[
+					U^{\mu}U_{\mu} = -\gamma^2 c^2 + \gamma^2 (v_x^2 + v_y^2 + v_z^2) = \gamma^2(-c^2 + v^2)
+				\]
+				And since \( \gamma^2 = c^2 /(c^2 - v^2) \) (the alternate form of \( \gamma \)), then:
+				\[
+					\gamma^2 (-c^2 + v^2) = -c^2
+				\]
+				And hence, we have:
+				\[
+					p^{\mu}p_{\mu} = -m^2 c^2
+				\]
+				this is consistent with what we get in the notes. 
+			\end{solution}
+		\item Express \( p^{\mu}p_\mu \) in terms of the relativistic energy \( E \) and the relativistic
+			3-momentum \( \mathbf{p} \). Combine this with part (b), write down the Lorentz invariant
+			identity between \( E \), \( |\mathbf{p}| \) and \( m \). 
+
+			\begin{solution}
+				We can write \( \frac{E^2}{c^2} = \gamma m^2 c^2 \), and \( p^{i} = \gamma^2 m^2 (v^{i})^2 \),
+				so can combine them in the following way to get rid of \( \gamma \) and get our identity:
+				\[
+					-\frac{E^2}{c^2} + (p^{i})^2 = -\gamma^2 m^2 c^2 + \gamma^2 m^2 (v^{i})^2 =
+					\frac{c^2}{c^2 - v^2} m^2(-c^2 + v^2) = -m^2c^2
+				\]
+				as desired. 
+			\end{solution}
+		\item Express the particle's speed \( v = |\mathbf{v}| \) in terms of \( |\mathbf{p}|, E \) and \( c \). 
+
+			\begin{solution}
+				We do the same thing as in the previous subpart. We can write:
+				\[
+					\frac{|\mathbf{p}|^2}{E^2} = \frac{\gamma m (v^{i)^2}}{\gamma^2 m^2 c^{4}} \implies v^2 =
+					v_x^2 + v_y^2 + v_z^2 = \frac{|\mathbf{p}|^2}{E^2} \cdot c^{4}
+				\]
+				Therefore:
+				\[
+					|\mathbf{v}| = \sqrt{v_x^2 + v_y^2 + v_z^2} = \frac{|\mathbf{p}|}{E} c^2
+				\]
+			\end{solution}
+		\item In the form given in (d), and consider the identity you found in (c), what should the
+			particle's speed be if the particle is massless? 
+
+			\begin{solution}
+				From part (c), if the particles are massless, then the right hand side \( -m^2 c^2 = 0 \), so
+				therefore:
+				\[
+					(p^{i})^2 = \frac{E^2}{c^2} \implies p^{i} = \frac{E}{c}
+				\]
+				Combining that with part (d), if we substitute this relation in we get:
+				\[
+					|\mathbf{v}| = \frac{E / c}{E} c^2 = c
+				\]
+				so massless particles travel at the speed of light. 
+			\end{solution}
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 3}
+	A pion at rest decays into a muon plus a neutrino. Assuming the neutrino is massless \( m_\nu \simeq 0
+	\), find the speed of the muon in terms of the pion mass \( m_{\pi} \), muon mass \( m_\mu \) and the
+	speed of light \( c \). 
+
+	\begin{solution}
+		There's a similar problem in Griffiths, problem 12.8. We follow much of the same derivation to solve
+		this problem. The relativistic energy and momentum is conserved, so we set up those equations now.
+		First, on the energy side:
+		\[
+			E_\text{before} = m_{\pi}c^2 \quad E_\text{after} = E_{\nu} + E_{\pi}
+		\]
+		Likewise, the momentum
+		\[
+			\mathbf{p}_\text{before} = 0 \quad \mathbf{p}_\text{after} = \mathbf{p}_{\nu} + \mathbf{p}_{\pi}
+		\]
+		By conservation of energy, we know that:
+		\[
+			E_{\nu} + E_{\pi} = m_{\pi}c^2
+		\]
+		and \( \mathbf{p}_{\nu} = \mathbf{-p}_{\pi} \). Since the neutrino is massless, then \( E_{\nu} =
+		|\mathbf{p}_{\nu}|c \) and \( |\mathbf{p}_{\mu}| = \sqrt{E_{\mu}^2 - m_{\mu}^2 c^{4}} / c \). This
+		then gives:
+		\[
+			E_{\mu} + \sqrt{E_{\mu}^2 - m_{\mu}^2 c^{4}} = m_{\pi}c^2 \implies E_{\mu} = \frac{(m_{\pi}^2 +
+			m_{\mu}^2)c^2}{2 m_{\pi}}
+		\]
+		Now with the muon energy determined, we can now calculate its velocity. We know that from the
+		previous problem:
+		\[
+			|v_{\mu}| = \frac{|\mathbf{p}_{\mu}|}{E_{\mu}}c^2
+		\]
+		so substituting what we have, we get:
+		\[
+			|v_{\mu}| = \frac{m_\pi}{c (m_\pi^2 + m_\mu^2)} \sqrt{\frac{c^{4}(m_\pi^2 - m_\mu^2)^2}{m_\pi^2}}
+			= \frac{c(m_\pi^2 - m_\mu^2)}{m_\pi^2 + m_\mu^2}
+		\]
+		It's also nice to see that the final velocity derived here is less than \( c \), which is expected
+		since the muon has nonzero mass. 
+	\end{solution}
+\end{document}

@@ -1,0 +1,513 @@
+\documentclass{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, enumitem, circuitikz, physics, parskip, hyperref}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+% \usepackage{dirtytalk}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+
+\title{Physics 137A Homework}
+\author{Yutong Du}
+\linespread{1.3}
+
+
+\begin{document}
+
+\maketitle 
+
+\section*{Collaborators}
+
+I worked with \textbf{Andrew Binder} to complete this homework.
+
+
+\section*{Problem 1}
+
+Linear operators are linear maps from the Hilbert space to itself, i.e. the functions $\hat L$ from wavefunctions to wavefunctions such that $\hat L(\alpha  \Psi + \beta  \Phi) = \alpha \hat L \Psi + \beta \hat L  \Phi$, for all wavefunctions $\Psi, \Phi$ and all complex numbers $\alpha, \beta$. A Hermitian operator $\hat A$ is one whose adjoint is equal to itself, $\hat A^\dagger = \hat A$, i.e. for all $\Psi, \Phi$, 
+
+\[ \mean{\Psi, \hat A \Phi} = \int \Psi^\star (x) [\hat A \Phi](x) \dx = \int [\hat A \Psi]^\star (x) \Phi(x) \dx = \mean{\hat A \Psi, \Phi}\]
+
+Physical measureables are represented by Hermitian operators. We know two such operators, the position and momentum:
+
+\[ \hat x \ : [\hat X \Psi](x) = x\Psi(x), \hspace{35pt} \hat p \ :[\hat p \Psi](x) = -i\hbar \frac{\partial \Psi}{\partial x} (x)\]
+
+For the following maps, check whether they are linear operators, and if so, whether they are Hermitian. 
+
+\begin{solution}
+    To check for linearity, we check whether $\hat L(\alpha  \Psi + \beta  \Phi) = \alpha \hat L \Psi + \beta \hat L  \Phi$. Then, if they are linear, we proceed to check whether they are Hermitian, using the definition given in the problem.
+\end{solution} 
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\hat x$
+
+    \begin{solution}
+        It's given in the problem statement that the position operator $\hat x$ is linear and is also Hermitian.
+    \end{solution}
+    \item $\hat A \ : \hat A \Psi(x) = \Psi^\star(x) \Psi(x)$
+
+        \begin{solution}
+            To check linearity, we check whether $\hat A(\alpha f(x) + \beta g(x)) = \hat A \alpha f(x) + \hat A \beta g(x)$. We compute the left and right hand sides separately: 
+
+            \begin{align*}
+                \text{Left: } \hat A(\alpha f(x) + \beta g(x)) &= (\alpha f(x) + \beta g(x))(\alpha f(x) + \beta g(x))^\star\\
+                &= (\alpha f^\star(x) + \beta g^\star(x))(\alpha f(x) + \beta g(x))\\
+                &= \alpha^2 f^\star(x) f(x) + \alpha \beta (f^\star(x) g(x) + f(x) g^\star(x)) + \beta^2 g(x) g^\star(x)\\
+                \text{Right: } \hat A \alpha f(x) + \hat A \beta g(x) &= \alpha f(x)f^\star(x) + \beta g(x)g^\star(x)
+            \end{align*}
+
+            As we can see, the right hand side is missing the cross term $\alpha \beta (f^\star(x)g(x) + f(x) g^\star(x))$, and thus this is not a linear operator. If it's not linear, then there's no hope that it's Hermitian either.
+        \end{solution}
+    \item $\hat p$
+
+    \begin{solution}
+        This is also given in the problem statement to be a linear and Hermitian operator.
+    \end{solution}
+    \item $\hat B \ : \hat B \Psi = -iL^2 \frac{\partial^2 \Psi}{\partial x^2} + i\frac{x^2}{L^2}\Psi$, for some fixed $L$
+    
+    \begin{solution}
+        Checking for linearity: 
+
+        \begin{align*}
+            \text{Left: }\hat B(\alpha \Phi + \beta \Psi) &= -iL^2\frac{\partial^2}{\partial x^2} + i \frac{x^2}{L^2}(\alpha \Phi + \beta \Psi)\\
+            &= -iL^2 \alpha \frac{\partial^2\Psi}{\partial x^2} + i \frac{x^2}{L^2} \alpha \Phi - iL^2 \beta \frac{\partial^2\Psi}{\partial x^2} + i\frac{x^2}{L^2}\beta \Psi\\
+            &= \alpha \left(-iL^2 \frac{\partial^2 \Phi}{\partial x^2} + i \frac{x^2}{L^2} \Phi\right) + \beta \left(-iL^2 \frac{\partial^2 \Psi}{\partial x^2} + i\frac{x^2}{L^2} \Psi\right)\\
+            \text{Right: } \hat B \alpha \Phi + \hat B \beta \Psi &= \alpha \left(-iL^2 \frac{\partial^2 \Phi}{\partial x^2} + i \frac{x^2}{L^2} \Phi\right) + \beta \left(-iL^2 \frac{\partial^2 \Psi}{\partial x^2} + i\frac{x^2}{L^2} \Psi\right)\\
+        \end{align*}
+
+        Thus the left and right hand sides are equal. Now we check for Hermiticity:
+
+        \begin{align*}
+            \text{Left: } \int \Psi^\star \left(-iL^2 \frac{\partial^2 \Psi}{\partial x^2} + i\frac{x^2}{L^2} \Psi\right) \dx &= \int -iL^2 \frac{\partial^2 \Psi}{\partial x^2} \Psi^\star + i\frac{x^2}{L^2} \Psi^\star \Psi \dx\\
+            \text{Right: } \int \left(-iL^2 \frac{\partial^2 \Psi^\star}{\partial x^2} + i\frac{x^2}{L^2} \Psi^\star\right)^\star \Psi \dx &= \int -iL^2 \frac{\partial^2 \Psi^\star}{\partial x^2} \Psi + i \frac{x^2}{L^2} \Psi^\star \Psi \dx
+        \end{align*}
+
+        But since $\frac{\partial^2 \Psi}{\partial x^2} \Psi^\star \neq \frac{\partial^2 \Psi^\star}{\partial x^2}\Psi$, the left and right side do not equal, and thus the operator is not Hermitian.
+    \end{solution}
+    \item $\hat P_\Phi \ :\hat P_\Phi \Psi(x) = \Phi(x) \int \Phi^\star(y) \Psi(y) \dd y$, for some fixed $\Phi(x)$
+    
+    \begin{solution}
+        Checking linearity:
+
+        \begin{align*}
+            \text{Left: } &= \hat P_\Phi (\alpha f(x) + \beta g(x)) \\
+            &= \Phi(x) \int \Phi^\star(y)[\alpha f(y) + \beta f(y)] \dd y\\
+            &= \Phi(x) \left[\alpha \int \Phi^\star f(y) \dd y + \beta \int \Phi^\star(y) g(y) \dd y\right]\\
+            \text{Right: } &= \hat P_\Phi \alpha f(x) + \hat P_\Phi \beta g(x)\\
+            &= \alpha \Phi(x) \int \Phi^\star(y) f(y) \dd y + \beta \Phi(x) \int \Phi^\star(z)g(z) \dd z\\
+            &= \Phi(x) \left[\alpha \int \Phi^\star(y)f(y) \dd y + \beta \int \Phi^\star(z)g(z) \dd z\right]
+        \end{align*}
+
+        Since $f$ and $g$ are the same on the left and right hand side, this operator is linear. Now we check for hermiticity:
+
+        \begin{align*}
+            \text{Left: } &= \int \left[ \Phi(x) \int \Phi^\star(y) f(y) \dd y\right] g(x) \dd x\\
+            &= \int \Phi^\star(x) \left[\int \Phi^\star(y) f(y)\right]^\star g(x) \dd x\\
+            &= \int \Phi(x) g(x) \int \Phi(y) f^\star(y) \dd y \dx\\
+            \text{Right: } &= \int f^\star(x) \Phi(x) \int \Phi^\star(y) g(y) \dd y \dx
+        \end{align*}
+
+        Since these integrals do not equal, $\hat P_{\Phi}$ is not Hermitian.
+
+    \end{solution}
+    \item $\hat Q_\Phi \ : \hat Q_\Phi \Psi(x) = \Phi(x) \int \Psi^\star(y) \Phi(y) \dd y$, for some fixed $\Phi(x)$
+    
+    \begin{solution}
+        Checking for linearity:
+
+        \begin{align*}
+            \text{Left: }&= \hat Q_\Phi \left(\alpha f(x) + \beta g(x)\right)\\
+            &= \Phi(x) \int \left[\alpha^\star f^\star(y) + \beta^\star g^\star(y)\right] \Phi(y) \dd y\\
+            &= \alpha^\star \Phi(x) \int f^\star(y) \Phi(y) \dd y + \beta^\star \Phi(x) \int g^\star(y) \Phi(y) \dd y\\
+            \text{Right: } &= \hat Q_\Phi \alpha f(x) + \hat Q_\Phi \beta g(x)\\
+            &= \alpha \Phi(x) \int f^\star(y) \Phi(y) \dd y + \beta \Phi(x) g^\star(y)\Phi(y) \dd y
+        \end{align*}
+
+        And since $\alpha^\star \neq \alpha$ and $\beta^\star \neq \beta$, then this operator is not linear. If it's not linear, it cannot be Hermitian either.
+    \end{solution}
+    \item $\hat T_a \ : \hat T_a\Psi(x) = \Psi(x+a)$, for some fixed a
+    
+    \begin{solution}
+        We check for linearity: 
+
+        \begin{align*}
+            \hat T_a (\alpha f(x) + \beta g(x)) &= \alpha f(x) + \beta g(x) + a\\
+            \hat T_A \alpha f(x) + \hat T_A \beta g(x) &= \alpha f(x+a) + \beta g(x+a)
+        \end{align*}
+
+        And thus they are not linear, so they cannot be Hermitian either.
+    \end{solution}
+    \item $\hat x\hat p$
+    
+    \begin{solution}
+        $\hat x \hat p$ are linear since partial derivatives are linear. However, due to the uncertianty principle, they cannot be Hermitian since the order in which we apply $\hat x$ and $\hat p$ matters.
+    \end{solution}
+    \item $\hat x \hat p + \hat p \hat x$ 
+    
+    \begin{solution}
+        First, we can rewrite $\hat x \hat p + \hat p \hat x = x\left(-xi\hbar \frac{\partial}{\partial x} - i\hbar \frac{\partial}{\partial x} x\right)$. Now we check for linearity:
+
+        \begin{align*}
+            (\hat x \hat p + \hat p \hat x)(\alpha f(x) + \beta g(x)) &= \left(-xi\hbar \frac{\partial}{\partial x} - i\hbar \frac{\partial}{\partial x} \right)(\alpha f(x) + \beta g(x))\\
+            &= -x i\hbar \frac{\partial}{\partial x} f(x) - xi\hbar \frac{\partial}{\partial x} \beta g(x) - i\hbar \frac{\partial}{\partial x} \alpha f(x) - i\hbar \frac{\partial}{\partial x} x\beta g(x)\\
+            &= -x i\hbar \alpha \frac{\partial f}{\partial x} - i\hbar \alpha \frac{\partial xf(x)}{\partial x} - xi \hbar \beta \frac{\partial g}{\partial x} - i\hbar \beta \frac{\partial}{\partial x} xg(x)\\
+            &= \left(-xi\hbar \alpha \frac{\partial}{\partial x} - i\hbar \alpha \frac{\partial}{\partial x} x \right) f(x) +\left(-xi\hbar \alpha \frac{\partial}{\partial x} - i\hbar \alpha \frac{\partial}{\partial x} x \right) g(x) 
+        \end{align*}
+
+        Therefore, the operator is linear. Now we check for Hermiticity. For simplicity, call $\hat x \hat p + \hat p \hat x = \hat O$:
+
+
+        \begin{align*}
+            \mean{f(x), \hat O g(x)} &= \int f^\star(0 \left[\left( - xi\hbar \frac{\partial}{\partial x} - i\hbar \frac{\partial}{\partial x} x\right) g(x)\right] \dx\\
+            &= \int f^\star(x) \left(-xi\hbar \frac{\partial g}{\partial x} - i\hbar \frac{\partial}{\partial x} xg(x)\right) \dx\\
+            \mean{\hat O f(x), g(x)} &= \int g(x) \left[-xi\hbar \frac{\partial f}{\partial x} - i\hbar \frac{\partial xf(x)}{\partial x}\right]^\star \dx
+        \end{align*}
+
+        We can stop here with the derivation, since on one hand we have $\frac{\partial f}{\partial x}$ and on the other we have $\frac{\partial g}{\partial x}$, which need not be equal. Therefore, this operator is not Hermitian.
+        % Again by the similar logic of the previous problem, this operator must be linear since partial derivatives are linear.   
+    \end{solution}
+\end{enumerate}
+
+\pagebreak
+\section*{Problem 2}
+
+A free particle has the initial wave function 
+
+\[ \Psi(x, 0)= Ae^{-ax^2}\]
+
+where $A$ and $a$ are constants ($a$ is real and positive).
+
+\begin{enumerate}[label=(\alph*)]
+    \item Normalize $\Psi(x, 0)$.
+    
+    \begin{solution}
+        To normalize $\Psi(x, 0)$, we compute $\int |\Psi(x, 0)|^2 \dx$ and set it equal to 1:
+
+        \begin{align*}
+            1 = \infint |\Psi|^2 \dx &= A^2 \infint e^{-2ax^2} \dx\\
+            &= \frac{A^2}{2a} \infint e^{-u^2} \dd u\\
+            1 &= \frac{A^2\sqrt{\pi}}{\sqrt{2a}}\\
+            A^2 &= \sqrt{\frac{2a}{\pi}}\\
+            \therefore A &= \sqrt[4]{\frac{2a}{\pi}} 
+        \end{align*}
+    \end{solution}
+    \item Find $\Psi(x, t)$. \textit{Hint:} Integrals of the form 
+    \[ \infint e^{(-ax^2 + bx)} \dx\] 
+
+    can be handled by ``completing the square'': Let $y \equiv \sqrt{a}[x + (b/2a)]$, and note that $(ax^2 + bx) = y^2 - (b^2/4a)$. 
+
+    \begin{solution}
+        To find $\Psi(x, t)$, we first find the weights $\phi(k)$ by applying the Fourier transform: 
+
+        \begin{align*}
+            \phi(k) &= \frac{1}{\sqrt{2\pi}} \infint \Psi(x, 0)e^{-ikx} \dx\\
+            &= \frac{1}{\sqrt{2\pi}} \infint e^{-ax^2}e^{-ikx} \dx 
+        \end{align*}
+
+        The hint that's given in the problem is perfectly fine to use, but we'll use another one, given in lecture:
+
+        \[ \int e^{-\alpha u^2}e^{-\beta u} \dd u = \left(\frac{\pi}{a}\right)^{\frac{1}{2}}e^{\frac{\beta^2}{4\alpha}}\]
+
+        Doing so gives us:
+        \[ \phi(k) = \left(\frac{1}{2\pi a}\right)^{\frac{1}{4}}e^{-k^2/4a}\]
+
+        Now we plug this into the free particle equation:
+
+        \[ \Psi(x, t) = \frac{1}{\sqrt{2\pi}} \infint \phi(k) e^{ikx + iEt/\hbar} \dd k\]
+
+        We have $E = \frac{-\hbar k^2}{2m}$, so now we can do the integral. The computation is relatively long, so I won't write out all the steps:
+
+        \begin{align*}
+            \Psi(x, t) &= \frac{1}{\sqrt{2\pi}} \left(\frac{1}{2\pi a}\right)^{\frac{1}{4}} \infint e^{-k^2/4a} e^{ikx - \frac{i\hbar k^2}{2m}t} \dd k\\
+            &= \frac{1}{\sqrt{2\pi}} \left(\frac{1}{2\pi a}\right)^{\frac{1}{4}} \infint e^{-k^2\left(\frac{1}{4a} + \frac{i\hbar t}{2m}\right)} e^{ikx} \dd k
+        \end{align*}
+
+        Now we can use our integration trick again to get:
+
+        \[ \Psi(x, t) = \frac{1}{\sqrt{2\pi}} \left(\frac{1}{2\pi a}\right)^{\frac{1}{4}} \left(\frac{\pi}{\frac{1}{4a} + \frac{i\hbar t}{2m}}\right)^{\frac{1}{2}} e^{\frac{(-ix)^2}{4\left(\frac{1}{4a} + \frac{i\hbar t}{2m}\right)}}\]
+
+        Note that $\frac{1}{4a} + \frac{i\hbar t}{2m} = \frac{m + 2i\hbar a t}{4ma} = \frac{1 + 2\hbar at/m}{4a}$ so we can simplify all the fractions, as well as combine the prefactor:
+
+        \[ \Psi(x, t) = \left(\frac{2a}{\pi}\right)^{\frac{1}{4}} \frac{e^{-ax^2/(1 + 2i\hbar at/m)}}{\sqrt{1 + 2i\hbar a t/m}}\]
+
+
+    \end{solution}
+
+    \item Find $|\Psi(x, t)|^2$. Express your answer in terms of the quantity
+    \[ w \equiv \sqrt{\frac{a}{1 + (2\hbar a t/m)^2}}\]
+
+    Sketch $|\Psi|^2$ (as a function of $x$) at $t = 0$, and again for some very large $t$. Qualitatively, what happens to $|\Psi|^2$, as time goes on
+
+    \begin{solution}
+    Let $\beta = 2\hbar a t/m$. Then, we can rewrite:
+
+        \begin{align*}
+            |\Psi(x, t)|^2 &= \left(\frac{2a}{\pi}\right)^\frac{1}{2} \frac{e^{-ax^2/[1+ \beta] - ax^2/[1-\beta]}}{\sqrt{(1 + i\beta)(1 - i\beta)}}\\
+            &= \left(\frac{2a}{\pi}\right)^\frac{1}{2} \frac{e^{-2ax^2}{1 + \beta^2}}{1 + \beta^2}
+        \end{align*}
+
+        Now we can use the definition given in the question to get:
+
+
+        \[ |\Psi(x, t)|^2 = \sqrt{\frac{2}{\pi}} w e^{-2x^2w^2}\]
+
+        As time goes on, $\omega$ increases and the wavefunction will spread out. In other words, the amplitude will be smaller and our uncertnty will be larger. 
+
+    \end{solution}
+    \item Find $\mean{x}$, $\mean{p}$, $\mean{x^2}$, $\mean{p^2}$, $\sigma_x$ and $\sigma_p$.
+
+    \begin{solution}
+        A lot of this is brute force algebra:
+        \[ \mean{x} = \infint x |\Psi(x,t)|^2dx = 0\]
+
+        This is true since $x$ is an odd function, and $|\Psi(x, t)|^2$ is even. Now we calculate $\mean{p}$
+        \[ \mean{p} = m\frac{\dd\mean{x}}{\dd t} = 0\]
+
+        Now we calculate $\mean{x^2}$:
+        \begin{align*}
+          \mean{x^2} = \infint x^2|\Psi(x,t)|^2 &= \infint x^2\sqrt{\frac{2}{\pi}}we^{-2w^2x^2}dx\\
+          &= \sqrt{\frac{2}{\pi}}w\infint x^2e^{-2w^2x^2}dx \\
+          &= \sqrt{\frac{2}{\pi}}w\left(\sqrt{\frac{\pi}{2w^2}}\right) && \text{we've done this integral before}\\
+          &= \frac{1}{4w^2}
+        \end{align*}
+
+
+        Now we compute $\mean{p^2}$. To do this we first rewrite $\Psi(x,t) = A'e^{-\alpha x^2}$, where $A' = \frac{A}{\sqrt{1 + i\beta}}$ and $\alpha = \frac{a}{1+i\beta}$. Now we have to do some algebra:
+
+
+        \begin{align*}
+          \frac{\partial^2\Psi}{\partial x^2} &= A'\frac{\partial}{\partial x}\left(-2\alpha e^{-\alpha x^2}\right) = -2\alpha A'(1 - 2\alpha x^2)e^{-\alpha x^2}\\
+          \therefore \Psi^\star\frac{\partial^2 \Psi}{\partial x^2} &= -2\alpha|A'|^2(1-2\alpha x^2)e^{-(\alpha + \alpha^{\star})x^2} = \\
+          &= -2\alpha|A'|^2(1 - 2\alpha x^2)e^{-\frac{2a}{1+\beta^2}x^2}\\
+          &= -2\alpha|A'|^2(1 - 2\alpha x^2)e^{-2w^2x^2}\\
+          &= -2\alpha\left[\sqrt{\frac{2}{\pi}}w\right](1 - 2\alpha x^2)e^{-2w^2x^2}\\
+          &= -2\alpha\sqrt{\frac{2}{\pi}}w(1 - 2\alpha x^2)e^{-2w^2x^2}
+        \end{align*}
+
+
+        Now that we have the partial derivative computed, we can compute $\mean{p^2}$:
+        \begin{align*}
+          \mean{p^2} &= \infint p^2 |\Psi(x,t)|^2dx\\
+            &= 2\alpha\hbar^2\sqrt{\frac{2}{\pi}}w\infint (1 - 2\alpha x^2)e^{-2w^2x^2}dx\\
+          &= 2\alpha \hbar^2\left[1 - \frac{\alpha}{2w^2}\right]\\
+          &= 2\alpha \hbar^2\left[1 - \left(\frac{a}{1+i\beta}\right)\left(\frac{1+\beta^2}{2a}\right)\right] \\
+          &= 2\alpha\hbar^2\left[1 - \frac{1 - i\beta}{2}\right]\\
+          &= 2\alpha\hbar^2\left[\frac{a}{2\alpha}\right]\\
+          &= \fbox{$a\hbar^2$}
+        \end{align*}
+
+        Now that we have all these values, we can compute the standard deviations:
+        \begin{align*}
+          \sigma_x^2 &= \mean{x^2} - \mean{x}^2 = \frac{1}{4w^2}\\
+          \sigma_x &= \sqrt{\sigma_x} = \sqrt{\frac{1}{4w^2}} = \frac{1}{2w}\\
+        \end{align*}
+
+        And similarly, 
+
+        \begin{align*}
+          \sigma_p^2 &= \mean{p^2} - \mean{p}^2 = a\hbar^2\\
+          \sigma_p &= \sqrt{\sigma_p^2} = \sqrt{a\hbar^2} = \sqrt{a}\hbar
+        \end{align*}
+    \end{solution}
+    
+
+    \item Does the unceertinaty principle hold? At what time $t$ does the system come closest to the uncertainty limit?
+    
+    \begin{solution}
+    To check if the uncertainty principle holds, we must multiply out the standard deviations, since this contains our uncertainty:
+        \begin{align*}
+          \sigma_x\sigma_p &\geq \frac{\hbar}{2}\\
+          \sigma_x\sigma_p &= \left(\frac{1}{2w}\right)\left(\sqrt{a}\hbar\right)\\
+          &= \frac{\hbar}{2}\sqrt{1 + \beta^2}\\
+          &= \frac{\hbar}{2}\sqrt{1 + \left(\frac{2\hbar at}{m}\right)^2} \geq \frac{\hbar}{2}
+        \end{align*}
+        And thus the uncertianty principle holds. Further, we can see that this value equals $\frac{\hbar}{2}$ at $t = 0$, so that is the moment of minimum uncertainty.
+
+    \end{solution}
+    
+
+    \begin{solution}
+        
+    \end{solution}
+    \item Consider a microscopic particle with th emass of an electron localised in a space of $10^{-10}$m, about the size of an atom. How long does it take for $\sigma_x$ to double its initial value? Compare with a macroscopic particle of mass 1 g localised in space of $10^{-6}$ m.
+    
+    \begin{solution}
+        Consider $t = 0$:
+            \begin{align*}
+                \sigma_x(0) &= \frac{1}{2\sqrt{\frac{a}{1 + \left(\frac{2\hbar a t}{m}\right)^2}}} = \frac{1}{2\sqrt{a}} = 10^{-10}\\
+                \therefore a &= 2.5*10^{19}
+            \end{align*}
+
+            Now let's double $\sigma_x$ and solve for the time at which that occurs:
+            \begin{align*}
+                \sigma_x(T) &= \frac{1}{2\sqrt{\frac{a}{1 + \left(\frac{2\hbar a T}{m}\right)^2}}} =  2*10^{-10}\\
+            \end{align*}
+            This gives a value of $T \approx 3.1 \times 10^{-16}$ seconds. Now let's do the same for the macroscopic particle:
+            \begin{align*}
+                \sigma_x(0)&= \frac{1}{2\sqrt{a}} = 10^{-6}\\
+                \therefore a &= 2.5*10^{11}
+            \end{align*}
+            Now, solving for $t = T$ again:
+            \begin{align*}
+                \sigma_x(T) &= \frac{1}{2\sqrt{\frac{a}{1 + \left(\frac{2\hbar a T}{m}\right)^2}}} = 2*10^{-10}
+            \end{align*}
+
+            We tried throwing this value into a calculator, and it did not give us a specific result, likely because the value of $T$ is too large to compute. This makes sense, since we expect macroscopic particles to behave classically - that is, their uncertianty in time should not change rapidly on the scale of microseconds.
+        \end{solution}
+
+
+\end{enumerate}
+
+\pagebreak
+\section*{Problem 3}
+
+Prove the following three theorems: 
+
+
+\begin{enumerate}[label=(\alph*)]
+    \item For normalizable solutions, the separation constant $E$ must be \textit{real}. \textit{Hint:} Write $E$ (in equation 2.7) as $E_0 + i\Gamma$ (with $E_0$ and $\Gamma$ real), and show that if equation 1.20 is to hold for all $t$, $\Gamma$ must be zero.
+    
+    \begin{solution}
+        Let $E = E_0 + i\Gamma$, with $E_0$ and $Gamma$ real. Equation 2.7 in the textbook gives:
+        $$\Psi(x,t) = \psi(x)e^{-i\frac{Et}{\hbar}}= \psi(x)e^{\frac{\Gamma t}{\hbar}}e^{-i\frac{E_0t}{\hbar}}$$
+        So, calculating probability density gives us:
+        $$|\Psi(x,t)|^2 = |\psi|^2e^{\frac{2\Gamma t}{\hbar}}$$
+        Now, we know that this probability density must be normalized:
+        \begin{align*}
+          \infint |\Psi(x,t)|^2 dx &= e^{\frac{2\Gamma t}{\hbar}}\infint |\psi|^2 dx = e^{\frac{2\Gamma t}{\hbar}} = 1\\
+          \therefore e^{\frac{2\Gamma t}{\hbar}} &= 1 \implies \Gamma = 0
+        \end{align*}
+
+        The last part is true since this wavefunction must be normalized for all $t$, so the only option would be to let $\Gamma = 0$, as desired. $\blacksquare$
+    \end{solution}
+
+
+    \item The time-independent wave function $\psi(x)$ can always be taken to be \textit{real} (unlike $\Psi(x, t)$, which is necessarily complex). This doesn't mean that every solution to the time-independent Schrodinger equation \textit{is} real; what it says is that if you've got one that is \textit{not}, it can always be expressed as a linear combination of solutions (with the same energy) that \textit{are}. So you \textit{might as well} stick to $\psi$'s that are real. \textit{Hint:} If $\psi(x)$ satisfies equation 2.5, for a given $E$, so too does its complex conjugate, and hence also the real linear combinations of $(\psi + \psi^\star)$ and $i(\psi - \psi^\star)$.
+    
+    \begin{solution}
+        Using the hint, suppose that $\psi(x)$ satisfies the \schrodinger equation:
+        \[ -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + V\psi = E\psi\]
+
+        If this is true, then the conjugate $\psi^\star$ also satisfies the \schrodinger equation:
+
+         \[-\frac{\hbar^2}{2m}\frac{\partial^2\psi^{\star}}{dx^2} + V\psi^\star = E\psi^{\star}\]
+
+         Now since $\psi$ and $\psi^\star$ satisfy the \schrodinger equation, then any linear combination of these two will also be solutions to the \schrodinger equation. Thus, $(\psi + \psi^{\star})$ and $i(\psi - \psi^{\star})$ will also be solutions to the \schrodinger equation. Since these solutions will be real, then we can always write it as a linear combination of real solutions, and hence $\psi(x)$ can always be taken to be real. $\blacksquare$
+
+    \end{solution}
+    \item If $V(x)$ is an \textbf{even function} (that is, $V(-x) = V(x)$) then $\psi(x)$ can always be taken to be either even or odd. \textit{Hint:} If $\psi(x)$ satisfies equation 2.5, for a given $E$, so too does $\psi(-x)$, and hence also the even and odd linear combinations of $\psi(x) \pm \psi(-x)$.
+    
+    \begin{solution}
+        Now, suppose $V(x)$ is an even function, so$V(-x) = V(x)$. Using the hint, we know that $\psi(x)$ satisfies the \schrodinger equation. Now we plug in $\psi(-x)$:
+        \begin{align*}
+          \frac{\partial^2}{\partial(-x)^2} &= \frac{\partial^2}{\partial x^2}\\
+          \therefore -\frac{\hbar^2}{2m}\frac{\partial^2\psi(-x)}{\partial x^2} + V(-x)\psi(x) &= E\psi(-x)
+        \end{align*}
+        Now, if $V(x) = V(-x)$, we get:
+        $$-\frac{\hbar^2}{2m}\frac{\partial^2\psi(-x)}{\partial x^2} + V(x)\psi(-x) = E\psi(-x)$$
+        In other words, $\psi(-x)$ also satisfies our \schrodinger equation. Now, since $\psi(x)$ and $\psi(-x)$ are both solution, then any linear combination of these wil also be a solution. So we can write:
+
+        \begin{align*}
+          \phi = \psi(x) + \psi(-x) &\implies -\frac{\hbar^2}{2m}\frac{\partial^2\phi(-x)}{\partial x^2} + V(x)\phi(-x) = E\phi(x)\\
+          \phi' = \psi(x) - \psi(-x) &\implies -\frac{\hbar^2}{2m}\frac{\partial^2\phi'(-x)}{\partial x^2} + V(x)\phi'(-x) = E\phi'(x)
+        \end{align*}
+
+        Where $\phi$ is even in the first equation, and $\phi'$ is odd in the second equation. Since we can write $\phi$ in this way, then we can always take $\psi$ to be either even or odd. $\blacksquare$ 
+    \end{solution}
+\end{enumerate}
+
+\pagebreak
+\section*{Problem 4}
+
+Let $P_{ab}(t)$ be the probability of finding a particle in the range $(a < x < b)$ at time $t$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Show that 
+    \[ \frac{dP_{ab}}{dt} = J(a, t) - J(b, t)\] 
+
+    where 
+
+    \[ J(x, t) \equiv \frac{i\hbar}{2m}\left(\Psi \frac{\partial \Psi^\star}{\partial x} - \Psi^\star\frac{\partial \Psi}{\partial x}\right)\]
+
+    What are the units of $J(x, t)$? \textit{Comment:} $J$ is called the \textbf{probability current}, because it tells you the rate at which probability is ``flowing'' past the point $x$. If $P_{ab}(t)$ is increasing, then even more probability is flowing into the region at one end than flows out at the other.
+
+
+
+    \begin{solution}
+        The probability that we find the partial between $(a, b)$ is:
+
+        \[P_{ab} = \int_a^b \left| \Psi(x, t)\right|^2 \dx = \int_a^b \Psi(x, t) \Psi^\star(x, t) \dx\]
+
+
+        So now taking the derivative of this
+
+        \begin{align*}
+            \frac{\dd P_{ab}}{\dd t} &= \frac{\dd}{\dd t} \int_a^b \Psi(x, t) \Psi^\star(x, t)\dd t\\
+            &= \int_a^b \frac{\partial}{\partial t} \Psi(x, t) \Psi^\star(x, t)\\
+            &= \int_a^b \frac{\partial \Psi}{\partial t} |\Psi(x, t)|^2 \dx \\
+        \end{align*}
+
+        Now let's look at the derivative more closely:
+
+        \begin{align*}
+            \frac{\partial}{\partial t}|\Psi(x,t)|^2 &= \frac{i\hbar}{2m}\left(\Psi^\star\frac{\partial^2\Psi}{\partial x^2} - \frac{\partial^2\Psi^\star}{\partial x^2}\Psi\right) = \frac{\partial}{\partial x}\left[\frac{i\hbar}{2m}\left(\Psi^\star\frac{\partial \Psi}{\partial x} - \frac{\partial \Psi^\star}{\partial x}\Psi\right)\right]
+        \end{align*}
+
+        Thus, we can write:
+
+        \begin{align*}
+          \therefore \frac{dP_{ab}}{dt} &= -\int_{a}^{b}\frac{\partial}{\partial x}J(x,t) \dx \\
+          &=  -\left[J(b,t) - J(a,t)\right] = J(a,t) - J(b,t)
+        \end{align*}
+
+        As desired. In terms of the units of $J(x, t)$, we know that $P_{ab}$ should be dimensionless so therefore the probability current should have dimensions of $\text{time}^{-1}$.
+    \end{solution}
+
+    \item Show that if at any time $t$, $\Psi(x, t)$ is real or has spatially constant phase, i.e. $\Psi(x, t) = e^{i\theta(t)}f(x, t)$ for real functions $\theta, f$ then $J(x, t) = 0$. What does this imply for energy eigenstates?
+    
+
+    \begin{solution}
+        If $\Psi(x,t)$ is real, then this case is fairly trivial to analyze, since $\Psi(x, t) = \Psi^\star(x, t)$:
+        \begin{align*}
+          J(x,t) &= \frac{i\hbar}{2m}\left(\Psi\frac{\partial\Psi^\star}{\partial x} - \Psi^\star\frac{\partial\Psi}{\partial x}\right)\\
+          &= 0
+        \end{align*}
+        And so, for real wavefunctions $\Psi(x,t)$, we get that the probability current is 0. Now, suppose $\Psi(x,t) = e^{i\theta(t)}f(x,t)$ for real functions $\theta,f$. Then, we calculate our probability current:
+        \begin{align*}
+          J(x,t) &= \frac{i\hbar}{2m}\left(\Psi\frac{\partial\Psi^\star}{\partial x} - \Psi^\star\frac{\partial \Psi}{\partial x}\right)\\
+          &= \frac{i\hbar}{2m}\left(e^{i\theta(t)}f(x,t)\left[e^{-i\theta(t)}\frac{\partial f}{\partial x}\right] - e^{-i\theta(t)}f(x,t)\left[e^{i\theta(t)}\frac{\partial f}{\partial x}\right]\right)\\
+          &= \frac{i\hbar}{2m}\left(f(x,t)\frac{\partial f}{\partial x} - f(x,t)\frac{\partial f}{\partial x}\right)\\
+          &= 0
+        \end{align*}
+        As desired. $\blacksquare$
+    \end{solution}
+    \item Calculate $J(x, 0)$ for a Gaussian wavepacket $\Psi(x, t)$.
+    
+    \begin{solution}
+        We solved earlier that a gaussian wavepacket has the form:
+        
+        \[ \Psi(x, t) = \left(\frac{2a}{\pi}\right)^{\frac{1}{4}} \frac{e^{-ax^2/(1 + 2i\hbar at/m)}}{\sqrt{1 + 2i\hbar a t/m}}\]
+
+        So substituting in $t = 0$ we get: 
+
+        \[ \Psi(x, 0) = \left(\frac{2a}{\pi}\right)^{\frac{1}{4}} e^{-ax^2}\]
+
+        Since this gaussian is real-valued, then we have $\Psi(x, 0) = \Psi^\star(x, 0)$, so $\frac{\partial \Psi}{\partial x} = \frac{\partial \Psi^\star}{\partial x}$, so if we compute the probability current:
+
+        \begin{align*}
+            J(x, 0) = \frac{i\hbar}{2m} \left(\Psi \frac{\partial \Psi^\star}{\partial x} - \Psi^\star\frac{\partial \Psi}{\partial x}\right) = 0
+        \end{align*}
+
+        This means that at time $t = 0$, the probability current of the Gaussian wavepacket is 0!
+    \end{solution}
+\end{enumerate}
+
+\end{document}

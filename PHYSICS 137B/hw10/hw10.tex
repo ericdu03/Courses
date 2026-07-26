@@ -1,0 +1,130 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+
+
+\newcommand{\classcode}{Physics 137B}
+\newcommand{\classname}{Quantum Mechanics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 10} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder} to complete this assignment. 
+	\section*{Problem 1}
+	Check that Equation 10.65 satisfies Equation 10.52, by direct substitution. \textit{Hint:} $\nabla^2
+	(1/r)= -4\pi \delta^3(r)$.
+
+	\begin{solution}
+		Basically the problem asks us to check that the solution 
+		\[
+			G(r) = -\frac{e^{ikr}}{4 \pi r}
+		\] 
+		satisfies the differential equation $(\laplacian + k^2)G(r) = \delta^3(r)$. Plugging this in, we get:
+
+		\begin{align*}
+			(\laplacian + k^2)G(r) &= -\frac{1}{4\pi} \laplacian \left(\frac{e^{ikr}}{r}\right) - k^2\left( \frac{e^{ikr}}{4\pi r}\right)
+		\end{align*}
+		The first step here is to use the product rule for Laplacians: $\laplacian (fg) = g \laplacian f + 
+		f\laplacian g + 2\nabla f \nabla g$. 
+		Therefore:
+		\begin{align*}
+			(\laplacian + k^2)G(r) &= -\frac{1}{4\pi}\left[\frac{1}{r}\laplacian e^{ikr} + e^{ikr} \laplacian \frac{1}{r} + 2\nabla e^{ikr} \nabla \frac{1}{r}\right]  - k^2\left( \frac{e^{ikr}}{4 \pi r}\right) \\
+								   &= -\frac{1}{4\pi}\left[\frac{2ike^{ikr}}{r^2} - \frac{k^2 e^{ikr}}{r} +
+									   e^{ikr}(-4\pi \delta^3(r)) + 2\left( -\frac{\hat{r}}{r^2} \right) \cdot 
+							   ike^{ikr} \hat{r}\right] - k^2\left( \frac{e^{ikr}}{4\pi r} \right) \\
+								   &= -\frac{e^{ikr}}{4\pi}\left[\left(\frac{2ik}{r^2} - \frac{k^2}{r}\right) - 4\pi \delta^3(r) - \frac{2ik}{r^2}\right] - k^2\left( \frac{e^{ikr}}{2\pi r} \right)  \\
+								   &= \frac{e^{ikr}}{4\pi r}k^2 + e^{ikr} \delta^3(r) - k^2 \frac{e^{ikr}}{4\pi r}\\
+								   &= e^{ikr} \delta^3(r) \\
+								   &= \delta^3(r)
+		\end{align*}
+		This last step we use the fact that $e^{ikr} \delta^3(r) = \delta^3(r)$. This result comes from the fact that $e^{ikr}$ doesn't blow up quickly at any point, so we can safely swallow $e^{ikr}$ into the delta function. 
+
+		Now, since this result equals the right hand side, then the solution satisfies the differential equation.
+	\end{solution}
+	\pagebreak
+	\section*{Problem 2}
+	Show that combining $f_{\vec k} (\hat{r}) = -\frac{m}{2\pi \hbar^2}\int e^{-i k \hat{r} \cdot \vec r'} V(r)
+	\psi_{\vec k} (r') d^3r$ with $\psi_{\vec k}(\vec r) = e^{-i \vec k \cdot \vec r} + f_{\vec k}(\hat{r})
+	\frac{e^{ikr}}{r}$ leads to the approximation in the limit of weak scattering.
+
+	\begin{solution}
+		Plugging in the desired $\psi_{\vec k}$, we get:
+		\begin{align*}
+			f_{\vec k}(\vec r) &= -\frac{m}{2 \pi \hbar^2}\int e^{-i k \hat{r} \cdot \vec{r}} V(r) \left( 
+				e^{i \vec k \cdot \vec r'} + f_{\vec k}(r') \frac{e^{ikr'}}{r'}\right) d^3r'
+		\end{align*}
+		In the weak born approximation, we expect that the scattering should be small, so just like in lecture,
+		the second term becomes negligible, and the scattering is predominantly dependent on the first term. 
+		We now focus on the first term: 
+		\begin{align*}
+			f_{\vec k}(\hat{r}) &= -\frac{m}{2\pi \hbar^2}\int e^{-i \vec k \hat{r} \cdot \vec r'} V(r) 
+			e^{i \vec k \cdot \vec{r'}} d^3r'\\
+			\therefore |f_{\vec k}(\hat{r})|^2 &= \frac{m^2}{4\pi^2 \hbar^4}\left| \int e^{-i \vec k \hat{ r}
+			\cdot \vec{r'}} V(r) e^{i \vec k \cdot \vec r'} d^3r'\right|^2
+		\end{align*} 
+		Notice the similarities between this and the Born approximation:
+		\[
+		\frac{m^2}{4\pi^2 \hbar^4}\left|\int e^{-i \vec k_f \cdot \vec r} V(r) e^{i \vec k_i \cdot \vec r}
+		d^3r\right|^2
+		\] 
+		So really, all we need to argue is that $\vec k \hat{r} \cdot \vec{r'} = \vec k_f$, and we have solved 
+		the problem since the second exponential term already matches the born approximation. This is done 
+		by noticing that since $\hat{r}$ points toward the direction of the detector, then it's immediately 
+		true that $k \hat{r} = \vec k_f$, and so the Born approximation follows directly as a result. 
+	\end{solution}
+
+
+	\pagebreak
+
+	\section*{Problem 3}
+
+	A molecule of a homonuclear diatomic gas may roughly be regarded as composed ot two identical spherically 
+	symmetric scattering centers separated by a (vectorial) distance $\mathbf l$ (Fig. 8.15). If the scattering
+	amplitude for a certiain kind of particle directed against the atom is known, what scattering cross section
+	is measured for the molecules of the gas? Contrast the atomic and molecular cross sections, and neglect 
+	effects of multiple scattering, that is, of particles which bounce back and forth between the two centers.
+
+	\begin{solution}
+		We use the result from the hint: 
+		\[
+			\dv{\sigma}{\Omega} = 4 \cos^2\left[\frac{1}{2}(\mathbf k - \mathbf k') \cdot \mathbf l\right]
+			|f(\theta)|^2
+		\] 
+		Evaluating the dot product, we get:
+		\[
+			d\sigma = 4\cos^2\left[\frac{1}{2}kl\sin \frac{\theta}{2}\cos \theta'\right]|f(\theta)|^2 d\Omega
+		\] 
+		So now we need to integrate $d\sigma$ to get the cross section. Using the fact that $d\Omega = \sin
+		\theta' d\theta' d\phi$, we get:
+		\begin{align*}
+			\sigma &= \int 4\cos^2\left[A(\theta) \cos \theta'\right] |f(\theta)|^2 \sin \theta' d\theta' d\phi\\
+				   &= 16 \pi |f(\theta)|^2 \int \cos^2 \left[ A(\theta) \cos \theta'\right] \sin \theta' 
+				   d\theta' \\
+				   &= 16\pi |f(\theta)|^2 \left[ \frac{\sin (kl \sin \frac{\theta}{2}) 
+					   \cos(kl \sin \frac{\theta}{2})}{kl \sin \frac{\theta}{2}} + 1\right] \\
+				   &= 8\pi |f(\theta)|^2 \left[\frac{\sin (2kl \sin \frac{\theta}{2})}{kl 
+				   \sin \frac{\theta}{2}} + 2\right] 
+		\end{align*}
+		We then need to average over the angular cross section which is $4\pi$, so we finally get: 
+		\[
+			\sigma_{\text{avg}} = 2|f(\theta)|^2\left[ \frac{\sin 2kl \sin \frac{\theta}{2}}{kl 
+			\sin \frac{\theta}{2} } + 2\right]
+		\] 
+		For a single atom, we just integrate $|f(\theta)|^2$ over the same region: 
+		\[
+			\sigma_{\text{atom}} = 4\pi |f(\theta)|^2
+		\] 
+		therefore, we can see that the scattering cross section for the diatomic gas is larger than that of the
+		atom in most cases, unless the scattering angle is $0$, in which the scattering cross section of the atom
+		would be greater. This intuitively makes sense as well -- we can think of the diatomic gas as a larger 
+		target, so therefore any scattering of the diatomic gas should naturally be larger than a smaller
+		target like an atom.
+	\end{solution}
+\end{document}

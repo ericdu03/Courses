@@ -1,0 +1,56 @@
+\section{Introduction}
+\begin{itemize}
+	\item Let's go back to 1974, e
+	\item No classical theory permits this gradual energy loss, except in General Relativity!
+	\item Speaking of General relativity, one thing it predicted was the present of gravitational waves (GW), and 
+		this was where the lost energy was going. Specifically, we can calculate its power:
+		\[
+		P = -\frac{2}{5}\frac{G^{4}M^{5}}{R^{5}c^{5}}
+		\] 
+	\item We commonly think of \( G = 6.67 \times 10^{-11}\), but later in the course we're going to work in units 
+		where \( G = 1 \), to simplify things. 
+	\item In electrodynamics, an charge \( q \) that experiences an acceleration also emits electromagnetic waves. This
+		is called synchrotron radiation:
+		\[
+			P = -\frac{2}{3} \left( \frac{q^2}{4\pi \epsilon_0} \right) \frac{a^2}{c^3}
+		\] 
+		To get a sense of the scale of this power, the amount that our solar system is losing due to the sun and 
+		Jupiter is around 200 W. But Hudson and Taylor found a power of \( P = -7 \cdot 10^{34} \) W!
+	\item In 1983, they measured this, in 1993 they won the Nobel prize for their indirect detection of 
+		gravitational waves. In 2015, LIGO detected these waves directly, and found a power 
+		\( P = 3.6 \times 10^{49} \) W. In 2017, they won the Nobel prize for this discovery. 
+\end{itemize}
+\subsection{Why General Relativity?}
+\begin{itemize}
+	\item In Newton's gravity, we have the equation \( \vec F_i = \dv[2]{\vec r_i}{t} \), and for universal 
+		gravitation, we had:
+		\[
+		\vec F_i = \sum_{j\neq i}\frac{G m_i m_j}{|\vec r_i - \vec r_j|^3}(\vec r_j - \vec r_i)
+		\] 
+		\comment{Note that it's only formatted like this so that we can talk about vectors.}
+	\item One problem with this interpretation is that things are instantaneous: this is an issue because objects
+		don't react instantaneously to changes (information 
+		can't travel faster than the speed of light), which Newton's equations seem to imply. 
+
+		We can say the same about Coulomb's law: and the solution there was to replace the notion of a force 
+		with \textit{fields}. Now, the force can be written as: 
+		\[
+		\vec F_i = q(\vec E + \frac{1}{c}\vec v \times \vec B)
+		\] 
+		\comment{We'll use Gaussian units, mainly because \( \vec E \) and \( \vec B \) now have the 
+		same units. With this,
+		\begin{align*}
+			\vec \div E &= 4 \pi \rho \\
+			\vec \div B &=  0 \\
+			\vec \curl E &= -\frac{1}{c}\pdv{\vec B}{t}\\
+			\vec \curl B &= \frac{1}{c}\pdv{\vec E}{t} + \frac{4\pi}{c}\vec J 
+		\end{align*}		}
+		So the question then becomes: why didn't we do this for Gravitation? Well, this is a thing, but it's 
+		only an approximation. 
+	\item Let's talk about energy conservation: in E\&M, the energy is written as:
+		\[
+		\mathcal E = \frac{1}{8\pi}\int (\vec E^2 + \vec B ^2) dv + \sum_i k_i
+		\] 
+		What happens when we change the sign on everything to accomodate for gravitation? Then, we introduce instability 
+		into the system! 
+\end{itemize}

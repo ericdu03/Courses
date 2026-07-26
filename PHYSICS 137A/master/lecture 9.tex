@@ -1,0 +1,48 @@
+The ninth lecture of Physics 137A was held on \textbf{Wednesday, September 14}. It explored the solutions to the \schrodinger equation given some potential $V(x)$. 
+
+\section{Last time: Solutions to the Schrodinger Equation}
+
+Last time, we talked about how we should interpret solutions to the \schrodinger equation, and specifically we derived how energy eigenstates evolve in time: 
+
+\[ \psi_E(\vec{r}, t) = \psi_E\left(\vec r\right) e^{-iEt/\hbar}\] 
+
+where $\psi_E$ satisfies the equation $\hat H \psi_E = E \psi_E$. Further, we also now know that a general state can be written as a superposition of eigenstates: 
+
+\[ \psi(\vec{r}, t) = \sum c_E \psi_E\left(\vec r\right) e^{-iEt/\hbar}\] 
+
+Here, we use the generalized position vector $\vec r$: the \schrodinger equation is valid for all space (since we're not limited to 1D quantum mechanics in the most general case), as we'll see later.
+
+\section{Different Types of Energies}
+
+Now let's look at how $V(x)$ changes the nature of our solutions. Consider the following potential 
+
+[insert tikz here]
+
+Now recall the 1D \schrodinger equation: 
+
+\[ \left[ -\frac{\hbar}{2m} \frac{d^2}{dx^2} + V(x) \right] \psi_E(X) = E\psi_E(x)\]
+
+There are four different cases that we need to explore here for a given energy $E$: 
+
+\begin{itemize}
+    \item Case 1: $E < V_{min}$
+    \item Case 2: $E > V_{min}$, $E < V_-$ 
+    \item Case 3: $E > V_-$, $E < V_+$
+    \item Case 4: $E > V_+$
+\end{itemize}
+
+\subsubsection*{Case 1}
+
+We rearrange the \schrodinger equation to see this a little better: 
+
+\[ \frac{d^2}{dx^2} \psi(x) = \frac{2m}{\hbar} \left(V(x) - E\right) \psi(x)\] 
+
+And so here, we get that $V(x) - E > 0$, and so therefore $\frac{d^2\psi}{dx^2}$ and $\psi(x)$ now have the same sign! But this means that there aren't any normalized functions that have that property (as they are exponentials), so we conclude that no such solutions can exist.
+
+\subsubsection*{Case 2}
+
+We know from the previous case that any time $V > E$, then we get exponential solutions. This is still true in our second case, except there are now regions where $E > V$. Here, as we've seen in the case of the free particle, will generate oscillatory solutions. To combine these two together, we enforce the condition that $\psi$ must be a continuous quantity for all $x$. 
+
+\begin{insight*}{}{}
+    This restriction of continuity actually means that only specific functions solve the \schrodinger equation, and these functions correspond to specific energies (we'll see this later). This is the \textit{fundamental} reason why energy levels are quantized!
+\end{insight*}

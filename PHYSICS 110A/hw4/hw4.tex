@@ -1,0 +1,189 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electrodynamics and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 04} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Andrew Binder} to complete this assignment. 
+	\section*{Problem 1}
+	Consider a spherical thin \textit{shell} of radius $R$ with charges uniformly distributed on its surface. The
+	uniform surface charge density is denoted as $\sigma$. 
+	\begin{enumerate}[label=\alph*)]
+			\item Setting the potential $V$ to be zero at infinity, find the electric potential due to the 
+					charged shell at points both inside and outside the shell directly using
+					\[ V = \frac{1}{4\pi \epsilon_0}\int \frac{dq}{\rcurs}\]
+					\begin{solution}
+							Using the formula, we write: $dq = \sigma R^2 \sin \theta d \theta d\phi$, and since
+							we integrate $\phi$ from $0$ to $2\pi$ so our $\phi$ integral becomes $2\pi$. 
+							Therefore, we compute the integral:
+							\begin{align*}
+									V &= \frac{1}{4\pi \epsilon_0} \int 
+									\frac{\sigma \cdot 2\pi R^2 \sin \theta d\theta}
+									{\sqrt{ r^2 + R^2 - 2rR \cos \theta}}\\
+									&= \frac{\sigma R^2}{2\epsilon_0}\int \frac{\sin \theta d\theta}{\sqrt{r^2 
+									R^2 - 2rR \cos \theta} }\\
+							\end{align*}
+							From here we perform the substitution $u = r^2 + R^2 - 2rR\cos \theta$ with $du = 
+							2rR \cos \theta$. Therefore, we now have the integral: 
+							\begin{align*}
+									V &= -\frac{\sigma R^2}{2\epsilon_0} \frac{1}{2rR}\int \frac{du}{\sqrt{u} }\\
+									  &= \frac{\sigma R}{2\epsilon_0 r}\left[(r^2 + R^2 + 2rR)^{1/2} - 
+									  (r^2 + R^2 - 2rR)^{1/2}\right]\\
+									  &= \frac{\sigma R}{2\epsilon_0 r}\left[ r + R - |r - R|\right]\\
+							\end{align*}
+							If $r < R$, then we have $|r - R| = -r + R$, and so therefore if $r < R$, then we
+							have:
+							\[ V = \frac{\sigma R}{2\epsilon_0 r} (2r) = \frac{\sigma R}{\epsilon_0}\]
+							And if $r > R$, then we can drop the absolute value: 
+							\[ V = \frac{\sigma R}{2\epsilon_0 r}(2R) = \frac{\sigma R^2}{\epsilon_0 r}\]
+					\end{solution}
+			\item Using $V$, find the electric field $\mathbf E$ created by the shell.
+
+					\begin{solution}
+						We have $E = -\nabla V$, so therefore:
+						\[ E = \begin{cases}
+								0 & r < R\\
+								-\frac{\sigma R^2}{\epsilon_0r^2} & r > R
+						\end{cases}\]
+					\end{solution}
+
+			\item Find the energy $W$ stored in this system.
+
+					\begin{solution}
+							The energy stored in the system can be written as: 
+							\[ U = \frac{\epsilon_0}{2}\int_{\mathbb R^3} |E|^2 \ d\tau\]
+							And so inside the sphere, we have $W = 0$, since $E = 0$. Outside the sphere, we 
+							compute the integral as normal:
+							\begin{align*}
+									W &= \frac{\epsilon_0}{2}\int_R^\infty \int_0^{2\pi} \int_0^\pi 
+									\frac{\sigma^2 R^4}{\epsilon_0^2r^4} r^2 \sin \theta d \theta d\phi dr\\
+									  &= (2\pi) \frac{\sigma^2R^4}{2\epsilon_0}\int_R^\infty \frac{1}{r^2} dr 
+									  \int_0^\pi \sin \theta d \theta\\
+									  &= \frac{\sigma^2 R^4}{\epsilon_0}\left( -\frac{1}{r} \right)\bigg|_R^\infty
+									  (-\sin \theta)\bigg|_0^\pi\\
+									  &= \frac{\sigma^2 R^4}{\epsilon_0}\frac{1}{R}(2)\\
+									  &= \frac{2\sigma^2R^3}{\epsilon_0}
+							\end{align*}
+					\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 2}
+	Continue from Problem 1, consider the situation where the radius of the shell expands by $\delta R$ while the 
+	total charge on the shell remains constant, and the energy stored in the system changes by $\delta W$ 
+	accordingly. 
+	\begin{enumerate}[label=\alph*)]
+			\item Find the expression for $\delta W$
+
+					\begin{solution}
+							We use the expression that we obtained from part c). To preserve the charge, we 
+							rewrite $\sigma = \frac{Q}{4 \pi R^2}$, and now introduce the $\delta R$ expansion:
+							\[ \sigma = \frac{Q}{4 \pi (R + \delta R)^2}\]
+							Therefore, our equation for $\delta W$ now becomes: 
+							\begin{align*}
+									\delta W &= W' - W \\
+									&= \frac{2}{\epsilon_0}\left( \frac{Q}{4\pi (R + \delta R)^2} \right)^2
+									(R+\delta R)^3 - \frac{2}{\epsilon_0}\left( \frac{Q}{4\pi R^2} \right)^2 R^3\\
+									&= \frac{2}{\epsilon_0}\frac{Q^2}{16\pi^2(R + \delta R)} -
+									\frac{2}{\epsilon_0}\frac{Q^2}{16\pi^2R}\\
+									&= \frac{Q^2}{8\pi^2\epsilon_0}\left( \frac{1}{R + \delta R} - 
+									\frac{1}{R} \right)  \\
+									&= -\frac{Q^2\delta R}{8\pi^2\epsilon_0 R(R + \delta R)}
+							\end{align*}
+					\end{solution}
+			\item The change in energy must be equal to the work done by the pressure $f$ (force per unit area) 
+					exerted by the electric force as the shell expands:
+					\[ \delta W = -f(4\pi R^2)\delta R\]
+					There is a negative sign as the energy stored in the system is being used by the electric 
+					force to do work. Use this relation to find $f$. Does the electric field try to squeeze the 
+					shell or stretch the shell?
+
+					\begin{solution}
+							Now we can find the force using our relation from before:
+							\begin{align*}
+									-\frac{Q^2\delta R}{8\pi^2\epsilon_0R(R + \delta R)} &= -f(4 \pi R^2) 
+									\delta R\\
+									\therefore f &= \frac{Q^2}{32 \pi^2 \epsilon_0R^3(R + \delta R)}
+							\end{align*}
+							Since this sign is positive, then we conclude that the force here is radially 
+							outward, meaning that the electric field actively tries to stretch the shell.
+							Intuitively, this also makes sense since we expect that the charges on the shell
+							repel each other, and thus want to spread apart as much as possible, so they'd 
+							naturally push on the boundary, expanding the shell. 
+					\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+
+	\section*{Problem 3}
+	A parallel-plate capacitor has a separation distance $d$ between the two plates and is connected to a battery
+	to main a potential difference $V$ between the two plates. The plates have a width $w$ and length $L$ 
+	extending  into the page. We gradually insert a metal slab of thickness $t$ into the space between the two 
+	plates. Along the way, the slab is parallel with the two plates. Find the electric force acting on the 
+	metal slab when it is inserted a distance $x$ into the capacitor. (Don't forget that the external source 
+	that maintains the potential difference also does work on the moving charges. You should find the force
+	tends to draw the slab into the capacitor.)
+	\begin{solution}
+			We know that the force required is: \[
+					F_E = -\pdv{U_E}{x} + V \dv{Q}{x}
+			\] However, since the potential is constant (as the capacitor is hooked up to a battery), then the 
+			first term is equal to zero. Since the electric fields are (roughly) constant, then we can assume
+			that the charge distributions are also constant from 0 to $x$ and constant from $x$ to $w$. 
+
+			Now we compute the magnitude of the electric field in two regions: the region where the slab is 
+			inserted, and the region where the slab is absent (in other words, from 0 to $x$ and from $x$ to $w$.
+			Since $E = -\nabla V$, then we can compute the electric field:
+			\[
+				 E = -\nabla V = -\dv{V}{y} = -\frac{\frac{V}{2}}{\frac{d-t}{2}} = \frac{V}{d-t}
+			\] 
+			Similarly, the electric field in the region where the slab is not present is:
+			\[
+			E = -\frac{V}{d}
+			\] 
+			Now consider a Gaussian pillbox on the top plate that extends from 0 to $x$, and from $0$ to $L$ 
+			width-wise. In this region, the electric field above the capacitor is zero (since there is no 
+			capacitor). Therefore, for the region where the slab is inserted: 
+			\begin{align*}
+					E_{above} - E_{below} &= 0 - \left( -\frac{V}{d-t} \right) = \frac{\sigma_1}{\epsilon_0} \\
+					\therefore \sigma_1&= \frac{V\epsilon_0}{d-t} \\
+			\end{align*}
+			And similarly for the region where the slab isn't inserted:
+			\begin{align*}
+					E_{above} - E_{below} &= 0 - \left( -\frac{V}{d} \right) = \frac{\sigma_2}{\epsilon_0} \\
+					\therefore \sigma_2 &= \frac{V \epsilon_0}{d}
+			\end{align*}
+			So the total charge $Q$ can be written as:
+			\[
+			Q = \sigma_1A_1+\sigma_2A_2 = \frac{V\epsilon_0}{d-t}xL + \frac{V\epsilon_0}{d}(w-x)L
+			\] 
+			Now computing $\dv{Q}{x}$:
+			\[
+					\dv{Q}{x} = \frac{V\epsilon_0L}{d-t} + \frac{V\epsilon_0L}{d}(-1) = \frac{V\epsilon_0L}{d-t}
+					- \frac{V\epsilon_0L}{d}
+			\] 
+			Now finally using the relation that $F_E = V\dv{Q}{x}$, we get:
+			\begin{align*}
+					F_E &= V \dv{Q}{x}\\
+					&= V^2\epsilon_0L\left( \frac{1}{d-t}- \frac{1}{d} \right)  \\
+					&= V^2\epsilon_0L\left( \frac{d - (d-t)}{d(d-t)} \right)  \\
+					&= V^2\epsilon_0L\left( \frac{t}{d(d-t)} \right)
+			\end{align*}
+			Note that the direction of the force is also consistent with what we expect to obtain based on the 
+			problem statement, as it has positive sign. 
+	\end{solution}
+	
+
+\end{document}

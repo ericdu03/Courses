@@ -1,0 +1,118 @@
+\section{March 31}
+
+\subsection{The Potential of a Moving Point Charge}
+Last time, we derived the equation for the potential:
+\[
+	V(t, \mathbf{r}) = \frac{1}{4 \pi \epsilon_0} \int d^3x \, \frac{\rho(t_r, \mathbf{r}')}{\rcurs}
+\]
+and we left off with the observation that if we are integrating over a moving \textit{volume}, then
+the effective volume we integrate over is not \( \rho \) at a fixed time, since the signal from different
+points within \( \rho \) take differing amounts of time to reach the point \( P \). Explicitly, this is
+encoded in the \( t_r \) dependence of \( \rho \), since \( t_r = t - \frac{\rcurs}{c} \) means that \( t_r
+\) will be different at different \( \rcurs \). 
+ 
+Again, let's remind ourselves of the setup, and also label some lengths in the diagram:
+\begin{center}
+	\begin{tikzpicture}[decoration = snake]
+ 
+	\node[cylinder, 
+		draw = black, 
+		minimum width = 1cm,
+		minimum height = 2.5cm] (c) at (0,0) {};
+
+	\node[cylinder, 
+		draw = green!80!white, 
+		dashed,
+		minimum width = 1cm,
+		minimum height = 2.5cm] (c) at (-1,0) {};
+
+	\draw[decorate, -stealth, red!80!white] (1.2, 0) -- (1.9, 0);
+	\draw[decorate, -stealth, green!80!white] (-2.1, 0) -- (-1.4, 0);
+	\filldraw (4, 0) circle (1.5pt) node[right] {\( P \)};
+	
+	\draw[stealth-stealth] (-1.1, -0.8) -- node[midway, below] {\( dL \)} (1.2, -0.8);
+	\draw[stealth-stealth, green!80!white] (-2.1, -0.8) -- node[midway, below] {\( v \delta t \)} (-1.1, -0.8);
+	\draw[stealth-stealth, orange] (-2.1, 0.8) -- node[midway, above] {\( \widetilde{dL} \)} (1.2, 0.8);
+	
+\end{tikzpicture}
+\end{center}
+From the diagram, we can derive a relation between \( dL \) and \( \widetilde{dL} \):
+\[
+	v \delta t + dL = \widetilde{dL} = c \delta t
+\]
+The \( c \delta t \) refers to the distance travelled by the signal from the back of the cylinder in the time
+it took the whole volume to move a length \( v \delta t \). Then, we can now solve for \( \tilde{dL} \):
+\[
+	\widetilde{dL} = \left( \frac{c}{c - v} \right)dL
+\]
+As-is, this equation is still not complete. We are missing the fact that this only holds if \( P \) is
+directly in the direction of \( \mathbf{v} \), so more generally, we need to extract the component of the
+velocity that points toward \( P \):
+\[
+	\widetilde{dL} = \left( \frac{c}{c - \hat{\rcurs} \cdot \mathbf{v}} \right) dL
+\]
+And if we regard a point charge as a really really small volume, we can use this integral to derive the
+potential of a point charge. Ordinarily, we know that the integral alone would evaluate to \( q \) in the
+stationary case (since we just set \( \rho = q \delta^{(3)}(\rcurs) \)); 
+here it's basically the same story except now we scale by the \( \frac{c}{c - \hat{\rcurs}
+\cdot \mathbf{v}} \) factor because of the length scaling:
+\begin{equation}
+	\label{24:V}
+	V(t, \mathbf{r}) = \frac{1}{4\pi \epsilon_0}\int \frac{\rho(t_r, \mathbf{r}')}{\rcurs} \, d^3x =
+	\frac{1}{4\pi \epsilon_0}\frac{qc}{\rcurs(c - \hat{\rcurs} \cdot \mathbf{v})}
+\end{equation}
+Although this approach gets the correct result, it should be a bit unsatisfying given that we got here by
+approximating a point charge as having a tiny volume. There is a more satisfying way to arrive at this
+result, using Green's functions. Suppose the point charge is given by \( \mathbf{w}(t) \), then we write the
+charge density as \( \rho(\mathbf{r}) = \delta^{(3)}(\mathbf{r} - \mathbf{w}) \). Using this as our source,
+then we have:
+\begin{align*}
+	V(t, \mathbf{r}) &= -\frac{1}{\epsilon_0} \int (c \diff t') (d^3x) \left( -\frac{1}{4\pi} \frac{\delta(c(t
+	- t') - \rcurs)}{\rcurs} \right) q \delta^{(3)}(\mathbf{r}' - \mathbf{w})\\
+	&= -\frac{1}{4\pi \epsilon_0}\int (c \diff t') (d^3x) \frac{\delta(ct - ct' - \rcurs)}{\rcurs}q
+	\delta^{(3)}(\mathbf{r}' - \mathbf{w}(t'))
+\end{align*}
+One thing to note about this integral: the first delta function essentially only allows us to choose points in the
+past light cone, since we only choose points where \( t' = t - \frac{\rcurs}{c} \). Now, taking the spatial
+integral, we see that this effectively sets \( \mathbf{r} = \mathbf{w}(t') \) due to the second delta
+function, so:
+\[
+	V(t, \mathbf{r}) = \int (c \diff t') \frac{\delta(ct - ct' - |\mathbf{r} - \mathbf{w}(t')|}{\rcurs}
+\]
+To evaluate this, recall the following relation from the delta function:
+\[
+	\int_{-\infty}^{\infty} \delta(f(x)) \diff x = \frac{1}{|f'(x_0)|}\int_{-\infty}^{\infty}\delta(x) \diff
+	x = \frac{1}{|f'(x_0)|}
+\]
+In our case, we have \( f(t') = ct - ct' - \sqrt{(\mathbf{r} - \mathbf{w}(t'))(\mathbf{r} - \mathbf{w}(t'))}
+\), so:
+\[
+	\dv{f}{t} = -c - \frac{2(\mathbf{r} - \mathbf{w}(t))\left( -\dv{\mathbf{w}}{t} \right)}{2
+	\sqrt{(\mathbf{r} - \mathbf{w}(t'))(\mathbf{r} - \mathbf{w}(t'))}} = -c + \frac{\brcurs \cdot
+\mathbf{v}}{\rcurs}
+\]
+Now, when you take the integral, we get:
+\[
+	V = \frac{q}{4\pi \epsilon_0} \frac{c}{\left| -c + \frac{\brcurs \cdot \mathbf{v}}{\rcurs} \right|} \cdot
+	\frac{1}{\rcurs}
+\]
+We should be careful that in this expression \( \rcurs = \mathbf{r} - \mathbf{w}(t_r) \), so \( \rcurs \) is
+evaluated at the \textit{retarded time}, not the present. Writing this result in a cleaner way, we get the
+same results as before:   
+\[
+	V = \frac{q}{4\pi \epsilon_0} \frac{c}{(c \rcurs - \brcurs \cdot \mathbf{v})}
+\]
+The vector potential follows basically the same story: the integral we wish to calculate is:
+\[
+	A = \frac{\mu_0}{4\pi}\int d^3x \, \frac{\mathbf{J}(t_r, \mathbf{r})}{\rcurs}
+\]
+so for a point charge, \( \mathbf{J}(t, \mathbf{r}) = \rho v = \delta^{(3)}(\mathbf{r}' - \mathbf{w}(t'))
+\mathbf{v}(t) \), so by the same argument, we have:
+\[
+	A = \frac{\mu_0}{4\pi}\frac{q\mathbf{v}}{\rcurs} \frac{c}{(c - \hat{\rcurs} \cdot \mathbf{v})} =
+	\frac{\mu_0}{4\pi}\frac{qcv}{(c\rcurs - \brcurs \cdot \mathbf{v})} = \frac{V}{c^2} \cdot \mathbf{v}
+\]
+Again, here we have \( \rcurs = \mathbf{r} - \mathbf{w}(t_r) \): all the quantities here are evaluated at the
+\textit{retarded time}, not at the present!
+ 
+

@@ -1,0 +1,241 @@
+\documentclass{article}
+\title{Physics 5A Homework}
+\author{Eric Du}
+\date{\today}
+\usepackage[cm]{sfmath}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\usepackage{float}
+\lhead{Eric Du}
+\chead{Physics 5A Homework}
+\rhead{\today}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{148pt}
+\usepackage{color}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[sexy]{evan}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\usepackage{caption}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+\begin{document}
+	
+	\maketitle
+	\tableofcontents
+	
+	
+	
+	\section{Question 1}
+	
+	Label the velocity of Huck relative to the raft to be $v_{H, R}$ and the velocity of the current to be $v_{R, G}$, it follows that:
+	
+	\[ \vec v_{H, R} + \vec V_{R, G} = \vec v_{H, G}\]
+	
+	Since Huck's velocity and the river current is perpendicular to each other, we can just use pythagorean theorem:
+	
+	\[ |\vec v_{H, G} = \sqrt{(0.70)^2 + (1.5)^2} = 1.66 m/s, \tan^{-1}\left(\frac{1.5}{0.7}\right) = 64.98^\circ\]
+	
+	So therefore his velocity is 1.66 m/s [N $64.98^\circ$ E], if we can assume that upwards points in the north direction.
+	
+	\section{Question 2}
+	
+		Given that she angles the boat at an angle $\theta$ to the vertical, we have her velocity in the $\hat \j$ direction to be $v_b\cos\theta$. That means that the time for her to cross the river is $t_{cross} = \dfrac{d}{v_b\cos\theta}$. 
+	
+	\medskip
+	
+	We also have that her velocity in the $\hat \i$ direction is going to be equal to $v_c - v_b\sin\theta$ the time that it takes her to run to her desintation after crossing the river is going to be: $t_{r} =  v_{r}\cdot t_{cross}(v_c - v_b\sin\theta)$
+	
+	If we sum both of these up, we get:
+	
+	\[ T = t_{r} + t_{cross} = \frac{d}{v_b\cos \theta} + \frac{d}{v_rv_b\cos\theta}(v_c - v_b\sin\theta)\]
+	
+	We now take $\frac{dT}{d\theta}$:
+	
+	\[\frac{dT}{d\theta} = \frac{d}{v_b} \left[\sec \theta \tan \theta (1 + v_{r}(v_c - v_b\sin\theta)) + \sec \theta\cdot -v_{r}v_b \cos \theta\right]\]
+	
+	After much algebra, we get the equation: 
+	
+	\[ \sin \theta = \left(\frac{\frac{v_b}{v_r}}{1 + \frac{v_c}{v_r}}\right)\]
+	
+	Giving a value of $\theta = 24.9^\circ$.
+	
+	\section{Question 3}
+	
+	\subsection{Part a}
+	Let $\vec r_a$ be the displacement vector from the origin of frame $A$ to a paticle in space, and let $\vec r_b$ denote the same thing except with frame $B$. We can also connect the origins of the two frames (going from frame A to B) together with a vector $\vec r_c$. 
+	
+	%diagram here
+	From the diagram, we an see that:
+	\begin{align*}
+		\vec r_c + \vec r_b &= \vec r_a\\
+		\therefore \dot {\vec r}_c + \dot {\vec r}_b &= \dot {\vec r}_a
+		\end{align*}
+	
+	\subsection{Part b}
+	
+	We can write $\vec r_{ab} = \vec r_a - \vec r_b$, so $\dot \vec{r}_{ab} = \dot {\vec r}_a - \dot {\vec r}_b$. Substituting in the cartesian coordinates:
+
+	
+	\[ \dot {\vec{r}}_{ab} = r \omega (\cos \omega t \hat \j - \sin \omega t\hat \i) - r \omega (-\sin \omega t \hat \i + \cos \omega t \hat \j) \]
+	
+	Note that we need to factor the second equation by a factor of -1 because they have opposite values for $\omega$. Looking at the equation, we also see that the $r \omega \cos \omega t \hat \j$ terms cancel each other. This should make sense since they are falling down at the same rate. Therefore, we get:
+	
+	\[\dot{\vec r}_{ab} = 2r\omega \sin(\omega t) \hat \i\]
+	
+	\section{Question 4}
+	
+	%DIAGRAM HERE
+	
+	For the whole system: $ a = \dfrac{F}{m_1 + m_2}$. If we consider the two red normal vectors labelled $N$ in the diagram, and we consider the free body diagram on $m_2$ only:
+	
+	\[ N = m_2 a_2\]
+	
+	We also have the constraint (given the axes in the diagram):
+	
+	\[ x_2 - x_1 = \text{const.} \implies \ddot x_2 = \ddot x_1\]
+	
+	So from this we can conclude that $a_2 = a$, so we can simply substitue $a_2$ for that to get our contact force:
+	
+	\[ N = \frac{m_2 F}{m_1 + m_2} = 1 \ \text{N}\]
+	
+	\section{Question 5}
+	
+	%diagram
+	Variables and their directions are defined as shown in the diagram. 
+	
+	\medskip
+	
+	For $m_2$, we have  $m_2g - T = m_2\ddot x_2$, and we also have $T = m_1 \ddot x_1$ for $m_1$. To find the constraint, use the following: 
+	
+	\[x_1 - x_2 + \frac{\pi R}{2} = l_{rope} \implies \ddot x_1 = \ddot x_2\]
+	
+	So we now combine the two equations and solve, by cancelling $T$. From here, I will be removing the indices on $\ddot x$ terms since we've already proven that they are the same.
+	
+	\begin{align*}
+		m_2g - m_1\ddot x &= m_2 \ddot x\\
+		\therefore \ddot x = \frac{m_2g}{m_1 + m_2}
+	\end{align*}
+
+	\section{Question 6}
+	
+	%diagram
+	
+	For $m_A$ and $m_B$, we have the following two equations: 
+	
+	\begin{align*}
+		T - m_A g\sin\theta_A &= m_A \ddot x_A\\
+		m_Bg \sin \theta_B - T &= m_B \ddot x_B
+		\end{align*}
+	
+	To find the constraint, we again find a way to express the length of the rope to be constant. Namely, we can use the following:
+	
+	\[ x_A - x_B + K = l_{rope} \implies \ddot x_A = \ddot x_B\]
+	
+	Here I use $K$ to denote the amount of spring that is being passed thorugh the rope (analogous to $\pi R$ in some of the previous questions). Since it's a constant, I really don't care enough about $K$ to calculate an exact value.
+	
+	So now we can put the two equations together again, by eliminating $T$. Again, I remove indices on $\ddot x$ since we've proven that accelerations are the same for both blocks.
+	
+	\begin{align*}
+		T &= m_A\ddot x + m_Ag\sin \theta_A\\
+	 m_B\ddot x &=	\therefore m_Bg\sin\theta_B - m_A\ddot x - m_Ag\sin\theta_A\\
+	 \therefore \ddot x &=  \boxed{\frac{g(m_B\sin\theta_B - m_A\sin\theta_A)}{m_A + m_B} }
+	\end{align*}
+	
+	\section{Question 7}
+	
+	We have the general equation for $\ddot{\vec r}$ in polar coordinates: 
+	
+	\[ \ddot{\vec r}(t) = (\ddot r - r \dot \theta^2)\hat r + (2\dot r \dot \theta + r \ddot \theta) \hat\theta\]
+	
+	Since we're talking about uniform circular motion, we can eliminate a lot of terms. So $\ddot r = 0$, $\dot r = 0$, $\ddot \theta = 0$. So we're left with: 
+	
+	\[ \ddot{\vec r}(t) = (-r\dot \theta^2) \hat r\]
+	
+	Applying Newton's second law: 
+	\[ F = -mr\dot \theta^2\]
+	
+	If we want the concrete to not stick, then we equivalently want that at the highest point, the centripetal force $F$ must only be equal to the gravitational force at that time, or $mg$. So if we set those two equal: 
+	
+	\[ mg = -mr \dot \theta^2 \implies \dot \theta = \sqrt{\frac{g}{r}}\]
+	
+	This evaluates to roughly 1.4 rad/s.
+	
+	
+	\section{Problem 8}
+	We have the equations for Newtons' second law on both the masses:
+	
+	\begin{align*}
+		m_1g - T_1 &= m_1 \ddot x_1\\
+		T_2 - m_2g &= m_2 \ddot x_2
+	\end{align*}
+
+	If we look at the free body diagram of the moving pulley, we can deduce that:
+	
+	\[ T_1 - 2T_2 = m_p\ddot x_p\]
+	
+	And since $m_p = 0$, this directly implies that $T_1 = 2T_2$.
+	
+	\medskip
+	The difficult part of the problem is coming up with the constraint. Again, refer to the diagram for the variables that I will be using here. For the first mass, we have:
+	
+	\[ h_2 - h_1 - x_1 + \pi R = \l_{rope1} \implies |\ddot x_1| = |\ddot h_2|\]
+	
+	For the second mass:
+	
+	\[ \pi R + (H - h_2) + h_3-h_2 = l_{rope2} \implies |\ddot h_3| = 2|\ddot h_2| = 2 |\ddot x_1|\]
+
+\begin{remark}
+	Due to the fact that I have two axes, I treat everything going in one direction (counterclockwise) as positive, which allows me to omit the negative signs that might come as a result of using one axis and treating $\ddot x_1$ as a vector. This is  mmmwhy I'm able to write $\ddot x_2 = 2\ddot x_1$ instead of $\ddot x_2 = -2\ddot x_1$.
+	\end{remark}
+	
+	From the diagram, we can also see that $\ddot h_3 = \ddot x_2$, since the movement of $x_2$ is accounted for in $h_3$. So finally we conclude that $\ddot x_1 = 2\ddot x_2$. We can now move to solving the equation, which from here is just a lot of algebra:
+	
+	
+	\begin{align*}
+		  m_1g - 2T_2 &= m_1 \ddot x_1\\
+		  T_2 - m_2g &= m_2(2\ddot x_1) \longrightarrow 2T_2 - 2m_2g = 4m_2\ddot x_1\\
+		  \therefore m_1g - (4m_2\ddot x_1 + 2m_2g) &= m_1\ddot x_1\\
+		  \therefore \ddot x_1 &= \frac{g(m_1 - 2m_2)}{m_1 + 4m_2}
+	\end{align*}
+
+	\section{Problem 9}
+	We have the equations:
+	
+	\begin{align*}
+		m_A \ddot {\vec r}_A &= -T = (\ddot r - r\dot \theta^2)\hat r + (2\dot r \dot \theta + r \ddot \theta)\hat \theta\\
+		m_B \ddot {\vec r}_B &= -T = (\ddot r - r\dot \theta^2)\hat r + (2\dot r \dot \theta + r \ddot \theta)\hat \theta
+	\end{align*}
+
+	We also have that $\vec r_A - \vec r_B = l_{rope}$, meaning that $\ddot{\vec r}_A = \ddot {\vec r}_B$. Notice also that the accelerations here are all in the radial direction, so we can dot both equations by $\hat r$:
+	
+	\begin{align*}
+		m_A \ddot \vec r &= (\ddot r - r\dot \theta^2)\hat r\\
+		m_B \ddot \vec r &= (\ddot r - r\dot \theta^2)\hat r
+	\end{align*} 
+	
+	
+	\section{Problem 10}
+	
+	Since we want $m_3$ to be stationary, then we must also have that $\ddot x_3 = 0$. Looking at the free body diagram for $m_3$:
+	\[ m_3g  -T = m_3\ddot x_3 \implies T = m_3g\]
+	
+	We also have $m_2 \ddot x_2 = T$ so $\ddot x_2 = \frac{m_3g}{m_2}$ once we substitute the previous conclusion. If we want $m_3$ to not move, then it also means that the acceleration of the whole system should be equal to the acceleration of $m_2$. What this means is that $\ddot x_1 = \ddot x_2$. If we consider the whole thing as a single free body diagram:
+	
+	\[F = (m_1 + m_2 + m_3)\ddot x_1 \implies \boxed{F = (m_1 + m_2 + m_3) \cdot \frac{m_3g}{m_2}}\]
+	
+	
+	%CHECK WHETHER THIS IS CORRECT
+\end{document}

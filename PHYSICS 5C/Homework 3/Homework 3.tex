@@ -1,0 +1,262 @@
+\documentclass{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, pgfplots, wrapfig, amssymb, array, mathtools, enumerate, circuitikz, physics, parskip, hyperref}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{chemformula}
+\usepackage{../local}
+
+
+\pgfplotsset{compat=1.17}
+
+\title{Physics 5C Homework}
+\author{Yutong Du}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill Physics 5C}\\
+\large{HW 03} \large{\hfill Introductory Thermodynamics and Quantum Mechanics \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+}
+\linespread{1.1}
+
+\begin{document}
+\maketitle
+
+\section*{Collaborators}
+
+I worked on this homework with \textbf{Andrew Binder, Nikhil Maserang, Teja Nivarthi} and \textbf{Adarsh Iyer}.
+
+\section*{Problem 1}
+
+Assume that gases behave according to a law given by $pV = f(T)$ where $f(T)$ is a function of temperature. Show that this implies 
+
+\begin{align*}
+    \left(\frac{\partial p}{\partial T}\right)_V &= \frac{1}{V} \frac{\dd f}{\dd T}\\
+    \left(\frac{\partial V}{\partial T}\right)_p &= \frac{1}{p} \frac{\dd f}{\dd T} 
+\end{align*}
+
+Show also that 
+
+\begin{align*}
+    \left(\frac{\partial Q}{\partial V}\right)_p &= C_p\left(\frac{\partial T}{\partial V}\right)_p \\
+    \left(\frac{\partial Q}{\partial p}\right)_V &= C_V \left(\frac{\partial T}{\partial p}\right)_V 
+\end{align*}
+
+In an adiabatic change, we have that 
+
+\[ \dd Q = \left(\frac{\partial Q}{\partial p}\right)_V \dd p + \left(\frac{\partial Q}{\partial V}\right)_p \dd V = 0\]
+
+Hence show that $pV^\gamma$ is a constant.
+
+
+\begin{solution}
+    We can rearrange to get $p = \frac{f(T)}{V}$ and $v = \frac{f(T)}{p}$, so differentiating each we get:
+
+    \begin{align*}
+        \left(\frac{\partial p}{\partial T}\right)_V &= \frac{1}{V} \frac{\dd f}{\dd t}\\
+        \left(\frac{\partial V}{\partial T}\right)_p &= \frac{1}{p} \frac{\dd f}{\dd T} 
+    \end{align*}
+
+    We know that $C_p = \left(\frac{\partial Q}{\partial T}\right)_p$ and $C_v = \left(\frac{\partial Q}{\partial T}\right)_V$ so we can apply chain rule:
+
+
+    \begin{align*}
+        C_p \left(\frac{\partial T}{\partial V}\right)_p &= \left(\frac{\partial Q}{\partial T}\right)_p \cdot \left(\frac{\partial T}{\partial V}\right)_p = \left(\frac{\partial Q}{\partial V}\right)_p\\
+        C_V \left(\frac{\partial T}{\partial p}\right)_V &= \left(\frac{\partial Q}{\partial T}\right)_V \cdot \left(\frac{\partial T}{\partial p}\right)_V = \left(\frac{\partial Q}{\partial p}\right)_V
+    \end{align*}
+
+    And so we've confirmed the two subsequent equations.
+
+    In an adiabatic change, we have:
+
+    \begin{align*}
+        C_V\left(\frac{\partial T}{\partial P}\right)_V \frac{\dd p}{\dd V} &= -C_p \left(\frac{\partial T}{\partial v}\right)_p\\
+        \frac{\dd p}{\dd V} &= -\frac{C_p}{C_v}\left(\frac{\partial p}{\partial V}\right)_V \cdot \left(\frac{\partial T}{\partial V}\right)_p\\
+        &= -\gamma \left(\frac{\partial p}{\partial T}\right)_V \left(\frac{\partial T}{\partial V}\right)_p\\
+        &= -\gamma\left(\frac{1}{v} \frac{\dd f}{\dd T}\right)\left(p \frac{1}{\dd f/\dd T}\right)\\
+        \therefore -\gamma &= \frac{V}{p} \frac{\dd p}{\dd V}
+    \end{align*}
+
+    So now we can do simple separation of variables:
+
+    \begin{align*}
+        -\frac{\gamma}{V} \dd V &= \frac{1}{p} \dd p\\
+        -\gamma \ln V + c &= \ln p\\
+        c &= \ln pV^{\gamma}
+    \end{align*}
+
+    And so $pV^\gamma$ is a constant.
+    
+\end{solution}
+
+
+\pagebreak
+\section*{Problem 2}
+
+Two thermally insulated cylinders, $A$ and $B$, of equal volume, both equipoped with pistons, are connected by a valve. Initially $A$ has its piston fully withdrawn and contains a perfect monoatomic gas at temperature $T$, while $B$ has its piston fully inserted, and the valve is closed. Calculate the final temperature of the gas after the following operations, which each start with the same initial arrangement. The thermal capacity of the cylinders is to be ignored. 
+
+\begin{enumerate}[(a)]
+    \item The valve is fully opened and the gas slowly drawn to $B$ by pulling out the piston $B$; piston $A$ remains stationary
+    
+
+    \begin{solution}
+        We use the ideal gas equation:
+
+
+        \[\frac{p_1V_1}{T_1} = \frac{p_2V_2}{T_2} \implies T_2 = \frac{P_2V_2}{P_1V_1}T_1\]
+
+        Now our goal is to calculate thsi ratio $\frac{P_2V_2}{P_1V_1}$. We know for an adiabatic chagne, $pV^\gamma$ is a constant, so we know:
+
+        \begin{align*}
+            \frac{p_2V_2^\gamma}{p_1V_1^\gamma} &= 1\\
+            \frac{p_2}{p_1} &= \frac{V_1^\gamma}{V_2^\gamma}\\
+            \therefore T_2 &= \frac{V_1^\gamma V_2}{V_2^\gamma V_1} = \frac{V_1^{\gamma -1}}{V_2^\gamma - 1}
+        \end{align*}
+
+        Since piston $A$ remains stationary, then we know that $V_2 = 2V_1$, so plugging this in (as well as $\gamma = \frac{5}{3}$) it yields:
+
+        \[ T_2 = \frac{T_1}{2^{2/3}}\]
+         
+    \end{solution}
+    \item Piston $B$ is fully withdrawn and the valve is opened slightly; the gas is then driven as far as it will go into $B$ by pushing home piston $A$ at such a rate that the pressure in $A$ remains constant: the cylinders are in thermal contact.
+    
+    \begin{solution}
+        Let $V_a$ be the final volume of chamber $A$ and $V$ be the initial volume of chamber $A$.  Since the whole system is thermally insulated, this process can be considered adiabatic. This means that $\dd Q = 0$, and thus
+
+        \[ \Delta U = -p\Delta V = -p(V - V_a) = \frac{3}{2} nR(T_2 - T_1)\]
+
+        From the ideal gas equation, we have $V = nR \frac{T_i}{p}$ and $V_a = \frac{T_f - T_i}{p}$. Therefore, 
+
+        \begin{align*}
+            \frac{3}{2}nR(T_f - T_i) &= pnR\left(\frac{T_i}{p} - \frac{T_f - T_i}{p}\right)\\
+            3T_f - 3T_i &= 4 T_i - 2 T_f \\
+            5 T_f &= 7T_i\\
+            \therefore T_f &= \frac{7}{5} T_i
+        \end{align*}
+        
+    \end{solution}
+\end{enumerate}
+
+\pagebreak
+\section*{Problem 3}
+In R\"uchhardt's method of measuring $\gamma$, illustrated in Fig. 12.2, a ball of mass $4m$ is placed snugly inside a tube (cross-sectional area $A$) connected to a container of gas (volume $V$). The pressure $p$ of the gas inside the container is slightly greater than the atmospheric pressure $p_0$ because of the downwards force of the ball, so that 
+
+\[ p = p_0 + \frac{mg}{A}\]
+
+Show that if the ball is given a slight downwards displacement, it will undergo simple harmonic motion with period $\tau$ given by 
+
+\[ \tau = 2\pi \sqrt{\frac{mV}{\gamma pA^2}}\]
+
+\begin{solution}
+    Since the system can be treated as adiabatic (there is no heat flow in the system), then 
+
+    \[ \frac{\dd p}{p} = -\gamma \frac{\dd V}{V}\]
+
+    When the ball oscillates harmonically, we can let $\dd V = A \dx$, which will generate a force: $m\ddot x = A \dd p$ so we get: 
+
+    \[ m\ddot x  + kx = 0 \implies \ddot x + \frac{k}{m} x = 0\] 
+
+    where $k = \left(\frac{\gamma pA^2}{V}\right)$, so we let $\omega^2 = k$ giving us:
+
+    \[ \tau = \frac{2\pi}{\omega} = 2\pi \sqrt{\frac{mV}{\gamma pA^2}}\]
+
+    As desired. The gravitational potential energy of the system is equal to the potential energy of the system, and thus:
+
+    \[ U = \frac{1}{2}k\left(\frac{L}{2}\right)^2 = \frac{\gamma p A^2L^2}{8V}\]
+\end{solution}
+
+\pagebreak
+
+\section*{Problem 4}
+
+Show that the efficiency of the standard Otto cycle (shown in Fig. 13.12) is $1-r^{1-\gamma}$, where $r = V_1/V_2$ is the compression ratio. The \textbf{Otto cycle} is the four-stroke cycle in internal combustion engines in cars, lorries, and electrical generators. 
+
+\begin{solution}
+    From the diagram, $Q_1 = C_V(T_3 - T_2)$ and $Q_2 = C_V(T_4 - T_1)$. Furthermore, on the regions where the process is adiabatic, $TV^{\gamma - 1}$ is a constant. We also have the relationsihp that $V_2 = V_3$ and $V_1 = V_4$ so we have:
+
+    \[ (T_3 - T_2)V_2^{\gamma - 1} = (T_4 - T_1)V_1^{\gamma - 1}\]
+
+    Now notice that we can write:
+
+    \[ \frac{T_4 - T_1}{T_3 - T_2} = \frac{V_2^{\gamma - 1}}{V_1^{\gamma - 1}} = \frac{V_1^{1 - \gamma}}{V_2^{1 - \gamma}}\]
+
+    Now we have sufficient knowledge to calculate efficiency $\eta = 1- \frac{Q_2}{Q_1}$:
+
+    \[ \eta = 1 - \frac{C_V(T_4 - T_1)}{C_V(T_3 - T_2)} = 1 - \frac{T_4 - T_1}{T_3 - T_2} = 1 - \left(\frac{V_1}{V_2}\right)^{1 - \gamma}\]
+
+    As desired. $\blacksquare$
+
+
+\end{solution}
+
+
+\pagebreak
+\section*{Problem 5}
+
+An ideal air conditioner operating on a Carnot cycle absorbs heat $Q_2$ from a house at temperature $T_2$ and discharges $Q_1$ to the outside at temperature $T_1$, consuming electrical energy $E$. Heat leakage into the house follows Newton's law, 
+
+\[ Q = A[T_1 - T_2]\]
+
+where $A$ is a constant. Derive an expression for $T_2$ in terms of $T_1$, $E$, and $A$ for continuous operation when the steady state has been reached.
+
+The air conditioner is controlled by a thermostat. the system is designed so that with the thermostat set at $20^\circ$C and outside temperature $30^\circ$C the system operates at 30\% of the maximum electrical energy input. Find the highest outside temperature for which the house may be maintained inside at $20^\circ$C.
+
+\begin{solution}
+    We can equate the energy change as $E = -Q = A[T_2 - T_1]$ so rearranging for $T_2$: 
+    
+    \[ T_2 = \frac{AT_1 + E}{A} = T_1 + \frac{E}{A}\]
+
+    Now the system is operating at 30\% efficiency, so we have $E = 0.3E_{max}$:
+
+    \begin{align*}
+     293.15 &= 303.15 + \frac{0.3E_{max}}{A}\\
+     E_{max} &= \frac{(293 - 303)A}{0.3}
+    \end{align*}
+
+    So the highest outside temperature difference that is allowable is 33 degrees, so this gives us: $20^\circ\text{C} + 33^\circ\text{C} = 53^\circ$C as the highest temperature.
+\end{solution}
+
+\pagebreak 
+
+\section*{Problem 6}
+
+Two identical bodies of constant heat capacity $C_p$ at temperatures $T_1$ and $T_2$ respectively are used as reservoirs for a heat engine. If the bodies remain at constant pressure, show that the amount of work obtainable is 
+
+\[ W = C_p(T_1 + T_2 - 2T_f)\] 
+
+where $T_1$ is the final temperature attained by both bodies. Show that if the most efficient engine is used, then $T_f^2 = T_1T_2$.
+
+\begin{solution}
+    We use a Carnot engine, since it is the most efficient engine possible. The total amount of energy in the first body is 
+
+    \[ E_1 = C_p (T_f - T_1)\]
+
+    and similarly
+
+    \[ E_2 = C_p(T_2 - T_f)\] 
+
+    Therefore, the total amount of work possible would be the difference between the two "values": 
+    
+    \[W = E_2 - E_1 = C_p (T_1 + T_2 - 2T_1)\]
+
+    Clausius' theorem states that that $\oint \frac{\dd Q}{T} = 0$. so therefore we get:
+
+    \begin{align*}
+        0 &= \int_{T_1}^{T_f} C_p \frac{\dd T}{T} + \int_{T_2}^{T_f} C_p \frac{\dd T}{T}\\
+        C_p \int_{T_1}^{T_f} \frac{\dd T}{T} &= C_p\int_{T_f}^{T_2} \frac{\dd T}{T}\\
+        \ln\left(\frac{T_f}{T_1}\right) &= \ln\left(\frac{T_2}{T_f}\right)\\
+        \therefore T_f^2 = T_1T_2 
+    \end{align*}
+
+    As desired. $\blacksquare$
+\end{solution}
+
+
+\end{document}

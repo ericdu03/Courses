@@ -1,0 +1,197 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Math 104}
+\newcommand{\classname}{Real Analysis}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 02} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+j    \section*{Problem 1}
+
+    Prove the following proposition: 
+    
+    \begin{prop}
+        A set $A \subset \mathbb R$ is 
+        bounded if and only if there exists a real number $M \ge 0$ such that 
+        \[ |x| \le M \ \text{for every $x \in A$}\]
+    \end{prop}
+
+    \begin{solution}
+        We first show that if $M$ exists, then $A$ is bounded. By the definition of supremum and infimum, we know that the following two relations hold:
+        \[ \sup A \le M \ \inf A \ge -M\]
+        Therefore, since the supremum and infimum are finite, then $A$ is bounded. 
+
+        Now we show that if $A$ is bounded then $M$ exists. We know that if $A$ is bounded, then $\sup A$ and $\inf A$ exist. We can choose $M$ to be:
+        \[ M = |\sup A| + |\inf A|\]
+        Since all $a \le \sup A$, then $a \le |\sup A| + |\inf A|$. On the contrary, since $a \ge \inf A$, then $a \ge -|\inf A| - |\sup A|$. Therefore, a finite $M$ exists.
+    \end{solution}
+    \pagebreak
+    \section*{Problem 2}
+    Consider each of the following sets: 
+    \begin{align*}
+        &A = (0, \infty), \ &B &= \{ \frac{1}{m} + \frac{1}{n}: m, n, \in \mathbb N\}, & C &= \{x^2 - x - 1: x \in \mathbb R\}\\
+        &D = [0, 1] \cup [2, 3], &E &= \cup_{n = 1}^{\infty} [2n, 2n+1], &F &= \cap_{n = 1}^\infty (1 - \frac 1n)(1 + \frac 1n)
+    \end{align*}
+    For each set, determine its minimum and maximum if they exist. In addition, determine each set's infimum and supremum, writing your answers in terms of infinity for unbounded sets. Detailed proofs are not required. 
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*)]
+            \item neither max nor min exists, $\inf A = 0$ and $\sup A = \infty$.
+            \item $\max B = 2$, $\min B$ does not exist, $\sup B = 2$ and $\inf B = 0$.
+            \item This is a parabola, so $\min C = -5/4$, $\max C$ does not exist, $\inf C = -5/4$ and $\sup C = \infty$.
+            \item This is an interval including the endpoints, so $\min D = \inf D = 0$ and $\max D = \sup D = 3$.
+            \item The smallest element here is $2(1) = 2$, so therefore $\min E = \inf E = 2$, but $\max E$ does not exist and $\sup E = \infty$.
+            \item Here $\min F$ and $\max F$ both do not exist, while $\inf F = \sup F = 1$.
+        \end{enumerate}
+    \end{solution}
+
+    \pagebreak
+
+    \section*{Problem 3}
+    Let $A$ and $B$ be nonempty bounded subsets of $\mathbb R$, and let $A +B$ be the set of all sums $a+b$ where $a \in A$ and $b \in B$. 
+
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove $\sup(A + B) = \sup A + \sup B$. \textit{Hint:} To show $\sup A + \sup B \le \sup(A + B)$, show that for each $b \in B$, $\sup(A + B) - b$ is an upper bound for $A$, hence $\sup A \le (\sup (A + B)) - b$. Then, show $\sup(A + B) - \sup A$ is an upper bound for $B$.
+        
+        \begin{solution}
+            We know that for all $a \in A$, $a \le \sup A$. Likewise, we know that for all $b \in B$, $b \le \sup B$. Therefore, for any sum $a+b$, we have 
+            \begin{equation} \label{eq1}
+                a + b \le \sup A + \sup B
+            \end{equation}
+            Since this equation is true for all $a, b$, then we can also write:
+
+            \begin{equation}\label{eq2}
+                a + b \le \sup(A + B) \le \sup A + \sup B
+            \end{equation}
+            Note we can insert $\sup(A +B)$ in between since we define $\sup(A +B)$ to be the least upper bound, and we assume that $\sup A + \sup B$ might be larger than $\sup(A + B)$. 
+            
+            We now use the hint: we first show that $\sup(A + B) - b$ is an upper bound for $A$. We can do this because from equation \ref{eq1}, we get 
+            \[ a \le \sup (A+B) - b\]
+            And so therefore $\sup A \le \sup(A + B) - b$. Then rearranging this last equation, we get that for all $b \in B$,
+            \[ b \le \sup(A + B) - \sup A\]
+            Then since this is true for all $B$, then we can write
+            \[ \sup A + \sup B \le \sup(A + B)\] 
+            But then combining this with equation \ref{eq2}, we get the inequality
+            \[ \sup A + \sup B \le \sup(A + B) \le \sup A + \sup B\] 
+            And so therefore $\sup(A + B) = \sup A + \sup B$.
+        \end{solution}
+        \item Prove $\inf (A + B) = \inf A + \inf B$.
+
+        \begin{solution}
+            We know from the previous homework that $\inf A = -\sup(-A)$ so we know then that $\inf(A + B) = -\sup(-A + (-B)) = -\sup(-A) - \sup(-B) = \inf A + \inf B$
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+    \section*{Problem 4}
+    Given a sequence $(x_n)$, prove: $\lim_{n \to \infty} x_n = x$ is equivalent to $\lim_{n \to \infty} |x_n - x| = 0$.
+
+    \begin{solution}
+        The second equation $\lim_{n \to 0} |x_n - x| = 0$ is the same thing as saying that for every $\epsilon > 0$, we can write:
+        \[ ||x_n - x| - 0| < \epsilon\]
+        And since $|x_n - x| \ge 0$, we can drop the outer set of absolute values. Therefore, this leaves us with
+        \[ |x_n - x| < \epsilon\]
+        which is the standard definition of the limit $\lim_{n \to \infty} x_n = x$.
+    \end{solution}
+
+    \newpage
+
+    \section*{Problem 5}
+
+    Prove the following theorem:
+
+    \begin{theorem}
+        Suppose that $(x_n)$ and $(y_n)$ are convergence sequences of real numbers with the same limit $L$. If $(z_n)$ is a sequence such that 
+        \[ x_n \le z_n \le y_n \ \text{for all $n \in \mathbb N$}\] 
+
+        then $(z_n)$ also converges to $L$.
+    \end{theorem}
+
+    \begin{solution}
+        By Theorem 4.5 we know that since $x_n \le z_n$ \footnote{I'm supressing the limits here, but it's implied that $n \to \infty$ is the limit that we're taking}, that $\lim x_n \le \lim z_n$, and so therefore $L \le \lim z_n$. Similarly, since $z_n \le y_n$, then $\lim z_n \le \lim y_n$ so $\lim z_n \le L$. Therefore, we've arrived at the equation:
+        \[ L \le \lim z_n \le L\]
+        which means that the only possible value for $\lim z_n = L$.
+
+        Alternatively, we can prove this final result by noting that because from this inequality, we can conclude that $\limsup z_n \le L$ and $\liminf z_n \ge L$. But since we know that $\limsup z_n \ge \liminf z_n$, then we require:
+        \[ L \le \liminf z_n \le \limsup z_n \le L\]
+        from which we can conclude that 
+        \[ \limsup z_n = \liminf z_n = L\] 
+        then by Theorem 6.2 we know that the sequence converges to $L$.
+    \end{solution}
+
+
+    \pagebreak
+
+    \section*{Problem 6} 
+    Prove: $\liminf_{n \to \infty} x_n \le \limsup_{n \to \infty} x_n$.
+
+    \begin{solution}
+        We can define $y_n$ and $z_n$ as suprema and infima of the ``tails'' of $x_n$: 
+        \[ y_n = \inf\{x_k | k > m\} \ z_n = \sup\{ x_k | k > n\}\]
+        Therefore, for all $n$, we know that $y_n \le z_n$. Therefore, by theorem 4.3 (the theorem about monotonicity preservation), we know that 
+        \[ \lim_{n \to \infty} y_n \le \lim_{n \to \infty} z_n\]
+        and so therefore
+        \[ \liminf_{n \to \infty} x_n \le \limsup_{n \to \infty} x_n\]
+    \end{solution}
+
+    \pagebreak
+
+    \section*{Problem 7}
+    Find the limits of each of the following sequences, defined for $n \in \mathbb N$: 
+    \begin{enumerate}[label=(\alph*)]
+        \item $\left(\frac{3n}{n+3}\right)^2$
+        \item $\frac{1 + 2 + \cdots + n^2}{n^2}$
+        \item $\frac{a^n - b^n}{a^n + b^n}$, $a > b > 0$.
+        \item $n^2/2^n$
+        \item $\sqrt{n+1} - \sqrt{n}$
+    \end{enumerate}
+    Defailed proofs are not required, but you should justify your answers.
+
+    \begin{solution}
+        \begin{enumerate}[label=(\alph*)]
+            \item We can write: 
+            \[\lim_{n \to \infty} \left(\frac{3n}{n+3}\right)^2 = \lim_{n \to \infty} \frac{3n}{n\left( 1 + \frac 3n\right)} = 9\]
+            \item Rewrite the numerator: 
+            \[ \lim_{n \to \infty} \frac{1 + 2 + \cdots + n}{n^2} = \lim_{n \to \infty} \frac{n(n+1)}{2} = \lim_{n \to \infty} \frac{n^2\left( 1 + \frac 1n\right)}{2n^2} = \frac 12\]
+            \item Since we have $a > b > 0$, we can write:
+            \[ \lim_{n \to \infty} \frac{a^n - b^n}{a^n + b^n} = \frac{a^n \left( 1 - \frac{b^n}{a^n}\right)}{a^n\left( 1 + \frac{b^n}{a^n}\right)} = \lim_{n \to \infty} \frac{1 - \left( \frac ba\right)^n}{1 + \left(\frac ba\right)^n} = 1\]
+            \item We can rewire this term as 
+            \[ \lim_{n \to \infty} \frac{n^2}{2^n} = \lim_{n \to \infty} n^2 \cdot \frac{1}{2^n} = 0\]
+            since $\frac{1}{2^n} \to 0$ as $n \to \infty$.
+            \item Let $x = \lim_{n \to \infty} \sqrt{n+1} - \sqrt n$. Then we can write:
+            \begin{align*}
+                x(\sqrt{n +1} -\sqrt n) &= \lim_{n \to \infty} n+1 - n\\
+                \therefore x &=\lim_{n \to \infty} \frac{1}{\sqrt{n+1} + \sqrt n} = 0
+            \end{align*}
+        \end{enumerate}
+    \end{solution}
+
+    \pagebreak
+
+    \section*{Problem 8}
+    Let $s_1 = t$ and for some $t \in \mathbb R$, define a sequence according to $s_{n+1} = 1 + \frac{s_n}{2}$ for $n \in \mathbb N$. Prove that for all $t$, $s_n \to 2$ as $n \to \infty$.
+
+    \begin{solution}
+        Analyzing the sequence, we see that 
+        \[ s_{n+2} = 1 + \frac{s_{n+1}}{2} = 1 + \frac{1 + \frac{s_n}{2}}{2}\]
+        As $n \to \infty$, we essentially keep ``stacking'' on the fraction here:
+        \[ s_{\infty} \equiv \lim_{n \to \infty} s_n  = 1 + \frac{1 + \frac{1 + \cdots}{2}}{2}
+        \]
+        Now notice that the numerator of the fraction, in the limit, is also equal to $s_\infty$. Therefore, we now have the relation:
+
+        \begin{align*}
+            s_\infty &= 1 + \frac{s_\infty}{2}\\
+            \frac{s_\infty}{2} &= 1 \\
+            \therefore s_\infty &= 2
+        \end{align*}
+        as desired.
+    \end{solution}
+\end{document}

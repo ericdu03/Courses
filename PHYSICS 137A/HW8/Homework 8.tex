@@ -1,0 +1,367 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 137A}
+\newcommand{\classname}{Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 08} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+
+    \section*{Collaborators}
+
+    I worked with \textbf{Andrew Binder} to complete this assignment.
+    \section*{Problem 1}
+
+    For the most general noramlized spinor $\chi$ (Equation 4.139), compute $\mean{S_x}, \mean{S_y}, \mean S_Z, \mean{S_x^2}, \mean{S_y^2}, \mean{S_z^2}$. Check that $\mean{S_x^2} + \mean{S_y}^2 + \mean{S_z^2} = \mean{S^2}$.
+
+    \begin{solution}
+        We know that the general spin state can be written in terms of a vector $ \begin{pmatrix}
+            a \\
+            b 
+            \end{pmatrix}$ so therefore applying the definitions of $\mean{S_x}$, $\mean{S_y}$, and so on onto our vectors, we get: 
+
+
+        \begin{align*}
+            \mean{S_x} &= \braket{\chi}{S_x \chi} \\
+            &= \frac{\hbar}{2} (a^\star \ b^\star) \begin{pmatrix}
+                0 & 1 \\
+                1 & 0 
+                \end{pmatrix}  \begin{pmatrix}
+                    a \\
+                    b 
+                    \end{pmatrix}\\
+            &= \frac{\hbar}{2}(a^\star \ b^\star) \begin{pmatrix}
+                    b \\
+                    a 
+                    \end{pmatrix} = \frac{\hbar}{2}(a^\star b + b^\star a)
+        \end{align*}
+
+        By that same logic, we can compute $\mean{S_y}$ and $\mean{S_z}$ (I'm skipping all the algebra here but its just a lot of matrix multiplication and I can't really be bothered to write that many matrices): 
+
+        \begin{align*}
+            \mean{S_y} &= \frac{\hbar}{2} i(ab^\star - a^\star b)\\
+            \mean{S_z} &= \frac{\hbar}{2} (a^\star a - b^\star b) 
+        \end{align*}
+
+        To compute $\mean{S_x^2}, \mean{S_y^2}$, and $\mean{S_z^2}$, we first compute $S_x^2$ itself: 
+
+        \begin{align*}
+            S_x^2 &= \frac{\hbar^2}{4} \begin{pmatrix}
+                0 & 1\\
+                1 & 0
+            \end{pmatrix} \begin{pmatrix}
+                0 & 1\\
+                1 & 0
+            \end{pmatrix}\\
+            &= \frac{\hbar^2}{4}\begin{pmatrix}
+                1 & 0\\
+                0 & 1
+            \end{pmatrix}
+        \end{align*}
+
+        Similarly, using the definitions of $S_y$ and $S_z$:
+
+        \begin{align*}
+            S_y^2 &= \frac{\hbar^2}{4} \begin{pmatrix}
+                1 & 0 \\
+                0 & 1
+            \end{pmatrix}\\
+            S_z^2 &= \frac{\hbar^2}{4} \begin{pmatrix}
+                1 & 0 \\
+                0 & 1
+            \end{pmatrix}
+        \end{align*}
+
+        Now notice that $S_x^2 = S_y^2 = S_z^2$. Let's compute one of $\mean{S_x^2}$: 
+
+        \begin{align*}
+            \mean{S_x^2} &= \frac{\hbar^2}{4} (a^\star \ b^\star) \begin{pmatrix}
+                1 & 0 \\
+                0 & 1
+            \end{pmatrix} \begin{pmatrix}
+                a\\
+                b
+            \end{pmatrix} \\
+            &= \frac{\hbar^2}{4} (a^\star a + b^\star b)
+        \end{align*}
+
+        Since $S_x^2 = S_y^2 = S_z^2$, then we know that the results for all three operators will also be the same. Therefore: 
+
+        \[ \mean{S_x^2} + \mean{S_y^2} + \mean{S_z^2} = \frac{3\hbar^2}{4} (a^\star a + b^\star b)\]
+
+        If we then use the definition for $S^2$ in the book, we also get: 
+
+        \[ S^2 = \frac{3\hbar^2}{4} \begin{pmatrix}
+            1 & 0\\
+            0 & 1
+        \end{pmatrix} \implies \mean{S^2} = \frac{3\hbar^2}{4}(a^\star a + b^\star b)\]
+
+        And so we're done.
+    \end{solution}
+    \pagebreak 
+
+    \section*{Problem 2}
+
+    \begin{enumerate}[(a)]
+        \item Find the eigenvalues and eigenspinors of $S_y$.
+        
+        \begin{solution}
+            We know the matrix representation of $S_y$ from the previous part. Therefore, we can find its eigenvalues by using $\det(A - \lambda I) = 0$:
+
+            \begin{align*}
+                0 &= \det\left( \frac{\hbar}{2}\begin{pmatrix}
+                    0 & -i\\
+                    i & 0
+                \end{pmatrix} - \begin{pmatrix}
+                    \lambda & 0\\
+                    0 & \lambda
+                \end{pmatrix}\right) \\
+                &=  \lambda^2 - \frac{\hbar^2}{4}\\
+                \therefore \lambda &= \pm \frac{\hbar}{2}
+            \end{align*}
+
+            To find the eigenspinors, we need to then find spinors such that $S_y \chi = \frac \hbar 2 \chi$, so we want to find: 
+
+            \[ S_y \begin{pmatrix}
+                a \\ b
+            \end{pmatrix} = \frac{\hbar}{2} \begin{pmatrix}
+                a \\ b
+            \end{pmatrix}\]
+
+            Therefore: 
+
+            \begin{align*}
+                \frac{\hbar}{2} \begin{pmatrix}
+                    0 & -i\\
+                    i & 0
+                \end{pmatrix}\begin{pmatrix}
+                    a \\ b
+                \end{pmatrix} &= \pm \frac{\hbar}{2} \begin{pmatrix}
+                    a \\ b
+                \end{pmatrix}\\
+                \frac{i\hbar}{2} \begin{pmatrix}
+                    -b \\ a
+                \end{pmatrix} &= \pm \frac{\hbar}{2} \begin{pmatrix}
+                    a \\ b
+                \end{pmatrix}
+            \end{align*}
+
+            which gives us the equation $-ib = \pm a$. Due to normalization, we know that $|a^2| + |b|^2 = 1$, so therefore this gives us $a^2 + a^2 = 1 \implies a = \frac{1}{\sqrt{2}}$. So this then gives us two possibilites for our spinor: 
+
+            \[ \begin{pmatrix}
+                a \\ b
+            \end{pmatrix} = \begin{pmatrix}
+                \frac{1}{\sqrt 2} \\
+                \frac{i}{\sqrt 2}
+            \end{pmatrix} = \frac{1}{\sqrt{2}} \begin{pmatrix}
+                1\\i
+            \end{pmatrix}\phantom{aa} \begin{pmatrix}
+                a \\ b
+            \end{pmatrix} = \begin{pmatrix}
+                \frac{1}{\sqrt 2} \\
+                \frac{-i}{\sqrt{2}}
+            \end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}
+                1 \\ -i
+            \end{pmatrix} \]
+        \end{solution}
+        \item If you measured $S_y$ on a particle in the general state $\chi$ (Equation 4.139), what values might you get, and what is the probabilty of each? Check that the probabilities add up to 1. \textit{Note:} $a$ and $b$ need not be real!
+        
+        \begin{solution}
+            By the quantum postulates, you would get one of the two eigenvalues, those being $\pm \frac{\hbar}{2}$. We can then express a general state $\chi$ as: 
+
+            \[ \chi = \left(\frac{a - ib}{\sqrt 2}\right) \chi_+ + \left(\frac{a + ib}{\sqrt 2}\right)\chi_-\]
+
+            Therefore, the probabilities will be: 
+
+            \begin{align*}
+                P(\chi_+) &= \left|\frac{a - ib}{\sqrt 2}\right|^2 \\
+                P(\chi_-) &= \left|\frac{a + ib}{\sqrt 2}\right|^2
+            \end{align*}
+
+            To check the probability equals 1: 
+
+            \begin{align*}
+                P(\chi_+) + P(\chi_-) &= \left|\frac{a - ib}{\sqrt 2}\right|^2 + \left|\frac{a + ib}{\sqrt 2}\right|^2\\
+                &= \frac{1}{2}(|a|^2 - 2i|a||b| + |b|^2 + |a|^2 + 2i|a||b| + |b|^2)\\
+                &= |a|^2 + |b|^2 = 1
+            \end{align*}
+
+            where we've used the fact that $|a|^2 + |b|^2 = 1$ because of normalization.
+        \end{solution}
+        \item If you measured $S_y^2$, what values might you get, a with what probabilities?
+        
+        \begin{solution}
+            Since we can write $S_y^2$ as: 
+
+            \[ S_y^2 = \frac{\hbar^2}{4} \begin{pmatrix}
+                1 & 0\\
+                0 & 1
+            \end{pmatrix} = \frac{\hbar^2}{4}I\] 
+
+            then it only has one eigenvalue, which is $\frac{\hbar^2}{4}$. Then, because there is only one eigenvalue, then it must also be true that we measure this eigenvalue with probability 1, due to the law of total probability.
+        \end{solution}
+    \end{enumerate}
+
+
+    \pagebreak 
+
+    \section*{Problem 3}
+
+    \begin{enumerate}[(a)]
+        \item Apply $S_-$ to $\ket{1 \ 0}$ (Equation 4.177) and confirm that you get $\sqrt2 \hbar \ket{1 \ -1}$
+        
+        \begin{solution}
+            We use the definition of $\ket{1 \ 0}$ and apply $S_-$ to it:
+                \begin{align*}
+                    S_{-}\ket{1 \ 0} &= S_{-}\left(\frac{1}{\sqrt2}(\ud + \du)\right) = \frac{1}{\sqrt2}(S_{-}^{(1)} + S_{-}^{(2)})(\ud + \du)\\
+                    &= \frac{1}{\sqrt2}\left[(S_{-}\ua)\da + (S_{-}\da)\ua + \ua(S_{-}\da) + \da(S_{-}\ua)\right]\\
+                    &= \frac{1}{\sqrt2}2\hbar\dd && S_- \da = 0 \text{ by definition}\\
+                    &= \sqrt{2}\hbar\dd = \sqrt2\hbar\ket{1 -1}
+                \end{align*}
+                as desired.
+        \end{solution}
+        \item Apply $S_\pm$ to $\ket{0 \ 0}$ (Equation 4.178), and confirm that you get zero. 
+        
+        \begin{solution}
+            We do the same thing as part (a):
+                \begin{align*}
+                    S_{-}\ket{0 0} &= S_{-}\left(\frac{1}{\sqrt2}(\ud - \du)\right) = \frac{1}{\sqrt2}(S_{-}^{(1)} + S_{-}^{(2)})(\ud - \du)\\
+                    &= \frac{1}{\sqrt2}\left[(S_{-}\ua)\da + (S_{-}\da)\ua - \ua(S_{-}\da) - \da(S_{-}\ua)\right]\\
+                    &= 0
+                \end{align*}
+                also as desired.
+        \end{solution}
+        \item Show that $\ket{1 \ 1}$ and $\ket{1 \ -1}$ (Equation 4.177) are eigenstates of $S^2$, with the appropriate eigenvalue.
+        
+        \begin{solution}
+            Using the definition of $S^2$ and $\ket{1 \ 1} = \uu$ and $\ket{1 \ -1} = \dd$, we can do the algebra by brute force:
+                \begin{align*}
+                    S^2\ket{1 \ 1} &= S^2(\uu) = \left((S^{(1)})^2 + (S^{2})^2 + 2S^{(1)}\cdot S^{(2)}\right)\uu \\ 
+                    &= (S^2\ua)\ua + \ua(S^2\ua) + 2\left[(S_x\ua)(S_x\ua) + (S_y\ua)(S_y\ua) +(S_z\ua)(S_z\ua)\right] \\
+                    &= \frac34\hbar^2\uu + \frac34\hbar^2\uu + 2\left(\frac{\hbar}{2}\da\frac{\hbar}{2}\da + \frac{i\hbar}{2}\da\frac{i\hbar}{2}\da + \frac{\hbar}{2}\ua\frac{\hbar}{2}\ua\right) \\
+                    &= \frac32\hbar^2\uu + 2\left(\frac{\hbar^2 - \hbar^2}{4}\dd + \frac{\hbar^2}{4}\uu\right)\\
+                    & = \frac32\hbar^2\uu + \frac{\hbar^2}{2}\uu\\
+                    &=  2\hbar^2\uu = 2\hbar^2\ket{1 1}
+                \end{align*}
+                We do the same for $\ket{1 \ -1}$:
+                \begin{align*}
+                    S^2\ket{1 \ -1} &= S^2(\dd) = \left((S^{(1)})^2 + (S^{2})^2 + 2S^{(1)}\cdot S^{(2)}\right)\dd \\
+                    &= (S^2\da)\da + \ua(S^2\da) + 2\left[(S_x\da)(S_x\da) + (S_y\da)(S_y\da) +(S_z\da)(S_z\da)\right] \\ 
+                    &= \frac34\hbar^2\dd + \frac34\hbar^2\dd + 2\left(\frac{\hbar}{2}\ua\frac{\hbar}{2}\ua + \left(-\frac{i\hbar}{2}\ua\right)\left(-\frac{i\hbar}{2}\ua\right) + \left(-\frac{\hbar}{2}\da\right)\left(-\frac{\hbar}{2}\da\right)\right) \\
+                    &= \frac32\hbar^2\uu + 2\left(\frac{\hbar^2 - \hbar^2}{4}\dd + \frac{\hbar^2}{4}\uu\right)\\
+                    &= \frac32\hbar^2\uu + \frac{\hbar^2}{2}\dd\\
+                    &= 2\hbar^2\dd = 2\hbar^2\ket{1 -1}
+                \end{align*}
+                And so we're done.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 4}
+
+    In this problem, we would like to compute the probability distribution of measurements $J_x$, $J_y$ and $J_z$ for particles with $J = 1$. 
+
+    \begin{enumerate}[(a)]
+        \item We will do this problem in the $\ket{j = 1, m_z = 1}$, $\ket {j= 1, m_z = 0}$, $\ket{j = 1, m_z = -1}$ basis. How does the $\hat{J_z}$ operator look in this basis? Note that we will have a $3 \times 3$ matrix. (Hint: Think about which eigenvalues the matrix should have.)
+        \item Recall that $\hat {J_\pm} = \hat J_x \pm i \hat {J_y}$. Show that $\hat{J_+^\dagger} = \hat J_-$. 
+        
+        \begin{solution}
+            We know that $J_+ = J_x + iJ_y$, so therefore $J_+^\dagger = J_x - iJ_y = J_-$, simply by the definition of the ladder operators $J$.
+        \end{solution}
+        \item Show that $\hat{J_\mp}\hat{J_\pm} = \hat J^2 - \hat{J_z^2} \mp \hbar \hat{J_z}$. 
+        
+        \begin{solution}
+            We use $J_x$ and $J_y$ and compute via brute force: 
+                \begin{align*}
+                    \hat{J}_{\mp}\hat{J}_{\pm} &= (\hat{J}_x \mp i\hat{J}_y)(\hat{J}_x \pm i\hat{J}_y) \\
+                    &= \hat{J}_x^2 + \hat{J}_{y}^2 \pm i\hat{J}_x\hat{J}_y \mp i\hat{J_y}\hat{J}_x\\
+                    &= (\hat{J}_x^2 + \hat{J}_y^2) \pm i(\hat{J}_x\hat{J}_y \mp \hat{J}_y\hat{J}_x)\\
+                    &= (\hat{J}^2 - \hat{J}_z^2) + i(\pm i\hbar J_z) = \hat{J}^2 - \hat{J}_z^2 \mp \hbar J_z
+                \end{align*}
+                as desired.
+        \end{solution}
+        \item Determine the form of the raising and lowering operators in the \{$\ket{j = 1, m_z}$\} basis. (Hint: First determine which elements are non-zero by recalling how the raising and lowering operators act on the basis states. Then use the above facts to determine exactly what the non-zero elements are.)
+        
+        \begin{solution}
+            
+        \end{solution}
+        \item Use the raising and lowering operaors to construct the representations of $\hat{J_x}$ and $\hat{J_y}$ in the \{$\ket{j = 1, m_z}$\} basis.
+        \item Use these matrices to find the representations of the eigenstates of both $\hat{J_z}$ and $\hat{J_y}$ in the \{$\ket{j = 1, m_z}$\} basis. and their corresponding eigenvalues. 
+        \item A particle is prepared in the state $\ket{j = 1, m_z = 1}$ and then $J_z$ is measured. What are the possible $J_z$ measurement results, i.e. states, and their respective probaiblities? What is the expectation value of the angular momentum in the $x$-direction of $\ket{j = 1, m_z = 1}$?
+        \item If we measure $J_z = \hbar$ and then we measure $J_y$, what is the expectation value of the angular momentum in the $y$-direction?
+        
+        \begin{solution}
+            If we measure $J_z$, this changes the way we can measure $J_y$, since $J_z$ always has a $y$-component. 
+        \end{solution}
+        \item If we instead measured $J_z$ again after measuring $J_z = \hbar$, what is the probability that we get the original state $\ket{j = 1, m_z = 1}$? You should find that simply making the measurement of $J_x$ changes the state; you can have the value of $J_z$ change just by measuring $J_x$!
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 5}
+
+    Imagine you have a beam of spin 1/2 particles moving in the $y$-direction. We can set up an inhomogeneous magnetic field to interact with the particles, separating them according to thier spin component in the direction of the magnetic field, $\mathbf{B \cdot \hat S}$. This is the Stern-Gerlach experiment, depicted in Fig. 1
+
+    \[ \begin{tikzpicture}
+        \draw[-stealth] (-1.5,0) -- (-0.5,0) node[anchor=north] {$y$};
+        \draw[-stealth] (-1.5,0) -- (-1.5,1) node[anchor=east] {$z$};
+        \draw[-stealth] (-1.5,0) -- (-2,-0.5) node[anchor=north] {$x$};
+        \draw[thick] (0,0) -- (3,0) cos (6,1) node[anchor=west] {Spin up};
+        \draw[thick] (3,0) cos (6,-1) node[anchor=west] {Spin down};
+        \draw[-stealth] (4.75,0.6) -- (5.5,0.975);
+        \draw[-stealth] (4.75,-0.6) -- (5.5,-0.975);
+        \draw[pattern=north east lines] (2.35,0.3) -- (3.5,0.3) -- (3.5,0.9) -- (2.35,0.9) -- cycle;
+        \draw[pattern=north east lines] (2.35,-0.3) -- (3.5,-0.3) -- (3.5,-0.9) -- (2.35,-0.9) node[midway,below] {Magnet} -- cycle;
+    \end{tikzpicture}\]
+    \begin{enumerate}[(a)]
+        \item You set up a magnetic field in the $z$-direction. As the beam of particles passes through it, it splits in two equal beams: one goes up, corresponding to the spin-up particles (those whose $\hat S_z$ eigenvalue was $\frac \hbar 2$), and the other goes down, corresponding to the spin-down particles. Now, you take the beam that went up and pass it through another magnetic field in the $z$-direction. Does the beam split? If so, what fraction of the particles go to each side?
+        
+        \begin{solution}
+            Because we are measuring the spin in the $z$ direction after having just measured it in the $z$-direction, the beam will not split, and will only spit out particles that go up.
+        \end{solution}
+        \item Instead, you pass the beam through a $z$-field, take the beam that went up, and pass it thorugh the magnetic field in the $x$-direction. Does the beam split? If so, what fraction of the particles go to each side? 
+        
+        \begin{solution}
+            The beam does split into particles that have spin up or down in the $x$-direction, with half the particles going up and the other half going down.
+        \end{solution}
+        \item You select one of the beams from part b above, and pass it through another magnetic field in the $z$-direction. Does the beam split? If so, what fraction of the particles go to each side? Compare with part a and explain.
+        
+        \begin{solution}
+            The beam now splits in the $z$-direction with an equal amount going up and down, because we've made an intermediate measurement of the spin in the $x$-direction. Specifically, the fact that we've made an intermediate measurement in the $x$-direction is what causes the beam to split. 
+
+            We can think of this as the fact that when we measure along the $z$-axis, then the beam splits along the basis in the $z$-direction. Then, once we measure the spins in the $x$-direction, we now change bases into the $x$-direction, which effectively ``erases
+            '' the information we had about the $z$-direction, and therefore when we try to measure the $z$-direction again the beam will split. 
+        \end{solution}
+
+        \item Suppose we start with $N$ particles. We first pass them through a magnetic field in the $z$-direction, and block the beam that goes down. After this process, you find that only $\frac{N}{2}$ particles remain. they they go thugh a magnetic field in the $x-z$ plane, an angle $\theta$ from the $z$-axis, and the beam that goes against the direction of the field is blocked. Then you have a magnetic field in the $z$-direction again, and block the beam that goes up this time. How many particles come out? Compare with the case without the middle magnetic field.
+        
+        \begin{solution}
+            The number of particles that exit the experiment having spin up along $x-z$ plane is going to be $\cos^2(\theta/2)$ (with the magnetic field )and $\sin^2(\theta/2)$ for spin down (against the magnetic field), therefore the number of particles is $N \cos^2(\theta/2)$. Then, when we feed the beam that goes with the magnetic field along the $z$-axis, this now has an angle $\pi - \theta$ relative to the $z$-axis, so therefore the amount that goes with the beam now is $N'\cos^2((\pi - \theta)/2)$, where $N' = N \cos^2 (\theta/2)$. Therefore, the total number of particles that come out is: 
+
+            \[ N' = N \cos^2 \left(\frac{\theta}{2}\right) \cos^2\left(\frac{\pi - \theta}{2}\right)\]
+        \end{solution}
+    \end{enumerate}
+\end{document}

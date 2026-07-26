@@ -1,0 +1,88 @@
+\section{More Laplace Transform}
+
+\subsection{Poles and Zeros of the Laplace Transform}
+\begin{itemize}
+	\item If we can write \( X(s) = \frac{N(s)}{D(s)} \), then the zeros of \( N(s) \) are the \textit{zeros}
+		of \( X(s) \), and the zeros of \( D(s) \) are the \textit{poles} of \( X(s) \).
+	\item As an example, consider \( x(t) = \delta(t) - \frac{4}{3} e^{-t} u(t) + \frac{1}{3}e^{2t}u(t)\). Then, 
+		the Laplace transform is given by:
+		\[
+		X(s) = 1 - \frac{4}{3}\frac{1}{s + 1} + \frac{1}{3}\frac{1}{s-2} = \frac{3s^2 - 6s + 3}{3(s+1)(s-2)}
+		= \frac{(s - 1)^2}{(s + 1)(s - 2)}
+		\] 
+		so in this factored form, we see \( s = 1 \) is a zero, and \( s = -1, 2 \) are the poles.    
+\end{itemize}
+\subsection{Inverse Laplace Transform by Partial Fraction Expansion}
+\begin{itemize}
+	\item Suppose you have a Laplace transform \( X(s) = X(\sigma + j \omega) = \mathcal F \{x(t) e^{-\sigma t}\} \). 
+		As a Fourier transform, this is written as:
+		\[
+		\int_{-\infty}^{\infty} x(t) e^{-at}e^{- i \omega t }\diff t 
+		\] 
+		we already know what the inverse FT is for a given \( \sigma \), so this allows us to 
+		also discover the Laplace transform:
+		\[
+			x(t)e^{-\sigma t} = \mathcal F^{-1} {X(\sigma + j \omega)}  = \frac{1}{2\pi}
+			\int_{-\infty}^{\infty} X(\sigma + j \omega) e^{j \omega t}\diff \omega 
+		\] 
+		moving the exponential to the right side, we have:
+		\[
+		x(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} X(\sigma + j \omega) e^{(\sigma + j \omega) t} \diff  \omega 
+		\] 
+		and recall the definition of \( s = \sigma + j \omega \), so we have:
+		\[
+			x(t) = \frac{1}{2\pi j} \int_{\sigma - j (\infty)}^{\sigma + j (\infty)} X(s) e^{st} \diff s 
+		\] 
+		the factor of \( j \) comes from the fact that \( ds = j \diff \omega\). So it's almost the same 
+		as the Fourier transform, except for the extra factor of \( j \) and also the integration bounds. 
+		
+		\question{How do we deal with the integration bounds? Is this going to be a double integral?}
+
+		\answer{Formally, we actually write this as:
+			\[
+			x(t) = \frac{1}{2\pi j}\lim_{T \to \infty}\int_{\sigma - iT}^{\sigma + iT} e^{st} X(s) \diff s 
+			\] 
+		}
+	\item To evaluate ILT, one strategy we can employ is called \textit{partial fraction expansion}, where we 
+		take an expression \( X(s) \) into a summation of simpler rational functions. For a rational 
+		\( X(s) \):
+		\[
+		X(s) = \frac{N(s)}{D(s)} = \frac{b_m s^{m} + \cdots + b_1s + b_0}{a_n s^{n} + \cdots + a_1s + a_0}
+		\] 
+		There are three categories of \( X(s) \):
+		\begin{itemize}
+			\item \( m < n \): this is called a strictly proper rational function.
+			\item \( m = n \): this is called a proper rational function.
+			\item \( m > n \): this is called an improper rational function. 
+		\end{itemize}
+		This is literally partial fraction decomposition, check the notes for an example.  
+\end{itemize}
+\subsection{Solving the Integral DE}
+\begin{itemize}
+	\item Just to remind us of the differential equation, it's given by an RLC circuit in series, where we found:
+		\[
+		R i(t) + \left[ \frac{1}{\mathcal L} \int_{0^{-}}^{t} i(t') \diff t' + v_c(0^{-}) \right] 
+		+ L \dv{i(t)}{t} = V_0u(t)
+		\] 
+		In the \( s \)-domain, this differential equation is:
+		\[
+			R I(s) + \frac{1}{\mathcal L}\left[ \frac{I(s)}{s}\right] + \frac{v_c(0^{-})}{s} + L[s I(s) - i(0^{-})]
+			= \frac{v_0}{s}
+		\] 
+		Now, we solve for \( I(s) \), then take the inverse Laplace transform to find \( i(t) \)!
+		\[
+		I(s) = \frac{v_0 - v_c(0^{-})}{L \left[ s^2 + \frac{R}{L}s + \frac{1}{LC} \right] }
+		\] 
+		If we plug in values, then we have:
+		\[
+		I(s) = \frac{3}{(s + a)^2}
+		\] 
+		from which we can then take the inverse Laplace transform:
+		\[
+		\mathcal L^{-1}\left[ \frac{1}{(s + a)^2} \right] = te^{-at}u(t)
+		\implies i(t) = 3te^{-5t}u(t)
+		\] 
+		The reason we get the \( i(0^{-}) \) term comes from the integration and the fact that our \( i(t) \) 
+		is only nonzero for \( t > 0 \). So, the only way we guarantee that we take the right integral is to 
+		take \( 0^{-} \). 
+\end{itemize}

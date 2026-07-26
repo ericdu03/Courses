@@ -1,0 +1,96 @@
+\section{More on Fourier Transforms}
+\subsection{Discrete Time Fourier Transforms (DTFT)}
+\begin{itemize}
+	\item Recall that for continuous time signals, the fourier transform is written as 
+		\[
+		X(\omega) = \int_{-\infty}^{\infty} x(t) e^{-j \omega t}\diff t 
+		\] 
+	\item For discrete time signals, the way to do this is to write the signal as a continuous time signal 
+		via delta functions, and then apply CTFT:
+		 \[
+			 x(t) = \sum_{n=-\infty}^{\infty} x[n] \delta(t - n)
+		\] 
+		Then, we can write:
+		\[
+			X(\omega) = \sum_{n=-\infty}^{\infty} x[n] \int_{-\infty}^{\infty} \delta(t - n) e^{-j \omega t}\diff t
+			= \sum_{n=-\infty}^{\infty} x[n] e^{- j \omega n }
+		\] 
+		So this actually just means that in discrete time, the Fourier transform of \( x[n] \) is just 
+		the amplitude of the signal at that particular \( n \), multiplied by a sinusoid of a corresponding 
+		frequency specified by \( n \). 
+	\item In general, we have:
+		\begin{align*}
+			X(e^{j 2 \pi f}) &= \sum_{n=-\infty}^{\infty} x[n] e^{-j 2 \pi f n} & x[n] &=
+			\int_{-\infty}^{\infty} X(e^{j 2 \pi f})e^{j 2 \pi f n}\diff f \\
+			X(e^{j \omega}) &= \sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n} & x[n] &= \frac{1}{2\pi}
+			\int_{-\infty}^{\infty} X(e^{j \omega}) e^{j \omega n}\diff  \omega 
+		\end{align*}
+		Sometimes textbooks use \( \Omega \) insetad of \( \omega \), but we will use the latter.   
+	\item See lectures for worked examples on how to do this.
+\end{itemize}
+
+\subsection{Characteristics of DTFT}
+\begin{itemize}
+	\item DTFT is generally a continuous function over \( f \) or \( \omega \), even though we know that 
+		\( x[n] \) is a discrete time signal. This is due to the presence of the delta functions. 
+	\item Further, DTFT is periodic with a period of 1 in frequency or  \( 2\pi \) in angular 
+		frequency:
+		\[
+			X(e^{j 2\pi f}) = \sum_{n=-\infty}^{\infty} x[n] e^{-j 2\pi f n} = \sum_{n=-\infty}^{\infty} x[n] 
+			e^{-j2 \pi f (n + 1)}
+		\] 
+		This is because  \( e^{-j 2 \pi f(n + 1)} = e^{-j 2 \pi f n}e^{-j 2 \pi n} \) and the latter term is 1. 
+\end{itemize}
+\subsection{Common DTFTs}
+\begin{itemize}
+	\item For a delta function \( x[n] = \delta[n] \), its Fourier transform \( X(e^{j \omega}) = 1 \). 
+	\item For a constant function \( x[n] = 1 \), its Fourier transform is the Shah function: 
+		\[
+		X(e^{j \omega}) = 2\pi \sum_{k=-\infty}^{\infty} \delta(\omega - 2 \pi k) 
+		\] 
+	\item For complex exponentials \( x[n] = e^{j \omega_0 n} \), its Fourier transform is
+		\[
+		X(e^{j \omega}) = \sum_{k=-\infty}^{\infty} \delta(f - f_0 - k)
+		\] 
+		So this is basically this is the comb function, but shifted over by some constant 
+		amount \( \omega_0 \). This is incredibly useful for applications such as signal modulation and other 
+		applications, where we talk about a "linear phase" addition.  
+
+		For instance, consider sending a signal to a receiver that only accepts a specific frequency. Then, in order 
+		for a source to be able to send an appropriate signal, we can "modulate" the signal by a constant 
+		factor \( \omega_0 \) instead of completely modifying our signal. 
+	\item For sinusoids, recall the identities: 
+		\[
+			\cos[\omega_0 n]= \frac{1}{2}(e^{ j \omega_0 n} + e^{- j \omega_0 n})
+		\] 
+		and sicne we've expressed it in terms of exponentials, we can use the earlier bullet point to find DTFT 
+		here. This gives us: 
+		\[
+		X(\omega) = \pi \sum_{k = -\infty}^{\infty}\delta(\omega - \omega_0 - 2 \pi k) 
+		+ \pi \sum_{k= -\infty}^{\infty} \delta(\omega + \omega_0 - 2 \pi k)
+		\] 
+		For the sine function, we have
+		\[
+			\sin[\omega_0 n] = \frac{1}{2j}(e^{j \omega_0 n } - e^{- j \omega_0 n})
+		\] 
+		and we can do the same trick.
+	\item For the rectangular function \( x[n] = \sqcap[n] \), its Fourier transform is bascially a restricted 
+		comb function: 
+		\[
+		X(e^{j \omega}) = e^{ j \omega} + 1 + e^{j \omega} = 2 \cos(\omega) + 1
+		\] 
+		Note that here we're using the standard rectangular function that is only nonzero over \( n \in [-1, 0, 1] \).
+		For the general rectangular function: \( x[n] = \sqcap\left[ \frac{n}{N} \right]  \), then 
+		we have:
+		\[
+		X(e^{j \omega}) = \sum_{n=-N}^{N} e^{-j \omega n}
+		\] 
+		So it is a restricted sum over \( -N \) to \( N \). But this is just a geometric series, so this will give 
+		us the formula:
+		\[
+		X(e^{j \omega}) = e^{j \omega N}\frac{1 - e^{-j \omega (2N + 1)}}{1 - e^{-j \omega}} = 
+		\frac{e^{j \omega N} - e^{-j \omega (N + 1)}}{1 - e^{-j \omega}} =
+		\frac{\sin(\omega(N + 1 /2))}{\sin(\omega / 2)}
+		\] 
+		This is very similar to a sinc function. 
+\end{itemize}

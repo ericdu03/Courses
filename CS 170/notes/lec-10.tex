@@ -1,0 +1,128 @@
+\section{Huffman Coding, MSTs}
+	Recap of Greedy algorithms:
+	\begin{itemize}
+		\item Our goal is to prove that whenever a choice is made, that an optimal solution still exists, proven
+			to exist via induction.
+		\item Base case: at the beginning, achieving optimal choice is always possible
+		\item Inductive Hypothesis is the same as normal induction, and inductive step is to show that if 
+			an alternate choice is made it doesn't violate the optimal solution.
+	\end{itemize}
+	\subsection{Prefix codes and Trees}
+	\begin{itemize}
+		\item Prefix codes can be represented as a binary tree with $k$ leaves. 
+		\item the code is the ``address'' of a letter in the tree (i.e. the string of numbers leading from 
+			the root to that leaf). We want to order the tree from highest to lowest frequency, so that the 
+			letters with the highest frequency uses less characters.
+		\item In general, the cost for such a tree is:
+			\[
+				\mathrm{cost} = \sum_{i = 1}^n f_i \cdot \text{depth(leaf $i$)}
+			\] 
+		\item Our goal is to find an \textit{optimal subtree}. What does such a tree look like? 
+
+		Answer: Even if 
+			we don't know what the frequencies are, the optimal code should be a \textbf{full binary tree.} 
+
+		\item Now
+			we need to prove that there exists an optimal tree when the
+			two lowest frequency symbols are siblings 
+			of each other.
+
+			\textit{Proof:} By contradiction, let $x, y$ be symbols with lowest frequencies and assume they 
+			aren't siblings. Let $a, b$ be the deepest pair of siblings. Since $x, y$ aren't siblings 
+			of each other, then only one of $a, b$ are one of $x$ or $y$. WLOG, let $x = a$. 
+			What happens if we swap $x,y$ and $a, b$? Well, we know that $f_a, f_b \ge f_x, f_y$, and we've 
+			reduced the length of $a, b$ while also reduced frequency of the deepest entries in the tree, meaning
+			that we've ended up with a cheaper tree! Hence, the original tree could not have 
+			been an optimal tree. 
+	\end{itemize}
+	\subsection{Algorithm (Huffman Coding)} 
+	See below for pseudocode:
+	\begin{center}
+		\includegraphics[scale=0.5]{Huffman.png}
+	\end{center}
+	\begin{itemize}
+		\item The idea is to recursively generate a tree using the lowest frequencies, and combining them 
+			together by adding the frequencies of each tree's children. 
+		\item \textbf{Runtime Analysis:} Storing in our priority queue can be optimized by using a binary heap, 
+			which takes $O(n \log n)$ time. Combination also takes $O(n \log n)$ time, so total runtime
+			 is $O(n \log n)$.
+			\begin{itemize}
+				\item Inserting into priority queue takes $O(n \log n)$ time. 
+				\item At every step of the while loop, we perform 2 deleteMin instructions, which is constant
+					time.
+				\item There is 1 insert each time (after the connection). This means that on every 
+					iteration, we are halving the number of nodes (hence $O(n \log n)$). 
+				\item So total time complexity is $2O(n \log n) = O(n \log n)$.
+			\end{itemize}
+		 \item This generates a full binary tree with optimal coding. 
+
+			 \textit{Proof:} We show that a greedy selection (which is what Huffman Coding is doing) does not 
+			 rule out an optimality coding.
+
+			Base case: $n = 2$. We can generate optimal code using $0$ for first letter and $1$ for 
+			second letter. Huffman coding does the same.
+
+			Inductive Hypothesis: Assume that this works for $n-1$ letters.
+
+			Inductive Step: Let $T$ be the optimal tree for the frequencies $f_1, \dots, f_n$. WLOG, let 
+			$f_1 \le \dots \le f_n$. Assume that the two lowest frequency codes are siblings (proven 
+			from earlier), and merge the two into a single node, where $f = f_1 + f_2$. Looking at the cost 
+			of the new tree $T'$, we know that 
+			\[
+				\mathrm{cost}(T) = \mathrm{cost}(T') + f_1 + f_2
+			\] 
+			Huffman coding also does this merging process, and our inductive hypothesis guarantees that this 
+			tree is optimal on $n-1$ letters, so when we split back into the two characters it is still
+			guaranteed to be optimal. Formally, if $H'$ is the cost of the reduced tree, then
+			\[
+				\mathrm{cost}(H) = \mathrm{cost}(H') + f_1 + f_2
+			\] 
+			which is the same as the cost relationship with $T$, so Huffman coding does indeed give an optimal 
+			coding.
+	\end{itemize}
+	\question{What if $f_1 + f_2$ happens to be large enough such that $f_1 + f_2 > f_n$?}
+
+	\answer{Apparently it doesn't matter?} 
+	\subsection{Minimum Spanning Trees (MSTs)}
+	\begin{itemize}
+		\item Tree also has edges, so we can assign a cost as well: $\cost(T) = \sum_{e \in T} w_e$ (the 
+			sum of the weights).
+		\item Suppose we're given a graph $G(V, E)$ with non-negative weights. We want to find a set of edges
+			that connects the graph, and has the smallest cost. 
+		\item Why do we care? This gives the notion of connectivity in a network, so you can think of cell 
+			towers or roads/railways as practical applications.
+		\item We will use the same approach: first we ask about what an MST looks like.
+			\begin{itemize}
+				\item It will be an acyclic graph, since removing an edge that's part of a cycle still preserves
+					the connectivity in the graph.
+			\end{itemize}
+	\end{itemize}
+	\subsubsection{Graph Structures and Cuts}
+	\begin{itemize}
+		\item \textbf{Cuts:} a way to partition a graph that splits up the vertices into two groups. 
+		\item They're important because cuts go through edges to divide vertices into groups.  
+		\item Imagine we've already discovered some edges $X$ of the MST. Consider the cut that doesn't cut 
+			any edges $X$. Now we look at the edges that are being cut. The edge from a larger MST is being cut,
+			and it's the lowest weight edge that we should add to our MST!
+
+			\textbf{This is a very important property, it shows that \textit{any} cut that we make 
+				is an edge that \textit{can} be added to our MST, so therefore regardless of which vertex
+			we start searching at, an MST is still guaranteed.}
+		\item Therefore, we should add this edge and its corresponding vertex to our MST.
+		\item We can formalize this argument via a proof, but I'm too lazy to write it here.
+		\item Turns out that any algorithm that fits the following properties forms an MST:
+			\begin{itemize}
+				\item Start with $X$, an empty list.  
+				\item Pick $S \subseteq V$ such that $X$ has no edges from $S$ to $V \setminus S$
+				\item Choose the lighest weight edge from $S$ to $V \setminus S$. 
+				\item Add edge to $X$.
+			\end{itemize}
+		\item The proof for why this does give an MST can be done via induction.
+	\end{itemize}
+	\subsubsection{Kruskal's Algorithm}
+	\begin{itemize}
+		\item Instead of doing $S$ and $V \setminus S$, it instead selects edges, and checks whether 
+			the edge forms a cycle. If it does, we don't add this edge. This process of checking a cycle 
+			actually does split our graph into $S$ and $V \setminus S$, albeit implicitly. 
+		\item We show correctness by showing that Kruskal's algorithm fits the meta algorithm given above. 
+	\end{itemize}

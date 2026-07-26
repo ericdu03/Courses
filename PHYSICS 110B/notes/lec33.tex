@@ -1,0 +1,128 @@
+\section{April 21}
+\subsection{Self-Force}
+Last lecture, we left off with the equation:
+\begin{equation}
+	\label{abraham-lorentz-partial}
+	\frac{q^2 \dot a}{12 \pi \epsilon_0 c^2} = \left( m_0 + \frac{1}{4\pi \epsilon_0} \frac{(q / 2)^2}{d}
+	\right)a
+\end{equation}
+where we now have an added term on the right as an "added mass" term due to the velocity of the particle.
+Based on the way we've structured this equation, you can regard the left hand side as the \( \mathbf{F}_\text{rad} \)
+that we're looking for. However, you may notice that this formula is off by a factor of \(1 / 2\),
+and the reason for this is so far we've only considered the contribution from one \( q / 2 \) to the other \(
+q / 2\) charge, but didn't consider the self force on the \( q / 2 \) charges \textit{themselves}.  
+
+To reconcile this, suppose we have:
+\[
+	\mathbf{F}_\text{rad}(q) = \mathbf{F}_\text{rad, int}\left( \frac{q}{2} \right) 
+	+ \mathbf{F}_\text{rad, self}\left( \frac{q}{2}\right)
+\]
+Now we break each of the \( q / 2 \) charges into dumbbells with charge \(  q / 4 \), so now:
+\[
+	\mathbf{F}_\text{rad} \left( \frac{q}{2} \right) = \mathbf{F}_\text{rad, int}\left( \frac{q}{4} \right) +
+	2 \mathbf{F}_\text{rad, self}\left( \frac{q}{4} \right)
+\]
+Here, we can drop the "self" subscript in \( \mathbf{F}_\text{rad, self} \) since the force itself is a
+self-force, so it's functionally the same as \( \mathbf{F}_\text{rad} \). Using this fact, we move it to the
+left hand side. Then, if you keep iterating this process, making smaller and smaller dumbbells, you
+eventually get the system:
+\begin{align*}
+	\mathbf{F}_\text{rad}(q) - 2 \mathbf{F}_\text{rad}\left( \frac{q}{2} \right) &= \mathbf{F}_\text{rad,
+	int}\left( \frac{q}{2} \right)\\
+		2 \mathbf{F}_\text{rad}\left( \frac{q}{2} \right) - (2\times 2) \mathbf{F}_\text{rad}\left( \frac{q}{4} \right) &= 2
+	\mathbf{F}_\text{rad, int} \left( \frac{q}{4} \right)\\
+	4 \mathbf{F}_\text{rad}\left( \frac{q}{4} \right) - (4 \times 2)\mathbf{F}_\text{rad}\left( \frac{q}{8}
+	\right) &= \mathbf{F}_\text{rad, int}\left( \frac{q}{4} \right)\\
+			&\vdots
+\end{align*}
+We now add all these equations up together, and we see that the left hand telescopes to \(
+\mathbf{F}_\text{rad}(q) \). The right hand side, using our partial result (\cref{abraham-lorentz-partial}),
+we get:
+\[
+	\mathbf{F}_\text{rad}(q) = \frac{\mu_0 \dot a q^2}{3 \pi c} \cdot \frac{1}{4} \left( 1 + \frac{1}{2} +
+	\frac{1}{4} + \frac{1}{16} + \dots \right) = \frac{\mu_0 \dot a q^2}{12 \pi c} \frac{1}{1 - 1 / 2} =
+	\frac{\mu_0 \dot a q^2}{6 \pi c}
+\]
+which is exactly the Abraham-Lorentz formula. This also concludes our discussion of chapter 11, and we now
+move on to special relativity. 
+
+A small foreword on the special relativity section: it does \textbf{not} follow chapter 12 of Griffiths, but
+instead Chien-I's own provided notes. When I wrote up these notes, the content between the chapters is
+relatively similar, but it should be noted that there will be differences at times (especially in the last
+two lectures).    
+  
+
+\subsection{Special Relativity}
+To begin the topic of special relativity, a good place to start are the fundamental postulates of special
+relativity. These are:
+\begin{enumerate}[label=\arabic*.]
+	\item Physical laws should be the same in all \textbf{inertial} reference frames. 
+	\item Motivated by Maxwell's equations \( c = \frac{1}{\sqrt{\mu_0 \epsilon_0}} \). Based on postulate 1,
+		this implies that the speed of light is constant in all inertial reference frames. 
+\end{enumerate}
+Before we begin our discussion of special relativity is it interesting to note that while the second
+postulate seems rather arbitrary, it is in fact quite a natural thing to suppose: the constants \( \mu_0 \)
+and \( \epsilon_0 \) govern the strength of electric and magnetic fields, so if we are to believe the first
+postulate, then we cannot believe \( \mu_0 \) or \( \epsilon_0 \) to change between reference frames -- and
+from here the constancy of \( c \) across reference frames drops out. 
+
+With these postulates established, simultaneity is now broken! Consider a situation where Alice is at rest
+(\( v = 0 \)) and Bob is in a rocket ship moving at constant velocity \( v_0 \). As the rocket ship passes by
+Alice, Bob emits two EM signals, which travel in opposite directions, as shown in the diagram below:
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+    \foreach \x/\y/\color/\opacity in {0/0/black/1,0/-1/black/0.5,1.5/-1/blue!70!cyan!40/0.6,3/-1/blue!40!cyan!60/0.7} {
+        \draw[thick,color=\color,opacity=\opacity] (\x,\y) rectangle (\x+2.25,\y+0.5);
+    }
+    \foreach \pos in {(0.15,0.225), (0.15,-0.775)} {
+        \node at \pos (a) {\Strichmaxerl[1.5]};
+        }
+    \foreach \x/\y/\color/\opacity in {0.4/0.1/black/1,0.4/0.4/black/1,0.4/-0.9/black/0.5,1.9/-0.6/blue!70!cyan!40/0.6,3.4/-0.9/blue!40!cyan!60/0.7} {
+        \draw[thick,color=\color,opacity=\opacity] (\x,\y) -- (\x+0.25,\y);
+    }
+    \foreach \pos/\opacity in {(0,0.25)/1,(0,-0.75)/0.4} {
+        \node[scale=0.5,thick,draw,isosceles triangle,minimum size=2pt,isosceles triangle apex angle=90,xshift=-0.3cm,opacity=\opacity] () at \pos {};
+    }
+    \draw[orange!70!white,-{Stealth[length=2pt]}] (0.425,0.15) -- (0.425,0.35);
+    \draw[orange!70!white,-{Stealth[length=2pt]}] (0.625,0.35) -- (0.625,0.15);
+    \draw[orange!70!white,-{Stealth[length=2pt]}] (0.525,-0.85) -- (2.015,-0.65) node[midway,above,scale=0.5] {$D'$};
+    \draw[orange!70!white,-{Stealth[length=2pt]}] (2.035,-0.65) -- (3.525,-0.85) node[midway,above,scale=0.5] {$D'$};
+    \foreach \x in {0.625,2.15} {
+        \draw[green!70!blue!50] (\x,-1.1) -- (\x,-1.2);
+    }
+    \draw[green!70!blue!80] (0.625,-1.15) -- (2.15,-1.15) node[midway,below,scale=0.75] {$\frac12v\Delta t'$};
+\end{tikzpicture}
+\end{center}
+From Bob's reference frame, because he is moving with the rocket, the two signals reach either end of the
+ship simultaneously. However, in Alice's frame, the red signal reaches the left end before the right, because
+the motion of the ship meant that the red signal had less distance to cover.
+So, while Bob's reference frame preserves the simultaneity of both events, that simultaneity is broken
+in Alice's reference frame, but Bob's frame is no more "correct" than Alice's. 
+
+\subsection{Time Dilation}
+
+Now suppose we have the following diagram, where Bob has a "clock" which sends a light signal up and down:
+\begin{center}
+	\begin{tikzpicture}[scale=1.5]
+    \draw[thick] (0,0) rectangle (2.25,0.5);
+    \node[scale=0.5,thick,draw,isosceles triangle,minimum size=2pt,isosceles triangle apex angle=90,xshift=-0.3cm] (a) at (0,0.25) {};
+    \node at (1.125,0.225) (b) {\Strichmaxerl[1.5]};
+    \node[scale=0.5] at (1.125,-0.1) (ll) {Bob};
+    \node[scale=0.5] at (0,-0.2) (aa) {Alice};
+    \node at (0,-0.5) (c) {\Strichmaxerl[1.5]};
+    \draw[thick,-{Stealth[length=2pt]}] (1.125,0.6) -- (1.5,0.6) node[midway,above,scale=0.5] {$v$};
+\end{tikzpicture}
+\end{center}
+If the distance between the two ends is \( D \), then the time measured by Bob would be \( \Delta t =
+\frac{2D}{c} \). However, for Alice, due to the fact that the rocket ship is moving relative to her, would
+see the time interval as:
+\[
+	\Delta t' = \frac{2D'}{c} = 2 \frac{\sqrt{\frac{1}{4} v^2 (\Delta t')^2 + D^2}}{c}
+\]
+Rearranging this to solve for \( \Delta t' \), we get:
+\[
+	\Delta t' = \frac{1}{\sqrt{1 - v^2 / c^2}}(\Delta t) = \gamma \Delta t
+\]
+This is the formula we are all familiar with to calculate time dilation. The factor \( \gamma \equiv
+\frac{1}{\sqrt{1 - v^2 / c^2}} \) is a common one in relativity that you should be familiar with. We will
+continue our discussion of this next time. 

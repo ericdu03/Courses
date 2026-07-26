@@ -1,0 +1,139 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 112}
+\newcommand{\classname}{Introduction to Statistical and Thermal Physics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 10} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by CS 70: \url{https://www.eecs70.org/}}
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+	\maketitle
+	\section*{Schroeder 7.55}
+	Suppose that the concentration of infrared-absorbing gases in earth's atmosphere were to double, effectively 
+	creating a second ``blanket'' to warm the surface. Estimate the equilibrium surface temperature of the 
+	earth that would result from this catastrophe. (Hint: First show that the lower atmospheric blanket is warmer
+	than the upper one by a factor of \( 2^{1 / 4} \). The surface is warmer than the lower blanket by a smaller 
+	factor.)
+
+	\pagebreak
+	\section*{Problem 2}
+	While the Debye results were obtained assuming a linear dispersion \( \omega = v|\mathbf k| \), 
+	a more accurate description of a phonon in a cubic crystal is the frequency relation 
+	\[
+	\omega(\mathbf k) = \frac{v}{a}\sqrt{6 - 2\cos(k_xa) - 2\cos(k_ya) - 2\cos(k_za)} 
+	\] 
+	where \( a \) is the lattice spacing of the crystal.
+
+	\begin{enumerate}[label=\alph*)]
+		\item Sketch \( \omega(k_x, 0, 0) \) across the Broullin zone, and use a Taylor expansion to show the 
+			phonon velocity is \( v \). 
+		\item Within the Debye approximation developed in lecture / Schroeder, what is the debye 
+			temperature \( T_D \) and the expected heat capacity as \( T \to 0 \) and \( T \to \infty \)?
+		\item The heat capacity of the phonons takes the general form \( C_V = 3 \sum_{\mathbf k} f(\mathbf k) \).
+			What is \( f \) in terms of \( \hbar \omega(\mathbf k)  \) and \( k_BT \)?
+		\item When the system is placed on a cube of linear dimension \( L = aN \), there are \( N^3 \) terms 
+			in \( \sum_{\mathbf k} \). Using the result of the previous question, write a Python script to 
+			compute \( C_V(T, N)  \) as such as sum, working in units where \( a = v = \hbar = k_B = 1 \). 
+		\item Use the script to plot \( C_V(T, N) / N^3 \) for \( N = 40 \), \( 0 < T < 5 \). Annotate the graph 
+			with your prediction of \( T_D \) and the high low limits of \( C_V \). Do they agree? 
+		\item Strictly speaking, Debye's \( T^3 \) law only holds when \( L \to \infty \). For finite \( L \), 
+			for what \( T < T_L \) do you expect to see deviations? Can you see this effect in your result 
+			for the previous part? 
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 3}
+	Consider a gas of non=interacting spin 1 bosons, each subject to a Hamiltonian 
+	\[
+	\mathcal H_1(\mathbf p, s_z) = \frac{p^2}{2m} - \mu_0 s_z B 
+	\] 
+	where \( \mu_0 = e\hbar / mc \) and \( s_z \) takes three possible values of \( (-1, 0, 1) \). (The orbital 
+	effect, \( \mathbf p \to \mathbf p - \epsilon \mathbf A \) has been ignored.) Denote \( n = N / V \) to 
+	be the total gas density. 
+	\begin{enumerate}[label=\alph*)]
+		\item In a grand canonical ensemble of chemical potential \( \mu \), what are the average occupation 
+			numbers \( \{\overline n_+(\mathbf k), \overline n_0(\mathbf k), \overline n_-(\mathbf k)\}  \) 
+			of one-particle states of wavenumber \( \mathbf k / \hbar \)?
+		\item Calculate the average total numbers \( \{N^+, N^0, N^{-}\}  \) of bosons with the three possible 
+			values of \( s_z \). 
+		\item Wrie down the expression for the magnetization \( M(T, \mu) = \mu_0(N_+ - N_-) \), and by expanding
+			the result for small \( B \) find the zero field suscptibility \( \chi(T, \mu) = \partial M / 
+			\partial B \vert_{B = 0}\)
+		\item For \( B = 0 \), find the high temperature expansion for \( z(\beta, n) = e^{\beta u} \), correct
+			to second order in \( n \). Hence obtain the first correction from quantm statistics to 
+			\( \chi(T, n)  \) at high temperatures. 
+		\item Find the temperuatre \( T_c(n, B= 0) \) of Bose-Einstein condensation. What happens to 
+			 \( \chi(T, n) \) on approaching \( T_c(n) \) from the high=temperature side?
+		 \item What is the chemical potential \( \mu \) for \( T < T_c(n) \), at a small but finite value of
+			 \( B \)? Which one-particle state has a macroscopic occupation number?
+		 \item Find the spontaneous magnetization 
+			 \[
+				 M(T, n) = \lim_{B \to 0} M(T, n, B)
+			 \] 
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 5}
+	Electromagnetic radiation at temperature \( T_i \) fills a cavity of volulme \( V \). If the volume of the 
+	thermally insulated cavity is expanded quasistatically to a volume \( 8V \), what is the final temperature 
+	\( T_f \)? Neglect the heat capacity of the cavity walls.
+	\pagebreak
+	\section*{Problem 7}
+	\begin{enumerate}[label=\alph*)]
+		\item Write the integral for the number of bosons in the excited energy states \( N_e \) in a 
+			one-dimensional gas of non-interacting bosons with the usual dispersion 
+			\( \epsilon = \frac{p^2}{2m} \).
+
+			\begin{solution}
+				I imagine the problem is asking us to just write out the integral using 
+				\( \epsilon = \frac{p^2}{2m} \). Here, we'll have to do a change of variables:
+				\[
+					d \epsilon = \frac{p}{m} dp 
+				\] 
+			\end{solution}
+		\item Argue that your result implies the absence of a BEC in 1D. Hint: Show that in this case the number 
+			equation can always be satisfied with ``fugacity'' \( e^{\beta\mu} < 1\), and explain how this implies
+			the absence of a BEC. 
+	\end{enumerate}
+	\pagebreak
+	\section*{Problem 8}
+	Consider bosons moving in a 3D harmonic potential, with single particle energies \( E = \frac{p^2}{2m}
+	+ \frac{kr^2}{2} = \hbar \omega(n_x + n_y + n_z + 3 / 2)\) with \( n_{x / y / z} = 0, 1, 2, \dots \). The 
+	integers  \( n_i \) then replace the momenta \( \mathbf k \) when summing over single-particle states. For 
+	simplicity, for the rest of this problem we will subtract off \( \frac{3}{2}\hbar \omega \) from \( E \), 
+	so that the ground state has energy \( E_0 = 0 \). As we'll see, the nice thing about this version of the 
+	BEC problem is that it is straightforward to compute the thermodynamics via a summation, so we can skip the 
+	approximation inherent in replacing sums by integrals \( \sum_{E_n} \approx \int dE g(E) \).
+
+	\begin{enumerate}[label=\alph*)]
+		\item Defining \( n = n_x + n_y + n_z \), give a pictoral (or rigorous) argument that the degeneracy of 
+			level \( E_n = \hbar \omega n \) is \( g(n) = (n+2)(n+1) / 2 \). It will be sufficient to show it 
+			is true just for e first couple \( n \). 
+			\item Write a Python or Mathematica function to evaluate \( N(T, \mu) = \sum_{n = 0}^\infty 
+			\frac{g(n)}{e^{\beta(E_n - \mu)} - 1}\). To keep things simple, henceforth we'll choose units in 
+			which \( \hbar \omega = k_B = 1 \). 
+
+			Hint: To evaluate the sum, in practice you'll cutoff the series at some large enough \( n_{*} \), 
+			\( \sum_{n= 0}^{\infty} \approx \sum_{n = 0}^{n_*} \). Include some logic to 
+			determine a ``good enough" value of \( n_*(T, \mu) \). 
+		\item Now write a Python or etc. function whihc evaluates \( \mu(T, N = 2000) \). Plot the result for 
+			\( 1 \le  T \le  20 \). As a check of your result, compare with the classical expectation for 
+			 \( T \to \infty \) (Midterm Problem 2) and the low-\( T \) expectation \( \mu \approx -k_BT / N \).
+
+			 Hint: I would do it like this. \( \mu \) is implicitly defined by the condition \( N(T, \mu) - 2000
+			  = 0\). To find the \( \mu \) which satisfies this condition, you can apply 
+			  \texttt{sp.optimize.root\_scalar} to the function \( f(\mu) = N(T, \mu) - 2000 \). This 
+			  function requires a ``bracket'', which means an interval \( \mu \in [a, b] \) in which the 
+			  zero exists. \( a = -40 \) will be sufficient for this problem and for \( b \) use your 
+			  knowledge of the low-\( T \) limit. 
+		  \item Now that we know \( \mu(T, N = 2000) \), use the Bose distribution to plot the occupation of the 
+			  \( n = 0, 1, 2, 3 \) states (not including \( g(n) \) ) for \( 1 \le  T \le 20 \). Do you find 
+			  evidence for a BEC transition? At approximately what \( T \)? 
+	\end{enumerate}
+\end{document}

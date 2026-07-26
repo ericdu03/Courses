@@ -1,0 +1,122 @@
+\section{January 31}
+We'll pick up where we left off from last time, talking about the momentum flux:
+\[
+	\dv{\mathbf{p}_\text{particle}^{i}}{t} + \dv{t} \int_{\mathcal{V}} \frac{\mathbf{S}}{c^2} \diff \tau =
+	\oint_{\partial \mathcal{V}}\sigma^{ik} \diff \mathbf{a}_k
+\]
+We mentioned how you can interpret this in two main ways: first, you can interpret this as an equation like
+\( \mathbf{F} = \dv{\mathbf{p}}{t} \), and think of the term on the right hand side as a generalized force \(
+\mathbf{F}_\text{net}^{i}\). The other way to think about it, and the way we will focus on, is thinking of it
+as a continuity equation. So, in the same way charge is conserved, it is valid to think of this equation as
+\[
+	\dv{\mathbf{p}_\text{net}}{t} = -\oint_{\partial \mathcal{V}} T^{ik} \diff \mathbf{a}_k
+\]
+Here, we define \( T^{ik} = - \sigma^{ik} \), so \( T \) is also a rank (2, 0) tensor. Intuitively, we think
+of this quantity as the \textit{momentum flux}, or the "flow of momentum" in or out of \( \mathcal{V} \). One
+thing to note is that \( T^{ik} \) is defined so that outgoing flow is positive, which is the opposite
+convention of \( \sigma^{ik} \). To complete the equation, it is actually nice to separate out the particle
+momentum from the field momentum, so we write:
+\[
+	\dv{\mathbf{p}_\text{particle}^{i}}{t} + \dv{t} \int_\mathcal{V} \frac{\mathbf{S}^2}{\diff \tau} =
+	-\oint_{\mathcal{V}}\left(T_\text{EM}^{ik} + T_\text{particle}^{ik}\right) \diff \mathbf{a}_k
+\]
+And here we've essentially defined a new tensor \( T_\text{particle}^{ik} = mnv^{i}v^{k} \). 
+
+\begin{example}[Radiation Pressure]
+	In this example, imagine we have a "fluid of radiation", with a radiation pressure \( P \). It is well
+	known that \( P = \frac{1}{2}U_\text{EM} = \frac{1}{3}\left( \frac{\epsilon_0}{2}|\mathbf{E}|^2 +
+	\frac{1}{2\mu_0}|\mathbf{B}|^2 \right) \). We will prove this using \( T^{ik} \).   
+
+	\begin{solution}
+		Recall that the equation for \( \sigma^{ik} \) is
+		\[
+			\sigma^{ik} = \epsilon_0 \left[ E^{i}E^{k} - \frac{1}{2}\delta^{ik} |\mathbf{E}|^2 \right] +
+			\frac{1}{\mu_0}\left( B^{i}B^{k} - \frac{1}{2}\delta^{ik}|\mathbf{B}|^2 \right)
+		\]
+		The pressure here is the diagonal term, as we mentioned from last time. Next, we make the observation
+		that for a stationary EM fluid (really just think about this as EM waves propagating out in all
+		directions), then the system should be isotropic. That is, there should not be a preference of one
+		axis over another. Thus, we can write
+		\[
+			\mean{E_x^2} = \mean{E_y^2} = \mean{E_z^2} \implies \mean{|\mathbf{E}|^2} = \mean{E_x^2} +
+			\mean{E_y^2} + \mean{E_z^2} = 3\mean{E_x^2}
+		\]
+		The \( \mathbf{B} \) field follows suit in the same way. 
+		And thus, the pressure \( P = \mean{\sigma^{11}} \) can be calculated as:
+		\begin{align*}
+			P = \mean{\sigma^{11}} &= \epsilon_0 \left( \mean{E_x^2} - \frac{1}{2}\mean{|\mathbf{E}|^2}
+			\right) + \frac{1}{\mu_0}\left( \mean{B_x^2} - \frac{1}{2} \mean{|\mathbf{B}|^2}\right) \\
+								   &= \epsilon_0 \left( \frac{1}{3}\mean{|\mathbf{E}|^2} -
+								   \frac{1}{2}\mean{|\mathbf{E}|^2} \right) + 
+								   \frac{1}{\mu_0} \left( \frac{1}{3}\mean{|\mathbf{B}|^2} -
+								   \frac{1}{2}\mean{|\mathbf{B}|^2} \right)\\
+								   &= -\frac{1}{6}\left( \epsilon_0 \mean{|\mathbf{E}|^2} +
+								   \frac{1}{\mu_0}\mean{|\mathbf{B}|^2} \right) \\ 
+								   &= -\frac{1}{3}U_\text{EM} 
+		\end{align*}
+		Note the reason this is negative here is because we use \( T^{ik} \) instead of \( \sigma^{ik} \),
+		which are opposite to each other in sign. That is, because radiation flows \textit{away} from an
+		object, this is seen as "negative pressure".  
+	\end{solution}
+\end{example}
+
+One thing to note about \( \sigma^{ik} \) is that it is a symmetric tensor, \( \sigma^{ik} = \sigma^{ki} \).
+To see why this is necessary, consider a cube in space (see diagram), 
+and we have a nonzero \( \sigma^{21} \) acting on it. Then,
+there is a shear acting in the \( \hat{\mathbf{x}} \) direction, and an equivalent one acting on the back of
+the cube in the \( -\mathbf{\hat{x}} \) direction. In order for this to not generate an angular momentum on
+the cube, it is necessary that we have \( \sigma^{12} \) on the other two sides in order for the torque to
+cancel out, and for the cube to remain stationary. In other words, the takeaway is this:
+\begin{center}
+	\fbox{
+	\begin{minipage}{0.72\textwidth}
+		In order for angular momentum to be conserved locally, the stress tensor must be symmetric.    
+	\end{minipage}
+	}
+\end{center}
+
+\subsection{Energy and Momentum for the EM Field}
+Recall that \( \mathbf{S} \) represents the energy flux, and we mentioned earlier that the second term in
+\ref{cont-momentum} is an integral of the momentum in the EM field, so naturally we can think of \(
+\frac{1}{c^2}\mathbf{S} \) as the momentum density in the fields. Now, consider a small cylinder with energy
+\( U_\text{EM} \) and cross sectional area \( A \). Then, the energy flow through \( A \) can be written as:
+\[
+	\mathbf{S} = \text{energy flow through \( A \)} = \frac{\text{energy passing through}}{\text{area}} =
+	\frac{U_\text{EM}(c \Delta t) A}{A \delta t} = U_\text{EM} c
+\] 
+The length is \( c \Delta t \) because EM waves travel at the speed of light. Now, since the momentum density
+\( \vec{\mathscr{P}} \) is written as \( \frac{1}{c^2}\mathbf{S} \), then we have the equation:
+\[
+	|\vec{\mathscr{P}}| c^2 = U_\text{EM} c \implies |\vec{\mathscr P}| c = U_\text{EM}
+\]
+Finally, recall that in special relativity, we have the relation \( E^2 = p^2 c^2 + m^2 c^{4} \), and since
+photons are thought of as electromagnetic waves, comparing these two conclusions forces us to conclude that
+photons are massless! 
+
+And this discussion concludes the content for chapter 8. Next, we will enter chapter 9, where we talk about
+electromagnetic waves.   
+
+\subsection{EM Waves} 
+Recall from your introductory classes that a sinusoidal plane wave propagating in the \( \hat{\mathbf{x}} \) direction
+can be described by 
+\[
+	\phi(\mathbf{r}, t) = A \cos(kx - \omega t + \delta)
+\]
+We can also write this as a complex exponential, leveraging Euler's identity \( e^{i \theta} = \cos \theta +
+i \sin \theta\):
+\[
+	\phi(\mathbf{r}, t) = \Re\left[ Ae^{i(kx - \omega t)}e^{i \delta} \right] =
+	\Re\left[\tilde A e^{i(kx - \omega t)}\right]
+\]
+Here, we let \( \tilde A = Ae^{i \delta} \), so \( A \in \R \) while \( \tilde A \in \C \). We don't have
+time to continue this discussion, but a primer for what we will be doing next lecture, we will explore the
+formalism behind the equation for a plane wave that travels in multiple dimensions. That is, we will explain
+why when dealing with more than one dimension, we write:
+\[
+\phi'(\mathbf{r}, t) = \Re\left[\tilde A e^{i(\mathbf{k} \cdot \mathbf{r} - \omega t)}\right]
+\]
+with \( |k| = \frac{2\pi}{\lambda} \). In particular, why do we have \( \mathbf{k}\cdot \mathbf{r} \)?
+ 
+
+
+

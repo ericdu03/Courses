@@ -1,0 +1,323 @@
+\documentclass[10pt]{article}
+\usepackage{../local}
+\usepackage{dsfont}
+
+
+\newcommand{\classcode}{Physics 110A}
+\newcommand{\classname}{Electromagnetism and Optics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 01} \large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+
+    \section*{Collaborators}
+
+    I worked with \textbf{Andrew Binder, Teja Nivarthi, Christine Zhang, Nathan Song} and \textbf{Nikhil Maserang} to complete this assignment.
+
+    \section*{Problem 1}
+
+    The electric field of a point charge $Q$ is given by $\mathit{\mathbf{E}} = \frac{kQ}{r^2} \hat{\mathbf{r}}$, and the magnetic field of an infinitely long wire with current $I$ is $\mathbf B = \frac{\mu_0 I}{2\pi s} \hat \phi$, where the fields are expressed in spherical and cylindrical coordinates respectively. Express the fields in the Cartesian coordinate and calculate the following. You can ignore the singularity at $r = 0$ and $s = 0$ in the problem. (You are asked to calculate the divergence and curl in Cartesian coordinates. Do not simply use the formulas for spherical and cylindrical coordinates.)
+
+    \begin{enumerate}[(a)]
+        \item the divergence and curl of $\mathit{\mathbf E}$
+
+        \begin{solution}
+            To convert from spherical to cartesian coordinates, we have:
+
+            \begin{align*}
+                x &= r \sin \phi \cos \theta\\
+                y &= r \sin \theta \sin \phi\\
+                z &= r \cos \theta
+            \end{align*}
+
+            Then, we can rewrite the trigonometric ratios: 
+
+            \begin{align*}
+                & \sin \phi = \frac{y}{\sqrt{x^2 + y^2}} && \cos \phi = \frac{x}{\sqrt{x^2 + y^2}}\\
+                & \sin \theta = \frac{\sqrt{x^2 + y^2}}{\sqrt{x^2 + y^2 + z^2}} && \cos \theta = \frac{z}{\sqrt{x^2 + y^2 + z^2}}
+            \end{align*}
+
+            From this, we then get that: 
+
+            \[ \hat i = \frac{x}{(x^2 + y^2 + z^2)^{3/2}}, \  \hat j = \frac{y}{(x^2 + y^2 + z^2)^{3/2}},  \ \hat k = \frac{z}{(x^2 + y^2 + z^2)^{3/2}}\]
+
+            And so we have 
+
+            \[ \vec E = \frac{kQ}{(x^2 + y^2 + z^2)^{3/2}}(x, y, z)\]
+
+            We can calculate the divergence from here using the usual method. 
+            
+            \begin{align*}
+                \div E &= \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z}\right) \cdot \left( E_x, E_y, E_Z\right)\\
+                &= \frac{\partial}{\partial x} \frac{kQx}{(x^2 + y^2 + z^2)^{3/2}} + \frac{\partial}{\partial y} \frac{kQy}{(x^2 + y^2 + z^2)^{3/2}} + \frac{\partial}{\partial z}\frac{kQz}{(x^2 + y^2 + z^2)^{3/2}}\\
+                &= \frac{kQ}{(x^2 + y^2 + z^2)^{5/2}}\left[ (y^2 + z^2 - 2x^2) + (x^2 + z^2 - 2y^2) + (x^2 + y^2 -2z^2) \right]\\
+                &= 0
+            \end{align*}
+
+            And so the divergence is zero. A similar process is done with the curl, which is: 
+
+            \begin{align*}
+                \curl E = \begin{vmatrix}
+                    \hat i & \hat j & \hat k\\
+                    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z}\\
+                    E_x & E_y & E_z
+                \end{vmatrix} = \hat i\left(\frac{\partial}{\partial y}E_z - \frac{\partial}{\partial x}E_y\right) - \hat j \left( \frac{\partial}{\partial x}E_z - \frac{\partial}{\partial z}E_x\right) + \hat k \left( \frac{\partial}{\partial x}E_y - \frac{\partial}{\partial z}E_x\right)
+            \end{align*}
+
+            Here, I'll show one of these terms explicitly: 
+
+            \begin{align*}
+                \frac{\partial}{\partial y} E_z &= \frac{\partial}{\partial y} \frac{kQz}{(x^2 + y^2 + z^2)^{3/2}} = -\frac{3kQyz}{(x^2 + y^2 + z^2)^{5/2}}\\
+                \frac{\partial}{\partial x} E_y &= \frac{\partial}{\partial x} \frac{kQz}{(x^2 + y^2 + z^2)^{3/2}} = -\frac{3kQyz}{(x^2 + y^2 + z^2)^{5/2}}
+            \end{align*}
+
+            These two terms are the same, and so the difference is the same. The same thing will happen with the other three terms, and so we can conclude that 
+
+            \[ \curl E = 0 \] 
+
+        \end{solution}
+        \item the divergence and curl of $\mathbf B$.
+
+        \begin{solution}
+            Here, we rewrite $\hat \phi$ into cartesian coordinates: 
+
+            \[ \cos \phi = \frac{x}{\sqrt{x^2 + y^2}}, \ \sin \phi = \frac{y}{\sqrt{x^2 + y^2}}\]
+
+            So therefore: 
+
+            \begin{align*}
+                B_x &= - B_0 r \sin \phi = - \frac{\mu_i I y}{2\pi (x^2 + y^2)}\\
+                B_y &= B_0 r\cos \phi = \frac{\mu_0 I x}{2\pi (x^2 + y^2)} 
+            \end{align*}
+            
+            And so therefore we have: 
+
+            \[ \vec B = \frac{\mu_0 I}{2\pi(x^2 + y^2)} (-y,x.0)\]
+            
+            Taking the divergence of this: 
+
+            \begin{align*}
+                \div B &= \frac{\mu_0 I}{2\pi}\left[\frac{\partial}{\partial x} \frac{y}{(x^2 + y^2)} + \frac{\partial}{\partial y} \frac{x}{(x^2 + y^2)}\right]\\
+                &= \frac{\mu_0 I}{2\pi (x^2 + y^2)^2}\left[ xy - xy\right]\\
+                &= 0
+            \end{align*}
+
+            And so we conclude that $\div B = 0$. Similarly, we do the curl: 
+
+            \begin{align*}
+                \curl B = \begin{vmatrix}
+                    \hat i & \hat j & \hat k\\
+                    \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z}\\
+                    B_x & B_y & 0
+                \end{vmatrix} = \hat i\left(\frac{\partial}{\partial y}B_z - \frac{\partial}{\partial x}B_y\right) - \hat j \left( \frac{\partial}{\partial x}B_z - \frac{\partial}{\partial z}B_x\right) + \hat k \left( \frac{\partial}{\partial x}B_y - \frac{\partial}{\partial z}B_x\right)
+            \end{align*}
+
+            Based on our equations, we know that $B_y$ and $B_x$ have no $z$-dependence, and so terms like $\frac{\partial}{\partial z}B_x$ and $\frac{\partial}{\partial z}B_y$ will go to zero. Further, we know that $B_z = 0$, so any partial derivative is also zero. Thus, the only nonzero term is the last one, where we need to calculate:
+
+            \begin{align*}
+                \frac{\partial B_y}{\partial x} &= \frac{\mu_0I}{2\pi} \frac{\partial}{\partial x} \frac{x}{(x^2 +y^2)}\\
+                &= \frac{\mu_0 I}{2\pi} \frac{y^2 - x^2}{(x^2 + y^2)^2}\\
+                \frac{\partial B_x}{\partial y} &= \frac{\mu_0 I}{2\pi} \frac{\partial}{\partial y} \frac{y}{(x^2 + y^2)}\\
+                &= \frac{\mu_0 I}{2\pi}\frac{y^2 - x^2}{(x^2 + y^2)^2} 
+            \end{align*}
+
+            And since these two terms are the same, then we get zero. Therefore, we conclude that 
+
+            \[ \curl B = 0\] 
+
+            
+
+
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 2}
+    Many quantities in vector calculus involves anti-symmetric structures, such as cross products, curl, etc. For these quantities it is easier to derive various properties via Levi-Civita symbol and index notations. 
+
+    \begin{enumerate}[(a)]
+        \item Let $\mathbf S$ be a symmetric matrix. That is, $S_{ij} = S_{ji}$. Show tat
+        \[\epsilon^{ijk} S_{ij} = 0\] 
+
+        \begin{solution}
+            Since we know that $S_{ij} = S_{ji}$, then: 
+                \[ \epsilon^{ijk}S_{ij} = -\epsilon^{jik}S_{ji}
+                = -\epsilon^{ijk}S_{ij} \] 
+
+            And since we now have that $\epsilon^{ijk}S_{ij} = -\epsilon^{ijk}S_{ij}$, then it follows that 
+
+            \[ \epsilon^{ijk}S_{ij} = 0\]
+        \end{solution}
+        \item Write $\mathbf A \cdot (\mathbf B \times \mathbf C$) in terms of the Levi-Civita symbol and components with indices, then find the relation between $\mathbf {A \cdot (B \times C)}$ and $\mathbf{B \cdot (A \times C)}$. \textit{Note that $\mathbf{A \cdot (B \times C)}$ is the volume of the parallelpiped spanned by the three vectors. In other words, the notion of volume involves anti-symmetric structure.}
+        
+        \begin{solution}
+            First, we compute $A \cdot (B \times C)$. To do so, we first compute the cross product: 
+
+            \[ (B \times C) = \epsilon^{ijk}b_jc_k\] 
+
+            Therefore, if we now dot this with $A$ we get: 
+
+            \[ A \cdot (B \times C) = \delta_{ij} a_i (B \times C)_j = a_i \epsilon^{ijk}b_jc_k\]
+
+            Now looking at $B \cdot (A \times C)$, we get: 
+
+            \[ B \cdot (A \times C) = b_i \epsilon^{ijk} a_jc_k\] 
+
+            But this is the same as the previous equation, only with $i \to j$ and $j \to i$, so therefore: 
+
+            \[ a_i \epsilon^{ijk}b_jc_k = b_j \epsilon^{jik}a_jc_k\] 
+
+            And so therefore
+
+            \[ A \cdot (B \times C) = - B\cdot (A \times C)\] 
+        \end{solution}
+        \item Using Levi-Civita symbol, show that
+        \[ \nabla \cdot (\nabla \times A) = 0\] 
+        \begin{solution}
+            We can write the cross product as $\curl A$ as: 
+
+            \[ \curl A = \epsilon^{ijk}\partial_j A_k\] 
+
+            And so combining this with the divergence we get: 
+
+            \[ \div (\curl A) = \epsilon^{ijk} \partial_i \partial_j A_k\]
+
+            Since $\partial_i \partial_j$ commute, then we can rewrite this as: 
+
+            \begin{align*}
+                \div(\curl A) &= \epsilon^{ijk} \partial_j \partial_i A_k\\
+                &= -\epsilon^{jik} \partial_j \partial_i A_k\\
+                &= -\epsilon^{ijk} \partial_i \partial_j A_k
+            \end{align*}
+
+            And so now we've derived the relation that 
+
+            \[ \epsilon^{ijk} \partial_i \partial_j A_k = -\epsilon^{ijk}\partial_i \partial_j A_k\] 
+
+            And so therefore we must conclude that 
+
+            \[ \epsilon^{ijk} \partial_i \partial_j A_k = 0\] 
+
+            as desired.
+        \end{solution}
+        \item Show that 
+        \[ \mathbf{\nabla \times (A \times B) = (B \cdot \nabla)A - (A \cdot \nabla)B + A(\nabla \cdot B) - B(\nabla \cdot A)} \]
+
+        \begin{solution}
+            We can just write the algebra out: 
+
+            \begin{align*}
+                \curl (A \times B) &= \epsilon^{ijk}\partial_j \epsilon^{klm}a_l b_m\\
+                &= \partial_j a_l b_m (\delta_{il}\delta_{jm} - \delta_{im}\delta_{jl})\\
+                &= \partial_j (a_ib_j) - \partial_j(a_jb_i)\\
+                &= a_i \partial_j b_j + b_j \partial_j a_i + b_j \partial_j a_i - (a_j \partial_j B_i + B_i \partial_j a_j)\\
+                &= (B \cdot \nabla)A - (A \cdot \nabla)B + A(\nabla \cdot B) - B(\nabla \cdot A)
+            \end{align*}
+        \end{solution}
+        \item Show that the cross product of two vectors $\mathbf V$ and $\mathbf W$, explicitly defined as $\epsilon_{ijk} V^jW^k$, transform as a dual vector under rotation. Note that the Levi-Civita symbol is a symbol here and does not transform under rotation. \textit{Hint:} Remember that or any matrix $M^i_j$, we have $\epsilon_{lmn} \det(M) = \epsilon_{ijk} M^i_lM^j_mM^k_n$.
+        
+        \begin{solution}
+            Here, we essentially want to show that the operation of rotation distributes across $V \times W$:
+               \[ R(V \times W) = RV \times RW\]
+            Computing the $i$-th component of the right hand side:
+            \begin{align*}
+            ((RV)\times(RW))_{i} &= \epsilon_{ijk}(RV)^{j}(R)^{k}\\
+            &=\epsilon_{ijk}R_{jk}V_xR_{ky}W_y
+            \end{align*}
+            And on the left hand side:
+            $$R(V\times W)=R(\epsilon_{ijk}V^jW^k)=R_{ai}\epsilon_{ijk}V^jW^k$$
+            Then, we can use the hint given in the problem statement and combining it with the relation $R_{xy}R_{ay}=\delta_{xa}$ to get:
+            \begin{align*}
+                (RV)\times(RW) &= \epsilon_{ijk}R_{jx}V_xR_{ky}W_y\\
+                &= \epsilon_{ijk}R_{ba}R_{ab}R_{jk}R_{ky}V_xW_y \\
+                &= \epsilon_{ajk}\delta_{ia}R_{ba}R_{jx}R_{ky}R_{ab}V_xW_y\\
+                &= \epsilon_{ijk}\det(R)R_{ab}V_xW_y \\
+                &= R_{ai}\epsilon_{ixy}V_xW_y
+            \end{align*}
+            Which equals what we obtained on the right hand side, when we make the substitution that $x \to j$ and $y \to k$. Therefore, we now have 
+
+            \[ R(V \times W) = (RV) \times (RW)\] 
+
+            as desired. Therefore, the cross product does transform as a dual vector under rotation.
+        \end{solution}
+        \item For a vector-valued function $\mathbf{F(r)}$, show that 
+        \[ \nabla \times \mathbf{(F \times r) = 2F} + r \frac{\partial \mathbf F}{\partial r} - \mathbf r(\nabla - \mathbf F)\] 
+        
+        where $r = x \mathbf{\hat x} + y \mathbf{\hat y} + z\mathbf{\hat z}$
+
+        \begin{solution}
+            Writing out one of the two components for the left hand side, we get: 
+                \begin{align*}
+                    [\curl(\mathbf{F}\times\mathbf{r})]_{i} &= \epsilon_{ijk}\partial^{j}(\mathbf{F}\times\mathbf{r})^{k} \\
+                    &= \epsilon^{ijk}\partial_j\epsilon^{klm}F_lr_m \\
+                    &= \epsilon^{kij}\epsilon^{klm}\partial_jF_lr_m
+                \end{align*}
+                Here we can invoke the identity that $\epsilon^{kij}\epsilon^{klm} = (\delta_{il}\delta_{jm} - \delta_{im}\delta_{jl})$ to get: 
+                \begin{align*}
+                    \epsilon^{ijk}\epsilon^{klm}\partial_j F_l r_m &= (\delta_{il}\delta_{jm} - \delta_{im}\delta_{jl})\partial_jF_lr_m\\
+                    &= \partial_j(F_ir_j)-\partial_j(F_jr_i) \\
+                    &= F_i\partial_jr_j + r_j\partial_jF_i-r_i\partial_jF_j-F_j\partial_jr_i
+                \end{align*}
+                Now we go term by term. Starting with the first, we have: 
+                \[ F_i \partial_j r_j = F_i (\nabla \cdot r) = 3F_i  \phantom{aaaaa} \text{Since } \left( \frac{\partial r_j}{\partial x^j} = 1\right)\]
+                Again using the fact that $\frac{\partial r_j}{\partial x^j} = 1$, we can also simplify the second term: 
+                \begin{align*}
+                    r_j\partial_jF_i &= r_1\frac{\partial F_i}{\partial x^1} + r_2\frac{\partial F_i}{\partial x^2} + r_3\frac{\partial F_i}{\partial x^3} \\
+                    &= r_i \left( \frac{\partial F_i}{\partial r} \underbrace{\frac{\partial r}{\partial x^j}}_{= 1}\right)\\
+                    &= r_i \frac{\partial F_i}{\partial r}
+                \end{align*}
+                The third term $r_i \partial_j F_j$ just simplifies to $r_i (\div F)$. Now for the final term:
+
+                \[ F_j \partial_j r_i = F_j \left( \frac{\partial r_i}{\partial x^j}\right)\]
+
+                But here, notice that $\frac{\partial r_i}{\partial x^j} = 0$ in rectangular coordinates when $i \neq j$, and when $i = j$ then it's equal to 1, using the relation we had from before. Therefore, we can simplify this down to:
+
+                \[ F_j \left( \frac{\partial r_i}{\partial x^j}\right) = F_1 + F_2 + F_3 = F_i\] 
+
+                Now, we can put this all together: 
+                \begin{align*}
+                    F_i\partial_jr_j + r_j\partial_jF_i-r_i\partial_jF_j-F_j\partial_jr_i &= 3F_i + r_i\frac{\partial}{\partial \mathbf{r}}F_i - r_i(\div\mathbf{F}) - F_i \\
+                    &= 2F_i + r_i \frac{\partial F_i}{\partial r} - r_i (\div F)
+                \end{align*}
+                As desired.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 3}
+
+    The formal definition of divergence $\mathbf F$ at the position $\mathbf r$ is given by 
+
+    \[ \nabla \cdot \mathbf F = \lim_{\mathcal \nu \to 0} \frac{\oint_S \mathbf F \cdot d\mathbf a}{\mathcal \nu}\] 
+
+    where $\mathcal S$ is any surface enclosing $\mathbf r$, and $\mathcal \nu$ is the volume bounded by $\mathcal S$, as shown in the left figure. Use this definition with a rectangular box enclosing $(x, y, z)$, as shown in the right figure, to prove that in Cartesian coordinates, 
+
+    \[ \nabla \cdot \mathbf F = \frac{\partial F_x}{\partial x} + \frac{\partial F_y}{\partial y} + \frac{\partial F_z}{\partial z}\] 
+
+
+    \begin{solution}
+        The net flux in the $x$-direction can be written as the difference between the flux leaving our imaginary cube and the incoming flux, divided by the total cross sectional length we're taking: 
+
+        \begin{align*}
+            F \cdot dx &= \frac{F(x + dx, y, z) - F(x, y, z)}{dx} dx dy dz\\
+            &= \frac{\partial F}{\partial x} dV
+        \end{align*}
+
+        We are working in $\mathbb R^3$, so therefore we can extend this to three dimensions pretty easily: 
+
+        \[ \oint_s F \cdot da = V\left(\frac{\partial F}{\partial x} + \frac{\partial F}{\partial y} + \frac{\partial F}{\partial z}\right)\] 
+
+        And so therefore
+
+        \[ \div F = \lim_{v \to 0} \frac{\oint_S F \cdot da}{v} = \frac{\partial F}{\partial x} + \frac{\partial F}{\partial y} + \frac{\partial F}{\partial z}\] 
+    \end{solution}
+\end{document}

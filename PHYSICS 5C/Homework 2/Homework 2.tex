@@ -1,0 +1,302 @@
+\documentclass{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, pgfplots, wrapfig, amssymb, array, mathtools, enumerate, circuitikz, physics, parskip, hyperref}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{chemformula}
+\usepackage{../local}
+
+\pgfplotsset{compat=1.17}
+
+\title{Physics 5C Homework}
+\author{Yutong Du}
+
+
+\begin{document}
+    \maketitle 
+
+    \section*{Collaborators}
+
+    I worked with \textbf{Andrew Binder} and \textbf{Aren Martinian} to complete this assignment.
+
+
+    \section*{Problem 1}
+
+    Find the average energy $\mean{E}$ for
+
+
+    \begin{enumerate}[(a)]
+        \item An $n$-state system, in which a given state can have energy $0, \epsilon, 2\epsilon, \dots, n\epsilon$.
+        
+        \begin{solution}
+            Using the Boltzmann distribution: 
+
+            \[ P(E_i) = \frac{e^{-E_i/k_BT}}{\sum_i e^{-E_i/k_BT}}\]
+
+            We will introduce $\beta = \frac{1}{k_BT}$ to make our lives slightly easier. First, we compute the sum in the denominator:
+
+            \begin{align*}
+                \sum_i e^{-E_i \beta} &= 1 + e^{-\epsilon \beta} + e^{-2\epsilon \beta} + \dots + e^{-n\epsilon \beta}\\
+            \end{align*}
+
+            This is a geometric series, and we know that for a series $ar^0, ar, ar^2, \dots, ar^n$, the sum is:
+
+            \[ S_n = \frac{a(1-r^n)}{1-r}\]
+
+            So we can rewrite: 
+
+            \[ \sum_i e^{-E_i \beta} = \frac{1-e^{-(n+1)\beta \epsilon}}{1 - e^{-\beta \epsilon}}\]
+
+            Now we can calculate $\mean{E} = \sum E_i P(E_i)$: 
+
+            \begin{align*}
+                \mean{E} &= \frac{1 - e^{-n\beta\epsilon}}{1 - e^{-\beta \epsilon}}\sum_{\alpha = 0}^n \alpha \epsilon e^{-\alpha \epsilon \beta}\\
+                &=\frac{\epsilon(1 - e^{-n\beta\epsilon})}{1 - e^{-\beta \epsilon}}\sum_{\alpha = 0}^n \alpha e^{-\alpha \epsilon\beta} 
+            \end{align*}
+
+            Unfortunately there is no closed form solution for this sum, so this is the best expression we have.
+        \end{solution}
+        \item A harmonic oscillator, in which a given state can have energy $0, \epsilon, 2\epsilon, \dots$ (i.e. with no upper limit)
+        
+        \begin{solution}
+            We just have to modify some things about part (a) in order to get what we want. Firstly, we can use the infinite geometric series formula now:
+
+            \[ S_\infty = \frac{a}{1-r}\]
+
+            So now applying this to our summation, 
+
+            \[ P(E_i) = e^{-E_i\beta}(1-e^{-\epsilon \beta})\]
+
+            So now computing the average energy:
+
+            \begin{align*}
+                \mean{E} &= \sum_{\alpha = 0}^\infty \alpha \epsilon e^{E_i\beta}(1 - e^{-\epsilon \beta})\\
+                &= (1 - e^{-\epsilon \beta})\epsilon \sum_{\alpha = 0}^\infty \alpha e^{-\alpha \epsilon \beta}\\
+            \end{align*}
+
+            We can now write this out and notice a neat little trick:
+
+
+            \begin{align*}
+                \mean{E} &= \epsilon (1 - e^{-\epsilon \beta})(e^{-\epsilon \beta} + e^{-2\epsilon \beta} + \dots)\\
+                &= \epsilon(e^{\epsilon \beta} + 2e^{-2\epsilon \beta} + 3e^{-\epsilon \beta} + \dots - e^{-2\epsilon \beta} - 2e^{-3\epsilon \beta} - \dots)\\
+                &= \epsilon (e^{-\epsilon \beta} + e^{-2\epsilon \beta} + \dots)\\
+                &= \epsilon \frac{e^{-\epsilon \beta}}{1 - e^{-\epsilon \beta}}
+            \end{align*}
+
+
+
+
+
+            % We can simply take the limit as $n$ goes to infinity in the first case: 
+
+            % \begin{align*}
+            %     \mean{E} &= \lim_{n \to \infty} = \frac{\epsilon(1 - e^{-n\beta\epsilon})}{1 - e^{-\beta \epsilon}}\sum_{\alpha = 0}^n \alpha e^{-\alpha \epsilon}\\
+            %     &= \frac{\epsilon(1 - e^{-n\beta\epsilon})}{1 - e^{-\beta \epsilon}}\sum_{\alpha = 0}^\infty \alpha e^{-\alpha \epsilon}
+            % \end{align*} 
+        \end{solution}
+    \end{enumerate}
+
+
+    \pagebreak
+
+    \section*{Problem 2}
+
+
+    Estimate $k_BT$ at room temperature, and convert this energy into electronvolts (eV). Using this result, answer the following:
+    
+    \begin{solution}
+        Room temperature is defined to be $T = 298 \text{ K}$ so computing $k_BT$ we get $k_BT = 0.025 \text{ eV}$. We're not going to divide by an overall normalization constant since an argument by just looking at orders of magnitude suffices.
+    \end{solution}
+    \begin{enumerate}[(a)]
+        \item Would you expect hydrogen atoms to be ionized at room temperature? (The binding energy of an electron in a hydrogen atom is 13.6 eV)
+        
+        \begin{solution}
+            The probability that a particle has energy $13.6$ eV is $e^{-13.6/0.025} \approx 10^{-235}$, so this is extremely unlikely to happen.
+        \end{solution}
+        \item Would you expect the rotational energy levles of diatomic molecules to be excited at room temperature? (It costs about $10^{-4}$ eV to promote such a system to an excited rotational energy level)
+        
+
+        \begin{solution}
+            The probability that a particle has energy $10^{-4}$ eV is $e^{-10^{-4}/0.025} \approx 0.996$, so we would expect this to occur at room temperature. Note that this isn't tne exact probability since we're missing the normalization constant, but it would not drastically change our expectations.
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 3}
+
+    Calculate the rms speed of Hydrogen (\ch{H_2}), helium (\ch{He}) and Oxygen \ch{O2} at room temperature. [The atomic masses of \ch{H}, \ch{He}, and \ch{O} are 1, 4, and 16, respectively.] Compare these speeds with the escape velocity of the surface of:
+
+
+    \begin{solution}
+        The formula for the rms speed of a gas is:
+
+        \[ v_{rms} = \sqrt{\frac{3k_BT}{m}}\]
+
+        So literally plugging into these values: 
+
+        \begin{align*}
+            \ch{H2} &= 1.9202 \text{ km/s}\\
+            \ch{He} &= 1.3627 \text{ km/s}\\
+            \ch{O2} &= 0.481 \text{ km/s}
+        \end{align*}    
+
+        These calculations were carried out assuming $T = 298$ K.
+    \end{solution}
+    \begin{enumerate}[(i)]
+        \item The Earth
+        
+        \begin{solution}
+            The escape velocity of the Earth is 11.2 km/s, which is significantly higher than what $v_{rms}$ for any of these gases at room temperature.
+            
+            This result makes sense, since had the escape velocity of the Earth been comparable to $v_{rms}$ of any of these gases, then these gases would be able to escape the Earth's atmosphere, leaving us with no atmosphere.
+        \end{solution}
+        \item The Sun
+        
+        \begin{solution}
+            If these gases could not leave the Earth's atmosphere, they certainly cannot leave the Sun's atmosphere! (as if trying to escape the Earth's gravity wasn't hopeless enough) The escape velocity of the sun is about 615 km/s, much much higher than any of the $v_{rms}$ that we calculated. 
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 4}
+
+    A Maxwell-Boltzmann distribution implies that a given molecule (mass $m$) will have a speed between $v$ and $v + \dd v$with probability equal to $f(v)$ where 
+
+    \[ f(v) \propto v^2 e^{-mv^2/2k_BT}\]
+
+    and the proportionality sign is used because a normalization constant has been omitted. (You can correct for this by dividing any averages you work out by $\int_0^\infty f(v) \dd v$.) For this distribution, calculate the mean speed $\mean{v}$ and the mean inverse speed $\mean{1/v}$. Show that
+    \[ \mean{v} \mean{1/v} = \frac{4}{\pi}\]
+
+
+    \begin{solution}
+        We will make heavy use of the equations in the ``useful mathematics" section of the book, which has results for these integrals. Specifically, we can use:
+        
+        \begin{align*}
+            \int_0^\infty x^3 e^{-\alpha x^2} &= \frac{1}{2\alpha^2}\\
+            \int_0^\infty xe^{-\alpha x^2} &= \frac{1}{2\alpha}\\
+            \int_0^\infty x^2e^{-\alpha x^2} &= \frac{1}{4}\sqrt{\frac{\pi}{\alpha^3}}
+        \end{align*}
+
+        First, we calculate the normalization constant for $f(v)$:
+
+        \begin{align*}
+            1 &= \int_0^\infty f(v) \dd v \\
+            &= \int_0^\infty Av^2 e^{-mv^2/2k_BT} \dd v\\
+            &= A \frac{1}{4} \sqrt{\frac{\pi k_B^3 T^3}{m^3}}\\
+            \therefore A &= 4 \sqrt{\frac{m^3}{\pi k_B^3 T^3}} 
+        \end{align*}
+        
+        So, we can compute:
+        
+        \begin{align*}
+            \mean{v} &= \int_0^\infty v f(v) \dd v\\
+            &= \int_0^\infty v^3e^{-mv^2/k_BT} \dd v\\
+            &= A \cdot \frac{1}{2\left(\frac{m}{k_BT}\right)^2} = \frac{A k_B^2T^2}{2m^2}
+        \end{align*}
+
+        Similarly, 
+
+        \begin{align*}
+            \mean{1/v}&= \int_0^\infty \frac{1}{v} f(v) \dd v\\
+            &= \int_0^\infty A ve^{-mv^2/k_BT} \dd v \\
+            &= A \cdot \frac{1}{2\left(\frac{m}{k_BT}\right)} = \frac{A k_BT}{2m}
+        \end{align*}
+
+        Thus multiplying the two together: 
+
+        \begin{align*}
+            \mean{v} \mean{1/v} &= \frac{Ak_B^2T^2}{2m^2} \cdot \frac{Ak_BT}{2m}\\
+            &= \frac{k_B^3T^3}{4m^3} \cdot \frac{16m^3}{\pi k_B^3T^3}\\
+            &= \frac{4}{\pi}
+        \end{align*}
+
+        As desired.
+    \end{solution}
+
+    \pagebreak
+
+    \section*{Problem 5}
+
+    Consider the differential 
+
+    \[ \dd z = 2xy \dx + (x^2 + 2y) \dd y\] 
+
+    Evaluate the integral $\int_{(x_1, y_1)}^{(x_2, y_2)} \dd z$ along the paths consisting of straight line segments:
+
+    \begin{enumerate}[i]
+        \item $(x_1, y_1) \to (x_2, y_1)$ and then $(x_2, y_1) \to (x_2, y_2)$.
+        
+        \begin{solution}
+            We perform the integration:
+    
+            \begin{align*}
+                \int \dd z &= \int_{(x_1, y_1)}^{(x_2, y_1)} 2xy \dx + (x^2 + 2y) \dd y + \int_{(x_2, y_1)}^{(x_2, y_2)} 2xy \dx + (x^2 + 2y) \dd y\\
+                &= (x^2y)\bigg|_{(x_1, y_1)}^{(x_2, y_1)} + (x^2y + y^2)\bigg|_{(x_2, y_1)}^{(x_2, y_2)}\\
+                &= (x_2^2y_1 - x_1^2y_1) + (x_2^2y_2 + y_2^2 - x_2^2y_1 - y_1^2)\\
+                &= x_2^2y_2 + y_2^2- y_1^2 - x_1^2y_1
+            \end{align*}
+        \end{solution}
+        \item $(x_1, y_1) \to (x_1, y_2)$ and then $(x_1, y_2) \to (x_2, y_2)$. 
+        
+        \begin{solution}
+            Doing the exact same integral:
+
+            \begin{align*}
+                \int \dd z &= \int_{(x_1, y_1)}^{(x_1, y_2)} 2xy \dx + (x^2 + 2y) \dd y + \int_{(x_1, y_2)}^{(x_2, y_2)} 2xy \dx + (x^2 + 2y) \dd y\\
+                &= (x^2y + y^2)\bigg|_{(x_1, y_1)}^{(x_1, y_2)} + (x^2y)\bigg|_{(x_1, y_2)}^{(x_2, y_2)}\\
+                &= (x_1^2y_2 + y_2^2 - x_1^2y_1 - y_1^2) + (x_2^2y_2 - x_1^2y_2)\\ 
+                &= x_2^2y_2 + y_2^2- y_1^2 - x_1^2y_1
+            \end{align*}
+        \end{solution}
+    \end{enumerate}
+
+    Is $\mathrm{d}z$ an exact differential?
+
+    \begin{solution}
+        Since the value we obtain for these integrals are the exact same despite having taken different paths, this integral is path independent. Thus, the integral is path independent, so $\mathrm dz$ is an exact differential. 
+
+        We can also see this since subtracting one integral from the other is the same as verifying that
+
+        \[ \oint \dd z = 0\]
+
+        Which is also a property of exact differentials.
+    \end{solution}
+    \pagebreak
+    \section*{Problem 6}
+
+    In polar coordiantes, $x = r\cos \theta$ and $y = r\sin \theta$. The definition of $x$ implies that 
+
+    \begin{equation}\label{q6e1}
+        \frac{\partial x}{\partial r} = \cos \theta = \frac{x}{r} 
+    \end{equation}
+    But we also have $x^2 + y^2 = r^2$, so differentiating with respect to $r$ gives 
+
+    \begin{equation}\label{q6e2}
+        2x \frac{\partial x}{\partial r} = 2r \implies \frac{\partial x}{\partial r} = \frac{r}{x}
+    \end{equation}
+
+    But eqns \ref{q6e1} and \ref{q6e2} imply that 
+
+    \[ \frac{\partial x}{\partial r} = \frac{\partial r}{\partial x}\] 
+
+    What's gone wrong?
+
+
+    \begin{solution}
+        The issue in the logic is that each partial derivative is holding a different variable constant. In the equation \ref{q6e1}, we calculated $\frac{\partial x}{\partial r}$ while holding $\theta$ constant. On the other hand, $\frac{\partial x}{\partial r}$ in equation \ref{q6e2} holds $r$ constant, instead of $\theta$. 
+
+        So even though the expressions $\frac{\partial x}{\partial r}$ appear to be the same, when we try to equate them together we need to be specific about what values we are holding constant. As a result, the expression isn't exactly incorrect, but because it forgot to specify what we were holding constant, the overall conclusion is wrong.
+    \end{solution}
+    
+\end{document}

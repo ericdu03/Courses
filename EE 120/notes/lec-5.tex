@@ -1,0 +1,130 @@
+%\section{LTI Systems, Cross Correlation}
+\section{Lecture 5}
+\begin{itemize}
+	\item Recall that last time, given a system equation \( y[n] - ay[n - 1] = x[n] \), an 
+		impulse response function \( h[n] = a^{n}u[n] \) and a step input signal \( x[n] = u[n] \), then we 
+		can calculate the general signal response \( y[n] = x[n] * h[n] \).
+	\item \question{see lecture for notes}
+\end{itemize}
+\subsection{Causality and BIBO stability}
+\begin{itemize}
+	\item An LTI system is causal if and only if the impulse response function is a causal function. This means 
+		that \( h(t) = 0 \) for all \( t < 0 \). Under this condition, then the system will be causal.
+	\item For BIBO stability, the same thing applies: it's BIBO stable if and only if its impulse response 
+		\( h(t) \) is absolute integrable:
+		\[
+		\int_{-\infty}^{\infty} |h(t)| dt < \infty 
+		\] 
+	\item The same thing applies for discrete-time: it's causal iff \( h[n] = 0 \) for all \( n < 0 \). 
+
+		\begin{proof}
+			First, we prove the forward case: if \( h[n] = 0 \) for all \( n < 0 \), then:
+			\[
+				y[n] = \sum_{k = -\infty}^{\infty}x[k] h[n - k] = \sum_{k = -\infty}^{n}x[k] h[n - k]
+			\] 
+			But then this means that \( y[n]  \) only depends on the present and the past, hence it's a causal 
+			system. 
+
+			Now for the reverse case by contrapositive: for any \( m < 0 \), if 
+			\( h[m] \neq 0 \), then there is one \( n - k < 0 \) such that \( h[n - k] \neq 0  \). If this 
+			is true, then the system depends on at least one value \( k > n \), hence it's non-causal. 
+		\end{proof}
+	\item For BIBO stability, the equivalence here that the impulse response is absolute summable, so:
+		\[
+			\sum_{n = -\infty}^{\infty}|h[n]| < \infty
+		\] 
+
+		\begin{proof}
+			First, we show that if \( h[n] \) is absolute summable, then given a bounded input: 
+			\[
+				|y[n]| = \left| \sum_{k = -\infty}^{\infty} x[n - k] h[k] \right| \le \sum_{k = -\infty}^{\infty}
+				|x[n - k]| |h[k]| \le c \sum_{k = -\infty}^{\infty} |h[k]| \le \infty
+			\] 
+			Now the reverse case: if the impulse response by contraposition: if our system is not 
+			absolute summable, then our system is not BIBO stable. To do this, let \( x[n] = \mathrm{sgn}(h[-n]) \), 
+			then since: 
+			\[
+				y[n] = \sum_{k = -\infty}^{\infty}x[k] h[n - k]
+			\] 
+			then for instance, we can evaluate \( y[0] \) :
+			\[
+				y[0] = \sum_{k= -\infty}^{\infty}x[k] h[-k]
+			\] 
+			And since \( x[k] = \mathrm{sgn}(h[-k]) \), then:
+			\[
+				y[0] = \sum_{k = -\infty}^{\infty} |h[-k]| = \infty
+			\] 
+			This is equal to infinity, because this is this is precisely the fact that \( h \) is not absolute 
+			absolute sumamble.
+		\end{proof}
+\end{itemize}
+\subsection{Convolution and Correlation}
+\begin{itemize}
+	\item As we've seen already, the convolution is essential to an LTI system. Given a signal \( x(t) \)
+		and system \( h(t) \) and output \( y(t) \), then we can calcualte \( y(t)  \) based on the convolution
+		integral:
+		\[
+		y(t) = \int_{-\infty}^{\infty} x(\tau) h(t - \tau) \diff  \tau 
+		\] 
+	\item In discrete-time:
+		\[
+			y[n] = \sum_{k = \infty}^{\infty}x[k] h[n -k]
+		\] 
+	\item A \textbf{convolution} takes in two signals \( x, y \) and computes:
+		\[
+			\mathrm{cov}(x, y)= (x * y)(t) = x(t) * y(t) = \int_{-\infty}^{\infty} x(\tau) y(t - \tau) \diff \tau 
+		\] 
+		Notice that we're integrating with respect to \( \tau \), meaning that the resulting function should be 
+		a function of \( t \). 
+	\item A \textbf{cross-correlation} is defined as \( r_{xy} \), and is computed as:
+		\[
+			\mathrm{corr}(x, y) = (x \circ y)(t) = x(t) \circ y(t) = \int_{-\infty}^{\infty} x(\tau) 
+			y(t + \tau) \diff \tau
+		\] 
+		The main difference between the two is that with convolution, we're flipping the second function and 
+		computing the integral of the product. With cross correlation, we're not flipping anything, and instead 
+		just "sliding" the product across.
+
+		To be clear, it's the second function that we're sliding across the first one.
+	\item Because the two equations are so similar, the convolution and cross correlation are related: 
+		\[
+			y(t) \circ x(t) = x(t) * y(-t)
+		\] 
+		The proof is fairly trivial; too lazy to write it down. Note that the order matters though.
+	\item See the lectures for a graphical representation of what a convolution does. 
+\end{itemize}
+\subsubsection{Example Functions} 
+\begin{itemize}
+	\item Given two rectangle functions \( x(t) = \sqcap(t - 0.5), y(t) = \sqcap(t - 0.5) \), their convolution 
+		is a triangle function \( \wedge(t - 1) \), and their correlation is \( \wedge(t) \). Notice that 
+		the convolution is shifted over by 1, and the correlation is not. This is because the convolution 
+		flips the sign of one of them, so they intersect at a later time.
+	\item The convolution of the delta function with itself is the delta function: \( (\delta(t) * \delta(t)) 
+		= \delta(t) \).
+\end{itemize}
+\subsection{Convolution Identities}
+\begin{itemize}
+	\item Convolution follows the distributive property: \( x(t) * (h_1(t) + h_2(t)) = x(t) * h_1(t) + x(t)*h_2(t)  \)
+	\item The convolution is commutative: \( x(t) * h(t) = h(t) * x(t)\). This is different from the cross-correlation,
+		where the resulting signal is time-reversed. 
+	\item The unit impulse is the identity element of the convolution:
+		\[
+		x(t) * \delta(t) = x(t)
+		\] 
+	\item The convolution of a signal with a shifted impulse shifts the signal:
+		\[
+			x(t) * \delta(t - T) = x(t - T), \ \ x[n] * \delta[n - N] = x[n - N] 
+		\] 
+	\item The convolution of two time-shifted signals will produce a signal that accounts for the shift of both 
+		functions:
+		\[
+		x(t - T_1) * h(t - T_2) = y(t - T_1 - T_2)
+		\] 
+	\item When a function of time width \( T_1 \) is convolved with a function of width \( T_2 \), the resulting
+		function has a width of \( T_1 + T_2 \).
+
+		This makes sense, since the convolution computes the overlap -- so if we don't have any overlap, then the 
+		result will be 0.
+	\item Convolution also follows an area property: given a convolution \( x(t) * h(t) \), then
+		the area of \( y(t)  \) is given by the product of the area of \( x(t)  \) and \( h(t) \) individually.
+\end{itemize}

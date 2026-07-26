@@ -1,0 +1,164 @@
+The ninth lecture of Physics 5C was held on  \textbf{Thursday, September 13}. It discusses entropy in greater detail, and also redefines the first law in terms of new quantities. 
+
+\section{Last time: Second Law and Entropy} 
+
+Last time, we introduced the quantity of Entropy
+
+\[ S \equiv \frac{\dd Q_{rev}}{T}\]
+
+If anythinng, entropy should strike us as a strange variable, since for any isolated system, the entropy always increases: 
+
+\[ \dd Q = 0 \implies \dd S \ge 0\]
+
+\section{Entropy and heat flow} 
+
+Imagine two systems, one of which is a reservoir and the other is a small system. The large reservoir has temperature $T_R$ and the small system has temperature $T_s$, as shown below: 
+
+[INSERT TIKZ HERE]
+
+We let $T_R > T_s$. Calculating the entropy in systems $R$ and $S$: 
+
+\[ \Delta S_R = \int \frac{\dd Q}{T_R} = -\frac{\Delta Q}{T_R}, \phantom{aaa} \Delta S_S = \int_{T_s}^{T_R} \frac{\dd Q}{T}\]
+
+And since we have $\frac{\dd Q}{\dd T} = c$ so $\dd Q = c \  \dd T$, then we have 
+
+\[ \Delta S_s = \int_{T_s}^{T_R} \frac{c\dd T}{T} = c\ln \left(\frac{T_R}{T_s}\right)\]
+
+By that same token 
+
+\[ \Delta S_R = -\frac{c}{T_R}(T_R - T_s)\]
+
+And so calculating the total entropy, 
+
+\begin{align*}
+    S_{\text{total}} &= \Delta S_R + \Delta S_s\\
+    &= c\left[\ln \frac{T_R}{T_s} - \frac{1}{T_R}(T_R - T_s)\right] \ge 0
+\end{align*}
+
+The last step is true because $T_R > T_s$ is a vital assumption that we've made at the beginning of the derivation. Since this is true, then the second law is not violated. 
+
+\section{Redefining First Law}
+
+Recall from previous derivations that $\dd U = \dd Q + \dd W$, and specifically for a reversible process, $\dd W = -p \dd V, \dd Q = T \dd S$, the latter of which we just derived. Therefore, we can now write the first law as
+
+\[ \dd U = T \dd S - p \dd V\]
+
+which gives us a relation between state variables $V$ and $S$, so if we know $\dd V$ and $\dd S$ then we can calculate $\dd U$. Further, based on simple differential properties, 
+
+\[ \dd U = \left(\frac{\partial U}{\partial S}\right)_V \dd S + \left(\frac{\partial U}{\partial V}\right)_S \dd V\] 
+
+And so we get the relations 
+
+\[ T = \left(\frac{\partial U}{\partial S}\right)_V \phantom{aa} -p = \left(\frac{\partial U}{\partial V}\right)_S\]
+
+Which also gives us 
+
+\[ \frac{-p}{T} = \frac{-\left(\frac{\partial U}{\partial S}\right)_S}{\left(\frac{\partial U}{\partial S}\right)_V} = -\left(\frac{\partial U}{\partial V}\right)_S\left(\frac{\partial S}{\partial U}\right)_V\] 
+
+\begin{insight*}{}
+    Alternatively, we could have written $S(U, V)$ to get the relations
+
+    \[ \frac{p}{T} = \left(\frac{\partial S}{\partial V}\right)_V \implies \left(\frac{\partial S}{\partial V}\right)_U = -\left(\frac{\partial U}{\partial V}\right)_S\left(\frac{\partial S}{\partial U}\right)_V\] 
+
+    And if we do the final combination of $V(S, U)$, we can get a similar relation. If we combine all three relations together, we get
+
+    \[ 1 = -\left(\frac{\partial U}{\partial V}\right)_S \left(\frac{\partial S}{\partial U}\right)_V \left(\frac{\partial V}{\partial S}\right)_V\] 
+
+    Which is a quite a special relation! In fact, this is a special relation about all multivariable systems. 
+\end{insight*}
+
+Now let's return to our definition of entropy. Based on physical experiments, we've discovered that $S$ is maximized for an equilibrium state. Recall that Boltzmann theorized that the equilibrium state is given by the maximum value of $\Omega$, the number of microstates. Is there a connection between these two? Let's explore this a bit further. 
+
+Recall that the number of microstates is given by the relation:
+
+\begin{equation}\label{boltzmann temperature equation}
+    \frac{\dd \ln \Omega}{dE} = \frac{1}{k_BT}
+\end{equation}
+
+which also happens to be our formal definition of temperature. Now remember our new definition of the first law: 
+
+\[ \dd U = T \dd S - p \dd V\] 
+
+From which we can extract 
+
+\[ T = \left(\frac{\partial U}{\partial S}\right)_V\] 
+
+We can do this by taking $\dd S$ on both sides, then hold $V$ constant in the equation so $\frac{\dd V}{\dd S} = 0$. Now, the total energy $E$ and the quantity $U$ are actually related (since they both represent total energy in some capacity), therefore we can rewrite equation \ref{boltzmann temperature equation} as: 
+
+\[ \frac{1}{k_BT} = \left(\frac{\dd \ln \Omega}{\dd U}\right)_V\] 
+
+Now we can combine the two expressions by substituting in $\dd U$ and get:
+
+\[ S = k_B \ln \Omega\] 
+
+Which leads us to a very famous equation derived by Boltzmann, described in brief below: 
+
+\begin{theorem}{Boltzmann Entropy Relation}{Boltzmann Entropy Relation}
+    Given a thermodynamic system, its entropy is related to the number of microstates whose energy equals $E$ by 
+
+    \[ S = k_B \ln \Omega\]
+\end{theorem}
+
+As an aside, this equation was so influential at the time that it is literally imprinted on Boltzmann's grave. Also note that this formulation does not violate the second law of thermodynamics, since the number of microstates $\Omega$ is always at least 1. Now, let's take a look at a couple of examples relating to calculating entropy. 
+
+\begin{example}{Free Expansion of Gas}{Free Expansion of Gas}
+    Suppose we have an isolated system consisting of two boxes of volume $V_0$ connected by a valve. The valve is initially closed and gas is contained in the left box, and the right box remains empty. Now suppose we open the valve and let the gas freely expand. 
+
+    Clearly, this process is not reversible, and since the system is isolated, there is no change in energy of the system: $\Delta U = 0$. If this is an ideal gas, then the change in temperature must then also be zero. Therefore, this is an isothermal process. 
+
+    If we write out equations of state:
+
+    \begin{align*}
+        P_iV_0 &= nRT_i\\
+        P_v(2V_0) &= nRT_f
+    \end{align*}
+
+    And since $T_i = T_f$, then $P_F = \frac{1}{2} P_i$. Now that we've established the characteristics of the initial and final state, how do we calculate the change in entropy? The idea is to hypothesize that this system is reversible, and reverse it back to the initial state. The change in entropy in this process is well known, and because by adding this path we've created a cycle, we know that the total change in entropy is zero. 
+
+    \[ \dd S = \frac{\dd Q}{T} = \frac{p \dd V}{dT}\]
+
+    Note here that $\dd Q$ is positive because work is being done \textit{to} the system, not \textit{by} the system. Therefore, 
+
+    \begin{align*}
+        \Delta S &= \int_{V_0}^{2V_0} \frac PT \dd V\\
+        &= \int_{V_0}^{2V_0} \frac{nRT}{V} \frac{1}{T} \dd V\\
+        &= nR \ln \left(\frac{2V_0}{V_0}\right)\\
+        &= nR \ln 2
+    \end{align*}
+
+    This is an interesting result since it implies that the change in entorpy does not depend on common state state variables we expect it to! In fact, the only state variable in this equation is $n$.
+    
+\end{example}
+
+While this result is rather shocking, it also makes sense even according to our previous framework. Consider the same system as in example \ref{ex:Free Expansion of Gas} except we consider a single particle. 
+
+[INSERT TIKZ HERE]
+
+Initially the particle has $\Omega_0$ states, and once the valve is open, it now has $2\Omega_0$ states, since the particle can either be in the left or right chamber. Thus, for $N$ molecules, the number of microstates is $\Omega_0^N$ and the final state is $(2\Omega_0)^N$, so we get:
+
+\begin{align*}
+    S_i &= k_B \ln \Omega^N\\
+    S_f &= k_B \ln (2 \Omega)^N
+\end{align*}
+
+So calculating the change in entropy $\Delta S = S_f - S_i$: 
+
+\begin{align*}
+    \Delta S &= S_f - S_i\\
+    &= k_B \ln (2\Omega_0)^N - k_B \ln \Omega_0^N\\
+    &= k_B \ln \left(\frac{2 \Omega_0}{\Omega_0}\right)^N\\
+    &= Nk_B \ln 2\\
+    &= nR \ln 2
+\end{align*}
+
+And so we achieve the same result. 
+
+\section{Particle Mixing Problem} 
+
+Here we've come to a fundamental dilemma of free expansions. Consider the containers in \ref{ex:Free Expansion of Gas}, except this time we have two gases, gas 1 and gas 2 in either chamber. The question we want to answer is what is the entropy change when the gases are mixed? 
+
+The way to think about this problem is to imagine it as two free expansions - in other words replace the valve with a special membrane that only allows one gas through on one side, and one gas through on the other side. In this way, the change in entropy is just twice that of a singular free expansion
+
+\[ \Delta S = 2nR \ln 2\]
+
+However, what if gas 1 and gas 2 are the same? Then, there is no way to distinguish between a particle in the left chamber and the right chamber, and so therefore the change in entropy is zero! In other words, this hints at a very deep fact about entropy: it only increases if we can \textit{detect} that a change has occurred, such as in the case with two gases. If it's the same gas, the system looks identical regardless of what we do with it, and so there is no observed entropy change.

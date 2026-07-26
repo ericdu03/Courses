@@ -1,0 +1,153 @@
+\section{Multiple Qubits, Entanglement}
+\subsection{Multiple Qubits}
+\begin{itemize}
+	\item Suppose we have two qubits \( \ket*{\psi_1} = \alpha\ket*{0} + \beta \ket*{1} = 
+		\begin{bmatrix} \alpha\\ \beta \end{bmatrix}  \) and \( \ket*{\psi_2} = x\ket*{0} + y\ket*{1} = 
+		\begin{bmatrix} x\\y \end{bmatrix}  \)
+	\item Then the combined state, if the two qubits live on their own, is given by \( \ket*{\Psi} = \ket*{\psi_1} 
+		\otimes \ket*{\psi_2} \). The \( \otimes \) symbol denotes a tensor product.
+		\[
+		\ket*{\psi_1} \otimes \ket*{\psi_2} = (\alpha \ket*{0} + \beta \ket*{1}) \otimes (x \ket*{0} + y \ket*{1})
+		\] 
+		In matrix form, this is represented as: 
+		\[
+		\begin{bmatrix} \alpha\\ \beta \end{bmatrix} \otimes \begin{bmatrix} x\\y \end{bmatrix} = 
+		\begin{bmatrix} \alpha x\\ \alpha y\\\beta x\\\beta y\end{bmatrix} 
+		\] 
+		the resulting vector lives in \( \C^{4} \), with the basis states \( \ket*{00} = \ket*{0}_1 \ket*{0}_2, 
+		\ket*{10} = \ket*{1}_1 \ket*{0}_2, \ket*{01} = \ket*{0}_1 \ket*{1}_2, \ket*{11} = \ket*{1}_1 \ket*{1}_2\)
+	\item In general given \( n \) qubits, there are \( 2^{n} \) basis states, and hence we will be working with 
+		superpositions over these \( 2^{n} \) basis states. This fact underscores the power of quantum computers, 
+		since they scale much more efficiently than classical computers. This is also sometimes referred to as 
+		"quantum parallelism". 
+	\item If we measure all qubits, then the outcome is just some sort of bitstring, so we have to be clever about 
+		how we are measuring to get the information we want. 
+	\item With multiple qubits, operators are also tensor products. Given the two operators:
+		\begin{align*}
+			A &= \begin{pmatrix} a_{11} & a_{12}\\ a_{21} & a_{22} \end{pmatrix} \\
+			B&= \begin{pmatrix} b_{11} & b_{12}\\ b_{21} & b_{22} \end{pmatrix}  
+		\end{align*}
+		Then \( A \otimes B \), the operator that acts on the multi-qubit state, is given by 
+		\[
+			A \otimes B = \begin{pmatrix} a_{11}B & a_{12}b\\a_{21}B & a_{22}B \end{pmatrix} 
+		\] 
+		Note that \( A \otimes B \) is not the same as \( B \otimes A \). 
+\end{itemize}
+\subsection{Quantum Circuits}
+\begin{itemize}
+	\item A generic quantum circuit is written as:
+		\begin{center}
+			\begin{quantikz}
+				\lstick{\( \ket*{\psi} \) } & \gate{H} & 
+			\end{quantikz}
+		\end{center}
+		the box with an \( H \) denotes a gate (in this case, a Hadamard gate), which corresponds to a rotation 
+		on the Bloch sphere.  
+	\item Let's analyze the following quantum circuit:
+		\begin{center}
+			\begin{quantikz}
+				\lstick{\( \ket*{\psi_1} \) }\slice{1} & \gate{H} \slice{2} & \ctrl{1} \slice{3} &  \slice{4} &
+				\gate{Y}\slice{5} & \meter{} \slice{6}& \setwiretype{c}\\
+				\lstick{\( \ket*{\psi_2} \) } & & \targ{} & \gate{X} & & \meter{} &\setwiretype{c}
+			\end{quantikz}
+		\end{center}
+		Let's analyze this in stpes:
+		\begin{itemize}
+			\item Initially, we have \( \ket*{\psi_1} = \alpha_1 \ket*{0} + \beta_1 \ket*{1}\)  and \( \ket*{\psi_2} = 
+				\alpha_2 \ket*{0} + \beta_2 \ket*{1}\), whose combination can be written as:
+				\[
+					\ket*{\psi_{12}^{(1)}} = \alpha_1 \alpha_2 \ket*{00} + \alpha_1 \beta_2 \ket*{01} + \beta_1 \alpha_2
+					\ket*{10} + \beta_1 \beta_2 \ket*{11}
+				\]
+			\item At step 2, we run the first qubit through a Hadamard gate, and leave the second qubit untouched. This
+				means we act the operator \( H \otimes I \) on the state:
+				\begin{multline*}
+					\ket*{\psi_{12}^{(2)}}H \otimes I \ket*{\psi_{12}} = \alpha_1 \alpha_2 \left( \frac{1}{\sqrt{2}} 
+					\ket*{00} + \frac{1}{\sqrt{2} }\ket*{10}  \right) 
+					+ \alpha_1 \beta_2 \left( \frac{1}{\sqrt{2} }\ket*{01} + \frac{1}{\sqrt{2} }\ket*{11} \right) \\
+					+ \beta_1 \alpha_2 \left( \frac{1}{\sqrt{2} }\ket*{00} - \frac{1}{\sqrt{2} }\ket*{10} \right) +
+					\beta_1\beta_2 \left( \frac{1}{\sqrt{2} }\ket*{01} - \frac{1}{\sqrt{2} }\ket*{11} \right) 
+				\end{multline*} 
+			\item At step 3, we apply a CNOT gate, which flips the state of the second bit if the value of the first 
+				bit is 1. As a truth table:
+				\begin{center}
+					\begin{tabular}{c|c}
+						Input & Output\\
+						\hline\\
+						00 & 00\\
+						01 & 01\\
+						10 & 11\\ 
+						11 & 10
+					\end{tabular}
+				\end{center}
+				As a matrix, it's written as;
+				\[
+					\text{CNOT} = 
+					\begin{bmatrix} 1 & 0 & 0 & 0\\ 9 & 1 & 0 & 0\\ 0 & 0 & 0 & 1\\ 0 & 0 & 1 & 0 \end{bmatrix} 
+				\] 
+				We then apply this CNOT gate to each component of \( \ket*{\psi_{12}^{(2)}} \) to get 
+				\( \ket*{\psi_{12}^{(3)}} \). 
+			\item Apply \( I \otimes X \) to \( \ket*{\psi_{12}^{(3)}} \to \ket*{\psi_{12}^{(4)}}\) 
+			\item Apply \( Y \otimes I \) tp \( \ket*{\psi_{12}}^{(4)}  \to \ket*{\psi_{12}^{(5)}}\)
+			\item Measurement in the \( Z \) basis, by applying projection operators to the final resulting state.  
+		\end{itemize}
+\end{itemize}
+\subsubsection{Other Common Gates}
+\begin{itemize}
+	\item There are many quantum gates that we'll study, here's a list of them that will be useful:
+	\item CPHASE, or controlled \( Z \) gate
+	\item Swap gate: swaps the 
+	\item S-phase: rotation by 90 degrees, \( \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}  \)
+	\item P-phase: a general phase gate \( \begin{pmatrix} 1 & 0 \\ 0 & e^{i \theta} \end{pmatrix}  \)
+	\item Toffoli gate: controlled-controlled NOT gate:
+		\begin{center}
+			\begin{quantikz}
+				& \ctrl{2} & \\
+				& \ctrl{1}& \\
+				& \targ{}& 
+			\end{quantikz}
+		\end{center}
+	\item T-gate: \( \begin{pmatrix} 1 & 0\\ 9 & e^{i \pi / 4j} \end{pmatrix}  \)
+\end{itemize}
+\subsubsection{Universal Gate Sets}
+\begin{itemize}
+	\item A set \( G \) of quantum gates is considered universal if for \( \epsilon > 0 \) and for any unitary matrix 
+		\( U \) on \( n \) qubits, there is a sequence of gates from \( G \) such that 
+		\[
+			\|U - U_{g_{\ell}} \cdots U_{g_2}U_{g_1}\| < \epsilon
+		\]
+		In this definition, we define \( U_g = V \otimes I \), where \( V \) is an operator acting on \( k \) qubits, 
+		and \( I \) acts on the remaining  \( n - k \) qubits. The double bar represnets an operator norm, defined as:
+		\[
+		\|U - U'\|= \max_{\text{\( \ket*{v} \) unit vectors}} \|(U - U') \ket*{v}\|
+		\] 
+		where \( \|w\| = \sqrt{\braket*{w}{w}} \).
+	\item Examples of universal gate sets:
+		\begin{itemize}
+			\item Barenco et al. (1995): CNOT and all single qubit (continuous) gates. 
+			\item CNOT, H, S, T gates
+			\item Rotation operators \( R_x(\theta), R_y(\theta), R_z(\theta) \), the phase operator \( P_\phi \) and 
+				CNOT.
+		\end{itemize}
+\end{itemize}
+\subsection{Entanglement}
+\begin{itemize}
+	\item Consider 2 qubits:
+		\begin{center}
+			\begin{quantikz}
+				\lstick{\( \ket*{0} \) } & \gate{H} & \ctrl{1} & \rstick[2]{\( \ket*{\psi} = ?\)}\\
+				\lstick{\( \ket*{0} \)} & & \targ{} & 
+			\end{quantikz}
+		\end{center}
+		Well, we first start with the state \( \ket*{00} \), and after passing the first bit through a Hadamard gate, 
+		we get the state
+		\[
+			\frac{\ket*{00} + \ket*{10}}{\sqrt{2} }
+		\] 
+		Then, running it through the CNOT, then we have:
+		\[
+		\frac{\ket*{00} + \ket*{11}}{\sqrt{2} } = \Phi^{+}
+		\] 
+		This is one of four states called the "Bell states", because there is no way to express this state as a product 
+		state of two individual qubits. 
+\end{itemize}

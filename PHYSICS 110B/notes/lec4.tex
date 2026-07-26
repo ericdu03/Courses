@@ -1,0 +1,77 @@
+\section{January 29}
+Last time, we partially derived the continuity equation, leaving the index jumble on the right side unsolved.
+We will continue now by simplifying the right hand side. To begin, let's write out what we had in the [stuff]
+term from last time:
+\[
+	[\text{stuff}] = \epsilon_0 \partial_m (E^{m}E^{i}) - {\color{cyan!80!black}{\epsilon_0 E^{m}(\partial_m
+	E^{i})}} -
+	{\color{green!70!black}{\frac{1}{\mu_0}\partial^{i}(B^{k}B_k) + \frac{1}{\mu_0}\partial^{k}(B^{i}B_k)}} 
+	+ {\color{red!95!black}{\frac{1}{\mu_0} B^{k}(\partial^{i} B_k) - \epsilon_0 E_n(\partial^{i} E^{n})}} 
+	+ {\color{cyan!80!black}{\epsilon_0 E_m (\partial^{m}E^{i})}}
+\]
+I've color-coded the terms here for clarity. First, we note the following: when two indices are being
+contracted, as is the case with \( \epsilon_0 E_m(\partial^{m} E^{i}) \), switching the upper and lower
+indices on the \( m \) in the \( E \) and \( \partial \) terms doesn't change the value of the summation, so
+this is equivalent to \( \epsilon_0 E^{m}(\partial^{m}E^{i}) \)\footnote{In reality, the two quantities are
+	related by a so-called "metric", \( \delta_{ij} \), that allows transfer between upper and lower indices.
+	In Cartesian coordinates, the metric allows for the cancellation of the two blue terms, but in relativity
+with the Minkowski metric for example, this is not the case.} . In other words, because the \( m \) is being
+contracted here, the two terms colored blue are equal and cancel each other. 
+
+Next, let's again go back to our goal with this equation. Ultimately, we want to get rid of the non-total
+derivative terms in this expression, since we want some continuity equation. The terms in green are already
+total derivative terms, so we are happy with those. The problematic terms are the ones in red, so we will
+deal with those. 
+
+Starting with \( \epsilon_0 E_n (\partial^{i}E^{n}) \), we use product rule:
+\[
+	\partial^{i}(E_n E^{n}) = (\partial^{i}E_n)E^{n} + E_n(\partial^{i} E^{n}) = (\partial^{i} E_n)E^{n} +
+	(\partial^{i}E_n) E^{n} = 2(\partial^{i}E_n)E^{n}
+\]
+Note that we can do this because when an index is summed over, we can switch the upper and lower indices
+freely. So now, overall the expression becomes:
+\begin{align*}
+	[\text{stuff}] &= \epsilon_0 \partial_m(E^{m}E^{i}) - \frac{1}{\mu_0}\partial^{i}(B_k B^{k}) +
+	\frac{1}{\mu_0}\partial^{i}(B^{i}B_k) + \frac{1}{2\mu_0}\partial^{i}(B^{k}B_k) -
+	\frac{\epsilon_0}{2}\partial^{i}(E^{n}E_n)\\
+	&= \epsilon_0 \left[ \partial_m (E^{m}E^{i}) - \frac{1}{2}\partial^{i}(E^{n}E_n) \right] + \frac{1}{\mu_0}
+	\left[ \partial_m (B^{m}B^{i}) - \frac{1}{2}\partial^{i}(B^{k}B_k) \right]
+\end{align*}
+We will now perform one final trick: notice we have some \( \partial_m \) and \( \partial_i \) terms, but
+ideally we want these two terms to be the same. So, in order to enforce this, we change the \( \partial_i \)
+terms to \( \partial_m \), but insert a \( \delta^{im} \) term to compensate. Doing so, our equation becomes:
+\[
+	\epsilon_0 \left[ \partial_m (E^{m}E^{i}) - \frac{1}{2}\partial_m(\delta^{mi} E^{n}E_n) \right] +
+	\frac{1}{\mu_0}\left[ \partial_m(B^{m}B^{i}) - \frac{1}{2}\partial_m(\delta^{mi} B^{k}B_k) \right]
+\]
+Now all the terms are a total derivative, so we are happy. Finally, we bring back the integral in front:
+\[
+	\int_{\mathcal{V}}\diff \tau \left[ \underbrace{\epsilon_0 \left(E^{m}E^{i} -
+		\frac{1}{2}\delta^{mi}E^{n}E_n\right) + \frac{1}{\mu_0}\left(B^{m}B^{i} -
+	\frac{1}{2}\delta^{mi}B^{n}B_n\right)}_{\sigma^{mi}} \right] = \int_{\mathcal{V}} \partial_m \sigma^{mi} 
+	\diff \tau 
+\]
+We will now call the term in the square brackets \( \sigma^{mi} \), which is also known as the
+\textbf{Maxwell Stress Tensor}. Using divergence theorem, we can transform this into a surface integral:
+\[
+	\int_{\mathcal{V}}\partial_m \sigma^{mi} \diff \tau = 
+	\oint_{\partial \mathcal{V}} n_m \sigma^{mi} \diff a 
+\]
+\( n_m \) represents the normal vector coming out of the surface of \( \mathcal{V} \). Finally, we can
+write the full equation:
+\begin{equation}
+	\dv{\mathbf{p}_\text{particle}^{i}}{t} + \dv{t} \int_\mathcal{V} \frac{S^{i}}{c^2} \diff \tau =
+	\oint_{\partial \mathcal{V}} n_m \sigma^{mi} \diff a 
+	\label{cont-momentum}
+\end{equation}
+How do we interpret this equation? The first term is the change in momentum of the particles, the second term
+represents the momentum in the EM field, and the term on the right side can be thought of as a "generalized
+force" acting on the boundary of \( \mathcal{V} \). 
+
+\subsection{Stress Tensors}
+Now would be a good time to talk a bit about how the Maxwell stress tensor behaves. Like the standard stress
+tensor for materials, \( \sigma^{mi} \) represents the force in the \( i \)-th direction, on a surface whose
+normal vector points in the \( m \)-th direction. That is, \( \sigma^{ii} \) represents pressure terms, while
+\( \sigma^{ij} \) represents shear terms. That's all for now, we will talk more about this equation and
+conservation of momentum next lecture.    
+

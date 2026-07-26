@@ -1,0 +1,510 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{bertoneHistoryDarkMatter2018}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=45173e651a575c22d3d5aeb1decbed73}{%
+           family={Bertone},
+           familyi={B\bibinitperiod},
+           given={Gianfranco},
+           giveni={G\bibinitperiod}}}%
+        {{hash=32d7396024041de7456d6ae92ee17fad}{%
+           family={Hooper},
+           familyi={H\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{6a70ae36dbc50992d40c1322c440db1f}
+      \strng{fullhash}{6a70ae36dbc50992d40c1322c440db1f}
+      \strng{fullhashraw}{6a70ae36dbc50992d40c1322c440db1f}
+      \strng{bibnamehash}{6a70ae36dbc50992d40c1322c440db1f}
+      \strng{authorbibnamehash}{6a70ae36dbc50992d40c1322c440db1f}
+      \strng{authornamehash}{6a70ae36dbc50992d40c1322c440db1f}
+      \strng{authorfullhash}{6a70ae36dbc50992d40c1322c440db1f}
+      \strng{authorfullhashraw}{6a70ae36dbc50992d40c1322c440db1f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Although dark matter is a central element of modern cosmology, the history of how it became accepted as part of the dominant paradigm is often ignored or condensed into a brief anecdotical account focused around the work of a few pioneering scientists. The aim of this review is to provide the reader with a broader historical perspective on the observational discoveries and the theoretical arguments that led the scientific community to adopt dark matter as an essential part of the standard cosmological model.}
+      \field{day}{15}
+      \field{eprintclass}{astro-ph}
+      \field{eprinttype}{arXiv}
+      \field{issn}{0034-6861, 1539-0756}
+      \field{journaltitle}{Rev. Mod. Phys.}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{number}{4}
+      \field{title}{A {{History}} of {{Dark Matter}}}
+      \field{urlday}{22}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{volume}{90}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{045002}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1103/RevModPhys.90.045002
+      \endverb
+      \verb{eprint}
+      \verb 1605.04909
+      \endverb
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/3BJBAKB6/Bertone and Hooper - 2018 - A History of Dark Matter.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1605.04909
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1605.04909
+      \endverb
+      \keyw{Astrophysics - Astrophysics of Galaxies,Astrophysics - Cosmology and Nongalactic Astrophysics,Astrophysics - High Energy Astrophysical Phenomena,High Energy Physics - Phenomenology}
+    \endentry
+    \entry{andernachEnglishSpanishTranslation2017}{online}{}{}
+      \name{author}{2}{}{%
+        {{hash=0332954d5046f6ee3df9894739d879a2}{%
+           family={Andernach},
+           familyi={A\bibinitperiod},
+           given={Heinz},
+           giveni={H\bibinitperiod}}}%
+        {{hash=fd3370265eb574a6531e4a6cffeb8031}{%
+           family={Zwicky},
+           familyi={Z\bibinitperiod},
+           given={Fritz},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{0f916c83f09873b0274748fac232ba66}
+      \strng{fullhash}{0f916c83f09873b0274748fac232ba66}
+      \strng{fullhashraw}{0f916c83f09873b0274748fac232ba66}
+      \strng{bibnamehash}{0f916c83f09873b0274748fac232ba66}
+      \strng{authorbibnamehash}{0f916c83f09873b0274748fac232ba66}
+      \strng{authornamehash}{0f916c83f09873b0274748fac232ba66}
+      \strng{authorfullhash}{0f916c83f09873b0274748fac232ba66}
+      \strng{authorfullhashraw}{0f916c83f09873b0274748fac232ba66}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{English and Spanish translations are provided for Fritz Zwicky's seminal article on "The Redshift of Extragalactic Nebulae", published in German in Helvetica Physica Acta in 1933 . This paper is usually cited as the first evidence for dark matter ("dunkle Materie", not "missing matter"). Zwicky's conclusion is based on the velocity dispersion of only seven galaxies in the Coma cluster of galaxies. Now, 84 years later, with 1000+ radial velocities measured for Coma cluster members, Coma's velocity dispersion is very close to that found by Zwicky. The translation is as literal as possible, and annotations on the translation of certain terms are given. Doubts on the meaning of the original phrasing are given in square brackets at a few places where they occur. The pdf version of my English translation was kindly prepared by Cren Frayer at the NASA/IPAC Extragalactic Database (NED), also available at NED's Level5 repository since June 2017 (). A Spanish translation, without figures, prepared by myself with the help of Martha Margarita López Gutiérrrez is appended within the same pdf file. As translator I take responsibilty for the quality of the translation.}
+      \field{pubstate}{prepublished}
+      \field{title}{English and {{Spanish Translation}} of {{Zwicky}}'s (1933) {{The Redshift}} of {{Extragalactic Nebulae}}}
+      \field{urlday}{29}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{version}{1}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/ARXIV.1711.01693
+      \endverb
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/646EN6BT/1711.01693v1.pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1711.01693
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1711.01693
+      \endverb
+      \keyw{Astrophysics of Galaxies (astro-ph.GA),FOS: Physical sciences,Instrumentation and Methods for Astrophysics (astro-ph.IM)}
+    \endentry
+    \entry{milgromMONDRotationCurves2007}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=8b469ca59890d77be30d86667009ded6}{%
+           family={Milgrom},
+           familyi={M\bibinitperiod},
+           given={Mordehai},
+           giveni={M\bibinitperiod}}}%
+        {{hash=0dd4653a8dbba8eda7250b7e59c52d06}{%
+           family={Sanders},
+           familyi={S\bibinitperiod},
+           given={Robert\bibnamedelima H.},
+           giveni={R\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{33d60e82cf94264383bebf2ba73c8595}
+      \strng{fullhash}{33d60e82cf94264383bebf2ba73c8595}
+      \strng{fullhashraw}{33d60e82cf94264383bebf2ba73c8595}
+      \strng{bibnamehash}{33d60e82cf94264383bebf2ba73c8595}
+      \strng{authorbibnamehash}{33d60e82cf94264383bebf2ba73c8595}
+      \strng{authornamehash}{33d60e82cf94264383bebf2ba73c8595}
+      \strng{authorfullhash}{33d60e82cf94264383bebf2ba73c8595}
+      \strng{authorfullhashraw}{33d60e82cf94264383bebf2ba73c8595}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We present MOND analysis for several of the lowest mass disc galaxies currently amenable to such analysis–with (baryonic) masses below 4 · 108M⊙. The agreement is good, extending the validity of MOND and its predicted mass velocity relation, to such low masses.}
+      \field{day}{20}
+      \field{eprinttype}{arXiv}
+      \field{issn}{0004-637X, 1538-4357}
+      \field{journaltitle}{ApJ}
+      \field{langid}{english}
+      \field{month}{3}
+      \field{number}{1}
+      \field{title}{{{MOND}} Rotation Curves of Very Low Mass Spiral Galaxies}
+      \field{urlday}{26}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{volume}{658}
+      \field{year}{2007}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{L17\bibrangedash L20}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1086/513695
+      \endverb
+      \verb{eprint}
+      \verb astro-ph/0611494
+      \endverb
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/SXJX53C5/Milgrom and Sanders - 2007 - MOND rotation curves of very low mass spiral galax.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/astro-ph/0611494
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/astro-ph/0611494
+      \endverb
+      \keyw{Astrophysics}
+    \endentry
+    \entry{schumannDirectDetectionWIMP2019}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=27699f2f573c2b5bb72a6b54b6327a20}{%
+           family={Schumann},
+           familyi={S\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{27699f2f573c2b5bb72a6b54b6327a20}
+      \strng{fullhash}{27699f2f573c2b5bb72a6b54b6327a20}
+      \strng{fullhashraw}{27699f2f573c2b5bb72a6b54b6327a20}
+      \strng{bibnamehash}{27699f2f573c2b5bb72a6b54b6327a20}
+      \strng{authorbibnamehash}{27699f2f573c2b5bb72a6b54b6327a20}
+      \strng{authornamehash}{27699f2f573c2b5bb72a6b54b6327a20}
+      \strng{authorfullhash}{27699f2f573c2b5bb72a6b54b6327a20}
+      \strng{authorfullhashraw}{27699f2f573c2b5bb72a6b54b6327a20}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{The existence of dark matter as evidenced by numerous indirect observations is one of the most important indications that there must be physics beyond the Standard Model of particle physics. This article reviews the concepts of direct detection of dark matter in the form of Weakly Interacting Massive Particles (WIMPs) in ultra-sensitive detectors located in underground laboratories, discusses the expected signatures, detector concepts, and how the stringent low-background requirements are achieved. Finally, it summarizes the current status of the field and provides an outlook on the years to come.}
+      \field{day}{1}
+      \field{eprintclass}{astro-ph}
+      \field{eprinttype}{arXiv}
+      \field{issn}{0954-3899, 1361-6471}
+      \field{journaltitle}{J. Phys. G: Nucl. Part. Phys.}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{number}{10}
+      \field{shorttitle}{Direct {{Detection}} of {{WIMP Dark Matter}}}
+      \field{title}{Direct {{Detection}} of {{WIMP Dark Matter}}: {{Concepts}} and {{Status}}}
+      \field{urlday}{27}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{volume}{46}
+      \field{year}{2019}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{103003}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1088/1361-6471/ab2ea5
+      \endverb
+      \verb{eprint}
+      \verb 1903.03026
+      \endverb
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/JLMA4YLF/Schumann - 2019 - Direct Detection of WIMP Dark Matter Concepts and.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1903.03026
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1903.03026
+      \endverb
+      \keyw{Astrophysics - Cosmology and Nongalactic Astrophysics,Astrophysics - Instrumentation and Methods for Astrophysics,High Energy Physics - Phenomenology,Physics - Instrumentation and Detectors}
+    \endentry
+    \entry{luciaTransitionEdgeSensors2024}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=3769ae45fa99b9b888d122760f41c443}{%
+           family={Lucia},
+           familyi={L\bibinitperiod},
+           given={Mario\bibnamedelima De},
+           giveni={M\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=1aedabae000a4ce1f35185fe4131fccd}{%
+           family={Bo},
+           familyi={B\bibinitperiod},
+           given={Paolo\bibnamedelima Dal},
+           giveni={P\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=931ee982fb62062fe0c965e038511458}{%
+           family={Giorgi},
+           familyi={G\bibinitperiod},
+           given={Eugenia\bibnamedelima Di},
+           giveni={E\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=c99f4e9734d119b72edad15d6a94cfc9}{%
+           family={Lari},
+           familyi={L\bibinitperiod},
+           given={Tommaso},
+           giveni={T\bibinitperiod}}}%
+        {{hash=599ee74f4a4a0b7d6234246b214b1b5c}{%
+           family={Puglia},
+           familyi={P\bibinitperiod},
+           given={Claudio},
+           giveni={C\bibinitperiod}}}%
+        {{hash=661f3f861186a0f8cd6170e052d9ff2f}{%
+           family={Paolucci},
+           familyi={P\bibinitperiod},
+           given={Federico},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{81613fb5f4093845688223048dbf9084}
+      \strng{fullhash}{aa1d4f6eb3b85b286e1c05bf118685ed}
+      \strng{fullhashraw}{aa1d4f6eb3b85b286e1c05bf118685ed}
+      \strng{bibnamehash}{81613fb5f4093845688223048dbf9084}
+      \strng{authorbibnamehash}{81613fb5f4093845688223048dbf9084}
+      \strng{authornamehash}{81613fb5f4093845688223048dbf9084}
+      \strng{authorfullhash}{aa1d4f6eb3b85b286e1c05bf118685ed}
+      \strng{authorfullhashraw}{aa1d4f6eb3b85b286e1c05bf118685ed}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Transition Edge Sensors (TESs) are amongst the most sensitive cryogenic detectors and can be easily optimized for the detection of massive particles or photons ranging from X-rays all the way down to millimetre radiation. Furthermore, TESs exhibit unmatched energy resolution while being easily frequency domain multiplexed in arrays of several hundred pixels. Such great performance, along with rather simple and sturdy readout and amplification chains make TESs extremely compelling for applications in many fields of scientific endeavour. While the first part of this article is an in-depth discussion on the working principles of Transition Edge Sensors, the remainder of this review article focuses on the applications of Transition Edge Sensors in advanced scientific instrumentation serving as an accessible and thorough list of possible starting points for more comprehensive literature research.}
+      \field{day}{31}
+      \field{eprintclass}{physics}
+      \field{eprinttype}{arXiv}
+      \field{issn}{2410-390X}
+      \field{journaltitle}{Instruments}
+      \field{langid}{english}
+      \field{month}{10}
+      \field{number}{4}
+      \field{shorttitle}{Transition {{Edge Sensors}}}
+      \field{title}{Transition {{Edge Sensors}}: {{Physics}} and {{Applications}}}
+      \field{urlday}{29}
+      \field{urlmonth}{4}
+      \field{urlyear}{2025}
+      \field{volume}{8}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{47}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/instruments8040047
+      \endverb
+      \verb{eprint}
+      \verb 2411.01968
+      \endverb
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/76AT4PCR/Lucia et al. - 2024 - Transition Edge Sensors Physics and Applications.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2411.01968
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2411.01968
+      \endverb
+      \keyw{Physics - Instrumentation and Detectors}
+    \endentry
+    \entry{changSuperCDMSHVeVRun}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=6df316504c7463b3294c86b5dc7d005a}{%
+           family={Chang},
+           familyi={C\bibinitperiod},
+           given={Yen-Yung},
+           giveni={Y\bibinithyphendelim Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{6df316504c7463b3294c86b5dc7d005a}
+      \strng{fullhash}{6df316504c7463b3294c86b5dc7d005a}
+      \strng{fullhashraw}{6df316504c7463b3294c86b5dc7d005a}
+      \strng{bibnamehash}{6df316504c7463b3294c86b5dc7d005a}
+      \strng{authorbibnamehash}{6df316504c7463b3294c86b5dc7d005a}
+      \strng{authornamehash}{6df316504c7463b3294c86b5dc7d005a}
+      \strng{authorfullhash}{6df316504c7463b3294c86b5dc7d005a}
+      \strng{authorfullhashraw}{6df316504c7463b3294c86b5dc7d005a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{There is ample evidence of dark matter (DM), a phenomenon responsible for ≈85\% of the matter content of the Universe that cannot be explained by the Standard Model (SM). One of the most compelling hypotheses is that DM consists of beyond-SM particle(s) that are nonluminous and nonbaryonic. So far, numerous efforts have been made to search for particle DM, and yet none has yielded an unambiguous observation of DM particles.}
+      \field{langid}{english}
+      \field{title}{{{SuperCDMS HVeV Run}} 2 {{Low-mass Dark Matter Search}}, {{Highly Multiplexed Phonon-mediated Particle Detector}} with {{Kinetic Inductance Detector}}, and the {{Blackbody Radiation}} in {{Cryogenic Experiments}}}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/3MCN3KXA/Chang - SuperCDMS HVeV Run 2 Low-mass Dark Matter Search, .pdf
+      \endverb
+      \keyw{⛔ No DOI found}
+    \endentry
+    \entry{doyleLumpedElementKinetic2008}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=1d6ebaf3555e95d7a29d3d40264815b3}{%
+           family={Doyle},
+           familyi={D\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=91931ec0cea307d3db6ed78fdf98ad0e}{%
+           family={Mauskopf},
+           familyi={M\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=c9159ed3f2630eae38af0d82989f8f14}{%
+           family={Naylon},
+           familyi={N\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=afe2a6dd8b26dbae13f90ccc93eb48f2}{%
+           family={Porch},
+           familyi={P\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=195396fe949c11e7425d4b85b906d0e4}{%
+           family={Duncombe},
+           familyi={D\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{642c00d7ba0cf89002e3961c15c706a2}
+      \strng{fullhash}{8c465f237a5b23a766f3d8e0db4c7cb0}
+      \strng{fullhashraw}{8c465f237a5b23a766f3d8e0db4c7cb0}
+      \strng{bibnamehash}{642c00d7ba0cf89002e3961c15c706a2}
+      \strng{authorbibnamehash}{642c00d7ba0cf89002e3961c15c706a2}
+      \strng{authornamehash}{642c00d7ba0cf89002e3961c15c706a2}
+      \strng{authorfullhash}{8c465f237a5b23a766f3d8e0db4c7cb0}
+      \strng{authorfullhashraw}{8c465f237a5b23a766f3d8e0db4c7cb0}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Kinetic Inductance Detectors (KIDs) provide a promising solution to the problem of producing large format arrays of ultra sensitive detectors for astronomy. Traditionally KIDs have been constructed from superconducting quarter-wavelength or half-wavelength resonator elements capacitivly coupled to a co-planar feed line. Photons are detected by measuring the change in quasi-particle density caused by the splitting of Cooper pairs in the superconducting resonant element. This change in quasi-particle density alters the kinetic inductance, and hence the resonant frequency of the resonant element. This arrangement requires the quasi-particles generated by photon absorption to be concentrated at positions of high current density in the resonator. This is usually achieved through antenna coupling or quasi-particle trapping. For these detectors to work at wavelengths shorter than around 500 μm where antenna coupling can introduce a significant loss of efficiency, then a direct absorption method needs to be considered. One solution to this problem is the Lumped Element KID (LEKID), which shows no current variation along its length and can be arranged into a photon absorbing area coupled to free space and therefore requiring no antennas or quasi-particle trapping. This paper outlines the relevant microwave theory of a LEKID, along with theoretical performance for these devices.}
+      \field{issn}{0022-2291, 1573-7357}
+      \field{journaltitle}{J Low Temp Phys}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{1-2}
+      \field{title}{Lumped {{Element Kinetic Inductance Detectors}}}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{151}
+      \field{year}{2008}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{530\bibrangedash 536}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1007/s10909-007-9685-2
+      \endverb
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/B8IHF7ZM/Doyle et al. - 2008 - Lumped Element Kinetic Inductance Detectors.pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/s10909-007-9685-2
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/s10909-007-9685-2
+      \endverb
+    \endentry
+    \entry{hosaengkimWireBondFreeTechnique2009}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=9ef5e871b08a5e475e8398e66e764083}{%
+           family={{Hosaeng Kim}},
+           familyi={H\bibinitperiod}}}%
+        {{hash=45088e9b5ededb6470b0e5c6875faa85}{%
+           family={Franklin-Drayton},
+           familyi={F\bibinithyphendelim D\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{e8f6aa112b913a4789b300bd734f748c}
+      \strng{fullhash}{e8f6aa112b913a4789b300bd734f748c}
+      \strng{fullhashraw}{e8f6aa112b913a4789b300bd734f748c}
+      \strng{bibnamehash}{e8f6aa112b913a4789b300bd734f748c}
+      \strng{authorbibnamehash}{e8f6aa112b913a4789b300bd734f748c}
+      \strng{authornamehash}{e8f6aa112b913a4789b300bd734f748c}
+      \strng{authorfullhash}{e8f6aa112b913a4789b300bd734f748c}
+      \strng{authorfullhashraw}{e8f6aa112b913a4789b300bd734f748c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{This paper presents a new wire-bond free technique for suppressing slot-line mode excitation in coplanar waveguides (CPWs) bends. The suppression of slot-line mode is obtained by applying a slow wave structure to the shorter slot of the right-angle bend. The structure is modified into a circular-shaped bend where the slow wave compensation is then used to equalize the electrical length of the inner and outer slots. The insertion loss of the modified CPW bend with slow wave structure is evaluated on a silicon substrate and is similar to straight CPW lines with return loss ( 11) values below 20 dB over a 50-GHz bandwidth.}
+      \field{issn}{0018-9480, 1557-9670}
+      \field{journaltitle}{IEEE Trans. Microwave Theory Techn.}
+      \field{langid}{english}
+      \field{month}{2}
+      \field{number}{2}
+      \field{title}{Wire-{{Bond Free Technique}} for {{Right-Angle Coplanar Waveguide Bend Structures}}}
+      \field{urlday}{15}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{57}
+      \field{year}{2009}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{442\bibrangedash 448}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/TMTT.2008.2011207
+      \endverb
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/5NYKT36G/Hosaeng Kim and Franklin-Drayton - 2009 - Wire-Bond Free Technique for Right-Angle Coplanar .pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://ieeexplore.ieee.org/document/4752856/
+      \endverb
+      \verb{url}
+      \verb http://ieeexplore.ieee.org/document/4752856/
+      \endverb
+    \endentry
+    \entry{gaoPhysicsSuperconductingMicrowave}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=f6a53c9969577587f5acdc92df740bf4}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Jiansong},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{f6a53c9969577587f5acdc92df740bf4}
+      \strng{fullhash}{f6a53c9969577587f5acdc92df740bf4}
+      \strng{fullhashraw}{f6a53c9969577587f5acdc92df740bf4}
+      \strng{bibnamehash}{f6a53c9969577587f5acdc92df740bf4}
+      \strng{authorbibnamehash}{f6a53c9969577587f5acdc92df740bf4}
+      \strng{authornamehash}{f6a53c9969577587f5acdc92df740bf4}
+      \strng{authorfullhash}{f6a53c9969577587f5acdc92df740bf4}
+      \strng{authorfullhashraw}{f6a53c9969577587f5acdc92df740bf4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{The {{Physics}} of {{Superconducting Microwave Resonators}}}
+      \verb{file}
+      \verb /Users/eric/Zotero/storage/EQ3GUXCI/Gao - The Physics of Superconducting Microwave Resonator.pdf
+      \endverb
+      \keyw{⛔ No DOI found}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

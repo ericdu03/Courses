@@ -1,0 +1,108 @@
+The third lecture of Physics 137A was held on  \textbf{Monday, August 29}. It discussed the wave description of matter and made a brief introduction to operators.
+
+      \section{Last Time: Everything is a Wave (in Quantum Mechanics)}
+          Last lecture we found that everything is a wave in Quantum Mechanics. This is true, but depending on the unit scales that we're talking about, the true wave descriptions of matter may not show. For instance: \
+
+          \begin{itemize}
+              \item Electrons: $\lambda_{dB} = e^{-1} \text{nm}$, atom size: 1 \AA. These sizes are comparable.
+              \item Humans: $\lambda_{dB} = 10^{-36} \text{nm}$, size: ~1m. These sizes are nowhere near comparable
+          \end{itemize}
+
+          Since the size of everyday objects are so much larger than that of the deBroglie wavelength, this is why we don't see any quantum effects with the naked eye.
+
+          Now back to the quantum realm. Because we've said already that everything is a wave, waves can also interfere with each other. Consider a wave source some distance away from a double slit. If we move the slit apparatus sufficiently far away from the source, the oncoming waves appear to be plane waves instead of circular (or spherical) wave patterns. This is what we mean by plane waves - the fact that the source is infinitely far away from us. To describe this wave, we can measure its electric field, which can be done in the following way:
+
+          \[ \vec E = \vec{E}_0e^{i(k \cdot r - \omega t + \varphi)}\]
+
+          The way we should interpret this expression is as follows: $\vec{E_0}$ is a description of the maximum allowable electric field intensity at any point in time, and $e^{i(k \cdot r - \omega t + \varphi)}$ represents a phase, or in other words, how much of the maximum intensity we are seeing at any point in time. The term $k \cdot r$ represents the spatial component (oscillations per unit space), and $\omega t$ represents the temporal component (oscillations in time). The $\varphi$ represents some overall offset phase, which is determined usually by the system.
+
+          \begin{insight*}{}{}
+              Note that we use a complex exponential here because $|e^{ikx}|^2 = 1$, which is particularly useful when we want it to represent as a percentage of the maximum allowable amplitude.\\\\
+              This convention, we believe, is the fundamental reason why complex numbers exist in quantum mechanics! Any appearance of complex numbers we see later on comes from this convention.
+          \end{insight*}
+
+          Back to the double slit experiment. Since there are two slits, there are two sources, call them $\vec{E_1}$ and $\vec{E_2}$. Therefore, $E_{tot} = \vec{E_1} + \vec{E_2} = \vec{E}_{01}e^{i\delta_1} + \vec{E}_{02}e^{i\delta_2}$. Here, the $\delta_i$ represents the spatial and temporal frequencies. Since the intensity scales with $|E|^2 = E \cdot E^\star$ where $E^\star$ represents the complex conjugate, this gives:
+
+          \begin{align*}
+              |E|^2 &= E_{01}^2 + E_{02}^2 + \vec{E}_{01}\vec{E}_{02}\left(e^{i(\delta_2 - \delta_1)} + e^{-i(\delta_2 - \delta_1)}\right)\\
+              &= E_{01}^2 + E_{02}^2 + 2\vec{E}_{01}\cdot \vec{E}_{02}\cos(\delta_2 - \delta_1)
+          \end{align*}
+
+          Notice the order of operations here: we summed the two electric field components \textbf{before} squaring them. This is important, since had we squared them first, then we would have simply gotten $\vec E_{01}^2 + \vec E_{02}^2$, which does not exhibit any interference pattern.
+
+      \section{Wave Description of Matter}
+          So, as we see from the double slit experiment and from our previous discussions on quantum mechanics, particles in the classical sense don't really exist, and everything can be modeled as a wave. So, how do we do this? With the help of a newly-defined \textbf{wave function:}
+          \begin{definition}{Wave Function}{}
+              Typically denoted $\Psi$: a complex function of position and time.
+          \end{definition}
+          More specifically, $\Psi$ is an amplitude. However, it's not physical (in other words, we can't directly measure it). Despite this, similar to position and momentum in classical mechanics, this wave function contains all of the physical information needed to describe the system.
+
+          \subsection{Probability Density}
+              For a while, we had no idea what to do with $\Psi$ and how to make it describe life precisely because it offered no physical significance on its own. However, in 1926, Max Born found that, by taking the square of the modulus of this function, we are able to actually glean something physical from the wave function. This gives us another important concept, notably \textit{probability density}:
+              \begin{definition}{Probability Density}{}
+              $P(\vec{r},t) = |\Psi(\vec{r},t)|^2$: The probability per unit volume of finding a \say{particle} at $\vec{r},t$.
+              \end{definition}
+              As we can see, squaring the modulus gives us a real, physical interpretation and something we can actually work with. Furthermore, to normalize, we multiply by our volume, so the probability within a cube $d\vec{r}$ becomes:
+              $$P(\vec{r},t)d\vec{r} = |\Psi(\vec{r},t)|^2d\vec{r}$$
+              For generality, we write $d\vec{r}$ to refer to a volume irrespective of any coordinate system.
+
+      \section{Wave Superposition}
+          Now, a key insight in quantum mechanics (and one that carries over from classical mechanics) is that of superposition:
+          \begin{theorem}{Superposition}{superposition}
+              If $\Psi_1$ and $\Psi_2$ are two allowed waves/states (solutions to some wave equation), then $$\Psi = c_1\Psi_1 + c_2\Psi_2$$ is also allowed, where $c_1,c_2 \in \mathbb{C}$.
+          \end{theorem}
+          We allow the constants to be complex to not eliminate the interference we saw earlier with our double slit experiment.
+
+      \section{Introducing Operators}
+          Now, if we recall classical mechanics, knowing the position and momentum gives us everything we could ever want to know about the system [INSERT TIKZ HERE]. Now, what happens if we try to throw a plane wave into our model? [INSERT TIKZ] We immediately run into a problem: the wave is everywhere. This means that position and velocity are essentially meaningless quantities to us here. So, how do we reconcile this?
+
+          \subsection{de Broglie Relations}
+              Recalling the de Broglie relations that we learned in high school:
+              \begin{theorem}{de Broglie Relations}{de broglie relations}
+                  For a quantum-mechanical system:
+                  \begin{align*}
+                      E &= hf = \hbar \omega &&\hbar = \frac{h}{2\pi}\\
+                      p &= \frac{h}{\lambda} = \hbar k && k = \frac{2\pi}{\lambda}
+                  \end{align*}
+              \end{theorem}
+              This allows us to better understand our system, but we still need to take it one step further.
+
+          \subsection{Enter the Operator}
+              Consider first a 1D particle: [INSERT TIKZ]
+              In this case, we write out our wave function and we get:
+              $$\Psi = Ae^{i(kw - \omega(k)t)}$$
+              All of our vectors turn into scalars. Rewriting this, we get:
+              $$\Psi = Ae^{\frac{i(p_xx - E(p_x)t}{\hbar}}$$
+              This is great and all, but we want information about the momentum and the energy, and they're stuck in the exponent. How do we get them? Easy: \underline{take the derivative (with respect to either)}:
+              \begin{align*}
+                  -i\hbar\frac{\partial}{\partial x}\Psi &= p_x\Psi\\
+                  i\hbar\frac{\partial}{\partial t}\Psi &= E\Psi
+              \end{align*}
+              If we look at these equations, they look suspiciously like equations with eigenvalues and eigenvectors, so if we consider just the eigenvectors, we get our \fbox{momentum and energy operators}:
+              \begin{definition}{Momentum and Energy Operators}
+                  We define these operators as such:
+                  \begin{align*}
+                      \text{Momentum}&: -i\hbar\frac{\partial}{\partial x}\\
+                      \text{Energy}&: i\hbar\frac{\partial}{\partial t}
+                  \end{align*}
+              \end{definition}
+              Now, we have another crucial tool that we will use a lot.
+          \subsection{Operators in 3 Dimensions}
+              We can obviously then extend this to three dimensions, where we see that the operators become \underline{gradients}:
+                \begin{align*}
+                    i\hbar\frac{\partial}{\partial t}\Psi &= E\Psi\\
+                    -i\hbar\vec{\nabla}\Psi &= \vec{p}\Psi &&\vec{\nabla} = \begin{pmatrix}\frac{\partial}{\partial x}\\\frac{\partial}{\partial y}\\\frac{\partial}{\partial z}\end{pmatrix}
+                \end{align*}
+                It's important here to now remember that we have vectors rather than scalars.
+        \section{Probability Density and Normalization}
+            We have all of these cool values, but we need to remember that these need to be normalized for us to deal with them, so we have the following important insight:
+            \begin{insight*}{}{}
+              $\fbox{$\int_{\text{all space}}|\Psi(\vec{r},t)|^2dr = 1$}$: The probability that the \say{particle} is somewhere in space is $1$.
+            \end{insight*}
+            We will use this insight a lot.
+
+            \subsection{Plane Waves are Problematic}
+                Here, though, we already run into an issue: if we throw our plane wave into this equation, we see that the integral goes to $\infty$, since the wave exists everywhere in space and time. So, plane waves are far too simplistic a description of life.
+            \subsection{Wave Packets and Fourier Transforms}
+                Since we can't use plane waves, we need a type of wave that is localized rather than everywhere-permeating, where we get the \textit{wave packet}: [INSERT TIKZ]
+                Clearly, it's much more difficult to deal with, but we will learn how to work with them. How do we get wave packets? We get them by \underline{adding together many plane waves} (of different amplitudes and frequencies), with a method that is more commonly referred to as a \fbox{Fourier Transform}. We will learn about how to do this in the next lecture.

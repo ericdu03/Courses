@@ -1,0 +1,309 @@
+\documentclass{article}
+\title{Physics 5B Homework}
+\author{Eric Du}
+\date{\today}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\usepackage{float}
+\lhead{Eric Du}
+\chead{Physics 5B Homework}
+\rhead{\today}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{148pt}
+\usepackage{color}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\usepackage[sexy]{evan}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\usepackage{caption}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+\begin{document}
+    \maketitle
+    
+    \begin{abstract}
+        \noindent \textbf{[NOTE:]} I primarily worked with \textbf{Andrew Binder}, and \textbf{Aren Martinian} to complete this assignment.
+    \end{abstract}
+
+
+    \section{Problem 1}
+    For this problem, we choose a cylindrical coordinate system with the $z$ axis along the wire and $r$ axis pointing radially outward from the cylinder. Although there is a $\varphi$ component, we neglect it in this problme due to symmetry. 
+
+    \medskip
+
+
+    Here's a diagram, thanks to Andrew who provided me the TikZ code:
+
+    $$\begin{tikzpicture}
+        \draw[thick] (0,0) -- (0,4) -- (0.5,4) -- (0.5,0) -- cycle;
+        \node at (0.25,-0.5) (d) {$\vdots$};
+        \node at (0.25, 4.5) (s) {$\vdots$};
+        \draw[thick] (4,2) circle (2cm);
+        \draw[dashed] (4,2) -- (6,2) node[midway, above] {$R$};
+        \node at (0.25, 2) (p) {$\rho$};
+        \end{tikzpicture}$$
+    
+    \subsection{Part a}
+    It's important to note that due to symmetry, our electric field 
+    We take two cases: namely $r > R$ and $r < R$. Now we compute the first case of $r > R$. By Gauss' law, we can take a cylinder of arbitrary height $h$:
+
+    \[ \Phi = \oint \vec E \cdot dA = \frac{Q_{enc}}{\varepsilon_0} \] 
+
+    Computing this integral: 
+
+    \begin{align*}
+        E(r) \cdot 2 \pi r h &= \frac{\pi R^2 h \rho}{\varepsilon_0}\\
+        E(r) &= \frac{R^2\rho}{2r\varepsilon_0}
+    \end{align*}
+
+    Computing this integral gives us $E(r) = \dfrac{R^2\rho}{2r\varepsilon_0}$.
+
+    \medskip
+
+    Now we take the second case where $r < R$. For this case, the enclosed charge actually depends on the radius that we're taking our electric field at.
+
+    \begin{align*}
+        \Phi = \oint E(r) \cdot 2\pi r h &= \frac{\pi r^2 h \rho}{\varepsilon_0}\\
+        E(r) &= \frac{\rho r}{2\varepsilon_0}
+    \end{align*}
+
+    \subsection{Part b}
+
+    We simply compute the integral, taking $r > R$:
+
+    \begin{align*}
+        V(r) - V(a) &= -\int E(r) dr \\
+        &= -\int_a^r \frac{R^2\rho}{2r\varepsilon_0} dr\\
+        &= \frac{R^2\rho}{2\varepsilon_0}\ln\left|\frac{a}{r}\right|
+    \end{align*}
+
+    \subsection{Part c}
+
+    Again, just like the previous question, we take the integral $r < R$:
+    \begin{align*}
+        V(r) - V(a) &= -\int E(r) dr\\
+        &= -\int_a^r \frac{r\rho}{2\varepsilon_0}\\
+        &= \frac{\rho}{4\varepsilon_0} (a^2 - r^2)
+    \end{align*}
+
+    \subsection{Part d}
+
+    We go from outside the cylinder to inside the cylinder. We can write the total potential as: $V_{tot} = V(r_2) - V(r_1)$, where $r_2 > R$ and $-R < r_1 < R$. Thus, we can write:
+
+    \begin{align*}
+        \Delta V_{tot} &= [V(r_2) - V(R)] - [V(r_1) - V(R)] \\
+        &= -\int_R^{r_2} E(r) dr - \left[-\int_R^{r_1} E(r) dr\right]\\
+        &= \frac{R^2\rho}{2\varepsilon_0}\ln\left|\frac{R}{r_2}\right| - \left(\frac{\rho}{4\varepsilon_0}(R^2 - r^2)\right)\\
+        &= \frac{R^2\rho}{2\varepsilon_0} \ln \left|\frac{R}{r_2}\right| + \frac{\rho}{4\varepsilon_0} (r_1^2 - R^2)
+    \end{align*}
+
+    This result makes sense, since $r_2 >R$ and $r_1 < R$, then both these terms actually turn out to be negative. We expect this intuitively, since we are taking the differnece between the potential of a lower value to a higher value. It's also worth nothing that it makes sense for the voltages from $r_2 \to R$ and $R \to r_1$ to each be negative, as the potential is monotonically increasing from $r_2 \to r_1$.
+
+    \subsection{Part e}
+
+    We get the following for $r > R$, then set $V(R) = 0$:
+
+    \begin{align*}
+        V(r) - V(R) &= \frac{R^2\rho}{2\varepsilon_0} \ln \left|\frac{R}{r}\right|\\
+        \therefore v(r) &= \frac{R^2\rho}{2\varepsilon_0}\ln\left|\frac{R}{r}\right|
+    \end{align*}
+
+    And we get the following for $r < R$:
+
+    \begin{align*}
+        V(r) - V(R) &= \frac{\rho}{4\varepsilon_0}(R^2 - r^2)\\
+        \therefore V(r) &= \frac{\rho}{4\varepsilon_0}(R^2 - r^2)
+    \end{align*}
+
+
+    \section{Problem 2}
+
+    From lecture, we have $E(r) = \dfrac{\sigma}{2\varepsilon_0}$. Since the rod is rigid, the normal force cancels with the $\sin(\theta)$ term of the electric force, so the only component of the force we need to consider is the $\cos(\theta)$ component. Thus, we can compute the final velocity by integrating acceleration:
+
+     \[   v(0) - v(\theta_0) = \int_{\theta_0}^0 \frac{-\sigma}{2\varepsilon_0m}q \cos \theta R d\theta\]
+
+    Noting that $v(\theta_0) = 0$, then we get:
+
+
+    \begin{align*}
+        v(0) &= \frac{-\sigma qR}{2\varepsilon_0m}[\sin\theta]\bigg|_{\theta_0}^0\\
+        &= \frac{\sigma q R}{2\varepsilon_0m}\sin\theta_0
+    \end{align*}
+
+    This result makes sense, since for a smaller angle of $\theta_0$, then we should expect the velocity to decrease since there's less ``space'' for the ball to accelerate. Furthermore, if $\theta_0$ exceeds $90^\circ$, we notice that the velocity is symmetric about this vertical line. This makes sense, since this is the same as if we flipped the whole system around and considered the complimentary angle as $\theta_0$. It also makes sense that this is inversely proportional to mass $-$ as the mass increases, we expect the the particle to reach a lower final velocity since it requires more energy to keep it moving.
+
+    \section{Problem 5}
+
+    \subsection{Part i}
+
+    For this problem, we choose a cylindrical gaussian surface of height $2z$ (radius $r$ ), with our coordinate system set at $z=0$ halfway thugh the slab. We split into components of $z > \dfrac d 2$ and $-\dfrac d 2 < z < \dfrac d 2$. We can tackle the easier case of $z > \dfrac d 2$ first:
+
+    \begin{align*}
+        \Phi &= \oint E \cdot dA  = \frac{Q_{enc}}{\varepsilon_0}\\
+        \therefore E(z) &= \frac{\rho d}{2\varepsilon_0} \hat z
+    \end{align*}
+    
+    Now we take the case where $z < \dfrac d 2$:
+
+    \begin{align*}
+        \Phi &= \oint E(z) \cdot dA \\
+        \therefore E(z) &= \frac{\pi r^2 (2z)\rho}{2\pi r \varepsilon_0}\\
+        &= \frac{\rho z}{\varepsilon_0}
+    \end{align*}
+
+
+    Now for the potentials. We find that $V(0) = 0$, so we'll take our potentials around that point. Thus, we have the following equations to solve, for different values of $z$. First, we can take the integral for $0 < z \le \frac{d}{2}$:
+
+   \[ V(z) - V(0) = - \int_0^z \frac{\rho z}{\varepsilon_0} dz = \frac{\rho z^2}{2\varepsilon_0}    \]
+
+    Now for $\frac{-d}{2} \le z < 0$:
+
+    \[ V(z) - V(0) = -\int_0^z \frac{\rho z}{\varepsilon_0} dz = \frac{\rho z^2}{2\varepsilon_0}\]
+
+    Note that these two values are the same. We expect that, since by symmetry we can flip the entire metal sheet over, and the voltage measured should be identical to a positive $z$ value. Now for the case of $z > \frac d 2$:
+
+    \[ V(z) - V\left(\frac{d}{2}\right) = -\int_\frac{d}{2}^z \frac{\rho d \hat z}{2\varepsilon_0} dz - \frac{\rho d^2}{8\varepsilon_0}= \hat z\frac{\rho d }{2\varepsilon_0}\left[\frac{d}{2} - z\right] - \frac{\rho d^2}{8\varepsilon_0}\]
+
+    Now we compute the same for $z < \frac{-d}{2}$. Just like the case of inside the slab, we should expect these two voltage values to match:
+
+    \[ V(z) - V\left(\frac{-d}{2}\right) = -\int_\frac{-d}{2}^z \frac{\rho d (-\hat z)}{2\varepsilon_0} - \frac{\rho d^2}{8\varepsilon_0} = \hat z \frac{\rho d}{2\varepsilon_0}\left[z + \frac{d}{2}\right]\]
+
+    And we note that since $z$ is negative in the seond equation, these two voltages also exactly match, as expected. 
+
+
+    \subsection{Part ii}
+
+    We have $F_e = qE = q \frac{\rho z }{\varepsilon_0}$ for every point within the slab. When this particle is dropped, we can write out the equation of motion: 
+
+    \[ \frac{d^2 z}{dt^2} + \frac{q\rho z}{\varepsilon_0 m} = 0\]
+
+    This is a second order differential equation which is indicative of simple harmonic motion. Thus, we can find the period as follows:
+
+    \begin{align*}
+        \omega^2 &= \frac{q\rho}{\varepsilon_0m}\\
+        \frac{2\pi}{T} &= \sqrt{\frac{q\rho}{\varepsilon_0m}}\\
+        \therefore T &= 2\pi \sqrt{\frac{\varepsilon_0 m}{q\rho}}
+    \end{align*}
+
+    Now to find the time it takes to reach the bottom, we divide this period in half:
+
+    \[ t = \frac{T}{2} = \pi \sqrt{\frac{\varepsilon_0 m}{q\rho}}\]
+
+    
+    \section{Problem 6}
+
+    Since the charges all lie on a line, let's call the distance between the leftmost and the center $x_1$, and the center to the rightmost $x_2$. First, we try putting the proton in the center, with two electrons on either side of it. The potential energy is calculated as follows:
+
+    \[ U = \frac{1}{4\pi\varepsilon_0}\left(\frac{q^2}{x_1 + x_2} - \frac{q^2}{x_2} - \frac{q^2}{x_1}\right) \]
+
+    We set the left side to zero, and we get the following:
+    
+    \begin{align*}
+        \frac{1}{x_1 + x_2} &= \frac{1}{x_1} + \frac{1}{x_2}\\
+        (x_1 + x_2)^2 &= x_1x_2\\
+        x_1 + x_2 &= \sqrt{x_1x_2}
+    \end{align*}
+    
+    Note that via the AM-GM (arithmetic mean-geometric mean):
+
+    \[ \frac{x_1 + x_2}{2} \ge \sqrt{x_1x_2}\]
+
+    that a solution to this system is impossible, since in our equation we require that $x_1 + x_2 = \sqrt{x_1x_2}$ but the left hand side has a minimal value of $2\sqrt{x_1x_2}$. Thus, our charge configuration cannot consist of having the proton in the middle. 
+    
+    \medskip
+
+    We now move to the second case where we have the two negative charges to one side. We compute the potential energy:
+
+    \[ U = \frac{1}{4\pi \varepsilon_0}\left(\frac{ q^2}{x_1} - \frac{q^2}{x_1 + x_2} - \frac{q^2}{x_2}\right) \] 
+
+    Again, setting the left side to zero:
+
+    \begin{align*}
+        \frac{1}{x_1 + x_2} &= \frac{x_2 - x_1}{x_1x_2}\\
+        x_2^2 - x_1x_2 - x_1^2 &= 0
+    \end{align*}
+
+    Since the distances are arbitrary, we set $x_1 = k$:
+
+    \begin{align*}
+        x_2^2 - k^2 &= kx_2\\
+        x_2^2 - kx_2 - k^2 &= 0\\
+        \therefore x_2 &= \frac{k \pm \sqrt{k^2 + 4k^2}}{2}
+    \end{align*}
+
+    Thus, for any $k \in \mathbb{R}$ where $k \neq 0$, we get the following set of solutions:
+
+    \[\begin{cases}
+        x_1 = k\\
+        x_2 = \varphi k
+    \end{cases}\]
+
+    This solution set implies that we in fact get an infinite number of different configurations such that the total potential energy of the system is zero, which makes sense since the distances between particles can be scaled $-$ so when we scale one distance, just scale the other accordingly and we arrive at a configuration of zero net potential energy.
+
+    \section{Problem 11}
+
+    The problem statement says we take the potential at $+ \infty$ to be zero, so we will essentially calculate all of our potentials $V(r)$ while choosing that reference point. First, we will calculate teh potential at the center of the sphere. 
+
+    \medskip
+
+    Note firstly that at any point within the sphere, the electric field due to the sphere is zero via Gauss' law. Thus, our net electric field within the sphere is solely due to the parallel plates, which is $\dfrac{2\sigma}{2\varepsilon_0} = \dfrac{\sigma}{\varepsilon_0}$. Secondly, we can split up our potential calculation to be:
+
+    \[ V(0) - V(\infty) = [V(0) - V(R)] - [V(\infty) - V(R)] = -\int_R^0 \frac{\sigma}{\varepsilon_0} - \left[ -\int_R^\infty E(r)\right]\]
+
+    To calculate $E(r)$ outside the sphere, we first notice that the electric flux due to the parallel plates is zero (since one has charge density $\sigma$ and the otehr $-\sigma$). Thus, the only electric field that we need to care about is that of the sphere, which is $E(r) = \dfrac{\sigma R^2}{r^2 \varepsilon_0}$. Thus, our integral becomes:
+
+    \begin{align*}
+        [V(0) - V(R)] - [V(\infty) - V(R)] &= -\int_R^0 \frac{\sigma}{\varepsilon_0} - \left[ -\int_R^\infty \frac{\sigma R^2}{r^2 \varepsilon_0}\right]\\
+        &= \frac{\sigma R}{\varepsilon_0} - \frac{\sigma R}{\varepsilon_0}\\
+        &= 0 
+    \end{align*}
+
+    Thus, the potential at the center of the sphere is zero.
+
+    \medskip
+
+    Now let's tackle the case at $V(-\infty)$ using more or less the same process, except now we can take the difference from $V(-\infty) - V(0)$ since we now know that $V(0) = 0$. This means our expression becomes:
+
+    \[ [V(-\infty) - V(-R)] - [V(0) - V(-R)] = -\int_{-R}^{-\infty} E(r) dr - \left[-\int_{-R}^0 E(r) dr\right]\]\
+    
+    Note once again that for the points inside the sphere, we have $E(r) = \dfrac{\sigma}{\varepsilon_0}$. And just like before, outside the sphere the parallel plates nicely cancel so we alos have $E(r) = \dfrac{\sigma R^2}{r^2 \varepsilon_0}$. Thus, we integrate the two:
+
+    \begin{align*}
+        [V(-\infty) - V(-R)] - [V(0) - V(-R)] &= -\int_{-R}^{-\infty} \frac{\sigma}{\varepsilon_0} dr - \left[-\int_{-R}^0 \frac{\sigma R^2}{r^2\varepsilon_0} dr\right]\\
+        &= -\frac{\sigma R}{\varepsilon_0} - \frac{\sigma R}{\varepsilon_0}\\
+        &= -\frac{2\sigma R}{\varepsilon_0}
+    \end{align*}
+
+    \section{Problem 13}
+    
+    To find the voltage we essentially just need to take the following integral:
+
+    \[\Phi_P = \frac{\sigma}{4\pi \varepsilon_0}\int_0^b \int_0^{\frac{ax}{b}} \frac{1}{\sqrt{x^2 + y^2}} dy dx \]
+
+    This integral is extermely difficult to solve by hand, so solving this equation by computer (I used SymboLab) to solve it gives us:
+
+    \[ \Phi_p = \frac{\sigma b}{4\pi \varepsilon_0} \ln \left(\frac{a + \sqrt{a^2 + b^2}}{b}\right)\]
+
+    Note the following two observations:
+    
+   \[ \begin{cases}  
+    \frac{a}{b} = \frac{\sin\theta}{\cos\theta} \\
+    \frac{\sqrt{a^2 + b^2}}{b}= \frac{1}{\cos\theta}
+    \end{cases}
+    \]
+
+    So performing this substitution, we get the desired result: 
+    
+    \[ \Phi_P = \frac{\sigma b}{4\pi\varepsilon_0}\ln\left(\frac{1 + \sin \theta}{\cos\theta}\right)\]
+
+    \end{document}

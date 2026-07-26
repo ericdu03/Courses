@@ -1,0 +1,60 @@
+\section{Formal System of Vector Spaces}
+Arrived late to class, so what came before this is lost to history. 
+\begin{itemize}
+	\item A vector space over  \( F \) (a field) is a set \( V \) equipped with 2 functions: 
+		\begin{itemize}
+			\item Addition: \( V \times V \mapsto V \) 
+			\item Scalar multiplication: \( F \times V \mapsto V \)
+		\end{itemize}
+\end{itemize}
+\subsection{Axioms of a Vector Space}
+\begin{itemize}
+	\item The axioms of vector space are as follows:
+		\begin{itemize}
+			\item \textbf{Commutativity over addition:} \( \forall u, v \in V, u + v = v + u\). 
+			\item \textbf{Associativity under addition:} \( \forall u, v, w \in V, (u + v) + w = u + (v + w) \).
+			\item \textbf{Associativity under Multiplication:} \( (ab)v = a(bv) \). 
+			\item \textbf{Additive Identity:} There exists a "zero element", such that \( v + 0 = v \) for any 
+				arbitrary \( v \). 
+			\item \textbf{Additive Inverse:} \( \forall v \in V, \exists w \in V \) such that \( w + v = 0 \). 
+			\item \textbf{Multiplicative Identity:} There is an element 1 such that \( 1 \cdot v = v \)
+			\item \textbf{Distributive properties:} \( (a + b)v = av + bv \), and \( a(u + v) = au + av \). 
+		\end{itemize}
+\end{itemize}
+\subsection{Theorems}
+\begin{theorem}[Uniqueness of Additive Identity]
+	Let \( V \) be a vector space over \( F \). If \( 0 \in V \) and \( 0' \in V \) both satisfy Axiom 3, then 
+	\( 0 = 0' \). 
+\end{theorem}
+\begin{proof}
+	Our proof consists of a list of sentences: 
+	\begin{enumerate}[label=S\arabic*)]
+		\item Use Axiom 3: \( v + 0 = v, \ \forall v \in V\).
+		\item Set \( v = 0' \) : \( 0' + 0 = 0' \) 
+		\item Use Axiom 1: \( u + v = v+ u \) 
+		\item Replace \( u = 0 \), \( v = 0' \) : \( 0' + 0 = 0 + 0' \)
+		\item Use Axiom 3, but for \( 0' \) : \( v + 0' = v, \  \forall v \in V \)
+		\item Substitute \( v = 0 \): \( 0 + 0' = 0 \) 
+		\item Combine S2 and S4: \( 0 + 0' = 0' \)
+		\item Combine S7 and S6: \( 0' = 0 \). 
+	\end{enumerate}
+\end{proof}
+Note that here, we're not proving that \( 0 = 0' \), but instead that under the assumption that they both satisfy 
+Axiom 3, then  \( 0 = 0' \). The statement "if" is actually the sentence that provides us the axiom, since it tells us 
+that we're living in a world where that assumption holds true. 
+\begin{theorem}[Uniqueness of Additive Inverse]
+	Let \( v \) be a vector space over \( F \) and \( v \in V \). If \( w \in V \) and \( w' \in V \) both satisfy 
+	axiom 4, then \( w = w' \). 
+\end{theorem}
+\begin{proof}
+	Again, we use sentences, except we'll be a bit more concise this time:
+	\begin{enumerate}[label=S\arabic*)]
+		\item Use Axiom 3 for our specific \( v \) :  \( w + 0 = w \) 
+		\item Substitute \( v + w' \) for \( 0 \), since we know that \( w' \) satisfies Ax. 4:
+			\( w + (v + w') = w + 0\) 
+		\item Associativity: \( (w + v) + w' = w + 0 = w'\) 
+		\item Hence, \( w + v = 0 \), so \( w = w' \).
+	\end{enumerate}
+\end{proof}
+ 
+

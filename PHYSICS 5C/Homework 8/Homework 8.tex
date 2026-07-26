@@ -1,0 +1,377 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz, wrapfig, amssymb, array, mathtools, circuitikz, physics, parskip, hyperref}
+\usepackage{enumerate}
+\usepackage{tkz-euclide}
+\usepackage{titlesec}
+\usepackage{lipsum}
+\usepackage[english]{babel}
+\usepackage{amsmath, amsthm}
+\usepackage{fancyhdr}
+\usepackage{xcoffins}
+\usepackage{tcolorbox}
+\usepackage{../local}
+
+
+\newcommand{\classcode}{Physics 5C}
+\newcommand{\classname}{Introductory Thermodynamics and Quantum Mechanics}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 08} \large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\normalsize
+}
+\linespread{1.1}
+\begin{document}
+    \maketitle
+
+    \section*{Collaborators}
+
+    I worked on (in no particular order) \textbf{Andrew Binder}, \textbf{Nikhil Maserang}, \textbf{Teja Nivarthi}, \textbf{Christine Zhang}, and \textbf{Nathan Song} to complete this assignment. 
+
+
+    \section*{Problem 1}
+
+    In the experiment diagrammed in the figure, what fraction of the incident light in beam A is transmitted in beam B on the average in the following cases? Answer this question first without any formalism then by making the proper combinations of projetions amplitudes from Table 7-1
+
+
+    \begin{enumerate}[(a)]
+        \item The $R$ channel is blocked.
+        
+        \begin{solution}
+            Half the light is lost thorugh the R-L transmitter if one of the beams is blokced, then the $y$-projector takes away another half, so we are left with 1/4 of the beam remaining.
+        \end{solution}
+        \item The $L$ channel is blocked. 
+        
+        \begin{solution}
+            There is no difference betweeen the $R$ and $L$ path being blocked (due to symmetry), so we have 1/4 here as well.
+        \end{solution}
+        \item Both channels are open.
+        
+        \begin{solution}
+            The R-L analyzer loop does not change the nature of the light (since it is an analyzer and a reanalyzer), so therefore this is the same as if the analyzer were not there. Thus, since we have an $x$ and then a $y$ projector, then therefore all the light is blocked, so we get no intensity.
+        \end{solution}
+        \item For a more complicated-seeming problem, repeat steps (a)-(c) using $x'$ and $y'$ projectors in place of the $x$ and $y$ projectors, respectively.
+        
+        \begin{solution}
+            Since $x'$ and $y'$ is also an orthogonal basis, this is fundamentally the same thing as using $x$ and $y$ projectors, so therefore our answers to the previous parts don't change. Therefore, for parts (a)-(c), we get 1/4, 1/4, and 0 respectively.
+        \end{solution}
+    \end{enumerate}
+
+
+    \pagebreak
+
+    \section*{Problem 2}
+
+    \begin{enumerate}
+        \item Write down the overall quantum amplitude for photons initially in state $\ket \psi$ to pass thugh the three projectors shown in figure (a). Given that $|\braket{y}{\psi}| = 1/\sqrt 5$ what is the overall transmission probability?
+        
+        \begin{solution}
+            From lecture, we know that
+
+            \[ \braket{y'}{R} \braket{R}{y} \braket{y}{\psi} = \frac{1}{\sqrt{2}}e^{i\theta} \cdot \frac{1}{\sqrt{2}} \braket{y}{\psi} = e^{i\pi/6}{2\sqrt{5}}\] 
+            
+            Then, squaring this to get the probability, we get: 
+            
+            \[ P = |\braket{y'}{R} \braket{R}{y} \braket{y}{\psi}|^2 = \frac{1}{20}\] 
+        \end{solution}
+
+        \item Relate the overall amplitude (and the transmission probability) for the experiment  figure (b) to that obtained in figure (a)
+        
+        \begin{solution}
+            Setting up the projections, we get: 
+
+            \[ \braket{R}{y'}\braket {y}{R}\braket {\psi}{y} = \frac{1}{\sqrt{2}}e^{-i\theta} \cdot \frac{1}{\sqrt{2}} \braket{y}{\psi} = \frac{e^{-i\pi/6}}{2\sqrt{5}}\] 
+
+            And so therefore the probability is 
+
+            \[ P = |\braket{R}{y'}\braket {y}{R} \braket {\psi}{y}|^2 = \frac{1}{20}\] 
+        \end{solution}
+
+        \item How are the results of (a) and (b) altered if the $R$ projector is replaced by an open $R-L$ analyzer loop? 
+        
+        \begin{solution}
+            If this were done, then the analyzer loop wouldn't do anything to the light (since it is an analyzer loop), and so therefore we would effectively just be calculating $\braket{y'}{y} = \sqrt{3}/2$ and so therefore our amplitude for both parts (a) and (b) is given by: 
+
+            \[ \left(\frac{1}{\sqrt{5}} \cdot \frac{\sqrt{3}}{2}\right) = \frac{3}{20}\] 
+        \end{solution}
+    \end{enumerate}
+
+
+    \pagebreak
+
+    \section*{Problem 3}
+
+    Consider the following state vector: 
+
+    \[ \ket \psi = \ket R (1 - i)/2 + \ket L (1 + i)/2\] 
+
+    \begin{enumerate}[(a)]
+        \item Is this state circularly polariezd? If so, is it $R$ or $L$ polarization?
+        
+        \begin{solution}
+            Because the square of the coefficents do not return real values, then the probabilities associated with observing $\ket R$ and $\ket L$ state are imaginary, and so therefore this cannot be a circularly polarized state.
+        \end{solution}
+
+        \item Is this state linearly polarized? If so, find the orientation of the axis of polarization.
+        
+        \begin{solution}
+            We change this into the $\ket x$ and $\ket y$ basis using the conversion table. Doing so, we obtain:
+
+            \[ \ket \psi = \frac{1-i}{2} \cdot \frac{-i}{2} \ket x + \frac{1 + i}{2} \cdot \frac{i}{\sqrt{2}} \ket x = \frac{-1}{\sqrt{2}} \ket x\] 
+
+            And likewise for $\ket y$: 
+
+            \[ \ket \psi = \frac{1}{\sqrt{2}}\ket y\]
+
+            Since the square of the coefficients in the $\ket x$ and $\ket y$ basis are real, then this is in a superposition of the $\ket x$ and $\ket y$ basis, so it is linearly polarized. Moreover, it is linearly polarized in the direction which is $45^\circ$ counterclockwise from the $y$-axis.
+        \end{solution}
+
+        \item Answer parts (a) and (b) for the following state vectors. At least one of them represents elliptical polarization; in this case, simply demonstrate that it is neither linearly or circularly polarized. 
+        
+        \begin{align*}
+            \ket \psi &= \ket x e^{i\pi/2}/\sqrt 2 + \ket y e^{i \pi/2}/\sqrt 2\\
+            \ket \psi &= \ket x (1-i)/2 + \ket y (1/\sqrt 2)
+        \end{align*}
+
+        \begin{solution}
+            For the first state, we use Euler's identity: $e^{ix} = \cos x + i \sin x$ to obtain
+
+            \[ \ket \psi = -\frac{i}{\sqrt 2} \ket x + \frac{i}{\sqrt 2}\ket y\] 
+
+            And because the norm squared of the coefficients return real values, then this is linear, using the same logic we've used in parts (a) and (b). Here, the angle is still $45^\circ$ counterclockwise from the $y$-axis. 
+
+            Wtih the second wavefunction, we note that the norm squared of the coefficients are partially real, so therefore this state cannot be completely linearly polarized. Converting this into $\ket R$, we see that this wavefunction becomes: 
+
+            \[ \ket \psi = \left(\frac{i+1}{2\sqrt{2}} + \frac{1}{2}\right) \ket R\] 
+
+            Converting this into the $\ket L$ basis: 
+
+            \[ \ket \psi = \left(-\frac{i+1}{2\sqrt{2}} + \frac{1}{2}\right) \ket L\] 
+
+            And so because here it is also only \textit{partially} circularly polarized, then we know that it is a combination of linearly and circularly polarized light - in other words, elliptically polarized.
+        \end{solution}
+
+    \end{enumerate}
+
+
+    \pagebreak 
+
+    \section*{Problem 4}
+
+    Pandora claims that photosn are relaly a three-state system: She can find \textit{three} states of polarization that are orthogonal and form a complete set. In support of her claim, Pandora exhibits a device, Pandora's Box, which has three output channels, labeled $A$, $B$, and $C$ [Figure (a)]. In reality, Pandora's box consists of an ordianry $xy$ analyzer with an $x'y'$ analyzer inserted in the $y$ beam, as shown in Figure (b). Analyze Pandora's claim using the following outline or some other method. 
+
+
+    \begin{enumerate}[(a)]
+        \item In what channel or channels of the box do \textit{nonzero} outputs appear when the incident beam is 
+        \begin{enumerate}[(i)]
+            \item $x$ polarized
+            
+            \begin{solution}
+                It will come only out of output $C$, since there is no $y$ component.
+            \end{solution}
+            \item $y$ polarized
+
+            \begin{solution}
+                Now, none of the component will go through the $x$ chnanel, and so it will only come out of channels $A$ and $B$.
+            \end{solution}
+            \item $x'$ polarized?
+            
+            \begin{solution}
+                Here, because light is $x'$ polarized, then it means that it is able to pass through all three channels, and therefore we will observe intensity in all three channels here. 
+            \end{solution}
+        \end{enumerate}
+
+        \item Show that Pandora's Box does \textit{not} satisfy all properties of an analyzer, as defined in Table 6.2.
+        
+        \begin{solution}
+            An analyzer should have the property that repeated measurements should return predictable results. However, if we take the output from $B$ (which is $x'$ polarized light) and put it through the box again, we find that light now comes out of chnanels $A$, $B$ and $C$, as discussed in part (a)-(iii). Therefore because it violates this property, it is not an analyzer.
+        \end{solution}
+
+        \item Suppose the squares of the amplitudes $\braket{A}{A}$, $\braket{A}{B}$, $\braket{C}{B}$, etc., are measured in the conventional way by means of two sequential Pandora's Boxes. For example, the magnitude $|\braket{C}{B}|^2$ can be measured as (output)/(input) in the experiment shown in Figure (c). Which of the following fundamental properties of complete orthogonal sets will be satisfied among states $A$, $B$, and $C$ and which will not be satisfied? For each of the properties \textit{not} satisfied, give a particular example which violates this property. (Symbols $i$ and $j$ independently take on values $A$, $B$ and $C$.)
+        
+        \begin{enumerate}[(i)]
+            \item normalization: $|\braket{i}{i}|^2 = 1$ for all $i$
+            
+            \begin{solution}
+                We know from part (b) that $\braket{B}{B} < 1$ (since light is split among all three channels), so $|\braket{B}{B}|^2 < 1$, in violation of this property
+            \end{solution}
+
+            \item orthogonality $|\braket{j}{i}|^2 = 0$ for $i \neq j$
+
+            \begin{solution}
+                We know that $\braket{C}{B} \neq 0$, since light which initially comes out of channel $B$ ($x'$ polarized light) still comes out of chnanel $C$, so this amplitude is nonzero, violating the orthogonality condition.                
+            \end{solution}
+
+            \item ``reciprocity'': $|\braket{j}{i}|^2 = |\braket{i}{j}|^2$
+            
+            \begin{solution}
+                From the previous problem, we know that $\braket{C}{B}$ is nonzero. However, $\braket{B}{C} = 0$, since any light which exits chnanel $C$ ($x$ polarized light), can only enter and exit through channel $C$, therefore violating this condition.
+            \end{solution}
+
+            \item Completeness over all states $\sum_{\text{all j}} |\braket{j}{i}|^2 = 1$
+            
+            \begin{solution}
+                Because Pandora's Box is a combination of analyzers, we never lose light throughout this process, and so therefore it is complete over all final states.
+            \end{solution}
+        \end{enumerate}
+    \end{enumerate}
+
+
+    \pagebreak
+
+    \section*{Problem 5}
+
+    A particle in an infinite square well extending between $x = 0$ and $x = L$ has the wavefunction
+
+    \[ \psi(x, t) = A\left( 2 \sin \frac{\pi x}{L}e^{-iE_1t/\hbar} \sin \frac{2\pi x}{L}e^{-iE_2t/\hbar}\right)\]
+
+    where $E_n = n^2\hbar^2/8mL^2$. 
+
+    \begin{enumerate}[(a)]
+        \item Putting $t = 0$ for simplicity, find the value of the normalization factor $A$. 
+        
+        \begin{solution}
+            To find the normalization factor, we enforce the condition $\braket{\psi}{\psi} = 1$. Therefore: 
+            \[ 1 = A^2 \int_0^L \left(2 \sin \frac{\pi x}{L} + \sin \frac{2\pi x}{L}\right)^2 dx\] 
+
+            I'm not going to write out all the algebra involved in solving this integral, we get: 
+
+            \[ 1 = A^2 \left(\frac{60 \pi x}{24 \pi}\right)_0^L \implies A = \sqrt{2}{5L}\] 
+        \end{solution}
+
+
+        \item If a measurement of the energy is made, what are the possible reuslts of the measurement, and what is the probability associated with each? 
+        
+        \begin{solution}
+            The energies that we can measure are $E_1$ and $E_2$ since these are the eigenfunctions that are given to us. The probaiblity is the norm squared of the coefficients: 
+
+            \begin{align*}
+                P(E_1) &= \left(2 \cdot \sqrt{\frac{2}{5L}}\right)^2 = \frac{8}{5L}\\
+                P(E_2) &= \frac{2}{5L}
+            \end{align*}
+
+            Since the probabilities must add up to 1, then we must multiply both terms by a further factor of $L/2$. Therefore: 
+
+            \begin{align*}
+                P(E_1) &= \frac{4}{5}\\
+                P(E_2) &= \frac 15
+            \end{align*}
+        \end{solution}
+
+        \item Using the results of (b) deduce the average energy and express it as a multiple of the energy $E_1$ of the lowest eigenstate. 
+        
+        \begin{solution}
+            The average energy $\mean E = \sum P_iE_i$. Then, using the fact that $E_2 = 4E_1$ (since $E_n$ scales with $n^2$), then we have:
+
+            \[ \mean{E} = \frac 45 E_1 + \frac 15 E_2 = \frac 45 E_1 + \frac 45 E_1 = \frac 85 E_1\] 
+        \end{solution}
+
+        \item The result of (c) is identical with the \textit{expectation value} of E (denoted $\mean E$) for this state. A procedure for calculating such expectation values in general is based on the fact that, for a pure eigenstate of the energy, the wave function is of the form, $\psi(x, t) = \psi(X) e^{-iEt/\hbar}$, which yields the identity
+
+        \[ i\hbar \frac{\partial \psi}{\partial t} = E \psi\] 
+
+        Clearly, in this case, $\int \psi^\star (i\hbar \partial/\partial t) \psi dx = E \int \psi^\star \psi dx = E$. An extension o fhits case is to a state involving an arbitrary superposition of energies suggests the following formula for calculating expectation values of $E$: 
+
+        \[ \mean E = \int_{\text{all $x$}} \psi^\star (i\hbar \partial/\partial t) \psi dx\]
+
+        This procedure is in fact correct. By applying it to the particularly wavefunction of this exercise, verify that the value of $\mean E$ is identical to the average energy found in (c).
+
+
+        \begin{solution}
+            First, we calculate $i\hbar \partial/\partial t \psi$: 
+
+            \begin{align*}
+                i\hbar \frac{\partial}{\partial t} \psi &= i\hbar \frac{\partial}{\partial t}\left(2 \sqrt{\frac{2}{5L}} \sin \frac{\pi x}{L} e^{-iE_1t/\hbar} + \sqrt{\frac{2}{5L}}\sin \frac{2\pi x}{L} e^{-iE_2t/\hbar}\right)\\
+                &= 2\sqrt{\frac{2}{5L}}i\hbar \sin \frac{\pi x}{L} \cdot \frac{-iE_1}{\hbar} e^{-iE_1t/\hbar} + \sqrt{\frac{2}{5L}} \cdot i\hbar \sin \frac{2\pi x}{L} \cdot -\frac{iE_2}{\hbar} e^{-iE_2t/\hbar}
+            \end{align*}
+
+            Now we can plug this into the above equation for $\mean {E}$ and solve the integral. The integral setup is as follows: 
+
+            \[\mean{E} = \frac{2i\hbar}{5L} \int_0^L \left( 2 \sin \frac{\pi x}{L} e^{iE_1t/\hbar} + \sin \frac{2\pi x}{L} e^{iE_2t/\hbar}\right)\left(2 \sin \frac{\pi x}{L} \cdot \frac{-iE_1}{\hbar} e^{-iE_1t/\hbar} + \sin \frac{2\pi x}{L} \cdot -\frac{iE_2}{\hbar} e^{-iE_2t/\hbar}\right)\]
+
+            Due to the fact that energy eigenstates are orthonormal (this was covered in office hours), then our cross terms equal to zero. Now, we also use the following two results: 
+
+            \begin{align*}
+                \int_0^L \sin^2 \frac{\pi x}{L} &= \frac{L}{2}\\
+                \int_0^L \sin^2 \frac{2 \pi x}{L} &= \frac{L}{2}
+            \end{align*}
+
+            Doing so, then evaluating our integral, we get:
+
+            \[ \mean {E} = 4 \cdot  \frac{2}{5L} E_1 \cdot \frac{L}{2} + \frac{2}{5L} E_2 \frac{L}{2} = \frac{8}{5}E_1\] 
+
+            Which is the same answer as part (c), as desired. 
+        \end{solution}
+    \end{enumerate}
+
+    \pagebreak
+
+    \section*{Problem 6}
+
+    In exercise 8-3 we indicated how one can calculate the expectation (average) value of the energy for a mixed-energy state. This exercise is concerned with an analogous procedure for linear momentum. WE have seen taht the spatial factor of a pure momentum state is given (Eq. 8-15) by $\psi(x) \sim e^{ikx}$. From this we have 
+
+    \[ \frac{d\psi}{dx} = ik\psi = \frac{ip_x}{\hbar}\psi\] 
+
+    which suggests the identity 
+
+    \[ \frac \hbar i \frac{\partial \psi}{\partial x} = p_x \psi\] 
+
+    We then calculate the expectation value of $p_x$ for an \textit{arbitrary} state by using the formula 
+
+    \[ \mean{p_x} = \int_{\text{all x}} \psi^\star \left(\frac \hbar i \frac{\partial}{\partial x}\right) \psi \dx\] 
+
+    \begin{enumerate}[(a)]
+        \item Apply this to a pure eignestate of a particel in an infinite square well, and veirfy that $\mean{p_x} = 0$.
+        
+        \begin{solution}
+            The first energy level has wavefunction equal to
+
+            \[ \psi(x) = \sqrt{\frac{2}{L}} \sin \frac{\pi x}{L}\] 
+
+            And so therefore: 
+
+            \begin{align*}
+                \mean{p_x} &= \int_0^L \psi^\star \frac \hbar i  \frac{\partial}{\partial x}\sqrt{\frac{2}{L}} \sin \frac{\pi x}{L} dx\\
+                &= \frac{2\hbar \pi}{iL^2} \int_0^L \sin \frac{\pi x}{L} \cos \frac{\pi x}{L} dx \\
+                &= 0
+            \end{align*}
+        \end{solution}
+
+        \item Show that the value of $\mean{p_x}$ for the superposition state of Exercise 8-3 oscillates sinusoidally at the angular frequency $\omega = (E_2 - E_1)/\hbar$. This result helps to illuminate the questions reaised in Exercise 8.2, and gives some substance to the concept of a probability distribution moving back and forth in the well. 
+        
+        \begin{solution}
+            Here, we take a superposition of the first and second energy eigenstate, so our wavefunction takes the form: 
+
+            \[ \psi = \sqrt{\frac{2}{L}} \sin \frac{\pi x}{L} e^{-iE_1t/\hbar} + \sqrt{\frac{2}{L}} \sin \frac{2\pi x}{L} e^{-iE_2t/\hbar}\] 
+
+            We then follow the same process as part (a). Calculating the derivative:
+
+            \[ \frac \hbar i \frac{\partial}{\partial x} \psi = \sqrt{\frac{2}{L}} \frac \pi L \cos \frac{\pi x}{L} e^{-iE_1t/\hbar} + \sqrt{\frac{2}{L}} \cdot \frac{2\pi}{L} \cos \frac{2\pi x}{L} e^{-iE_2t/\hbar}\] 
+
+            And so our integral becomes: 
+
+
+            \[ \mean{p_x} = \frac{2}{L} \int_0^L\left[ \sin \frac{\pi x}{L} e^{iE_1t/\hbar} + \sin \frac{2\pi x}{L} e^{iE_2t/\hbar}\right]\left[ \frac \pi L \cos \frac{\pi x}{L} e^{-iE_1t/\hbar} + \cdot \frac{2\pi}{L} \cos \frac{2\pi x}{L} e^{-iE_2t/\hbar}\right] dx \] 
+
+            Due to part (a), we know that only the cross terms will remain. Therefore, we solve the integral
+
+            \[ \frac{2\pi}{L^2} \int_0^L \sin \frac{\pi x}{L} \cos \frac{2\pi x}{L} e^{it(E_1 - E_2)/\hbar} + 2\sin \frac{2\pi x}{L} \cos \frac{\pi x}{L} e^{-it(E_1 - E_2)/\hbar} dx \] 
+
+            This integral can be solved by hand, but here I used a computer to solve it for me. Doing so, we obtn: 
+
+            \begin{align*}
+                \mean{p_x} &= \frac{2\pi}{L^2} \left( \frac{4L}{3\pi} e^{it(E_1 - E_2)/\hbar} + \frac{4L}{3\pi}e^{-it(E_1 - E_2)/\hbar}\right)\\
+                &= \frac{2\pi}{L^2} \cdot \frac{4L}{3\pi} \left(e^{-it(E_2 - E_1)/\hbar} + e^{it(E_2 - E_1)/\hbar}\right)\\
+                &= \frac{8}{3L} \cdot 2i \sin \left( it \underbrace{\frac{E_2 - E_1}{\hbar}}_{\omega}\right)\\
+                &= \frac{16iL}{3} \sin(i\omega t)
+            \end{align*}
+
+            Where in the second to last step we've used the identity that $\sin x = (e^x + e^-x)/2i$. And since here, $\omega = (E_2 - E_1)/\hbar$, then we are done. 
+        \end{solution}
+    \end{enumerate}
+\end{document}

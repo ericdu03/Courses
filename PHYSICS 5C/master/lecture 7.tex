@@ -1,0 +1,122 @@
+The seventh lecture of Physics 5C was held on  \textbf{Thursday, September 13}. It is a continuation of our study of thermodynamic engines and a conclusion to our discussion on the Second law of Thermodynamics.
+
+    \section{Last Time: The Second Law and Engines}
+
+    Last lecture, we derived some fairly interesting equations for the Carnot engine: 
+
+    \[ \frac{Q_h}{Q_L} = \frac{T_h}{T_L} \implies \frac{W}{Q_h} = 1 - \frac{T_L}{T_h}\] 
+
+    In this lecture, we will continue our discussion of the Carnot engine and also discuss the equivalence of Clausius and Kelvin's statement regarding thermodynamic processes.
+
+    \section{Carnot's Theorem}
+
+    After proposing the Carnot engine, he also proposed the following theorem: 
+
+    \begin{theorem}{Carnot's Theorem}{}
+      Of all heat engines working between two temperature $T_h$ and $T_L$, none are more efficient than the Carnot engine.
+    \end{theorem}
+
+    The proof of this statement is rather clever: consider a more efficient engine $E$ with an efficiency $\eta_E > \eta_{carnot}$. Then, this means that 
+
+    \[ \frac{W}{Q_h'} > \frac{W}{Q_h} \implies Q_h > Q_h'\]
+
+    Now consider a new engine which consists of our new engine connected to a Carnot engine run in reverse, as shown in the following schematic: 
+
+    [INSERT TIKZ HERE]
+
+    And since $Q_h > Q_h'$, then this means that there is a net flow from $T_l \to T_h$ to balance out the heat flow, but this necessarily means that there is flow of heat from $T_l$ to $T_h$, in direct violation of the Second law of Thermodynamics. Therefore, engine $E$ cannot exist.
+
+    \begin{insight*}{}
+      Note that the only fact that we've used in this entire proof is the fact that the Carnot engine is reversible. Therefore, this proof actually holds for any reversible engine! In fact, this hints at a deeper property of Carnot engines: that they all have the same efficiency $\eta_{carnot}$! 
+    \end{insight*}
+
+    \section{Equivalence of Kelvin and Clausius} 
+
+    Last lecture we intrduced Clausius and Kelvin's statements about the Second law of thermodynamics. Here, we aim to show that the are in fact equivalent statements. To do this, we can equivalently show that whenever Kelvin's statement is violated, then so is Clausius' statement. 
+
+    Now suppose we have an engine $E$ which solely converts work to heat (recall that this is in direct violation of Kelvin's statement). Then, we connect this engine to the Carnot engine, to create the following combined engine: 
+
+    [INSERT TIKZ HERE] 
+
+    But then if we compute the efficiency of this engine: 
+
+    \[ \eta_M = \frac{W}{Q_h} = 100\%\]
+
+    which is more efficient then a Carnot engine, which is in direct violation of Clausius' statement. Similarly, to prove the reverse direction, we construct an engine $E$ which transfers heat from a cold reservoir $T_L$ to $T_h$ in direct violation of Clausius' statement. Now if this were possible, then it means that we could connect this to a Carnot engine in the following way:
+
+    [INSERT TIKZ HERE] 
+
+    Since $Q_l$ is the same on both sides, this means that the $T_l$ medium does not change, and therefore all the energy from $Q_h$ to $Q_l$ is doing work, which is in direct violation of Kelvin's statement. Therefore, this engine cannot exist either.
+
+
+    \section{Clausius' Theorem} 
+
+    Now we come to another important theorem by Clausius. Consider the equation relating the heat transfer in a Carnot cycle
+
+    \[ \frac{Q_h}{T_l} = \frac{T_h}{T_l}\] 
+
+    We can rearrange this equation into
+
+    \[ \frac{Q_h}{T_h} - \frac{Q_l}{T_l} = 0\] 
+
+    The first term in this equation refers to the heat absorbed, and the second term refers to the heat released (written as negative to denote that heat is leaving the engine). Therefore, we can also rewrite this as: 
+
+    \begin{equation}\label{integral for carnot engine}
+      \oint \frac{\dd Q}{T} = 0
+    \end{equation} 
+
+    Now what if we have a general cycle? If the cycle is reversible, we can imagine this cycle as being built out of a bunch of mini Carnot engines:
+
+    [INSERT TIKZ HERE] 
+
+    And since each Carnot cycle satisfies the relation \ref{integral for carnot engine}, then this is true for any general cycle as well!
+
+    \begin{theorem}{Clausius' Theorem}{Clausius' Theorem}
+      A general reversible cycle can be written as the sum of many Carnot cycles: 
+
+      \[ \oint \frac{\dd Q}{T} = \sum_i \oint_i \frac{\dd Q}{T}\]
+
+      And since each integral is zero because they're Carnot cycles, then:
+
+      \[ \oint \frac{\dd Q}{T} = 0\]
+    \end{theorem}
+
+    Taking this one step further, consider a irreversible process and some reversible process. Then this means that 
+
+    \[ \frac{\Delta Q}{T_h} - \frac{\Delta Q}{T_l} < 0 \implies \oint \frac{\dd Q}{T} < 0\]
+
+    So therefore, while all reversible processes have $\oint \frac{\dd Q}{T} = 0$, all irreversible processes have $\oint \frac{\dd Q}{T} < 0$!
+
+    \section{Entropy}
+
+    Now let's take a look at the equation we derived in the previous section for reversible processes:
+
+    \[ \oint \frac{\dd Q}{T} = 0\] 
+
+    This implies that the quantity $\frac{\dd Q}{T}$ is an exact differential, so let's define it as such:
+
+    \[ dS \equiv \frac{\dd Q}{T}\] 
+
+    and we call this new quantity $\dd S$ as \textit{entropy}. Notice immediately some consequences of this: during an adiabatic process, we have $\dd Q = 0$ by definition. Therefore, an adiabatic process does not cause a change in entropy! Further, let's look at an irreversible process: 
+
+    [INSERT TIKZ HERE]
+
+    In order to calculate the change in entropy, we introduce a reversible process which goes from $A$ to $B$, which creates a hypothetical \say{cycle}. Further, we know that the entropy change for a reversible process from state $A \to B$ is the same as that from $B \to A$, so we can write: 
+
+    \[ \oint \frac{\dd Q}{T} = \int_A^B \frac{\dd Q}{T} - \int_{A}^B \frac{\dd Q_{rev}}{T} \le 0 \]
+
+    So therefore
+
+    \[ \int_A^B \frac{\dd Q}{T} \le \int_A^B \frac{\dd Q_{rev}}{T} = \Delta S\]
+
+    And so therefore 
+
+    \[ \Delta S \ge \int_A^B \frac{\dd Q}{T}\]
+
+    In other words, $\Delta S = 0$ only when the process is reversible - otherwise, $\Delta S > 0$.
+
+    \subsection{Discussion on Entropy}
+
+    Let's now consider an isolated system where $\Delta Q = 0$, but this need not be an adiabatic process. Then, this means that $\Delta S \ge 0$ all the time, so entropy only increases!
+
+    In order for entropy to not increase, then it directly follows that all processees inside the the system must be reversible. Thus, if we think of the universe as a thermodynamic system (we can do this, why not?), $\Delta S_{\text{universe}} > 0$, since there are many irreversible processes. But this also direclty implies that the universe was created with very low entropy? That's more a philosophical question rather than a physical one to ponder about.

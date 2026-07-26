@@ -1,0 +1,227 @@
+\documentclass[10pt]{article}
+\usepackage{../../local}
+\urlstyle{same}
+
+\newcommand{\classcode}{Physics 110B}
+\newcommand{\classname}{Electromagnetism and Optics II}
+\renewcommand{\maketitle}{%
+\hrule height4pt
+\large{Eric Du \hfill \classcode}
+\newline
+\large{HW 08} \Large{\hfill \classname \hfill} \large{\today}
+\hrule height4pt \vskip .7em
+\small{Header styling inspired by the Berkeley EECS Department: \url{https://eecs.berkeley.edu/}}
+\normalsize
+}
+\linespread{1.2}
+\begin{document}
+	\maketitle
+	\section*{Collaborators}
+	I worked with \textbf{Teja Nivarthi} on this assignment. 
+
+	\section*{Problem 1}
+	\begin{enumerate}[label=(\alph*)]
+		\item Suppose the wire in Ex. 10.2 carries a linearly increasing current
+			\[
+				I(t) = kt
+			\]
+			for \( t > 0 \). Find the electric and magnetic fields generated. 
+
+			\begin{solution}
+				The formula for the vector potential is:
+				\[
+					\mathbf{A}(s, t) = \frac{\mu_0}{4\pi} \mathbf{\hat{z}}
+					\int_{-\infty}^{\infty}\frac{I(t_r)}{\rcurs} \diff z
+				\]
+				The example has already established for us that we only need to worry about the portion
+				where 
+				\[
+					|z| \leq \sqrt{(ct)^2 - s^2}
+				\]
+				because of causality, so we will do the same. We will also restrict the integral to be
+				between 0 and this number, due to symmetry. The only difference between this problem and
+				the example is that instead of \( I = I_0 \), we have \( I = kt \). This means that \( I(t_r)
+				= kt_r = k(t - \rcurs / c)\). Therefore, the integral we need to calculate is:
+				\[
+					\mathbf{A} = \frac{\mu_0k}{2\pi} \mathbf{\hat{z}} \int_{0}^{\sqrt{(ct)^2 - s^2}} \frac{t}{\rcurs} - \frac{1}{c} \diff z
+				\]
+				We then substitute \( \rcurs = \sqrt{s^2 + z^2} \), and compute the integral via Mathematica.
+				This gives:
+				\[
+					\mathbf{A} = \frac{\mu_0k}{2\pi} \mathbf{\hat{z}} \left[ t \ln\left( \frac{ct +
+					\sqrt{(ct)^2 - s^2}}{s} \right) - \frac{1}{c} \sqrt{(ct)^2 - s^2} \right]
+				\]
+				Now, from here, we can just compute \( \mathbf{E} = -\partial_t \mathbf{A} \) and \(
+				\mathbf{B} = \nabla \times \mathbf{A} \). Again, Mathematica does the heavy lifting here:
+				\[
+					\mathbf{E} = -\frac{\mu_0k}{2\pi}\ln \left( \frac{ct + \sqrt{(ct)^2 - s^2}}{s} \right)
+					\mathbf{\hat{z}}
+				\]
+				Then, the \( \mathbf{B} \) field is calculated using \( \mathbf{B} = \nabla \times \mathbf{A}
+				= -\pdv{A_z}{s} \boldsymbol{\phi}\), so that just amounts to taking the \( s \)-derivative of
+				the expression for \( \mathbf{A} \). This gives us:
+				\[
+					\mathbf{B} = \frac{\mu_0k \boldsymbol{\phi}}{2\pi sc} \sqrt{(ct)^2 - s^2}
+				\]
+			\end{solution}
+		\item Do the same for the case of a sudden burst of current:
+			\[
+				I(t) = q_0 \delta(t)
+			\]
+
+			\begin{solution}
+				The delta function makes the integrals easier here. Now, the integral becomes \( \delta(t_r)
+				\), so the overall integral is:
+				\[
+					\mathbf{A} = \frac{\mu_0}{4\pi}\mathbf{\hat{z}} \int_{-\infty}^{\infty} \frac{ q
+					\delta(t_r)}{\rcurs} \diff z = \frac{\mu_0}{4\pi}\mathbf{\hat{z}} \int_{-\infty}^{\infty}
+					\frac{q \delta\left( t - \frac{\rcurs}{c} \right)}{\rcurs} \diff z
+				\]
+				The problem with this integral now is that we need to change our dummy variable to be in
+				terms of \( \rcurs \), which we can do with a change of variable. If we let \( z =
+				\sqrt{\rcurs - s^2} \), then:
+				\[
+					dz = \frac{\rcurs \diff \rcurs}{\sqrt{\rcurs^2 - s^2}}
+				\]
+				So now, with this change of variables, we are now ready to evaluate the integral. The bounds
+				for the integral also change, since a range from \( z \in (0, \infty) \) corresponds to an
+				interval of \( \rcurs \in [s, \infty) \). Therefore, we have:
+				\[
+					\mathbf{A} = \frac{\mu_0 q_0 \mathbf{\hat{z}}}{2\pi}\int_{s}^{\infty} \frac{\delta\left( t -
+					\frac{\rcurs}{c} \right)}{\sqrt{\rcurs^2 - s^2}} \diff \rcurs = \frac{\mu_0q_0}{2\pi}
+					\frac{1}{\sqrt{(ct)^2 - s^2}}
+				\]
+				Then, \( \mathbf{E} \) is the time derivative of this, so:
+				\[
+					\mathbf{E} = -\frac{\mu_0 q_0}{2\pi} \frac{2 c^2 t}{[(ct)^2 - s^2]^{3 / 2}} \cdot
+					-\frac{1}{2} \mathbf{\hat{z}} = \frac{\mu_0q_0}{2\pi} \frac{c^2 t}{[(ct)^2 - s^2]^{3 / 2}} \mathbf{\hat{z}}
+				\]
+				Then, \( \mathbf{B} = -\pdv{A_z}{s} \boldsymbol{\phi} \), so:
+				\[
+					\mathbf{B} = - \frac{\mu_0q_0}{2\pi} \frac{-2s}{[(ct)^2 - s^2]^{3 / 2}} \cdot
+					-\frac{1}{2} \boldsymbol{\phi} = - \frac{\mu_0 q_0}{2\pi} \frac{s}{[(ct)^2 - s^2]^{3 / 2}} \boldsymbol{\phi} 
+				\]
+			\end{solution}
+	\end{enumerate}
+
+	\pagebreak
+	\section*{Problem 2}
+	A piece of wire bent into a loop, as shown in Fig. 10.5, carries a current that increases linearly with
+	time:
+	\[
+		I(t) = kt \quad (-\infty < t < \infty)
+	\]
+	Calculate the retarded vector potential \( \mathbf{A} \) at the center. Find the electric field at the
+	center. Why does this (neutral) wire produce an \textit{electric} field? Why can't you determine the
+	\textit{magnetic} field from this expression for \( \mathbf{A} \)?
+
+	\begin{solution}
+		We will split the calculation into three portions: the straight portion and the two circular arcs.
+		For the straight portion, we can write this as:
+		\[
+			\frac{\mu_0}{4\pi}\int_a^{b}2 \frac{I(\mathbf{r}, t_r)}{\rcurs} \diff \ell = \frac{\mu_0k}{2\pi}
+			\mathbf{\hat{x}} \int_{a}^{b} \frac{t - \frac{r}{c}}{r} \diff r
+		\]
+		This integral evaluates to:
+		\[
+			\mathbf{A}_1 = \frac{\mu_0 k \mathbf{\hat{x}}}{2\pi}\left[ t \ln (\frac{b}{a}) - \frac{b - a}{c} \right]
+		\]
+		Now, consider the circular arc with radius \( a \). Then, the retarded time \( t_r = t - \frac{a}{c}
+		\) since the distance to the origin is constant. Further, we only care about the \( \mathbf{\hat{x}}
+		\) direction because the \( \mathbf{\hat{y}} \) direction cancels out. So, the integral becomes:
+		\[
+			\mathbf{A}_2 = \frac{\mu_0}{4\pi} \mathbf{\hat{x}} 
+			\int_{0}^{\pi} \frac{\mathbf{I}(\mathbf{r}, t_r)}{r} r \sin \theta \diff \theta =
+			\frac{\mu_0k}{4\pi} \mathbf{\hat{x}} \int_{0}^{\pi} \left( t - \frac{a}{c} \right)\sin \theta
+			\diff \theta = 
+			\frac{\mu_0k}{2\pi} \left( t - \frac{a}{c} \right) \mathbf{\hat{x}}
+		\]
+		The third semicircle is the exact same calculation except the radius is \( b \) and the direction ks
+		\( - \mathbf{\hat{x}}\), so we have:
+		\[
+			\mathbf{A}_3 = -\frac{\mu_0k}{2\pi} \left(  t - \frac{b}{c} \right)\mathbf{\hat{x}}
+		\]
+		Put these together, and you get the full expression for \( \mathbf{A} \):
+		\[
+			\mathbf{A} = \frac{\mu_0 k \mathbf{\hat{x}}}{2\pi}\left[ t \ln (\frac{b}{a}) - \frac{b - a}{c}
+			\right] + 
+			\frac{\mu_0k}{2\pi} \left( t - \frac{a}{c} \right) \mathbf{\hat{x}}
+			-\frac{\mu_0k}{2\pi} \left(  t - \frac{b}{c} \right)\mathbf{\hat{x}}
+		\]
+		The electric field is just the time derivative of this, which is equal to:
+		\[
+			\mathbf{E} = -\partial_t \mathbf{A} = - \frac{\mu_0k}{2\pi}\ln (\frac{b}{a}) \mathbf{\hat{x}}
+		\]
+		While you can determine the electric field, the magnetic field is not possible to determine since \(
+		\mathbf{B} = \nabla \times \mathbf{A}\), and we only have \( \mathbf{A} \) at a single point so we
+		don't have full information to calculate the curl.    
+	\end{solution}
+
+	\pagebreak
+	\section*{Problem 3}
+	Show that the scalar potential of a point charge moving with constant velocity (Eq. 10.49) can be written
+	more simply as 
+	\[
+		V(\mathbf{r}, t) = \frac{1}{4\pi \epsilon_0} \frac{q}{R \sqrt{1 - v^2 \sin^2 \theta / c^2}}
+	\]
+	where \( \mathbf{R} = \mathbf{r} - \mathbf{v} t \) is the vector from the present(!) position of the
+	particle to the field point \( \mathbf{r} \), and \( \theta \) is the angle between \( \mathbf{R} \) and
+	\( \mathbf{v} \) (Fig. 10.9). Note that for nonrelativistic velocities (\( v^2 \ll c^2 \)), 
+	\[
+		V(\mathbf{r}, t) = \frac{1}{4\pi \epsilon_0}\frac{q}{R}
+	\]
+
+	\begin{solution}
+		Let's start with the original expression fro \( V(\mathbf{r}, t) \), equation 10.49, that the problem
+		refers to:
+		\[
+			V(\mathbf{r}, t) = \frac{1}{4\pi \epsilon_0} \frac{qc}{\sqrt{(c^2 t - \mathbf{r} \cdot
+			\mathbf{v})^2 + (c^2 - v^2) (r^2 - c^2 t^2)}}
+		\]
+		so all we need to do is just simplify the stuff under the square root. The term in the square root,
+		after expanding, is:
+		\[
+			c^{4} t^2 - 2c^2 t \mathbf{r} \cdot \mathbf{v} + (\mathbf{r} \cdot \mathbf{v})^2 + c^2 r^2 -
+			c^{4}t^2 - v^2 r^2 + v^2 c^2 t^2 = (\mathbf{r} \cdot \mathbf{v})^2 + r^2(c^2 - v^2) - 2c^2
+			(\mathbf{v} t \cdot \mathbf{r}) + v^2c^2 t^2
+		\]
+		Now, we plug in \( \mathbf{v} t = \mathbf{r} - \mathbf{R} \), giving us:
+		\[
+			(\mathbf{r} \cdot \mathbf{v})^2 + r^2(c^2 - v^2) - 2c^2((\mathbf{r} - \mathbf{R}) \cdot
+			\mathbf{r}) + c^2 (\mathbf{r} - \mathbf{R})^2
+		\]
+		Now, expand:
+		\[
+			(\mathbf{r} \cdot \mathbf{v})^2 + r^2(c^2 - v^2) - 2c^2(r^2 - \mathbf{R} \cdot \mathbf{r}) +
+			c^2(r^2 - 2 \mathbf{r} \cdot \mathbf{R} + R^2)  = (\mathbf{r} \cdot \mathbf{v})^2 - v^2 r^2 + c^2
+			R^2
+		\]
+		Rewrite \( \mathbf{r} = \mathbf{R} + \mathbf{v} t \), we can expand the first two terms:
+		\begin{align*}
+			(\mathbf{r} \cdot \mathbf{v})^2 - v^2 r^2 &= ((\mathbf{R} + \mathbf{v} t) \cdot \mathbf{v})^2 -
+			(\mathbf{R} + \mathbf{v} t)^2 v^2 \\
+			&= (\mathbf{R} \cdot \mathbf{v} + v^2 t)^2 - v^2(R^2 + 2 \mathbf{R} \cdot \mathbf{v} t + v^2 t^2) \\
+			&= (\mathbf{R} \cdot \mathbf{v})^2 + 2 \mathbf{R} \cdot \mathbf{v} (v^2 t) +
+			v^{4}t^2 - v^2 R^2 - 2v^2 (\mathbf{R} \cdot \mathbf{v}) t - v^{4}t^2 \\
+			&=  (\mathbf{R} \cdot \mathbf{v})^2 - R^2 v^2 
+		\end{align*}
+		Now, \( \mathbf{R} \cdot \mathbf{v} = Rv \cos \theta \), so therefore:
+		\[
+			(\mathbf{R} \cdot \mathbf{v})^2 - R^2 v^2 = R^2 v^2 \cos^2 \theta - R^2 v^2 = R^2 v^2(\cos^2
+			\theta - 1) = - R^2 v^2 \sin^2 \theta
+		\]
+		Finally, we can put this back with what we had before to complete the equation:
+		\[
+			-R^2 v^2 \sin^2 \theta + c^2 R^2
+		\]
+		Therefore:
+		\[
+			V(\mathbf{r}, t) = \frac{1}{4\pi \epsilon_0} \frac{qc}{\sqrt{R^2 c^2 - R^2 v^2 \sin^2 \theta}}
+		\]
+		So if we factor out \( R^2c^2 \) from the square root, we thne get:
+		\[
+			V(\mathbf{r}, t) = \frac{1}{4\pi \epsilon_0} \frac{q}{R\sqrt{1 - v^2 \sin^2 \theta / c^2}}
+		\]
+		as desired. 
+	\end{solution}
+\end{document}

@@ -1,0 +1,145 @@
+The fifth lecture of Physics 5C was held on  \textbf{Thursday, September 8}. It introduced the First law of Thermodynamics, as well as the concept of a thermodynamic process.
+    
+    
+    \section{Last time: Heat and Boltzmann Distribution}
+
+    Last time, we discussed the importance of the Boltzmann distribution and how it relates to specific state variables such as the energy distribution of particles in a gas. In this lecture, we will take a short break from that framework and discuss how state variables change in a thermodynamic process. 
+
+
+    \section{Defining a Thermodynamic System}
+
+    In order for us to define a thermodynamic system, we must introduce some constraints to our system, so that we may use appropriate mathematics to describe them. Firstly, we will say that the system has reached \textbf{thermoequilibrium}
+
+    \begin{definition}{Thermoequilibrium}{}
+        When the macroscopic state variables stop changing. In other words, state variables such as $V, P,$ and $T$ are now constants. Note that these state variables are average values. 
+    \end{definition}
+
+    We will also claim that the state variables that describe the system does not depend on the history of the system. In other words, the state variables describe the state of the system itself, and it makes no connection to what those values were at an earlier point in time.
+
+    \subsection{Requirements for State Variables}
+
+    There are a couple of requirements for state variables. Let a system be described by parameters $\{x_1, x_2, \dots, x_n\}$, with each $x_j$ representing a state variable. Now, let some of the state variables change from $x_i \to x_f$. If we can write the following:
+
+    \[ \Delta f = \int_{x_i}^{x_f} df = f(x_f) - f(x_i)\] 
+
+    Then we call $df$ an \textbf{exact differential.}
+
+
+    \begin{definition}{Exact Differential}{}
+        An exact differential is a differential which can be expressed as the differential of a function rather than parts of a differential.
+    \end{definition}
+    To give a concrete example, the differential $x dy + ydx$ is an exact differential, since we can rewrite this as $d(xy)$. However, the same cannot be done for a differential such as $x dy$. Exact differentials are also path independent, whereas inexact differentials are not path independent. We can illustrate this with an example:
+
+    \begin{example}{Exact vs. Inexact Differentials}{}
+        Consider the function:
+
+        \[ f = xy, \ df = xdy + ydx\]
+
+        Then any path integral we write:
+
+        \[ \Delta f = \int_{(0,0)}^{(1,1)} xdy + ydx = \int_{(0,0)}^{(1, 1)} df = f(1, 1) - f(0, 0)\] 
+
+        And thus this demonstrates that an exact differnetial is path independent. However, consider $dg = ydx$. Now if we try to compute the same integral, we will see that it is path dependent. There are multiple ways to do this, here we will choose two different paths: 
+        \begin{itemize}
+            \item \textbf{First Path:} $(0,0) \to (0, 1)$ and $(0, 1) \to (1, 1)$. 
+            \item \textbf{Second Path:} $(0, 0) \to (1, 0)$ and $(1, 0) \to (1, 1)$.
+        \end{itemize}
+
+        \begin{align*}
+            \Delta g &= \int_{(0, 0)}^{(0, 1)} dg + \int_{(0, 1)}^{(1, 1)} dg\\
+            &= 0 + 0 = 0\\
+            \Delta g &= \int_{(0, 0)}^{(1, 0)} dg + \int_{(1, 0)}^{(1, 1)} dg\\
+            &= 0 + 1 = 1
+        \end{align*}
+
+        Since these two integrals yield different results, then it follows that this integral is path dependent, and thus $dg$ is not an exact differential. 
+    \end{example}
+
+
+    \subsection{Choosing Equations of State}
+
+    In a container of gas, there are generally four state variables that are used to describe the system: $P, V, T, U$. In the case where we're dealing with an ideal gas (which will be most of the time), the ideal gas equation $PV = nRT$ and the equation for the average energy $U = \frac{3}{2} nRT$ mean that of these four variables, we can choose two of them to be independent ones. Depending on what's given in the problem, we will choose a different set of two variables to describe the system. With this complete, we're now ready to explore the first law of Thermodynamics.
+
+    \section{First Law of Thermodynamics}
+
+    Her'es the statement, then we'll talk about its significance:
+
+    \begin{theorem}{First Law of Thermodynamics}{First Law of Thermodynamics}
+      If we want to increase the energy of a system, we may choose to heat up the object or do work on it. More mathematically,
+
+      \[ \Delta U = \Delta W + \Delta Q\] 
+
+      where $\Delta U$ represents the total energy $\Delta W$ represents the work and $\Delta Q$ represents the heat transferred to the system. A differential form of this equatino also exists: 
+
+      \[ \dd Q = \db Q + \db W\]
+
+      which is the same expression as the previous but with deltas replaced by an infinitesimally small change.
+    \end{theorem}
+
+    As complex as this law is, it really is just a statement about the conservation of energy that we've already learned before $-$ if you want to heat something up, some energy must be expended to do that. However, the first law also categorizes the energy into \textit{heat} and \textit{work}, which are two different things. We will explore the differences of these two concepts in a later lecture.
+
+    There is also a differential form of the first law: $dU = \db Q + \db W$. Here we use $\db$ to define an inexact derivative, whereas the normal $d$ represents a total derivative. But how do we calculate $dU$ for a gas? Well, first, we need to define $\db W$ in terms of quantities we know - state variables. 
+
+    Suppose we have a container of gas with a piston on one end, at equilibrium. Then, the piston is slowly pushed to compress the gas - in fact, so slowly the piston feels no acceleration! We will also assume no friction.
+
+    [INSERT TIKZ HERE]
+
+
+    Now we ask: how much work is being done to the system? We know that the force exerted is $F = P \cdot A$, so
+
+    \begin{align*}
+      \db W &= \vec F \cdot d\vec{x}\\
+      &= P \cdot \underbrace{A dx}_{-dV}\\
+      &= -P dV\\
+      \therefore dU = \db Q - P dV
+    \end{align*}
+
+    Which we summarize in the theorem below: 
+
+    \begin{theorem}{work done by gas}{work done by gas}
+      In a thermodynamic process, the work done by the gas is always calculated as 
+
+      \[ \db W = -P \dd V\]
+    \end{theorem}
+
+
+    \section{Heat Capacity for Gases}
+
+    We know from earlier lectures that $c = \frac{\db Q}{dT} = \frac{dU + p dV}{dT}$. We know that
+
+    \begin{align*}
+      dU &= \left(\frac{\partial U}{\partial T}\right)_V dT + \left(\frac{\partial U}{\partial V}\right)_T dV\\
+      &= \left(\frac{\partial U}{\partial T}\right)_V dT + \left[ \left( \frac{\partial U}{\partial V}\right)_T + p\right] dV
+    \end{align*}
+
+    Notice that the specific heat capacity of gases is not so simple, as discussed earlier. When we change the temperature of a gas, there are multiple variables that can change, and as a result we get a more complex expression for specfic heat capacity. We split this into specific heat at constant volume $c_v$ and constant pressure $c_p$:
+
+    \begin{align*}
+        c_p &= \left(\frac{\db Q}{dT}\right)_V = \left(\frac{\partial V}{\partial T}\right)_V\\
+        c_v &= \left(\frac{\partial V}{\partial T}\right)_V + \left[\left(\frac{\partial U}{\partial V}\right)_T + p \right]\left(\frac{\partial V}{\partial T}\right)_P
+    \end{align*}
+
+    Notice that in this formula, $c_p > c_v$ for any gas, since $c_p = c_v + \text{more terms}$. For an ideal gas, $c_v = \frac{3}{2} nR$, and $c_p = \frac{5}{2} nR$. From this, we can obtain a useful constant for ideal gases: 
+
+    \[ \frac{c_p}{c_v} = \frac{5}{3} \equiv \gamma\]
+
+    $\gamma$ is used in many textbooks to denote this constant, so we will do so here as well. 
+
+
+    \section{Processes}
+
+    In the next lecture, we will discuss thermodynamic processes and how they alter the state variables in a system. We will define them here so that we may use them later:
+
+    \begin{definition}{Isothermal Process}{Isothermal Process}
+      An isothermal processes is a process that occurs at fixed temperature. 
+    \end{definition}
+
+
+    \begin{definition}{Adiabatic Process}{Adiabatic Process}
+      An adiabatic process is one where no heat exchange occurs with the outside environment.
+    \end{definition}
+
+
+    \begin{definition}{Reversibility}{Reversibility}
+      Reversibility points to the idea that we perform a process sufficiently slowly so that the gas remains in equilibrium throughout the process. This is also sometimes called a quasi-static evolution.
+    \end{definition}

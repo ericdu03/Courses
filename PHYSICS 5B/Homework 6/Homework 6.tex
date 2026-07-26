@@ -1,0 +1,195 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{epigraph}
+\usepackage{caption}
+\usepackage{esint}
+
+%Page formatting
+\lhead{Eric Du}
+\chead{Homework 5}
+\rhead{\today}
+\pagestyle{fancy}
+\cfoot{\thepage}
+\title{Homework 5}
+\author{Eric Du}
+\date{\today}
+
+%.sty file handling
+\usepackage[sexy]{evan}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\renewcommand{\labelitemi}{\textendash}
+\renewcommand{\abstractname}{}
+\theoremstyle{definition}
+\newtheorem*{solution}{\color{blue}Solution}
+\numberwithin{equation}{section}
+\numberwithin{definition}{section}
+
+%Paragraph Formatting
+\setlength{\epigraphwidth}{148pt}
+\setlength{\parindent}{0pt}
+\linespread{1.3}
+\allowdisplaybreaks
+
+%TikZ special settings
+\usepackage{circuitikz}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{decorations.markings}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent \textbf{[NOTE:]} To complete this homework I worked with \textbf{Andrew Binder} and \textbf{Aren Martinian}. For problem 4, I also received some guidance from \textbf{Andrew Dharmawan}.
+\end{abstract}
+
+\section{Problem 1}
+From Faraday's law and Lenz's law we get: 
+
+\[ \varepsilon = -\frac{d}{dt} \Phi_B\]
+
+We can calculate the flux since we're given the cross sectional area of the solenoid, so we get: 
+
+\[ \varepsilon = -\dot B(t) \pi a^2\]
+
+Now, call the currents through $R_1$, $R_2$ and $R_v$ to be $I_1$, $I_2$, $I_3$, respectively. Using Kirchhoff's voltage rules: 
+
+\[\begin{cases}
+\varepsilon - I_1R_1 - I_3R_v = 0\\
+\varepsilon - I_2R_2 - I_1R_1 = 0\\
+I_1 = I_2 + I_3
+\end{cases}\]
+
+Solving this system of equations is quite long. To solve this system, we subtract the first two to obtain $I_3 R_v = I_2R_2$, giving us a relationship between $I_3$ and $I_2$. We then substitute the last equation into the first, then use $I_3 = \frac{R_2}{R_v} I_2$ to get an equation purely in terms of $I_3$. Now that we've solved for $I_3$, we can express the voltage reading as $V = I_3R_v$:
+
+\[ V = \frac{-\pi a^2 \dot B(t) R_v (R_1 + R_2 + R_v)}{R_1R_v}\]
+
+The fact that the voltage reading is dependent on $R_2$ makes sense in this case because if we take the resistance of $R_2$ to be very large, then the current through the voltmeter should increase, since electrons follow the path of least resistance. 
+
+
+\section{Problem 2}
+
+\subsection*{Part a} 
+
+We know that in a steay-state current, the inductor essentially acts like a wire (a short-circuit), so all the current will be flowing through the wire and none through the resistor. Thus, at a time $t < 0$, the current through the resistor is zero.
+
+\subsection*{Part b}
+Right after the switch is pulled open, the circuit becomes a simple LR circuit involving the inductor and the resistor on the right. Also, at the instant that the switch is opened, the inductor will resist the change in current, and as a result the current through the inductor the second the switch opens shouldn't change. The current previously was $1 \ \text{A}$, so the current right after is also $1 \ \text{A}$.
+
+Since at this moment in time the inductor can be thought of as a battery, we should expect the bottom of the inductor to be at a higher potential, since with batteries the voltage increases across the direction of current flow.
+
+\subsection*{Part c}
+
+We have (from lecture) $\varepsilon = -L \dot I$. To find $\dot I$, we analyze the circuit and write out Kirchoff's loop rule for the simple loop containing the inductor and resistor:
+
+\[ -L \dot I - IR = 0\]
+
+This is a simple differential equation in $I$, which can be solved by means of separation of variables: 
+
+\begin{align*}
+    \frac{dI}{dt} &= - \frac{IR}{L}\\
+    \frac{1}{I} dI &= -\frac{R}{L} dt\\
+    \ln I &= -\frac{R}{L} t + C\\
+    I(t) &= Ae^{-\frac{R}{L}t}
+\end{align*}
+
+Plugging in the initial condition that $I(0) = I_0$, where $I_0$ denotes the initial steady-state current before the switch was opened, then we get:
+
+\begin{equation}
+    \label{decaying_current}
+    I(t) = I_0 e^{-\frac{R}{L}t}
+\end{equation}
+
+Now we can take $\dot I$, which gives us $\dot I = -\frac{R}{L}I_0 e^{-\frac{R}{L} t}$. Now we can finally plug this into $\varepsilon = -L\dot I$:
+
+\[ \varepsilon = -L \dot I = RI_0 e^{-\frac{R}{L} t} = 10 \text { V}\]
+
+
+\subsection*{Part d}
+
+We can analyze the system as $t \to \infty$. Since the inductor provides decaying current, then we should expect that at a very long time the current should gradually go to zero. This is also supported by our theoretical equation \ref{decaying_current}, as $\lim_{t \to \infty} I(t) = 0$. 
+
+In reference to the time scales, we can also choose a time of 5 time constants, which is enough time for the inductor to either gain or lose nearly all of its energy, and gives us a good idea of what happens at $t \to \infty$, without having to deal with infinities at all.
+
+This result should also make sense intuitively, since when the switch is opened, there is no more constant supply of voltage. The inductor can only hold so much energy in its magnetic fields, so we should expect also by this logic that at $t \to \infty$ all the energy stored in the inductor should have been lost, and thus there is no more energy source. Since there is no more energy source, the current at a very long time should be zero.
+
+\section{Problem 3}
+
+\subsection*{Part i}
+
+The voltage across the battery is time independent, so we should expect its voltage over time to correspond to graph $\boxed{\text{A}}$.
+
+\subsection*{Part ii}
+
+Once the switch is closed, we should expect the current in the battery to immediately jump up, since a closed loop is immediately formed. Once the switch is then open, that loop is broken, and we should expect the current through the battery to instantly drop to zero. Thus, we should expect graph of current over time to be $\boxed{\text{D}}$. 
+
+\subsection*{Part iii}
+
+Since the battery and the resistor are connected in series, we should expect that whatever current flows thorugh the battery should also flow through the resistor. As a result, we should expect the same graph, or graph $\boxed{\text{D}}$.
+
+\subsection*{Part iv}
+
+Since we have $V = IR$ for a resistor, we know that $V \propto I$, and thus the graphs of the voltage and current values over time should be the same down to a constant. This leads us to graph $\boxed{\text D}$ being the graph of choice.
+
+\subsection*{Part v}
+
+When the circuit is first closed at $t = 0$, then we should expect the current through the inductor to increase wiht $I(t) \propto -e^{-\alpha}t$, and when the circuit is then opened we expect $I(t) \propto e^{-\alpha t}$. The only graph that satisfies both these properties is graph $\boxed{\text{B}}$.
+
+\pagebreak
+\subsection*{Part vi}
+
+Call the resistance of the lightbulb $r$. Initially, we have $I = \frac{V}{R + r}$ and at time $t = T$ we then have $I_0 = \frac{V}{R}$, since now all the current flows through the inductor. Due to the nature of inductors impeding current, the current through the inductor doesn't change the instant after $t = T$. From \ref{decaying_current} we have $\dot I = -\frac{I_0R}{L}e^{-\frac{R}{L}t}$ so we have:
+
+\begin{align*}
+\varepsilon &= -L \dot I \\
+&= -L \frac{V}{R} \cdot \left(-\frac{R}{L}\right) = V
+\end{align*}
+
+As a result, we should expect the voltages right before the switch is closed and right after the switch is opened to be the same, only a change in sign is observed as the voltage drop occurrs in the opposite direction. Thus, graph $\boxed{\text{G}}$ is the correct graph.
+
+\subsection{Part vii}
+
+When the switch is initially closed, the inductor acts like a break in the circuit, thus meaning that we essentially only have a series circuit with the lightbulb and the resistor. 
+
+However, when the switch is then opened at $t = T$, the voltage across the inductor at the moment the switch is opened is the same as that of the battery, but if we imagine it to be a battery then we are looking at a series circuit with the lightbulb as the only resistance. Since the voltage hasn't changed across both situations, by Kirchoff's loop rule we expect that the voltage drop across the resistor in the second circuit should be higher, since it is the only resistance in the circuit.
+
+As a result, we should expect $h_1 < h_2$, so the only graph that satisfies this property is graph $\boxed{\text{E}}$.
+
+
+\subsection{Part viii}
+
+Since a this lightbulb follows ohm's law (ignoring linearities as instructed by the problem statement), then we should expect that since the resistnace is constant, then the current through the bulb should increase with the voltage. Thus, the graph that reflects the current should be in the same shape as the voltage, so we choose graph $\boxed{\text{E}}$.
+
+\section{Problem 4}
+
+By faraday's law, we have:
+
+\[ \varepsilon = -\pi a^2 \frac{dB}{dt}\]
+
+Then, by the definition of the voltage, we also have $\int E \cdot dl = \varepsilon = 2\pi aE$. Thus equating the two, we get $E = -\frac{dB}{dt} \frac{a}{2}$. Since the ring is nonconducting, the only way to push the electrons along the ring (so as to produce a current) is for the ring itself to move, about the axis that goes through the geometric center of the ring. 
+
+Now consider an element $dq$. The torque felt by such an element is $d\tau = Ea \cdot dq$, so the total torque is $\tau = Eaq$. To find the total change in angular momentum, we take the time derivative from $t = 0$ to $t = \infty$:
+
+\begin{align*}
+    L &= \int_0^\infty \tau dt\\
+    &= \int_0^\infty \frac{a^2q}{2}\frac{dB}{dt} dt\\
+    &= \int_0^B \frac{a^2q}{2} dB\\
+    &= \frac{qa^2B_0}{2}
+\end{align*}
+
+
+To find the angular momentum, we have $L = I\omega$, where $I$ denotes the moment of inertia in this case. The moment of inertia of a ring rotating about its geometric center is $\pi a^2$, so we get: 
+
+\begin{align*}
+    \omega &= \frac{\frac{qa^2B_0}{2}}{ma^2}\\
+    &= \frac{qB_0}{2m}
+\end{align*}
+
+Which is exactly what the problem statement asks us to show. The fact that the ring rotates makes sense in this case: a changing $B$ field will normally cause a current in a perfectly conducting wire, but because this wire is nonconducting then for the charges to move, it must be that the whole ring is moving in the direction of the current. Thus, we get some angular momentum of the ring, along with an angular velocity.
+\end{document}

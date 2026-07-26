@@ -1,0 +1,73 @@
+\chapter{Lecture 15}
+
+\section{Last time: Solution to electrostatic potential}
+
+Last time, we saw that the solution to the electrostatic potential $V(r, \theta)$ assuming azimuthal symmetry
+is of the form: 
+\[
+	V(r, \theta) = \sum_{l = 0}^\infty \left(A_lr^l + B_l \frac{1}{r^{l + 1}}\right) P_l(\cos \theta)
+\] 
+Let's see how this works with an example.
+
+\begin{example*}{}{}
+	Suppose we have a conductor placed in a uniform field $\vec E = E_0 \hat{z}$. We want to find the
+	electrostatic
+	potential everywhere in this system. 
+
+	To start, we must first identify the boundary conditions:
+	
+	\begin{itemize}
+		\item We expect the electric field $\vec E \to \vec E_0$ as $r \to \infty$. So, if we set $V = 0$ at $z =0$, then we get that $V \to 
+	- E_0 z =-  E_0 r \cos \theta$ as $r \to \infty$. This can be shown explicitly by considering a line integral $V = \int 
+	\vec E \cdot dl$, starting from $z = 0$ going to $z = z_0$ for some $z$. 
+	\item We require $V = 0$ at $r \le R$, due to the properties of a conductor.  
+	\end{itemize}
+	Now, we are ready to impose the boundary conditions onto our general solution. Inside the sphere, we don't 
+	expect $V$ to blow up, so therefore all $B_l = 0$ in the limit that $r \to \infty$. Further, since $V \to E_0 r \cos \theta$ as $r \to \
+	\infty$, then we only keep the first-order $\cos \theta$ term, so we only keep $A_1 = -E_0$. Now matching
+	the second boundary condition;
+	\[
+		A_l R^l + B_l \frac{1}{R^{l + 1}} = 0 \implies B_l = -A_l R^{2l + 1}
+	\] 
+	And since we know that $A_l = 0$ except $A_1$, then we only keep $B_1$ as a result. Solving, we get $B_1 = 
+	E_0 R^{2l +1}$. Therefore, after matching boundary conditions we get the solution 
+	\[
+	V(r, \theta) = \left( -E_0 r + E_0 \frac{R^3}{r^2} \right) \cos \theta
+	\] 
+\end{example*}
+% there is a thing about the induced charge here, but I'm not completely sure what it refers to. 
+
+\section{Multipole Expansion}
+
+For simplicity, let's only consider two charges $q$ placed on the $z$ axis, at a distance $d$ away from each
+other. Now, we could write the potential explicitly: 
+\[
+ V = \frac{q}{4\pi \epsilon_0}\left( \frac{1}{\rcurs_+} - \frac{1}{\rcurs_-} \right) 
+\] 
+While this form is ok, we are often interested in the limit where we are very far from the source charges, 
+or in other words when $\rcurs_+$ and $\rcurs_-$ are much larger than $d$. In this limit, a simplification 
+can be made. First, we write
+\[
+\rcurs_+ = \sqrt{r^2 + \left( \frac{d}{2} \right)^2 \mp dr \cos \theta} = r\sqrt{1 \mp \frac{d}{r}\cos \theta
++ \left( \frac{d}{2r} \right)^2} 
+\] 
+And a similar expression for $\rcurs_-$. Therefore, 
+\[
+	\frac{1}{\rcurs_{\pm}} = \frac{1}{r}\left[ 1 \mp \frac{d}{r}\cos \theta + \left( \frac{d}{r} \right)^2\right]
+	^{1/2} \approx \frac{1}{r}\left[ 1 \mp \left(-\frac{1}{2} \frac{d}{r} \cos \theta\right) +
+	O\left( \frac{d^2}{r^2} \right)\right] \approx \frac{1}{r}\left[1 \pm \frac{d}{2r}\cos \theta\right] 
+\] 
+where in the last step we use the expansion $(1 + x)^n \approx 1 + nx + \dots$. Now, applying this for our 
+potential, we get: 
+\begin{align*}
+	V = \frac{q}{4\pi \epsilon_0}\left( \frac{1}{\rcurs_+} - \frac{1}{\rcurs_-} \right) &\approx
+	\frac{q}{4\pi\epsilon_0}\cdot \frac{1}{r}\left[1 + \frac{d}{2r}\cos \theta - \left( 1 - \frac{d}{2r}
+	\cos \theta\right) \right]\\
+	&= \frac{q}{4\pi\epsilon_0}\frac{d}{r^2}\cos \theta\\
+	&= \frac{p \cos \theta}{4\pi\epsilon_0r^2}
+\end{align*}
+Here, we use the definition $p = qd$, where $p$ represents the \textbf{dipole moment}. We will explore more about
+the dipole moment next time. 
+
+
+ 

@@ -1,0 +1,134 @@
+\section{April 23}
+\subsection{Time Dilation/Proper time}
+Last lecture, we covered the idea of time dilation, and derived the relation \( \Delta t = \gamma \Delta t'
+\). In that example, we had Bob moving with the rocket ship, where the two events, the emission of the photon
+and its absorption back occur at the same location in the \( S' \) frame. Because these two events occur at
+the same location in the \( S' \) frame, the time difference measured in such a reference frame is called the
+\textit{proper time}, and is denoted \( \Delta \tau \). This quantity will be important in our later
+discussions. 
+
+\subsection{Length Contraction}
+Here, we touch on the topic of length contraction. Consider a situation below, where Bob is on a rocket ship
+and Alice is standing by on a ledge as Bob goes past. Bob is holding a long rod, and at \( t = 0 \), the
+front end of that rod passes by Alice. The length of the rod, as measured by Bob, is called the
+\textit{proper length}, denoted by \( L_0 \). The proper length is the length measured by an observer that is
+moving with no relative motion with the object in question (i.e. Bob). 
+
+At some time \( \Delta t \) later, the back of the rod passes Alice, so for Alice she will measure the length
+as \( L = v \Delta t \). Because Alice measures the rod at the same location, her length is denoted by the
+proper time, \( L = v \Delta \tau \). For Bob, Alice moves over a distance \( L_0 \) in a time \( \Delta t'
+\), with a speed \( v \). Therefore, Bob writes \( L_0 = v \Delta t' \). Because we know that \( \Delta t'
+ = \gamma \Delta t\), then we get \( L_0 = v \gamma \Delta t = \gamma L \), and hence we get \( L =
+ \frac{L_0}{\gamma} \), which is the standard formula for length contraction. Do note, however, that the
+ lengths in the \textit{perpendicular} direction, are not contracted! You can see this by the fact that \(
+ \gamma = 1 \) in that case.   
+
+\subsection{Lorentz Boost/Transformation}
+We now tackle the above phenomena from a theoretical perspective, by building up to Lorentz transformations.
+Consider two frames \( \mathcal{S} \) and \( \mathcal{S}' \), where \( \mathcal{S}' \) travels with speed \(
+v\). And, consider an event at time \( (t, x) \) in \( \mathcal{S} \). We now ask the question: what is the
+relation between \( (t, x) \) and \( (t', x') \)?   
+
+\begin{center}
+	\begin{tikzpicture}
+		\draw[-stealth] (0, 0) -- (3, 0);
+		\draw[-stealth] (0, 0) -- (0, 3) node[above] {\( \mathcal{S} \)};
+		\draw[-stealth, red] (1, 0) -- (4, 0);
+		\draw[-stealth, red] (1, 0) -- (1, 3) node[above] {\( \mathcal{S}'\)} ;
+		\draw[-stealth, red] (1.2, 2.5) -- (1.5, 2.5) node[right] { \( v \) };
+		\filldraw[blue] (3.2, 0.5) circle (0.02) node[right] {\( (t, x) \)};
+	\end{tikzpicture}
+\end{center}
+In Galilean relativity, the transformation would be:
+\[
+	t' = t \quad x' = x - vt
+\]
+because time is assumed to pass the same in different reference frames. However, as we shall see, this is not
+the case in relativity. To see this more clearly, let's consider a specific situation: at \( t = 0 \), frame
+\( \mathcal{S}' \) starts moving, and simultaneously a light pulse at \( (t, x) = (t', x') = (0, 0) \) is
+sent out. At some time later, it travels a distance \( L_0 \) as measured in \( \mathcal{S}' \). 
+ 
+\begin{center}
+	\begin{tikzpicture}[decoration=snake]
+		\draw[-stealth] (0, 0) -- (3, 0);
+		\draw[-stealth] (0, 0) -- (0, 3) node[above left] {\( \mathcal{S} \)};
+		\draw[-stealth, red] (0.1, 0) -- (3.1, 0);
+		\draw[-stealth, red] (0.1, 0) -- (0.1, 3) node[above right] {\( \mathcal{S}'\)};
+		\draw[-stealth, red] (0.3, 2.5) -- (0.7, 2.5) node[right] { \( v \) };
+		\draw[red] (0.5, 0.5) rectangle node[midway, above=0.2] {\( L_0 \)} ++(3, 0.4);
+		\draw[orange, -stealth, decorate] (0.5, 0.7) -- (1.2, 0.7);
+		\node at (1.5, -0.5) {Event 1};
+	\end{tikzpicture}
+	\hspace{3cm}
+	\begin{tikzpicture}[decoration=snake]
+		\draw[-stealth] (0, 0) -- (3, 0);
+		\draw[-stealth] (0, 0) -- (0, 3) node[above] {\( \mathcal{S} \)};
+		\draw[-stealth, red] (1, 0) -- (4, 0);
+		\draw[-stealth, red] (1, 0) -- (1, 3) node[above] {\( \mathcal{S}'\)} ;
+		\draw[-stealth, red] (1.2, 2.5) -- (1.5, 2.5) node[right] { \( v \) };
+		\draw[red] (1.4, 0.5) rectangle node[midway, above=0.2] {\( L_0 \)} ++(3, 0.4);
+		\draw[orange, -stealth, decorate] (3.7, 0.7) -- (4.4, 0.7);
+		\node at (1.5, -0.5) {Event 2};
+	\end{tikzpicture}
+\end{center}
+In the \( \mathcal{S} \) frame, event 2 happens at a coordinate \( (\Delta t, \Delta x) \). Note that this is
+both improper time and length, since the events are not occurring in the same location, and \( \mathcal{S} \)
+is not moving with the length \( L_0 \). In the \( \mathcal{S}' \) frame though, event 2 happens at the
+coordinates \( (\Delta t', L_0) \). Note the proper time here because \( \mathcal{S}' \) moves with the
+length \( L_0 \). Given the formula for length contraction though, we can go ahead and calculate what \(
+\Delta x \) should be:
+\[
+	\Delta x = v \Delta t + L = v \Delta t + \frac{L_0}{\gamma} = v \Delta t + \frac{\Delta x'}{\gamma}
+	\implies \Delta x' = \gamma(\Delta x - v \Delta t)
+\]
+And we arrive at the familiar formula for a Lorentz boost in the \( x \)-direction.
+For the time portion, we have \( \Delta t' = \frac{L_0}{c} \) for Bob, and for Alice we have:
+\[
+	\Delta t = \frac{\Delta x}{c} = \frac{1}{c}\left( v \Delta t + \frac{L_0}{\gamma} \right) =
+	\frac{v}{c}\Delta t + \frac{\Delta t'}{\gamma} \implies \Delta t' = \left( 1 - \frac{v}{c} \right)
+	\Delta t \cdot \gamma
+\]
+Hence, we have:
+\[
+	\Delta t = \frac{\Delta x'}{c} = \frac{\gamma}{c}\left( \Delta x - v \Delta t \right) = \gamma\left(
+	\frac{\Delta x}{c} - \frac{v}{c}\Delta t \right) = \gamma\left( \Delta t - \frac{v}{c}\frac{\Delta x}{c} \right) 
+	= \gamma\left(\Delta t - \frac{v}{c^2}\Delta x\right)
+\]
+Here, we arrive at the formula for the Lorentz boost for time. Both of these formulas can be summarized into
+one transformation, called the \textit{Lorentz Boost} or Lorentz Transformation:
+\[
+	\begin{cases}
+		\Delta t' = \gamma\left( \Delta t - \frac{v}{c^2}\Delta x \right)\\
+		\Delta x' = \gamma(\Delta x - v \Delta t)\\
+		\Delta y' = \Delta y \\
+		\Delta z' = \Delta z
+	\end{cases},
+	\quad \gamma = \frac{1}{\sqrt{1 - v^2 / c^2}}
+\]
+Note that this is only in the \( x \)-direction, but the other directions are the exact same derivation. One
+interesting thing about this transformation is that the following holds true:   
+\[
+	-(c \Delta t')^2 + (\Delta x')^2 = -(c \Delta t)^2 + (\Delta x)^2
+\]
+This equality really tells us something about what the Lorentz transformation does to our coordinate system.
+Just like how under rotation, the Euclidean distance: \( (\Delta x')^2 + (\Delta y')^2 + (\Delta z')^2 \)
+remains invariant, the above quantity is invariant under Lorentz transformation. In this sense, we can think
+of \( (c \Delta t)^2 + (\Delta x)^2 \) as a notion of "length", which remains invariant under the Lorentz
+transformation.
+ 
+There also happens to be another way to write this equality, which is to use matrix notation:
+\[
+	\begin{pmatrix} c \Delta t & \Delta x & \Delta y & \Delta z \end{pmatrix} 
+	\begin{pmatrix} -1 & & &\\ & 1 & & \\ & & 1 & \\ & & & 1\end{pmatrix}
+	\begin{pmatrix} c \Delta t\\ \Delta x \\ \Delta y\\ \Delta z \end{pmatrix} = \text{const.}
+\]
+which can also be written more compactly as \( \eta_{\mu \nu}(\Delta x)^{\mu} (\Delta x)^{\nu} =
+\text{const.} \). Our requirement that this remains invariant can then be written as:
+\[
+	\eta_{\mu \nu}(\Delta x)^{\mu}(\Delta x)^{\nu} = \eta_{\rho \sigma}(\Delta x)^{\rho}(\Delta x)^{\sigma}
+\]
+Notice that \( \Delta x \) is the same on both sides, but the \textit{metric} \( \eta_{\rho \sigma} \) does
+not use the same indices. So how does this equation reflect invariance? As we'll see in the next lecture,
+we've encoded the transformation in changing \( \eta_{\mu \nu} \to \eta_{\rho \sigma} \). 
+
+
